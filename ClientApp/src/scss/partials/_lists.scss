@@ -1,0 +1,56 @@
+// CSS imported from UGWA
+ul.material-list {
+  list-style: none;
+  padding: 8px 0;
+  margin: 0 -20px;
+  min-height: 88px;
+
+  li {
+    display: inline-block;
+    width: 100%;
+    padding: 20px 16px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    vertical-align: top;
+    font-size: 14px;
+    cursor: pointer;
+
+    span {
+      display: block;
+    }
+  }
+}
+
+// [New] badge
+.modal-content {
+  .modal-header .badge {
+    background-color: $theme;
+    margin-left: 0.5rem;
+  }
+
+  .btn {
+    &.close-modal {
+      //background-color: $theme;
+    }
+  }
+}
+
+// Decides how many columns to split the list into
+@media (min-width: 540px) {
+  ul.material-list li {
+    width: 50%;
+  }
+}
+
+@media (min-width: 710px) {
+  ul.material-list li {
+    width: 100% / 3;
+  }
+}
+
+@media (min-width: 900px) {
+  ul.material-list li {
+    width: 25%;
+  }
+}

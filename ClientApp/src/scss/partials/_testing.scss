@@ -1,0 +1,14 @@
+@import '../mixins/content-box';
+
+.testing {
+  padding: 24px;
+
+  .colorpicker-test {
+    @include content-box();
+  }
+
+  .loading-test {
+    @include content-box();
+    margin-top: 20px;
+  }
+}

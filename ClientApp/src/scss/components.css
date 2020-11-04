@@ -1,0 +1,52 @@
+a {
+  text-decoration: none;
+}
+a :hover {
+  text-decoration: underline;
+}
+
+button {
+  border: none;
+  background: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+iframe {
+  border: none;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.secondary {
+  color: var(--secondary);
+}
+
+.nav {
+  padding: 10px 5px 0 5px;
+  width: 100%;
+}
+.nav .nav-tabs {
+  border: none;
+}
+.nav .nav-tabs .nav-item {
+  cursor: pointer;
+}
+.nav .nav-tabs .nav-item .nav-link {
+  color: var(--secondary);
+  background-color: #e9ecef;
+}
+.nav .nav-tabs .nav-item .active {
+  color: black;
+  background-color: white;
+}
+
+/*# sourceMappingURL=components.css.map */

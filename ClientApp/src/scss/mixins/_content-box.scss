@@ -1,0 +1,5 @@
+@mixin content-box($radius: 10px, $padding: 12px, $bg-color: $background) {
+  padding: $padding;
+  background-color: $bg-color;
+  border-radius: $radius;
+}

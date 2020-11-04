@@ -1,0 +1,277 @@
+body {
+  margin: 0;
+  height: 100vh;
+  color: rgba(0, 0, 0, 0.87);
+  /* font-family: 'Roboto', sans-serif; */
+  font-size: 16px;
+}
+body ::-webkit-scrollbar {
+  width: 0.25rem;
+}
+body ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.54);
+}
+
+#root {
+  height: 100%;
+}
+
+.app {
+  height: 100%;
+  display: flex;
+  position: relative;
+  /* The main content pane of the app */
+}
+.app .content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background-color: #efefef;
+}
+
+a {
+  color: #ff594c;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  border: none;
+  background: none;
+}
+button:focus {
+  outline: none;
+}
+
+iframe {
+  border: none;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.secondary {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.schedule, .header-background {
+  background-color: rgba(255, 89, 76, 0.3);
+  height: 500px;
+}
+
+.nav {
+  padding: 10px 5px 0 5px;
+  width: 100%;
+}
+.nav .nav-tabs {
+  border: none;
+}
+.nav .nav-tabs .nav-item {
+  cursor: pointer;
+}
+.nav .nav-tabs .nav-item .nav-link {
+  color: rgba(0, 0, 0, 0.54);
+  background-color: #e9ecef;
+}
+.nav .nav-tabs .nav-item .active {
+  color: black;
+  background-color: white;
+}
+
+.sidebar .bottom, .sidebar .item a, .sidebar h1 {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.sidebar {
+  flex: none;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  font-size: 18px;
+  transition: width 400ms ease;
+  width: 16rem;
+}
+.sidebar.collapsed {
+  width: 5rem;
+}
+.sidebar.collapsed h1, .sidebar.collapsed .item span {
+  display: none;
+}
+.sidebar h1 {
+  font-size: 24pt;
+}
+.sidebar .item {
+  width: 100%;
+  margin: 12px 0 0 0;
+}
+.sidebar .item .active {
+  border-left: 6px solid;
+}
+.sidebar .item a {
+  color: #a51618;
+  display: block;
+  padding: 0.5rem 0.5rem 0.5rem 0;
+}
+.sidebar .item a:hover {
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: rgba(255, 89, 76, 0.2);
+}
+.sidebar .item a span {
+  display: inline;
+  margin-left: 1rem;
+}
+.sidebar .item a svg {
+  width: 2rem;
+  min-width: 2rem;
+}
+.sidebar .bottom {
+  border-top: 2px solid;
+  margin-top: auto;
+}
+.sidebar .toggler {
+  padding: 0 5px 10px 0;
+  margin-left: auto;
+}
+
+.header-background {
+  padding: 24px;
+}
+.header-background .header {
+  padding: 12px;
+  background-color: #ff594c;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+}
+.header-background .header .heading {
+  /* padding: 0 0 10px 0; */
+  display: inline-block;
+  width: 100%;
+  border-bottom: 2px solid;
+  color: white;
+}
+.header-background .page {
+  padding: 12px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.schedule {
+  padding: 24px;
+}
+.schedule .schedule-dayname {
+  font-size: 72px;
+}
+.schedule .schedule-wrapper {
+  max-width: 850px;
+  margin: 0 auto 0 auto;
+}
+.schedule .schedule-wrapper .card {
+  margin-bottom: 0.5rem;
+}
+.schedule .schedule-wrapper .card .card-title {
+  font-size: 24px;
+}
+.schedule .day-alert {
+  background-color: white;
+}
+.schedule .day-alert .btn {
+  background-color: rgba(0, 0, 0, 0.54);
+}
+
+.desmos-embed {
+  height: 700px;
+  width: 100%;
+}
+
+ul.material-list {
+  list-style: none;
+  padding: 8px 0;
+  margin: 0 -20px;
+  min-height: 88px;
+}
+ul.material-list li {
+  display: inline-block;
+  width: 100%;
+  padding: 20px 16px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  vertical-align: top;
+  font-size: 14px;
+  cursor: pointer;
+}
+ul.material-list li span {
+  display: block;
+}
+
+.modal-content .modal-header .badge {
+  background-color: #ff594c;
+  margin-left: 0.5rem;
+}
+@media (min-width: 540px) {
+  ul.material-list li {
+    width: 50%;
+  }
+}
+@media (min-width: 710px) {
+  ul.material-list li {
+    width: 100%/3;
+  }
+}
+@media (min-width: 900px) {
+  ul.material-list li {
+    width: 25%;
+  }
+}
+.testing {
+  padding: 24px;
+}
+.testing .colorpicker-test {
+  padding: 12px;
+  background-color: #fafafa;
+  border-radius: 10px;
+}
+.testing .loading-test {
+  padding: 12px;
+  background-color: #fafafa;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+input[type=search] {
+  padding: 4px 4px 4px 10px;
+  border: none;
+  border-radius: 20px;
+}
+input[type=search]:focus {
+  outline: none;
+}
+
+.loading {
+  height: 300px;
+  width: 100%;
+  background-color: #efefef;
+  color: rgba(0, 0, 0, 0.54);
+  display: flex;
+}
+.loading span {
+  display: inline-flex;
+  margin: auto;
+}
+.loading span h2 {
+  margin-left: 1rem;
+}
+
+/*# sourceMappingURL=index.css.map */

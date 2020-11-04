@@ -1,0 +1,27 @@
+@import '../mixins/content-box';
+
+
+.header-background {
+  @extend %theme-backdrop;
+  padding: 24px;
+
+  // The red box that displays the heading
+  .header {
+    @include content-box($bg-color: $theme);
+    display: flex;
+    flex-direction: row;
+
+    .heading {
+      /* padding: 0 0 10px 0; */
+      display: inline-block;
+      width: 100%;
+      border-bottom: 2px solid;
+      color: white;
+    }
+  }
+
+  // The white box that displays the tab content
+  .page {
+    @include content-box($bg-color: white);
+  }
+}

@@ -1,0 +1,16 @@
+.loading {
+  height: 300px;
+  width: 100%;
+  background-color: #efefef;
+  color: $secondary;
+  display: flex;
+
+  span {
+    display: inline-flex;
+    margin: auto;
+
+    h2 {
+      margin-left: 1rem;
+    }
+  }
+}

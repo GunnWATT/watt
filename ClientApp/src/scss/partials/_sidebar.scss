@@ -1,0 +1,83 @@
+%text-truncate {
+  overflow: hidden;
+  //text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar {
+  flex: none;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  //background-color: #23232e;
+  //color: #efefef;
+  font-size: 18px;
+  transition: width 400ms ease;
+  width: 16rem;
+
+  // Style for when the sidebar is collapsed
+  &.collapsed {
+    width: 5rem;
+
+    // Header, link text
+    h1, .item span {
+      display: none;
+    }
+  }
+
+  // Header
+  h1 {
+    @extend %text-truncate;
+    font-size: 24pt;
+  }
+
+  // Navs
+  .item {
+    width: 100%;
+    margin: 12px 0 0 0;
+
+    // Active
+    .active {
+      border-left: 6px solid;
+    }
+
+    // The <Link> components
+    a {
+      @extend %text-truncate;
+      color: #a51618;
+      display: block;
+      padding: 0.5rem 0.5rem 0.5rem 0;
+
+      &:hover {
+        text-decoration: none;
+        border-radius: 5px;
+        background-color: $focus;
+      }
+
+      // Link text
+      span {
+        display: inline;
+        margin-left: 1rem;
+      }
+
+      // Link icon
+      svg {
+        width: 2rem;
+        min-width: 2rem;
+      }
+    }
+  }
+
+  .bottom {
+    @extend %text-truncate;
+    border-top: 2px solid;
+    margin-top: auto;
+  }
+
+  // Navbar Toggler
+  .toggler {
+    padding: 0 5px 10px 0;
+    margin-left: auto;
+  }
+}

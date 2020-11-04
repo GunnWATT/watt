@@ -1,0 +1,19 @@
+# dependencies
+*node_modules/
+
+# react
+ClientApp/coverage
+ClientApp/build
+
+# config
+ClientApp/src/config.js
+
+# misc
+*.DS_Store
+/.firebase
+
+# IDE
+/.idea
+
+# temp stuff
+/temp

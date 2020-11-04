@@ -1,0 +1,18 @@
+// Main
+@import './main.scss';
+@import './variables.scss';
+@import './components.scss';
+
+// Layout
+@import './partials/sidebar';
+@import './partials/header';
+
+// Pages
+@import './partials/schedule';
+@import './partials/utilities';
+@import './partials/lists';
+@import './partials/testing';
+
+// Misc
+@import './partials/search';
+@import './partials/loading';

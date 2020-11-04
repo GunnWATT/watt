@@ -1,0 +1,32 @@
+.schedule {
+  @extend %theme-backdrop;
+  padding: 24px;
+
+  .schedule-dayname {
+    font-size: 72px;
+  }
+
+  // Periods container
+  .schedule-wrapper {
+    max-width: 850px;
+    margin: 0 auto 0 auto;
+
+    // Individual period boxes
+    .card {
+      //background-color: var(--theme);
+      margin-bottom: 0.5rem;
+
+      .card-title {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .day-alert {
+    background-color: white;
+
+    .btn {
+      background-color: $secondary;
+    }
+  }
+}

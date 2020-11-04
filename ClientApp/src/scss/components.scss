@@ -1,0 +1,66 @@
+// Components
+a {
+  color: $theme;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+button {
+  border: none;
+  background: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+iframe {border: none;}
+
+
+// Utility classes
+// Alignment
+.center {text-align: center;}
+.right {text-align: right;}
+
+// Color
+.secondary {color: $secondary;}
+
+
+// Utility inheritables
+%theme-backdrop {
+  background-color: $active-back;
+  height: 500px;
+}
+
+
+// Reactstrap
+// <Nav>
+.nav {
+  padding: 10px 5px 0 5px;
+  width: 100%;
+
+  .nav-tabs {
+    border: none;
+
+    .nav-item {
+      cursor: pointer;
+
+      .nav-link {
+        color: $secondary;
+        background-color: #e9ecef;
+
+        :hover {
+          //text-decoration: none;
+        }
+      }
+
+      .active {
+        color: black;
+        background-color: white;
+      }
+    }
+  }
+}
