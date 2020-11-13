@@ -1,26 +1,30 @@
 import React from 'react';
-import moment from 'moment';
+//import moment from 'moment';
+import twix from 'twix';
 import {Card, CardBody, CardTitle, CardSubtitle, CardText, Progress} from "reactstrap";
 
 const Period = (props) => {
-    let time = props.currTime; // necessary?
-    let now = new moment();
-    let start = new moment(`${time.format('L')} ${props.start}`, 'MM/DD/YYYY h:mm a');
-    let end = new moment(`${time.format('L')} ${props.end}`, 'MM/DD/YYYY h:mm a');
+    // Outer time
+    let now = props.now;
+
+    // Inner time
+    let start = props.start; // Moment representing start time
+    let end = props.end; // Moment representing end time
+    let t = start.twix(end); // Twix duration representing the period
 
     const parseStartEnd = () => {
-        if (now.isAfter(end)) return <span>Ended {end.fromNow()}</span>
-        if (now.isBetween(start, end)) return <span>Ending {end.fromNow()}, started {start.fromNow()}</span>
-        if (now.isBefore(start)) return <span>Starting {start.fromNow()}</span>
+        if (t.isPast()) return <span>Ended {end.fromNow()}</span>
+        if (t.isCurrent()) return <span>Ending {end.fromNow()}, started {start.fromNow()}</span>
+        if (t.isFuture()) return <span>Starting {start.fromNow()}</span>
     }
 
     return (
         <Card>
             <CardBody>
                 <CardTitle>{props.name}</CardTitle>
-                <CardSubtitle className="secondary">{props.start} - {props.end}</CardSubtitle>
-                <CardText className="secondary">{parseStartEnd()}</CardText>
-                {(now.isBetween(start, end))
+                <CardSubtitle className="secondary">{t.simpleFormat('h:mma')}</CardSubtitle>
+                <CardText className="secondary">{parseStartEnd()} - {t.countInner('minutes')} minutes long</CardText>
+                {t.isCurrent()
                     ? <Progress animated value={(now.valueOf() - start.valueOf()) / (end.valueOf() - start.valueOf()) * 100}/>
                     : null}
             </CardBody>

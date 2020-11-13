@@ -15,7 +15,7 @@ import staff from '../database/staff.js';
 
 const Lists = (props) => {
     // Tabs
-    const [activeTab, setActiveTab] = useState('2');
+    const [activeTab, setActiveTab] = useState('1');
     const toggle = tab => {
         if (activeTab !== tab) setActiveTab(tab);
     }
@@ -28,39 +28,31 @@ const Lists = (props) => {
     // Renders the HTML of the actual list
     const renderData = (data) => {
 
-        // Makes the name of the object a field for each object so that it can be obtained via object.name
-        // Ideally not needed
-        const renderName = (list) => {
-            for (let item in list) {
-                list[item].name = item;
-            }
-            return list;
-        }
-
         // Filters data so that only entries matching the search are rendered, and then renders content
         // Could potentially consisify?
-        let filtered = Object.values(renderName(data));
+        let filtered = Object.entries(data).sort(); // Creates nested array where [0] is the name and [1] is the object data
+        console.log(filtered);
         let content;
         switch (activeTab) {
             case '1':
                 filtered = filtered.filter(data =>
                     query === '' ||
-                    data.name.toLowerCase().includes(query.toLowerCase())
-                    // || data.room.toLowerCase().includes(query.toLowerCase()) // Room exists not in Zoom School
-                    || data.day.toLowerCase().includes(query.toLowerCase())
+                    data[0].toLowerCase().includes(query.toLowerCase())
+                    // || data[1].room.toLowerCase().includes(query.toLowerCase()) // Room exists not in Zoom School
+                    || data[1].day.toLowerCase().includes(query.toLowerCase())
                 )
                 content = filtered.map(club =>
                     <ClubComponent
-                        key={club.name}
-                        name={club.name}
-                        room={club.room}
-                        day={club.day}
-                        time={club.time}
-                        desc={club.desc}
-                        president={club.prez}
-                        teacher={club.advisor}
-                        email={club.email}
-                        new={club.new}
+                        key={club[0]}
+                        name={club[0]}
+                        room={club[1].room}
+                        day={club[1].day}
+                        time={club[1].time}
+                        desc={club[1].desc}
+                        president={club[1].prez}
+                        teacher={club[1].advisor}
+                        email={club[1].email}
+                        new={club[1].new}
                     />
                 )
                 break;
@@ -68,19 +60,19 @@ const Lists = (props) => {
             case '2':
                 filtered = filtered.filter(data =>
                     query === '' ||
-                    data.name.toLowerCase().includes(query.toLowerCase())
-                    || data.title.toLowerCase().includes(query.toLowerCase())
-                    || data.email.toLowerCase().includes(query.toLowerCase())
+                    data[0].toLowerCase().includes(query.toLowerCase())
+                    || data[1].title.toLowerCase().includes(query.toLowerCase())
+                    || data[1].email.toLowerCase().includes(query.toLowerCase())
                 )
                 content = filtered.map(staff =>
                     <StaffComponent
-                        key={staff.name}
-                        name={staff.name}
-                        title={staff.title}
-                        department={staff.department}
-                        phone={staff.phone}
-                        email={staff.email}
-                        periods={staff.periods}
+                        key={staff[0]}
+                        name={staff[0]}
+                        title={staff[1].title}
+                        department={staff[1].department}
+                        phone={staff[1].phone}
+                        email={staff[1].email}
+                        periods={staff[1].periods}
                     />
                 )
                 break;

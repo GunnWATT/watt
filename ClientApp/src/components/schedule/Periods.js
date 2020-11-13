@@ -1,103 +1,76 @@
-import React, {Component} from 'react';
+import React from 'react';
+import moment from "moment";
+
+// Components
 import Period from './Period';
 
-class Periods extends Component {
-    constructor(props) {
-        super(props);
-        //this.state = { nextPeriod: {name: null, minutes: null, starting: true}};
+// Database
+import schedule from '../../database/schedule.js';
+import {useFetchFirestore} from "../../hooks/useFetchFirestore";
+
+const Periods = (props) => {
+    const date = props.viewDate;
+    const now = props.currDate;
+
+    // Fetch firestore to check if its an alternate
+    const [status, data] = useFetchFirestore('schedule');
+    const alternates = data['alternates'];
+
+
+    // Sorts object by start times so it is not mismatched
+    const sortByStart = (obj) => {
+        if (!obj) return;
+        return Object.entries(obj).sort((a, b) => a[1].s - b[1].s);
     }
 
-    normalSchedule = [
-        null,
-        [
-            { name: 'A', start: [10, 0], end: [10, 30] },
-            { name: 'B', start: [10, 40], end: [11, 10] },
-            { name: 'C', start: [11, 20], end: [11, 50] },
-            { name: 'D', start: [12, 0], end: [12, 35] },
-            { name: 'Lunch', start: [12, 35], end: [13, 5] },
-            { name: 'E', start: [13, 15], end: [13, 45] },
-            { name: 'F', start: [13, 55], end: [14, 25] },
-            { name: 'G', start: [14, 35], end: [15, 5] }
-        ],
-        [
-            { name: 'A', start: [9, 0], end: [10, 15] },
-            { name: 'B', start: [10, 25], end: [11, 40] },
-            { name: 'Lunch', start: [11, 40], end: [12, 10] },
-            { name: 'C', start: [12, 20], end: [13, 40] },
-            { name: 'D', start: [13, 50], end: [15, 5] },
-            { name: 'Flex', start: [15, 10], end: [15, 40] }
-        ],
-        [
-            { name: 'E', start: [9, 40], end: [10, 55] },
-            { name: 'GT', start: [11, 5], end: [11, 40] },
-            { name: 'Lunch', start: [11, 40], end: [12, 10] },
-            { name: 'F', start: [12, 20], end: [13, 40] },
-            { name: 'G', start: [13, 50], end: [15, 5] },
-            { name: 'Flex', start: [15, 10], end: [15, 40] }
-        ],
-        [
-            { name: 'A', start: [9, 0], end: [10, 15] },
-            { name: 'B', start: [10, 25], end: [11, 40] },
-            { name: 'Lunch', start: [11, 40], end: [12, 10] },
-            { name: 'C', start: [12, 20], end: [13, 40] },
-            { name: 'D', start: [13, 50], end: [15, 5] },
-            { name: 'Flex', start: [15, 10], end: [15, 40] }
-        ],
-        [
-            { name: 'E', start: [9, 40], end: [10, 55] },
-            { name: 'SELF', start: [11, 5], end: [11, 40] },
-            { name: 'Lunch', start: [11, 40], end: [12, 10] },
-            { name: 'F', start: [12, 20], end: [13, 40] },
-            { name: 'G', start: [13, 50], end: [15, 5] }
-        ],
-        null
-    ]
+    // Turns day of the week into schedule object key; Thursday is R, Saturday is A
+    const numToWeekday = (num) => ['S', 'M', 'T', 'W', 'R', 'F', 'A'][num];
 
-    // Takes '5' and returns '05'
-    parseSingular = (num) => num < 10 ? `0${num}` : num;
+    // Defaults to regular schedule
+    let periods = sortByStart(schedule[numToWeekday(date.format('d'))]);
+    let end = date.clone().add(periods[periods.length - 1][1].e, 'minutes'); // End time
 
-    // Takes [9, 40] and returns 9:40am
-    arrayToDate = (arr) => {
-        let hours = arr[0];
-        let minutes = arr[1];
-        let suffix = 'am'
-        if (hours >= 12) {
-            if (hours !== 12) hours -= 12;
-            suffix = 'pm';
+
+    // Renders the periods
+    const renderSchedule = () => {
+        // Check firestore fetch to see if it is an alternate
+        if (status === 'fetched') {
+            for (let key in alternates) {
+                if (date.format('mm-dd').includes(key)) {
+                    periods = sortByStart(alternates[key]);
+                }
+            }
         }
-        return `${hours}:${this.parseSingular(minutes)}${suffix}`;
+
+        // No periods means no school
+        if (!periods) return weekend();
+        return schoolDay(periods);
     }
 
-    // Takes in an int representing a day of the week and renders the schedule corresponding to that
-    renderSchedule = (day) => (
-        !this.normalSchedule[day]
-            ? this.weekend()
-            : this.regSchoolDay(day)
-    )
+    // HTML for a school day
+    const schoolDay = (periods) => {
+        const renderPeriods = () =>
+            periods.map(period =>
+                <Period
+                    name={period[0]}
+                    key={period[0]}
+                    start={date.clone().add(period[1].s, 'minutes')}
+                    end={date.clone().add(period[1].e, 'minutes')}
+                    now={now}
+                    date={date}
+                />
+            )
 
-    render() {
-        return this.renderSchedule(this.props.currTime.format('d'))
-    }
-
-    regSchoolDay = (day) => {
-        let schedule = this.normalSchedule[day];
         return (
             <>
-                <span className="schedule-end">School ends at <strong>{this.arrayToDate(schedule[schedule.length - 1].end)}</strong> today.</span>
-                {schedule.map(period =>
-                    <Period
-                        name={period.name}
-                        start={this.arrayToDate(period.start)}
-                        end={this.arrayToDate(period.end)}
-                        currTime={this.props.currTime}
-                    />
-                )}
+                <span className="schedule-end">School ends at <strong>{end.format('h:mm A')}</strong> today.</span>
+                {renderPeriods()}
             </>
         )
     }
 
-    // Renders the HTML for the weekend
-    weekend = () => (
+    // HTML for the weekend
+    const weekend = () => (
         <div>
             <h1 className="center">No school today!</h1>
             <p className="center">
@@ -106,20 +79,22 @@ class Periods extends Component {
         </div>
     );
 
-    // Renders the HTML for winter break
+    // HTML for winter break
     // Much of how the code will handle breaks is still unknown, so work in progress
-    winterBreak = () => (
+    const winterBreak = () => (
         <div>
             <h1 className="center">Enjoy winter break!</h1>
             <img src="../../images/mountain.svg" alt="Mountain picture" />
         </div>
     )
 
-    // Renders the HTML for winter break
+    // HTML for summer break
     // Same concern as for winterBreak
-    summerBreak = () => (
+    const summerBreak = () => (
         <h1 className="center">Have a great summer!</h1>
     )
+
+    return renderSchedule();
 }
 
 export default Periods;

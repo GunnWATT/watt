@@ -3,11 +3,7 @@
 .testing {
   padding: 24px;
 
-  .colorpicker-test {
-    @include content-box();
-  }
-
-  .loading-test {
+  > div {
     @include content-box();
     margin-top: 20px;
   }

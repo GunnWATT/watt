@@ -2,8 +2,15 @@
   @extend %theme-backdrop;
   padding: 24px;
 
+  // The day name ("Saturday")
   .schedule-dayname {
+    @extend .center;
     font-size: 72px;
+  }
+
+  // The date ("October 10th, 2020")
+  .schedule-date {
+    @extend .center;
   }
 
   // Periods container

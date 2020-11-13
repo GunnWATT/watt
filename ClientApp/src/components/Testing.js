@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import moment from 'moment';
 import { SketchPicker, ChromePicker, BlockPicker } from 'react-color';
 import { Row } from 'reactstrap';
 
+import Period from './schedule/Period';
 import Loading from './misc/Loading';
 
 
@@ -36,6 +38,35 @@ const Testing = (props) => {
                 <h2>Loading Screen</h2>
                 <div>
                     <Loading/>
+                </div>
+            </div>
+            <div className="periods-test">
+                <h2>Period yet to start</h2>
+                <div>
+                    <Period
+                        name='Testing'
+                        now={moment()}
+                        start={moment().add(20, 'minutes')}
+                        end={moment().add(50, 'minutes')}
+                    />
+                </div>
+                <h2>Partially finished period</h2>
+                <div>
+                    <Period
+                        name='Testing'
+                        now={moment()}
+                        start={moment().subtract(20, 'minutes')}
+                        end={moment().add(10, 'minutes')}
+                    />
+                </div>
+                <h2>Finished period</h2>
+                <div>
+                    <Period
+                        name='Testing'
+                        now={moment()}
+                        start={moment().subtract(50, 'minutes')}
+                        end={moment().subtract(20, 'minutes')}
+                    />
                 </div>
             </div>
         </div>

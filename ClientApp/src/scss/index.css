@@ -50,7 +50,7 @@ iframe {
   border: none;
 }
 
-.center {
+.center, .schedule .schedule-date, .schedule .schedule-dayname {
   text-align: center;
 }
 
@@ -63,8 +63,8 @@ iframe {
 }
 
 .schedule, .header-background {
-  background-color: rgba(255, 89, 76, 0.3);
-  height: 500px;
+  background-color: rgba(255, 89, 76, 0.2);
+  height: 400px;
 }
 
 .nav {
@@ -125,7 +125,7 @@ iframe {
 .sidebar .item a:hover {
   text-decoration: none;
   border-radius: 5px;
-  background-color: rgba(255, 89, 76, 0.2);
+  background-color: rgba(255, 89, 76, 0.1);
 }
 .sidebar .item a span {
   display: inline;
@@ -238,12 +238,7 @@ ul.material-list li span {
 .testing {
   padding: 24px;
 }
-.testing .colorpicker-test {
-  padding: 12px;
-  background-color: #fafafa;
-  border-radius: 10px;
-}
-.testing .loading-test {
+.testing > div {
   padding: 12px;
   background-color: #fafafa;
   border-radius: 10px;
