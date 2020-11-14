@@ -12,11 +12,16 @@
     flex-direction: row;
 
     .heading {
-      /* padding: 0 0 10px 0; */
-      display: inline-block;
+      display: flex;
+      align-items: center;
       width: 100%;
       border-bottom: 2px solid;
       color: white;
+
+      // Search box in lists
+      input {
+        margin-left: 1rem;
+      }
     }
   }
 

@@ -163,11 +163,14 @@ ul.material-list li, .sidebar .toggler {
   flex-direction: row;
 }
 .header-background .header .heading {
-  /* padding: 0 0 10px 0; */
-  display: inline-block;
+  display: flex;
+  align-items: center;
   width: 100%;
   border-bottom: 2px solid;
   color: white;
+}
+.header-background .header .heading input {
+  margin-left: 1rem;
 }
 .header-background .page {
   display: flex;
