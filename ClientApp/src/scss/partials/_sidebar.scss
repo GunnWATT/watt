@@ -71,8 +71,12 @@
 
   .bottom {
     @extend %text-truncate;
-    border-top: 2px solid;
     margin-top: auto;
+  }
+
+  hr {
+    margin: 1rem 0;
+    border-top: 2px solid rgba(black, 0.3);
   }
 
   // Navbar Toggler

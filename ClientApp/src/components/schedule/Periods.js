@@ -28,7 +28,6 @@ const Periods = (props) => {
 
     // Defaults to regular schedule
     let periods = sortByStart(schedule[numToWeekday(date.format('d'))]);
-    let end = date.clone().add(periods[periods.length - 1][1].e, 'minutes'); // End time
 
 
     // Renders the periods
@@ -47,12 +46,33 @@ const Periods = (props) => {
         return schoolDay(periods);
     }
 
+    // Turns object key into human readable period name
+    const parsePeriodName = (name) => {
+        if (Number(name)) return `Period ${name}`;
+
+        switch (name) {
+            case 'L':
+                return 'Lunch';
+            case 'S':
+                return 'SELF';
+            case 'G':
+                return 'Gunn Together';
+            case 'O':
+                return 'Office Hours';
+            default:
+                return `Period ${name}`;
+        }
+    }
+
     // HTML for a school day
     const schoolDay = (periods) => {
+        let end = date.clone().add(periods[periods.length - 1][1].e, 'minutes'); // End time
+
+        // Maps periods array to <Period> components
         const renderPeriods = () =>
             periods.map(period =>
                 <Period
-                    name={period[0]}
+                    name={parsePeriodName(period[0])}
                     key={period[0]}
                     start={date.clone().add(period[1].s, 'minutes')}
                     end={date.clone().add(period[1].e, 'minutes')}

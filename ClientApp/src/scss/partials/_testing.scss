@@ -5,6 +5,11 @@
 
   > div {
     @include content-box();
-    margin-top: 20px;
+    margin: 10px 0;
+  }
+
+  // The loading component will fill the default space
+  .loading-test {
+    height: 300px;
   }
 }

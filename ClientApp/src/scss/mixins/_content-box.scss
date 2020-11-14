@@ -1,4 +1,6 @@
 @mixin content-box($radius: 10px, $padding: 12px, $bg-color: $background) {
+  display: flex;
+  flex-direction: column;
   padding: $padding;
   background-color: $bg-color;
   border-radius: $radius;

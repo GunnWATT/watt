@@ -1,6 +1,7 @@
 .loading {
-  height: 300px;
-  width: 100%;
+  //height: 100%;
+  //width: 100%;
+  flex-grow: 1;
   background-color: #efefef;
   color: $secondary;
   display: flex;

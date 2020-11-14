@@ -136,8 +136,11 @@ iframe {
   min-width: 2rem;
 }
 .sidebar .bottom {
-  border-top: 2px solid;
   margin-top: auto;
+}
+.sidebar hr {
+  margin: 1rem 0;
+  border-top: 2px solid rgba(0, 0, 0, 0.3);
 }
 .sidebar .toggler {
   padding: 0 5px 10px 0;
@@ -148,6 +151,8 @@ iframe {
   padding: 24px;
 }
 .header-background .header {
+  display: flex;
+  flex-direction: column;
   padding: 12px;
   background-color: #ff594c;
   border-radius: 10px;
@@ -162,6 +167,8 @@ iframe {
   color: white;
 }
 .header-background .page {
+  display: flex;
+  flex-direction: column;
   padding: 12px;
   background-color: white;
   border-radius: 10px;
@@ -239,10 +246,15 @@ ul.material-list li span {
   padding: 24px;
 }
 .testing > div {
+  display: flex;
+  flex-direction: column;
   padding: 12px;
   background-color: #fafafa;
   border-radius: 10px;
-  margin-top: 20px;
+  margin: 10px 0;
+}
+.testing .loading-test {
+  height: 300px;
 }
 
 input[type=search] {
@@ -255,8 +267,7 @@ input[type=search]:focus {
 }
 
 .loading {
-  height: 300px;
-  width: 100%;
+  flex-grow: 1;
   background-color: #efefef;
   color: rgba(0, 0, 0, 0.54);
   display: flex;

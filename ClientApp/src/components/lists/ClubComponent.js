@@ -16,7 +16,7 @@ const ClubComponent = (props) => {
                 <ModalBody>
                     <p><strong>Meeting day:</strong> {props.day}</p>
                     <p><strong>Meeting time:</strong> {props.time}</p>
-                    <p><strong>Location:</strong> {props.room}</p>
+                    {/* <p><strong>Location:</strong> {props.room}</p> */}
                     <p><strong>Description:</strong> {props.desc}</p>
                     <p><strong>President(s):</strong> {props.president}</p>
                     <p><strong>Teacher Advisor(s):</strong> {props.teacher}</p>

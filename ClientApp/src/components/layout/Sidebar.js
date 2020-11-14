@@ -63,6 +63,7 @@ const Sidebar = (props) => {
 
             {/* Bottom Account Status Button */}
             <span className="bottom">
+                <hr/>
                 <FontAwesomeIcon icon={faSignOutAlt} />
                 <span>Sign Out</span>
             </span>
