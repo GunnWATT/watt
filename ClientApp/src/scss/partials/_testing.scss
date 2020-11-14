@@ -6,6 +6,10 @@
   > div {
     @include content-box();
     margin: 10px 0;
+
+    > * {
+      margin: 5px 0;
+    }
   }
 
   // The loading component will fill the default space

@@ -4,6 +4,7 @@ const Periods = (props) => {
     return (
         <div>
             <h1>Periods</h1>
+            <hr/>
         </div>
     );
 }

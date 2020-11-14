@@ -19,6 +19,11 @@ button {
 
 iframe {border: none;}
 
+hr {
+  margin: 1rem 0;
+  border-top: 2px solid rgba(black, 0.1);
+}
+
 
 // Utility classes
 // Alignment
@@ -33,6 +38,9 @@ iframe {border: none;}
 %theme-backdrop {
   background-color: $active-back;
   height: 400px;
+}
+%clickable {
+  cursor: pointer;
 }
 
 

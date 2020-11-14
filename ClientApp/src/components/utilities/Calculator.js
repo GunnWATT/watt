@@ -17,13 +17,16 @@ const Calculator = (props) => {
 
         if (result <= 0) return <p>You <strong>don't need to study</strong>; even if you score 0%, you'll be above your
             threshold.</p>;
-        return <p>You will need to score at least <strong>{result}%</strong> to keep your parents happy.
-            {result > 100 ? ' If there\'s no extra credit, you\'re screwed.' : null}</p>
+        return <p>
+            You will need to score at least <strong>{result}%</strong> to keep your parents happy.
+            {result > 100 ? ' If there\'s no extra credit, you\'re screwed.' : null}
+        </p>
     }
 
     return (
         <Container>
             <h1>Minimum finals score calculator</h1>
+            <hr/>
             <p>
                 Current grade:{' '}
                 <span className="percent-wrapper" data-l10n-arg="input">

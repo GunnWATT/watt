@@ -4,6 +4,7 @@ const Localization = (props) => {
     return (
         <div>
             <h1>Localization</h1>
+            <hr/>
         </div>
     );
 }
