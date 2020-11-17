@@ -7,7 +7,6 @@ import Appearance from "./options/Appearance";
 import Periods from "./options/Periods";
 import Localization from "./options/Localization.js";
 import About from "./options/About";
-import Credits from "./options/Credits";
 
 
 const Options = (props) => {
@@ -61,16 +60,6 @@ const Options = (props) => {
                             About
                         </NavLink>
                     </NavItem>
-                    <NavItem>
-                        <NavLink
-                            className={classnames({active: activePage === '5'})}
-                            onClick={() => {
-                                toggle('5');
-                            }}
-                        >
-                            Credits
-                        </NavLink>
-                    </NavItem>
                 </Nav>
             }
         >
@@ -86,9 +75,6 @@ const Options = (props) => {
                 </TabPane>
                 <TabPane tabId="4">
                     <About/>
-                </TabPane>
-                <TabPane tabId="5">
-                    <Credits/>
                 </TabPane>
             </TabContent>
         </Header>
