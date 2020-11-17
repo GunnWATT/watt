@@ -14,7 +14,7 @@
   //color: #efefef;
   font-size: 18px;
   transition: width 400ms ease;
-  width: 16rem;
+  width: 14rem;
 
   // Style for when the sidebar is collapsed
   &.collapsed {
@@ -27,7 +27,7 @@
   }
 
   // Logo
-  img {
+  .logo {
     align-self: center;
     $size: 4rem;
     width: $size;
@@ -37,7 +37,8 @@
   // Header
   h1 {
     @extend %text-truncate;
-    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    font-size: 1rem;
     //align-self: center;
   }
 
@@ -73,6 +74,11 @@
 
       // Link icon
       svg {
+        display: inline-block;
+        font-size: inherit;
+        height: 1em;
+        overflow: visible;
+        vertical-align: -0.125em;
         width: 2rem;
         min-width: 2rem;
       }

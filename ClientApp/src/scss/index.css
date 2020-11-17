@@ -108,7 +108,7 @@ ul.material-list li, .sidebar .toggler {
   overflow: scroll;
   font-size: 18px;
   transition: width 400ms ease;
-  width: 16rem;
+  width: 14rem;
 }
 .sidebar.collapsed {
   width: 5rem;
@@ -116,13 +116,14 @@ ul.material-list li, .sidebar .toggler {
 .sidebar.collapsed h1, .sidebar.collapsed .item span {
   opacity: 0;
 }
-.sidebar img {
+.sidebar .logo {
   align-self: center;
   width: 4rem;
   height: 4rem;
 }
 .sidebar h1 {
-  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
 }
 .sidebar .item {
   width: 100%;
@@ -144,6 +145,11 @@ ul.material-list li, .sidebar .toggler {
   margin-left: 1rem;
 }
 .sidebar .item a svg {
+  display: inline-block;
+  font-size: inherit;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
   width: 2rem;
   min-width: 2rem;
 }
