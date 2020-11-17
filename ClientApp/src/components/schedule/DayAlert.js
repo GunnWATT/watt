@@ -25,10 +25,7 @@ const DayAlert = (props) => {
             toggle={onDismiss}
         >
             {makeDateString()}{' '}
-            <Button
-                size="sm"
-                onClick={props.jumpToPres}
-            >JUMP TO PRESENT</Button>
+            <button onClick={props.jumpToPres}>JUMP TO PRESENT</button>
         </Alert>
     );
 }

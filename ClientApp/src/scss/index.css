@@ -114,10 +114,15 @@ ul.material-list li, .sidebar .toggler {
   width: 5rem;
 }
 .sidebar.collapsed h1, .sidebar.collapsed .item span {
-  display: none;
+  opacity: 0;
+}
+.sidebar img {
+  align-self: center;
+  width: 4rem;
+  height: 4rem;
 }
 .sidebar h1 {
-  font-size: 24pt;
+  font-size: 1.2rem;
 }
 .sidebar .item {
   width: 100%;
@@ -197,10 +202,19 @@ ul.material-list li, .sidebar .toggler {
   font-size: 24px;
 }
 .schedule .day-alert {
+  border: none;
+  color: rgba(0, 0, 0, 0.87);
   background-color: white;
+  display: flex;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto 1rem;
 }
-.schedule .day-alert .btn {
-  background-color: rgba(0, 0, 0, 0.54);
+.schedule .day-alert button {
+  color: inherit;
+  margin-left: auto;
+  background: none;
+  border: none;
 }
 
 .desmos-embed {
@@ -214,6 +228,7 @@ ul.material-list {
   grid-auto-flow: row;
   list-style: none;
   padding: 0;
+  margin: 0;
   min-height: 88px;
 }
 ul.material-list li {

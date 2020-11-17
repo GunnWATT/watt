@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import classnames from 'classnames';
 import {Link} from "react-router-dom";
+
+// Logo
+import logo from '../../assets/watt.svg'
 
 // Fontawesome icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,9 +10,6 @@ import { faWrench, faCheckSquare, faCalendarAlt, faList, faCog, faSignOutAlt, fa
 
 
 const Sidebar = (props) => {
-    // Active tab
-    const [activeTab, setActiveTab] = useState('3')
-
     // Collapse
     const [isOpen, setIsOpen] = useState(true);
     const toggle = () => setIsOpen(!isOpen);
@@ -26,7 +25,8 @@ const Sidebar = (props) => {
             </span>
 
             {/* Heading */}
-            <h1>Gunn WATT</h1>
+            <img src={logo} alt="WATT Logo"/>
+            <h1>Web App of the Titans</h1>
             <hr/>
 
             {/* Nav */}

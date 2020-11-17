@@ -29,11 +29,24 @@
     }
   }
 
+  // The Alert for when you are viewing a different day's schedule
   .day-alert {
+    border: none;
+    color: $primary;
     background-color: white;
+    display: flex;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto 1rem;
+    //position: sticky;
+    //position: -webkit-sticky;
+    //top: 5px;
 
-    .btn {
-      background-color: $secondary;
+    button {
+      color: inherit;
+      margin-left: auto;
+      background: none;
+      border: none
     }
   }
 }

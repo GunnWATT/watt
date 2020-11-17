@@ -22,14 +22,23 @@
 
     // Header, link text
     h1, .item span {
-      display: none;
+      opacity: 0;
     }
+  }
+
+  // Logo
+  img {
+    align-self: center;
+    $size: 4rem;
+    width: $size;
+    height: $size;
   }
 
   // Header
   h1 {
     @extend %text-truncate;
-    font-size: 24pt;
+    font-size: 1.2rem;
+    //align-self: center;
   }
 
   // Navs
