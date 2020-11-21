@@ -34,7 +34,7 @@ const Sidebar = (props) => {
             <hr/>
 
             {/* Nav */}
-            <SidebarItem name="Schedule" to="/" icon={<FiCalendar/>} />
+            <SidebarItem name="Schedule" to="/" icon={<FiCalendar/>} exact />
             <SidebarItem name="Grades" to="/grades" icon={<FiCheckSquare/>} />
             <SidebarItem name="Lists" to="/lists" icon={<FiList/>} />
             <SidebarItem name="Utilities" to="/utilities" icon={<VscSymbolProperty/>} />

@@ -1,15 +1,22 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, Route} from "react-router-dom";
 
 
 const SidebarItem = (props) => {
+    let {to, icon, name, exact} = props;
+
     return (
-        <span className="item">
-            <Link to={props.to}>
-                {props.icon}
-                <span>{props.name}</span>
-            </Link>
-        </span>
+        <Route exact={exact} path={to}>
+            {({match}) => (
+                // If current path matches what the Route points towards
+                <span className={`item ${match ? "active" : ""}`}>
+                    <Link to={to}>
+                        {icon}
+                        <span>{name}</span>
+                    </Link>
+                </span>
+            )}
+        </Route>
     )
 }
 

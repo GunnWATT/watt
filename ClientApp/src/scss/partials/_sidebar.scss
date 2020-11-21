@@ -42,20 +42,21 @@
     //align-self: center;
   }
 
-  // Navs
+  // SidebarItems
   .item {
     width: 100%;
     margin: 12px 0 0 0;
+    color: black;
 
     // Active links
     &.active {
-      //box-shadow: -3px 0 0 -1px $theme;
+      color: #a51618;
     }
 
     // The <Link> components
     a {
       @extend %text-truncate;
-      color: #a51618;
+      color: inherit;
       display: block;
       transition: background-color 200ms ease;
       padding: 0.5rem 0.5rem 0.5rem 0;
@@ -79,8 +80,8 @@
         height: 1em;
         overflow: visible;
         vertical-align: -0.125em;
-        width: 2rem;
-        min-width: 2rem;
+        //width: 2rem;
+        //min-width: 3rem;
       }
     }
   }

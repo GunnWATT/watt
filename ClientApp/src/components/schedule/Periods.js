@@ -60,7 +60,7 @@ const Periods = (props) => {
             case 'O':
                 return 'Office Hours';
             default:
-                return `Period ${name}`;
+                return name;
         }
     }
 

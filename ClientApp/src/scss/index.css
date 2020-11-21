@@ -128,9 +128,13 @@ ul.material-list li, .sidebar .toggler {
 .sidebar .item {
   width: 100%;
   margin: 12px 0 0 0;
+  color: black;
+}
+.sidebar .item.active {
+  color: #a51618;
 }
 .sidebar .item a {
-  color: #a51618;
+  color: inherit;
   display: block;
   transition: background-color 200ms ease;
   padding: 0.5rem 0.5rem 0.5rem 0;
@@ -150,8 +154,6 @@ ul.material-list li, .sidebar .toggler {
   height: 1em;
   overflow: visible;
   vertical-align: -0.125em;
-  width: 2rem;
-  min-width: 2rem;
 }
 .sidebar .bottom {
   margin-top: auto;
