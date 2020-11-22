@@ -1,27 +1,37 @@
+$sidebar-width: 14rem;
+$sidebar-collapsed-width: 5rem;
+$sidebar-collapse-time: 400ms;
+$sidebar-padding: 1rem;
+
+$link-padding: 0.5rem;
+// Ensure that icon will always fill collapsed space
+$icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 2);
+
+
 %text-truncate {
   overflow: hidden;
   //text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+
 .sidebar {
   flex: none;
-  padding: 24px;
+  padding: $sidebar-padding;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  overflow: hidden;
   //background-color: #23232e;
   //color: #efefef;
   font-size: 18px;
-  transition: width 400ms ease;
-  width: 14rem;
+  transition: width $sidebar-collapse-time ease;
+  width: $sidebar-width;
 
   // Style for when the sidebar is collapsed
   &.collapsed {
-    width: 5rem;
+    width: $sidebar-collapsed-width;
 
-    // Header, link text
-    h1, .item span {
+    h1 {
       opacity: 0;
     }
   }
@@ -37,8 +47,8 @@
   // Header
   h1 {
     @extend %text-truncate;
-    margin-top: 0.5rem;
-    font-size: 1rem;
+    margin: 0.5rem auto 2rem;
+    font-size: 0.9rem;
     //align-self: center;
   }
 
@@ -59,7 +69,7 @@
       color: inherit;
       display: block;
       transition: background-color 200ms ease;
-      padding: 0.5rem 0.5rem 0.5rem 0;
+      padding: $link-padding;
 
       &:hover {
         text-decoration: none;
@@ -69,7 +79,8 @@
 
       // Link text
       span {
-        display: inline;
+        //overflow: hidden;
+        //transition: width $sidebar-collapse-time ease;
         margin-left: 1rem;
       }
 
@@ -80,8 +91,7 @@
         height: 1em;
         overflow: visible;
         vertical-align: -0.125em;
-        //width: 2rem;
-        //min-width: 3rem;
+        width: $icon-width;
       }
     }
   }

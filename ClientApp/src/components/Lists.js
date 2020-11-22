@@ -31,48 +31,48 @@ const Lists = (props) => {
         // Filters data so that only entries matching the search are rendered, and then renders content
         // Could potentially consisify?
         let filtered = Object.entries(data).sort(); // Creates nested array where [0] is the name and [1] is the object data
-        console.log(filtered);
         let content;
+
         switch (activeTab) {
             case '1':
-                filtered = filtered.filter(data =>
+                filtered = filtered.filter(([key, value]) =>
                     query === '' ||
-                    data[0].toLowerCase().includes(query.toLowerCase())
-                    // || data[1].room.toLowerCase().includes(query.toLowerCase()) // Room exists not in Zoom School
-                    || data[1].day.toLowerCase().includes(query.toLowerCase())
+                    key.toLowerCase().includes(query.toLowerCase())
+                    // || value.room.toLowerCase().includes(query.toLowerCase()) // Room exists not in Zoom School
+                    || value.day.toLowerCase().includes(query.toLowerCase())
                 )
-                content = filtered.map(club =>
+                content = filtered.map(([name, info]) =>
                     <ClubComponent
-                        key={club[0]}
-                        name={club[0]}
-                        room={club[1].room}
-                        day={club[1].day}
-                        time={club[1].time}
-                        desc={club[1].desc}
-                        president={club[1].prez}
-                        teacher={club[1].advisor}
-                        email={club[1].email}
-                        new={club[1].new}
+                        key={name}
+                        name={name}
+                        room={info.room}
+                        day={info.day}
+                        time={info.time}
+                        desc={info.desc}
+                        president={info.prez}
+                        teacher={info.advisor}
+                        email={info.email}
+                        new={info.new}
                     />
                 )
                 break;
 
             case '2':
-                filtered = filtered.filter(data =>
+                filtered = filtered.filter(([key, value]) =>
                     query === '' ||
-                    data[0].toLowerCase().includes(query.toLowerCase())
-                    || data[1].title.toLowerCase().includes(query.toLowerCase())
-                    || data[1].email.toLowerCase().includes(query.toLowerCase())
+                    key.toLowerCase().includes(query.toLowerCase())
+                    || value.title.toLowerCase().includes(query.toLowerCase())
+                    || value.email.toLowerCase().includes(query.toLowerCase())
                 )
-                content = filtered.map(staff =>
+                content = filtered.map(([name, info]) =>
                     <StaffComponent
-                        key={staff[0]}
-                        name={staff[0]}
-                        title={staff[1].title}
-                        department={staff[1].department}
-                        phone={staff[1].phone}
-                        email={staff[1].email}
-                        periods={staff[1].periods}
+                        key={name}
+                        name={name}
+                        title={info.title}
+                        department={info.department}
+                        phone={info.phone}
+                        email={info.email}
+                        periods={info.periods}
                     />
                 )
                 break;

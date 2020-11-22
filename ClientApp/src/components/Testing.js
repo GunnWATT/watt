@@ -17,7 +17,7 @@ const Testing = (props) => {
             <p>Congratulations! You found the super secret testing area for Gunn WATT! Experiments and other potential features will live here until they are accepted or rejected.</p>
             <div className="colorpicker-test">
                 <h2>Colorpicker Test</h2>
-                <div style={{'background-color': color}}>
+                <div style={{backgroundColor: color}}>
                     <Row>
                         <SketchPicker
                             color={ color }

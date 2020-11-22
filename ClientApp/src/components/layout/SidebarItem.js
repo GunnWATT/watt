@@ -8,7 +8,7 @@ const SidebarItem = (props) => {
     return (
         <Route exact={exact} path={to}>
             {({match}) => (
-                // If current path matches what the Route points towards
+                // If current path matches what the Route points towards, give it the "active" class
                 <span className={`item ${match ? "active" : ""}`}>
                     <Link to={to}>
                         {icon}

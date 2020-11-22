@@ -31,7 +31,7 @@ const Sidebar = (props) => {
             {/* Heading */}
             <img src={logo} alt="WATT Logo" className="logo" />
             <h1>Web App of the Titans</h1>
-            <hr/>
+            {/* <hr/> */}
 
             {/* Nav */}
             <SidebarItem name="Schedule" to="/" icon={<FiCalendar/>} exact />
@@ -42,7 +42,7 @@ const Sidebar = (props) => {
 
             {/* Bottom Account Status Button */}
             <span className="bottom">
-                <hr/>
+                {/* <hr/> */}
                 <SidebarItem name="Sign Out" to="/super-secret-testing" icon={<FiLogOut/>} />
             </span>
         </div>
