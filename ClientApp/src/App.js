@@ -6,11 +6,13 @@ import Schedule from './components/Schedule';
 import Utilities from './components/Utilities';
 import Grades from './components/Grades';
 import Lists from './components/Lists';
+import Clubs from "./components/Clubs";
 import Options from './components/Options';
 import Testing from './components/Testing';
 import PageNotFound from "./components/404";
 
 import './scss/index.css';
+
 
 const App = (props) => {
     return (
@@ -20,6 +22,7 @@ const App = (props) => {
                     <Route exact path='/' component={Schedule}/>
                     <Route path='/utilities' component={Utilities}/>
                     <Route path='/grades' component={Grades}/>
+                    <Route path='/clubs' component={Clubs}/>
                     <Route path='/lists' component={Lists}/>
                     <Route path='/options' component={Options}/>
                     <Route path='/super-secret-testing' component={Testing}/>

@@ -2,7 +2,17 @@ import React, { useState } from 'react';
 
 // Icons
 import logo from '../../assets/watt.svg';
-import { FiCheckSquare, FiCalendar, FiList, FiSettings, FiLogIn, FiLogOut, FiChevronsRight, FiChevronsLeft } from 'react-icons/fi';
+import {
+    FiCheckSquare,
+    FiCalendar,
+    FiUsers,
+    FiList,
+    FiSettings,
+    FiLogIn,
+    FiLogOut,
+    FiChevronsRight,
+    FiChevronsLeft
+} from 'react-icons/fi';
 import { VscSymbolProperty } from 'react-icons/vsc';
 
 // Components
@@ -36,6 +46,7 @@ const Sidebar = (props) => {
             {/* Nav */}
             <SidebarItem name="Schedule" to="/" icon={<FiCalendar/>} exact />
             <SidebarItem name="Grades" to="/grades" icon={<FiCheckSquare/>} />
+            <SidebarItem name="Clubs" to="/clubs" icon={<FiUsers/>} />
             <SidebarItem name="Lists" to="/lists" icon={<FiList/>} />
             <SidebarItem name="Utilities" to="/utilities" icon={<VscSymbolProperty/>} />
             <SidebarItem name="Options" to="/options" icon={<FiSettings/>} />
