@@ -3,17 +3,17 @@ import React, { useState } from 'react';
 // Icons
 import logo from '../../assets/watt.svg';
 import {
-    FiCheckSquare,
-    FiCalendar,
-    FiUsers,
-    FiList,
-    FiSettings,
-    FiLogIn,
-    FiLogOut,
-    FiChevronsRight,
-    FiChevronsLeft
-} from 'react-icons/fi';
-import { VscSymbolProperty } from 'react-icons/vsc';
+    CheckSquare,
+    Calendar,
+    Users,
+    List,
+    Settings,
+    Tool,
+    LogIn,
+    LogOut,
+    ChevronsRight,
+    ChevronsLeft
+} from 'react-feather';
 
 // Components
 import SidebarItem from "./SidebarItem";
@@ -33,8 +33,8 @@ const Sidebar = (props) => {
             >
                 {
                     isOpen
-                        ? <FiChevronsLeft />
-                        : <FiChevronsRight />
+                        ? <ChevronsLeft />
+                        : <ChevronsRight />
                 }
             </span>
 
@@ -44,17 +44,17 @@ const Sidebar = (props) => {
             {/* <hr/> */}
 
             {/* Nav */}
-            <SidebarItem name="Schedule" to="/" icon={<FiCalendar/>} exact />
-            <SidebarItem name="Grades" to="/grades" icon={<FiCheckSquare/>} />
-            <SidebarItem name="Clubs" to="/clubs" icon={<FiUsers/>} />
-            <SidebarItem name="Lists" to="/lists" icon={<FiList/>} />
-            <SidebarItem name="Utilities" to="/utilities" icon={<VscSymbolProperty/>} />
-            <SidebarItem name="Options" to="/options" icon={<FiSettings/>} />
+            <SidebarItem name="Schedule" to="/" icon={<Calendar/>} exact />
+            <SidebarItem name="Grades" to="/grades" icon={<CheckSquare/>} />
+            <SidebarItem name="Clubs" to="/clubs" icon={<Users/>} />
+            <SidebarItem name="Lists" to="/lists" icon={<List/>} />
+            <SidebarItem name="Utilities" to="/utilities" icon={<Tool/>} />
+            <SidebarItem name="Options" to="/options" icon={<Settings/>} />
 
             {/* Bottom Account Status Button */}
             <span className="bottom">
                 {/* <hr/> */}
-                <SidebarItem name="Sign Out" to="/super-secret-testing" icon={<FiLogOut/>} />
+                <SidebarItem name="Sign Out" to="/super-secret-testing" icon={<LogOut/>} />
             </span>
         </div>
     )
