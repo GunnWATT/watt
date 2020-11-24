@@ -1,15 +1,10 @@
-.loading {
+.no-results {
   flex-grow: 1;
-  background-color: #efefef;
   color: $secondary;
   display: flex;
 
   span {
     display: inline-flex;
     margin: auto;
-
-    h2 {
-      margin-left: 1rem;
-    }
   }
 }

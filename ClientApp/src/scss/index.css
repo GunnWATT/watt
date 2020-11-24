@@ -191,6 +191,7 @@ ul.material-list li, .sidebar .toggler {
   padding: 12px;
   background-color: white;
   border-radius: 10px;
+  min-height: 300px;
 }
 
 .schedule {
@@ -269,7 +270,7 @@ ul.material-list li span {
 .testing > div > * {
   margin: 5px 0;
 }
-.testing .loading-test {
+.testing .fixed-height {
   height: 300px;
 }
 
@@ -294,6 +295,27 @@ input[type=search]:focus {
 }
 .loading span h2 {
   margin-left: 1rem;
+}
+
+.no-results {
+  flex-grow: 1;
+  color: rgba(0, 0, 0, 0.54);
+  display: flex;
+}
+.no-results span {
+  display: inline-flex;
+  margin: auto;
+}
+
+.WIP {
+  flex-grow: 1;
+  color: rgba(0, 0, 0, 0.54);
+  display: flex;
+  flex-direction: column;
+}
+.WIP span {
+  margin: auto;
+  text-align: center;
 }
 
 /*# sourceMappingURL=index.css.map */

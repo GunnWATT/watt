@@ -28,5 +28,6 @@
   // The white box that displays the tab content
   .page {
     @include content-box($bg-color: white);
+    min-height: 300px;
   }
 }

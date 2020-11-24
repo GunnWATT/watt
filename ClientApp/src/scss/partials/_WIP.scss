@@ -1,0 +1,11 @@
+.WIP {
+  flex-grow: 1;
+  color: $secondary;
+  display: flex;
+  flex-direction: column;
+
+  span {
+    margin: auto;
+    text-align: center;
+  }
+}

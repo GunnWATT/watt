@@ -125,7 +125,6 @@ const Clubs = (props) => {
         >
             <List
                 data={dataFromTab()}
-                query={query}
                 filter={([key, value]) =>
                     query === '' ||
                     key.toLowerCase().includes(query.toLowerCase())
