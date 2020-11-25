@@ -11,8 +11,7 @@ import Events from './schedule/Events';
 
 
 const Schedule = (props) => {
-    // Date handling
-    const [date, setDate] = useState(moment());
+    const date = props.date;
     const [viewDate, setViewDate] = useState(moment(date.format('MM-DD-YYYY'))); // Represents 12:00 AM on the viewed date
 
 
@@ -23,21 +22,6 @@ const Schedule = (props) => {
     const decDay = () => setRelDays(relDays - 1);
     const jumpToPres = () => setRelDays(0);
 
-
-    // Set interval on mount to update datetime every 100ms
-    useEffect(() => {
-        const update = () => setDate(moment());
-
-        const timerID = setInterval(
-            () => update(),
-            100
-        );
-
-        // Clear interval on unmount
-        return function cleanup() {
-            clearInterval(timerID);
-        }
-    }, [])
 
     // Update viewed date on mount and when relative days changes
     useEffect(() => {

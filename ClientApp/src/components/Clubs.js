@@ -12,8 +12,12 @@ import clubs from '../database/clubs.js';
 
 
 const Clubs = (props) => {
+    // Dynamically setting default tab
+    let date = (Number(props.date.format('d')) + 1).toString(); // :weary:
+    if (date > 6) date = '1';
+
     // Tabs
-    const [activeTab, setActiveTab] = useState('1');
+    const [activeTab, setActiveTab] = useState(date);
     const toggle = tab => {
         if (activeTab !== tab) setActiveTab(tab);
     }
@@ -43,7 +47,6 @@ const Clubs = (props) => {
                 day = 'Friday';
                 break;
         }
-
         return Object.entries(clubs).filter(([name, info]) => info.day.includes(day));
     }
 
