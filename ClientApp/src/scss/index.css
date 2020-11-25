@@ -172,8 +172,6 @@ ul.material-list li, .sidebar .toggler {
   padding: 12px;
   background-color: #ff594c;
   border-radius: 10px;
-  display: flex;
-  flex-direction: row;
 }
 .header-background .header .heading {
   display: flex;
@@ -196,6 +194,12 @@ ul.material-list li, .sidebar .toggler {
 
 .schedule {
   padding: 24px;
+}
+.schedule .date-selector {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 .schedule .schedule-dayname {
   font-size: 72px;
@@ -275,11 +279,19 @@ ul.material-list li span {
 }
 
 input[type=search] {
-  padding: 4px 4px 4px 10px;
+  padding-left: 10px;
   border: none;
   border-radius: 20px;
 }
 input[type=search]:focus {
+  outline: none;
+}
+
+input[type=date] {
+  border: 1px solid rgba(0, 0, 0, 0.54);
+  border-radius: 5px;
+}
+input[type=date]:focus {
   outline: none;
 }
 
@@ -312,10 +324,15 @@ input[type=search]:focus {
   color: rgba(0, 0, 0, 0.54);
   display: flex;
   flex-direction: column;
-}
-.WIP span {
-  margin: auto;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  /*
+  span {
+    margin: auto;
+    text-align: center;
+  }
+  */
 }
 
 /*# sourceMappingURL=index.css.map */

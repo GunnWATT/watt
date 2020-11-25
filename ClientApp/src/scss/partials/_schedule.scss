@@ -2,6 +2,14 @@
   @extend %theme-backdrop;
   padding: 24px;
 
+  // The date selector
+  .date-selector {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
   // The day name ("Saturday")
   .schedule-dayname {
     @extend .center;

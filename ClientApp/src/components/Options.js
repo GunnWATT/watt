@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {TabContent, TabPane, Nav, NavItem, NavLink} from 'reactstrap';
+import {Nav, NavItem, NavLink} from 'reactstrap';
 import classnames from 'classnames';
 
 import Header from './layout/Header';
@@ -14,6 +14,8 @@ const Options = (props) => {
     const toggle = page => {
         if (activePage !== page) setActivePage(page);
     }
+
+    const contentFromTabID = (id) => [<Appearance/>, <Periods/>, <Localization/>, <About/>][id - 1];
 
     return (
         <Header
@@ -63,20 +65,7 @@ const Options = (props) => {
                 </Nav>
             }
         >
-            <TabContent activeTab={activePage}>
-                <TabPane tabId="1">
-                    <Appearance/>
-                </TabPane>
-                <TabPane tabId="2">
-                    <Periods/>
-                </TabPane>
-                <TabPane tabId="3">
-                    <Localization/>
-                </TabPane>
-                <TabPane tabId="4">
-                    <About/>
-                </TabPane>
-            </TabContent>
+            {contentFromTabID(Number(activePage))}
         </Header>
     );
 }

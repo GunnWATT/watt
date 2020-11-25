@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {TabContent, TabPane, Nav, NavItem, NavLink} from 'reactstrap';
 import classnames from 'classnames';
 
+// Components
 import Header from './layout/Header'
 import Support from "./utilities/Support";
 //import Ad from "./utilities/Ad";
@@ -10,11 +11,14 @@ import Map from "./utilities/Map";
 import Calculator from "./utilities/Calculator";
 
 
+
 const Utilities = (props) => {
     const [activePage, setActivePage] = useState('1');
     const toggle = page => {
         if (activePage !== page) setActivePage(page);
     }
+
+    const contentFromTabID = (id) => [<Calculator/>, <GraphingCalculator/>, <Map/>, <Support/>][id - 1];
 
     return (
         <Header
@@ -64,21 +68,7 @@ const Utilities = (props) => {
                 </Nav>
             }
         >
-            <TabContent activeTab={activePage}>
-                <TabPane tabId="1">
-                    {/* <Ad/> */}
-                    <Calculator/>
-                </TabPane>
-                <TabPane tabId="2">
-                    <GraphingCalculator/>
-                </TabPane>
-                <TabPane tabId="3">
-                    <Map/>
-                </TabPane>
-                <TabPane tabId="4">
-                    <Support/>
-                </TabPane>
-            </TabContent>
+            {contentFromTabID(Number(activePage))}
         </Header>
     );
 }

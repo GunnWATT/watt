@@ -8,8 +8,6 @@
   // The red box that displays the heading
   .header {
     @include content-box($bg-color: $theme);
-    display: flex;
-    flex-direction: row;
 
     .heading {
       display: flex;

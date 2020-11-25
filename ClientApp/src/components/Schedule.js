@@ -12,31 +12,30 @@ import Events from './schedule/Events';
 
 const Schedule = (props) => {
     const date = props.date;
-    const [viewDate, setViewDate] = useState(moment(date.format('MM-DD-YYYY'))); // Represents 12:00 AM on the viewed date
+    const viewDate0 = date.clone().startOf('date'); // Represents 12:00 AM on the current day
 
+    // View date parsing
+    const [viewDate, setViewDate] = useState(viewDate0);
+    const incDay = () => setViewDate(viewDate.add(1, 'days'));
+    const decDay = () => setViewDate(viewDate.subtract(1, 'days'));
+    const jumpToPres = () => setViewDate(viewDate0);
+    const setViewDateFromJSDate = (date) => setViewDate(moment(date));
 
-    // Relative date for useEffect
-    // Potentially find way of doing things that doesn't need this
-    const [relDays, setRelDays] = useState(0);
-    const incDay = () => setRelDays(relDays + 1);
-    const decDay = () => setRelDays(relDays - 1);
-    const jumpToPres = () => setRelDays(0);
-
-
-    // Update viewed date on mount and when relative days changes
-    useEffect(() => {
-        setViewDate(moment(date.add(relDays, 'days').format('MM-DD-YYYY')))
-    }, [relDays])
-
+    let relDays = viewDate.diff(date, 'days');
 
     return (
         <div className="schedule">
-            {relDays !== 0 ? <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/> : null }
+            {relDays !== 0
+                ? <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>
+                : null
+            }
 
             <h2 className="center">{date.format('h:mm:ss A')}</h2>
             <DateSelector
                 incDay={incDay}
                 decDay={decDay}
+                setViewDate={setViewDateFromJSDate}
+                date={viewDate}
             />
             <h1 className="schedule-dayname">{viewDate.format('dddd')}</h1>
             <h2 className="schedule-date">{viewDate.format('MMMM Do, YYYY')}</h2>

@@ -1,0 +1,8 @@
+input[type=date] {
+  border: 1px solid $secondary;
+  border-radius: 5px;
+
+  &:focus {
+    outline: none;
+  }
+}
