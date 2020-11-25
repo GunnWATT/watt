@@ -128,26 +128,27 @@ const Clubs = (props) => {
         >
             <List
                 data={dataFromTab()}
-                filter={([key, value]) =>
+                filter={([id, club]) =>
                     query === '' ||
-                    key.toLowerCase().includes(query.toLowerCase())
-                    // || value.room.toLowerCase().includes(query.toLowerCase()) // Room exists not in Zoom School
-                    || value.day.toLowerCase().includes(query.toLowerCase())
+                    club.name.toLowerCase().includes(query.toLowerCase())
+                    // || club.room.toLowerCase().includes(query.toLowerCase()) // Room exists not in Zoom School
+                    || club.day.toLowerCase().includes(query.toLowerCase())
                 }
-                map={([name, info]) =>
+                map={([id, club]) =>
                     <ClubComponent
-                        key={name}
-                        name={name}
-                        room={info.room}
-                        day={info.day}
-                        time={info.time}
-                        desc={info.desc}
-                        president={info.prez}
-                        teacher={info.advisor}
-                        email={info.email}
-                        new={info.new}
+                        key={id}
+                        name={club.name}
+                        room={club.room}
+                        day={club.day}
+                        time={club.time}
+                        desc={club.desc}
+                        president={club.prez}
+                        teacher={club.advisor}
+                        email={club.email}
+                        new={club.new}
                     />
                 }
+                sort={([idA, clubA], [idB, clubB]) => clubA.name.localeCompare(clubB.name)}
             />
         </Header>
     );

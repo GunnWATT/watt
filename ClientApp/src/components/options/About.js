@@ -3,9 +3,9 @@ import {Jumbotron} from "reactstrap";
 
 const About = (props) => {
     return (
-        <div>
+        <>
             <h1>About</h1>
-            <hr/>
+            {/* <hr/> */}
             <Jumbotron>
                 <p className="lead">If I have seen further, it is by standing on the shoulders of giants.</p>
                 <p>-Isaac Newton</p>
@@ -24,7 +24,7 @@ const About = (props) => {
                 This app would not have been possible without its predecessor, <a href="https://github.com/Orbiit/gunn-web-app">UGWA</a>.{' '}
                 A large thank you to <a href="https://github.com/SheepTester">Sean</a>, for not just UGWA but also for the Schoology integration WATT relies on.
             </p>
-        </div>
+        </>
     );
 }
 

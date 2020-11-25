@@ -64,23 +64,24 @@ const Lists = (props) => {
                     ? <WIP />
                     : <List
                         data={staff}
-                        filter={([key, value]) =>
+                        filter={([id, staff]) =>
                             query === '' ||
-                            key.toLowerCase().includes(query.toLowerCase())
-                            || value.title.toLowerCase().includes(query.toLowerCase())
-                            || value.email.toLowerCase().includes(query.toLowerCase())
+                            staff.name.toLowerCase().includes(query.toLowerCase())
+                            || staff.title.toLowerCase().includes(query.toLowerCase())
+                            || staff.email.toLowerCase().includes(query.toLowerCase())
                         }
-                        map={([name, info]) =>
+                        map={([id, staff]) =>
                             <StaffComponent
-                                key={name}
-                                name={name}
-                                title={info.title}
-                                department={info.department}
-                                phone={info.phone}
-                                email={info.email}
-                                periods={info.periods}
+                                key={id}
+                                name={staff.name}
+                                title={staff.title}
+                                department={staff.department}
+                                phone={staff.phone}
+                                email={staff.email}
+                                periods={staff.periods}
                             />
                         }
+                        sort={([idA, staffA], [idB, staffB]) => staffA.name.localeCompare(staffB.name)}
                     />
             }
         </Header>

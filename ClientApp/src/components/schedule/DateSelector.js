@@ -1,5 +1,4 @@
 import React from 'react';
-import DatePicker from "react-datepicker";
 
 // Icons
 import { ChevronLeft, ChevronRight } from 'react-feather';
@@ -22,12 +21,6 @@ const DateSelector = (props) => {
                     onChange={e => setViewDate(e.target.value)}
                 />
             </form>
-            {/*
-            <DatePicker
-                selected={props.date.toDate()}
-                onChange={date => props.setViewDate(date)}
-            />
-            */}
 
             <button className="icon" onClick={incDay}>
                 <ChevronRight/>

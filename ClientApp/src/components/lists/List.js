@@ -8,16 +8,16 @@ import NoResults from "./NoResults";
 
 const List = (props) => {
     // Filter and map are different for each list, so pass them in as props
-    let {data, filter, map} = props;
+    let {data, filter, map, sort} = props;
 
     // Parses data into mappable form
     let content;
     if (Array.isArray(data)) {
         // Assuming this has been subjected to Object.entries already
-        content = data.sort();
+        content = data.sort(sort);
     } else {
-        // Creates nested array where [0] is the name and [1] is the object data
-        content = Object.entries(data).sort();
+        // Creates nested array where [0] is the id and [1] is the object data
+        content = Object.entries(data).sort(sort);
     }
 
     // Filter via query, map to components
