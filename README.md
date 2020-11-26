@@ -7,7 +7,7 @@ WATT can be found live at [gunnwatt.web.app](https://gunnwatt.web.app).
 ### Project Structure
 This project was built using ReactJS and Firebase, with a backend in Cloud Functions and database using Cloud Firestore.
 
-The client (ReactJS) part of WATT is located in `/wattclient`, and the Cloud Functions are in `/functions`.
+The client (React.js) part of WATT is located in `/client`, and the Cloud Functions are in `/functions`.
 
 
 ### Credits

@@ -13,8 +13,6 @@ import Settings from './views/Settings';
 import Testing from './views/Testing';
 import PageNotFound from "./views/404";
 
-import './scss/index.css';
-
 
 const App = (props) => {
     // Date handling
