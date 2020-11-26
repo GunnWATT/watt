@@ -10,7 +10,7 @@ const Header = (props) => {
                     {props.other}
                 </span>
             </Container>
-            <Container className="nav">
+            <Container className="page-nav">
                 {props.nav}
             </Container>
             <Container className="page">

@@ -64,18 +64,29 @@ const Periods = (props) => {
         }
     }
 
+    // Turns object key into default period color
+    const parsePeriodColor = (name) => {
+        let num = Number(name);
+        // Map number periods to their default colors
+        if (num)
+            return ['#f4aeafff', '#aef4dcff', '#aedef4ff', '#aeaff4ff', '#f4dcaeff', '#aff4aeff', '#f4f3aeff'][num - 1];
+        // Non numbered periods are grey colored
+        return '#efefefff';
+    }
+
     // HTML for a school day
     const schoolDay = (periods) => {
         let end = date.clone().add(periods[periods.length - 1][1].e, 'minutes'); // End time
 
         // Maps periods array to <Period> components
         const renderPeriods = () =>
-            periods.map(period =>
+            periods.map(([name, value]) =>
                 <Period
-                    name={parsePeriodName(period[0])}
-                    key={period[0]}
-                    start={date.clone().add(period[1].s, 'minutes')}
-                    end={date.clone().add(period[1].e, 'minutes')}
+                    name={parsePeriodName(name)}
+                    key={name}
+                    color={parsePeriodColor(name)}
+                    start={date.clone().add(value.s, 'minutes')}
+                    end={date.clone().add(value.e, 'minutes')}
                     now={now}
                     date={date}
                 />

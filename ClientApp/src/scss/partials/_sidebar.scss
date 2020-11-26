@@ -60,7 +60,7 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
 
     // Active links
     &.active {
-      color: #a51618;
+      color: $theme-dark;
     }
 
     // The <Link> components
@@ -74,7 +74,8 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
       &:hover {
         text-decoration: none;
         border-radius: 5px;
-        background-color: $focus;
+        //background-color: $focus;
+        background-color: $grey;
       }
 
       // Link text

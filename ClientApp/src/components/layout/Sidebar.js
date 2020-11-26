@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // Icons
 import logo from '../../assets/watt.svg';
 import {
+    Home,
     CheckSquare,
     Calendar,
     Users,
@@ -39,12 +41,15 @@ const Sidebar = (props) => {
             </span>
 
             {/* Heading */}
-            <img src={logo} alt="WATT Logo" className="logo" />
+            <Link to="/" className="logo">
+                <img src={logo} alt="WATT Logo" />
+            </Link>
             <h1>Web App of the Titans</h1>
             {/* <hr/> */}
 
             {/* Nav */}
-            <SidebarItem name="Schedule" to="/" icon={<Calendar/>} exact />
+            <SidebarItem name="Home" to="/" icon={<Home/>} exact />
+            {/* <SidebarItem name="Schedule" to="/" icon={<Calendar/>} exact /> */}
             <SidebarItem name="Grades" to="/grades" icon={<CheckSquare/>} />
             <SidebarItem name="Clubs" to="/clubs" icon={<Users/>} />
             <SidebarItem name="Lists" to="/lists" icon={<List/>} />

@@ -52,6 +52,7 @@ const Testing = (props) => {
                 <h2>Period yet to start</h2>
                 <Period
                     name='Testing'
+                    color='#f4aeafff'
                     now={moment()}
                     start={moment().add(20, 'minutes')}
                     end={moment().add(50, 'minutes')}
@@ -59,6 +60,7 @@ const Testing = (props) => {
                 <h2>Partially finished period</h2>
                 <Period
                     name='Testing'
+                    color='#aedef4ff'
                     now={moment()}
                     start={moment().subtract(20, 'minutes')}
                     end={moment().add(10, 'minutes')}
@@ -66,6 +68,7 @@ const Testing = (props) => {
                 <h2>Finished period</h2>
                 <Period
                     name='Testing'
+                    color='#f4dcaeff'
                     now={moment()}
                     start={moment().subtract(50, 'minutes')}
                     end={moment().subtract(20, 'minutes')}
