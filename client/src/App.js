@@ -1,78 +1,56 @@
-import React, {useState, useEffect} from 'react'
-import {useAuthState} from "react-firebase-hooks/auth"
-import {useCollectionData} from "react-firebase-hooks/firestore"
-import DatePicker from "react-datepicker"
-import "react-datepicker/dist/react-datepicker.css"
+import React, {useEffect, useState} from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import moment from "moment";
+
+// Components
+import Layout from './components/Layout';
+import Schedule from './views/Schedule';
+import Utilities from './views/Utilities';
+import Grades from './views/Grades';
+import Lists from './views/Lists';
+import Clubs from "./views/Clubs";
+import Settings from './views/Settings';
+import Testing from './views/Testing';
+import PageNotFound from "./views/404";
+
+import './scss/index.css';
 
 
-import logo from './watt.svg'
-import './App.css'
-import firebase from "./firebase/Firebase"
-import {GoogleSignIn, SignOut, FirestoreInit, SgyAuth} from "./firebase/Authentication"
+const App = (props) => {
+    // Date handling
+    const [date, setDate] = useState(moment());
 
-const auth = firebase.auth
-const gunndb = firebase.firestore
-const staff = gunndb.collection("gunn").doc("staff")
+    // Set interval on mount to update datetime every 100ms
+    useEffect(() => {
+        const update = () => setDate(moment());
 
+        const timerID = setInterval(
+            () => update(),
+            100
+        );
 
-const Example = () => {
-    const [startDate, setStartDate] = useState(new Date());
+        // Clear interval on unmount
+        return function cleanup() {
+            clearInterval(timerID);
+        }
+    }, [])
+
     return (
-        <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
+        <Router>
+            <Layout>
+                <Switch>
+                    <Route exact path='/' render={() => <Schedule date={date}/>}/>
+                    <Route path='/utilities' component={Utilities}/>
+                    <Route path='/grades' component={Grades}/>
+                    <Route path='/clubs' render={() => <Clubs date={date}/>}/>
+                    <Route path='/lists' component={Lists}/>
+                    <Route path='/settings' component={Settings}/>
+                    <Route path='/super-secret-testing' component={Testing}/>
+                    <Route component={PageNotFound}/>
+                </Switch>
+            </Layout>
+        </Router>
     );
 }
 
-function App() {
-    const [msg, setMsg] = useState("")
-    const [user] = useAuthState(auth)
-
-    /*
-    const [teacheremail, setTeacherEmail] = useState("")
-    setTeacherEmail(staff.get().then(data()["email"]))
-    useEffect(async () => {
-    let email = (await staff.get()).data()["email"];
-    }, []);
-    */
-
-    useEffect(() => {
-        auth.getRedirectResult().then(r => FirestoreInit(r))
-    }, [])
-
-    useEffect(() => {
-        fetch('api/').then(res => res.json()).then(data => {
-            setMsg(data.content)
-        })
-    }, [])
-
-    const SignInButton = () => (
-        <button className="sign-in" onClick={GoogleSignIn}>Sign In</button>
-    )
-
-    const SignOutButton = () => (
-        <button onClick={SignOut}>Sign Out</button>
-    )
-
-    const SgyAuthButton = () => (
-        <button onClick={SgyAuth}>Schoology Authentication</button>
-    )
-
-    return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-            </header>
-            <Example />
-            {
-                user ? (
-                    <SignOutButton />
-                ) : (
-                    <SignInButton />
-                )
-            }
-            <SgyAuthButton />
-            <p>Special Message: {msg}</p>
-        </div>
-    );
-}
 export default App;
-

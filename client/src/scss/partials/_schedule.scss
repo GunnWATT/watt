@@ -1,0 +1,61 @@
+.schedule {
+  @extend %theme-backdrop;
+  padding: 24px;
+
+  // The date selector
+  .date-selector {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  // The day name ("Saturday")
+  .schedule-dayname {
+    @extend .center;
+    font-size: 72px;
+  }
+
+  // The date ("October 10th, 2020")
+  .schedule-date {
+    @extend .center;
+  }
+
+  // Periods container
+  .schedule-wrapper {
+    max-width: 850px;
+    margin: 0 auto 0 auto;
+
+    // Individual period boxes
+    .card {
+      //border: none;
+      margin-bottom: 0.5rem;
+      border-radius: 0.375rem;
+
+      .card-title {
+        font-size: 24px;
+      }
+    }
+  }
+
+  // The Alert for when you are viewing a different day's schedule
+  .day-alert {
+    border: none;
+    color: $primary;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto 1rem;
+    //position: sticky;
+    //position: -webkit-sticky;
+    //top: 5px;
+
+    button {
+      color: inherit;
+      margin-left: auto;
+      background: none;
+      border: none
+    }
+  }
+}

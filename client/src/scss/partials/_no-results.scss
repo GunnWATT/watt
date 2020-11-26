@@ -1,0 +1,10 @@
+.no-results {
+  flex-grow: 1;
+  color: $secondary;
+  display: flex;
+
+  span {
+    display: inline-flex;
+    margin: auto;
+  }
+}

@@ -1,0 +1,18 @@
+@import '../mixins/content-box';
+
+.testing {
+  padding: 24px;
+
+  > div {
+    @include content-box();
+    margin: 10px 0;
+
+    > * {
+      margin: 5px 0;
+    }
+  }
+
+  .fixed-height {
+    height: 300px;
+  }
+}

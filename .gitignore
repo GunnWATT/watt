@@ -1,3 +1,23 @@
+# dependencies
+*node_modules/
+
+# react
+client/coverage
+client/build
+
+# config
+client/src/config.js
+
+# misc
+*.DS_Store
+/.firebase
+
+# IDE
+/.idea
+
+# temp stuff
+/temp
+
 # Logs
 logs
 *.log
@@ -44,9 +64,6 @@ bower_components
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
-# Dependency directories
-node_modules/
-
 # Optional npm cache directory
 .npm
 
@@ -64,5 +81,3 @@ node_modules/
 
 # dotenv environment variables file
 .env
-
-.idea/

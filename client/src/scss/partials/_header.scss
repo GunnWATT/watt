@@ -1,0 +1,51 @@
+@import '../mixins/content-box';
+
+
+.header-background {
+  @extend %theme-backdrop;
+  padding: 24px;
+
+  // Red box that displays the heading
+  .header {
+    @include content-box($bg-color: $theme);
+
+    .heading {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      border-bottom: 2px solid;
+      color: white;
+
+      // Search box in lists
+      input {
+        margin-left: 1rem;
+      }
+    }
+  }
+
+  // Nav div which contains the nav tabs
+  .page-nav {
+    padding: 0;
+
+    ul {
+      padding: 10px 0 0;
+      .nav-item {
+        box-shadow: 0 -3px 3px 0 $tertiary;
+
+        // First and last get left and right shadows respectively
+        &:first-child {
+          box-shadow: -3px -3px 5px 0 $tertiary;
+        }
+        &:last-child {
+          box-shadow: 3px -3px 5px 0 $tertiary;
+        }
+      }
+    }
+  }
+
+  // White box that displays the tab content
+  .page {
+    @include content-box($radius: 0 0 10px 10px, $bg-color: white);
+    min-height: 300px;
+  }
+}

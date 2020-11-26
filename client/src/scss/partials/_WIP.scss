@@ -1,0 +1,16 @@
+.WIP {
+  flex-grow: 1;
+  color: $secondary;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  /*
+  span {
+    margin: auto;
+    text-align: center;
+  }
+  */
+}
