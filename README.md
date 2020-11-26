@@ -1,6 +1,6 @@
 # Gunn WATT
 
-Gunn WATT (Web App of The Ttians) is a complete revamp of UGWA, the Unofficial Gunn Web App, complete with a backend, database, Schoology integration, and many more features.
+Gunn WATT (Web App of The Titans) is a complete revamp of UGWA, the Unofficial Gunn Web App, complete with a backend, database, Schoology integration, and many more features.
 
 WATT can be found live at [gunnwatt.web.app](https://gunnwatt.web.app).
 
