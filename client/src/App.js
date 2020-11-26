@@ -4,10 +4,9 @@ import moment from "moment";
 
 // Components
 import Layout from './components/Layout';
-import Schedule from './views/Schedule';
+import Home from './views/Home';
 import Utilities from './views/Utilities';
-import Grades from './views/Grades';
-import Lists from './views/Lists';
+import Classes from './views/Classes';
 import Clubs from "./views/Clubs";
 import Settings from './views/Settings';
 import Testing from './views/Testing';
@@ -37,13 +36,12 @@ const App = (props) => {
         <Router>
             <Layout>
                 <Switch>
-                    <Route exact path='/' render={() => <Schedule date={date}/>}/>
+                    <Route exact path='/' render={() => <Home date={date}/>}/>
                     <Route path='/utilities' component={Utilities}/>
-                    <Route path='/grades' component={Grades}/>
+                    <Route path='/classes' component={Classes}/>
                     <Route path='/clubs' render={() => <Clubs date={date}/>}/>
-                    <Route path='/lists' component={Lists}/>
                     <Route path='/settings' component={Settings}/>
-                    <Route path='/super-secret-testing' component={Testing}/>
+                    <Route path='/super-secret-testing' component={Testing} />
                     <Route component={PageNotFound}/>
                 </Switch>
             </Layout>

@@ -1,7 +1,7 @@
 import {useRef, useState, useEffect} from 'react';
 
 // Firestore
-import firebase from '../firebase/Firestore';
+import firebase from '../firebase/firebase';
 const gunndb = firebase.db;
 
 
