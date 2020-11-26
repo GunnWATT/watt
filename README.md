@@ -1,15 +1,18 @@
-# UGWA Backend
+# Gunn WATT
 
-This project aspires to expand upon the original UGWA by adding in a framework and backend, similar to Homework Central.
+Gunn WATT (Web App of The Ttians) is a complete revamp of UGWA, the Unofficial Gunn Web App, complete with a backend, database, Schoology integration, and many more features.
 
-### Folder Structure
+WATT can be found live at [gunnwatt.web.app](https://gunnwatt.web.app).
 
-The React.js portion of this app can be found in /ClientApp/src, and the (temporary) Express.js portion in /Backend.
+### Project Structure
+This project was built using ReactJS and Firebase, with a backend in Cloud Functions and database using Cloud Firestore.
 
-In /ClientApp/src, react components can be located in /components. Components are sorted by the 5 app tabs they belong to (clubs, options, schedule, staff, and utilities).
+The client (ReactJS) part of WATT is located in `/wattclient`, and the Cloud Functions are in `/functions`.
 
-### Links:
 
-[Original UGWA](https://github.com/Orbiit/gunn-web-app) (frameworkless)
+### Credits
+[Yu-Ting](https://github.com/ytchang05) & [Kevin](https://github.com/ky28059) were the primary creators of WATT. Special thanks to [Ovinus Real](https://sheeptester.github.io) for advice and tips along the way.
 
-[Homework Central](https://github.com/saumyasinghal747/homework-central/) (uses Vue.js and Firebase)
+Google Search and Stack Overflow helped greatly. Thanks to the Schoology API for integration with Schoology, as well as the libraries (and ReactJS and Firebase itself) that were used.
+
+Many of the core features were inspired by [UGWA](https://github.com/Orbiit/gunn-web-app). Also thanks to those that helped in user testing and providing feedback.

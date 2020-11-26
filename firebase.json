@@ -1,15 +1,22 @@
 {
   "hosting": {
-    "public": "ClientApp/build",
+    "public": "client/build",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
-      {
-        "source": "**",
+    "rewrites": [{
+        "source": "/",
         "destination": "/index.html"
+      },
+      {
+        "source": "/api/**",
+        "function": "api"
+      },
+      {
+        "source": "/sgyauth",
+        "function": "sgyauth"
       }
     ]
   }
