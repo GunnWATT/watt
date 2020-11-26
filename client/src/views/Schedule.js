@@ -4,10 +4,10 @@ import moment from 'moment';
 
 // Components
 //import Clock from './schedule/Clock.js'; // Date handling has been passed down to Schedule.js, retiring this
-import DateSelector from "./schedule/DateSelector";
-import Periods from "./schedule/Periods";
-import DayAlert from "./schedule/DayAlert";
-import Events from './schedule/Events';
+import DateSelector from "../components/schedule/DateSelector";
+import Periods from "../components/schedule/Periods";
+import DayAlert from "../components/schedule/DayAlert";
+import Events from '../components/schedule/Events';
 
 
 const Schedule = (props) => {

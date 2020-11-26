@@ -228,6 +228,7 @@ ul.material-list li, .sidebar .toggler {
 }
 .schedule .schedule-wrapper .card {
   margin-bottom: 0.5rem;
+  border-radius: 0.375rem;
 }
 .schedule .schedule-wrapper .card .card-title {
   font-size: 24px;

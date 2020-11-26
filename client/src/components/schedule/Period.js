@@ -25,8 +25,13 @@ const Period = (props) => {
                 <CardSubtitle className="secondary">{t.simpleFormat('h:mma')}</CardSubtitle>
                 <CardText className="secondary">{parseStartEnd()} - {t.countInner('minutes')} minutes long</CardText>
                 {t.isCurrent()
-                    ? <Progress animated value={(now.valueOf() - start.valueOf()) / (end.valueOf() - start.valueOf()) * 100}/>
-                    : null}
+                    ? <Progress
+                        animated
+                        value={(now.valueOf() - start.valueOf()) / (end.valueOf() - start.valueOf()) * 100}
+                        style={{backgroundColor: props.color}}
+                      />
+                    : null
+                }
             </CardBody>
         </Card>
         /*

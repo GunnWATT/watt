@@ -54,7 +54,7 @@ const Sidebar = (props) => {
             <SidebarItem name="Clubs" to="/clubs" icon={<Users/>} />
             <SidebarItem name="Lists" to="/lists" icon={<List/>} />
             <SidebarItem name="Utilities" to="/utilities" icon={<Tool/>} />
-            <SidebarItem name="Options" to="/options" icon={<Settings/>} />
+            <SidebarItem name="Settings" to="/settings" icon={<Settings/>} />
 
             {/* Bottom Account Status Button */}
             <span className="bottom">

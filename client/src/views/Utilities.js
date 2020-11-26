@@ -3,12 +3,12 @@ import {TabContent, TabPane, Nav, NavItem, NavLink} from 'reactstrap';
 import classnames from 'classnames';
 
 // Components
-import Header from './layout/Header'
-import Support from "./utilities/Support";
+import Header from '../components/layout/Header'
+import Support from "../components/utilities/Support";
 //import Ad from "./utilities/Ad";
-import GraphingCalculator from './utilities/GraphingCalculator';
-import Map from "./utilities/Map";
-import Calculator from "./utilities/Calculator";
+import GraphingCalculator from '../components/utilities/GraphingCalculator';
+import Map from "../components/utilities/Map";
+import Calculator from "../components/utilities/Calculator";
 
 
 
@@ -24,7 +24,7 @@ const Utilities = (props) => {
         <Header
             heading="Utilities"
             nav={
-                <Nav tabs>
+                <Nav fill tabs>
                     <NavItem>
                         <NavLink
                             className={classnames({active: activePage === '1'})}

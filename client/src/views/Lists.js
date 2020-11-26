@@ -4,13 +4,13 @@ import classnames from 'classnames';
 import {Nav, NavItem, NavLink} from 'reactstrap';
 
 // Components
-import Header from './layout/Header';
-import List from "./lists/List";
-import WIP from "./misc/WIP";
-import StaffComponent from "./lists/StaffComponent";
+import Header from '../components/layout/Header';
+import List from "../components/lists/List";
+import WIP from "../components/misc/WIP";
+import StaffComponent from "../components/lists/StaffComponent";
 
-// Database
-import staff from '../database/staff.js';
+// Data
+import staff from '../data/staff.js';
 
 
 const Lists = (props) => {
@@ -35,7 +35,7 @@ const Lists = (props) => {
                 />
             }
             nav={
-                <Nav className="nav-fill" tabs>
+                <Nav fill tabs>
                     <NavItem>
                         <NavLink
                             className={classnames({active: activeTab === '1'})}

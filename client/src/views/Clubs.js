@@ -2,13 +2,13 @@ import React, {useState} from "react";
 import classnames from "classnames";
 
 // Components
-import List from './lists/List';
-import Header from "./layout/Header";
+import List from '../components/lists/List';
+import Header from "../components/layout/Header";
 import {Nav, NavItem, NavLink} from "reactstrap";
-import ClubComponent from "./lists/ClubComponent";
+import ClubComponent from "../components/lists/ClubComponent";
 
-// Database
-import clubs from '../database/clubs.js';
+// Data
+import clubs from '../data/clubs.js';
 
 
 const Clubs = (props) => {

@@ -2,15 +2,16 @@ import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import moment from "moment";
 
+// Components
 import Layout from './components/Layout';
-import Schedule from './components/Schedule';
-import Utilities from './components/Utilities';
-import Grades from './components/Grades';
-import Lists from './components/Lists';
-import Clubs from "./components/Clubs";
-import Options from './components/Options';
-import Testing from './components/Testing';
-import PageNotFound from "./components/404";
+import Schedule from './views/Schedule';
+import Utilities from './views/Utilities';
+import Grades from './views/Grades';
+import Lists from './views/Lists';
+import Clubs from "./views/Clubs";
+import Settings from './views/Settings';
+import Testing from './views/Testing';
+import PageNotFound from "./views/404";
 
 import './scss/index.css';
 
@@ -43,7 +44,7 @@ const App = (props) => {
                     <Route path='/grades' component={Grades}/>
                     <Route path='/clubs' render={() => <Clubs date={date}/>}/>
                     <Route path='/lists' component={Lists}/>
-                    <Route path='/options' component={Options}/>
+                    <Route path='/settings' component={Settings}/>
                     <Route path='/super-secret-testing' component={Testing}/>
                     <Route component={PageNotFound}/>
                 </Switch>

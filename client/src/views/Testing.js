@@ -3,10 +3,10 @@ import moment from 'moment';
 import { SketchPicker, ChromePicker, BlockPicker } from 'react-color';
 import { Row } from 'reactstrap';
 
-import Period from './schedule/Period';
-import Loading from './misc/Loading';
-import WIP from './misc/WIP';
-import NoResults from "./lists/NoResults";
+import Period from '../components/schedule/Period';
+import Loading from '../components/misc/Loading';
+import WIP from '../components/misc/WIP';
+import NoResults from "../components/lists/NoResults";
 
 
 const Testing = (props) => {

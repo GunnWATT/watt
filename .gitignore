@@ -2,11 +2,11 @@
 *node_modules/
 
 # react
-ClientApp/coverage
-ClientApp/build
+client/coverage
+client/build
 
 # config
-ClientApp/src/config.js
+client/src/config.js
 
 # misc
 *.DS_Store

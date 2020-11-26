@@ -2,14 +2,15 @@ import React, {useState} from 'react';
 import {Nav, NavItem, NavLink} from 'reactstrap';
 import classnames from 'classnames';
 
-import Header from './layout/Header';
-import Appearance from "./options/Appearance";
-import Periods from "./options/Periods";
-import Localization from "./options/Localization.js";
-import About from "./options/About";
+// Components
+import Header from '../components/layout/Header';
+import Appearance from "../components/options/Appearance";
+import Periods from "../components/options/Periods";
+import Localization from "../components/options/Localization.js";
+import About from "../components/options/About";
 
 
-const Options = (props) => {
+const Settings = (props) => {
     const [activePage, setActivePage] = useState('1');
     const toggle = page => {
         if (activePage !== page) setActivePage(page);
@@ -19,9 +20,9 @@ const Options = (props) => {
 
     return (
         <Header
-            heading="Options"
+            heading="Settings"
             nav={
-                <Nav tabs>
+                <Nav fill tabs>
                     <NavItem>
                         <NavLink
                             className={classnames({active: activePage === '1'})}
@@ -70,4 +71,4 @@ const Options = (props) => {
     );
 }
 
-export default Options;
+export default Settings;

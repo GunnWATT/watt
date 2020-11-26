@@ -5,7 +5,7 @@ import moment from "moment";
 import Period from './Period';
 
 // Database
-import schedule from '../../database/schedule.js';
+import schedule from '../../data/schedule.js';
 import {useFetchFirestore} from "../../hooks/useFetchFirestore";
 
 const Periods = (props) => {
