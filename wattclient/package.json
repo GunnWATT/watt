@@ -1,0 +1,46 @@
+{
+  "name": "wattclient",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "firebase": "^7.22.1",
+    "firebase-admin": "^9.2.0",
+    "firebaseui": "^4.6.1",
+    "moment": "^2.29.1",
+    "react": "^16.13.1",
+    "react-color": "^2.19.3",
+    "react-datepicker": "^3.3.0",
+    "react-dom": "^16.13.1",
+    "react-feather": "^2.0.9",
+    "react-firebase-hooks": "^2.2.0",
+    "react-icons": "^3.11.0",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "reactstrap": "^8.7.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

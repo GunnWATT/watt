@@ -1,0 +1,23 @@
+{
+  "hosting": {
+    "public": "wattclient/build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [{
+        "source": "/",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/api/**",
+        "function": "api"
+      },
+      {
+        "source": "/sgyauth",
+        "function": "sgyauth"
+      }
+    ]
+  }
+}
