@@ -3,14 +3,14 @@ import moment from 'moment';
 //import {CSSTransition} from "react-transition-group";
 
 // Components
-//import Clock from './schedule/Clock.js'; // Date handling has been passed down to Schedule.js, retiring this
+//import Clock from './schedule/Clock.js'; // Date handling has been passed down to Home.js, retiring this
 import DateSelector from "../components/schedule/DateSelector";
 import Periods from "../components/schedule/Periods";
 import DayAlert from "../components/schedule/DayAlert";
 import Events from '../components/schedule/Events';
 
 
-const Schedule = (props) => {
+const Home = (props) => {
     const date = props.date;
     const viewDate0 = date.clone().startOf('date'); // Represents 12:00 AM on the current day
 
@@ -55,4 +55,4 @@ const Schedule = (props) => {
     );
 }
 
-export default Schedule;
+export default Home;

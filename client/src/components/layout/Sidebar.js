@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 
 // Icons
@@ -20,11 +20,43 @@ import {
 // Components
 import SidebarItem from "./SidebarItem";
 
+// Authentication
+import {useAuthState} from "react-firebase-hooks/auth";
+import firebase from "../../firebase/Firebase"
+import {GoogleSignIn, SignOut, FirestoreInit} from "../../firebase/Authentication";
+
+
 
 const Sidebar = (props) => {
+    // Authentication
+    const auth = firebase.auth
+    const [user] = useAuthState(auth)
+    useEffect(() => {
+        auth.getRedirectResult().then(r => FirestoreInit(r))
+    }, [])
+
     // Collapse
     const [isOpen, setIsOpen] = useState(true);
     const toggle = () => setIsOpen(!isOpen);
+
+    // Sign In/Out Buttons
+    const SignInButton = () => (
+        <span className={'item'}>
+            <button onClick={GoogleSignIn}>
+                <LogIn />
+                <span>Sign In</span>
+            </button>
+        </span>
+    )
+
+    const SignOutButton = () => (
+        <span className={'item'}>
+            <button onClick={SignOut}>
+                <LogOut />
+                <span>Sign Out</span>
+            </button>
+        </span>
+    )
 
     return (
         <div className={`sidebar ${!isOpen ? 'collapsed' : ''}`}>
@@ -49,17 +81,20 @@ const Sidebar = (props) => {
 
             {/* Nav */}
             <SidebarItem name="Home" to="/" icon={<Home/>} exact />
-            {/* <SidebarItem name="Schedule" to="/" icon={<Calendar/>} exact /> */}
-            <SidebarItem name="Grades" to="/grades" icon={<CheckSquare/>} />
+            <SidebarItem name="Classes" to="/classes" icon={<CheckSquare/>} />
             <SidebarItem name="Clubs" to="/clubs" icon={<Users/>} />
-            <SidebarItem name="Lists" to="/lists" icon={<List/>} />
             <SidebarItem name="Utilities" to="/utilities" icon={<Tool/>} />
             <SidebarItem name="Settings" to="/settings" icon={<Settings/>} />
 
             {/* Bottom Account Status Button */}
             <span className="bottom">
-                {/* <hr/> */}
-                <SidebarItem name="Sign Out" to="/super-secret-testing" icon={<LogOut/>} />
+                {
+                    user ? (
+                        <SignOutButton />
+                    ) : (
+                        <SignInButton />
+                    )
+                }
             </span>
         </div>
     )

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Container} from 'reactstrap';
 
-const Grades = (props) => {
+const Classes = (props) => {
     return (
         <Container>
             <h1>Grades</h1>
@@ -9,4 +9,4 @@ const Grades = (props) => {
     );
 }
 
-export default Grades;
+export default Classes;

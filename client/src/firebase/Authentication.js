@@ -20,7 +20,7 @@ export const GoogleSignIn = () => {
 export const SignOut = () => auth.signOut()
 
 export const FirestoreInit = (r) => {
-    if (r && r.additionalUserInfo.isNewUser) {
+    if (r.additionalUserInfo && r.additionalUserInfo.isNewUser) {
         const user = r.user
         firestore.collection('users').doc(user.uid).set({
             name: user.displayName,
