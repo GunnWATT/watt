@@ -6,15 +6,14 @@ import Period from './Period';
 
 // Database
 import schedule from '../../data/schedule.js';
-import {useFetchFirestore} from "../../hooks/useFetchFirestore";
+
 
 const Periods = (props) => {
     const date = props.viewDate;
     const now = props.currDate;
 
     // Fetch firestore to check if its an alternate
-    const [status, data] = useFetchFirestore('schedule');
-    const alternates = data['alternates'];
+    // TODO
 
 
     // Sorts object by start times so it is not mismatched
@@ -33,13 +32,7 @@ const Periods = (props) => {
     // Renders the periods
     const renderSchedule = () => {
         // Check firestore fetch to see if it is an alternate
-        if (status === 'fetched') {
-            for (let key in alternates) {
-                if (date.format('mm-dd').includes(key)) {
-                    periods = sortByStart(alternates[key]);
-                }
-            }
-        }
+        // TODO
 
         // No periods means no school
         if (!periods) return weekend();

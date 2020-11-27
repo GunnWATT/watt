@@ -54,46 +54,52 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
 
   // SidebarItems
   .item {
+    @extend %text-truncate;
     width: 100%;
     margin: 12px 0 0 0;
     color: black;
+    display: block;
+    transition: background-color 200ms ease;
+    padding: $link-padding;
 
-    // Active links
+    &:hover {
+      a {
+        text-decoration: none;
+      }
+      border-radius: 5px;
+      //background-color: $focus;
+      background-color: $grey;
+    }
+
+    // Text
+    span {
+      //overflow: hidden;
+      //transition: width $sidebar-collapse-time ease;
+      margin-left: 1rem;
+    }
+
+    // Icon
+    svg {
+      display: inline-block;
+      font-size: inherit;
+      height: 1em;
+      overflow: visible;
+      vertical-align: -0.125em;
+      width: $icon-width;
+    }
+
+    // Active
     &.active {
       color: $theme-dark;
     }
 
     // The <Link> components
-    a {
-      @extend %text-truncate;
-      color: inherit;
+    a, button {
       display: block;
-      transition: background-color 200ms ease;
-      padding: $link-padding;
-
-      &:hover {
-        text-decoration: none;
-        border-radius: 5px;
-        //background-color: $focus;
-        background-color: $grey;
-      }
-
-      // Link text
-      span {
-        //overflow: hidden;
-        //transition: width $sidebar-collapse-time ease;
-        margin-left: 1rem;
-      }
-
-      // Link icon
-      svg {
-        display: inline-block;
-        font-size: inherit;
-        height: 1em;
-        overflow: visible;
-        vertical-align: -0.125em;
-        width: $icon-width;
-      }
+      color: inherit;
+      width: 100%;
+      text-align: left;
+      padding: 0;
     }
   }
 

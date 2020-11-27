@@ -1,6 +1,6 @@
 import React from 'react';
 //import moment from 'moment';
-import twix from 'twix';
+import 'twix';
 import {Card, CardBody, CardTitle, CardSubtitle, CardText, Progress} from "reactstrap";
 
 const Period = (props) => {
