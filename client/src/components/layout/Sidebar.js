@@ -6,15 +6,11 @@ import logo from '../../assets/watt.svg';
 import {
     Home,
     CheckSquare,
-    Calendar,
     Users,
-    List,
     Settings,
     Tool,
-    LogIn,
-    LogOut,
     ChevronsRight,
-    ChevronsLeft
+    ChevronsLeft,
 } from 'react-feather';
 
 // Components
@@ -23,27 +19,10 @@ import SidebarItem from "./SidebarItem";
 // Authentication
 import {useAuthState} from "react-firebase-hooks/auth";
 import firebase from "../../firebase/Firebase"
-import {GoogleSignIn, SignOut, FirestoreInit} from "../../firebase/Authentication";
-
-
-// Sign In/Out Buttons
-const SignInButton = () => (
-    <span className={'item'}>
-        <button onClick={GoogleSignIn}>
-            <LogIn/>
-            <span>Sign In</span>
-        </button>
-    </span>
-)
-
-const SignOutButton = () => (
-    <span className={'item'}>
-        <button onClick={SignOut}>
-            <LogOut/>
-            <span>Sign Out</span>
-        </button>
-    </span>
-)
+import {FirestoreInit} from "../../firebase/Authentication";
+import SignInBtn from './SignInBtn';
+import SignOutBtn from './SignOutBtn';
+import DatePicker from "react-datepicker";
 
 
 const Sidebar = (props) => {
@@ -79,7 +58,6 @@ const Sidebar = (props) => {
                 <img src={logo} alt="WATT Logo"/>
             </Link>
             <h1>Web App of the Titans</h1>
-            {/* <hr/> */}
 
             {/* Nav */}
             <SidebarItem name="Home" to="/" icon={<Home/>} exact/>
@@ -92,10 +70,11 @@ const Sidebar = (props) => {
             <span className="bottom">
                 {
                     user
-                        ? <SignOutButton/>
-                        : <SignInButton/>
+                        ? <SignOutBtn/>
+                        : <SignInBtn/>
                 }
             </span>
+
         </div>
     )
 }

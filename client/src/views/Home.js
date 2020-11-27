@@ -22,6 +22,7 @@ const Home = (props) => {
 
     let relDays = viewDate.diff(date, 'days');
 
+
     return (
         <div className="schedule">
             {relDays !== 0
