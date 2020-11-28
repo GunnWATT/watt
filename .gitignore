@@ -6,7 +6,7 @@ client/coverage
 client/build
 
 # config
-client/src/config.js
+client/src/firebase/config.js
 
 # misc
 *.DS_Store

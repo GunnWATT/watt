@@ -2,7 +2,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/functions'
-import {fbconfig} from '../config'
+import {fbconfig} from './config'
 
 try {
     firebase.initializeApp(fbconfig)

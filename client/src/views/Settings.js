@@ -1,72 +1,37 @@
 import React, {useState} from 'react';
-import {Nav, NavItem, NavLink} from 'reactstrap';
-import classnames from 'classnames';
+import {Switch, Route} from 'react-router-dom';
+import {Nav} from 'reactstrap';
 
 // Components
 import Header from '../components/layout/Header';
-import Appearance from "../components/options/Appearance";
-import Periods from "../components/options/Periods";
-import Localization from "../components/options/Localization.js";
-import About from "../components/options/About";
+import NavTab from '../components/layout/NavTab';
+import Appearance from "../components/settings/Appearance";
+import Periods from "../components/settings/Periods";
+import Localization from "../components/settings/Localization.js";
+import About from "../components/settings/About";
+import PageNotFound from "./404";
 
 
 const Settings = (props) => {
-    const [activePage, setActivePage] = useState('1');
-    const toggle = page => {
-        if (activePage !== page) setActivePage(page);
-    }
-
-    const contentFromTabID = (id) => [<Appearance/>, <Periods/>, <Localization/>, <About/>][id - 1];
-
     return (
         <Header
             heading="Settings"
             nav={
                 <Nav fill tabs>
-                    <NavItem>
-                        <NavLink
-                            className={classnames({active: activePage === '1'})}
-                            onClick={() => {
-                                toggle('1');
-                            }}
-                        >
-                            Appearance
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink
-                            className={classnames({active: activePage === '2'})}
-                            onClick={() => {
-                                toggle('2');
-                            }}
-                        >
-                            Periods
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink
-                            className={classnames({active: activePage === '3'})}
-                            onClick={() => {
-                                toggle('3');
-                            }}
-                        >
-                            Localization
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink
-                            className={classnames({active: activePage === '4'})}
-                            onClick={() => {
-                                toggle('4');
-                            }}
-                        >
-                            About
-                        </NavLink>
-                    </NavItem>
+                    <NavTab to="/settings/" name="Appearance" exact/>
+                    <NavTab to="/settings/periods" name="Periods" />
+                    <NavTab to="/settings/localization" name="Localization" />
+                    <NavTab to="/settings/about" name="About" />
                 </Nav>
             }
         >
-            {contentFromTabID(Number(activePage))}
+            <Switch>
+                <Route exact path='/settings/' component={Appearance}/>
+                <Route path='/settings/periods' component={Periods}/>
+                <Route path='/settings/localization' component={Localization}/>
+                <Route path='/settings/about' component={About}/>
+                <Route component={PageNotFound}/>
+            </Switch>
         </Header>
     );
 }

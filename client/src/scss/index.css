@@ -87,6 +87,7 @@ ul.material-list li, .sidebar .toggler {
   cursor: pointer;
 }
 .nav.nav-tabs .nav-item .nav-link {
+  border: none;
   color: rgba(0, 0, 0, 0.54);
   background-color: #e9ecef;
 }
@@ -122,7 +123,7 @@ ul.material-list li, .sidebar .toggler {
   height: 4rem;
 }
 .sidebar h1 {
-  margin: 0.5rem auto 2rem;
+  margin: 1rem auto 2rem;
   font-size: 0.9rem;
 }
 .sidebar .item {

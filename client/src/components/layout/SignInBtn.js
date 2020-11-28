@@ -1,8 +1,9 @@
+import React from "react";
 import {GoogleSignIn} from "../../firebase/Authentication";
 import {LogIn} from "react-feather";
-import React from "react";
 
-const SignInBtn = () => (
+
+const SignInBtn = (props) => (
     <span className={'item'}>
         <button onClick={GoogleSignIn}>
             <LogIn/>

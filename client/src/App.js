@@ -44,7 +44,9 @@ const App = (props) => {
                     <Route path='/super-secret-testing' component={Testing} />
                     <Route component={PageNotFound}/>
                 </Switch>
+                {/* Potentially Modal here */}
             </Layout>
+            {/* Potentially Modal here */}
         </Router>
     );
 }

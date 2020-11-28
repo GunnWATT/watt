@@ -47,7 +47,7 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
   // Header
   h1 {
     @extend %text-truncate;
-    margin: 0.5rem auto 2rem;
+    margin: 1rem auto 2rem;
     font-size: 0.9rem;
     //align-self: center;
   }
