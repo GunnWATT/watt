@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, useRouteMatch} from 'react-router-dom';
 import {Nav} from 'reactstrap';
 
 // Components
@@ -13,23 +13,25 @@ import PageNotFound from "./404";
 
 
 const Settings = (props) => {
+    let match = useRouteMatch();
+
     return (
         <Header
             heading="Settings"
             nav={
                 <Nav fill tabs>
-                    <NavTab to="/settings/" name="Appearance" exact/>
-                    <NavTab to="/settings/periods" name="Periods" />
-                    <NavTab to="/settings/localization" name="Localization" />
-                    <NavTab to="/settings/about" name="About" />
+                    <NavTab to={match.url} name="Appearance" exact/>
+                    <NavTab to={`${match.url}/periods`} name="Periods" />
+                    <NavTab to={`${match.url}/localization`} name="Localization" />
+                    <NavTab to={`${match.url}/about`} name="About" />
                 </Nav>
             }
         >
             <Switch>
-                <Route exact path='/settings/' component={Appearance}/>
-                <Route path='/settings/periods' component={Periods}/>
-                <Route path='/settings/localization' component={Localization}/>
-                <Route path='/settings/about' component={About}/>
+                <Route exact path={match.url} component={Appearance}/>
+                <Route path={`${match.url}/periods`} component={Periods}/>
+                <Route path={`${match.url}/localization`} component={Localization}/>
+                <Route path={`${match.url}/about`} component={About}/>
                 <Route component={PageNotFound}/>
             </Switch>
         </Header>

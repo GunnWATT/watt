@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, useRouteMatch} from 'react-router-dom';
 import {Nav} from 'reactstrap';
 
 // Components
@@ -14,23 +14,25 @@ import PageNotFound from "./404";
 
 
 const Utilities = (props) => {
+    let match = useRouteMatch();
+    
     return (
         <Header
             heading="Utilities"
             nav={
                 <Nav fill tabs>
-                    <NavTab to="/utilities/" name="Finals Calculator" exact/>
-                    <NavTab to="/utilities/graphing" name="Graphing Calculator" />
-                    <NavTab to="/utilities/map" name="Campus Map" />
-                    <NavTab to="/utilities/support" name="Support" />
+                    <NavTab to={match.url} name="Finals Calculator" exact/>
+                    <NavTab to={`${match.url}/graphing`} name="Graphing Calculator" />
+                    <NavTab to={`${match.url}/map`} name="Campus Map" />
+                    <NavTab to={`${match.url}/support`} name="Support" />
                 </Nav>
             }
         >
             <Switch>
-                <Route exact path='/utilities/' component={Calculator}/>
-                <Route path='/utilities/graphing' component={GraphingCalculator}/>
-                <Route path='/utilities/map' component={Map}/>
-                <Route path='/utilities/support' component={Support}/>
+                <Route exact path={match.url} component={Calculator}/>
+                <Route path={`${match.url}/graphing`} component={GraphingCalculator}/>
+                <Route path={`${match.url}/map`} component={Map}/>
+                <Route path={`${match.url}/support`} component={Support}/>
                 <Route component={PageNotFound}/>
             </Switch>
         </Header>
