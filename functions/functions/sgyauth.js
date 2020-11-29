@@ -3,32 +3,10 @@ const admin = require('../helpers/adminInit')
 const express = require('express')
 
 const app = express()
-const { OAuth } = require('oauth')
-const promiseify = require('../helpers/promiseify')
-
-const apiBase = 'https://api.schoology.com/v1'
-const { key, secret } = require('../credentials/schoologyAPI.json')
+const oauth = require('../helpers/sgyOAuth')
 
 const userAuth = require('../helpers/userAuth')
 app.use(userAuth)
-
-const oauth = new OAuth(
-    `${apiBase}/oauth/request_token`,
-    `${apiBase}/oauth/access_token`,
-    key,
-    secret,
-    '1.0',
-    null,
-    'HMAC-SHA1'
-)
-oauth.setClientOptions({
-    requestTokenHttpMethod: 'GET',
-    accessTokenHttpMethod: 'GET',
-    followRedirects: true
-})
-oauth.getOAuthRequestToken = promiseify(oauth.getOAuthRequestToken.bind(oauth))
-oauth.getOAuthAccessToken = promiseify(oauth.getOAuthAccessToken.bind(oauth))
-oauth.get = promiseify(oauth.get.bind(oauth))
 
 const firestore = admin.firestore()
 
@@ -68,7 +46,9 @@ app.get('/sgyauth', async (req, res) => {
         )
         setAccessToken(requestToken.uid, { key: key, sec: secret }, requestToken.key)
 
-        return res.redirect('http://localhost:5000/')
+        const url = new URL(req.query.origin)
+        url.searchParams.set('modal', 'sgyauth')
+        return res.redirect(url.toString())
     } else {
         const user = req.user.uid
         const [key, secret] = await oauth.getOAuthRequestToken()

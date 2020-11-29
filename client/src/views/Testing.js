@@ -8,6 +8,7 @@ import Loading from '../components/misc/Loading';
 import WIP from '../components/misc/WIP';
 import NoResults from "../components/lists/NoResults";
 
+import SgyInit from "../schoology/SgyInit";
 
 const Testing = (props) => {
     const [color, setColor] = useState('#fff');
@@ -17,6 +18,7 @@ const Testing = (props) => {
         <div className="testing">
             <h1>Super Secret Testing Facility</h1>
             <p>Congratulations! You found the super secret testing area for Gunn WATT! Experiments and other potential features will live here until they are accepted or rejected.</p>
+            <button onClick={SgyInit}>Initialize Schoology</button>
             <div className="colorpicker-test">
                 <h2>Colorpicker Test</h2>
                 <div style={{backgroundColor: color}}>

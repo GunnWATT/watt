@@ -23,8 +23,6 @@ export const FirestoreInit = (r) => {
     if (r.additionalUserInfo && r.additionalUserInfo.isNewUser) {
         const user = r.user
         firestore.collection('users').doc(user.uid).set({
-            name: user.displayName,
-            email: user.email,
             v: 0,
             clubs: [],
             staff: [],
@@ -36,6 +34,7 @@ export const FirestoreInit = (r) => {
                 5: {n:"", c:"", l:"", o:"", s:""},
                 6: {n:"", c:"", l:"", o:"", s:""},
                 7: {n:"", c:"", l:"", o:"", s:""},
+                S: {n:"", c:"", l:"", o:"", s:""}
             },
             options: {
                 theme:"light",
@@ -48,27 +47,6 @@ export const FirestoreInit = (r) => {
 }
 
 
-export const SgyAuth = async () => {
-    if (auth.currentUser) {
-        const token = await auth.currentUser.getIdToken(true)
-        const headers = new Headers({
-            'Authorization': 'Bearer ' + token
-        })
-        const request = new Request('sgyauth/', {
-            method: 'GET',
-            headers: headers
-        })
 
-        fetch(request).then(
-            r => r.json()
-        ).then(result => {
-            console.log(result)
-            window.location = `https://pausd.schoology.com/oauth/authorize?${new URLSearchParams({
-                oauth_callback: 'http://localhost:5000/sgyauth/',
-                oauth_token: result['rTokenKey'],
-            })}`
-        })
-    }
-}
 
 

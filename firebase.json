@@ -17,6 +17,10 @@
       {
         "source": "/sgyauth",
         "function": "sgyauth"
+      },
+      {
+        "source": "/sgyfetch",
+        "function": "sgyfetch"
       }
     ]
   }
