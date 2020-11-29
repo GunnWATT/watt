@@ -2,6 +2,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/functions'
+import 'firebase/analytics'
 import {fbconfig} from './config'
 
 try {
@@ -15,5 +16,6 @@ catch(err) {
 const firestore = firebase.firestore()
 const auth = firebase.auth()
 const functions = firebase.functions()
+const analytics = firebase.analytics()
 
-export default {firebase, firestore, auth, functions}
+export default {firebase, firestore, auth, functions, analytics}
