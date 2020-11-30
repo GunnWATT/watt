@@ -28,6 +28,7 @@ const DateSelector = (props) => {
             <DatePicker
                 selected={viewDate.toDate()}
                 onChange={date => setViewDate(date)}
+                todayButton="Jump to Present"
             />
 
             <button className="icon" onClick={incDay}>

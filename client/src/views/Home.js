@@ -11,13 +11,13 @@ import Events from '../components/schedule/Events';
 
 const Home = (props) => {
     const date = props.date;
-    const viewDate0 = date.clone().startOf('date'); // Represents 12:00 AM on the current day
+    const viewDateCurr = date.clone().startOf('date'); // Represents 12:00 AM on the current day
 
     // View date parsing
-    const [viewDate, setViewDate] = useState(viewDate0);
-    const incDay = () => setViewDate(viewDate.add(1, 'days'));
-    const decDay = () => setViewDate(viewDate.subtract(1, 'days'));
-    const jumpToPres = () => setViewDate(viewDate0);
+    const [viewDate, setViewDate] = useState(viewDateCurr);
+    const incDay = () => setViewDate(viewDate.clone().add(1, 'days')); // Needs to be immutable to rerender Periods, so moment needs to be cloned before being modified
+    const decDay = () => setViewDate(viewDate.clone().subtract(1, 'days'));
+    const jumpToPres = () => setViewDate(viewDateCurr.clone());
     const setViewDateFromJSDate = (date) => setViewDate(moment(date));
 
     let relDays = viewDate.diff(date, 'days');
