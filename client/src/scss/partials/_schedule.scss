@@ -58,4 +58,10 @@
       border: none
     }
   }
+
+  // The heading for when there's no school
+  .no-school {
+    @extend .center;
+    margin-top: 3rem;
+  }
 }

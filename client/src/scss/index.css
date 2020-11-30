@@ -54,7 +54,7 @@ hr {
   border-top: 2px solid rgba(0, 0, 0, 0.1);
 }
 
-.center, .schedule .schedule-date, .schedule .schedule-dayname {
+.center, .schedule .no-school, .schedule .schedule-date, .schedule .schedule-dayname {
   text-align: center;
 }
 
@@ -256,6 +256,9 @@ ul.material-list li, .sidebar .toggler {
   margin-left: auto;
   background: none;
   border: none;
+}
+.schedule .no-school {
+  margin-top: 3rem;
 }
 
 .desmos-embed {
