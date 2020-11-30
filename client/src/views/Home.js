@@ -20,7 +20,9 @@ const Home = (props) => {
     const jumpToPres = () => setViewDate(viewDateCurr.clone());
     const setViewDateFromJSDate = (date) => setViewDate(moment(date));
 
-    let relDays = viewDate.diff(date, 'days');
+    // Relative days for the day alert
+    // viewDate cannot be compared with date because the hours and minutes throws off the calculation
+    let relDays = viewDate.diff(viewDateCurr, 'days');
 
 
     return (

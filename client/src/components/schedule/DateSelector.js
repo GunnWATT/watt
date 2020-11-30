@@ -26,6 +26,7 @@ const DateSelector = (props) => {
             </form>
             */}
             <DatePicker
+                closeOnScroll
                 selected={viewDate.toDate()}
                 onChange={date => setViewDate(date)}
                 todayButton="Jump to Present"
