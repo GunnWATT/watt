@@ -25,19 +25,21 @@
 
   // Nav div which contains the nav tabs
   .page-nav {
+    margin-top: 1.5rem;
     padding: 0;
 
     ul {
-      padding: 10px 0 0;
+      padding: 0;
+
       .nav-item {
-        box-shadow: 0 -3px 3px 0 $tertiary;
+        box-shadow: 0 0 3px -3px $tertiary;
 
         // First and last get left and right shadows respectively
         &:first-child {
-          box-shadow: -3px -3px 5px 0 $tertiary;
+          box-shadow: -5px 0 5px -3px $tertiary;
         }
         &:last-child {
-          box-shadow: 3px -3px 5px 0 $tertiary;
+          box-shadow: 5px 0 5px -3px $tertiary;
         }
       }
     }

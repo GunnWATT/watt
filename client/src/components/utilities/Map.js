@@ -1,6 +1,7 @@
 import React from 'react';
 import {Container} from 'reactstrap';
 import {withScriptjs, withGoogleMap, GoogleMap, Marker} from "react-google-maps";
+import Loading from "../misc/Loading";
 
 const MapWrapper = withScriptjs(
     withGoogleMap(props => (
@@ -64,9 +65,19 @@ const Map = (props) => {
     return (
         <Container>
             <h1>Map</h1>
-            <MapWrapper
-                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc"
-                loadingElement={<div style={{ height: `100%` }} />}
+            <iframe
+                width="600"
+                height="450"
+                title="google-map"
+                frameBorder="0"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCy3pN97ODnqOMvoGABYhN3bM4-qkro-eg&q=Henry+M+Gunn+High+School"
+                allowFullScreen>
+            </iframe>
+
+            {/*
+             <MapWrapper
+                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCy3pN97ODnqOMvoGABYhN3bM4-qkro-eg"
+                loadingElement={<Loading />}
                 containerElement={
                     <div
                         style={{ height: `600px` }}
@@ -78,6 +89,8 @@ const Map = (props) => {
                     <div style={{ height: `100%`, borderRadius: "inherit" }} />
                 }
             />
+            */}
+
         </Container>
     );
 }
