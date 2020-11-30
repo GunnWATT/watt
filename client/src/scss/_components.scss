@@ -70,3 +70,9 @@ hr {
     }
   }
 }
+
+.react-datepicker-popper {
+  // This doesn't work, the issue persists
+  flex: none;
+}
+

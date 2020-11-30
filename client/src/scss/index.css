@@ -96,6 +96,10 @@ ul.material-list li, .sidebar .toggler {
   background-color: white;
 }
 
+.react-datepicker-popper {
+  flex: none;
+}
+
 .sidebar .bottom, .sidebar .item, .sidebar h1 {
   overflow: hidden;
   white-space: nowrap;

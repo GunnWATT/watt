@@ -34,8 +34,8 @@ const Home = (props) => {
             <DateSelector
                 incDay={incDay}
                 decDay={decDay}
+                viewDate={viewDate}
                 setViewDate={setViewDateFromJSDate}
-                date={viewDate}
             />
             <h1 className="schedule-dayname">{viewDate.format('dddd')}</h1>
             <h2 className="schedule-date">{viewDate.format('MMMM Do, YYYY')}</h2>

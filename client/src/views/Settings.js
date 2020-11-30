@@ -28,10 +28,10 @@ const Settings = (props) => {
             }
         >
             <Switch>
-                <Route exact path={match.url} component={Appearance}/>
-                <Route path={`${match.url}/periods`} component={Periods}/>
-                <Route path={`${match.url}/localization`} component={Localization}/>
-                <Route path={`${match.url}/about`} component={About}/>
+                <Route exact path={match.path} component={Appearance}/>
+                <Route path={`${match.path}/periods`} component={Periods}/>
+                <Route path={`${match.path}/localization`} component={Localization}/>
+                <Route path={`${match.path}/about`} component={About}/>
                 <Route component={PageNotFound}/>
             </Switch>
         </Header>

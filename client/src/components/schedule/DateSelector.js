@@ -1,18 +1,20 @@
 import React from 'react';
+import DatePicker from 'react-datepicker';
 
 // Icons
-import { ChevronLeft, ChevronRight } from 'react-feather';
+import {ChevronLeft, ChevronRight} from 'react-feather'
 
 
 const DateSelector = (props) => {
-    let {incDay, decDay, setViewDate, date} = props;
+    let {incDay, decDay, setViewDate, viewDate} = props
 
     return (
-        <div className="date-selector">
-            <button className="icon" onClick={decDay}>
+        <div className='date-selector'>
+            <button className='icon' onClick={decDay}>
                 <ChevronLeft/>
             </button>
 
+            {/*
             <form noValidate>
                 <input
                     id="date"
@@ -21,6 +23,11 @@ const DateSelector = (props) => {
                     onChange={e => setViewDate(e.target.value)}
                 />
             </form>
+            */}
+            <DatePicker
+                selected={viewDate.toDate()}
+                onChange={date => setViewDate(date)}
+            />
 
             <button className="icon" onClick={incDay}>
                 <ChevronRight/>
