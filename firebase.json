@@ -6,21 +6,22 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [{
-        "source": "/",
-        "destination": "/index.html"
-      },
+    "rewrites": [
       {
         "source": "/api/**",
         "function": "api"
       },
       {
-        "source": "/sgyauth",
+        "source": "/sgyauth/**",
         "function": "sgyauth"
       },
       {
-        "source": "/sgyfetch",
+        "source": "/sgyfetch/**",
         "function": "sgyfetch"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
       }
     ]
   }

@@ -2,6 +2,7 @@ import React from 'react';
 //import moment from 'moment';
 import 'twix';
 import {Card, CardBody, CardTitle, CardSubtitle, CardText, Progress} from "reactstrap";
+import ProgressBarColor from './ProgressBarColor';
 
 const Period = (props) => {
     // Outer time
@@ -26,9 +27,8 @@ const Period = (props) => {
                 <CardText className="secondary">{parseStartEnd()} - {t.countInner('minutes')} minutes long</CardText>
                 {t.isCurrent()
                     ? <Progress
-                        animated
                         value={(now.valueOf() - start.valueOf()) / (end.valueOf() - start.valueOf()) * 100}
-                        style={{backgroundColor: props.color}}
+                        style={{backgroundColor: ProgressBarColor(props.color)}}
                       />
                     : null
                 }
