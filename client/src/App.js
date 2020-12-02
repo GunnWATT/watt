@@ -20,7 +20,6 @@ const App = (props) => {
     // Set interval on mount to update datetime every 100ms
     useEffect(() => {
         const update = () => setDate(moment());
-
         const timerID = setInterval(
             () => update(),
             100
@@ -44,9 +43,7 @@ const App = (props) => {
                     <Route path='/super-secret-testing' component={Testing} />
                     <Route component={PageNotFound}/>
                 </Switch>
-                {/* Potentially Modal here */}
             </Layout>
-            {/* Potentially Modal here */}
         </Router>
     );
 }
