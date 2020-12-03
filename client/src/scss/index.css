@@ -66,7 +66,7 @@ hr {
   color: rgba(0, 0, 0, 0.54);
 }
 
-.schedule, .header-background {
+.schedule, .header-background, .testing {
   background-color: #fcebebff;
   height: 400px;
 }
@@ -174,10 +174,10 @@ ul.material-list li, .sidebar .toggler {
   margin-left: auto;
 }
 
-.header-background {
+.header-background, .testing {
   padding: 24px;
 }
-.header-background .header {
+.header-background .header, .testing .header {
   display: flex;
   flex-direction: column;
   padding: 12px;
@@ -185,32 +185,32 @@ ul.material-list li, .sidebar .toggler {
   border-radius: 10px;
   box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.1);
 }
-.header-background .header .heading {
+.header-background .header .heading, .testing .header .heading {
   display: flex;
   align-items: center;
   width: 100%;
   color: white;
 }
-.header-background .header .heading input {
+.header-background .header .heading input, .testing .header .heading input {
   margin-left: 1rem;
 }
-.header-background .page-nav {
+.header-background .page-nav, .testing .page-nav {
   margin-top: 1.5rem;
   padding: 0;
 }
-.header-background .page-nav ul {
+.header-background .page-nav ul, .testing .page-nav ul {
   padding: 0;
 }
-.header-background .page-nav ul .nav-item {
+.header-background .page-nav ul .nav-item, .testing .page-nav ul .nav-item {
   box-shadow: 0 0 3px -3px rgba(0, 0, 0, 0.1);
 }
-.header-background .page-nav ul .nav-item:first-child {
+.header-background .page-nav ul .nav-item:first-child, .testing .page-nav ul .nav-item:first-child {
   box-shadow: -5px 0 5px -3px rgba(0, 0, 0, 0.1);
 }
-.header-background .page-nav ul .nav-item:last-child {
+.header-background .page-nav ul .nav-item:last-child, .testing .page-nav ul .nav-item:last-child {
   box-shadow: 5px 0 5px -3px rgba(0, 0, 0, 0.1);
 }
-.header-background .page {
+.header-background .page, .testing .page {
   display: flex;
   flex-direction: column;
   padding: 12px;

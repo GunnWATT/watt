@@ -27,6 +27,7 @@ const Period = (props) => {
                 <CardText className="secondary">{parseStartEnd()} - {t.countInner('minutes')} minutes long</CardText>
                 {t.isCurrent()
                     ? <Progress
+                        //animated
                         value={(now.valueOf() - start.valueOf()) / (end.valueOf() - start.valueOf()) * 100}
                         style={{backgroundColor: ProgressBarColor(props.color)}}
                       />

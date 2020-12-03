@@ -34,14 +34,13 @@ const getLowestMiddleHighest = (rgbIntArray) => {
 
 const barColor = (hex) => {
     const rgb = hexToRgb(hex)
-    const grayVal = getLightnessOfRGB(rgb)*255;
     const [lowest,middle,highest] = getLowestMiddleHighest(rgb);
 
     const returnArray=[];
 
-    returnArray[highest.index] = Math.round(highest.val*0.95);
-    returnArray[lowest.index] = Math.round(lowest.val*0.95);
-    returnArray[middle.index] = Math.round(middle.val*0.95);
+    returnArray[highest.index] = Math.round(highest.val*0.9);
+    returnArray[lowest.index] = Math.round(lowest.val*0.9);
+    returnArray[middle.index] = Math.round(middle.val*0.9);
 
     return (`rgb(${[returnArray].join()})`);
 }
