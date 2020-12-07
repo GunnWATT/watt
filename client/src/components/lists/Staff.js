@@ -11,13 +11,21 @@ import StaffComponent from "./StaffComponent";
 const Staff = (props) => {
     const [query, setQuery] = useState('');
 
+    const lastName = (name) => {
+        let arr = name.split(' ');
+        return arr[arr.length - 1];
+    }
+
     return (
         <>
-            <input
-                type="search"
-                placeholder="Search Staff"
-                onChange={e => setQuery(e.target.value)}
-            />
+            <span className="heading">
+                <h1>Staff</h1>
+                <input
+                    type="search"
+                    placeholder="Search Staff"
+                    onChange={e => setQuery(e.target.value)}
+                />
+            </span>
             <List
                 data={staff}
                 filter={([id, staff]) =>
@@ -37,7 +45,7 @@ const Staff = (props) => {
                         periods={staff.periods}
                     />
                 }
-                sort={([idA, staffA], [idB, staffB]) => staffA.name.localeCompare(staffB.name)}
+                sort={([idA, staffA], [idB, staffB]) => lastName(staffA.name).localeCompare(lastName(staffB.name))}
             />
         </>
     );

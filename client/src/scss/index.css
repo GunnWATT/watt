@@ -184,15 +184,16 @@ ul.material-list li, .sidebar .toggler {
   background-color: #ff594c;
   border-radius: 10px;
   box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.1);
+  color: white;
 }
-.header-background .header .heading, .testing .header .heading {
+.header-background .heading, .testing .heading {
   display: flex;
   align-items: center;
   width: 100%;
-  color: white;
 }
-.header-background .header .heading input, .testing .header .heading input {
+.header-background .heading input, .testing .heading input {
   margin-left: 1rem;
+  border: 2px solid rgba(0, 0, 0, 0.1);
 }
 .header-background .page-nav, .testing .page-nav {
   margin-top: 1.5rem;

@@ -8,18 +8,19 @@
   // Red box that displays the heading
   .header {
     @include content-box($bg-color: $theme);
+    color: white;
+  }
 
-    .heading {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      //border-bottom: 2px solid;
-      color: white;
+  .heading {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    //border-bottom: 2px solid;
 
-      // Search box in lists
-      input {
-        margin-left: 1rem;
-      }
+    // Search box in lists
+    input {
+      margin-left: 1rem;
+      border: 2px solid $tertiary;
     }
   }
 

@@ -66,7 +66,7 @@ const Map = (props) => {
         <Container>
             <h1>Map</h1>
             <iframe
-                width="600"
+                width="100%"
                 height="450"
                 title="google-map"
                 frameBorder="0"
