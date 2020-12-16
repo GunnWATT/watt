@@ -22,7 +22,6 @@ import firebase from "../../firebase/Firebase"
 import {FirestoreInit} from "../../firebase/Authentication";
 import SignInBtn from './SignInBtn';
 import SignOutBtn from './SignOutBtn';
-import DatePicker from "react-datepicker";
 
 
 const Sidebar = (props) => {

@@ -14,8 +14,9 @@ const Periods = (props) => {
     // Period handling
     const [periods, setPeriods] = useState(null);
     const [alternate, setAlternate] = useState(false);
+    const [GTPer, setGTPer] = useState(null);
 
-    // Load schedule on startup and when the view date changes
+    // Load schedule and alternates
     useEffect(() => {
         // Turns day of the week into schedule object key; Thursday is R, Saturday is A
         const numToWeekday = (num) => ['S', 'M', 'T', 'W', 'R', 'F', 'A'][num];
@@ -25,6 +26,7 @@ const Periods = (props) => {
             return Object.entries(obj).sort((a, b) => a[1].s - b[1].s);
         }
 
+        // Check for alternate schedules
         let altFormat = viewDate.format('MM-DD');
         if (Object.keys(alternates.alternates).includes(altFormat)) {
             // If viewDate exists in alt schedules, load that schedule
@@ -35,9 +37,13 @@ const Periods = (props) => {
             setPeriods(sortByStart(schedule[numToWeekday(viewDate.format('d'))]));
         }
 
+        // Check for Gunn Together
+        if (Object.keys(alternates.GT).includes(altFormat)) setGTPer(alternates.GT[altFormat]);
+
         return function cleanup() {
             //setPeriods(null);
             setAlternate(false);
+            setGTPer(null)
         }
     }, [viewDate])
 
@@ -72,17 +78,30 @@ const Periods = (props) => {
 
     // Maps periods array to <Period> components
     const renderPeriods = () =>
-        periods.map(([name, value]) =>
-            <Period
-                name={parsePeriodName(name)}
-                key={name}
-                color={parsePeriodColor(name)}
-                start={viewDate.clone().add(value.s, 'minutes')}
-                end={viewDate.clone().add(value.e, 'minutes')}
-                now={currDate}
-                date={viewDate}
-            />
-        )
+        periods.map(([name, value]) => {
+            let displayName, color;
+
+            // Gunn Together quirkiness handling
+            if (name === 'G') {
+                displayName = `${parsePeriodName(name)} - ${GTPer ? parsePeriodName(GTPer) : 'Period ?'}` // If WATT is confused what GT period it is, display a nicer looking '?' instead of 'null'
+                color = parsePeriodColor(GTPer)
+            } else {
+                displayName = parsePeriodName(name)
+                color = parsePeriodColor(name)
+            }
+
+            return (
+                <Period
+                    name={displayName}
+                    key={name}
+                    color={color}
+                    start={viewDate.clone().add(value.s, 'minutes')}
+                    end={viewDate.clone().add(value.e, 'minutes')}
+                    now={currDate}
+                    date={viewDate}
+                />
+            )
+        })
 
 
     // HTML for a school day, assumes periods is populated
