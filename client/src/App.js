@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import moment from "moment";
 
 // Components
@@ -11,6 +11,7 @@ import Clubs from "./views/Clubs";
 import Settings from './views/Settings';
 import Testing from './views/Testing';
 import PageNotFound from "./views/404";
+import SgyAuthRoute from "./views/SgyAuthRoute";
 
 
 const App = (props) => {
@@ -41,6 +42,7 @@ const App = (props) => {
                     <Route path='/clubs' render={() => <Clubs date={date}/>}/>
                     <Route path='/settings' component={Settings}/>
                     <Route path='/super-secret-testing' component={Testing} />
+                    <Route path='/schoology/auth' component={SgyAuthRoute} />
                     <Route component={PageNotFound}/>
                 </Switch>
             </Layout>

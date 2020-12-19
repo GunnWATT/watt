@@ -1,12 +1,6 @@
 const functions = require('firebase-functions')
 const admin = require('../helpers/adminInit')
-const express = require('express')
-
-const app = express()
 const oauth = require('../helpers/sgyOAuth')
-
-const userAuth = require('../helpers/userAuth')
-app.use(userAuth)
 
 const firestore = admin.firestore()
 
@@ -32,29 +26,29 @@ const setAccessToken = (uid, creds, originalKey) => {
     }).catch(e => console.log(e))
 }
 
-app.get('/sgyauth', async (req, res) => {
-    const oauthToken = req.query.oauth_token
+const auth = async (data, context) => {
+    const uid = context.auth.uid
+    if (!uid) throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.')
+
+    const oauthToken = data.oauth_token
 
     if (oauthToken) {
         const requestToken = await getRequestToken(oauthToken)
         if (!requestToken) {
-            return res.status(401).send("Error: request token not associated to any user")
+            throw new functions.https.HttpsError('not-found', 'Error: request token not associated to any user.')
         }
         const [key, secret] = await oauth.getOAuthAccessToken(
             requestToken.key,
             requestToken.sec
         )
         setAccessToken(requestToken.uid, { key: key, sec: secret }, requestToken.key)
+        return true
 
-        const url = new URL(req.query.origin)
-        url.searchParams.set('modal', 'sgyauth')
-        return res.redirect(url.toString())
     } else {
-        const user = req.user.uid
         const [key, secret] = await oauth.getOAuthRequestToken()
-        setRequestToken(user, key, secret)
-        return res.status(200).send({rTokenKey: key})
+        setRequestToken(uid, key, secret)
+        return key
     }
-})
+}
 
-exports.sgyauth = functions.https.onRequest(app)
+exports.sgyauth = functions.https.onCall(auth)

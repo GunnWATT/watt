@@ -15,7 +15,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "firebase-admin": "^8.13.0",
-    "firebase-functions": "^3.6.1",
+    "firebase-functions": "^3.13.0",
     "oauth": "^0.9.15"
   },
   "devDependencies": {
