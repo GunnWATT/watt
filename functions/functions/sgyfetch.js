@@ -160,7 +160,7 @@ const init = async (data, context) => {
             teachers[element['course_title']] = pTeacher
             classes[pName] = {
                 n: element['course_title'],
-                c: accessToken[pName]["c"],
+                c: accessToken.classes[pName]["c"],
                 l: '',
                 o: '',
                 s: element.id,
