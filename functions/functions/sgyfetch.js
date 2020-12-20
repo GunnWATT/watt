@@ -50,10 +50,10 @@ const getPAUSDZoomLink = (link) => {
     }
 }
 
-const getLinks = async (classID, classPeriod) => {
+const getLinks = async (classID, classPeriod, accessToken) => {
     let classLink = null
     let officeHoursLink = null
-    const docs = await oauth.get(`${apiBase}/sections/${classID}/documents/?start=0&limit=1000`, accessToken.key, accessToken.secret)
+    const docs = await oauth.get(`${apiBase}/sections/${classID}/documents/?start=0&limit=1000`, accessToken.key, accessToken.sec)
         .then(toJson)
         .catch(e => console.log(e))
         .then(dList => {
@@ -90,7 +90,7 @@ const getLinks = async (classID, classPeriod) => {
     }
 
     if (!classLink && !officeHoursLink) {
-        const pages = await oauth.get(`${apiBase}/sections/${classID}/pages/?start=0&limit=1000`, accessToken.key, accessToken.secret)
+        const pages = await oauth.get(`${apiBase}/sections/${classID}/pages/?start=0&limit=1000`, accessToken.key, accessToken.sec)
             .then(toJson)
             .catch(e => console.log(e))
             .then(pList => {
@@ -137,15 +137,14 @@ const init = async (data, context) => {
 
     const accessToken = await getAccessToken(uid)
 
-    const me = await oauth.get(`${apiBase}/users/me`, accessToken.key, accessToken.secret)
+    const me = await oauth.get(`${apiBase}/users/me`, accessToken.key, accessToken.sec)
         .catch(follow303)
         .then(toJson)
         .catch(e => console.log(e))
 
-    console.log(me)
     const sgyInfo = {uid: me['uid'], name: me['name_display'], sid: me['username'], gyr: me['grad_year']}
 
-    const sgyClasses = await oauth.get(`${apiBase}/users/${sgyInfo.uid}/sections`, accessToken.key, accessToken.secret)
+    const sgyClasses = await oauth.get(`${apiBase}/users/${sgyInfo.uid}/sections`, accessToken.key, accessToken.sec)
         .then(toJson)
         .catch(e => console.log(e))
         .then(cList => {
@@ -161,12 +160,13 @@ const init = async (data, context) => {
             teachers[element['course_title']] = pTeacher
             classes[pName] = {
                 n: element['course_title'],
+                c: accessToken[pName]["c"],
                 l: '',
                 o: '',
                 s: element.id,
             }
 
-            let periodLinks = await getLinks(element.id)
+            let periodLinks = await getLinks(element.id, pName, accessToken)
             if (periodLinks.l) classes[pName].l = periodLinks.l
             if (periodLinks.o) classes[pName].o = periodLinks.o
         }
