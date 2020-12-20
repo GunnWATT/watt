@@ -7,7 +7,7 @@ const functions = firebase.functions
 export default async () => {
     if (auth.currentUser) {
         let init_function = functions.httpsCallable("sgyfetch-init")
-        init_function({oauth_token: null}).then(
+        init_function().then(
             result => {
                 console.log(result)
             })

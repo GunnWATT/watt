@@ -6,10 +6,10 @@ const apiBase = 'https://api.schoology.com/v1'
 const oauth = require('../helpers/sgyOAuth')
 const periods = ['1', '2', '3', '4', '5', '6', '7', 'SELF']
 
-const pausdZoomRegex = /pausd.zoom.us\/j\/(\d+)(\?pwd=\w+)?/i
-const maybeLinkRegex = /Zoom|Link/i
+const pausdZoomRegex = /pausd.zoom.us\/[js]\/(\d+)(\?pwd=\w+)?/i
+const maybeLinkRegex = /Zoom|Meeting|Link/i
 const classLinkRegex = /Period.+?\d|Class|SELF/i
-const officeHoursLinkRegex = /Office.*?Hours?/i
+const officeHoursLinkRegex = /Office.*?Hours?|Tutorial/i
 
 function toJson ([data]) {
     return JSON.parse(data)
@@ -53,6 +53,9 @@ const getPAUSDZoomLink = (link) => {
 const getLinks = async (classID, classPeriod, accessToken) => {
     let classLink = null
     let officeHoursLink = null
+    let classLinkName = null
+    let officeHoursLinkName = null
+
     const docs = await oauth.get(`${apiBase}/sections/${classID}/documents/?start=0&limit=1000`, accessToken.key, accessToken.sec)
         .then(toJson)
         .catch(e => console.log(e))
@@ -72,24 +75,28 @@ const getLinks = async (classID, classPeriod, accessToken) => {
                         if (title.match(classPeriod)) {
                             certain = true
                             classLink = getPAUSDZoomLink(link)
+                            classLinkName = title
                         }
                     } else {
                         classLink = getPAUSDZoomLink(link)
+                        classLinkName = title
                     }
 
                 }
                 else if (title.match(officeHoursLinkRegex)) {
                     officeHoursLink = getPAUSDZoomLink(link)
+                    officeHoursLinkName = title
                 }
                 else if (title.match(maybeLinkRegex) && !classLink) {
                     classLink = getPAUSDZoomLink(link)
+                    classLinkName = title
                 }
             }
         }
 
     }
 
-    if (!classLink && !officeHoursLink) {
+    if (!classLink || !officeHoursLink) {
         const pages = await oauth.get(`${apiBase}/sections/${classID}/pages/?start=0&limit=1000`, accessToken.key, accessToken.sec)
             .then(toJson)
             .catch(e => console.log(e))
@@ -109,17 +116,21 @@ const getLinks = async (classID, classPeriod, accessToken) => {
                             if (title.match(classPeriod)) {
                                 certain = true
                                 classLink = getPAUSDZoomLink(body)
+                                classLinkName = title
                             }
                         } else {
                             classLink = getPAUSDZoomLink(body)
+                            classLinkName = title
                         }
 
                     }
                     else if (title.match(officeHoursLinkRegex)) {
                         officeHoursLink = getPAUSDZoomLink(body)
+                        officeHoursLinkName = title
                     }
                     else if (title.match(maybeLinkRegex) && !classLink) {
                         classLink = getPAUSDZoomLink(body)
+                        classLinkName = title
                     }
                 }
             }
@@ -127,7 +138,7 @@ const getLinks = async (classID, classPeriod, accessToken) => {
         }
     }
 
-    return {l: classLink, o: officeHoursLink}
+    return {l: classLink, o: officeHoursLink, ln: classLinkName, on: officeHoursLinkName}
 }
 
 
@@ -157,7 +168,6 @@ const init = async (data, context) => {
         let {pName, pTeacher} = getClassInfo(element['section_title'])
         if (periods.indexOf(pName) > -1) {
             if (pName === 'SELF') pName = 'S'
-            teachers[element['course_title']] = pTeacher
             classes[pName] = {
                 n: element['course_title'],
                 c: accessToken.classes[pName]["c"],
@@ -167,12 +177,18 @@ const init = async (data, context) => {
             }
 
             let periodLinks = await getLinks(element.id, pName, accessToken)
-            if (periodLinks.l) classes[pName].l = periodLinks.l
-            if (periodLinks.o) classes[pName].o = periodLinks.o
+            if (periodLinks.l) {
+                classes[pName].l = periodLinks.l
+            }
+            if (periodLinks.o) {
+                classes[pName].o = periodLinks.o
+            }
+
+            teachers[element['course_title']] = [pTeacher, periodLinks.ln, periodLinks.on]
         }
     }
 
-    firestore.collection('users').doc(uid).update({classes: classes}).catch(e => console.log(e))
+    firestore.collection('users').doc(uid).update({classes: classes, "sgy.uid": sgyInfo.uid}).catch(e => console.log(e))
 
     return teachers
 }

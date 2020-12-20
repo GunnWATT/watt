@@ -54,7 +54,7 @@ const auth = async (data, context) => {
             requestToken.key,
             requestToken.sec
         )
-        setAccessToken(requestToken.uid, { key: key, sec: secret }, requestToken.key)
+        setAccessToken(requestToken.uid, { key: key, sec: secret, uid: "" }, requestToken.key)
         const me = await oauth.get("https://api.schoology.com/v1/users/me", key, secret)
             .catch(follow303)
             .then(toJson)
