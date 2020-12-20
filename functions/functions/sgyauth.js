@@ -26,6 +26,19 @@ const setAccessToken = (uid, creds, originalKey) => {
     }).catch(e => console.log(e))
 }
 
+function follow303 (err) {
+    if (err.statusCode === 303) {
+        const [, request] = err.out
+        //console.log(request.headers.location)
+        return oauth.get(request.headers.location, ...err.args.slice(1))
+    } else {
+        return Promise.reject(err)
+    }
+}
+function toJson ([data]) {
+    return JSON.parse(data)
+}
+
 const auth = async (data, context) => {
     const uid = context.auth.uid
     if (!uid) throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.')
@@ -42,6 +55,13 @@ const auth = async (data, context) => {
             requestToken.sec
         )
         setAccessToken(requestToken.uid, { key: key, sec: secret }, requestToken.key)
+        const me = await oauth.get("https://api.schoology.com/v1/users/me", key, secret)
+            .catch(follow303)
+            .then(toJson)
+            .catch(e => console.log(e))
+
+        console.log(me)
+
         return true
 
     } else {

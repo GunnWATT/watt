@@ -3,6 +3,7 @@ import firebase from "../firebase/Firebase"
 const auth = firebase.auth
 const functions = firebase.functions
 
+
 export default async () => {
     if (auth.currentUser) {
         let sgyauthfunction = functions.httpsCallable("sgyauth")

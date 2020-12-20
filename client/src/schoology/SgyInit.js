@@ -1,30 +1,15 @@
 import firebase from "../firebase/Firebase"
 
-const functions = firebase.functions
 const auth = firebase.auth
+const functions = firebase.functions
 
 
 export default async () => {
     if (auth.currentUser) {
-        const token = await auth.currentUser.getIdToken(true)
-        const headers = new Headers({
-            'Authorization': 'Bearer ' + token
-        })
-        const request = new Request('sgyfetch/init/', {
-            method: 'GET',
-            headers: headers
-        })
-        fetch(request).then(
-            r => r.json()
-        ).then(console.log)}
+        let init_function = functions.httpsCallable("sgyfetch-init")
+        init_function({oauth_token: null}).then(
+            result => {
+                console.log(result)
+            })
+    }
 }
-
-/*
-const sgyInit = functions.httpsCallable('sgyfetch-init')
-
-export default () => {
-    sgyInit().then(console.log)
-}
-
-
- */
