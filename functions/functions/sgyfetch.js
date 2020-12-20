@@ -76,6 +76,9 @@ const getLinks = async (classID, classPeriod, accessToken) => {
                             certain = true
                             classLink = getPAUSDZoomLink(link)
                             classLinkName = title
+                        } else if (title.match(officeHoursLinkRegex)) {
+                            officeHoursLink = getPAUSDZoomLink(link)
+                            officeHoursLinkName = title
                         }
                     } else {
                         classLink = getPAUSDZoomLink(link)
@@ -117,6 +120,9 @@ const getLinks = async (classID, classPeriod, accessToken) => {
                                 certain = true
                                 classLink = getPAUSDZoomLink(body)
                                 classLinkName = title
+                            } else if (title.match(officeHoursLinkRegex)) {
+                                officeHoursLink = getPAUSDZoomLink(body)
+                                officeHoursLinkName = title
                             }
                         } else {
                             classLink = getPAUSDZoomLink(body)
