@@ -111,7 +111,8 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
   // Navbar Toggler
   .toggler {
     @extend %clickable;
-    padding: 0 5px 10px 0;
+    padding: 0.5rem;
     margin-left: auto;
+    margin-bottom: 1rem;
   }
 }

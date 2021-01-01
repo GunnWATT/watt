@@ -9,19 +9,19 @@ import {
     Users,
     Settings,
     Tool,
-    ChevronsRight,
-    ChevronsLeft,
+    ChevronRight,
+    ChevronLeft,
 } from 'react-feather';
 
 // Components
-import SidebarItem from "./SidebarItem";
+import SidebarItem from './SidebarItem';
 
 // Authentication
-import {useAuthState} from "react-firebase-hooks/auth";
-import firebase from "../../firebase/Firebase"
-import {FirestoreInit} from "../../firebase/Authentication";
-import SignInBtn from './SignInBtn';
-import SignOutBtn from './SignOutBtn';
+import {useAuthState} from 'react-firebase-hooks/auth';
+import firebase from '../../firebase/Firebase';
+import {FirestoreInit} from '../../firebase/Authentication';
+import GoogleSignInBtn from '../auth/GoogleSignInBtn';
+import GoogleSignOutBtn from '../auth/GoogleSignOutBtn';
 
 
 const Sidebar = (props) => {
@@ -47,8 +47,8 @@ const Sidebar = (props) => {
             >
                 {
                     isOpen
-                        ? <ChevronsLeft/>
-                        : <ChevronsRight/>
+                        ? <ChevronLeft/>
+                        : <ChevronRight/>
                 }
             </span>
 
@@ -69,8 +69,8 @@ const Sidebar = (props) => {
             <span className="bottom">
                 {
                     user
-                        ? <SignOutBtn/>
-                        : <SignInBtn/>
+                        ? <GoogleSignOutBtn/>
+                        : <GoogleSignInBtn/>
                 }
             </span>
 

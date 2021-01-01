@@ -3,7 +3,7 @@ import {GoogleSignIn} from "../../firebase/Authentication";
 import {LogIn} from "react-feather";
 
 
-const SignInBtn = (props) => (
+const GoogleSignInBtn = (props) => (
     <span className={'item'}>
         <button onClick={GoogleSignIn}>
             <LogIn/>
@@ -12,4 +12,4 @@ const SignInBtn = (props) => (
     </span>
 )
 
-export default SignInBtn
+export default GoogleSignInBtn

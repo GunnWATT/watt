@@ -6,7 +6,10 @@ import {Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import Sidebar from './layout/Sidebar';
 
 // Icons
-import { CheckCircle } from 'react-feather'
+import { CheckCircle } from 'react-feather';
+
+// Schoology Auth
+import SgyInitResults from "./auth/SgyInitResults";
 
 
 const Layout = (props) => {
@@ -34,15 +37,9 @@ const Layout = (props) => {
 
             {/* Schoology auth success modal */}
             <Modal isOpen={sgyModal} toggle={toggle}>
-                <ModalHeader toggle={toggle}>You're all set!</ModalHeader>
+                <ModalHeader toggle={toggle}>You're almost set! Just one last step remaining.</ModalHeader>
                 <ModalBody>
-                    <h1 className="center">
-                        <CheckCircle color="green" size={72}/>
-                    </h1>
-                    <p>
-                        Your Schoology has been linked and should show up in the Grades tab.{' '}
-                        This modal can be safely closed.
-                    </p>
+                    <SgyInitResults />
                 </ModalBody>
                 <ModalFooter>
 

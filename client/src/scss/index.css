@@ -170,8 +170,9 @@ ul.material-list li, .sidebar .toggler {
   margin-top: auto;
 }
 .sidebar .toggler {
-  padding: 0 5px 10px 0;
+  padding: 0.5rem;
   margin-left: auto;
+  margin-bottom: 1rem;
 }
 
 .header-background, .testing {

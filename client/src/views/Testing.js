@@ -7,10 +7,8 @@ import { Row } from 'reactstrap';
 import Period from '../components/schedule/Period';
 import Loading from '../components/misc/Loading';
 import WIP from '../components/misc/WIP';
-import NoResults from "../components/lists/NoResults";
-
-import SgyInit from "../schoology/SgyInit";
-import SgyAuth from "../schoology/SgyAuth";
+import NoResults from '../components/lists/NoResults';
+import SgySignInBtn from '../components/auth/SgySignInBtn';
 
 
 const Testing = (props) => {
@@ -28,8 +26,9 @@ const Testing = (props) => {
             </p>
             <hr/>
 
-            <button onClick={SgyAuth}>Authenticate Schoology</button>
-            <button onClick={SgyInit}>Initialize Schoology</button>
+            <div className="auth-test">
+                <SgySignInBtn/>
+            </div>
             <div className="colorpicker-test">
                 <div style={{backgroundColor: color}}>
                     <Row>
