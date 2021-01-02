@@ -1,6 +1,12 @@
-.schedule {
+.home {
+  display: grid;
+  grid-template-columns: 75% 25%;
   @extend %theme-backdrop;
   padding: 24px;
+}
+
+// The schedule portion of the home page
+.schedule {
 
   // The date selector
   .date-selector {
@@ -22,7 +28,7 @@
 
   // Periods container
   .schedule-wrapper {
-    max-width: 850px;
+    max-width: 750px;
     margin: 0 auto 0 auto;
 
     // Individual period boxes
@@ -64,4 +70,11 @@
     @extend .center;
     margin-top: 3rem;
   }
+}
+
+// The events portion of teh home page
+.events {
+  min-height: 90%;
+  margin: 10px;
+  @include content-box();
 }

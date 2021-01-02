@@ -6,7 +6,6 @@ import moment from 'moment';
 import DateSelector from "../components/schedule/DateSelector";
 import Periods from "../components/schedule/Periods";
 import DayAlert from "../components/schedule/DayAlert";
-import Events from '../components/schedule/Events';
 
 
 const Home = (props) => {
@@ -26,34 +25,44 @@ const Home = (props) => {
 
 
     return (
-        <div className="schedule">
-            {relDays !== 0
-                ? <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>
-                : null
-            }
+        <div className="home">
+            <div className="schedule">
+                {relDays !== 0
+                    ? <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>
+                    : null
+                }
 
-            <h2 className="center">{date.format('h:mm:ss A')}</h2>
-            <DateSelector
-                incDay={incDay}
-                decDay={decDay}
-                viewDate={viewDate}
-                setViewDate={setViewDateFromJSDate}
-            />
-            <h1 className="schedule-dayname">{viewDate.format('dddd')}</h1>
-            <h2 className="schedule-date">{viewDate.format('MMMM Do, YYYY')}</h2>
+                <h2 className="center">{date.format('h:mm:ss A')}</h2>
+                <DateSelector
+                    incDay={incDay}
+                    decDay={decDay}
+                    viewDate={viewDate}
+                    setViewDate={setViewDateFromJSDate}
+                />
+                <h1 className="schedule-dayname">{viewDate.format('dddd')}</h1>
+                <h2 className="schedule-date">{viewDate.format('MMMM Do, YYYY')}</h2>
 
-            {/* <CSSTransition> */}
+                {/* <CSSTransition> */}
                 <div className="schedule-wrapper">
                     <Periods
                         viewDate={viewDate}
                         currDate={date}
                     />
                 </div>
-            {/* </CSSTransition> */}
+                {/* </CSSTransition> */}
 
-            <div id="weekwrapper"></div>
-            <Events />
+                <div id="weekwrapper"></div>
+            </div>
+            <div className="events">
+                <h2>Events</h2>
+                <ul>
+                    <li>something</li>
+                    <li>other</li>
+                    <li>else</li>
+                </ul>
+            </div>
         </div>
+
     );
 }
 

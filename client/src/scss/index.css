@@ -66,7 +66,7 @@ hr {
   color: rgba(0, 0, 0, 0.54);
 }
 
-.schedule, .header-background, .testing {
+.home, .header-background, .testing {
   background-color: #fcebebff;
   height: 400px;
 }
@@ -222,9 +222,12 @@ ul.material-list li, .sidebar .toggler {
   min-height: 300px;
 }
 
-.schedule {
+.home {
+  display: grid;
+  grid-template-columns: 75% 25%;
   padding: 24px;
 }
+
 .schedule .date-selector {
   display: flex;
   justify-content: center;
@@ -234,7 +237,7 @@ ul.material-list li, .sidebar .toggler {
   font-size: 72px;
 }
 .schedule .schedule-wrapper {
-  max-width: 850px;
+  max-width: 750px;
   margin: 0 auto 0 auto;
 }
 .schedule .schedule-wrapper .card {
@@ -262,6 +265,17 @@ ul.material-list li, .sidebar .toggler {
 }
 .schedule .no-school {
   margin-top: 3rem;
+}
+
+.events {
+  min-height: 90%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.1);
 }
 
 .desmos-embed {
