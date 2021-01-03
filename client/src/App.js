@@ -10,8 +10,8 @@ import Classes from './views/Classes';
 import Clubs from "./views/Clubs";
 import Settings from './views/Settings';
 import Testing from './views/Testing';
-import PageNotFound from "./views/404";
-import SgyAuthRoute from "./views/SgyAuthRoute";
+import PageNotFound from './views/404';
+import SgyAuthRedirect from './views/SgyAuthRedirect';
 
 
 const App = (props) => {
@@ -42,7 +42,7 @@ const App = (props) => {
                     <Route path='/clubs' render={() => <Clubs date={date}/>}/>
                     <Route path='/settings' component={Settings}/>
                     <Route path='/super-secret-testing' component={Testing} />
-                    <Route path='/schoology/auth' component={SgyAuthRoute} />
+                    <Route path='/schoology/auth' component={SgyAuthRedirect} />
                     <Route component={PageNotFound}/>
                 </Switch>
             </Layout>
