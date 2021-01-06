@@ -1,9 +1,0 @@
-<svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg" fill="none">
-  <circle cx="240" cy="240" r="240" fill="white" />
-  <!-- <path d="M 0 0 H 480 V 480 H 0 z" fill="white" /> -->
-  <g stroke="#a51618 " stroke-linejoin="round" stroke-linecap="square">
-    <!-- (240 + 120cos60°, 240 - 120sin60°) -->
-    <path d="M 360 240 A 120 120 0 1 1 300 136.0769515" stroke-width="40" />
-    <path d="M 235 265 V 235 H 305" stroke-width="30" />
-  </g>
-</svg>

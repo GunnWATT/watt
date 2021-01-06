@@ -11,7 +11,7 @@ The client (React.js) part of WATT is located in `/client`, and the Cloud Functi
 
 
 ### Credits
-[Yu-Ting](https://github.com/ytchang05) & [Kevin](https://github.com/ky28059) were the primary creators of WATT. Special thanks to [Ovinus Real](https://sheeptester.github.io) for advice and tips along the way.
+[Yu-Ting](https://github.com/ytchang05) & [Kevin](https://github.com/ky28059) were the primary creators of WATT. Special thanks to [Ovinus Real](https://sheeptester.github.io) for advice and tips along the way. The WATT logo was designed and created by Mylie.
 
 Google Search and Stack Overflow helped greatly. Thanks to the Schoology API for integration with Schoology, as well as the libraries (and ReactJS and Firebase itself) that were used.
 

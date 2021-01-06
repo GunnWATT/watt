@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 
 // Icons
-import logo from '../../assets/watt.svg';
+import logo from '../../assets/watt.png';
 import {
     Home,
     CheckSquare,
@@ -53,8 +53,8 @@ const Sidebar = (props) => {
             </span>
 
             {/* Heading */}
-            <Link to="/" className="logo">
-                <img src={logo} alt="WATT Logo"/>
+            <Link to="/" className="logo-container">
+                <img src={logo} className="logo" alt="WATT Logo"/>
             </Link>
             <h1>Web App of the Titans</h1>
 

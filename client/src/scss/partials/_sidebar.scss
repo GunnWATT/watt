@@ -36,12 +36,19 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
     }
   }
 
-  // Logo
-  .logo {
+  // Logo Container
+  .logo-container {
+    text-align: center;
     align-self: center;
-    $size: 4rem;
+    $size: 3rem;
     width: $size;
     height: $size;
+  }
+
+  // Logo
+  .logo {
+    width: auto;
+    height: auto;
   }
 
   // Header

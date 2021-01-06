@@ -72,9 +72,10 @@
   }
 }
 
-// The events portion of teh home page
+// The events portion of the home page
 .events {
   min-height: 90%;
   margin: 10px;
+  overflow: auto;
   @include content-box();
 }

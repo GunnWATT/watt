@@ -42,7 +42,7 @@ const About = (props) => {
 
             <h2>Credits</h2>
             <p>
-                WATT was jointly created by <a href='https://github.com/ytchang05'>Yu-Ting</a> and <a href='https://github.com/ky28059'>Kevin</a>. Special thanks to <a href='https://sheeptester.github.io'>Ovinus Real</a>) for advice and tips along the way.
+                WATT was jointly created by <a href='https://github.com/ytchang05'>Yu-Ting</a> and <a href='https://github.com/ky28059'>Kevin</a>. Special thanks to <a href='https://sheeptester.github.io'>Ovinus Real</a> for advice and tips along the way. The WATT logo was designed and created by Mylie.
                 <br/>
                 Google Search and Stack Overflow helped. Schoology API for integration with Schoology.
                 <br/>
