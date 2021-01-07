@@ -53,7 +53,7 @@ const Sidebar = (props) => {
             </span>
 
             {/* Heading */}
-            <Link to="/" className="logo-container">
+            <Link to="/" className="logo">
                 <img src={logo} className="logo" alt="WATT Logo"/>
             </Link>
             <h1>Web App of the Titans</h1>
