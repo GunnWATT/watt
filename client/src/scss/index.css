@@ -329,6 +329,17 @@ ul.material-list li span {
   height: 300px;
 }
 
+.\34 04 {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.\34 04 a {
+  color: inherit;
+}
+
 input[type=search] {
   padding: 6px 10px;
   border: none;

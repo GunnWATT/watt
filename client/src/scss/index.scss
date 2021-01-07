@@ -1,21 +1,22 @@
 // Main
-@import './_main.scss';
-@import './_variables.scss';
-@import './_components.scss';
+@import 'base';
+@import 'variables.scss';
+@import 'components.scss';
 
 // Layout
-@import './partials/sidebar';
-@import './partials/header';
+@import 'partials/sidebar';
+@import 'partials/header';
 
 // Pages
-@import './partials/home';
-@import './partials/utilities';
-@import './partials/lists';
-@import './partials/testing';
+@import 'partials/home';
+@import 'partials/utilities';
+@import 'partials/lists';
+@import 'partials/testing';
+@import 'partials/404';
 
 // Misc
-@import './partials/search';
-@import './partials/datepicker';
-@import './partials/loading';
-@import './partials/no-results';
-@import './partials/WIP';
+@import 'partials/search';
+@import 'partials/datepicker';
+@import 'partials/loading';
+@import 'partials/no-results';
+@import 'partials/WIP';

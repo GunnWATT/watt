@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Switch, Route, useRouteMatch} from 'react-router-dom';
 import {Nav} from 'reactstrap';
 
@@ -11,7 +11,6 @@ import Support from '../components/utilities/Support';
 //import GraphingCalculator from '../components/utilities/GraphingCalculator';
 import Map from '../components/utilities/Map';
 import Calculator from '../components/utilities/Calculator';
-import PageNotFound from './404';
 import WIP from '../components/misc/WIP';
 
 
@@ -39,7 +38,6 @@ const Utilities = (props) => {
                 <Route path={`${match.path}/support`} component={Support}/>
                 <Route path={`${match.path}/staff`} component={Staff}/>
                 <Route path={`${match.path}/courses`} component={WIP}/> {/* WIP is temporary, will replace with courses when it's finished */}
-                <Route component={PageNotFound}/>
             </Switch>
         </Header>
     );

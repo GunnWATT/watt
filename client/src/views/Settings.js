@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Switch, Route, useRouteMatch} from 'react-router-dom';
 import {Nav} from 'reactstrap';
 
@@ -9,7 +9,6 @@ import Appearance from "../components/settings/Appearance";
 import Periods from "../components/settings/Periods";
 import Localization from "../components/settings/Localization.js";
 import About from "../components/settings/About";
-import PageNotFound from "./404";
 
 
 const Settings = (props) => {
@@ -32,7 +31,6 @@ const Settings = (props) => {
                 <Route path={`${match.path}/periods`} component={Periods}/>
                 <Route path={`${match.path}/localization`} component={Localization}/>
                 <Route path={`${match.path}/about`} component={About}/>
-                <Route component={PageNotFound}/>
             </Switch>
         </Header>
     );
