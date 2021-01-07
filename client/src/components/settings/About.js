@@ -13,40 +13,18 @@ const About = (props) => {
                 <p>-Isaac Newton</p>
             </Jumbotron>
 
-            <h2>Installing WATT</h2>
             <p>
-                <strong>iOS</strong> — in iOS Safari, tap on the share icon and select
-                "Add to Home Screen"
-                <br/>
-                <strong>Android</strong> — tap on the menu and select "Add to Home
-                Screen"
-                <br/>
-                <strong>Chrome</strong> — click the plus sign in the address bar and
-                select "Install"
-                <br/>
-                <strong>Other browsers</strong> — click the star button in the address
-                bar or right click the tab and select "Pin tab"
+                <strong>Gunn WATT</strong> is a Gunn App and UGWA successor that uses a React.js frontend and Firebase backend.{' '}
+                Unlike our competitors, we are open to contribution from everyone.{' '}
+                Check out our source code on GitHub <a href="https://github.com/GunnWATT/watt">here</a>!{' '}
+                Contribute through a pull request or by opening an issue, all opinions welcome!
             </p>
 
-            <h2>Bug Reports</h2>
             <p>
-                You can make a new issue on <a href='https://github.com/GunnWATT/watt'>Github</a> to make a feature request or bug report.
-                <br/>
-                WATT only aims to support the latest versions of Chrome and iOS Safari; others are low-priority.
-            </p>
-
-            <h2>About</h2>
-            <p>
-                The <strong>Web App of The Titans</strong> is a redo of the soon-to-graduate UGWA, complete with Schoology integration and many improvements.
-            </p>
-
-            <h2>Credits</h2>
-            <p>
-                WATT was jointly created by <a href='https://github.com/ytchang05'>Yu-Ting</a> and <a href='https://github.com/ky28059'>Kevin</a>. Special thanks to <a href='https://sheeptester.github.io'>Ovinus Real</a> for advice and tips along the way. The WATT logo was designed and created by Mylie.
-                <br/>
-                Google Search and Stack Overflow helped. Schoology API for integration with Schoology.
-                <br/>
-                Many of the core features were inspired by UGWA. Also thanks to those that helped in user testing and providing feedback.
+                WATT was jointly created by <a href="https://github.com/ky28059">Kevin</a>, who made the frontend,{' '}
+                and <a href="https://github.com/ytchang05">Yu-Ting</a>, who made the backend.{' '}
+                This app would not have been possible without its predecessor, <a href="https://github.com/Orbiit/gunn-web-app">UGWA</a>.{' '}
+                A large thank you to <a href="https://github.com/SheepTester">Sean</a>, for not just UGWA but also for the Schoology integration WATT relies on.
             </p>
         </>
     );

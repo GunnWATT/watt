@@ -269,8 +269,7 @@ ul.material-list li, .sidebar .toggler {
 }
 
 .events {
-  min-height: 90%;
-  margin: 10px;
+  margin: 0 10px;
   overflow: auto;
   display: flex;
   flex-direction: column;

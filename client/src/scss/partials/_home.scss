@@ -74,8 +74,7 @@
 
 // The events portion of the home page
 .events {
-  min-height: 90%;
-  margin: 10px;
+  margin: 0 10px;
   overflow: auto;
   @include content-box();
 }

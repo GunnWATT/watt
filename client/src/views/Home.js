@@ -17,7 +17,7 @@ const Home = (props) => {
     const incDay = () => setViewDate(viewDate.clone().add(1, 'days')); // Needs to be immutable to rerender Periods, so moment needs to be cloned before being modified
     const decDay = () => setViewDate(viewDate.clone().subtract(1, 'days'));
     const jumpToPres = () => setViewDate(viewDateCurr.clone());
-    const setViewDateFromJSDate = (date) => setViewDate(moment(date));
+    const setViewDateFromJSDate = (d) => setViewDate(moment(d));
 
     // Relative days for the day alert
     // viewDate cannot be compared with date because the hours and minutes throws off the calculation
@@ -26,6 +26,7 @@ const Home = (props) => {
 
     return (
         <div className="home">
+            {/* Schedule */}
             <div className="schedule">
                 {relDays !== 0
                     ? <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>
@@ -53,13 +54,11 @@ const Home = (props) => {
 
                 <div id="weekwrapper"></div>
             </div>
+
+            {/* Events */}
             <div className="events">
                 <h2>Events</h2>
-                <ul>
-                    <li>something</li>
-                    <li>other</li>
-                    <li>else</li>
-                </ul>
+                <span>Nothing to show today.</span>
             </div>
         </div>
 
