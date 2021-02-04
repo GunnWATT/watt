@@ -225,10 +225,14 @@ ul.material-list li, .sidebar .toggler {
 
 .home {
   display: grid;
-  grid-template-columns: 75% 25%;
+  grid-template-columns: minmax(50vh, 1fr) 20rem;
   padding: 24px;
 }
 
+.schedule {
+  padding: 15px;
+  margin-right: 14px;
+}
 .schedule .date-selector {
   display: flex;
   justify-content: center;
@@ -238,7 +242,7 @@ ul.material-list li, .sidebar .toggler {
   font-size: 72px;
 }
 .schedule .schedule-wrapper {
-  max-width: 750px;
+  max-width: 800px;
   margin: 0 auto 0 auto;
 }
 .schedule .schedule-wrapper .card {
@@ -269,6 +273,7 @@ ul.material-list li, .sidebar .toggler {
 }
 
 .events {
+  height: 100vh;
   margin: 0 10px;
   overflow: auto;
   display: flex;
@@ -277,6 +282,9 @@ ul.material-list li, .sidebar .toggler {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.1);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .desmos-embed {

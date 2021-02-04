@@ -15,15 +15,15 @@ import SgyAuthRedirect from './views/SgyAuthRedirect';
 
 
 const App = (props) => {
-    // Date handling
+    // Global datetime
     const [date, setDate] = useState(moment());
 
-    // Set interval on mount to update datetime every 100ms
+    // Set interval on mount to update datetime every second
     useEffect(() => {
         const update = () => setDate(moment());
         const timerID = setInterval(
             () => update(),
-            100
+            1000
         );
 
         // Clear interval on unmount

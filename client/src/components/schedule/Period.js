@@ -5,14 +5,11 @@ import {Card, CardBody, CardTitle, CardSubtitle, CardText, Progress} from "react
 import ProgressBarColor from './ProgressBarColor';
 
 const Period = (props) => {
-    // Outer time
-    let now = props.now;
 
-    // Inner time
-    let start = props.start; // Moment representing start time
-    let end = props.end; // Moment representing end time
+    let {now, start, end, name, color} = props;
     let t = start.twix(end); // Twix duration representing the period
 
+    // Determines what text to display regarding how long before/after the period was
     const parseStartEnd = () => {
         if (t.isPast()) return <span>Ended {end.fromNow()}</span>
         if (t.isCurrent()) return <span>Ending {end.fromNow()}, started {start.fromNow()}</span>
@@ -20,16 +17,16 @@ const Period = (props) => {
     }
 
     return (
-        <Card style={{backgroundColor: props.color}}>
+        <Card style={{backgroundColor: color}}>
             <CardBody>
-                <CardTitle>{props.name}</CardTitle>
+                <CardTitle>{name}</CardTitle>
                 <CardSubtitle className="secondary">{t.simpleFormat('h:mma')}</CardSubtitle>
                 <CardText className="secondary">{parseStartEnd()} - {t.countInner('minutes')} minutes long</CardText>
                 {t.isCurrent()
                     ? <Progress
                         //animated
                         value={(now.valueOf() - start.valueOf()) / (end.valueOf() - start.valueOf()) * 100}
-                        style={{backgroundColor: ProgressBarColor(props.color)}}
+                        style={{backgroundColor: ProgressBarColor(color)}}
                       />
                     : null
                 }

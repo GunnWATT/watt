@@ -1,6 +1,4 @@
-// React, reactstrap
 import React, {useState, useEffect} from 'react';
-
 import NoResults from "./NoResults";
 
 
