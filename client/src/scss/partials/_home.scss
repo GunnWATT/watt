@@ -15,6 +15,17 @@
     display: flex;
     justify-content: center;
     margin-bottom: 2rem;
+
+    .react-datepicker-wrapper {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 3px 5px 3px rgba(0,0,0,.1);
+
+      input {
+        text-align: center;
+        border: none;
+      }
+    }
   }
 
   // The day name ("Saturday")
