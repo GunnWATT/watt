@@ -20,7 +20,7 @@ const Period = (props) => {
     }
 
     return (
-        <Card style={{backgroundColor: props.color}}>
+        <Card style={{backgroundColor: props.color, border: "none"}}>
             <CardBody>
                 <CardTitle>{props.name}</CardTitle>
                 <CardSubtitle className="secondary">{t.simpleFormat('h:mma')}</CardSubtitle>

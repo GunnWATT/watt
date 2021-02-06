@@ -11,25 +11,13 @@ const maybeLinkRegex = /Zoom|Meeting|Link/i
 const classLinkRegex = /Period.+?\d|Class|SELF/i
 const officeHoursLinkRegex = /Office.*?Hours?|Tutorial/i
 
-function toJson ([data]) {
-    return JSON.parse(data)
-}
+function toJson ([data]) {return JSON.parse(data)}
 
-// Schoology redirects /users/me with a 303 status
-function follow303 (err) {
-    if (err.statusCode === 303) {
-        const [, request] = err.out
-        //console.log(request.headers.location)
-        return oauth.get(request.headers.location, ...err.args.slice(1))
-    } else {
-        return Promise.reject(err)
-    }
-}
 
-const getAccessToken = async (uid) => {
-    let creds = (await firestore.collection('users').doc(uid).get()).data()
+const getSgyInfo = async (uid) => {
+    const creds = (await firestore.collection('users').doc(uid).get()).data()
     if (creds) {
-        return {key: creds.sgy.key, sec: creds.sgy.sec, classes: creds.classes}
+        return {uid: creds.sgy.uid, key: creds.sgy.key, sec: creds.sgy.sec, classes: creds.classes}
     }
     else {
         return null
@@ -152,16 +140,9 @@ const init = async (data, context) => {
     const uid = context.auth.uid
     if (!uid) throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.')
 
-    const accessToken = await getAccessToken(uid)
+    const sgyInfo = await getSgyInfo(uid)
 
-    const me = await oauth.get(`${apiBase}/users/me`, accessToken.key, accessToken.sec)
-        .catch(follow303)
-        .then(toJson)
-        .catch(e => console.log(e))
-
-    const sgyInfo = {uid: me['uid'], name: me['name_display'], sid: me['username'], gyr: me['grad_year']}
-
-    const sgyClasses = await oauth.get(`${apiBase}/users/${sgyInfo.uid}/sections`, accessToken.key, accessToken.sec)
+    const sgyClasses = await oauth.get(`${apiBase}/users/${sgyInfo.uid}/sections`, sgyInfo.key, sgyInfo.sec)
         .then(toJson)
         .catch(e => console.log(e))
         .then(cList => {
@@ -176,13 +157,13 @@ const init = async (data, context) => {
             if (pName === 'SELF') pName = 'S'
             classes[pName] = {
                 n: element['course_title'],
-                c: accessToken.classes[pName]["c"],
+                c: sgyInfo.classes[pName]["c"],
                 l: '',
                 o: '',
                 s: element.id,
             }
 
-            let periodLinks = await getLinks(element.id, pName, accessToken)
+            let periodLinks = await getLinks(element.id, pName, sgyInfo)
             if (periodLinks.l) {
                 classes[pName].l = periodLinks.l
             }
@@ -194,10 +175,28 @@ const init = async (data, context) => {
         }
     }
 
-    firestore.collection('users').doc(uid).update({classes: classes, "sgy.uid": sgyInfo.uid}).catch(e => console.log(e))
+    firestore.collection('users').doc(uid).update({classes: classes}).catch(e => console.log(e))
 
     return teachers
 }
 
+const upcoming = async (data, context) => {
+    const uid = context.auth.uid
+    if (!uid) throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.')
+
+    const sgyInfo = await getSgyInfo(uid)
+
+    if (!sgyInfo) throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.')
+
+    const currentDate = new Date(Date.now())
+    const startDate = `${currentDate.getFullYear()}${currentDate.getMonth()+1}${currentDate.getDate()}`
+
+    const events = await oauth.get(`${apiBase}/users/${sgyInfo.uid}/events?start_date=${startDate}`, sgyInfo.key, sgyInfo.sec)
+        .then(toJson)
+        .catch(e => console.log(e))
+
+    return true
+}
 
 exports.init = functions.https.onCall(init)
+exports.upcoming = functions.https.onCall(upcoming)

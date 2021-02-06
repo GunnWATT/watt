@@ -26,6 +26,7 @@ const setAccessToken = (uid, creds, originalKey) => {
     }).catch(e => console.log(e))
 }
 
+// Schoology redirects /users/me with a 303 status
 function follow303 (err) {
     if (err.statusCode === 303) {
         const [, request] = err.out
@@ -35,9 +36,7 @@ function follow303 (err) {
         return Promise.reject(err)
     }
 }
-function toJson ([data]) {
-    return JSON.parse(data)
-}
+function toJson ([data]) {return JSON.parse(data)}
 
 const auth = async (data, context) => {
     const uid = context.auth.uid
@@ -50,17 +49,25 @@ const auth = async (data, context) => {
         if (!requestToken) {
             throw new functions.https.HttpsError('not-found', 'Error: request token not associated to any user.')
         }
+
         const [key, secret] = await oauth.getOAuthAccessToken(
             requestToken.key,
             requestToken.sec
         )
-        setAccessToken(requestToken.uid, { key: key, sec: secret, uid: "" }, requestToken.key)
+
+        setAccessToken(requestToken.uid, { key: key, sec: secret }, requestToken.key)
+
         const me = await oauth.get("https://api.schoology.com/v1/users/me", key, secret)
             .catch(follow303)
             .then(toJson)
             .catch(e => console.log(e))
 
-        console.log(me)
+        firestore.collection('users').doc(uid).update({
+            "sgy.uid": me['uid'],
+            "sgy.name": me['name_display'],
+            "sgy.sid": me['username'],
+            "sgy.grad": me['grad_year']
+        }).catch(e => console.log(e))
 
         return true
 
