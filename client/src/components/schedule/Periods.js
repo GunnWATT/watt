@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import moment from 'moment-timezone';
 
 // Components
 import Period from './Period';
@@ -10,6 +11,7 @@ import alternates from '../../data/alternates';
 
 const Periods = (props) => {
     const {viewDate, currDate} = props;
+    const timeZone = moment.tz.guess(true);
 
     // Period handling
     const [periods, setPeriods] = useState(null);
@@ -95,8 +97,8 @@ const Periods = (props) => {
                     name={displayName}
                     key={name}
                     color={color}
-                    start={viewDate.clone().add(value.s, 'minutes')}
-                    end={viewDate.clone().add(value.e, 'minutes')}
+                    start={viewDate.clone().add(value.s, 'minutes').tz(timeZone)} // Convert PST times back to local timezone
+                    end={viewDate.clone().add(value.e, 'minutes').tz(timeZone)}
                     now={currDate}
                     date={viewDate}
                 />
@@ -106,11 +108,14 @@ const Periods = (props) => {
 
     // HTML for a school day, assumes periods is populated
     const schoolDay = () => {
-        let end = viewDate.clone().add(periods[periods.length - 1][1].e, 'minutes'); // End time
+        // End time of the last period of the day
+        let end = viewDate.clone().add(periods[periods.length - 1][1].e, 'minutes').tz(timeZone);
 
         return (
             <>
-                <p className="schedule-end">School ends at <strong>{end.format('h:mm A')}</strong> today.</p>
+                <p className="schedule-end">
+                    School ends at <strong>{end.format('h:mm A')}</strong> today.
+                </p>
                 {renderPeriods()}
             </>
         )

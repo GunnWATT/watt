@@ -1,12 +1,14 @@
 .home {
   display: grid;
-  grid-template-columns: 75% 25%;
+  grid-template-columns: minmax(50vh, 1fr) 20rem;
   @extend %theme-backdrop;
   padding: 24px;
 }
 
 // The schedule portion of the home page
 .schedule {
+  padding: 15px;
+  margin-right: 14px;
 
   // The date selector
   .date-selector {
@@ -28,7 +30,7 @@
 
   // Periods container
   .schedule-wrapper {
-    max-width: 750px;
+    max-width: 800px;
     margin: 0 auto 0 auto;
 
     // Individual period boxes
@@ -74,7 +76,11 @@
 
 // The events portion of the home page
 .events {
+  height: 100vh;
   margin: 0 10px;
   overflow: auto;
   @include content-box();
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing:    border-box;
+  box-sizing:         border-box;
 }
