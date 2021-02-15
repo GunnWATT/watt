@@ -37,7 +37,7 @@ hr {
 // Utility inheritables
 %theme-backdrop {
   background-color: $theme-light;
-  height: 400px;
+  height: 40vh;
 }
 %clickable {cursor: pointer;}
 
@@ -69,8 +69,4 @@ hr {
   }
 }
 
-.react-datepicker-popper {
-  // This doesn't work, the issue persists
-  flex: none;
-}
 

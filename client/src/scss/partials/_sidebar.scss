@@ -21,6 +21,7 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background-color: white;
   //background-color: #23232e;
   //color: #efefef;
   font-size: 18px;

@@ -1,7 +1,7 @@
 .home {
   display: grid;
   grid-template-columns: minmax(50vh, 1fr) 20rem;
-  @extend %theme-backdrop;
+  //@extend %theme-backdrop;
   padding: 24px;
 }
 

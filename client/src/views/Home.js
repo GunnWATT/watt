@@ -35,6 +35,8 @@ const Home = (props) => {
 
     return (
         <div className="home">
+            <div id="red-bg" />
+
             {/* Schedule */}
             <div className="schedule">
                 {relDays !== 0

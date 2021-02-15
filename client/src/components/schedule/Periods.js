@@ -85,11 +85,11 @@ const Periods = (props) => {
 
             // Gunn Together quirkiness handling
             if (name === 'G') {
-                displayName = `${parsePeriodName(name)} - ${GTPer ? parsePeriodName(GTPer) : 'Period ?'}` // If WATT is confused what GT period it is, display a nicer looking '?' instead of 'null'
-                color = parsePeriodColor(GTPer)
+                displayName = `${parsePeriodName(name)} - ${GTPer ? parsePeriodName(GTPer) : 'Period ?'}`; // If WATT is confused what GT period it is, display a nicer looking '?' instead of 'null'
+                color = parsePeriodColor(GTPer);
             } else {
-                displayName = parsePeriodName(name)
-                color = parsePeriodColor(name)
+                displayName = parsePeriodName(name);
+                color = parsePeriodColor(name);
             }
 
             return (
@@ -143,7 +143,7 @@ const Periods = (props) => {
     const winterBreak = () => (
         <div>
             <h1 className="center">Enjoy winter break!</h1>
-            <img src="../../images/mountain.svg" alt="Mountain picture" />
+            <img src="../../images/mountain.svg" alt="Mountain" />
         </div>
     )
 

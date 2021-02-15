@@ -3,6 +3,7 @@ body {
   height: 100vh;
   color: rgba(0, 0, 0, 0.87);
   font-size: 16px;
+  background-color: #f7f8fdff;
 }
 body ::-webkit-scrollbar {
   width: 0.25rem;
@@ -26,7 +27,14 @@ body ::-webkit-scrollbar-thumb {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  background-color: #f7f8fdff;
+}
+
+#red-bg {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 a {
@@ -66,9 +74,9 @@ hr {
   color: rgba(0, 0, 0, 0.54);
 }
 
-.home, .header-background, .testing {
+#red-bg {
   background-color: #fcebebff;
-  height: 400px;
+  height: 40vh;
 }
 
 ul.material-list li, .sidebar .toggler {
@@ -96,10 +104,6 @@ ul.material-list li, .sidebar .toggler {
   background-color: white;
 }
 
-.react-datepicker-popper {
-  flex: none;
-}
-
 .sidebar .bottom, .sidebar .item, .sidebar h1 {
   overflow: hidden;
   white-space: nowrap;
@@ -111,6 +115,7 @@ ul.material-list li, .sidebar .toggler {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background-color: white;
   font-size: 18px;
   transition: width 400ms ease;
   width: 14rem;

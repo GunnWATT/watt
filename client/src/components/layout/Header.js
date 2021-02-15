@@ -6,6 +6,7 @@ const Header = (props) => {
 
     return (
         <div className="header-background">
+            <div id="red-bg" />
             <Container className="header">
                 <span className="heading">
                     <h1>{heading}</h1>

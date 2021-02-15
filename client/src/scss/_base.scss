@@ -5,6 +5,7 @@ body {
   height: 100vh;
   color: $primary;
   font-size: 16px;
+  background-color: $grey;
 
   ::-webkit-scrollbar {
     width: 0.25rem;
@@ -30,6 +31,14 @@ body {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    background-color: $grey;
   }
+}
+
+#red-bg {
+  @extend %theme-backdrop;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
