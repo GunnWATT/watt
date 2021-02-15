@@ -243,6 +243,15 @@ ul.material-list li, .sidebar .toggler {
   justify-content: center;
   margin-bottom: 2rem;
 }
+.schedule .date-selector .react-datepicker-wrapper {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.1);
+}
+.schedule .date-selector .react-datepicker-wrapper input {
+  text-align: center;
+  border: none;
+}
 .schedule .schedule-dayname {
   font-size: 72px;
 }
