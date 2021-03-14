@@ -9,9 +9,12 @@ import schedule from '../../data/schedule.js';
 import alternates from '../../data/alternates';
 
 // No-school images
-import noschool1 from '../../assets/noschool1.png';
-import noschool2 from '../../assets/noschool2.png';
-import noschool3 from '../../assets/noschool3.png';
+import noschool1 from '../../assets/electronhw.png';
+import noschool2 from '../../assets/noschool2.png'; // Consider removing
+import noschool3 from '../../assets/electroncoffee.png';
+import noschool4 from '../../assets/electronvsepr.png';
+import noschool5 from '../../assets/electronconfig.png';
+import noschool6 from '../../assets/electronphasechange.png';
 
 
 const Periods = (props) => {
@@ -28,7 +31,7 @@ const Periods = (props) => {
 
     // Get a random no-school image
     const randomImage = () => {
-        const options = [noschool1, noschool2, noschool3];
+        const options = [noschool1, noschool2, noschool3, noschool4, noschool5, noschool6];
         return options[Math.floor(Math.random() * options.length)];
     }
 
