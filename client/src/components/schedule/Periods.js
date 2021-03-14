@@ -3,18 +3,11 @@ import moment from 'moment-timezone';
 
 // Components
 import Period from './Period';
+import NoSchoolImage from './NoSchoolImage';
 
 // Data
 import schedule from '../../data/schedule.js';
 import alternates from '../../data/alternates';
-
-// No-school images
-import noschool1 from '../../assets/electronhw.png';
-import noschool2 from '../../assets/noschool2.png'; // Consider removing
-import noschool3 from '../../assets/electroncoffee.png';
-import noschool4 from '../../assets/electronvsepr.png';
-import noschool5 from '../../assets/electronconfig.png';
-import noschool6 from '../../assets/electronphasechange.png';
 
 
 const Periods = (props) => {
@@ -26,14 +19,6 @@ const Periods = (props) => {
     const [alternate, setAlternate] = useState(false);
     const [GTPer, setGTPer] = useState(null);
 
-    // No-school picture
-    const [noSchoolImage, setImage] = useState(null);
-
-    // Get a random no-school image
-    const randomImage = () => {
-        const options = [noschool1, noschool2, noschool3, noschool4, noschool5, noschool6];
-        return options[Math.floor(Math.random() * options.length)];
-    }
 
     // Load schedule and alternates
     useEffect(() => {
@@ -58,9 +43,6 @@ const Periods = (props) => {
 
         // Check for Gunn Together
         if (Object.keys(alternates.GT).includes(altFormat)) setGTPer(alternates.GT[altFormat]);
-
-        // Randomize the no-school image
-        setImage(randomImage())
 
         return function cleanup() {
             //setPeriods(null);
@@ -155,7 +137,7 @@ const Periods = (props) => {
                             d="M160 224v64h320v-64c0-35.3 28.7-64 64-64h32c0-53-43-96-96-96H160c-53 0-96 43-96 96h32c35.3 0 64 28.7 64 64zm416-32h-32c-17.7 0-32 14.3-32 32v96H128v-96c0-17.7-14.3-32-32-32H64c-35.3 0-64 28.7-64 64 0 23.6 13 44 32 55.1V432c0 8.8 7.2 16 16 16h64c8.8 0 16-7.2 16-16v-16h384v16c0 8.8 7.2 16 16 16h64c8.8 0 16-7.2 16-16V311.1c19-11.1 32-31.5 32-55.1 0-35.3-28.7-64-64-64z"/>
                     </svg>
                     */}
-                    <img src={noSchoolImage} alt="No School Drawing" height="400"/>
+                    <NoSchoolImage viewDate={viewDate}/>
                 </p>
             </>
         )
