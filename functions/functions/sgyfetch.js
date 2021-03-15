@@ -200,3 +200,74 @@ const upcoming = async (data, context) => {
 
 exports.init = functions.https.onCall(init)
 exports.upcoming = functions.https.onCall(upcoming)
+
+
+// --------------
+
+// Quarantining Roger's code down here
+
+
+// I am lazy!
+const makeReq = async (path, key, secret) => {
+    return await oauth.get(`${apiBase}${path}`, key, secret)
+        .then(toJson)
+        .catch(e => console.log(e))
+}
+
+// Fetches materials from all the courses
+// Hasn't been tested yet :/
+// Returns {info: CourseObj, assignments: AssignmentObj[], documents: DocumentObj[], pages: PageObj[]}
+const fetchMaterials = async (data, context) => {
+    const uid = context.auth.uid
+    if (!uid) throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.');
+
+    const sgyInfo = await getSgyInfo(uid)
+
+    // Fetch courses, then kick out yucky ones
+    let courses = (await makeReq(`/users/${sgyInfo.uid}/sections`, sgyInfo.key, sgyInfo.sec)).section.filter((sec) => periods.indexOf(sec.section_title.split(' ')[0]) >= 0);
+
+    // Flattened promises because Promise.all unepicly
+    // They go by 3s: every 3 is documents, assignments, then pages for each course
+    let promises = [];
+
+    for(let i = 0; i < courses.length; i++) {
+        const { sectionID } = courses[i];
+
+        const documents = makeReq(`/sections/${sectionID}/documents?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
+        const assignments = makeReq(`/sections/${sectionID}/assignments?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
+        const pages = makeReq(`/sections/${sectionID}/pages?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
+
+        promises.push(documents,assignments,pages);
+    }
+
+    // Promise.all and I have a love hate relationship
+    // It's great and fantastic cuz its rly useful
+    // BUT WHY CANT I JUST HAVE NESTED STUFF WHY ARE YOU LIKE THIS
+    let responses = await Promise.all(promises);
+
+    let courses = [];
+
+    // Unflattening smh my head my head my head
+    for (let i = 0; i < courses.length; i++) {
+        const course = courses[i];
+
+        // Un-flatten the responses
+        const documents = responses[3 * i].document;
+        const assignments = responses[3 * i + 1].assignment;
+        const pages = responses[3 * i + 2].page;
+
+        let section = {
+            info: course,
+            documents,
+            assignments,
+            pages
+        }
+
+        courses.push(section);
+    }
+
+    return courses;
+
+}
+
+exports.fetchMaterials = functions.https.onCall(fetchMaterials)
