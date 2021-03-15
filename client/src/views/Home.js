@@ -19,8 +19,8 @@ const Home = (props) => {
     const [viewDate, setViewDate] = useState(viewDateCurr);
 
     // Functions for manipulating viewDate
-    // It is necessary to clone the viewDate first before changing it, because moment objects are mutable
-    // Without cloning, running a function will cause an infinite cascade of rerenders, which is generally regarded as bad
+    // It is necessary to clone viewDate before changing it because moment objects are mutable and
+    // will cause an infinite cascade of rerenders without clone
     const incDay = () => setViewDate(viewDate.clone().add(1, 'days'));
     const decDay = () => setViewDate(viewDate.clone().subtract(1, 'days'));
     const jumpToPres = () => setViewDate(viewDateCurr.clone());
@@ -29,7 +29,6 @@ const Home = (props) => {
     // Relative days for the day alert
     // viewDate here is compared to viewDateCurr instead of simply date because date still possesses minutes and seconds,
     // which may disrupt the comparison in undesirable ways
-    // TODO: this doesn't work with time zones, as it compares two PST localized times
     let relDays = viewDate.diff(viewDateCurr, 'days');
 
 

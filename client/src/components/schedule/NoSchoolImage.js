@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 
 // Images
 import noschool1 from '../../assets/electronhw.png';
@@ -7,6 +7,7 @@ import noschool3 from '../../assets/electroncoffee.png';
 import noschool4 from '../../assets/electronvsepr.png';
 import noschool5 from '../../assets/electronconfig.png';
 import noschool6 from '../../assets/electronphasechange.png';
+import noschool7 from '../../assets/electrondipole.png';
 
 
 // Seeding function
@@ -24,7 +25,7 @@ export function mulberry32(a) {
 
 // Get a random no-school image
 const randomImage = (millis) => {
-    const options = [noschool1, noschool2, noschool3, noschool4, noschool5, noschool6];
+    const options = [noschool1, noschool2, noschool3, noschool4, noschool5, noschool6, noschool7];
     const seed = mulberry32(millis);
 
     // Old non-seeded random function
@@ -34,6 +35,8 @@ const randomImage = (millis) => {
     console.log(choice)
     */
 
+    // UGWA technique of splitting options in two and pulling from a different pool every other day
+    // to ensure no duplicate pictures
     const index =
         millis % (2 * 86400000) < 86400000
             ? // Left half (including middle)
@@ -47,9 +50,7 @@ const randomImage = (millis) => {
 
 const NoSchoolImage = (props) => {
     const {viewDate} = props;
-
     const [image, setImage] = useState(null);
-    //const [index, setIndex] = useState(0);
 
     useEffect(() => {
         const img = randomImage(viewDate.valueOf());
@@ -57,7 +58,7 @@ const NoSchoolImage = (props) => {
         //setIndex(ind);
     }, [viewDate])
 
-    return <img src={image} alt="No school image" height="400"/>
+    return <img src={image} alt="Electron doodle" style={{maxHeight: "400px", maxWidth: "600px"}}/>
 }
 
 export default NoSchoolImage;
