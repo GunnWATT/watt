@@ -1,22 +1,22 @@
 import React, {useState} from 'react';
-import classnames from 'classnames';
 import {Moment} from 'moment';
 
 // Components
 import List from '../components/lists/List';
 import Header from "../components/layout/Header";
-import {Nav, NavItem, NavLink} from "reactstrap";
+import {Nav} from "reactstrap";
 import ClubComponent from "../components/lists/ClubComponent";
 
 // Data
 import clubs from '../data/clubs.js';
+import StateTab from "../components/layout/StateTab";
 
 
 type HomeProps = {date: Moment}
 const Clubs = (props: HomeProps) => {
     // Dynamically setting default tab
     let date = (Number(props.date.format('d')) + 1).toString(); // :weary:
-    if (date > 6) date = '1';
+    if (date > '6') date = '1';
 
     // Tabs
     const [activeTab, setActiveTab] = useState(date);
@@ -65,66 +65,12 @@ const Clubs = (props: HomeProps) => {
             }
             nav={
                 <Nav className="nav-fill" tabs>
-                    <NavItem>
-                        <NavLink
-                            className={classnames({active: activeTab === '1'})}
-                            onClick={() => {
-                                toggle('1');
-                            }}
-                        >
-                            All
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink
-                            className={classnames({active: activeTab === '2'})}
-                            onClick={() => {
-                                toggle('2');
-                            }}
-                        >
-                            Monday
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink
-                            className={classnames({active: activeTab === '3'})}
-                            onClick={() => {
-                                toggle('3');
-                            }}
-                        >
-                            Tuesday
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink
-                            className={classnames({active: activeTab === '4'})}
-                            onClick={() => {
-                                toggle('4');
-                            }}
-                        >
-                            Wednesday
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink
-                            className={classnames({active: activeTab === '5'})}
-                            onClick={() => {
-                                toggle('5');
-                            }}
-                        >
-                            Thursday
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink
-                            className={classnames({active: activeTab === '6'})}
-                            onClick={() => {
-                                toggle('6');
-                            }}
-                        >
-                            Friday
-                        </NavLink>
-                    </NavItem>
+                    <StateTab value="1" name="All" state={activeTab} setState={toggle} />
+                    <StateTab value="2" name="Monday" state={activeTab} setState={toggle} />
+                    <StateTab value="3" name="Tuesday" state={activeTab} setState={toggle} />
+                    <StateTab value="4" name="Wednesday" state={activeTab} setState={toggle} />
+                    <StateTab value="5" name="Thursday" state={activeTab} setState={toggle} />
+                    <StateTab value="6" name="Friday" state={activeTab} setState={toggle} />
                 </Nav>
             }
         >

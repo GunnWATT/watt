@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'reactstrap';
 
 
-const StaffComponent = (props) => {
+export type StaffComponentProps = {name: string, title: string, email: string, department?: string, phone?: string, periods: any};
+const StaffComponent = (props: StaffComponentProps) => {
+    const {name, title, email, department, phone, periods} = props;
+
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
 
-    const renderSchedule = (periods) => {
-        const parseNested = (name, semester) => {
+    const renderSchedule = (periods: any) => {
+        const parseNested = (name: string, semester: string) => {
             /*
             The period data structure is a bunch of nested Objects, where each period is represented by its name
             (1, 2, 3, SELF, etc.) and contains data structured like so:
@@ -17,6 +20,7 @@ const StaffComponent = (props) => {
             are taught at once in one period, where the data would be structured instead like
             {1: {1: [Class, Room], 2: [Class, Room]} 2: ...}
             */
+
             let course;
             let room;
 
@@ -67,19 +71,19 @@ const StaffComponent = (props) => {
 
     return (
         <li onClick={toggle}>
-            <span className="primary">{props.name}</span>
-            <span className="secondary">{props.title}</span>
-            <span className="secondary">{props.email}</span>
+            <span className="primary">{name}</span>
+            <span className="secondary">{title}</span>
+            <span className="secondary">{email}</span>
 
             <Modal isOpen={modal} toggle={toggle}>
-                <ModalHeader toggle={toggle}>{props.name}</ModalHeader>
+                <ModalHeader toggle={toggle}>{name}</ModalHeader>
                 <ModalBody>
-                    <p><strong>Title:</strong> {props.title}</p>
-                    {props.department ? <p><strong>Department:</strong> {props.department}</p> : null}
-                    <p><strong>Email:</strong> {props.email}</p>
-                    {props.phone ? <p><strong>Phone:</strong> {props.phone}</p> : null}
-                    {props.periods ? <p><strong>Schedule:</strong></p> : null}
-                    {props.periods ? renderSchedule(props.periods) : null}
+                    <p><strong>Title:</strong> {title}</p>
+                    {department ? <p><strong>Department:</strong> {department}</p> : null}
+                    <p><strong>Email:</strong> {email}</p>
+                    {phone ? <p><strong>Phone:</strong> {phone}</p> : null}
+                    {periods ? <p><strong>Schedule:</strong></p> : null}
+                    {periods ? renderSchedule(periods) : null}
                 </ModalBody>
                 <ModalFooter>
                     <Button outline color="danger" onClick={toggle}>Close</Button>

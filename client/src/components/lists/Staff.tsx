@@ -2,17 +2,17 @@ import React, {useState} from "react";
 
 // Components
 import List from './List';
+import StaffComponent, {StaffComponentProps} from './StaffComponent';
 
 // Data
 import staff from "../../data/staff";
-import StaffComponent from "./StaffComponent";
 
 
 const Staff = () => {
     const [query, setQuery] = useState('');
 
     // Parses last names to find the preferred last name by matching it with the staff email
-    const preferredLastName = (staff) => {
+    const preferredLastName = (staff: StaffComponentProps) => {
         let {name, email} = staff;
 
         // Replaces dashes with spaces to prevent matching Barba-Medina to nmedina (instead individually matching barba and medina)
@@ -23,6 +23,9 @@ const Staff = () => {
             let lower = lastName.toLowerCase();
             if (email.match(lower)) return lastName;
         }
+
+        // If no match is found, return the first last name
+        return lastNames[0];
     }
 
     return (

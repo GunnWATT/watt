@@ -104,7 +104,7 @@ const Periods = (props: PeriodsProps) => {
                     start={viewDate.clone().add(value.s, 'minutes').tz(timeZone)} // Convert PST times back to local timezone
                     end={viewDate.clone().add(value.e, 'minutes').tz(timeZone)}
                     now={currDate}
-                    date={viewDate}
+                    //date={viewDate}
                 />
             )
         })
