@@ -19,7 +19,7 @@ const Periods = (props: PeriodsProps) => {
     // Period handling
     const [periods, setPeriods] = useState<any[][] | null>(null);
     const [alternate, setAlternate] = useState(false);
-    const [GTPer, setGTPer] = useState<string | null>(null);
+    const [GTPer, setGTPer] = useState<number | null>(null);
 
 
     // Load schedule and alternates
@@ -27,8 +27,9 @@ const Periods = (props: PeriodsProps) => {
         // Turns day of the week into schedule object key; Thursday is R, Saturday is A
         const numToWeekday = (num: number) => ['S', 'M', 'T', 'W', 'R', 'F', 'A'][num];
         // Sorts object by start times so it is not mismatched
-        const sortByStart = (obj) => {
+        const sortByStart = (obj: any) => {
             if (!obj) return;
+            // @ts-ignore
             return Object.entries(obj).sort((a, b) => a[1].s - b[1].s);
         }
 
@@ -36,15 +37,19 @@ const Periods = (props: PeriodsProps) => {
         let altFormat = viewDate.format('MM-DD');
         if (Object.keys(alternates.alternates).includes(altFormat)) {
             // If viewDate exists in alt schedules, load that schedule
+            // @ts-ignore
             setPeriods(sortByStart(alternates.alternates[altFormat]));
             setAlternate(true);
         } else {
             // Otherwise, use default schedule
+            // @ts-ignore
             setPeriods(sortByStart(schedule[numToWeekday(viewDate.format('d'))]));
         }
 
         // Check for Gunn Together
-        if (Object.keys(alternates.GT).includes(altFormat)) setGTPer(alternates.GT[altFormat]);
+        if (Object.keys(alternates.GT).includes(altFormat)) { // @ts-ignore
+            setGTPer(alternates.GT[altFormat]);
+        }
 
         return function cleanup() {
             //setPeriods(null);
@@ -73,7 +78,7 @@ const Periods = (props: PeriodsProps) => {
     }
 
     // Turns object key into default period color
-    const parsePeriodColor = (name: string | null) => {
+    const parsePeriodColor = (name: string | number | null) => {
         let num = Number(name);
         // Map number periods to their default colors
         if (num)
@@ -84,12 +89,12 @@ const Periods = (props: PeriodsProps) => {
 
     // Maps periods array to <Period> components
     const renderPeriods = () =>
-        periods.map(([name, value]) => {
+        periods!.map(([name, value]) => {
             let displayName, color;
 
             // Gunn Together quirkiness handling
             if (name === 'G') {
-                displayName = `${parsePeriodName(name)} - ${GTPer ? parsePeriodName(GTPer) : 'Period ?'}`; // If WATT is confused what GT period it is, display a nicer looking '?' instead of 'null'
+                displayName = `${parsePeriodName(name)} - ${GTPer ? parsePeriodName(GTPer.toString()) : 'Period ?'}`; // If WATT is confused what GT period it is, display a nicer looking '?' instead of 'null'
                 color = parsePeriodColor(GTPer);
             } else {
                 displayName = parsePeriodName(name);
@@ -113,7 +118,7 @@ const Periods = (props: PeriodsProps) => {
     // HTML for a school day, assumes periods is populated
     const schoolDay = () => {
         // End time of the last period of the day
-        let end = viewDate.clone().add(periods[periods.length - 1][1].e, 'minutes').tz(timeZone);
+        let end = viewDate.clone().add(periods![periods!.length - 1][1].e, 'minutes').tz(timeZone);
 
         return (
             <>

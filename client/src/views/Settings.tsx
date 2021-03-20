@@ -5,10 +5,10 @@ import {Nav} from 'reactstrap';
 // Components
 import Header from '../components/layout/Header';
 import NavTab from '../components/layout/NavTab';
-import Appearance from "../components/settings/Appearance";
-import Periods from "../components/settings/Periods";
-import Localization from "../components/settings/Localization.js";
-import About from "../components/settings/About";
+import Appearance from '../components/settings/Appearance';
+import Periods from '../components/settings/Periods';
+import Localization from '../components/settings/Localization';
+import About from '../components/settings/About';
 
 
 const Settings = () => {
