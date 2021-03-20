@@ -11,7 +11,7 @@ import NoResults from '../components/lists/NoResults';
 import SgySignInBtn from '../components/auth/SgySignInBtn';
 
 
-const Testing = (props) => {
+const Testing = () => {
     const [color, setColor] = useState('#fff');
     const changeColor = (color) => setColor(color.hex);
 

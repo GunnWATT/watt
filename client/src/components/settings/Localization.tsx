@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
 import WIP from "../misc/WIP";
 
-const Periods = (props) => {
+
+const Localization = () => {
     return (
         <>
-            <h1>Periods</h1>
+            <h1>Localization</h1>
             <hr/>
             <WIP />
         </>
     );
 }
 
-export default Periods;
+export default Localization;

@@ -1,5 +1,6 @@
-import React, {useState} from "react";
-import classnames from "classnames";
+import React, {useState} from 'react';
+import classnames from 'classnames';
+import {Moment} from 'moment';
 
 // Components
 import List from '../components/lists/List';
@@ -11,14 +12,15 @@ import ClubComponent from "../components/lists/ClubComponent";
 import clubs from '../data/clubs.js';
 
 
-const Clubs = (props) => {
+type HomeProps = {date: Moment}
+const Clubs = (props: HomeProps) => {
     // Dynamically setting default tab
     let date = (Number(props.date.format('d')) + 1).toString(); // :weary:
     if (date > 6) date = '1';
 
     // Tabs
     const [activeTab, setActiveTab] = useState(date);
-    const toggle = tab => {
+    const toggle = (tab: string) => {
         if (activeTab !== tab) setActiveTab(tab);
     }
 
@@ -29,7 +31,7 @@ const Clubs = (props) => {
     const dataFromTab = () => {
         if (activeTab === '1') return clubs;
 
-        let day;
+        let day: 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday';
         switch (activeTab) {
             case '2':
                 day = 'Monday';

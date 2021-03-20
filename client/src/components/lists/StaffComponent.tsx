@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'reactstrap';
 
+
 const StaffComponent = (props) => {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
@@ -56,9 +57,9 @@ const StaffComponent = (props) => {
                 </tr>
                 </thead>
                 <tbody>
-                {Object.keys(periods).map(period =>
-                    parseNested(period, '1')
-                )}
+                    {Object.keys(periods).map(period =>
+                        parseNested(period, '1')
+                    )}
                 </tbody>
             </Table>
         )

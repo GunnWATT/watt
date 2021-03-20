@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Container} from 'reactstrap';
 
-const Calculator = (props) => {
+const Calculator = () => {
     const [currGrade, setCurrGrade] = useState(95.00);
     const [finalsWorth, setFinalsWorth] = useState(15.00);
     const [minGrade, setMinGrade] = useState(90.00);

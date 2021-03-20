@@ -14,7 +14,7 @@ import Calculator from '../components/utilities/Calculator';
 import WIP from '../components/misc/WIP';
 
 
-const Utilities = (props) => {
+const Utilities = () => {
     let match = useRouteMatch();
 
     return (

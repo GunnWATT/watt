@@ -8,7 +8,7 @@ import WIP from '../components/misc/WIP';
 import NavTab from "../components/layout/NavTab";
 
 
-const Classes = (props) => {
+const Classes = () => {
     let match = useRouteMatch();
 
     return (

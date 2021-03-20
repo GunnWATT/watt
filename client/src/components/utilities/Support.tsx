@@ -1,7 +1,8 @@
 import React from 'react';
 import {Container, CardGroup, Card, CardBody, CardTitle, CardSubtitle, CardText} from 'reactstrap';
 
-const Support = (props) => {
+
+const Support = () => {
     return (
         <Container>
             <h1>Student resources</h1>

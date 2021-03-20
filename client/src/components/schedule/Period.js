@@ -4,6 +4,7 @@ import 'twix';
 import {Card, CardBody, CardTitle, CardSubtitle, CardText, Progress} from "reactstrap";
 import ProgressBarColor from './ProgressBarColor';
 
+
 const Period = (props) => {
 
     let {now, start, end, name, color} = props;

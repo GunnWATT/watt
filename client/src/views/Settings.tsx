@@ -11,7 +11,7 @@ import Localization from "../components/settings/Localization.js";
 import About from "../components/settings/About";
 
 
-const Settings = (props) => {
+const Settings = () => {
     let match = useRouteMatch();
 
     return (

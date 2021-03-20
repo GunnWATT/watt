@@ -2,9 +2,16 @@ import React, {useState, useEffect} from 'react';
 import NoResults from "./NoResults";
 
 
-// Higher order List component for clubs and staff now that they are separate
+type ListEntriesPair = [string, any]
+type ListProps = {
+    data: any[] | any,
+    filter: ([id, value]: ListEntriesPair) => boolean,
+    map: ([id, value]: ListEntriesPair) => JSX.Element,
+    sort: (([idA, valueA]: ListEntriesPair, [idB, valueB]: ListEntriesPair) => number)
+}
 
-const List = (props) => {
+// Higher order List component for clubs and staff now that they are separate
+const List = (props: ListProps) => {
     // Filter and map are different for each list, so pass them in as props
     let {data, filter, map, sort} = props;
 

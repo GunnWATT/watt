@@ -1,5 +1,5 @@
 // https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
-const hexToRgb = (hex) => {
+const hexToRgb = (hex: string): [number, number, number] | null => {
     let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})[a-f\d]{2}$/i.exec(hex);
     return result ? [
         parseInt(result[1], 16),
@@ -10,7 +10,7 @@ const hexToRgb = (hex) => {
 
 // https://css-tricks.com/using-javascript-to-adjust-saturation-and-brightness-of-rgb-colors/
 
-const getLowestMiddleHighest = (rgbIntArray) => {
+const getLowestMiddleHighest = (rgbIntArray: [number, number, number]) => {
     let highest = {val:-1,index:-1};
     let lowest = {val:Infinity,index:-1};
 
@@ -27,14 +27,14 @@ const getLowestMiddleHighest = (rgbIntArray) => {
         lowest.index=highest.index+1;
     }
 
-    let middle = {index: (3 - highest.index - lowest.index)};
-    middle.val = rgbIntArray[middle.index];
+    let index = (3 - highest.index - lowest.index);
+    let middle = {val: rgbIntArray[index], index: index};
     return [lowest,middle,highest];
 }
 
-const barColor = (hex) => {
+const barColor = (hex: string) => {
     const rgb = hexToRgb(hex)
-    const [lowest,middle,highest] = getLowestMiddleHighest(rgb);
+    const [lowest,middle,highest] = getLowestMiddleHighest(rgb!);
 
     const returnArray=[];
 

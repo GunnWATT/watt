@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { Alert, Button } from 'reactstrap';
 
-const DayAlert = (props) => {
+
+type DayAlertProps = {daysRelToCur: number, jumpToPres: () => void};
+const DayAlert = (props: DayAlertProps) => {
+    const {daysRelToCur, jumpToPres} = props;
+
     const [visible, setVisible] = useState(true);
     const onDismiss = () => setVisible(false);
 
-    let days = props.daysRelToCur;
+    let days = daysRelToCur;
     let absDays = Math.abs(days);
     const makeDateString = () => {
         let newer = days > 0;
@@ -25,7 +29,7 @@ const DayAlert = (props) => {
             toggle={onDismiss}
         >
             {makeDateString()}{' '}
-            <button onClick={props.jumpToPres}>JUMP TO PRESENT</button>
+            <button onClick={jumpToPres}>JUMP TO PRESENT</button>
         </Alert>
     );
 }

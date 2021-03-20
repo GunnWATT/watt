@@ -8,7 +8,7 @@ import staff from "../../data/staff";
 import StaffComponent from "./StaffComponent";
 
 
-const Staff = (props) => {
+const Staff = () => {
     const [query, setQuery] = useState('');
 
     // Parses last names to find the preferred last name by matching it with the staff email

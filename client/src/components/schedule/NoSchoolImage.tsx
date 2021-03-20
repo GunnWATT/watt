@@ -1,4 +1,5 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
+import {Moment} from 'moment';
 
 // Images
 import noschool1 from '../../assets/electronhw.png';
@@ -11,12 +12,13 @@ import noschool7 from '../../assets/electrondipole.png';
 import noschool8 from '../../assets/electrongaslaws.png';
 import noschool9 from '../../assets/electronactivationenergy.png';
 import noschool10 from '../../assets/electronboxandpointer.png';
+import noschool11 from '../../assets/electrontrumpet.png';
 
 
 // Seeding function
 // https://github.com/bryc/code/blob/master/jshash/PRNGs.md#mulberry32
 // https://github.com/Orbiit/gunn-web-app/commit/479013823bb8453c51e23a936e8390f860f58840
-export function mulberry32(a) {
+export function mulberry32(a: number) {
     return () => {
         a |= 0
         a = (a + 0x6d2b79f5) | 0
@@ -27,8 +29,9 @@ export function mulberry32(a) {
 }
 
 // Get a random no-school image
-const randomImage = (millis) => {
-    const options = [noschool1, noschool2, noschool3, noschool4, noschool5, noschool6, noschool7, noschool8, noschool9, noschool10];
+const randomImage = (millis: number): string => {
+    const options = [noschool1, noschool2, noschool3, noschool4, noschool5, noschool6, noschool7, noschool8,
+        noschool9, noschool10, noschool11];
     const seed = mulberry32(millis);
 
     // Old non-seeded random function
@@ -51,14 +54,15 @@ const randomImage = (millis) => {
     return options[index];
 }
 
-const NoSchoolImage = (props) => {
+
+type NoSchoolImageProps = {viewDate: Moment};
+const NoSchoolImage = (props: NoSchoolImageProps) => {
     const {viewDate} = props;
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState<string | undefined>(undefined);
 
     useEffect(() => {
         const img = randomImage(viewDate.valueOf());
         setImage(img);
-        //setIndex(ind);
     }, [viewDate])
 
     return <img src={image} alt="Electron doodle" style={{maxHeight: "400px", maxWidth: "600px"}}/>

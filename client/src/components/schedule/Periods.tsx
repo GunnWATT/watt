@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import moment from 'moment-timezone';
+import {Moment} from 'moment';
 
 // Components
 import Period from './Period';
@@ -10,12 +11,13 @@ import schedule from '../../data/schedule.js';
 import alternates from '../../data/alternates';
 
 
-const Periods = (props) => {
+type PeriodsProps = {viewDate: Moment, currDate: Moment}
+const Periods = (props: PeriodsProps) => {
     const {viewDate, currDate} = props;
     const timeZone = moment.tz.guess(true);
 
     // Period handling
-    const [periods, setPeriods] = useState(null);
+    const [periods, setPeriods] = useState<__ | null>(null);
     const [alternate, setAlternate] = useState(false);
     const [GTPer, setGTPer] = useState(null);
 
@@ -23,7 +25,7 @@ const Periods = (props) => {
     // Load schedule and alternates
     useEffect(() => {
         // Turns day of the week into schedule object key; Thursday is R, Saturday is A
-        const numToWeekday = (num) => ['S', 'M', 'T', 'W', 'R', 'F', 'A'][num];
+        const numToWeekday = (num: number) => ['S', 'M', 'T', 'W', 'R', 'F', 'A'][num];
         // Sorts object by start times so it is not mismatched
         const sortByStart = (obj) => {
             if (!obj) return;
@@ -53,7 +55,7 @@ const Periods = (props) => {
 
 
     // Turns object key into human readable period name
-    const parsePeriodName = (name) => {
+    const parsePeriodName = (name: string) => {
         if (Number(name)) return `Period ${name}`;
 
         switch (name) {
@@ -71,7 +73,7 @@ const Periods = (props) => {
     }
 
     // Turns object key into default period color
-    const parsePeriodColor = (name) => {
+    const parsePeriodColor = (name: string) => {
         let num = Number(name);
         // Map number periods to their default colors
         if (num)

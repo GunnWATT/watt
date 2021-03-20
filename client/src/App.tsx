@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import moment from "moment";
 
 // Components
@@ -14,7 +14,7 @@ import PageNotFound from './views/404';
 import SgyAuthRedirect from './views/SgyAuthRedirect';
 
 
-const App = (props) => {
+const App = () => {
     // Global datetime
     const [date, setDate] = useState(moment());
 

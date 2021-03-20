@@ -5,7 +5,7 @@ import firebase from "../firebase/Firebase"
 const functions = firebase.functions
 
 
-const SgyAuthRedirect = (props) => {
+const SgyAuthRedirect = () => {
     // Search params handling
     const { search } = useLocation();
     const searchParams = new URLSearchParams(search);

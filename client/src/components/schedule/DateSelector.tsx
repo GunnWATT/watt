@@ -4,10 +4,11 @@ import "react-datepicker/dist/react-datepicker.css";
 
 // Icons
 import {ChevronLeft, ChevronRight} from 'react-feather'
+import {Moment} from "moment";
 
 
-const DateSelector = (props) => {
-    let {incDay, decDay, setViewDate, viewDate} = props
+type DateSelectorProps = {incDay: () => void, decDay: () => void, setViewDate: (d: Date) => void, viewDate: Moment}
+const DateSelector = ({incDay, decDay, setViewDate, viewDate}: DateSelectorProps) => {
 
     return (
         <div className='date-selector'>
@@ -28,7 +29,7 @@ const DateSelector = (props) => {
             <DatePicker
                 closeOnScroll={true}
                 selected={viewDate.toDate()}
-                onChange={date => setViewDate(date)}
+                onChange={(date: Date) => setViewDate(date)}
                 todayButton="Jump to Present"
                 dateFormat="MMMM d"
             />
