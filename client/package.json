@@ -38,7 +38,11 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.21.5",
     "nan": "^2.14.2",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "@types/twix": "^0.6.38",
+    "@types/react-color": "^3.0.4",
+    "@types/react-datepicker": "^3.1.8",
+    "@types/react-router-dom": "^5.1.7"
   },
   "eslintConfig": {
     "extends": "react-app"
