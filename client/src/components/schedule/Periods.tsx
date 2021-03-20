@@ -7,7 +7,7 @@ import Period from './Period';
 import NoSchoolImage from './NoSchoolImage';
 
 // Data
-import schedule from '../../data/schedule.js';
+import schedule from '../../data/schedule';
 import alternates from '../../data/alternates';
 
 
@@ -17,9 +17,9 @@ const Periods = (props: PeriodsProps) => {
     const timeZone = moment.tz.guess(true);
 
     // Period handling
-    const [periods, setPeriods] = useState<__ | null>(null);
+    const [periods, setPeriods] = useState<any[][] | null>(null);
     const [alternate, setAlternate] = useState(false);
-    const [GTPer, setGTPer] = useState(null);
+    const [GTPer, setGTPer] = useState<string | null>(null);
 
 
     // Load schedule and alternates
@@ -73,7 +73,7 @@ const Periods = (props: PeriodsProps) => {
     }
 
     // Turns object key into default period color
-    const parsePeriodColor = (name: string) => {
+    const parsePeriodColor = (name: string | null) => {
         let num = Number(name);
         // Map number periods to their default colors
         if (num)

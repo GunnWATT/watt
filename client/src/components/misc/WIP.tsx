@@ -1,6 +1,7 @@
 import React from 'react';
 
-const WIP = (props) => {
+
+const WIP = () => {
     return (
         <div className="WIP">
             <span>

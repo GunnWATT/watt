@@ -24,7 +24,7 @@ import GoogleSignInBtn from '../auth/GoogleSignInBtn';
 import GoogleSignOutBtn from '../auth/GoogleSignOutBtn';
 
 
-const Sidebar = (props) => {
+const Sidebar = () => {
     // Authentication
     const auth = firebase.auth;
     const [user] = useAuthState(auth);

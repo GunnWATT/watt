@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment';
-import { SketchPicker, ChromePicker, BlockPicker } from 'react-color';
+import { ColorResult, SketchPicker, ChromePicker, BlockPicker } from 'react-color';
 import { Row } from 'reactstrap';
 
 // Components
@@ -13,7 +13,7 @@ import SgySignInBtn from '../components/auth/SgySignInBtn';
 
 const Testing = () => {
     const [color, setColor] = useState('#fff');
-    const changeColor = (color) => setColor(color.hex);
+    const changeColor = (color: ColorResult) => setColor(color.hex);
 
     return (
         <div className="testing">

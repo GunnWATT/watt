@@ -12,7 +12,8 @@ import { CheckCircle } from 'react-feather';
 import SgyInitResults from "./auth/SgyInitResults";
 
 
-const Layout = (props) => {
+type LayoutProps = {children: React.ReactNode};
+const Layout = (props: LayoutProps) => {
     // Search params handling
     const { search, pathname } = useLocation();
     const { replace } = useHistory();

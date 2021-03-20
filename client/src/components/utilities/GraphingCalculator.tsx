@@ -1,6 +1,7 @@
 import React from 'react';
 
-const GraphingCalculator = (props) => {
+
+const GraphingCalculator = () => {
     return (
         <iframe
             className="desmos-embed"

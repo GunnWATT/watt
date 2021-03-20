@@ -2,7 +2,8 @@ import React from 'react';
 import {Link, Route} from "react-router-dom";
 
 
-const SidebarItem = (props) => {
+type SidebarItemProps = {to: string, icon: React.ReactNode, name: string, exact?: boolean};
+const SidebarItem = (props: SidebarItemProps) => {
     let {to, icon, name, exact} = props;
 
     return (

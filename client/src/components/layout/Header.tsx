@@ -1,7 +1,9 @@
-import React from "react";
+import React from 'react';
 import {Container} from 'reactstrap';
 
-const Header = (props) => {
+
+type HeaderProps = {heading: string, nav: React.ReactNode, children: React.ReactNode, other?: React.ReactNode};
+const Header = (props: HeaderProps) => {
     const {heading, nav, children, other} = props;
 
     return (

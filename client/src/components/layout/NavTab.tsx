@@ -1,9 +1,10 @@
 import React from 'react';
-import {Link, Route} from "react-router-dom";
-import {NavItem, NavLink} from "reactstrap";
+import {Link, Route} from 'react-router-dom';
+import {NavItem, NavLink} from 'reactstrap';
 
 
-const NavTab = (props) => {
+type NavTabProps = {to: string, name: string, exact?: boolean};
+const NavTab = (props: NavTabProps) => {
     let {to, name, exact} = props;
 
     return (

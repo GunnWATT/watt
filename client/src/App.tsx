@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import moment from "moment";
+import moment from 'moment';
 
 // Components
 import Layout from './components/Layout';

@@ -1,7 +1,8 @@
 import React from 'react';
 import {Spinner} from 'reactstrap';
 
-const Loading = (props) => {
+
+const Loading = () => {
     return (
         <div className="loading">
             <span>

@@ -1,11 +1,12 @@
 import React from 'react';
-//import moment from 'moment';
+import {Moment} from 'moment';
 import 'twix';
-import {Card, CardBody, CardTitle, CardSubtitle, CardText, Progress} from "reactstrap";
+import {Card, CardBody, CardTitle, CardSubtitle, CardText, Progress} from 'reactstrap';
 import ProgressBarColor from './ProgressBarColor';
 
 
-const Period = (props) => {
+type PeriodProps = {now: Moment, start: Moment, end: Moment, name: string, color: string};
+const Period = (props: PeriodProps) => {
 
     let {now, start, end, name, color} = props;
     let t = start.twix(end); // Twix duration representing the period

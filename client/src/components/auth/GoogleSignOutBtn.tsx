@@ -4,7 +4,7 @@ import {SignOut} from "../../firebase/Authentication";
 import {LogOut} from "react-feather";
 
 
-const GoogleSignOutBtn = (props) => {
+const GoogleSignOutBtn = () => {
     return (
         <span className={'item'}>
             <button onClick={SignOut}>

@@ -11,9 +11,9 @@ import SgyInit from '../../schoology/SgyInit';
 const auth = firebase.auth;
 
 
-const SgyInitResults = (props) => {
+const SgyInitResults = () => {
     const [user, loading, error] = useAuthState(auth);
-    const [results, setResults] = useState(null);
+    const [results, setResults] = useState<any | null>(null);
 
     // Set the results to the value returned by initialization to be displayed
     useEffect(() => {
