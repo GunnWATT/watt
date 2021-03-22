@@ -1,10 +1,10 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
+import {Moment} from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 // Icons
 import {ChevronLeft, ChevronRight} from 'react-feather'
-import {Moment} from "moment";
 
 
 type DateSelectorProps = {incDay: () => void, decDay: () => void, setViewDate: (d: Date) => void, viewDate: Moment}

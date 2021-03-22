@@ -1,3 +1,5 @@
+import {DayObj} from '../components/schedule/Periods';
+
 export default {
     "alternates": {
         "09-07": null,
@@ -955,4 +957,4 @@ export default {
         "05-26": 0,
         "06-02": 0
     }
-}
+} as {alternates: {[key: string]: DayObj | null}, GT: {[key: string]: number}}

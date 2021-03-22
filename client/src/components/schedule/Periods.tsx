@@ -11,13 +11,19 @@ import schedule from '../../data/schedule';
 import alternates from '../../data/alternates';
 
 
-type PeriodsProps = {viewDate: Moment, currDate: Moment}
+type PeriodObj = {s: number, e: number};
+export type DayObj = {
+    1?: PeriodObj, 2?: PeriodObj, 3?: PeriodObj, 4?: PeriodObj, 5?: PeriodObj, 6?: PeriodObj, 7?: PeriodObj,
+    L?: PeriodObj, S?: PeriodObj, G?: PeriodObj, O?: PeriodObj
+}
+
+type PeriodsProps = {viewDate: Moment, currDate: Moment};
 const Periods = (props: PeriodsProps) => {
     const {viewDate, currDate} = props;
     const timeZone = moment.tz.guess(true);
 
     // Period handling
-    const [periods, setPeriods] = useState<any[][] | null>(null);
+    const [periods, setPeriods] = useState<[string, PeriodObj][] | null>(null);
     const [alternate, setAlternate] = useState(false);
     const [GTPer, setGTPer] = useState<number | null>(null);
 
@@ -27,29 +33,27 @@ const Periods = (props: PeriodsProps) => {
         // Turns day of the week into schedule object key; Thursday is R, Saturday is A
         const numToWeekday = (num: number) => ['S', 'M', 'T', 'W', 'R', 'F', 'A'][num];
         // Sorts object by start times so it is not mismatched
-        const sortByStart = (obj: any) => {
-            if (!obj) return;
-            // @ts-ignore
-            return Object.entries(obj).sort((a, b) => a[1].s - b[1].s);
+        const sortByStart = (obj: DayObj) => {
+            return Object.entries(obj)
+                .filter((a): a is [string, PeriodObj] => a[1] !== undefined)
+                .sort(([nameA, valA], [nameB, valB]) => valA!.s - valB!.s);
         }
 
         // Check for alternate schedules
         let altFormat = viewDate.format('MM-DD');
-        if (Object.keys(alternates.alternates).includes(altFormat)) {
+        if (alternates.alternates.hasOwnProperty(altFormat)) {
             // If viewDate exists in alt schedules, load that schedule
-            // @ts-ignore
-            setPeriods(sortByStart(alternates.alternates[altFormat]));
+            let periods = alternates.alternates[altFormat];
+            setPeriods(periods ? sortByStart(periods) : null);
             setAlternate(true);
         } else {
             // Otherwise, use default schedule
-            // @ts-ignore
-            setPeriods(sortByStart(schedule[numToWeekday(viewDate.format('d'))]));
+            let periods = schedule[numToWeekday(Number(viewDate.format('d')))];
+            setPeriods(periods ? sortByStart(periods) : null);
         }
 
         // Check for Gunn Together
-        if (Object.keys(alternates.GT).includes(altFormat)) { // @ts-ignore
-            setGTPer(alternates.GT[altFormat]);
-        }
+        if (alternates.GT.hasOwnProperty(altFormat)) setGTPer(alternates.GT[altFormat]);
 
         return function cleanup() {
             //setPeriods(null);
