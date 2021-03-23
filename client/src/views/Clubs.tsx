@@ -8,7 +8,7 @@ import {Nav} from "reactstrap";
 import ClubComponent from "../components/lists/ClubComponent";
 
 // Data
-import clubs from '../data/clubs.js';
+import clubs from '../data/clubs';
 import StateTab from "../components/layout/StateTab";
 
 
@@ -86,12 +86,16 @@ const Clubs = (props: HomeProps) => {
                     <ClubComponent
                         key={id}
                         name={club.name}
-                        room={club.room}
+                        // room={club.room}
                         day={club.day}
                         time={club.time}
                         desc={club.desc}
-                        president={club.prez}
-                        teacher={club.advisor}
+                        zoom={club.zoom}
+                        video={club.video}
+                        signup={club.signup}
+                        tier={club.tier}
+                        prez={club.prez}
+                        advisor={club.advisor}
                         email={club.email}
                         new={club.new}
                     />

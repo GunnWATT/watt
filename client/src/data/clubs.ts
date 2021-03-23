@@ -1,3 +1,5 @@
+import {Club} from '../components/lists/ClubComponent';
+
 export default {
     "10364": {
         "name": "Medcorps",
@@ -1381,4 +1383,4 @@ export default {
         "advisor": "James Shelby",
         "email": "jshelby@pausd.org"
     }
-}
+} as {[key: string]: Club}

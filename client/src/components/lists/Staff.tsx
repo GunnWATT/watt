@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 // Components
 import List from './List';
-import StaffComponent, {StaffComponentProps} from './StaffComponent';
+import StaffComponent, {Staff as StaffComponentProps} from './StaffComponent';
 
 // Data
 import staff from "../../data/staff";
@@ -51,7 +51,7 @@ const Staff = () => {
                         key={id}
                         name={staff.name}
                         title={staff.title}
-                        department={staff.department}
+                        dept={staff.dept}
                         phone={staff.phone}
                         email={staff.email}
                         periods={staff.periods}

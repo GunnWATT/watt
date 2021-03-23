@@ -1,3 +1,5 @@
+import {Staff} from '../components/lists/StaffComponent';
+
 export default {
     "10150": {
         "name": "Gagan Cheema",
@@ -62,7 +64,6 @@ export default {
         "name": "Erin Reyes",
         "title": "Counselor",
         "email": "ereyes@pausd.org",
-        "periods": {},
         "other": "Has counseling"
     },
     "12197": {
@@ -1091,7 +1092,6 @@ export default {
         "title": "Counselor",
         "email": "jchavez@pausd.org",
         "phone": "354-8226 ext. 5406",
-        "periods": {},
         "other": "Has counseling"
     },
     "26094": {
@@ -1099,7 +1099,6 @@ export default {
         "title": "Counselor",
         "email": "dleftwich@pausd.org",
         "phone": "354-8225 ext. 4710",
-        "periods": {},
         "other": "Has counseling"
     },
     "26409": {
@@ -1157,7 +1156,6 @@ export default {
         "title": "Counselor",
         "email": "djohanson@pausd.org",
         "phone": "849-7935 ext. 6818",
-        "periods": {},
         "other": "Has counseling"
     },
     "27128": {
@@ -1500,7 +1498,6 @@ export default {
         "name": "Cora Ross",
         "title": "Counselor",
         "email": "cross@pausd.org",
-        "periods": {},
         "other": "Has counseling"
     },
     "31237": {
@@ -1551,7 +1548,6 @@ export default {
         "title": "Academic Technology Specialist",
         "email": "ocelis@pausd.org",
         "phone": "354-8285 ext. 6359",
-        "periods": {},
         "other": "Teaches SELF."
     },
     "33164": {
@@ -1559,7 +1555,6 @@ export default {
         "title": "Assistant Principal-HS",
         "email": "plaplace@pausd.org",
         "phone": "354-8244 ext. 5155",
-        "periods": {},
         "other": "Teaches SELF."
     },
     "33337": {
@@ -1953,7 +1948,6 @@ export default {
         "name": "Leonel Argumedo",
         "title": "Assistant Principal",
         "email": "largumedo@pausd.org",
-        "periods": {},
         "other": "Teaches SELF."
     },
     "39884": {
@@ -2005,7 +1999,6 @@ export default {
         "title": "Instructional Aide GE",
         "email": "egaribaydiaz@pausd.org",
         "phone": "354-8262",
-        "periods": {},
         "other": "Teaches SELF."
     },
     "40148": {
@@ -2531,7 +2524,6 @@ export default {
         "title": "Assistant Principal-HS",
         "email": "mgordon@pausd.org",
         "phone": "354-8206 ext. 6865",
-        "periods": {},
         "other": "Teaches SELF."
     },
     "50709": {
@@ -2703,7 +2695,6 @@ export default {
         "title": "Counselor",
         "email": "abueno@pausd.org",
         "phone": "354-8226 ext. 6531",
-        "periods": {},
         "other": "Has counseling"
     },
     "51832": {
@@ -2976,7 +2967,6 @@ export default {
         "title": "Teacher",
         "email": "dgill@pausd.org",
         "phone": "354-8252 ext. 6802",
-        "periods": {},
         "other": "Teaches SELF."
     },
     "56887": {
@@ -3203,7 +3193,6 @@ export default {
         "title": "Counselor",
         "email": "jfidani@pausd.org",
         "phone": "354-8224 ext. 6917",
-        "periods": {},
         "other": "Has counseling"
     },
     "60284": {
@@ -3587,7 +3576,6 @@ export default {
         "name": "Jose Ordonez",
         "title": "Tutorial Center Assistant",
         "email": "jordonez@pausd.org",
-        "periods": {},
         "other": "Teaches SELF."
     },
     "65100": {
@@ -5210,7 +5198,6 @@ export default {
         "title": "Secretary II",
         "email": "cmain@pausd.org",
         "phone": "354-8254 ext. 6746",
-        "periods": {},
         "other": "Teaches SELF."
     },
     "86606": {
@@ -5882,4 +5869,4 @@ export default {
         },
         "other": "Teaches SELF."
     }
-}
+} as {[key: string]: Staff}

@@ -2,14 +2,22 @@ import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'reactstrap';
 
 
-export type StaffComponentProps = {name: string, title: string, email: string, department?: string, phone?: string, periods: any};
-const StaffComponent = (props: StaffComponentProps) => {
-    const {name, title, email, department, phone, periods} = props;
+type SemesterClassObj = [string, string | null] | 'none';
+type ClassObj = {
+    1: SemesterClassObj | {1: SemesterClassObj, 2: SemesterClassObj},
+    2: SemesterClassObj | {1: SemesterClassObj, 2: SemesterClassObj}
+};
+export type Staff = {name: string, title: string, email: string, dept?: string, phone?: string, periods?: {[key: string]: ClassObj}};
+
+const StaffComponent = (props: Staff) => {
+    const {name, title, email, dept, phone, periods} = props;
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
+    const [semester, setSemester] = useState('1'); // Consider dynamically setting semester later
 
+    // TODO: make this not use any
     const renderSchedule = (periods: any) => {
         const parseNested = (name: string, semester: string) => {
             /*
@@ -62,7 +70,7 @@ const StaffComponent = (props: StaffComponentProps) => {
                 </thead>
                 <tbody>
                     {Object.keys(periods).map(period =>
-                        parseNested(period, '1')
+                        parseNested(period, semester)
                     )}
                 </tbody>
             </Table>
@@ -79,10 +87,15 @@ const StaffComponent = (props: StaffComponentProps) => {
                 <ModalHeader toggle={toggle}>{name}</ModalHeader>
                 <ModalBody>
                     <p><strong>Title:</strong> {title}</p>
-                    {department ? <p><strong>Department:</strong> {department}</p> : null}
+                    {dept ? <p><strong>Department:</strong> {dept}</p> : null}
                     <p><strong>Email:</strong> {email}</p>
                     {phone ? <p><strong>Phone:</strong> {phone}</p> : null}
-                    {periods ? <p><strong>Schedule:</strong></p> : null}
+                    {periods ? <p>
+                        <strong>Schedule:
+                            <button onClick={() => setSemester('1')}>1</button>
+                            <button onClick={() => setSemester('2')}>2</button>
+                        </strong>
+                    </p> : null}
                     {periods ? renderSchedule(periods) : null}
                 </ModalBody>
                 <ModalFooter>

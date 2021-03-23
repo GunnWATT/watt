@@ -2,9 +2,14 @@ import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'reactstrap';
 
 
-type ClubComponentProps = {name: string, room: string, day: string, time: string, desc: string, president: string, teacher: string, email: string, new: boolean};
-const ClubComponent = (props: ClubComponentProps) => {
-    const {name, room, day, time, desc, president, teacher, email} = props;
+export type Club = {
+    name: string, new?: boolean, /* room: string, */ desc: string, day: string, time: string,
+    zoom?: string, video?: string, signup?: string, tier: number,
+    prez: string, advisor: string, email: string,
+}
+
+const ClubComponent = (props: Club) => {
+    const {name, desc, /* room, */ day, time, zoom, video, signup, prez, advisor, email} = props;
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
@@ -12,7 +17,7 @@ const ClubComponent = (props: ClubComponentProps) => {
     return (
         <li onClick={toggle}>
             <span className="primary">{name}</span>
-            <span className="secondary">{room}</span>
+            {/* <span className="secondary">{room}</span> */}
             <span className="secondary">{day}</span>
 
             <Modal isOpen={modal} toggle={toggle}>
@@ -22,8 +27,11 @@ const ClubComponent = (props: ClubComponentProps) => {
                     <p><strong>Meeting time:</strong> {time}</p>
                     {/* <p><strong>Location:</strong> {room}</p> */}
                     <p><strong>Description:</strong> {desc}</p>
-                    <p><strong>President(s):</strong> {president}</p>
-                    <p><strong>Teacher Advisor(s):</strong> {teacher}</p>
+                    {video ? <p><strong>Club Video:</strong> <a href={video}>{video}</a></p> : null}
+                    {signup ? <p><strong>Signup Form:</strong> <a href={signup}>{signup}</a></p> : null}
+                    {zoom ? <p><strong>Zoom Link:</strong> <a href={zoom}>{zoom}</a></p> : null}
+                    <p><strong>President(s):</strong> {prez}</p>
+                    <p><strong>Teacher Advisor(s):</strong> {advisor}</p>
                     <p><strong>Teacher Email:</strong> {email}</p>
                 </ModalBody>
                 <ModalFooter>
