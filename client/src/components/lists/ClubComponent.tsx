@@ -27,9 +27,9 @@ const ClubComponent = (props: Club) => {
                     <p><strong>Meeting time:</strong> {time}</p>
                     {/* <p><strong>Location:</strong> {room}</p> */}
                     <p><strong>Description:</strong> {desc}</p>
-                    {video ? <p><strong>Club Video:</strong> <a href={video}>{video}</a></p> : null}
-                    {signup ? <p><strong>Signup Form:</strong> <a href={signup}>{signup}</a></p> : null}
-                    {zoom ? <p><strong>Zoom Link:</strong> <a href={zoom}>{zoom}</a></p> : null}
+                    {video ? <p><strong>Club Video:</strong> <a href={video} target="_blank" rel="noopener noreferrer">{video}</a></p> : null}
+                    {signup ? <p><strong>Signup Form:</strong> <a href={signup} target="_blank" rel="noopener noreferrer">{signup}</a></p> : null}
+                    {zoom ? <p><strong>Zoom Link:</strong> <a href={zoom} target="_blank" rel="noopener noreferrer">{zoom}</a></p> : null}
                     <p><strong>President(s):</strong> {prez}</p>
                     <p><strong>Teacher Advisor(s):</strong> {advisor}</p>
                     <p><strong>Teacher Email:</strong> {email}</p>
