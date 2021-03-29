@@ -7,21 +7,23 @@ const Header = (props: HeaderProps) => {
     const {heading, nav, children, other} = props;
 
     return (
-        <div className="header-background">
+        <>
             <div id="red-bg" />
-            <Container className="header">
+            <div className="header-background">
+                <Container className="header">
                 <span className="heading">
                     <h1>{heading}</h1>
                     {other}
                 </span>
-            </Container>
-            <Container className="page-nav">
-                {nav}
-            </Container>
-            <Container className="page">
-                {children}
-            </Container>
-        </div>
+                </Container>
+                <Container className="page-nav">
+                    {nav}
+                </Container>
+                <Container className="page">
+                    {children}
+                </Container>
+            </div>
+        </>
     );
 }
 

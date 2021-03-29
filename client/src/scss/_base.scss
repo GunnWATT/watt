@@ -20,13 +20,13 @@ body {
   height: 100%;
 }
 
-.app {
+#app {
   height: 100%;
   display: flex;
   position: relative;
 
   /* The main content pane of the app */
-  .content {
+  #content {
     flex-grow: 1;
     display: flex;
     flex-direction: column;

@@ -47,13 +47,13 @@ const Testing = () => {
                     </Row>
                 </div>
             </div>
-            <div className="loading-test fixed-height">
+            <div className="loading-test">
                 <Loading/>
             </div>
-            <div className="work-test fixed-height">
+            <div className="work-test">
                 <WIP/>
             </div>
-            <div className="query-test fixed-height">
+            <div className="query-test">
                 <NoResults/>
             </div>
             <div className="periods-test">

@@ -29,9 +29,9 @@ const Layout = (props: LayoutProps) => {
 
     return (
         <>
-            <div className="app">
+            <div id="app">
                 <Sidebar/>
-                <div className="content">
+                <div id="content">
                     {props.children}
                 </div>
             </div>

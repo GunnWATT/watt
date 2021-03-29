@@ -4,6 +4,7 @@
 .header-background {
   //@extend %theme-backdrop;
   padding: 24px;
+  z-index: 2;
 
   // Red box that displays the heading
   .header {
@@ -49,6 +50,6 @@
   // White box that displays the tab content
   .page {
     @include content-box($radius: 0 0 10px 10px, $bg-color: white);
-    min-height: 300px;
+    //min-height: 300px;
   }
 }

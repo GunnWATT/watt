@@ -16,13 +16,13 @@ body ::-webkit-scrollbar-thumb {
   height: 100%;
 }
 
-.app {
+#app {
   height: 100%;
   display: flex;
   position: relative;
   /* The main content pane of the app */
 }
-.app .content {
+#app #content {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -183,6 +183,7 @@ ul.material-list li, .sidebar .toggler {
 
 .header-background, .testing {
   padding: 24px;
+  z-index: 2;
 }
 .header-background .header, .testing .header {
   display: flex;
@@ -225,7 +226,6 @@ ul.material-list li, .sidebar .toggler {
   background-color: white;
   border-radius: 0 0 10px 10px;
   box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.1);
-  min-height: 300px;
 }
 
 .home {
@@ -306,6 +306,11 @@ ul.material-list li, .sidebar .toggler {
   width: 100%;
 }
 
+.map {
+  position: fixed;
+  height: 100vh;
+}
+
 ul.material-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -346,9 +351,6 @@ ul.material-list li span {
 .testing > div > * {
   margin: 5px 0;
 }
-.testing .fixed-height {
-  height: 300px;
-}
 
 .\34 04 {
   height: 100%;
@@ -383,6 +385,7 @@ input[type=date]:focus {
   background-color: #efefef;
   color: rgba(0, 0, 0, 0.54);
   display: flex;
+  height: 300px;
 }
 .loading span {
   display: inline-flex;
@@ -396,6 +399,7 @@ input[type=date]:focus {
   flex-grow: 1;
   color: rgba(0, 0, 0, 0.54);
   display: flex;
+  height: 300px;
 }
 .no-results span {
   display: inline-flex;
@@ -410,6 +414,7 @@ input[type=date]:focus {
   justify-content: center;
   align-items: center;
   text-align: center;
+  height: 300px;
   /*
   span {
     margin: auto;
