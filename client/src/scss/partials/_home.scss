@@ -17,13 +17,19 @@
     margin-bottom: 2rem;
 
     .react-datepicker-wrapper {
+      padding: 5px 0;
       background-color: #ffffff;
-      border-radius: 10px;
+      border-radius: 5px;
       box-shadow: 0 3px 5px 3px rgba(0,0,0,.1);
 
       input {
         text-align: center;
         border: none;
+        background: none;
+
+        &:focus {
+          outline: none;
+        }
       }
     }
   }
@@ -94,4 +100,6 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing:    border-box;
   box-sizing:         border-box;
+  position: sticky;
+  top: 24px;
 }

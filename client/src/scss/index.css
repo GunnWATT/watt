@@ -244,13 +244,18 @@ ul.material-list li, .sidebar .toggler {
   margin-bottom: 2rem;
 }
 .schedule .date-selector .react-datepicker-wrapper {
+  padding: 5px 0;
   background-color: #ffffff;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.1);
 }
 .schedule .date-selector .react-datepicker-wrapper input {
   text-align: center;
   border: none;
+  background: none;
+}
+.schedule .date-selector .react-datepicker-wrapper input:focus {
+  outline: none;
 }
 .schedule .schedule-dayname {
   font-size: 72px;
@@ -299,6 +304,8 @@ ul.material-list li, .sidebar .toggler {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  position: sticky;
+  top: 24px;
 }
 
 .desmos-embed {

@@ -31,7 +31,7 @@ const DateSelector = ({incDay, decDay, setViewDate, viewDate}: DateSelectorProps
                 selected={viewDate.toDate()}
                 onChange={(date: Date) => setViewDate(date)}
                 todayButton="Jump to Present"
-                dateFormat="MMMM d"
+                dateFormat="MMMM d, yyyy"
             />
 
             <button className="icon" onClick={incDay}>
