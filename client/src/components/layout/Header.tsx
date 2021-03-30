@@ -9,7 +9,7 @@ const Header = (props: HeaderProps) => {
     return (
         <>
             <div id="red-bg" />
-            <div className="header-background">
+            <Container className="header-background">
                 <Container className="header">
                 <span className="heading">
                     <h1>{heading}</h1>
@@ -22,7 +22,7 @@ const Header = (props: HeaderProps) => {
                 <Container className="page">
                     {children}
                 </Container>
-            </div>
+            </Container>
         </>
     );
 }
