@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 // Components
 import List from './List';
-import StaffComponent, {Staff as StaffComponentProps} from './StaffComponent';
+import StaffComponent, {SemesterClassObj, Staff as StaffComponentProps} from './StaffComponent';
 
 // Data
 import staff from "../../data/staff";
@@ -28,6 +28,29 @@ const Staff = () => {
         return lastNames[0];
     }
 
+    // Checks if the query matched a name of a class taught by the teacher to allow searching by classes
+    const classInQuery = (query: string, staff: StaffComponentProps) => {
+        if (!staff.periods) return false;
+
+        const searchInner = (semClass: SemesterClassObj) => {
+            if (semClass === 'none') return false;
+            return semClass[0].toLowerCase().includes(query);
+        }
+
+        const searchClasses = (classes: SemesterClassObj | {1: SemesterClassObj, 2: SemesterClassObj}) => {
+            // Hackily determine what type classes is
+            if (typeof classes === 'object' && !Array.isArray(classes))
+                return searchInner(classes['1']) || searchInner(classes['2']);
+            return searchInner(classes);
+        }
+
+        for (const per in ['1', '2', '3', '4', '5', '6', '7', '8']) {
+            const classTaught = staff.periods[per];
+            if (classTaught && (searchClasses(classTaught['1']) || searchClasses(classTaught['2']))) return true;
+        }
+        return false;
+    }
+
     return (
         <>
             <span className="heading">
@@ -45,6 +68,7 @@ const Staff = () => {
                     staff.name.toLowerCase().includes(query.toLowerCase())
                     || staff.title.toLowerCase().includes(query.toLowerCase())
                     || staff.email.toLowerCase().includes(query.toLowerCase())
+                    || classInQuery(query.toLowerCase(), staff)
                 }
                 map={([id, staff]) =>
                     <StaffComponent

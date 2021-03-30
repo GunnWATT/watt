@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'reactstrap';
 
 
-type SemesterClassObj = [string, string | null] | 'none';
-type ClassObj = {
+export type SemesterClassObj = [string, string | null] | 'none';
+export type ClassObj = {
     1: SemesterClassObj | {1: SemesterClassObj, 2: SemesterClassObj},
     2: SemesterClassObj | {1: SemesterClassObj, 2: SemesterClassObj}
 };
