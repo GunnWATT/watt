@@ -2,6 +2,15 @@ import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'reactstrap';
 
 
+/*
+The period data structure is a bunch of nested Objects, where each period is represented by its name
+(1, 2, 3, SELF, etc.) and contains data structured like so:
+{1: [Class, Room], 2: [Class, Room]}
+where 1 and 2 represent first and second semester. However, we also need to support when two classes
+are taught at once in one period, where the data would be structured instead like
+{1: {1: [Class, Room], 2: [Class, Room]} 2: ...}
+*/
+
 export type SemesterClassObj = [string, string | null] | 'none';
 export type ClassObj = {
     1: SemesterClassObj | {1: SemesterClassObj, 2: SemesterClassObj},
@@ -15,19 +24,10 @@ const StaffComponent = (props: Staff) => {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
-    const [semester, setSemester] = useState('1'); // Consider dynamically setting semester later
+    const [semester, setSemester] = useState<'1' | '2'>('1'); // Consider dynamically setting semester later
 
-    // TODO: make this not use any
-    const renderSchedule = (periods: any) => {
-        const parseNested = (name: string, semester: string) => {
-            /*
-            The period data structure is a bunch of nested Objects, where each period is represented by its name
-            (1, 2, 3, SELF, etc.) and contains data structured like so:
-            {1: [Class, Room], 2: [Class, Room]}
-            where 1 and 2 represent first and second semester. However, we also need to support when two classes
-            are taught at once in one period, where the data would be structured instead like
-            {1: {1: [Class, Room], 2: [Class, Room]} 2: ...}
-            */
+    const renderSchedule = (periods: {[key: string]: ClassObj}) => {
+        const parseNested = (name: string, semester: '1' | '2') => {
 
             let course;
             let room;
