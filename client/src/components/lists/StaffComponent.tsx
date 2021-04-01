@@ -12,11 +12,12 @@ are taught at once in one period, where the data would be structured instead lik
 */
 
 export type SemesterClassObj = [string, string | null] | 'none';
-export type ClassObj = {
-    1: SemesterClassObj | {1: SemesterClassObj, 2: SemesterClassObj},
-    2: SemesterClassObj | {1: SemesterClassObj, 2: SemesterClassObj}
+export type ClassObj = SemesterClassObj | {1: SemesterClassObj, 2: SemesterClassObj};
+export type PeriodObj = {1: ClassObj, 2: ClassObj};
+export type Staff = {
+    name: string, title: string, email: string,
+    dept?: string, phone?: string, periods?: {[key: string]: PeriodObj}
 };
-export type Staff = {name: string, title: string, email: string, dept?: string, phone?: string, periods?: {[key: string]: ClassObj}};
 
 const StaffComponent = (props: Staff) => {
     const {name, title, email, dept, phone, periods} = props;
@@ -26,7 +27,7 @@ const StaffComponent = (props: Staff) => {
 
     const [semester, setSemester] = useState<'1' | '2'>('1'); // Consider dynamically setting semester later
 
-    const renderSchedule = (periods: {[key: string]: ClassObj}) => {
+    const renderSchedule = (periods: {[key: string]: PeriodObj}) => {
         const parseNested = (name: string, semester: '1' | '2') => {
 
             let course;

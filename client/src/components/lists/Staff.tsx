@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 // Components
 import List from './List';
-import StaffComponent, {SemesterClassObj, Staff as StaffComponentProps} from './StaffComponent';
+import StaffComponent, {ClassObj, SemesterClassObj, Staff as StaffComponentProps} from './StaffComponent';
 
 // Data
 import staff from "../../data/staff";
@@ -37,7 +37,7 @@ const Staff = () => {
             return semClass[0].toLowerCase().includes(query);
         }
 
-        const searchClasses = (classes: SemesterClassObj | {1: SemesterClassObj, 2: SemesterClassObj}) => {
+        const searchClasses = (classes: ClassObj) => {
             // Hackily determine what type classes is
             if (typeof classes === 'object' && !Array.isArray(classes))
                 return searchInner(classes['1']) || searchInner(classes['2']);
