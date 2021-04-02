@@ -1,21 +1,23 @@
 import React, {useState, useEffect} from 'react';
-import NoResults from "./NoResults";
+import NoResults from './NoResults';
 
 
 type ListEntriesPair = [string, any]
 type ListProps = {
-    data: any[][] | any,
+    data: ListEntriesPair[] | {[key: string]: any}, // Data can either be an Object.entries result or the raw JSON
     filter: ([id, value]: ListEntriesPair) => boolean,
     map: ([id, value]: ListEntriesPair) => JSX.Element,
-    sort: (([idA, valueA]: ListEntriesPair, [idB, valueB]: ListEntriesPair) => number)
+    sort: ([idA, valueA]: ListEntriesPair, [idB, valueB]: ListEntriesPair) => number
+    pinned: string[]
 }
 
 // Higher order List component for clubs and staff now that they are separate
 const List = (props: ListProps) => {
     // Filter and map are different for each list, so pass them in as props
-    let {data, filter, map, sort} = props;
+    let {data, filter, map, sort, pinned} = props;
 
-    const [content, setContent] = useState<any>([]);
+    const [content, setContent] = useState<JSX.Element[]>([]);
+    const [pinnedContent, setPinnedContent] = useState<JSX.Element[]>([])
 
     // Renders content on mount and when data or query changes
     useEffect(() => {
@@ -30,17 +32,44 @@ const List = (props: ListProps) => {
             newContent = Object.entries(data).sort(sort);
         }
 
-        // Filter via query, map to components
-        setContent(newContent.filter(filter).map(map));
+        // Filter out pinned components and display separately
+        // Can probably be done better
+        let pinnedData = newContent.filter(([id, value]) => pinned.includes(id));
+        let unpinnedData = newContent.filter(([id, value]) => !pinned.includes(id));
+
+        // Filter each via query, map to components
+        setContent(unpinnedData.filter(filter).map(map));
+        setPinnedContent(pinnedData.filter(filter).map(map))
     }, [data, filter])
 
-    return (
-        content.length
+
+    // Render the HTML to be displayed
+    // Can probably be done better
+    const render = () => {
+        let pinnedHTML = pinnedContent.length
+            ? <ul className="material-list">
+                {pinnedContent}
+              </ul>
+            : null
+        let hr = content.length && pinnedContent.length ? <hr/> : null;
+        let unpinnedHTML = content.length
             ? <ul className="material-list">
                 {content}
               </ul>
-            : <NoResults/>
-    );
+            : null
+
+        return (
+            content.length || pinnedContent.length
+                ? <>
+                    {pinnedHTML}
+                    {hr}
+                    {unpinnedHTML}
+                  </>
+                : <NoResults/>
+        );
+    }
+
+    return render();
 }
 
 export default List;

@@ -101,6 +101,7 @@ const Clubs = (props: HomeProps) => {
                     />
                 }
                 sort={([idA, clubA], [idB, clubB]) => clubA.name.localeCompare(clubB.name)}
+                pinned={[]}
             />
         </Header>
     );

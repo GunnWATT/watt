@@ -82,6 +82,7 @@ const Staff = () => {
                     />
                 }
                 sort={([idA, staffA], [idB, staffB]) => preferredLastName(staffA).localeCompare(preferredLastName(staffB))}
+                pinned={['10150', '10968', '11614', '12197']} // Placeholder pinned staff, replace with firestore later
             />
         </>
     );
