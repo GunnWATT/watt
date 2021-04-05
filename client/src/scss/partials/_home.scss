@@ -93,7 +93,7 @@
 
 // The events portion of the home page
 .events {
-  height: 100vh;
+  height: calc(100vh - 48px); // 100vh - 48px doesn't work but calc(100vh - 48px) does
   margin: 0 10px;
   overflow: auto;
   @include content-box();

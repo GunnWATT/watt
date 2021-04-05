@@ -292,7 +292,7 @@ ul.material-list li, .sidebar .toggler {
 }
 
 .events {
-  height: 100vh;
+  height: calc(100vh - 48px);
   margin: 0 10px;
   overflow: auto;
   display: flex;

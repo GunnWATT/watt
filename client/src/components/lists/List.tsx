@@ -43,33 +43,23 @@ const List = (props: ListProps) => {
     }, [data, filter])
 
 
-    // Render the HTML to be displayed
-    // Can probably be done better
-    const render = () => {
-        let pinnedHTML = pinnedContent.length
-            ? <ul className="material-list">
-                {pinnedContent}
-              </ul>
-            : null
-        let hr = content.length && pinnedContent.length ? <hr/> : null;
-        let unpinnedHTML = content.length
-            ? <ul className="material-list">
-                {content}
-              </ul>
-            : null
-
-        return (
-            content.length || pinnedContent.length
-                ? <>
-                    {pinnedHTML}
-                    {hr}
-                    {unpinnedHTML}
-                  </>
-                : <NoResults/>
-        );
-    }
-
-    return render();
+    return (
+        content.length || pinnedContent.length
+            ? <>
+                {pinnedContent.length
+                    ? <ul className="material-list">
+                        {pinnedContent}
+                      </ul>
+                    : null}
+                {content.length && pinnedContent.length ? <hr/> : null}
+                {content.length
+                    ? <ul className="material-list">
+                        {content}
+                      </ul>
+                    : null}
+              </>
+            : <NoResults/>
+    );
 }
 
 export default List;
