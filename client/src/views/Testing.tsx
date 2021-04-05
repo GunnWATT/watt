@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import { ColorResult, SketchPicker, ChromePicker, BlockPicker } from 'react-color';
-import { Row } from 'reactstrap';
+import { Row, Carousel, CarouselControl, CarouselIndicators, CarouselItem, CarouselCaption } from 'reactstrap';
 
 // Components
 import Period from '../components/schedule/Period';
@@ -10,10 +10,79 @@ import WIP from '../components/misc/WIP';
 import NoResults from '../components/lists/NoResults';
 import SgySignInBtn from '../components/auth/SgySignInBtn';
 
+// Images
+import noschool1 from '../assets/electronhw.png';
+//import noschool2 from '../assets/noschool2.png'; // Consider removing
+import noschool3 from '../assets/electroncoffee.png';
+import noschool4 from '../assets/electronvsepr.png';
+import noschool5 from '../assets/electronconfig.png';
+import noschool6 from '../assets/electronphasechange.png';
+import noschool7 from '../assets/electrondipole.png';
+import noschool8 from '../assets/electrongaslaws.png';
+import noschool9 from '../assets/electronactivationenergy.png';
+import noschool10 from '../assets/electronboxandpointer.png';
+import noschool11 from '../assets/electrontrumpet.png';
+import noschool12 from '../assets/electronbst.png';
+import noschool13 from '../assets/electronblochsphere.png';
+import noschool14 from '../assets/electroncell.png';
+
+
+// Big electron image object for carousel
+const items = [
+    {src: noschool1, caption: 'electronhw', altText: ''},
+    //{src: noschool2, caption: ''},
+    {src: noschool3, caption: 'electroncoffee'},
+    {src: noschool4, caption: 'electronvsepr'},
+    {src: noschool5, caption: 'electronconfig'},
+    {src: noschool6, caption: 'electronphasechange'},
+    {src: noschool7, caption: 'electrondipole'},
+    {src: noschool8, caption: 'electrongaslaws'},
+    {src: noschool9, caption: 'electronactivationenergy'},
+    {src: noschool10, caption: 'electronboxandpointer'},
+    {src: noschool11, caption: 'electrontrumpet'},
+    {src: noschool12, caption: 'electronbst'},
+    {src: noschool13, caption: 'electronblochsphere'},
+    {src: noschool14, caption: 'electroncell'}
+];
+
 
 const Testing = () => {
+    // Color picker background
     const [color, setColor] = useState('#fff');
     const changeColor = (color: ColorResult) => setColor(color.hex);
+
+    // Electron image carousel
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [animating, setAnimating] = useState(false);
+
+    const next = () => {
+        if (animating) return;
+        const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+        setActiveIndex(nextIndex);
+    }
+    const previous = () => {
+        if (animating) return;
+        const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+        setActiveIndex(nextIndex);
+    }
+    const goToIndex = (newIndex: number) => {
+        if (animating) return;
+        setActiveIndex(newIndex);
+    }
+
+    const slides = items.map((item) => {
+        return (
+            <CarouselItem
+                onExiting={() => setAnimating(true)}
+                onExited={() => setAnimating(false)}
+                key={item.src}
+            >
+                <img src={item.src} alt={item.caption} style={{maxHeight: "400px", maxWidth: "600px"}}/>
+                {/* <CarouselCaption captionText={item.caption}/> */}
+            </CarouselItem>
+        );
+    });
+
 
     return (
         <div className="testing">
@@ -46,6 +115,19 @@ const Testing = () => {
                         />
                     </Row>
                 </div>
+            </div>
+            <div className="electron-images">
+                <Carousel
+                    activeIndex={activeIndex}
+                    next={next}
+                    previous={previous}
+                    interval={false}
+                >
+                    <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
+                    {slides}
+                    <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
+                    <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
+                </Carousel>
             </div>
             <div className="loading-test">
                 <Loading/>

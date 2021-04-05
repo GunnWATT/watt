@@ -359,6 +359,19 @@ ul.material-list li span {
   margin: 5px 0;
 }
 
+.electron-images {
+  height: 434px;
+}
+.electron-images .carousel {
+  height: 100%;
+}
+.electron-images .carousel .carousel-inner {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
 .\34 04 {
   height: 100%;
   display: flex;

@@ -13,3 +13,17 @@
     }
   }
 }
+
+.electron-images {
+  height: 434px;
+
+  .carousel {
+    height: 100%;
+    .carousel-inner {
+      text-align: center;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
