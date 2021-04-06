@@ -3,7 +3,7 @@ import {Moment} from 'moment';
 
 // Images
 import noschool1 from '../../assets/electronhw.png';
-//import noschool2 from '../../assets/noschool2.png'; // Consider removing
+//import noschool2 from '../../assets/';
 import noschool3 from '../../assets/electroncoffee.png';
 import noschool4 from '../../assets/electronvsepr.png';
 import noschool5 from '../../assets/electronconfig.png';
