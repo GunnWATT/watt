@@ -9,6 +9,7 @@ import Loading from '../components/misc/Loading';
 import WIP from '../components/misc/WIP';
 import NoResults from '../components/lists/NoResults';
 import SgySignInBtn from '../components/auth/SgySignInBtn';
+import Dashboard from '../components/classes/Dashboard';
 
 // Images
 import noschool1 from '../assets/electronhw.png';
@@ -98,6 +99,10 @@ const Testing = () => {
             <div className="auth-test">
                 <SgySignInBtn/>
             </div>
+            <div className="dashboard-test">
+                <Dashboard/>
+            </div>
+            
             <div className="colorpicker-test">
                 <div style={{backgroundColor: color}}>
                     <Row>

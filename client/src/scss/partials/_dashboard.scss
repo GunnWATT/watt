@@ -1,0 +1,78 @@
+@import '../mixins/content-box';
+
+// dashboard
+.dashboard {
+    display:flex;
+    flex-direction: row;
+    // height: 350px;
+}
+
+// dashboard class list thing
+.dashboard-class-list {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding: 5px;
+    margin: 5px;
+    align-items: center;
+    overflow-y: auto;
+}
+
+// dashbaord course
+.dashboard-course {
+    width: 90%;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 7px;
+    font-size: 1.1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 20px;
+}
+
+$arrow-size: 18px;
+$arrow-thickness: 2.5px;
+
+// CSS ::after hack to make arrows using borders and rotate(45deg)
+.dashboard-course::after {
+    content: "";
+    margin-left: auto;
+    height: $arrow-size;
+    width: $arrow-size;
+    transform: rotate(45deg);
+    border-top: $arrow-thickness solid black;
+    border-right: $arrow-thickness solid black;
+}
+
+// Dashboard info
+.dashboard-class-info {
+    padding: 10px;
+    @include content-box($bg-color: white);
+    flex-grow: 1;
+    margin: 5px;
+    padding: 30px;
+}
+
+.dashboard-class-header {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.3rem;
+    align-items: center;
+}
+
+.dashboard-class-title {
+    font-size: 1.3rem;
+    flex-grow: 5;
+}
+
+.dashboard-class-grade {
+    // margin-left: 50%;
+    flex-grow: 1;
+}
+
+.dashboard-class-link {
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+}
