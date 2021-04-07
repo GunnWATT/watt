@@ -4,7 +4,7 @@
 .dashboard {
     display:flex;
     flex-direction: row;
-    // height: 350px;
+    height: 80vh;
 }
 
 // dashboard class list thing
@@ -29,6 +29,7 @@
     flex-direction: row;
     align-items: center;
     padding-right: 20px;
+    cursor: pointer;
 }
 
 $arrow-size: 18px;
@@ -52,6 +53,7 @@ $arrow-thickness: 2.5px;
     flex-grow: 1;
     margin: 5px;
     padding: 30px;
+    overflow-y: scroll;
 }
 
 .dashboard-class-header {
@@ -59,6 +61,7 @@ $arrow-thickness: 2.5px;
     flex-direction: row;
     font-size: 1.3rem;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .dashboard-class-title {
@@ -75,4 +78,47 @@ $arrow-thickness: 2.5px;
     width: 30px;
     height: 30px;
     margin-left: auto;
+}
+
+@mixin dashboard-header() {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.1em;
+}
+
+// Warnings
+.dashboard-warnings {
+    margin-bottom: 20px;
+}
+
+.dashboard-warnings-header {
+    @include dashboard-header();
+    margin-bottom: 20px;
+}
+
+.dashboard-warnings-list {
+    list-style-type: none;
+}
+
+.dashboard-warnings-list li::before {
+    content: "MISSING: "
+}
+
+// Upcoming
+.dashboard-upcoming-header {
+    @include dashboard-header();
+}
+
+.dashboard-upcoming-container {
+    padding: 15px;
+}
+
+.dashboard-upcoming-list {
+    list-style-type: none;
+}
+
+.dashboard-upcoming-day-header {
+    margin-bottom: 5px;
+    font-size: 1.05em;
 }

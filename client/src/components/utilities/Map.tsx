@@ -14,8 +14,8 @@ const Map = () => {
             width="100%"
             title="google-map"
             frameBorder="0"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCy3pN97ODnqOMvoGABYhN3bM4-qkro-eg&q=Henry+M+Gunn+High+School"
-            //src="https://desmos.com/calculator" // Use desmos embed for testing, since the google map blocks localhost
+            // src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCy3pN97ODnqOMvoGABYhN3bM4-qkro-eg&q=Henry+M+Gunn+High+School"
+            src="https://desmos.com/calculator" // Use desmos embed for testing, since the google map blocks localhost
             allowFullScreen>
         </iframe>,
         document.getElementById('content')!

@@ -446,6 +446,7 @@ input[type=date]:focus {
 .dashboard {
   display: flex;
   flex-direction: row;
+  height: 80vh;
 }
 
 .dashboard-class-list {
@@ -468,6 +469,7 @@ input[type=date]:focus {
   flex-direction: row;
   align-items: center;
   padding-right: 20px;
+  cursor: pointer;
 }
 
 .dashboard-course::after {
@@ -491,6 +493,7 @@ input[type=date]:focus {
   flex-grow: 1;
   margin: 5px;
   padding: 30px;
+  overflow-y: scroll;
 }
 
 .dashboard-class-header {
@@ -498,6 +501,7 @@ input[type=date]:focus {
   flex-direction: row;
   font-size: 1.3rem;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .dashboard-class-title {
@@ -513,6 +517,46 @@ input[type=date]:focus {
   width: 30px;
   height: 30px;
   margin-left: auto;
+}
+
+.dashboard-warnings {
+  margin-bottom: 20px;
+}
+
+.dashboard-warnings-header {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+}
+
+.dashboard-warnings-list {
+  list-style-type: none;
+}
+
+.dashboard-warnings-list li::before {
+  content: "MISSING: ";
+}
+
+.dashboard-upcoming-header {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.1em;
+}
+
+.dashboard-upcoming-container {
+  padding: 15px;
+}
+
+.dashboard-upcoming-list {
+  list-style-type: none;
+}
+
+.dashboard-upcoming-day-header {
+  margin-bottom: 5px;
+  font-size: 1.05em;
 }
 
 /*# sourceMappingURL=index.css.map */
