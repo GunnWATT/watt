@@ -17,8 +17,8 @@ import {
 import SidebarItem from './SidebarItem';
 
 // Authentication
-import {useAuthState} from 'react-firebase-hooks/auth';
 import firebase from '../../firebase/Firebase';
+import {useAuthState} from 'react-firebase-hooks/auth';
 import {FirestoreInit} from '../../firebase/Authentication';
 import GoogleSignInBtn from '../auth/GoogleSignInBtn';
 import GoogleSignOutBtn from '../auth/GoogleSignOutBtn';

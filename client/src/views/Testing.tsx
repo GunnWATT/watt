@@ -13,7 +13,7 @@ import Dashboard from '../components/classes/Dashboard';
 
 // Images
 import noschool1 from '../assets/electronhw.png';
-//import noschool2 from '../assets/noschool2.png'; // Consider removing
+import noschool2 from '../assets/electronmitosis.png';
 import noschool3 from '../assets/electroncoffee.png';
 import noschool4 from '../assets/electronvsepr.png';
 import noschool5 from '../assets/electronconfig.png';
@@ -26,12 +26,15 @@ import noschool11 from '../assets/electrontrumpet.png';
 import noschool12 from '../assets/electronbst.png';
 import noschool13 from '../assets/electronblochsphere.png';
 import noschool14 from '../assets/electroncell.png';
+import noschool15 from '../assets/electronhybridization.png';
+import noschool16 from '../assets/electronpedigree.png';
+import noschool17 from '../assets/electronviolin.png';
 
 
 // Big electron image object for carousel
 const items = [
     {src: noschool1, caption: 'electronhw', altText: ''},
-    //{src: noschool2, caption: ''},
+    {src: noschool2, caption: 'electronmitosis'},
     {src: noschool3, caption: 'electroncoffee'},
     {src: noschool4, caption: 'electronvsepr'},
     {src: noschool5, caption: 'electronconfig'},
@@ -43,7 +46,10 @@ const items = [
     {src: noschool11, caption: 'electrontrumpet'},
     {src: noschool12, caption: 'electronbst'},
     {src: noschool13, caption: 'electronblochsphere'},
-    {src: noschool14, caption: 'electroncell'}
+    {src: noschool14, caption: 'electroncell'},
+    {src: noschool15, caption: 'electronhybridization'},
+    {src: noschool16, caption: 'electronpedigree'},
+    {src: noschool17, caption: 'electronviolin'}
 ];
 
 

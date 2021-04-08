@@ -3,7 +3,7 @@ import {Moment} from 'moment';
 
 // Images
 import noschool1 from '../../assets/electronhw.png';
-//import noschool2 from '../../assets/';
+import noschool2 from '../../assets/electronmitosis.png';
 import noschool3 from '../../assets/electroncoffee.png';
 import noschool4 from '../../assets/electronvsepr.png';
 import noschool5 from '../../assets/electronconfig.png';
@@ -16,6 +16,9 @@ import noschool11 from '../../assets/electrontrumpet.png';
 import noschool12 from '../../assets/electronbst.png';
 import noschool13 from '../../assets/electronblochsphere.png';
 import noschool14 from '../../assets/electroncell.png';
+import noschool15 from '../../assets/electronhybridization.png';
+import noschool16 from '../../assets/electronpedigree.png';
+import noschool17 from '../../assets/electronviolin.png';
 
 
 // Seeding function
@@ -33,8 +36,9 @@ export function mulberry32(a: number) {
 
 // Get a random no-school image
 const randomImage = (millis: number): string => {
-    const options = [noschool1, /* noschool2, */ noschool3, noschool4, noschool5, noschool6, noschool7, noschool8,
-        noschool9, noschool10, noschool11, noschool12, noschool13, noschool14];
+    const options = [noschool1, noschool2, noschool3, noschool4, noschool5, noschool6, noschool7, noschool8,
+        noschool9, noschool10, noschool11, noschool12, noschool13, noschool14, noschool15, noschool16,
+        noschool17];
     const seed = mulberry32(millis);
 
     // Old non-seeded random function

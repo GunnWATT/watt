@@ -13,6 +13,10 @@ import Testing from './views/Testing';
 import PageNotFound from './views/404';
 import SgyAuthRedirect from './views/SgyAuthRedirect';
 
+// Firestore
+import firebase from './firebase/Firebase';
+import {useCollection} from 'react-firebase-hooks/firestore';
+
 
 const App = () => {
     // Global datetime
@@ -32,6 +36,10 @@ const App = () => {
         }
     }, [])
 
+    // Firestore data
+    const firestore = firebase.firestore;
+    const [userData, loading, error] = useCollection(firestore.collection('gunn'));
+
     return (
         <Router>
             <Layout>
@@ -44,6 +52,9 @@ const App = () => {
                     <Route path='/super-secret-testing' component={Testing} />
                     <Route path='/schoology/auth' component={SgyAuthRedirect} />
                     <Route component={PageNotFound}/>
+                    {error && console.log(error)}
+                    {loading && console.log(loading)}
+                    {userData && console.log(userData)}
                 </Switch>
             </Layout>
         </Router>
