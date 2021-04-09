@@ -1,14 +1,16 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
+import UserDataContext from '../../contexts/userDataContext';
 
 // Components
 import List from './List';
 import StaffComponent, {ClassObj, SemesterClassObj, Staff as StaffComponentProps} from './StaffComponent';
 
 // Data
-import staff from "../../data/staff";
+import staff from '../../data/staff';
 
 
 const Staff = () => {
+    const userData = useContext(UserDataContext)
     const [query, setQuery] = useState('');
 
     // Parses last names to find the preferred last name by matching it with the staff email
@@ -82,7 +84,7 @@ const Staff = () => {
                     />
                 }
                 sort={([idA, staffA], [idB, staffB]) => preferredLastName(staffA).localeCompare(preferredLastName(staffB))}
-                pinned={['10150', '10968', '11614', '12197']} // Placeholder pinned staff, replace with firestore later
+                pinned={userData?.staff ?? []}
             />
         </>
     );

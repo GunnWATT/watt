@@ -1,15 +1,16 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
+import {Nav} from 'reactstrap';
 import {Moment} from 'moment';
+import UserDataContext from '../contexts/userDataContext';
 
 // Components
 import List from '../components/lists/List';
-import Header from "../components/layout/Header";
-import {Nav} from "reactstrap";
-import ClubComponent from "../components/lists/ClubComponent";
+import Header from '../components/layout/Header';
+import StateTab from '../components/layout/StateTab';
+import ClubComponent from '../components/lists/ClubComponent';
 
 // Data
 import clubs from '../data/clubs';
-import StateTab from "../components/layout/StateTab";
 
 
 type HomeProps = {date: Moment}
@@ -23,6 +24,9 @@ const Clubs = (props: HomeProps) => {
     const toggle = (tab: string) => {
         if (activeTab !== tab) setActiveTab(tab);
     }
+
+    // User data for pinned
+    const userData = useContext(UserDataContext);
 
     // Search
     const [query, setQuery] = useState('');
@@ -101,7 +105,7 @@ const Clubs = (props: HomeProps) => {
                     />
                 }
                 sort={([idA, clubA], [idB, clubB]) => clubA.name.localeCompare(clubB.name)}
-                pinned={[]}
+                pinned={userData?.clubs ?? []}
             />
         </Header>
     );

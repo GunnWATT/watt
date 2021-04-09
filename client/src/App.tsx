@@ -13,9 +13,12 @@ import Testing from './views/Testing';
 import PageNotFound from './views/404';
 import SgyAuthRedirect from './views/SgyAuthRedirect';
 
+// Context
+import {UserData, UserDataProvider} from './contexts/userDataContext';
+
 // Firestore
 import firebase from './firebase/Firebase';
-import {useCollection} from 'react-firebase-hooks/firestore';
+import {useCollection, useDocument} from 'react-firebase-hooks/firestore';
 
 
 const App = () => {
@@ -38,25 +41,30 @@ const App = () => {
 
     // Firestore data
     const firestore = firebase.firestore;
-    const [userData, loading, error] = useCollection(firestore.collection('gunn'));
+    const auth = firebase.auth;
+
+    const [gunnData, gdLoading, gdError] = useCollection(firestore.collection('gunn'));
+    const [userData, udLoading, udError] = useDocument(firestore.doc(`users/${auth.currentUser?.uid}`));
 
     return (
         <Router>
-            <Layout>
-                <Switch>
-                    <Route exact path='/' render={() => <Home date={date}/>}/>
-                    <Route path='/utilities' component={Utilities}/>
-                    <Route path='/classes' component={Classes}/>
-                    <Route path='/clubs' render={() => <Clubs date={date}/>}/>
-                    <Route path='/settings' component={Settings}/>
-                    <Route path='/super-secret-testing' component={Testing} />
-                    <Route path='/schoology/auth' component={SgyAuthRedirect} />
-                    <Route component={PageNotFound}/>
-                    {error && console.log(error)}
-                    {loading && console.log(loading)}
-                    {userData && console.log(userData)}
-                </Switch>
-            </Layout>
+            <UserDataProvider value={userData?.data() as UserData}>
+                <Layout>
+                    <Switch>
+                        <Route exact path='/' render={() => <Home date={date}/>}/>
+                        <Route path='/utilities' component={Utilities}/>
+                        <Route path='/classes' component={Classes}/>
+                        <Route path='/clubs' render={() => <Clubs date={date}/>}/>
+                        <Route path='/settings' component={Settings}/>
+                        <Route path='/super-secret-testing' component={Testing} />
+                        <Route path='/schoology/auth' component={SgyAuthRedirect} />
+                        <Route component={PageNotFound}/>
+                        {gdError && console.log(gdError)}
+                        {gunnData && console.log(gunnData.forEach(e => e.data()))}
+                        {userData && console.log(userData.data())}
+                    </Switch>
+                </Layout>
+            </UserDataProvider>
         </Router>
     );
 }
