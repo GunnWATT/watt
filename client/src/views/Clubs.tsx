@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {Nav} from 'reactstrap';
 import {Moment} from 'moment';
-import UserDataContext from '../contexts/userDataContext';
+import UserDataContext from '../contexts/UserDataContext';
 
 // Components
 import List from '../components/lists/List';

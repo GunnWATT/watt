@@ -14,7 +14,7 @@ import PageNotFound from './views/404';
 import SgyAuthRedirect from './views/SgyAuthRedirect';
 
 // Context
-import {UserData, UserDataProvider} from './contexts/userDataContext';
+import {UserData, UserDataProvider} from './contexts/UserDataContext';
 
 // Firestore
 import firebase from './firebase/Firebase';
@@ -60,7 +60,8 @@ const App = () => {
                         <Route path='/schoology/auth' component={SgyAuthRedirect} />
                         <Route component={PageNotFound}/>
                         {gdError && console.log(gdError)}
-                        {gunnData && console.log(gunnData.forEach(e => e.data()))}
+                        {gunnData && console.log(gunnData.docs.map(x => x.data()))}
+                        {/* gunnData && gunnData.forEach(e => console.log(e.data())) */}
                         {userData && console.log(userData.data())}
                     </Switch>
                 </Layout>
