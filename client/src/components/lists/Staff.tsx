@@ -1,5 +1,6 @@
-import React, { useContext, useState } from "react";
-import UserDataContext from '../../contexts/userDataContext';
+import React, { useContext, useState } from 'react';
+import { Container } from 'reactstrap';
+import UserDataContext from '../../contexts/UserDataContext';
 
 // Components
 import List from './List';
@@ -54,7 +55,7 @@ const Staff = () => {
     };
 
     return (
-        <>
+        <Container>
             <span className="heading">
                 <h1>Staff</h1>
                 <input
@@ -86,7 +87,7 @@ const Staff = () => {
                 sort={([idA, staffA], [idB, staffB]) => preferredLastName(staffA).localeCompare(preferredLastName(staffB))}
                 pinned={userData?.staff ?? []}
             />
-        </>
+        </Container>
     );
 };
 

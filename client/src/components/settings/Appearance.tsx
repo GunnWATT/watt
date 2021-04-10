@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import UserDataContext from '../../contexts/userDataContext';
+import UserDataContext from '../../contexts/UserDataContext';
 import WIP from '../misc/WIP';
 
 
