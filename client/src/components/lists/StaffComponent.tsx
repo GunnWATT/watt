@@ -3,10 +3,12 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'react
 
 // Context
 import UserDataContext from '../../contexts/UserDataContext';
+
 // Firestore
 import firebase from './../../firebase/Firebase';
 const firestore = firebase.firestore;
 const auth = firebase.auth;
+
 
 /*
 The period data structure is a bunch of nested Objects, where each period is represented by its name
@@ -43,6 +45,7 @@ const StaffComponent = (props: Staff & {id:string}) => {
             });
         }
     }
+
     const removeFromPinned = async () => {
         if (userData) {
             await firestore.collection("users").doc(auth.currentUser?.uid).update({

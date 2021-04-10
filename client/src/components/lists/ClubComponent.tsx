@@ -4,13 +4,11 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'react
 // Context
 import UserDataContext from '../../contexts/UserDataContext';
 
-
 // Firestore
 import firebase from './../../firebase/Firebase';
-
 const firestore = firebase.firestore;
 const auth = firebase.auth;
-// import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
+
 
 export type Club = {
     name: string, new?: boolean, /* room: string, */ desc: string, day: string, time: string,
@@ -24,14 +22,13 @@ const ClubComponent = (props: Club & {id: string}) => {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
-    // I have no idea what this does but it seems to work so no one touch anything
+    // UserData from context
     const userData = useContext(UserDataContext);
-
     const amIPinned = userData?.clubs.includes(id) ?? false;
 
     // Cool function add to pinned yeah alright great
     const addToPinned = async () => {
-        if(userData) {
+        if (userData) {
             // No checking of duplicates bc Set in TypeScript ANNOY
             // WDYM THE TYPE ITERABLEITERATOR ISN'T ITERABLE??? IS IT NOT IN THE NAME AAAAAAAAAAAAAA
             await firestore.collection("users").doc(auth.currentUser?.uid).update({
@@ -44,7 +41,7 @@ const ClubComponent = (props: Club & {id: string}) => {
 
     // Cool function to remove from pinned yeah alright great
     const removeFromPinned = async () => {
-        if(userData) {
+        if (userData) {
             await firestore.collection("users").doc(auth.currentUser?.uid).update({
                 clubs: userData.clubs.filter(clubID => clubID !== id)
             });
@@ -72,7 +69,7 @@ const ClubComponent = (props: Club & {id: string}) => {
                     <p><strong>Teacher Email:</strong> {email}</p>
                 </ModalBody>
                 <ModalFooter>
-                    { (!userData) ? '' // If I'm not signed in don't do anything
+                    {(!userData) ? '' // If I'm not signed in don't do anything
                         : (amIPinned) ? <Button outline className="remove-from-list" onClick={removeFromPinned}>Remove from my list</Button> // If I'm pinned give option to remove from pinned
                         : <Button outline className="add-to-list" onClick={addToPinned}>Add to my list</Button> // Otherwise give option to add to list
                     }
