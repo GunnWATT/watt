@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Alert, Button } from 'reactstrap';
 
 
-type DayAlertProps = {daysRelToCur: number, jumpToPres: () => void};
+type DayAlertProps = { daysRelToCur: number, jumpToPres: () => void };
 const DayAlert = (props: DayAlertProps) => {
-    const {daysRelToCur, jumpToPres} = props;
+    const { daysRelToCur, jumpToPres } = props;
 
     const [visible, setVisible] = useState(true);
     const onDismiss = () => setVisible(false);
@@ -20,7 +20,7 @@ const DayAlert = (props: DayAlertProps) => {
         }
         if (newer) return `You are viewing a schedule for ${absDays} days from now.`; // Credit: Saumya for phrasing
         return `You are viewing a schedule from ${absDays} days ago.`;
-    }
+    };
 
     return (
         <Alert
@@ -32,6 +32,6 @@ const DayAlert = (props: DayAlertProps) => {
             <button onClick={jumpToPres}>JUMP TO PRESENT</button>
         </Alert>
     );
-}
+};
 
 export default DayAlert;

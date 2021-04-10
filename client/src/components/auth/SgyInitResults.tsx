@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 // Components
 //import Loading from '../misc/Loading'; // Doesn't mesh well with the modal
@@ -23,7 +23,7 @@ const SgyInitResults = () => {
                 setResults(r);
             });
         }
-    }, [loading])
+    }, [loading]);
 
     return (
         <span>
@@ -33,7 +33,7 @@ const SgyInitResults = () => {
                     : <span>Fetching Schoology, please wait...</span>
             }
         </span>
-    )
-}
+    );
+};
 
 export default SgyInitResults;

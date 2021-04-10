@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import moment from 'moment';
 
@@ -14,11 +14,11 @@ import PageNotFound from './views/404';
 import SgyAuthRedirect from './views/SgyAuthRedirect';
 
 // Context
-import {UserData, UserDataProvider} from './contexts/userDataContext';
+import { UserData, UserDataProvider } from './contexts/userDataContext';
 
 // Firestore
 import firebase from './firebase/Firebase';
-import {useCollection, useDocument} from 'react-firebase-hooks/firestore';
+import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 
 
 const App = () => {
@@ -36,8 +36,8 @@ const App = () => {
         // Clear interval on unmount
         return function cleanup() {
             clearInterval(timerID);
-        }
-    }, [])
+        };
+    }, []);
 
     // Firestore data
     const firestore = firebase.firestore;
@@ -51,14 +51,14 @@ const App = () => {
             <UserDataProvider value={userData?.data() as UserData}>
                 <Layout>
                     <Switch>
-                        <Route exact path='/' render={() => <Home date={date}/>}/>
-                        <Route path='/utilities' component={Utilities}/>
-                        <Route path='/classes' component={Classes}/>
-                        <Route path='/clubs' render={() => <Clubs date={date}/>}/>
-                        <Route path='/settings' component={Settings}/>
+                        <Route exact path='/' render={() => <Home date={date} />} />
+                        <Route path='/utilities' component={Utilities} />
+                        <Route path='/classes' component={Classes} />
+                        <Route path='/clubs' render={() => <Clubs date={date} />} />
+                        <Route path='/settings' component={Settings} />
                         <Route path='/super-secret-testing' component={Testing} />
                         <Route path='/schoology/auth' component={SgyAuthRedirect} />
-                        <Route component={PageNotFound}/>
+                        <Route component={PageNotFound} />
                         {gdError && console.log(gdError)}
                         {gunnData && console.log(gunnData.forEach(e => e.data()))}
                         {userData && console.log(userData.data())}
@@ -67,6 +67,6 @@ const App = () => {
             </UserDataProvider>
         </Router>
     );
-}
+};
 
 export default App;

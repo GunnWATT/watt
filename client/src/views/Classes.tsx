@@ -1,6 +1,6 @@
 import React from 'react';
-import {Switch, Route, useRouteMatch, Link} from 'react-router-dom';
-import {Nav, Modal, ModalHeader, ModalBody, ModalFooter} from "reactstrap";
+import { Switch, Route, useRouteMatch, Link } from 'react-router-dom';
+import { Nav, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 // Components
 import Header from '../components/layout/Header';
@@ -17,7 +17,7 @@ const Classes = () => {
                 heading="Grades"
                 nav={
                     <Nav fill tabs>
-                        <NavTab to={match.url} name="Dashboard" exact/>
+                        <NavTab to={match.url} name="Dashboard" exact />
                         <NavTab to={`${match.url}/courses`} name="Courses" />
                     </Nav>
                 }
@@ -41,6 +41,6 @@ const Classes = () => {
             </Modal>
         </>
     );
-}
+};
 
 export default Classes;

@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {useLocation, useHistory} from "react-router-dom";
-import {Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import React, { useState } from 'react';
+import { useLocation, useHistory } from "react-router-dom";
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 // Components
 import Sidebar from './layout/Sidebar';
@@ -12,7 +12,7 @@ import { CheckCircle } from 'react-feather';
 import SgyInitResults from "./auth/SgyInitResults";
 
 
-type LayoutProps = {children: React.ReactNode};
+type LayoutProps = { children: React.ReactNode };
 const Layout = (props: LayoutProps) => {
     // Search params handling
     const { search, pathname } = useLocation();
@@ -25,12 +25,12 @@ const Layout = (props: LayoutProps) => {
         setSgyModal(false);
         searchParams.delete('modal'); // Delete modal param from url to prevent retrigger on page refresh
         replace(`${pathname}${searchParams}`); // Replace current instance in history stack with updated search params
-    }
+    };
 
     return (
         <>
             <div id="app">
-                <Sidebar/>
+                <Sidebar />
                 <div id="content">
                     {props.children}
                 </div>
@@ -48,6 +48,6 @@ const Layout = (props: LayoutProps) => {
             </Modal>
         </>
     );
-}
+};
 
 export default Layout;

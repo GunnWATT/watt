@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import {Container} from 'reactstrap';
+import { Container } from 'reactstrap';
 
 
 const Map = () => {
@@ -19,8 +19,8 @@ const Map = () => {
             allowFullScreen>
         </iframe>,
         document.getElementById('content')!
-    )), [])
-    
+    )), []);
+
     return (
         <Container>
             <h1>Map</h1>
@@ -28,6 +28,6 @@ const Map = () => {
             {map}
         </Container>
     );
-}
+};
 
 export default Map;

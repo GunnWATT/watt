@@ -1,5 +1,5 @@
 import React from 'react';
-import {Jumbotron} from "reactstrap";
+import { Jumbotron } from "reactstrap";
 
 
 const About = () => {
@@ -29,6 +29,6 @@ const About = () => {
             </p>
         </>
     );
-}
+};
 
 export default About;

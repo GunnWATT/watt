@@ -33,23 +33,23 @@ import noschool17 from '../assets/electronviolin.png';
 
 // Big electron image object for carousel
 const items = [
-    {src: noschool1, caption: 'electronhw', altText: ''},
-    {src: noschool2, caption: 'electronmitosis'},
-    {src: noschool3, caption: 'electroncoffee'},
-    {src: noschool4, caption: 'electronvsepr'},
-    {src: noschool5, caption: 'electronconfig'},
-    {src: noschool6, caption: 'electronphasechange'},
-    {src: noschool7, caption: 'electrondipole'},
-    {src: noschool8, caption: 'electrongaslaws'},
-    {src: noschool9, caption: 'electronactivationenergy'},
-    {src: noschool10, caption: 'electronboxandpointer'},
-    {src: noschool11, caption: 'electrontrumpet'},
-    {src: noschool12, caption: 'electronbst'},
-    {src: noschool13, caption: 'electronblochsphere'},
-    {src: noschool14, caption: 'electroncell'},
-    {src: noschool15, caption: 'electronhybridization'},
-    {src: noschool16, caption: 'electronpedigree'},
-    {src: noschool17, caption: 'electronviolin'}
+    { src: noschool1, caption: 'electronhw', altText: '' },
+    { src: noschool2, caption: 'electronmitosis' },
+    { src: noschool3, caption: 'electroncoffee' },
+    { src: noschool4, caption: 'electronvsepr' },
+    { src: noschool5, caption: 'electronconfig' },
+    { src: noschool6, caption: 'electronphasechange' },
+    { src: noschool7, caption: 'electrondipole' },
+    { src: noschool8, caption: 'electrongaslaws' },
+    { src: noschool9, caption: 'electronactivationenergy' },
+    { src: noschool10, caption: 'electronboxandpointer' },
+    { src: noschool11, caption: 'electrontrumpet' },
+    { src: noschool12, caption: 'electronbst' },
+    { src: noschool13, caption: 'electronblochsphere' },
+    { src: noschool14, caption: 'electroncell' },
+    { src: noschool15, caption: 'electronhybridization' },
+    { src: noschool16, caption: 'electronpedigree' },
+    { src: noschool17, caption: 'electronviolin' }
 ];
 
 
@@ -66,16 +66,16 @@ const Testing = () => {
         if (animating) return;
         const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
         setActiveIndex(nextIndex);
-    }
+    };
     const previous = () => {
         if (animating) return;
         const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
         setActiveIndex(nextIndex);
-    }
+    };
     const goToIndex = (newIndex: number) => {
         if (animating) return;
         setActiveIndex(newIndex);
-    }
+    };
 
     const slides = items.map((item) => {
         return (
@@ -84,7 +84,7 @@ const Testing = () => {
                 onExited={() => setAnimating(false)}
                 key={item.src}
             >
-                <img src={item.src} alt={item.caption} style={{maxHeight: "400px", maxWidth: "600px"}}/>
+                <img src={item.src} alt={item.caption} style={{ maxHeight: "400px", maxWidth: "600px" }} />
                 {/* <CarouselCaption captionText={item.caption}/> */}
             </CarouselItem>
         );
@@ -100,29 +100,29 @@ const Testing = () => {
                 and components that only trigger conditionally (like loading screens for fetched content or period components in a specific state){' '}
                 will stay here permanently for convenience in testing!
             </p>
-            <hr/>
+            <hr />
 
             <div className="auth-test">
-                <SgySignInBtn/>
+                <SgySignInBtn />
             </div>
             <div className="dashboard-test">
-                <Dashboard/>
+                <Dashboard />
             </div>
-            
+
             <div className="colorpicker-test">
-                <div style={{backgroundColor: color}}>
+                <div style={{ backgroundColor: color }}>
                     <Row>
                         <SketchPicker
-                            color={ color }
-                            onChange={ changeColor }
+                            color={color}
+                            onChange={changeColor}
                         />
                         <ChromePicker
-                            color={ color }
-                            onChange={ changeColor }
+                            color={color}
+                            onChange={changeColor}
                         />
                         <BlockPicker
-                            color={ color }
-                            onChange={ changeColor }
+                            color={color}
+                            onChange={changeColor}
                         />
                     </Row>
                 </div>
@@ -141,13 +141,13 @@ const Testing = () => {
                 </Carousel>
             </div>
             <div className="loading-test">
-                <Loading/>
+                <Loading />
             </div>
             <div className="work-test">
-                <WIP/>
+                <WIP />
             </div>
             <div className="query-test">
-                <NoResults/>
+                <NoResults />
             </div>
             <div className="periods-test">
                 <Period
@@ -187,7 +187,7 @@ const Testing = () => {
                 />
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Testing;

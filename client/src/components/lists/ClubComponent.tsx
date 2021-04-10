@@ -6,10 +6,10 @@ export type Club = {
     name: string, new?: boolean, /* room: string, */ desc: string, day: string, time: string,
     zoom?: string, video?: string, signup?: string, tier: number,
     prez: string, advisor: string, email: string,
-}
+};
 
 const ClubComponent = (props: Club) => {
-    const {name, desc, /* room, */ day, time, zoom, video, signup, prez, advisor, email} = props;
+    const { name, desc, /* room, */ day, time, zoom, video, signup, prez, advisor, email } = props;
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
@@ -27,9 +27,9 @@ const ClubComponent = (props: Club) => {
                     <p><strong>Meeting time:</strong> {time}</p>
                     {/* <p><strong>Location:</strong> {room}</p> */}
                     <p><strong>Description:</strong> {desc}</p>
-                    {video ? <p><strong>Club Video:</strong> <a href={video} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{video}</a></p> : null}
-                    {signup ? <p><strong>Signup Form:</strong> <a href={signup} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{signup}</a></p> : null}
-                    {zoom ? <p><strong>Zoom Link:</strong> <a href={zoom} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{zoom}</a></p> : null}
+                    {video ? <p><strong>Club Video:</strong> <a href={video} target="_blank" rel="noopener noreferrer" style={{ wordBreak: 'break-all' }}>{video}</a></p> : null}
+                    {signup ? <p><strong>Signup Form:</strong> <a href={signup} target="_blank" rel="noopener noreferrer" style={{ wordBreak: 'break-all' }}>{signup}</a></p> : null}
+                    {zoom ? <p><strong>Zoom Link:</strong> <a href={zoom} target="_blank" rel="noopener noreferrer" style={{ wordBreak: 'break-all' }}>{zoom}</a></p> : null}
                     <p><strong>President(s):</strong> {prez}</p>
                     <p><strong>Teacher Advisor(s):</strong> {advisor}</p>
                     <p><strong>Teacher Email:</strong> {email}</p>
@@ -42,6 +42,6 @@ const ClubComponent = (props: Club) => {
         </li>
     );
 
-}
+};
 
 export default ClubComponent;

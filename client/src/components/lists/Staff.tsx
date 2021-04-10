@@ -1,9 +1,9 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import UserDataContext from '../../contexts/userDataContext';
 
 // Components
 import List from './List';
-import StaffComponent, {ClassObj, SemesterClassObj, Staff as StaffComponentProps} from './StaffComponent';
+import StaffComponent, { ClassObj, SemesterClassObj, Staff as StaffComponentProps } from './StaffComponent';
 
 // Data
 import staff from '../../data/staff';
@@ -15,7 +15,7 @@ const Staff = () => {
 
     // Parses last names to find the preferred last name by matching it with the staff email
     const preferredLastName = (staff: StaffComponentProps) => {
-        let {name, email} = staff;
+        let { name, email } = staff;
 
         // Replaces dashes with spaces to prevent matching Barba-Medina to nmedina (instead individually matching barba and medina)
         // Removes apostrophes to prevent matching O'Connell with coconnell
@@ -28,7 +28,7 @@ const Staff = () => {
 
         // If no match is found, return the first last name
         return lastNames[0];
-    }
+    };
 
     // Checks if the query matched a name of a class taught by the teacher to allow searching by classes
     const classInQuery = (query: string, staff: StaffComponentProps) => {
@@ -37,21 +37,21 @@ const Staff = () => {
         const searchInner = (semClass: SemesterClassObj) => {
             if (semClass === 'none') return false;
             return semClass[0].toLowerCase().includes(query);
-        }
+        };
 
         const searchClasses = (classes: ClassObj) => {
             // Hackily determine what type classes is
             if (typeof classes === 'object' && !Array.isArray(classes))
                 return searchInner(classes['1']) || searchInner(classes['2']);
             return searchInner(classes);
-        }
+        };
 
         for (const per in ['1', '2', '3', '4', '5', '6', '7', '8']) {
             const classTaught = staff.periods[per];
             if (classTaught && (searchClasses(classTaught['1']) || searchClasses(classTaught['2']))) return true;
         }
         return false;
-    }
+    };
 
     return (
         <>
@@ -88,6 +88,6 @@ const Staff = () => {
             />
         </>
     );
-}
+};
 
 export default Staff;

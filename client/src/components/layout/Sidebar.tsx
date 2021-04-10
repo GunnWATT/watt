@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // Icons
 import logo from '../../assets/watt.png';
@@ -18,8 +18,8 @@ import SidebarItem from './SidebarItem';
 
 // Authentication
 import firebase from '../../firebase/Firebase';
-import {useAuthState} from 'react-firebase-hooks/auth';
-import {FirestoreInit} from '../../firebase/Authentication';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { FirestoreInit } from '../../firebase/Authentication';
 import GoogleSignInBtn from '../auth/GoogleSignInBtn';
 import GoogleSignOutBtn from '../auth/GoogleSignOutBtn';
 
@@ -47,35 +47,35 @@ const Sidebar = () => {
             >
                 {
                     isOpen
-                        ? <ChevronLeft/>
-                        : <ChevronRight/>
+                        ? <ChevronLeft />
+                        : <ChevronRight />
                 }
             </span>
 
             {/* Heading */}
             <Link to="/" className="logo">
-                <img src={logo} className="logo" alt="WATT Logo"/>
+                <img src={logo} className="logo" alt="WATT Logo" />
             </Link>
             <h1>Web App of the Titans</h1>
 
             {/* Nav */}
-            <SidebarItem name="Home" to="/" icon={<Home/>} exact/>
-            <SidebarItem name="Classes" to="/classes" icon={<CheckSquare/>}/>
-            <SidebarItem name="Clubs" to="/clubs" icon={<Users/>}/>
-            <SidebarItem name="Utilities" to="/utilities" icon={<Tool/>}/>
-            <SidebarItem name="Settings" to="/settings" icon={<Settings/>}/>
+            <SidebarItem name="Home" to="/" icon={<Home />} exact />
+            <SidebarItem name="Classes" to="/classes" icon={<CheckSquare />} />
+            <SidebarItem name="Clubs" to="/clubs" icon={<Users />} />
+            <SidebarItem name="Utilities" to="/utilities" icon={<Tool />} />
+            <SidebarItem name="Settings" to="/settings" icon={<Settings />} />
 
             {/* Bottom Account Status Button */}
             <span className="bottom">
                 {
                     user
-                        ? <GoogleSignOutBtn/>
-                        : <GoogleSignInBtn/>
+                        ? <GoogleSignOutBtn />
+                        : <GoogleSignInBtn />
                 }
             </span>
 
         </div>
-    )
-}
+    );
+};
 
 export default Sidebar;

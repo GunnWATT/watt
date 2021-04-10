@@ -1,10 +1,10 @@
 import React from 'react';
-import {NavItem, NavLink} from 'reactstrap';
+import { NavItem, NavLink } from 'reactstrap';
 
 
-type StateTabProps = {value: string, name: string, state: string, setState: (state: string) => void};
+type StateTabProps = { value: string, name: string, state: string, setState: (state: string) => void };
 const StateTab = (props: StateTabProps) => {
-    let {value, name, state, setState} = props;
+    let { value, name, state, setState } = props;
 
     return (
         <NavItem>
@@ -17,7 +17,7 @@ const StateTab = (props: StateTabProps) => {
                 {name}
             </NavLink>
         </NavItem>
-    )
-}
+    );
+};
 
 export default StateTab;

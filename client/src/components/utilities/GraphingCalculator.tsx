@@ -8,7 +8,7 @@ const GraphingCalculator = () => {
             src="https://www.desmos.com/calculator"
             title="Graphing Calculator"
         />
-    )
-}
+    );
+};
 
 export default GraphingCalculator;

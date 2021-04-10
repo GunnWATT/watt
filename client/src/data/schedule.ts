@@ -1,4 +1,4 @@
-import {DayObj} from '../components/schedule/Periods';
+import { DayObj } from '../components/schedule/Periods';
 
 export default {
     "M": {
@@ -135,4 +135,4 @@ export default {
             "e": 730
         }
     }
-} as {[key: string]: DayObj}
+} as { [key: string]: DayObj };

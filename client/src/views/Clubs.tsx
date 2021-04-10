@@ -1,6 +1,6 @@
-import React, {useContext, useState} from 'react';
-import {Nav} from 'reactstrap';
-import {Moment} from 'moment';
+import React, { useContext, useState } from 'react';
+import { Nav } from 'reactstrap';
+import { Moment } from 'moment';
 import UserDataContext from '../contexts/userDataContext';
 
 // Components
@@ -13,7 +13,7 @@ import ClubComponent from '../components/lists/ClubComponent';
 import clubs from '../data/clubs';
 
 
-type HomeProps = {date: Moment}
+type HomeProps = { date: Moment };
 const Clubs = (props: HomeProps) => {
     // Dynamically setting default tab
     let date = (Number(props.date.format('d')) + 1).toString(); // :weary:
@@ -23,7 +23,7 @@ const Clubs = (props: HomeProps) => {
     const [activeTab, setActiveTab] = useState(date);
     const toggle = (tab: string) => {
         if (activeTab !== tab) setActiveTab(tab);
-    }
+    };
 
     // User data for pinned
     const userData = useContext(UserDataContext);
@@ -54,7 +54,7 @@ const Clubs = (props: HomeProps) => {
                 break;
         }
         return Object.entries(clubs).filter(([name, info]) => info.day.includes(day));
-    }
+    };
 
 
     return (
@@ -109,6 +109,6 @@ const Clubs = (props: HomeProps) => {
             />
         </Header>
     );
-}
+};
 
 export default Clubs;

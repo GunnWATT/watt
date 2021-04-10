@@ -1,16 +1,16 @@
 import React from "react";
-import {GoogleSignIn} from "../../firebase/Authentication";
+import { GoogleSignIn } from "../../firebase/Authentication";
 
-import {LogIn} from "react-feather";
+import { LogIn } from "react-feather";
 
 
 const GoogleSignInBtn = () => (
     <span className={'item'}>
         <button onClick={GoogleSignIn}>
-            <LogIn/>
+            <LogIn />
             <span>Sign In</span>
         </button>
     </span>
-)
+);
 
-export default GoogleSignInBtn
+export default GoogleSignInBtn;

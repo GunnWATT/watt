@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment-timezone';
-import {Moment} from 'moment';
+import { Moment } from 'moment';
 
 // Components
 import Period from './Period';
@@ -11,15 +11,15 @@ import schedule from '../../data/schedule';
 import alternates from '../../data/alternates';
 
 
-type PeriodObj = {s: number, e: number};
+type PeriodObj = { s: number, e: number };
 export type DayObj = {
     1?: PeriodObj, 2?: PeriodObj, 3?: PeriodObj, 4?: PeriodObj, 5?: PeriodObj, 6?: PeriodObj, 7?: PeriodObj,
     L?: PeriodObj, S?: PeriodObj, G?: PeriodObj, O?: PeriodObj
-}
+};
 
-type PeriodsProps = {viewDate: Moment, currDate: Moment};
+type PeriodsProps = { viewDate: Moment, currDate: Moment };
 const Periods = (props: PeriodsProps) => {
-    const {viewDate, currDate} = props;
+    const { viewDate, currDate } = props;
     const timeZone = moment.tz.guess(true);
 
     // Period handling
@@ -37,7 +37,7 @@ const Periods = (props: PeriodsProps) => {
             return Object.entries(obj)
                 .filter((a): a is [string, PeriodObj] => a[1] !== undefined)
                 .sort(([nameA, valA], [nameB, valB]) => valA!.s - valB!.s);
-        }
+        };
 
         // Check for alternate schedules
         let altFormat = viewDate.format('MM-DD');
@@ -59,8 +59,8 @@ const Periods = (props: PeriodsProps) => {
             //setPeriods(null);
             setAlternate(false);
             setGTPer(null)
-        }
-    }, [viewDate])
+        };
+    }, [viewDate]);
 
 
     // Turns object key into human readable period name
@@ -79,7 +79,7 @@ const Periods = (props: PeriodsProps) => {
             default:
                 return name;
         }
-    }
+    };
 
     // Turns object key into default period color
     const parsePeriodColor = (name: string | number | null) => {
@@ -89,7 +89,7 @@ const Periods = (props: PeriodsProps) => {
             return ['#f4aeafff', '#aef4dcff', '#aedef4ff', '#aeaff4ff', '#f4dcaeff', '#aff4aeff', '#f4f3aeff'][num - 1];
         // Non numbered periods are grey colored
         return '#efefefff';
-    }
+    };
 
     // Maps periods array to <Period> components
     const renderPeriods = () =>
@@ -113,10 +113,10 @@ const Periods = (props: PeriodsProps) => {
                     start={viewDate.clone().add(value.s, 'minutes').tz(timeZone)} // Convert PST times back to local timezone
                     end={viewDate.clone().add(value.e, 'minutes').tz(timeZone)}
                     now={currDate}
-                    //date={viewDate}
+                //date={viewDate}
                 />
-            )
-        })
+            );
+        });
 
 
     // HTML for a school day, assumes periods is populated
@@ -131,8 +131,8 @@ const Periods = (props: PeriodsProps) => {
                 </p>
                 {renderPeriods()}
             </>
-        )
-    }
+        );
+    };
 
     // HTML for when there's no school
     const noSchool = () => {
@@ -148,10 +148,10 @@ const Periods = (props: PeriodsProps) => {
                             d="M160 224v64h320v-64c0-35.3 28.7-64 64-64h32c0-53-43-96-96-96H160c-53 0-96 43-96 96h32c35.3 0 64 28.7 64 64zm416-32h-32c-17.7 0-32 14.3-32 32v96H128v-96c0-17.7-14.3-32-32-32H64c-35.3 0-64 28.7-64 64 0 23.6 13 44 32 55.1V432c0 8.8 7.2 16 16 16h64c8.8 0 16-7.2 16-16v-16h384v16c0 8.8 7.2 16 16 16h64c8.8 0 16-7.2 16-16V311.1c19-11.1 32-31.5 32-55.1 0-35.3-28.7-64-64-64z"/>
                     </svg>
                     */}
-                    <NoSchoolImage viewDate={viewDate}/>
+                    <NoSchoolImage viewDate={viewDate} />
                 </p>
             </>
-        )
+        );
     };
 
     // HTML for winter break
@@ -161,13 +161,13 @@ const Periods = (props: PeriodsProps) => {
             <h1 className="center">Enjoy winter break!</h1>
             <img src="../../images/mountain.svg" alt="Mountain" />
         </div>
-    )
+    );
 
     // HTML for summer break
     // Same concern as for winterBreak
     const summerBreak = () => (
         <h1 className="center">Have a great summer!</h1>
-    )
+    );
 
     return (
         <div>
@@ -179,7 +179,7 @@ const Periods = (props: PeriodsProps) => {
             }
         </div>
 
-    )
-}
+    );
+};
 
 export default Periods;

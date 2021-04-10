@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {Moment} from 'moment';
+import React, { useState, useEffect } from 'react';
+import { Moment } from 'moment';
 
 // Images
 import noschool1 from '../../assets/electronhw.png';
@@ -31,8 +31,8 @@ export function mulberry32(a: number) {
         let t = Math.imul(a ^ (a >>> 15), 1 | a)
         t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
         return ((t ^ (t >>> 14)) >>> 0) / 4294967296
-    }
-}
+    };
+};
 
 // Get a random no-school image
 const randomImage = (millis: number): string => {
@@ -56,23 +56,25 @@ const randomImage = (millis: number): string => {
             Math.floor(seed() * Math.ceil(options.length / 2))
             : // Right half (excluding middle)
             Math.floor(seed() * Math.floor(options.length / 2)) +
-            Math.ceil(options.length / 2)
+            Math.ceil(options.length / 2);
 
     return options[index];
-}
+};
 
 
-type NoSchoolImageProps = {viewDate: Moment};
+type NoSchoolImageProps = { viewDate: Moment };
 const NoSchoolImage = (props: NoSchoolImageProps) => {
-    const {viewDate} = props;
+    const { viewDate } = props;
     const [image, setImage] = useState<string | undefined>(undefined);
 
     useEffect(() => {
         const img = randomImage(viewDate.valueOf());
         setImage(img);
-    }, [viewDate])
+    }, [viewDate]);
 
-    return <img src={image} alt="Electron doodle" style={{maxHeight: "400px", maxWidth: "600px"}}/>
-}
+    return (
+        <img src={image} alt="Electron doodle" style={{ maxHeight: "400px", maxWidth: "600px" }} />
+    );
+};
 
 export default NoSchoolImage;

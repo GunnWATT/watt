@@ -1,4 +1,4 @@
-import {Staff} from '../components/lists/StaffComponent';
+import { Staff } from '../components/lists/StaffComponent';
 
 export default {
     "10150": {
@@ -5869,4 +5869,4 @@ export default {
         },
         "other": "Teaches SELF."
     }
-} as {[key: string]: Staff}
+} as { [key: string]: Staff };

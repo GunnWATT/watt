@@ -10,10 +10,10 @@ export const GoogleSignIn = () => {
     provider.addScope('email')
     provider.setCustomParameters({
         hd: 'pausd.us'
-    });
+    })
 
     auth.signInWithRedirect(provider).catch(e => {
-        console.log('Error when attempting to Sign In user using Google Authentication: ', e);
+        console.log('Error when attempting to Sign In user using Google Authentication: ', e)
     })
 }
 
@@ -27,26 +27,21 @@ export const FirestoreInit = (r) => {
             clubs: [],
             staff: [],
             classes: {
-                1: {n:"", c:"", l:"", o:"", s:""},
-                2: {n:"", c:"", l:"", o:"", s:""},
-                3: {n:"", c:"", l:"", o:"", s:""},
-                4: {n:"", c:"", l:"", o:"", s:""},
-                5: {n:"", c:"", l:"", o:"", s:""},
-                6: {n:"", c:"", l:"", o:"", s:""},
-                7: {n:"", c:"", l:"", o:"", s:""},
-                S: {n:"", c:"", l:"", o:"", s:""}
+                1: { n: "", c: "", l: "", o: "", s: "" },
+                2: { n: "", c: "", l: "", o: "", s: "" },
+                3: { n: "", c: "", l: "", o: "", s: "" },
+                4: { n: "", c: "", l: "", o: "", s: "" },
+                5: { n: "", c: "", l: "", o: "", s: "" },
+                6: { n: "", c: "", l: "", o: "", s: "" },
+                7: { n: "", c: "", l: "", o: "", s: "" },
+                S: { n: "", c: "", l: "", o: "", s: "" }
             },
             options: {
-                theme:"light",
-                time:"12"
+                theme: "light",
+                time: "12"
             }
         }).catch(e => {
-            console.log('Error when attempting to add new user to Cloud Firestore: ', e);
+            console.log('Error when attempting to add new user to Cloud Firestore: ', e)
         })
     }
 }
-
-
-
-
-

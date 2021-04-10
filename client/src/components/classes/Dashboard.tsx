@@ -48,7 +48,7 @@ const Dashboard = (props: {}) => {
             link: "./",
             grade: "B+"
         }
-    ]
+    ];
 
 
     // Selected
@@ -92,7 +92,7 @@ const Dashboard = (props: {}) => {
                 }
             ]
         }
-    ]
+    ];
 
     return (
         <div className="dashboard">
@@ -115,7 +115,7 @@ const Dashboard = (props: {}) => {
                         <a href={classesArray[selected].link}><img src={linkimg} className="dashboard-class-link"></img></a>
                     </div>
                 }
-        
+
                 <div className="dashboard-warnings">
                     <div className="dashboard-warnings-header">Warnings</div>
                     <ul className="dashboard-warnings-list">

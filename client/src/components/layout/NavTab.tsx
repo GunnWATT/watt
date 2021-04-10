@@ -1,15 +1,15 @@
 import React from 'react';
-import {Link, Route} from 'react-router-dom';
-import {NavItem, NavLink} from 'reactstrap';
+import { Link, Route } from 'react-router-dom';
+import { NavItem, NavLink } from 'reactstrap';
 
 
-type NavTabProps = {to: string, name: string, exact?: boolean};
+type NavTabProps = { to: string, name: string, exact?: boolean };
 const NavTab = (props: NavTabProps) => {
-    let {to, name, exact} = props;
+    let { to, name, exact } = props;
 
     return (
         <Route exact={exact} path={to}>
-            {({match}) => (
+            {({ match }) => (
                 // If current path matches what the Route points towards, give it the "active" class
                 <NavItem>
                     <NavLink
@@ -22,7 +22,7 @@ const NavTab = (props: NavTabProps) => {
                 </NavItem>
             )}
         </Route>
-    )
-}
+    );
+};
 
 export default NavTab;

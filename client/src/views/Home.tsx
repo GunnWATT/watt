@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import moment from 'moment-timezone';
-import {Moment} from 'moment';
+import { Moment } from 'moment';
 
 // Components
 //import Clock from './schedule/Clock.js'; // Date handling has been passed down to Home.js, retiring this
@@ -10,7 +10,7 @@ import DayAlert from "../components/schedule/DayAlert";
 import WIP from '../components/misc/WIP';
 
 
-type HomeProps = {date: Moment};
+type HomeProps = { date: Moment };
 const Home = (props: HomeProps) => {
     // Date variables
     // Here, date is the current time of the user (passed in from outer scope), used for things that should not be
@@ -41,7 +41,7 @@ const Home = (props: HomeProps) => {
             {/* Schedule */}
             <div className="schedule">
                 {relDays !== 0
-                    ? <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>
+                    ? <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays} />
                     : null
                 }
 
@@ -75,6 +75,6 @@ const Home = (props: HomeProps) => {
         </div>
 
     );
-}
+};
 
 export default Home;

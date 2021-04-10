@@ -1,23 +1,23 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import NoResults from './NoResults';
 
 
-type ListEntriesPair = [string, any]
+type ListEntriesPair = [string, any];
 type ListProps = {
-    data: ListEntriesPair[] | {[key: string]: any}, // Data can either be an Object.entries result or the raw JSON
+    data: ListEntriesPair[] | { [key: string]: any }, // Data can either be an Object.entries result or the raw JSON
     filter: ([id, value]: ListEntriesPair) => boolean,
     map: ([id, value]: ListEntriesPair) => JSX.Element,
     sort: ([idA, valueA]: ListEntriesPair, [idB, valueB]: ListEntriesPair) => number
     pinned: string[]
-}
+};
 
 // Higher order List component for clubs and staff now that they are separate
 const List = (props: ListProps) => {
     // Filter and map are different for each list, so pass them in as props
-    let {data, filter, map, sort, pinned} = props;
+    let { data, filter, map, sort, pinned } = props;
 
     const [content, setContent] = useState<JSX.Element[]>([]);
-    const [pinnedContent, setPinnedContent] = useState<JSX.Element[]>([])
+    const [pinnedContent, setPinnedContent] = useState<JSX.Element[]>([]);
 
     // Renders content on mount and when data or query changes
     useEffect(() => {
@@ -39,8 +39,8 @@ const List = (props: ListProps) => {
 
         // Filter each via query, map to components
         setContent(unpinnedData.filter(filter).map(map));
-        setPinnedContent(pinnedData.filter(filter).map(map))
-    }, [data, filter])
+        setPinnedContent(pinnedData.filter(filter).map(map));
+    }, [data, filter]);
 
 
     return (
@@ -49,17 +49,17 @@ const List = (props: ListProps) => {
                 {pinnedContent.length
                     ? <ul className="material-list">
                         {pinnedContent}
-                      </ul>
+                    </ul>
                     : null}
-                {content.length && pinnedContent.length ? <hr/> : null}
+                {content.length && pinnedContent.length ? <hr /> : null}
                 {content.length
                     ? <ul className="material-list">
                         {content}
-                      </ul>
+                    </ul>
                     : null}
-              </>
-            : <NoResults/>
+            </>
+            : <NoResults />
     );
-}
+};
 
 export default List;

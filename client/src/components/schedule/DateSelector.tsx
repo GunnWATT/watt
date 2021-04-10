@@ -1,19 +1,18 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
-import {Moment} from 'moment';
+import { Moment } from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 // Icons
-import {ChevronLeft, ChevronRight} from 'react-feather'
+import { ChevronLeft, ChevronRight } from 'react-feather';
 
 
-type DateSelectorProps = {incDay: () => void, decDay: () => void, setViewDate: (d: Date) => void, viewDate: Moment}
-const DateSelector = ({incDay, decDay, setViewDate, viewDate}: DateSelectorProps) => {
-
+type DateSelectorProps = { incDay: () => void, decDay: () => void, setViewDate: (d: Date) => void, viewDate: Moment };
+const DateSelector = ({ incDay, decDay, setViewDate, viewDate }: DateSelectorProps) => {
     return (
         <div className='date-selector'>
             <button className='icon' onClick={decDay}>
-                <ChevronLeft/>
+                <ChevronLeft />
             </button>
 
             {/*
@@ -35,10 +34,10 @@ const DateSelector = ({incDay, decDay, setViewDate, viewDate}: DateSelectorProps
             />
 
             <button className="icon" onClick={incDay}>
-                <ChevronRight/>
+                <ChevronRight />
             </button>
         </div>
     );
-}
+};
 
 export default DateSelector;

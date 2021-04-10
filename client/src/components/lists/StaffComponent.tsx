@@ -12,22 +12,22 @@ are taught at once in one period, where the data would be structured instead lik
 */
 
 export type SemesterClassObj = [string, string | null] | 'none';
-export type ClassObj = SemesterClassObj | {1: SemesterClassObj, 2: SemesterClassObj};
-export type PeriodObj = {1: ClassObj, 2: ClassObj};
+export type ClassObj = SemesterClassObj | { 1: SemesterClassObj, 2: SemesterClassObj };
+export type PeriodObj = { 1: ClassObj, 2: ClassObj };
 export type Staff = {
     name: string, title: string, email: string,
-    dept?: string, phone?: string, periods?: {[key: string]: PeriodObj}
+    dept?: string, phone?: string, periods?: { [key: string]: PeriodObj }
 };
 
 const StaffComponent = (props: Staff) => {
-    const {name, title, email, dept, phone, periods} = props;
+    const { name, title, email, dept, phone, periods } = props;
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
     const [semester, setSemester] = useState<'1' | '2'>('1'); // Consider dynamically setting semester later
 
-    const renderSchedule = (periods: {[key: string]: PeriodObj}) => {
+    const renderSchedule = (periods: { [key: string]: PeriodObj }) => {
         const parseNested = (name: string, semester: '1' | '2') => {
 
             let course;
@@ -44,7 +44,7 @@ const StaffComponent = (props: Staff) => {
                     course = sem[0];
                     room = sem[1];
 
-                // If the period is an object (multiple classes)
+                    // If the period is an object (multiple classes)
                 } else if (sem !== 'none') {
                     course = `${sem[1][0]}, ${sem[2][0]}`;
                     room = `${sem[1][1]}, ${sem[2][1]}`;
@@ -57,17 +57,17 @@ const StaffComponent = (props: Staff) => {
                     <td>{course}</td>
                     <td>{room}</td>
                 </tr>
-            )
-        }
+            );
+        };
 
         return (
             <Table hover>
                 <thead>
-                <tr>
-                    <th>Period</th>
-                    <th>Class</th>
-                    <th>Room</th>
-                </tr>
+                    <tr>
+                        <th>Period</th>
+                        <th>Class</th>
+                        <th>Room</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {Object.keys(periods).map(period =>
@@ -75,8 +75,8 @@ const StaffComponent = (props: Staff) => {
                     )}
                 </tbody>
             </Table>
-        )
-    }
+        );
+    };
 
     return (
         <li onClick={toggle}>
@@ -106,6 +106,6 @@ const StaffComponent = (props: Staff) => {
         </li>
     );
 
-}
+};
 
 export default StaffComponent;

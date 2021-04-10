@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, CardGroup, Card, CardBody, CardTitle, CardSubtitle, CardText} from 'reactstrap';
+import { Container, CardGroup, Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
 
 
 const Support = () => {
@@ -56,6 +56,6 @@ const Support = () => {
             </CardGroup>
         </Container>
     );
-}
+};
 
 export default Support;
