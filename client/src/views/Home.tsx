@@ -9,6 +9,9 @@ import Periods from "../components/schedule/Periods";
 import DayAlert from "../components/schedule/DayAlert";
 import WIP from '../components/misc/WIP';
 
+// Hooks
+import {useScreenType} from '../hooks/useScreenType';
+
 
 type HomeProps = {date: Moment};
 const Home = (props: HomeProps) => {
@@ -33,17 +36,21 @@ const Home = (props: HomeProps) => {
     // which may disrupt the comparison in undesirable ways
     let relDays = viewDate.diff(viewDateCurr, 'days');
 
+    // Screen type for responsive design
+    const screenType = useScreenType();
+    const displayFromScreenType = (screenType: 'desktop' | 'tablet' | 'smallScreen' | 'phone') => {
+        if (screenType === 'desktop' || screenType === 'tablet') return 'two-col';
+        return 'one-col';
+    }
+
 
     return (
-        <div className="home">
+        <div className={`home ${displayFromScreenType(screenType)}`}>
             <div id="red-bg" />
 
             {/* Schedule */}
             <div className="schedule">
-                {relDays !== 0
-                    ? <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>
-                    : null
-                }
+                {relDays !== 0 && <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>}
 
                 <h2 className="center">{date.format('h:mm:ss A')}</h2>
                 <DateSelector

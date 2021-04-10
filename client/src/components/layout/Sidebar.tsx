@@ -24,7 +24,10 @@ import GoogleSignInBtn from '../auth/GoogleSignInBtn';
 import GoogleSignOutBtn from '../auth/GoogleSignOutBtn';
 
 
-const Sidebar = () => {
+type SidebarProps = {forceCollapsed?: boolean};
+const Sidebar = (props: SidebarProps) => {
+    const {forceCollapsed} = props;
+
     // Authentication
     const auth = firebase.auth;
     const [user] = useAuthState(auth);
@@ -37,6 +40,11 @@ const Sidebar = () => {
     const [isOpen, setIsOpen] = useState(true);
     const toggle = () => setIsOpen(!isOpen);
 
+    // Unideal but oh well
+    useEffect(() => {
+        setIsOpen(!forceCollapsed);
+    }, [forceCollapsed])
+
 
     return (
         <div className={`sidebar ${!isOpen ? 'collapsed' : ''}`}>
@@ -45,11 +53,9 @@ const Sidebar = () => {
                 className="toggler"
                 onClick={toggle}
             >
-                {
-                    isOpen
-                        ? <ChevronLeft/>
-                        : <ChevronRight/>
-                }
+                {isOpen
+                    ? <ChevronLeft/>
+                    : <ChevronRight/>}
             </span>
 
             {/* Heading */}
@@ -67,11 +73,9 @@ const Sidebar = () => {
 
             {/* Bottom Account Status Button */}
             <span className="bottom">
-                {
-                    user
-                        ? <GoogleSignOutBtn/>
-                        : <GoogleSignInBtn/>
-                }
+                {user
+                    ? <GoogleSignOutBtn/>
+                    : <GoogleSignInBtn/>}
             </span>
 
         </div>

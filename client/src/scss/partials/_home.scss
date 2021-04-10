@@ -1,14 +1,15 @@
 .home {
-  display: grid;
-  grid-template-columns: minmax(50vh, 1fr) 20rem;
-  //@extend %theme-backdrop;
   padding: 24px;
+
+  &.two-col {
+    display: grid;
+    grid-template-columns: minmax(50vh, 1fr) 20rem;
+  }
 }
 
 // The schedule portion of the home page
 .schedule {
   padding: 15px;
-  margin-right: 14px;
 
   // The date selector
   .date-selector {
@@ -93,13 +94,16 @@
 
 // The events portion of the home page
 .events {
-  height: calc(100vh - 48px); // 100vh - 48px doesn't work but calc(100vh - 48px) does
-  margin: 0 10px;
-  overflow: auto;
-  @include content-box();
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing:    border-box;
-  box-sizing:         border-box;
-  position: sticky;
-  top: 24px;
+  // Style for large screens
+  .two-col & {
+    height: calc(100vh - 48px); // 100vh - 48px doesn't work but calc(100vh - 48px) does
+    margin: 0 10px;
+    overflow: auto;
+    @include content-box();
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:    border-box;
+    box-sizing:         border-box;
+    position: sticky;
+    top: 24px;
+  }
 }

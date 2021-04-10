@@ -1,0 +1,55 @@
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  background: white;
+  width: 100vw;
+  padding: 1rem;
+  z-index: 10;
+
+  .nav-container {
+    display: flex;
+    max-width: 540px;
+
+    .item {
+      flex-grow: 1;
+      color: black;
+      font-size: 1.3rem;
+
+      &:hover {
+        a {
+          text-decoration: none;
+        }
+        border-radius: 5px;
+        //background-color: $focus;
+        background-color: $grey;
+      }
+
+      // Text
+      span {
+        display: none;
+      }
+
+      // Icon
+      svg {
+        display: inline-block;
+        font-size: inherit;
+        height: 1em;
+        overflow: visible;
+        vertical-align: -0.125em;
+      }
+
+      // Active
+      &.active {
+        color: $theme-dark;
+      }
+
+      // The <Link> components
+      a, button {
+        display: block;
+        color: inherit;
+        text-align: center;
+        padding: 0;
+      }
+    }
+  }
+}

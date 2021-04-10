@@ -20,7 +20,6 @@ body ::-webkit-scrollbar-thumb {
   height: 100%;
   display: flex;
   position: relative;
-  /* The main content pane of the app */
 }
 #app #content {
   flex-grow: 1;
@@ -181,6 +180,50 @@ ul.material-list li, .sidebar .toggler {
   margin-bottom: 1rem;
 }
 
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  background: white;
+  width: 100vw;
+  padding: 1rem;
+  z-index: 10;
+}
+.bottom-nav .nav-container {
+  display: flex;
+  max-width: 540px;
+}
+.bottom-nav .nav-container .item {
+  flex-grow: 1;
+  color: black;
+  font-size: 1.3rem;
+}
+.bottom-nav .nav-container .item:hover {
+  border-radius: 5px;
+  background-color: #f7f8fdff;
+}
+.bottom-nav .nav-container .item:hover a {
+  text-decoration: none;
+}
+.bottom-nav .nav-container .item span {
+  display: none;
+}
+.bottom-nav .nav-container .item svg {
+  display: inline-block;
+  font-size: inherit;
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+.bottom-nav .nav-container .item.active {
+  color: #a51618;
+}
+.bottom-nav .nav-container .item a, .bottom-nav .nav-container .item button {
+  display: block;
+  color: inherit;
+  text-align: center;
+  padding: 0;
+}
+
 .header-background, .testing {
   padding: 24px;
   z-index: 2;
@@ -229,14 +272,15 @@ ul.material-list li, .sidebar .toggler {
 }
 
 .home {
+  padding: 24px;
+}
+.home.two-col {
   display: grid;
   grid-template-columns: minmax(50vh, 1fr) 20rem;
-  padding: 24px;
 }
 
 .schedule {
   padding: 15px;
-  margin-right: 14px;
 }
 .schedule .date-selector {
   display: flex;
@@ -291,7 +335,7 @@ ul.material-list li, .sidebar .toggler {
   margin-top: 3rem;
 }
 
-.events {
+.two-col .events {
   height: calc(100vh - 48px);
   margin: 0 10px;
   overflow: auto;
@@ -320,7 +364,7 @@ ul.material-list li, .sidebar .toggler {
 
 ul.material-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-auto-flow: row;
   list-style: none;
   padding: 0;
