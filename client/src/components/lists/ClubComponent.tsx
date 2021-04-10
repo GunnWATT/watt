@@ -1,6 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'reactstrap';
 
+// Context
+import UserDataContext from '../../contexts/UserDataContext';
+
+
+// Firestore
+import firebase from './../../firebase/Firebase';
+
+const firestore = firebase.firestore;
+const auth = firebase.auth;
+// import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 
 export type Club = {
     name: string, new?: boolean, /* room: string, */ desc: string, day: string, time: string,
@@ -8,11 +18,38 @@ export type Club = {
     prez: string, advisor: string, email: string,
 }
 
-const ClubComponent = (props: Club) => {
-    const {name, desc, /* room, */ day, time, zoom, video, signup, prez, advisor, email} = props;
+const ClubComponent = (props: Club & {id: string}) => {
+    const {name, desc, id, /* room, */ day, time, zoom, video, signup, prez, advisor, email} = props;
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+
+    // I have no idea what this does but it seems to work so no one touch anything
+    const userData = useContext(UserDataContext);
+
+    const amIPinned = userData?.clubs.includes(id) ?? false;
+
+    // Cool function add to pinned yeah alright great
+    const addToPinned = async () => {
+        if(userData) {
+            // No checking of duplicates bc Set in TypeScript ANNOY
+            // WDYM THE TYPE ITERABLEITERATOR ISN'T ITERABLE??? IS IT NOT IN THE NAME AAAAAAAAAAAAAA
+            await firestore.collection("users").doc(auth.currentUser?.uid).update({
+                clubs: [...userData.clubs, id]
+            });
+        } else {
+            console.error("Ok this isn't on me the user did something bad and called this function somehow aiya");
+        }
+    }
+
+    // Cool function to remove from pinned yeah alright great
+    const removeFromPinned = async () => {
+        if(userData) {
+            await firestore.collection("users").doc(auth.currentUser?.uid).update({
+                clubs: userData.clubs.filter(clubID => clubID !== id)
+            });
+        }
+    }
 
     return (
         <li onClick={toggle}>
@@ -35,7 +72,11 @@ const ClubComponent = (props: Club) => {
                     <p><strong>Teacher Email:</strong> {email}</p>
                 </ModalBody>
                 <ModalFooter>
-                    <Button outline className="add-to-list" onClick={toggle}>Add to my list</Button>{' '}
+                    { (!userData) ? '' // If I'm not signed in don't do anything
+                        : (amIPinned) ? <Button outline className="remove-from-list" onClick={removeFromPinned}>Remove from my list</Button> // If I'm pinned give option to remove from pinned
+                        : <Button outline className="add-to-list" onClick={addToPinned}>Add to my list</Button> // Otherwise give option to add to list
+                    }
+                    {' '}
                     <Button outline color="danger" onClick={toggle}>Close</Button>
                 </ModalFooter>
             </Modal>

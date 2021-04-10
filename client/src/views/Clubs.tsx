@@ -89,6 +89,7 @@ const Clubs = (props: HomeProps) => {
                 map={([id, club]) =>
                     <ClubComponent
                         key={id}
+                        id={id}
                         name={club.name}
                         // room={club.room}
                         day={club.day}
