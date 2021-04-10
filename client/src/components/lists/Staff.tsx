@@ -76,6 +76,7 @@ const Staff = () => {
                 map={([id, staff]) =>
                     <StaffComponent
                         key={id}
+                        id={id}
                         name={staff.name}
                         title={staff.title}
                         dept={staff.dept}

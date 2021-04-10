@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'reactstrap';
 
+// Context
+import UserDataContext from '../../contexts/UserDataContext';
+// Firestore
+import firebase from './../../firebase/Firebase';
+const firestore = firebase.firestore;
+const auth = firebase.auth;
 
 /*
 The period data structure is a bunch of nested Objects, where each period is represented by its name
@@ -19,11 +25,31 @@ export type Staff = {
     dept?: string, phone?: string, periods?: {[key: string]: PeriodObj}
 };
 
-const StaffComponent = (props: Staff) => {
-    const {name, title, email, dept, phone, periods} = props;
+const StaffComponent = (props: Staff & {id:string}) => {
+    const {name, id, title, email, dept, phone, periods} = props;
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+
+    // Firestore stuff
+    const userData = useContext(UserDataContext);
+    const amIPinned = userData?.staff.includes(id) ?? false;
+
+    // I am copy pasting code from ClubComponent and praying it works
+    const addToPinned = async () => {
+        if (userData) {
+            await firestore.collection("users").doc(auth.currentUser?.uid).update({
+                staff: [...userData.staff, id]
+            });
+        }
+    }
+    const removeFromPinned = async () => {
+        if (userData) {
+            await firestore.collection("users").doc(auth.currentUser?.uid).update({
+                staff: userData.staff.filter(staffID => staffID !== id)
+            });
+        }
+    }
 
     const [semester, setSemester] = useState<'1' | '2'>('1'); // Consider dynamically setting semester later
 
@@ -100,6 +126,10 @@ const StaffComponent = (props: Staff) => {
                     {periods ? renderSchedule(periods) : null}
                 </ModalBody>
                 <ModalFooter>
+                    {(!userData) ? '' // If I'm not signed in don't do anything
+                        : (amIPinned) ? <Button outline className="remove-from-list" onClick={removeFromPinned}>Remove from my list</Button> // If I'm pinned give option to remove from pinned
+                        : <Button outline className="add-to-list" onClick={addToPinned}>Add to my list</Button> // Otherwise give option to add to list
+                    }
                     <Button outline color="danger" onClick={toggle}>Close</Button>
                 </ModalFooter>
             </Modal>
