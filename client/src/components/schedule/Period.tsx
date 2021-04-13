@@ -2,7 +2,7 @@ import React from 'react';
 import {Moment} from 'moment';
 import 'twix';
 import {Card, CardBody, CardTitle, CardSubtitle, CardText, Progress} from 'reactstrap';
-import ProgressBarColor from './ProgressBarColor';
+import {bgColor, barColor} from './ProgressBarColor';
 
 
 type PeriodProps = {now: Moment, start: Moment, end: Moment, name: string, color: string};
@@ -28,7 +28,8 @@ const Period = (props: PeriodProps) => {
                     ? <Progress
                         //animated
                         value={(now.valueOf() - start.valueOf()) / (end.valueOf() - start.valueOf()) * 100}
-                        style={{backgroundColor: ProgressBarColor(color)}}
+                        style={{backgroundColor: bgColor(color)}}
+                        barStyle={{backgroundColor: barColor(color)}}
                       />
                     : null
                 }

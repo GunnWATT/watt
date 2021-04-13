@@ -32,17 +32,18 @@ const getLowestMiddleHighest = (rgbIntArray: [number, number, number]) => {
     return [lowest,middle,highest];
 }
 
-const barColor = (hex: string) => {
+const multiplyHex = (hex: string, scale: number) => {
     const rgb = hexToRgb(hex)
-    const [lowest,middle,highest] = getLowestMiddleHighest(rgb!);
+    const [lowest, middle, highest] = getLowestMiddleHighest(rgb!);
 
-    const returnArray=[];
+    const returnArray = [];
 
-    returnArray[highest.index] = Math.round(highest.val*0.9);
-    returnArray[lowest.index] = Math.round(lowest.val*0.9);
-    returnArray[middle.index] = Math.round(middle.val*0.9);
+    returnArray[highest.index] = Math.round(highest.val * scale);
+    returnArray[lowest.index] = Math.round(lowest.val * scale);
+    returnArray[middle.index] = Math.round(middle.val * scale);
 
-    return (`rgb(${[returnArray].join()})`);
+    return `rgb(${[returnArray].join()})`;
 }
 
-export default barColor
+export const bgColor = (hex: string) => multiplyHex(hex, 0.8);
+export const barColor = (hex: string) => multiplyHex(hex, 0.9);

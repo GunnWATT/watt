@@ -108,7 +108,6 @@ const Testing = () => {
             <div className="dashboard-test">
                 <Dashboard/>
             </div>
-            
             <div className="colorpicker-test">
                 <div style={{backgroundColor: color}}>
                     <Row>
