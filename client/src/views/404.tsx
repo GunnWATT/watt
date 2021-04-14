@@ -9,5 +9,5 @@ const PageNotFound = () => {
         </div>
     )
 }
-//buenos dias kevin!
+//buenos dias kevin i love you
 export default PageNotFound;
