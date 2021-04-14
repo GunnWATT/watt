@@ -231,7 +231,7 @@ ul.material-list li, .sidebar .toggler {
 .header-background .header, .testing .header {
   display: flex;
   flex-direction: column;
-  padding: 12px;
+  padding: 12px 20px;
   background-color: #ff594c;
   border-radius: 10px;
   box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.1);
@@ -265,7 +265,7 @@ ul.material-list li, .sidebar .toggler {
 .header-background .page, .testing .page {
   display: flex;
   flex-direction: column;
-  padding: 12px;
+  padding: 20px;
   background-color: white;
   border-radius: 0 0 10px 10px;
   box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.1);
@@ -341,7 +341,7 @@ ul.material-list li, .sidebar .toggler {
   overflow: auto;
   display: flex;
   flex-direction: column;
-  padding: 12px;
+  padding: 20px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.1);
@@ -393,7 +393,7 @@ ul.material-list li span {
 .testing > div {
   display: flex;
   flex-direction: column;
-  padding: 12px;
+  padding: 20px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.1);
@@ -530,7 +530,7 @@ input[type=date]:focus {
   padding: 10px;
   display: flex;
   flex-direction: column;
-  padding: 12px;
+  padding: 20px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.1);

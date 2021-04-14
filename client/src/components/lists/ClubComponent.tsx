@@ -26,20 +26,19 @@ const ClubComponent = (props: Club & {id: string}) => {
     const userData = useContext(UserDataContext);
     const amIPinned = userData?.clubs.includes(id) ?? false;
 
-    // Cool function add to pinned yeah alright great
+
+    // Function to add this club to pinned
     const addToPinned = async () => {
         if (userData) {
-            // No checking of duplicates bc Set in TypeScript ANNOY
-            // WDYM THE TYPE ITERABLEITERATOR ISN'T ITERABLE??? IS IT NOT IN THE NAME AAAAAAAAAAAAAA
-            await firestore.collection("users").doc(auth.currentUser?.uid).update({
+            await firestore.collection('users').doc(auth.currentUser?.uid).update({
                 clubs: [...userData.clubs, id]
             });
         } else {
-            console.error("Ok this isn't on me the user did something bad and called this function somehow aiya");
+            console.error('Ok this isn\'t on me the user did something bad and called this function somehow aiya');
         }
     }
 
-    // Cool function to remove from pinned yeah alright great
+    // Function to remove this club from pinned
     const removeFromPinned = async () => {
         if (userData) {
             await firestore.collection("users").doc(auth.currentUser?.uid).update({
@@ -47,6 +46,7 @@ const ClubComponent = (props: Club & {id: string}) => {
             });
         }
     }
+
 
     return (
         <li onClick={toggle}>

@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
-import {Container} from 'reactstrap';
 
 
 const Map = () => {
@@ -22,11 +21,11 @@ const Map = () => {
     )), [])
     
     return (
-        <Container>
+        <>
             <h1>Map</h1>
             <p>Use the mouse to pan and ctrl+scroll to zoom.</p>
             {map}
-        </Container>
+        </>
     );
 }
 

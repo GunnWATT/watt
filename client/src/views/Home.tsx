@@ -1,25 +1,28 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import moment from 'moment-timezone';
 import {Moment} from 'moment';
 
 // Components
 //import Clock from './schedule/Clock.js'; // Date handling has been passed down to Home.js, retiring this
-import DateSelector from "../components/schedule/DateSelector";
-import Periods from "../components/schedule/Periods";
-import DayAlert from "../components/schedule/DayAlert";
+import DateSelector from '../components/schedule/DateSelector';
+import Periods from '../components/schedule/Periods';
+import DayAlert from '../components/schedule/DayAlert';
 import WIP from '../components/misc/WIP';
 
 // Hooks
 import {useScreenType} from '../hooks/useScreenType';
 
+// Contexts
+import CurrentTimeContext from '../contexts/CurrentTimeContext';
+import UserDataContext from '../contexts/UserDataContext';
 
-type HomeProps = {date: Moment};
-const Home = (props: HomeProps) => {
+
+const Home = () => {
     // Date variables
     // Here, date is the current time of the user (passed in from outer scope), used for things that should not be
     // normalized to PST (like the clock), while viewDate is the current day but converted to PST for things that should be normalized;
     // viewDate is crucially used for calculations on period start times, etc.
-    const date = props.date;
+    const date = useContext(CurrentTimeContext);
     const viewDateCurr = date.clone().tz('America/Los_Angeles').startOf('date');
     const [viewDate, setViewDate] = useState(viewDateCurr);
 
@@ -43,6 +46,10 @@ const Home = (props: HomeProps) => {
         return 'one-col';
     }
 
+    // User data for preferred time display
+    const userData = useContext(UserDataContext);
+    const format = userData?.options.time === '24' ? 'H:mm:ss' : 'h:mm:ss A';
+
 
     return (
         <div className={`home ${displayFromScreenType(screenType)}`}>
@@ -52,7 +59,7 @@ const Home = (props: HomeProps) => {
             <div className="schedule">
                 {relDays !== 0 && <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>}
 
-                <h2 className="center">{date.format('h:mm:ss A')}</h2>
+                <h2 className="center">{date.format(format)}</h2>
                 <DateSelector
                     incDay={incDay}
                     decDay={decDay}
@@ -64,10 +71,7 @@ const Home = (props: HomeProps) => {
 
                 {/* <CSSTransition> */}
                 <div className="schedule-wrapper">
-                    <Periods
-                        viewDate={viewDate}
-                        currDate={date}
-                    />
+                    <Periods viewDate={viewDate} />
                 </div>
                 {/* </CSSTransition> */}
 

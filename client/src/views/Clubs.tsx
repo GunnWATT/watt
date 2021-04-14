@@ -1,7 +1,6 @@
 import React, {useContext, useState} from 'react';
 import {Nav} from 'reactstrap';
 import {Moment} from 'moment';
-import UserDataContext from '../contexts/UserDataContext';
 
 // Components
 import List from '../components/lists/List';
@@ -12,11 +11,15 @@ import ClubComponent from '../components/lists/ClubComponent';
 // Data
 import clubs from '../data/clubs';
 
+// Contexts
+import CurrentTimeContext from '../contexts/CurrentTimeContext';
+import UserDataContext from '../contexts/UserDataContext';
 
-type HomeProps = {date: Moment}
-const Clubs = (props: HomeProps) => {
+
+const Clubs = () => {
     // Dynamically setting default tab
-    let date = (Number(props.date.format('d')) + 1).toString(); // :weary:
+    const currTime = useContext(CurrentTimeContext)
+    let date = (Number(currTime.format('d')) + 1).toString(); // :weary:
     if (date > '6') date = '1';
 
     // Tabs

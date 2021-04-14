@@ -155,6 +155,7 @@ const Testing = () => {
                     now={moment()}
                     start={moment().add(20, 'minutes')}
                     end={moment().add(50, 'minutes')}
+                    format='h:mm A'
                 />
                 <Period
                     name='In Progress Blue'
@@ -162,6 +163,7 @@ const Testing = () => {
                     now={moment()}
                     start={moment().subtract(20, 'minutes')}
                     end={moment().add(10, 'minutes')}
+                    format='h:mm A'
                 />
                 <Period
                     name='In Progress Orange'
@@ -169,6 +171,7 @@ const Testing = () => {
                     now={moment()}
                     start={moment().subtract(10, 'minutes')}
                     end={moment().add(20, 'minutes')}
+                    format='h:mm A'
                 />
                 <Period
                     name='In Progress Green'
@@ -176,6 +179,7 @@ const Testing = () => {
                     now={moment()}
                     start={moment().subtract(15, 'minutes')}
                     end={moment().add(15, 'minutes')}
+                    format='h:mm A'
                 />
                 <Period
                     name='Finished'
@@ -183,6 +187,7 @@ const Testing = () => {
                     now={moment()}
                     start={moment().subtract(50, 'minutes')}
                     end={moment().subtract(20, 'minutes')}
+                    format='h:mm A'
                 />
             </div>
         </div>

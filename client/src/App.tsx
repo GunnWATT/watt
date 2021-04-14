@@ -15,6 +15,7 @@ import SgyAuthRedirect from './views/SgyAuthRedirect';
 
 // Context
 import {UserData, UserDataProvider} from './contexts/UserDataContext';
+import {TimeProvider} from './contexts/CurrentTimeContext';
 
 // Firestore
 import firebase from './firebase/Firebase';
@@ -49,22 +50,23 @@ const App = () => {
     return (
         <Router>
             <UserDataProvider value={userData?.data() as UserData}>
-                <Layout>
-                    <Switch>
-                        <Route exact path='/' render={() => <Home date={date}/>}/>
-                        <Route path='/utilities' component={Utilities}/>
-                        <Route path='/classes' component={Classes}/>
-                        <Route path='/clubs' render={() => <Clubs date={date}/>}/>
-                        <Route path='/settings' component={Settings}/>
-                        <Route path='/super-secret-testing' component={Testing} />
-                        <Route path='/schoology/auth' component={SgyAuthRedirect} />
-                        <Route component={PageNotFound}/>
-                        {gdError && console.log(gdError)}
-                        {gunnData && console.log(gunnData.docs.map(x => x.data()))}
-                        {/* gunnData && gunnData.forEach(e => console.log(e.data())) */}
-                        {userData && console.log(userData.data())}
-                    </Switch>
-                </Layout>
+                <TimeProvider value={date}>
+                    <Layout>
+                        <Switch>
+                            <Route exact path='/' component={Home}/>
+                            <Route path='/utilities' component={Utilities}/>
+                            <Route path='/classes' component={Classes}/>
+                            <Route path='/clubs' component={Clubs}/>
+                            <Route path='/settings' component={Settings}/>
+                            <Route path='/super-secret-testing' component={Testing} />
+                            <Route path='/schoology/auth' component={SgyAuthRedirect} />
+                            <Route component={PageNotFound}/>
+                            {/* gunnData && console.log(gunnData.docs.map(x => x.data())) */}
+                            {/* gunnData && gunnData.forEach(e => console.log(e.data())) */}
+                            {/* userData && console.log(userData.data()) */}
+                        </Switch>
+                    </Layout>
+                </TimeProvider>
             </UserDataProvider>
         </Router>
     );

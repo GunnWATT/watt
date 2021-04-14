@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Container} from 'reactstrap';
+
 
 const Calculator = () => {
     const [currGrade, setCurrGrade] = useState(95.00);
@@ -24,7 +24,7 @@ const Calculator = () => {
     }
 
     return (
-        <Container>
+        <>
             <h1>Minimum finals score calculator</h1>
             <hr/>
             <p>
@@ -64,7 +64,7 @@ const Calculator = () => {
                     </span>
             </p>
             {calculateFinalsGrade()}
-        </Container>
+        </>
     );
 }
 

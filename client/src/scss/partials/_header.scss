@@ -8,7 +8,7 @@
 
   // Red box that displays the heading
   .header {
-    @include content-box($bg-color: $theme);
+    @include content-box($padding: 12px 20px, $bg-color: $theme);
     color: white;
   }
 

@@ -5,10 +5,10 @@ import {Card, CardBody, CardTitle, CardSubtitle, CardText, Progress} from 'react
 import {bgColor, barColor} from './ProgressBarColor';
 
 
-type PeriodProps = {now: Moment, start: Moment, end: Moment, name: string, color: string};
+type PeriodProps = {now: Moment, start: Moment, end: Moment, name: string, color: string, format: string};
 const Period = (props: PeriodProps) => {
 
-    let {now, start, end, name, color} = props;
+    let {now, start, end, name, color, format} = props;
     let t = start.twix(end); // Twix duration representing the period
 
     // Determines what text to display regarding how long before/after the period was
@@ -22,11 +22,10 @@ const Period = (props: PeriodProps) => {
         <Card style={{backgroundColor: color, border: "none"}}>
             <CardBody>
                 <CardTitle>{name}</CardTitle>
-                <CardSubtitle className="secondary">{t.simpleFormat('h:mma')}</CardSubtitle>
+                <CardSubtitle className="secondary">{t.simpleFormat(format)}</CardSubtitle>
                 <CardText className="secondary">{parseStartEnd()} - {t.countInner('minutes')} minutes long</CardText>
                 {t.isCurrent()
                     ? <Progress
-                        //animated
                         value={(now.valueOf() - start.valueOf()) / (end.valueOf() - start.valueOf()) * 100}
                         style={{backgroundColor: bgColor(color)}}
                         barStyle={{backgroundColor: barColor(color)}}

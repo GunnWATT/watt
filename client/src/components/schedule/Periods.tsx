@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import moment from 'moment-timezone';
 import {Moment} from 'moment';
 
@@ -10,22 +10,32 @@ import NoSchoolImage from './NoSchoolImage';
 import schedule from '../../data/schedule';
 import alternates from '../../data/alternates';
 
+// Contexts
+import CurrentTimeContext from '../../contexts/CurrentTimeContext';
+import UserDataContext from '../../contexts/UserDataContext';
 
+
+// An object representing a period, with s and e being start and end times (in minutes after 12:00 AM PST)
 type PeriodObj = {s: number, e: number};
 export type DayObj = {
     1?: PeriodObj, 2?: PeriodObj, 3?: PeriodObj, 4?: PeriodObj, 5?: PeriodObj, 6?: PeriodObj, 7?: PeriodObj,
     L?: PeriodObj, S?: PeriodObj, G?: PeriodObj, O?: PeriodObj
 }
 
-type PeriodsProps = {viewDate: Moment, currDate: Moment};
+type PeriodsProps = {viewDate: Moment};
 const Periods = (props: PeriodsProps) => {
-    const {viewDate, currDate} = props;
+    const {viewDate} = props;
+    const currDate = useContext(CurrentTimeContext);
     const timeZone = moment.tz.guess(true);
 
     // Period handling
     const [periods, setPeriods] = useState<[string, PeriodObj][] | null>(null);
     const [alternate, setAlternate] = useState(false);
     const [GTPer, setGTPer] = useState<number | null>(null);
+
+    // User data for preferred time display
+    const userData = useContext(UserDataContext);
+    const format = userData?.options.time === '24' ? 'H:mm' : 'h:mm A';
 
 
     // Load schedule and alternates
@@ -36,7 +46,7 @@ const Periods = (props: PeriodsProps) => {
         const sortByStart = (obj: DayObj) => {
             return Object.entries(obj)
                 .filter((a): a is [string, PeriodObj] => a[1] !== undefined)
-                .sort(([nameA, valA], [nameB, valB]) => valA!.s - valB!.s);
+                .sort(([nameA, valA], [nameB, valB]) => valA.s - valB.s);
         }
 
         // Check for alternate schedules
@@ -108,11 +118,12 @@ const Periods = (props: PeriodsProps) => {
             return (
                 <Period
                     name={displayName}
-                    key={name}
                     color={color}
+                    key={name}
+                    now={currDate}
                     start={viewDate.clone().add(value.s, 'minutes').tz(timeZone)} // Convert PST times back to local timezone
                     end={viewDate.clone().add(value.e, 'minutes').tz(timeZone)}
-                    now={currDate}
+                    format={format}
                     //date={viewDate}
                 />
             )
@@ -127,7 +138,7 @@ const Periods = (props: PeriodsProps) => {
         return (
             <>
                 <p className="schedule-end">
-                    School ends at <strong>{end.format('h:mm A')}</strong> today.
+                    School ends at <strong>{end.format(format)}</strong> today.
                 </p>
                 {renderPeriods()}
             </>
