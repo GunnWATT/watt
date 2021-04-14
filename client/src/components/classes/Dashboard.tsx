@@ -112,7 +112,7 @@ const Dashboard = (props: {}) => {
                         <div className="dashboard-class-title">{classesArray[selected].course}</div>
                         {/* a B?? :hypereyes: */}
                         <div className="dashboard-class-grade">{classesArray[selected].grade}</div>
-                        <a href={classesArray[selected].link}><img src={linkimg} className="dashboard-class-link"></img></a>
+                        <a href={classesArray[selected].link}><img src={linkimg} className="dashboard-class-link"/></a>
                     </div>
                 }
         
