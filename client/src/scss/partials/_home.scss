@@ -61,6 +61,13 @@
       .card-title {
         font-size: 24px;
       }
+
+      .card-link {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        color: $secondary;
+      }
     }
   }
 

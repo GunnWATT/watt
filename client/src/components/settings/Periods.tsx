@@ -1,13 +1,26 @@
-import React, {useState} from 'react';
-import WIP from "../misc/WIP";
+import React, {useContext} from 'react';
+
+// Contexts
+import UserDataContext from '../../contexts/UserDataContext';
+
+// Components
+import NotSignedIn from '../misc/NotSignedIn';
+import Period from "./Period";
 
 
 const Periods = () => {
+    const userData = useContext(UserDataContext);
+
     return (
         <>
             <h1>Periods</h1>
             <hr/>
-            <WIP />
+            {userData
+                ? (<>
+                    {Object.entries(userData.classes)
+                        .map(([id, data]) => <Period id={id} data={data} />)}
+                </>)
+                : <NotSignedIn/>}
         </>
     );
 }

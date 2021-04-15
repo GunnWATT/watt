@@ -1,14 +1,18 @@
 import React from 'react';
 import {Moment} from 'moment';
 import 'twix';
-import {Card, CardBody, CardTitle, CardSubtitle, CardText, Progress} from 'reactstrap';
+import {Card, CardBody, CardTitle, CardSubtitle, CardText, Progress, CardLink} from 'reactstrap';
 import {bgColor, barColor} from './ProgressBarColor';
+import {Link} from 'react-feather';
 
 
-type PeriodProps = {now: Moment, start: Moment, end: Moment, name: string, color: string, format: string};
+type PeriodProps = {
+    now: Moment, start: Moment, end: Moment,
+    name: string, color: string, format: string, zoom?: string
+};
 const Period = (props: PeriodProps) => {
 
-    let {now, start, end, name, color, format} = props;
+    let {now, start, end, name, color, format, zoom} = props;
     let t = start.twix(end); // Twix duration representing the period
 
     // Determines what text to display regarding how long before/after the period was
@@ -21,6 +25,7 @@ const Period = (props: PeriodProps) => {
     return (
         <Card style={{backgroundColor: color, border: "none"}}>
             <CardBody>
+                {zoom && <CardLink href={zoom} rel="noopener noreferrer" target="_blank"><Link/></CardLink>}
                 <CardTitle>{name}</CardTitle>
                 <CardSubtitle className="secondary">{t.simpleFormat(format)}</CardSubtitle>
                 <CardText className="secondary">{parseStartEnd()} - {t.countInner('minutes')} minutes long</CardText>

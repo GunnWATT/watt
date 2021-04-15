@@ -5,7 +5,7 @@ import React from 'react';
 // l: class zoom link
 // o: office hours zoom link
 // s: schoology course id
-type SgyPeriodData = {n: string, c: string, l: string, o: string, s: string};
+export type SgyPeriodData = {n: string, c: string, l: string, o: string, s: string};
 export type UserData = {
     v: number,
     classes: {

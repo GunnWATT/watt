@@ -12,7 +12,7 @@ import alternates from '../../data/alternates';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
-import UserDataContext from '../../contexts/UserDataContext';
+import UserDataContext, {SgyPeriodData} from '../../contexts/UserDataContext';
 
 
 // An object representing a period, with s and e being start and end times (in minutes after 12:00 AM PST)
@@ -33,9 +33,10 @@ const Periods = (props: PeriodsProps) => {
     const [alternate, setAlternate] = useState(false);
     const [GTPer, setGTPer] = useState<number | null>(null);
 
-    // User data for preferred time display
+    // User data for preferred time display and zoom links
     const userData = useContext(UserDataContext);
     const format = userData?.options.time === '24' ? 'H:mm' : 'h:mm A';
+    const classes = userData?.classes as {[key: string]: SgyPeriodData} | undefined;
 
 
     // Load schedule and alternates
@@ -75,6 +76,7 @@ const Periods = (props: PeriodsProps) => {
 
     // Turns object key into human readable period name
     const parsePeriodName = (name: string) => {
+        if (classes?.[name]?.n) return classes[name].n;
         if (Number(name)) return `Period ${name}`;
 
         switch (name) {
@@ -124,7 +126,7 @@ const Periods = (props: PeriodsProps) => {
                     start={viewDate.clone().add(value.s, 'minutes').tz(timeZone)} // Convert PST times back to local timezone
                     end={viewDate.clone().add(value.e, 'minutes').tz(timeZone)}
                     format={format}
-                    //date={viewDate}
+                    zoom={classes?.[name]?.l}
                 />
             )
         })

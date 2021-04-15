@@ -42,6 +42,7 @@ a {
 }
 a:hover {
   text-decoration: underline;
+  color: #ff594c;
 }
 
 button {
@@ -315,6 +316,12 @@ ul.material-list li, .sidebar .toggler {
 }
 .schedule .schedule-wrapper .card .card-title {
   font-size: 24px;
+}
+.schedule .schedule-wrapper .card .card-link {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  color: rgba(0, 0, 0, 0.54);
 }
 .schedule .day-alert {
   border: none;
