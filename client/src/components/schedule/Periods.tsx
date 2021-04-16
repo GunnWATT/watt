@@ -85,7 +85,7 @@ const Periods = (props: PeriodsProps) => {
             case 'S':
                 return 'SELF';
             case 'G':
-                return 'Gunn Together';
+                return `Gunn Together - Period ${GTPer ? GTPer : '?'}`;
             case 'O':
                 return 'Office Hours';
             default:
@@ -106,15 +106,23 @@ const Periods = (props: PeriodsProps) => {
     // Maps periods array to <Period> components
     const renderPeriods = () =>
         periods!.map(([name, value]) => {
-            let displayName, color;
+            // Support Gunn's swapping of GT and SELF every other week
+            if (viewDate.isAfter('4/11/2021')) {
+                let offset = viewDate.weeks() % 2;
+                if (offset === 0) {
+                    if (name === 'G') name = 'S';
+                    else if (name === 'S') name = 'G';
+                }
+            }
+
+            let displayName = parsePeriodName(name);
+            let color = parsePeriodColor(name);
+            let zoom = name;
 
             // Gunn Together quirkiness handling
             if (name === 'G') {
-                displayName = `${parsePeriodName(name)} - ${GTPer ? parsePeriodName(GTPer.toString()) : 'Period ?'}`; // If WATT is confused what GT period it is, display a nicer looking '?' instead of 'null'
                 color = parsePeriodColor(GTPer);
-            } else {
-                displayName = parsePeriodName(name);
-                color = parsePeriodColor(name);
+                zoom = GTPer + '';
             }
 
             return (
@@ -126,7 +134,7 @@ const Periods = (props: PeriodsProps) => {
                     start={viewDate.clone().add(value.s, 'minutes').tz(timeZone)} // Convert PST times back to local timezone
                     end={viewDate.clone().add(value.e, 'minutes').tz(timeZone)}
                     format={format}
-                    zoom={classes?.[name]?.l}
+                    zoom={classes?.[zoom]?.l}
                 />
             )
         })
