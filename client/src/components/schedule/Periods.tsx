@@ -95,6 +95,8 @@ const Periods = (props: PeriodsProps) => {
 
     // Turns object key into default period color
     const parsePeriodColor = (name: string | number | null) => {
+        if (name && classes?.[name]?.c) return classes[name].c;
+
         let num = Number(name);
         // Map number periods to their default colors
         if (num)
@@ -143,7 +145,10 @@ const Periods = (props: PeriodsProps) => {
     // HTML for a school day, assumes periods is populated
     const schoolDay = () => {
         // End time of the last period of the day
-        let end = viewDate.clone().add(periods![periods!.length - 1][1].e, 'minutes').tz(timeZone);
+        // Do not count non school periods like office hours for the end time
+        const validSchoolPeriods = periods!.filter(x => x[0] !== 'O');
+        let end = viewDate.clone().add(
+            validSchoolPeriods[validSchoolPeriods!.length - 1][1].e, 'minutes').tz(timeZone);
 
         return (
             <>
