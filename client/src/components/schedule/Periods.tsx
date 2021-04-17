@@ -76,7 +76,7 @@ const Periods = (props: PeriodsProps) => {
 
     // Turns object key into human readable period name
     const parsePeriodName = (name: string) => {
-        return classes?.[name]?.n ?? periodNameDefault(name);
+        return classes?.[name]?.n ? classes[name].n : periodNameDefault(name);
     }
 
     // Turns object key into period color
@@ -86,7 +86,7 @@ const Periods = (props: PeriodsProps) => {
         let num = Number(name);
         // Map number periods to their default colors
         if (num)
-            return ['#f4aeafff', '#aef4dcff', '#aedef4ff', '#aeaff4ff', '#f4dcaeff', '#aff4aeff', '#f4f3aeff'][num - 1];
+            return defaultPeriodColors[num - 1];
         // Non numbered periods are grey colored
         return '#efefefff';
     }
@@ -193,6 +193,10 @@ const Periods = (props: PeriodsProps) => {
         </div>
     )
 }
+
+// Default period colors
+export const defaultPeriodColors =
+    ['#f4aeafff', '#aef4dcff', '#aedef4ff', '#aeaff4ff', '#f4dcaeff', '#aff4aeff', '#f4f3aeff'];
 
 // Gets the default value for the given key
 export const periodNameDefault = (name: string) => {
