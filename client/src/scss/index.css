@@ -610,4 +610,9 @@ input[type=date]:focus {
   font-size: 1.05em;
 }
 
+.periods-settings label {
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.54);
+}
+
 /*# sourceMappingURL=index.css.map */

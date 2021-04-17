@@ -9,9 +9,7 @@ import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Firestore
-import firebase from './../../firebase/Firebase';
-const firestore = firebase.firestore;
-const auth = firebase.auth;
+import {updateFirestoreField} from '../../firebase/Firestore';
 
 
 const Localization = () => {
@@ -21,15 +19,8 @@ const Localization = () => {
     const currTime = useContext(CurrentTimeContext);
 
     // Function to update firestore preferred time
-    const changeTime = async (time: string) => {
-        if (userData) {
-            await firestore.collection('users').doc(auth.currentUser?.uid).update({
-                'options.time': time
-            });
-        } else {
-            console.error('Firestore function called with un-signed-in user');
-        }
-    }
+    const changeTime = async (time: string) => await updateFirestoreField('options.time', time);
+
 
     return (
         <>

@@ -76,24 +76,10 @@ const Periods = (props: PeriodsProps) => {
 
     // Turns object key into human readable period name
     const parsePeriodName = (name: string) => {
-        if (classes?.[name]?.n) return classes[name].n;
-        if (Number(name)) return `Period ${name}`;
-
-        switch (name) {
-            case 'L':
-                return 'Lunch';
-            case 'S':
-                return 'SELF';
-            case 'G':
-                return `Gunn Together - Period ${GTPer ? GTPer : '?'}`;
-            case 'O':
-                return 'Office Hours';
-            default:
-                return name;
-        }
+        return classes?.[name]?.n ?? periodNameDefault(name);
     }
 
-    // Turns object key into default period color
+    // Turns object key into period color
     const parsePeriodColor = (name: string | number | null) => {
         if (name && classes?.[name]?.c) return classes[name].c;
 
@@ -118,25 +104,26 @@ const Periods = (props: PeriodsProps) => {
             }
 
             let displayName = parsePeriodName(name);
-            let color = parsePeriodColor(name);
-            let zoom = name;
+            let colorKey = name;
+            let zoomKey = name;
 
             // Gunn Together quirkiness handling
             if (name === 'G') {
-                color = parsePeriodColor(GTPer);
-                zoom = GTPer + '';
+                displayName += ` - Period ${GTPer ? GTPer : '?'}`;
+                colorKey = GTPer + '';
+                zoomKey = GTPer + '';
             }
 
             return (
                 <Period
                     name={displayName}
-                    color={color}
+                    color={parsePeriodColor(colorKey)}
                     key={name}
                     now={currDate}
                     start={viewDate.clone().add(value.s, 'minutes').tz(timeZone)} // Convert PST times back to local timezone
                     end={viewDate.clone().add(value.e, 'minutes').tz(timeZone)}
                     format={format}
-                    zoom={classes?.[zoom]?.l}
+                    zoom={classes?.[zoomKey]?.l}
                 />
             )
         })
@@ -148,7 +135,7 @@ const Periods = (props: PeriodsProps) => {
         // Do not count non school periods like office hours for the end time
         const validSchoolPeriods = periods!.filter(x => x[0] !== 'O');
         let end = viewDate.clone().add(
-            validSchoolPeriods[validSchoolPeriods!.length - 1][1].e, 'minutes').tz(timeZone);
+            validSchoolPeriods[validSchoolPeriods.length - 1][1].e, 'minutes').tz(timeZone);
 
         return (
             <>
@@ -204,8 +191,25 @@ const Periods = (props: PeriodsProps) => {
                     : noSchool()
             }
         </div>
-
     )
+}
+
+// Gets the default value for the given key
+export const periodNameDefault = (name: string) => {
+    if (Number(name)) return `Period ${name}`;
+
+    switch (name) {
+        case 'L':
+            return 'Lunch';
+        case 'S':
+            return 'SELF';
+        case 'G':
+            return 'Gunn Together';
+        case 'O':
+            return 'Office Hours';
+        default:
+            return name;
+    }
 }
 
 export default Periods;
