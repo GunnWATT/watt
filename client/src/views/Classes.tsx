@@ -29,7 +29,7 @@ const Classes = () => {
             </Header>
 
             {/* Modal for not signed in users */}
-            <Modal isOpen={true} centered>
+            {/*<Modal isOpen={true} centered>
                 <ModalHeader>You're not signed in!</ModalHeader>
                 <ModalBody>
                     WATT needs your Schoology to be linked in order to get and display your grades and assignments.{' '}
@@ -38,7 +38,7 @@ const Classes = () => {
                 <ModalFooter>
                     <Link to="/">I understand, go home</Link>
                 </ModalFooter>
-            </Modal>
+            </Modal>*/}
         </>
     );
 }
