@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 import './scss/index.css';
 
@@ -14,4 +14,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-serviceWorker.register();
+serviceWorkerRegistration.register();

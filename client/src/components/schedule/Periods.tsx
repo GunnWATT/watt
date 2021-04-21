@@ -95,7 +95,7 @@ const Periods = (props: PeriodsProps) => {
     const renderPeriods = () =>
         periods!.map(([name, value]) => {
             // Support Gunn's swapping of GT and SELF every other week
-            if (viewDate.isAfter('4/11/2021')) {
+            if (viewDate.isAfter('2021-04-11')) {
                 let offset = viewDate.weeks() % 2;
                 if (offset === 0) {
                     if (name === 'G') name = 'S';
