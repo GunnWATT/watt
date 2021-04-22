@@ -44,9 +44,25 @@ Here's an example
 Try running `firebase emulators:start` and see if it works. If it does, visit http://localhost:4001/ and it should be working. If something went wrong, go spam ping someone idk.
 
 ## Step 6: Frontend
-In the file `/client/src/firebase/Firebase.js`, after the line that says `const auth = firebase.auth()`, insert a line that says
+In the file `/client/src/firebase/Firebase.js`, replace the lines that say 
 ```js
+const firestore = firebase.firestore()
+const auth = firebase.auth()
+const functions = firebase.functions()
+const analytics = firebase.analytics()
+```
+with
+```js
+const firestore = firebase.firestore()
+firestore.settings({
+    host: 'localhost:8080',
+    ssl: false
+})
+const auth = firebase.auth()
 auth.useEmulator("http://localhost:9099")
+const functions = firebase.functions()
+functions.useFunctionsEmulator("http://localhost:5001")
+const analytics = firebase.analytics()
 ```
 **Don't commit this change either.**
 
