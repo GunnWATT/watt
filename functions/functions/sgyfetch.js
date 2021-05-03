@@ -245,7 +245,7 @@ const fetchMaterials = async (data, context) => {
     // BUT WHY CANT I JUST HAVE NESTED STUFF WHY ARE YOU LIKE THIS
     let responses = await Promise.all(promises);
 
-    let courses = [];
+    let sections = [];
 
     // Unflattening smh my head my head my head
     for (let i = 0; i < courses.length; i++) {
@@ -263,10 +263,10 @@ const fetchMaterials = async (data, context) => {
             pages
         }
 
-        courses.push(section);
+        sections.push(section);
     }
 
-    return courses;
+    return sections;
 
 }
 
