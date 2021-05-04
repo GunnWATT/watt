@@ -14,6 +14,7 @@ import clubs from '../data/clubs';
 // Contexts
 import CurrentTimeContext from '../contexts/CurrentTimeContext';
 import UserDataContext from '../contexts/UserDataContext';
+import {useScreenType} from "../hooks/useScreenType";
 
 
 const Clubs = () => {
@@ -31,6 +32,10 @@ const Clubs = () => {
     // User data for pinned
     const userData = useContext(UserDataContext);
 
+    // Screen type for responsive design
+    const screenType = useScreenType();
+    const shorten = screenType === 'phone';
+
     // Search
     const [query, setQuery] = useState('');
 
@@ -38,25 +43,29 @@ const Clubs = () => {
     const dataFromTab = () => {
         if (activeTab === '1') return clubs;
 
-        let day: 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday';
-        switch (activeTab) {
-            case '2':
-                day = 'Monday';
-                break;
-            case '3':
-                day = 'Tuesday';
-                break;
-            case '4':
-                day = 'Wednesday';
-                break;
-            case '5':
-                day = 'Thursday';
-                break;
-            case '6':
-                day = 'Friday';
-                break;
-        }
+        let day = dayFromTabNum(activeTab);
         return Object.entries(clubs).filter(([name, info]) => info.day.includes(day));
+    }
+
+    // Function to get day string from tab number
+    // Used to render tab names as well as to filter the displayed JSON
+    const dayFromTabNum = (tab: string, shorten?: boolean) => {
+        switch (tab) {
+            case '1':
+                return 'All';
+            case '2':
+                return shorten ? 'Mon' : 'Monday';
+            case '3':
+                return shorten ? 'Tues' : 'Tuesday';
+            case '4':
+                return shorten ? 'Wed' : 'Wednesday';
+            case '5':
+                return shorten ? 'Thur' : 'Thursday';
+            case '6':
+                return shorten ? 'Fri' : 'Friday';
+        }
+        // Hopefully this never triggers!
+        return 'Unknown';
     }
 
 
@@ -72,12 +81,12 @@ const Clubs = () => {
             }
             nav={
                 <Nav className="nav-fill" tabs>
-                    <StateTab value="1" name="All" state={activeTab} setState={toggle} />
-                    <StateTab value="2" name="Monday" state={activeTab} setState={toggle} />
-                    <StateTab value="3" name="Tuesday" state={activeTab} setState={toggle} />
-                    <StateTab value="4" name="Wednesday" state={activeTab} setState={toggle} />
-                    <StateTab value="5" name="Thursday" state={activeTab} setState={toggle} />
-                    <StateTab value="6" name="Friday" state={activeTab} setState={toggle} />
+                    <StateTab value="1" name={dayFromTabNum('1', shorten)} state={activeTab} setState={toggle} />
+                    <StateTab value="2" name={dayFromTabNum('2', shorten)} state={activeTab} setState={toggle} />
+                    <StateTab value="3" name={dayFromTabNum('3', shorten)} state={activeTab} setState={toggle} />
+                    <StateTab value="4" name={dayFromTabNum('4', shorten)} state={activeTab} setState={toggle} />
+                    <StateTab value="5" name={dayFromTabNum('5', shorten)} state={activeTab} setState={toggle} />
+                    <StateTab value="6" name={dayFromTabNum('6', shorten)} state={activeTab} setState={toggle} />
                 </Nav>
             }
         >

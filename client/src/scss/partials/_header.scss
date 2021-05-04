@@ -2,7 +2,6 @@
 
 
 .header-background {
-  //@extend %theme-backdrop;
   padding: 24px;
   z-index: 2;
 
@@ -14,13 +13,18 @@
 
   .heading {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     width: 100%;
     //border-bottom: 2px solid;
 
+    h1 {
+      margin-right: 1rem;
+    }
+
     // Search box in lists
     input {
-      margin-left: 1rem;
+      //margin-left: 1rem;
       border: 2px solid $tertiary;
     }
   }
