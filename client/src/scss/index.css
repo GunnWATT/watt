@@ -240,11 +240,14 @@ ul.material-list li, .sidebar .toggler {
 }
 .header-background .heading, .testing .heading {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   width: 100%;
 }
+.header-background .heading h1, .testing .heading h1 {
+  margin-right: 1rem;
+}
 .header-background .heading input, .testing .heading input {
-  margin-left: 1rem;
   border: 2px solid rgba(0, 0, 0, 0.1);
 }
 .header-background .page-nav, .testing .page-nav {

@@ -22,9 +22,9 @@ const Utilities = () => {
             heading="Utilities"
             nav={
                 <Nav fill tabs>
-                    <NavTab to={match.url} name="Finals Calculator" exact/>
+                    <NavTab to={match.url} name="Finals Calc." exact/>
                     {/* <NavTab to={`${match.url}/graphing`} name="Graphing Calculator"/> */}
-                    <NavTab to={`${match.url}/map`} name="Campus Map" />
+                    <NavTab to={`${match.url}/map`} name="Map" />
                     <NavTab to={`${match.url}/support`} name="Support" />
                     <NavTab to={`${match.url}/staff`} name="Staff" />
                     <NavTab to={`${match.url}/courses`} name="Courses" />

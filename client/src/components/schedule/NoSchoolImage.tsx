@@ -72,7 +72,7 @@ const NoSchoolImage = (props: NoSchoolImageProps) => {
         setImage(img);
     }, [viewDate])
 
-    return <img src={image} alt="Electron doodle" style={{maxHeight: "400px", maxWidth: "600px"}}/>
+    return <img src={image} alt="Electron doodle" style={{maxHeight: "min(350px, 35vh)", maxWidth: "min(600px, 100%)"}}/>
 }
 
 export default NoSchoolImage;
