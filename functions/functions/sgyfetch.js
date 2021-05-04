@@ -231,11 +231,12 @@ const fetchMaterials = async (data, context) => {
     let promises = [];
 
     for(let i = 0; i < courses.length; i++) {
-        const { sectionID } = courses[i];
+    // for(let i = 0; i < 1; i++) {
+        const { id } = courses[i];
 
-        const documents = makeReq(`/sections/${sectionID}/documents?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
-        const assignments = makeReq(`/sections/${sectionID}/assignments?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
-        const pages = makeReq(`/sections/${sectionID}/pages?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
+        const documents = makeReq(`/sections/${id}/documents?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
+        const assignments = makeReq(`/sections/${id}/assignments?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
+        const pages = makeReq(`/sections/${id}/pages?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
 
         promises.push(documents,assignments,pages);
     }
@@ -249,6 +250,7 @@ const fetchMaterials = async (data, context) => {
 
     // Unflattening smh my head my head my head
     for (let i = 0; i < courses.length; i++) {
+    // for (let i = 0; i < 1; i++) {
         const course = courses[i];
 
         // Un-flatten the responses
