@@ -1,0 +1,29 @@
+@import '../mixins/content-box';
+
+// The events portion of the home page
+.events {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  list-style: none;
+
+  // Style for large screens
+  .two-col & {
+    height: calc(100vh - 48px); // 100vh - 48px doesn't work but calc(100vh - 48px) does
+    margin: 0 10px;
+    overflow: auto;
+    @include content-box();
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:    border-box;
+    box-sizing:         border-box;
+    position: sticky;
+    top: 24px;
+  }
+
+  .event {
+    p {
+      margin-bottom: 0.5rem;
+    }
+    margin-bottom: 1rem;
+  }
+}

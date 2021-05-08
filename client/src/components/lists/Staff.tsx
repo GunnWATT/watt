@@ -77,12 +77,7 @@ const Staff = () => {
                     <StaffComponent
                         key={id}
                         id={id}
-                        name={staff.name}
-                        title={staff.title}
-                        dept={staff.dept}
-                        phone={staff.phone}
-                        email={staff.email}
-                        periods={staff.periods}
+                        {...staff}
                     />
                 }
                 sort={([idA, staffA], [idB, staffB]) => preferredLastName(staffA).localeCompare(preferredLastName(staffB))}

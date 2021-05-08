@@ -15,9 +15,13 @@
 @import 'partials/testing';
 @import 'partials/404';
 
+// Home
+@import 'partials/events';
+@import 'partials/schedule';
+
 // Misc
 @import 'partials/search';
-@import 'partials/datepicker';
+//@import 'partials/datepicker';
 @import 'partials/loading';
 @import 'partials/no-results';
 @import 'partials/WIP';

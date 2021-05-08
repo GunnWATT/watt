@@ -1,13 +1,13 @@
 import React, {useContext, useState} from 'react';
 import moment from 'moment-timezone';
-import {Moment} from 'moment';
+import {GCalEvent} from '../components/schedule/Event';
 
 // Components
 //import Clock from './schedule/Clock.js'; // Date handling has been passed down to Home.js, retiring this
 import DateSelector from '../components/schedule/DateSelector';
 import Periods from '../components/schedule/Periods';
 import DayAlert from '../components/schedule/DayAlert';
-import WIP from '../components/misc/WIP';
+import Events from '../components/schedule/Events';
 
 // Hooks
 import {useScreenType} from '../hooks/useScreenType';
@@ -17,7 +17,8 @@ import CurrentTimeContext from '../contexts/CurrentTimeContext';
 import UserDataContext from '../contexts/UserDataContext';
 
 
-const Home = () => {
+type HomeProps = {events: GCalEvent[] | null};
+const Home = (props: HomeProps) => {
     // Date variables
     // Here, date is the current time of the user (passed in from outer scope), used for things that should not be
     // normalized to PST (like the clock), while viewDate is the current day but converted to PST for things that should be normalized;
@@ -79,12 +80,8 @@ const Home = () => {
             </div>
 
             {/* Events */}
-            <div className="events">
-                <h2>Events</h2>
-                <WIP />
-            </div>
+            <Events events={props.events} viewDate={viewDate} />
         </div>
-
     );
 }
 

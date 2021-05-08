@@ -283,85 +283,6 @@ ul.material-list li, .sidebar .toggler {
   grid-template-columns: minmax(50vh, 1fr) 20rem;
 }
 
-.schedule {
-  padding: 15px;
-}
-.schedule .date-selector {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2rem;
-}
-.schedule .date-selector .react-datepicker-wrapper {
-  padding: 5px 0;
-  background-color: #ffffff;
-  border-radius: 5px;
-  box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.1);
-}
-.schedule .date-selector .react-datepicker-wrapper input {
-  text-align: center;
-  border: none;
-  background: none;
-}
-.schedule .date-selector .react-datepicker-wrapper input:focus {
-  outline: none;
-}
-.schedule .schedule-dayname {
-  font-size: 72px;
-}
-.schedule .schedule-wrapper {
-  max-width: 800px;
-  margin: 0 auto 0 auto;
-}
-.schedule .schedule-wrapper .card {
-  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
-  border-radius: 0.375rem;
-}
-.schedule .schedule-wrapper .card .card-title {
-  font-size: 24px;
-}
-.schedule .schedule-wrapper .card .card-link {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  color: rgba(0, 0, 0, 0.54);
-}
-.schedule .day-alert {
-  border: none;
-  color: rgba(0, 0, 0, 0.87);
-  background-color: white;
-  display: flex;
-  align-items: center;
-  max-width: 1000px;
-  margin: 0 auto 1rem;
-}
-.schedule .day-alert button {
-  color: inherit;
-  margin-left: auto;
-  background: none;
-  border: none;
-}
-.schedule .no-school {
-  margin-top: 3rem;
-}
-
-.two-col .events {
-  height: calc(100vh - 48px);
-  margin: 0 10px;
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.1);
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  position: sticky;
-  top: 24px;
-}
-
 .desmos-embed {
   height: 700px;
   width: 100%;
@@ -437,20 +358,103 @@ ul.material-list li span {
   color: inherit;
 }
 
+.events {
+  list-style: none;
+}
+.events::-webkit-scrollbar {
+  display: none;
+}
+.two-col .events {
+  height: calc(100vh - 48px);
+  margin: 0 10px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.1);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: sticky;
+  top: 24px;
+}
+.events .event {
+  margin-bottom: 1rem;
+}
+.events .event p {
+  margin-bottom: 0.5rem;
+}
+
+.schedule {
+  padding: 15px;
+}
+.schedule .date-selector {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.schedule .date-selector .react-datepicker-wrapper {
+  padding: 5px 0;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.1);
+}
+.schedule .date-selector .react-datepicker-wrapper input {
+  text-align: center;
+  border: none;
+  background: none;
+}
+.schedule .date-selector .react-datepicker-wrapper input:focus {
+  outline: none;
+}
+.schedule .schedule-dayname {
+  font-size: 72px;
+}
+.schedule .schedule-wrapper {
+  max-width: 800px;
+  margin: 0 auto 0 auto;
+}
+.schedule .schedule-wrapper .card {
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  border-radius: 0.375rem;
+}
+.schedule .schedule-wrapper .card .card-title {
+  font-size: 24px;
+}
+.schedule .schedule-wrapper .card .card-link {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  color: rgba(0, 0, 0, 0.54);
+}
+.schedule .day-alert {
+  border: none;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: white;
+  display: flex;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto 1rem;
+}
+.schedule .day-alert button {
+  color: inherit;
+  margin-left: auto;
+  background: none;
+  border: none;
+}
+.schedule .no-school {
+  margin-top: 3rem;
+}
+
 input[type=search] {
   padding: 6px 10px;
   border: none;
   border-radius: 20px;
 }
 input[type=search]:focus {
-  outline: none;
-}
-
-input[type=date] {
-  border: 1px solid rgba(0, 0, 0, 0.54);
-  border-radius: 5px;
-}
-input[type=date]:focus {
   outline: none;
 }
 

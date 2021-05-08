@@ -1,6 +1,5 @@
 import React, {useContext, useState} from 'react';
 import {Nav} from 'reactstrap';
-import {Moment} from 'moment';
 
 // Components
 import List from '../components/lists/List';
@@ -102,19 +101,7 @@ const Clubs = () => {
                     <ClubComponent
                         key={id}
                         id={id}
-                        name={club.name}
-                        // room={club.room}
-                        day={club.day}
-                        time={club.time}
-                        desc={club.desc}
-                        zoom={club.zoom}
-                        video={club.video}
-                        signup={club.signup}
-                        tier={club.tier}
-                        prez={club.prez}
-                        advisor={club.advisor}
-                        email={club.email}
-                        new={club.new}
+                        {...club}
                     />
                 }
                 sort={([idA, clubA], [idB, clubB]) => clubA.name.localeCompare(clubB.name)}
