@@ -19,7 +19,8 @@ const Events = (props: EventsProps) => {
 
     // Render events on mount and viewDate change
     useEffect(() => {
-        setContent(events?.filter(eventFilter).map(event => <Event {...event} />) ?? null);
+        let currEvents = events?.filter(eventFilter).map(event => <Event {...event} />);
+        setContent( (currEvents && currEvents.length > 0) ? currEvents : null);
     }, [viewDate])
 
 
