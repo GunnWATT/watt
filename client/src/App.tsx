@@ -50,7 +50,9 @@ const App = () => {
     // Fetch events on mount
     useEffect(() => {
         const googleCalendarId = encodeURIComponent('fg978mo762lqm6get2ubiab0mk0f6m2c@import.calendar.google.com');
-        const target = `https://www.googleapis.com/calendar/v3/calendars/${googleCalendarId}/events?key=${calendarAPIKey}&timeZone=America/Los_Angeles&showDeleted=false&singleEvents=true&orderBy=startTime&fields=items(description%2Cend(date%2CdateTime)%2Clocation%2Cstart(date%2CdateTime)%2Csummary)`;
+        const target = `https://www.googleapis.com/calendar/v3/calendars/${googleCalendarId}/events?`
+            + `key=${calendarAPIKey}&timeZone=America/Los_Angeles&showDeleted=false&singleEvents=true&orderBy=startTime&`
+            + `maxResults=2500&fields=items(description%2Cend(date%2CdateTime)%2Clocation%2Cstart(date%2CdateTime)%2Csummary)`;
 
         fetch(target)
             .then(res => res.json())
