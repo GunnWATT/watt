@@ -36,7 +36,7 @@ const Layout = (props: LayoutProps) => {
     let content;
     if (screenType === 'phone') { // On phone screens, use bottom nav instead of sidebar
         content = (
-            <div id="app">
+            <div id="app" className="vertical">
                 <div id="content">
                     {props.children}
                 </div>

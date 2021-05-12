@@ -25,6 +25,10 @@ body {
   display: flex;
   position: relative;
 
+  &.vertical {
+    flex-direction: column;
+  }
+
   // The main content pane of the app
   #content {
     flex-grow: 1;

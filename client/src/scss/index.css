@@ -21,6 +21,9 @@ body ::-webkit-scrollbar-thumb {
   display: flex;
   position: relative;
 }
+#app.vertical {
+  flex-direction: column;
+}
 #app #content {
   flex-grow: 1;
   display: flex;
@@ -182,8 +185,6 @@ ul.material-list li, .sidebar .toggler {
 }
 
 .bottom-nav {
-  position: absolute;
-  bottom: 0;
   background: white;
   width: 100vw;
   padding: 1rem;
