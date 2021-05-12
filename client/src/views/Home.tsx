@@ -47,9 +47,10 @@ const Home = (props: HomeProps) => {
 
     // Screen type for responsive design
     const screenType = useScreenType();
-    const displayFromScreenType = (screenType: 'desktop' | 'tablet' | 'smallScreen' | 'phone') => {
-        if (screenType === 'desktop' || screenType === 'tablet') return 'two-col';
-        return 'one-col';
+    const displayFromScreenType = () => {
+        if (screenType === 'phone') return 'one-col narrow';
+        if (screenType === 'smallScreen') return 'one-col';
+        return 'two-col';
     }
 
     // User data for preferred time display
@@ -58,7 +59,7 @@ const Home = (props: HomeProps) => {
 
 
     return (
-        <div className={`home ${displayFromScreenType(screenType)}`}>
+        <div className={`home ${displayFromScreenType()}`}>
             <div id="red-bg" />
 
             {/* Schedule */}

@@ -149,66 +149,64 @@ const Testing = () => {
                 <NoResults/>
             </div>
             <div className="periods-test">
-                <div className="schedule">
-                    <div className="schedule-wrapper">
-                        <Period
-                            name='Not Yet Started'
-                            color='#f4aeafff'
-                            now={moment()}
-                            start={moment().add(20, 'minutes')}
-                            end={moment().add(50, 'minutes')}
-                            format='h:mm A'
-                        />
-                        <Period
-                            name='In Progress Blue'
-                            color='#aedef4ff'
-                            now={moment()}
-                            start={moment().subtract(20, 'minutes')}
-                            end={moment().add(10, 'minutes')}
-                            format='h:mm A'
-                        />
-                        <Period
-                            name='In Progress Orange'
-                            color='#f4dcaeff'
-                            now={moment()}
-                            start={moment().subtract(10, 'minutes')}
-                            end={moment().add(20, 'minutes')}
-                            format='h:mm A'
-                        />
-                        <Period
-                            name='In Progress Green'
-                            color='#aef4dcff'
-                            now={moment()}
-                            start={moment().subtract(15, 'minutes')}
-                            end={moment().add(15, 'minutes')}
-                            format='h:mm A'
-                        />
-                        <Period
-                            name='Finished'
-                            color='#f4f3aeff'
-                            now={moment()}
-                            start={moment().subtract(50, 'minutes')}
-                            end={moment().subtract(20, 'minutes')}
-                            format='h:mm A'
-                        />
-                        <Period
-                            name='24-Hour'
-                            color='#aff4aeff'
-                            now={moment()}
-                            start={moment().subtract(20, 'minutes')}
-                            end={moment().add(10, 'minutes')}
-                            format='H:mm'
-                        />
-                        <Period
-                            name='With Zoom Link'
-                            color='#aeaff4ff'
-                            now={moment()}
-                            start={moment().subtract(50, 'minutes')}
-                            end={moment().subtract(20, 'minutes')}
-                            format='H:mm'
-                            zoom="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                        />
-                    </div>
+                <div className="schedule-wrapper">
+                    <Period
+                        name='Not Yet Started'
+                        color='#f4aeafff'
+                        now={moment()}
+                        start={moment().add(20, 'minutes')}
+                        end={moment().add(50, 'minutes')}
+                        format='h:mm A'
+                    />
+                    <Period
+                        name='In Progress Blue'
+                        color='#aedef4ff'
+                        now={moment()}
+                        start={moment().subtract(20, 'minutes')}
+                        end={moment().add(10, 'minutes')}
+                        format='h:mm A'
+                    />
+                    <Period
+                        name='In Progress Orange'
+                        color='#f4dcaeff'
+                        now={moment()}
+                        start={moment().subtract(10, 'minutes')}
+                        end={moment().add(20, 'minutes')}
+                        format='h:mm A'
+                    />
+                    <Period
+                        name='In Progress Green'
+                        color='#aef4dcff'
+                        now={moment()}
+                        start={moment().subtract(15, 'minutes')}
+                        end={moment().add(15, 'minutes')}
+                        format='h:mm A'
+                    />
+                    <Period
+                        name='Finished'
+                        color='#f4f3aeff'
+                        now={moment()}
+                        start={moment().subtract(50, 'minutes')}
+                        end={moment().subtract(20, 'minutes')}
+                        format='h:mm A'
+                    />
+                    <Period
+                        name='24-Hour'
+                        color='#aff4aeff'
+                        now={moment()}
+                        start={moment().subtract(20, 'minutes')}
+                        end={moment().add(10, 'minutes')}
+                        format='H:mm'
+                    />
+                    <Period
+                        name='With Zoom Link'
+                        color='#aeaff4ff'
+                        now={moment()}
+                        start={moment().subtract(50, 'minutes')}
+                        end={moment().subtract(20, 'minutes')}
+                        format='H:mm'
+                        zoom="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                    />
                 </div>
             </div>
         </div>

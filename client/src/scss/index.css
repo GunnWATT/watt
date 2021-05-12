@@ -29,6 +29,7 @@ body ::-webkit-scrollbar-thumb {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 #red-bg {
@@ -65,7 +66,7 @@ hr {
   border-top: 2px solid rgba(0, 0, 0, 0.1);
 }
 
-.center, .schedule .no-school, .schedule .schedule-date, .schedule .schedule-dayname {
+.center, .schedule .no-school, .schedule-date, .schedule-dayname {
   text-align: center;
 }
 
@@ -283,6 +284,9 @@ ul.material-list li, .sidebar .toggler {
   display: grid;
   grid-template-columns: minmax(50vh, 1fr) 20rem;
 }
+.home.narrow {
+  padding: 0;
+}
 
 .desmos-embed {
   height: 700px;
@@ -360,6 +364,8 @@ ul.material-list li span {
 }
 
 .events {
+  padding: 15px;
+  margin: 0 10px;
   list-style: none;
 }
 .events::-webkit-scrollbar {
@@ -367,7 +373,6 @@ ul.material-list li span {
 }
 .two-col .events {
   height: calc(100vh - 48px);
-  margin: 0 10px;
   overflow: auto;
   display: flex;
   flex-direction: column;
@@ -410,22 +415,30 @@ ul.material-list li span {
 .schedule .date-selector .react-datepicker-wrapper input:focus {
   outline: none;
 }
-.schedule .schedule-dayname {
+.schedule-dayname {
   font-size: 72px;
 }
-.schedule .schedule-wrapper {
+.home.narrow .schedule-dayname {
+  font-size: 60px;
+}
+
+.home.narrow .schedule-date {
+  font-size: 24px;
+}
+
+.schedule-wrapper {
   max-width: 800px;
   margin: 0 auto 0 auto;
 }
-.schedule .schedule-wrapper .card {
+.schedule-wrapper .card {
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1);
   margin-bottom: 1rem;
   border-radius: 0.375rem;
 }
-.schedule .schedule-wrapper .card .card-title {
-  font-size: 24px;
+.schedule-wrapper .card .card-title {
+  font-size: 22px;
 }
-.schedule .schedule-wrapper .card .card-link {
+.schedule-wrapper .card .card-link {
   position: absolute;
   top: 24px;
   right: 24px;

@@ -5,12 +5,13 @@
   &::-webkit-scrollbar {
     display: none;
   }
+  padding: 15px;
+  margin: 0 10px;
   list-style: none;
 
   // Style for large screens
   .two-col & {
     height: calc(100vh - 48px); // 100vh - 48px doesn't work but calc(100vh - 48px) does
-    margin: 0 10px;
     overflow: auto;
     @include content-box();
     -webkit-box-sizing: border-box;

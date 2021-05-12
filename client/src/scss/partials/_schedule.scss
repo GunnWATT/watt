@@ -27,18 +27,26 @@
   }
 
   // The day name ("Saturday")
-  .schedule-dayname {
+  &-dayname {
     @extend .center;
     font-size: 72px;
+
+    @at-root .home.narrow .schedule-dayname {
+      font-size: 60px;
+    }
   }
 
   // The date ("October 10th, 2020")
-  .schedule-date {
+  &-date {
     @extend .center;
+
+    @at-root .home.narrow .schedule-date {
+      font-size: 24px;
+    }
   }
 
   // Periods container
-  .schedule-wrapper {
+  &-wrapper {
     max-width: 800px;
     margin: 0 auto 0 auto;
 
@@ -50,7 +58,7 @@
       border-radius: 0.375rem;
 
       .card-title {
-        font-size: 24px;
+        font-size: 22px;
       }
 
       .card-link {
@@ -72,8 +80,8 @@
     max-width: 1000px;
     margin: 0 auto 1rem;
     //position: sticky;
-    //position: -webkit-sticky;
-    //top: 5px;
+    //top: 1rem;
+    //z-index: 10;
 
     button {
       color: inherit;

@@ -5,5 +5,8 @@
     display: grid;
     grid-template-columns: minmax(50vh, 1fr) 20rem;
   }
-}
 
+  &.narrow {
+    padding: 0;
+  }
+}
