@@ -21,7 +21,7 @@ const Events = (props: EventsProps) => {
     useEffect(() => {
         const currEvents = events?.filter(eventFilter).map(event => <Event {...event} />);
         setContent((currEvents && currEvents.length) ? currEvents : null);
-    }, [viewDate])
+    }, [viewDate, events])
 
 
     return (
