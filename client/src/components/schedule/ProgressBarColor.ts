@@ -47,5 +47,3 @@ const multiplyHex = (hex: string, scale: number) => {
 
 export const bgColor = (hex: string) => multiplyHex(hex, 0.8);
 export const barColor = (hex: string) => multiplyHex(hex, 0.9);
-
-export const darken = (hex: string) => multiplyHex(hex, 0.8);

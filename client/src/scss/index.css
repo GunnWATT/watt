@@ -19,7 +19,7 @@ body.dark {
   --secondary: rgba(white, 0.54);
   --tertiary: rgba(255, 255, 255, 0.1);
   --bg-primary: rgb(25, 25, 25);
-  --bg-secondary: rgba(35, 35, 35);
+  --bg-secondary: rgb(35, 35, 35);
   --content-primary: rgb(55, 55, 55);
   --content-secondary: rgb(47, 47, 47);
   --theme-light: rgba(255, 89, 76, 0.1);

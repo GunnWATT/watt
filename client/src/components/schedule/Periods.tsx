@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import moment from 'moment-timezone';
 import {Moment} from 'moment';
-import {darken} from './ProgressBarColor';
 
 // Components
 import Period from './Period';
@@ -203,7 +202,7 @@ export const periodColors =
     ['#f4aeafff', '#aef4dcff', '#aedef4ff', '#aeaff4ff', '#f4dcaeff', '#aff4aeff', '#f4f3aeff', '#efefefff'];
 export const darkPerColors =
     //periodColors.map(x => darken(x))
-    ['#e57373', '#80cbc4', '#90caf9', '#b39ddb', '#ffcc80', '#a5d6a7', '#fff176', '#e0e0e0'].map(x => darken(x));
+    ['#af4448', '#4f9a94', '#5d99c6', '#836fa9', '#fb8c00', '#8bc34a', '#ffe54c', '#494949'];
 
 // Gets the default value for the given key
 export const periodNameDefault = (name: string) => {
