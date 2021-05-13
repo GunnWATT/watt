@@ -202,7 +202,7 @@ export const periodColors =
     ['#f4aeafff', '#aef4dcff', '#aedef4ff', '#aeaff4ff', '#f4dcaeff', '#aff4aeff', '#f4f3aeff', '#efefefff'];
 export const darkPerColors =
     //periodColors.map(x => darken(x))
-    ['#af4448', '#4f9a94', '#5d99c6', '#836fa9', '#fb8c00', '#8bc34a', '#ffe54c', '#494949'];
+    ['#af4448', '#4f9a94', '#5d99c6', '#836fa9', '#ca9b52', '#94af76', '#cbc26d', '#494949'];
 
 // Gets the default value for the given key
 export const periodNameDefault = (name: string) => {
