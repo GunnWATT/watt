@@ -21,7 +21,7 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background-color: white;
+  background-color: var(--bg-primary);
   //background-color: #23232e;
   //color: #efefef;
   font-size: 18px;
@@ -59,7 +59,7 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
     @extend %text-truncate;
     width: 100%;
     margin: 12px 0 0 0;
-    color: black;
+    color: inherit;
     display: block;
     transition: background-color 200ms ease;
     padding: $link-padding;
@@ -70,7 +70,7 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
       }
       border-radius: 5px;
       //background-color: $focus;
-      background-color: $grey;
+      background-color: var(--bg-secondary);
     }
 
     // Text

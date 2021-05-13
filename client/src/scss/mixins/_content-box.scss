@@ -1,8 +1,8 @@
-@mixin content-box($radius: 10px, $padding: 20px, $bg-color: $background) {
+@mixin content-box($radius: 10px, $padding: 20px, $bg-color: var(--content-primary)) {
   display: flex;
   flex-direction: column;
   padding: $padding;
   background-color: $bg-color;
   border-radius: $radius;
-  box-shadow: 0 3px 5px 3px $tertiary;
+  box-shadow: 0 3px 5px 3px rgba(0, 0, 0, 0.1);
 }

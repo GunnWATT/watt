@@ -67,6 +67,7 @@ const App = () => {
     const [gunnData, gdLoading, gdError] = useCollection(firestore.collection('gunn'));
     const [userData, udLoading, udError] = useDocument(firestore.doc(`users/${auth.currentUser?.uid}`));
 
+    document.body.className = userData?.data()?.options.theme ?? 'light';
 
     return (
         <Router>

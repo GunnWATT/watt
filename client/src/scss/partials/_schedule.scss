@@ -10,7 +10,8 @@
 
     .react-datepicker-wrapper {
       padding: 5px 0;
-      background-color: #ffffff;
+      background-color: var(--content-primary);
+      color: inherit;
       border-radius: 5px;
       box-shadow: 0 3px 5px 3px rgba(0,0,0,.1);
 
@@ -52,7 +53,7 @@
 
     // Individual period boxes
     .card {
-      box-shadow: 0 3px 5px 0 $tertiary;
+      box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1);
       //border: none;
       margin-bottom: 1rem;
       border-radius: 0.375rem;
@@ -65,7 +66,7 @@
         position: absolute;
         top: 24px;
         right: 24px;
-        color: $secondary;
+        color: var(--secondary);
       }
     }
   }
@@ -73,8 +74,8 @@
   // The Alert for when you are viewing a different day's schedule
   .day-alert {
     border: none;
-    color: $primary;
-    background-color: white;
+    color: var(--primary);
+    background-color: var(--bg-primary);
     display: flex;
     align-items: center;
     max-width: 1000px;

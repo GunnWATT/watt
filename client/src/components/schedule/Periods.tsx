@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import moment from 'moment-timezone';
 import {Moment} from 'moment';
+import {darken} from './ProgressBarColor';
 
 // Components
 import Period from './Period';
@@ -85,10 +86,13 @@ const Periods = (props: PeriodsProps) => {
 
         let num = Number(name);
         // Map number periods to their default colors
-        if (num)
-            return defaultPeriodColors[num - 1];
-        // Non numbered periods are grey colored
-        return '#efefefff';
+        if (num) {
+            if (userData?.options.theme === 'dark') return darkPerColors[num - 1];
+            return periodColors[num - 1];
+        }
+        // Non numbered periods are default colored
+        if (userData?.options.theme === 'dark') return darkPerColors[darkPerColors.length - 1]
+        return periodColors[periodColors.length - 1];
     }
 
     // Maps periods array to <Period> components
@@ -195,8 +199,11 @@ const Periods = (props: PeriodsProps) => {
 }
 
 // Default period colors
-export const defaultPeriodColors =
-    ['#f4aeafff', '#aef4dcff', '#aedef4ff', '#aeaff4ff', '#f4dcaeff', '#aff4aeff', '#f4f3aeff'];
+export const periodColors =
+    ['#f4aeafff', '#aef4dcff', '#aedef4ff', '#aeaff4ff', '#f4dcaeff', '#aff4aeff', '#f4f3aeff', '#efefefff'];
+export const darkPerColors =
+    //periodColors.map(x => darken(x))
+    ['#e57373', '#80cbc4', '#90caf9', '#b39ddb', '#ffcc80', '#a5d6a7', '#fff176', '#e0e0e0'].map(x => darken(x));
 
 // Gets the default value for the given key
 export const periodNameDefault = (name: string) => {

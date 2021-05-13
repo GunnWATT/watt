@@ -90,7 +90,8 @@ const StaffComponent = (props: Staff & {id:string}) => {
         }
 
         return (
-            <Table hover>
+            // Set the table to dark depending on user's theme so that reactstrap's hovering won't break the CSS
+            <Table hover dark={userData?.options.theme === 'dark'}>
                 <thead>
                 <tr>
                     <th>Period</th>

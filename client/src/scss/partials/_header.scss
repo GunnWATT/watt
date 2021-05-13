@@ -25,7 +25,7 @@
     // Search box in lists
     input {
       //margin-left: 1rem;
-      border: 2px solid $tertiary;
+      border: 2px solid rgba(0, 0, 0, 0.1);
     }
   }
 
@@ -38,14 +38,14 @@
       padding: 0;
 
       .nav-item {
-        box-shadow: 0 0 3px -3px $tertiary;
+        box-shadow: 0 0 3px -3px rgba(0, 0, 0, 0.1);
 
         // First and last get left and right shadows respectively
         &:first-child {
-          box-shadow: -5px 0 5px -3px $tertiary;
+          box-shadow: -5px 0 5px -3px rgba(0, 0, 0, 0.1);
         }
         &:last-child {
-          box-shadow: 5px 0 5px -3px $tertiary;
+          box-shadow: 5px 0 5px -3px rgba(0, 0, 0, 0.1);
         }
       }
     }
@@ -53,7 +53,7 @@
 
   // White box that displays the tab content
   .page {
-    @include content-box($radius: 0 0 10px 10px, $bg-color: white);
+    @include content-box($radius: 0 0 10px 10px);
     //min-height: 300px;
   }
 }

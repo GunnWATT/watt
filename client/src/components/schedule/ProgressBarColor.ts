@@ -1,6 +1,6 @@
 // https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
 const hexToRgb = (hex: string): [number, number, number] | null => {
-    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})[a-f\d]{2}$/i.exec(hex);
+    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})(?:[a-f\d]{2})?$/i.exec(hex);
     return result ? [
         parseInt(result[1], 16),
         parseInt(result[2], 16),
@@ -33,7 +33,7 @@ const getLowestMiddleHighest = (rgbIntArray: [number, number, number]) => {
 }
 
 const multiplyHex = (hex: string, scale: number) => {
-    const rgb = hexToRgb(hex)
+    const rgb = hexToRgb(hex);
     const [lowest, middle, highest] = getLowestMiddleHighest(rgb!);
 
     const returnArray = [];
@@ -47,3 +47,5 @@ const multiplyHex = (hex: string, scale: number) => {
 
 export const bgColor = (hex: string) => multiplyHex(hex, 0.8);
 export const barColor = (hex: string) => multiplyHex(hex, 0.9);
+
+export const darken = (hex: string) => multiplyHex(hex, 0.8);

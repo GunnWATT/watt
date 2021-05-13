@@ -1,0 +1,54 @@
+// Restyles for reactstrap components
+
+// <Nav>
+.nav {
+  padding: 10px 5px 0 5px;
+  width: 100%;
+
+  &.nav-tabs {
+    border: none;
+
+    .nav-item {
+      border-radius: 5px;
+      cursor: pointer;
+
+      .nav-link {
+        border: none;
+        color: var(--secondary);
+        background-color: var(--content-secondary);
+
+        &.active {
+          color: var(--primary);
+          background-color: var(--content-primary);
+        }
+      }
+    }
+  }
+}
+
+// <Modal>
+.modal-content {
+  background-color: var(--content-primary);
+
+  .modal-header, .modal-footer {
+    border-color: var(--tertiary);
+  }
+}
+
+// <Jumbotron>
+.jumbotron {
+  background-color: var(--bg-secondary);
+}
+
+// <Table>
+.table {
+  //color: var(--primary);
+  * * {
+    border-color: var(--tertiary) !important;
+  }
+}
+
+// <Card>
+.card {
+  background-color: var(--bg-secondary);
+}

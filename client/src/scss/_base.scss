@@ -3,16 +3,38 @@
 body {
   margin: 0;
   height: 100vh;
-  color: $primary;
   font-size: 16px;
-  background-color: $grey;
+
+  --primary: rgba(0, 0, 0, 0.87);   // Primary text color
+  --secondary: rgba(0, 0, 0, 0.54); // Secondary text color
+  --tertiary: rgba(0, 0, 0, 0.1);   // Tertiary text color, used for <hr>s
+  --bg-primary: white;              // Primary background, used for sidebar color
+  --bg-secondary: #f7f8fdff;        // Secondary background, used for background and sidebar hover color
+  --content-primary: white;         // Primary content box color
+  --content-secondary: #e9ecef;     // Secondary content box color, used for inactive nav-tabs
+  --theme-light: #fcebebff;         // Light theme color, used for header backdrop
+
+  &.dark {
+    color-scheme: dark;
+    --primary: white;
+    --secondary: rgba(white, 0.54);
+    --tertiary: rgba(255, 255, 255, 0.1);
+    --bg-primary: rgb(25, 25, 25);
+    --bg-secondary: rgba(35, 35, 35);
+    --content-primary: rgb(55, 55, 55);
+    --content-secondary: rgb(47, 47, 47);
+    --theme-light: rgba(255, 89, 76, 0.1);
+  }
+
+  color: var(--primary);
+  background-color: var(--bg-secondary);
 
   ::-webkit-scrollbar {
     width: 0.25rem;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: $secondary;
+    background: var(--secondary);
   }
 }
 
@@ -41,7 +63,8 @@ body {
 }
 
 #red-bg {
-  @extend %theme-backdrop;
+  background-color: var(--theme-light);
+  height: 40vh;
   width: 100%;
   position: absolute;
   top: 0;
