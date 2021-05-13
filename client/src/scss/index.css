@@ -221,7 +221,7 @@ ul.material-list li, .sidebar .toggler {
 }
 
 .bottom-nav {
-  background: white;
+  background: var(--bg-primary);
   width: 100vw;
   padding: 1rem;
   z-index: 10;
@@ -232,12 +232,12 @@ ul.material-list li, .sidebar .toggler {
 }
 .bottom-nav .nav-container .item {
   flex-grow: 1;
-  color: black;
+  color: var(--primary);
   font-size: 1.3rem;
 }
 .bottom-nav .nav-container .item:hover {
   border-radius: 5px;
-  background-color: #f7f8fdff;
+  background-color: var(--bg-secondary);
 }
 .bottom-nav .nav-container .item:hover a {
   text-decoration: none;
