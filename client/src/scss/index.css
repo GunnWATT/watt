@@ -137,8 +137,11 @@ ul.material-list li, .sidebar .toggler {
   background-color: var(--bg-secondary);
 }
 
-.table * {
-  background-color: var(--content-primary);
+.table {
+  color: var(--primary);
+}
+.table *:hover * {
+  color: var(--primary);
 }
 .table * * {
   border-color: var(--tertiary) !important;

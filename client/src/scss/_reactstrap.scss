@@ -42,10 +42,11 @@
 
 // <Table>
 .table {
-  //color: var(--primary);
+  color: var(--primary);
   * {
-    // Kills hover, but is necessary to prevent reactstrap's ugly default bg color for dark tables
-    background-color: var(--content-primary);
+    &:hover * {
+      color: var(--primary);
+    }
     * {
       border-color: var(--tertiary) !important;
     }
