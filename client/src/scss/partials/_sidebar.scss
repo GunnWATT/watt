@@ -92,7 +92,7 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
 
     // Active
     &.active {
-      color: $theme-dark;
+      color: var(--active);
     }
 
     // The <Link> components

@@ -38,7 +38,7 @@
 
       // Active
       &.active {
-        color: $theme-dark;
+        color: var(--active);
       }
 
       // The <Link> components

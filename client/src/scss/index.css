@@ -10,19 +10,21 @@ body {
   --content-primary: white;
   --content-secondary: #e9ecef;
   --theme-light: #fcebebff;
+  --active: #a51618;
   color: var(--primary);
   background-color: var(--bg-secondary);
 }
 body.dark {
   color-scheme: dark;
   --primary: white;
-  --secondary: rgba(white, 0.54);
+  --secondary: rgba(255, 255, 255, 0.54);
   --tertiary: rgba(255, 255, 255, 0.1);
   --bg-primary: rgb(25, 25, 25);
   --bg-secondary: rgb(35, 35, 35);
   --content-primary: rgb(55, 55, 55);
   --content-secondary: rgb(47, 47, 47);
   --theme-light: rgba(255, 89, 76, 0.1);
+  --active: #ff594c;
 }
 body ::-webkit-scrollbar {
   width: 0.25rem;
@@ -135,6 +137,9 @@ ul.material-list li, .sidebar .toggler {
   background-color: var(--bg-secondary);
 }
 
+.table * {
+  background-color: var(--content-primary);
+}
 .table * * {
   border-color: var(--tertiary) !important;
 }
@@ -202,7 +207,7 @@ ul.material-list li, .sidebar .toggler {
   width: 2rem;
 }
 .sidebar .item.active {
-  color: #a51618;
+  color: var(--active);
 }
 .sidebar .item a, .sidebar .item button {
   display: block;
@@ -253,7 +258,7 @@ ul.material-list li, .sidebar .toggler {
   vertical-align: -0.125em;
 }
 .bottom-nav .nav-container .item.active {
-  color: #a51618;
+  color: var(--active);
 }
 .bottom-nav .nav-container .item a, .bottom-nav .nav-container .item button {
   display: block;
