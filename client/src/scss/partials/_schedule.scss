@@ -27,6 +27,11 @@
     }
   }
 
+  // The datetime ("5:31:30 PM")
+  &-datetime {
+    font-family: var(--font-family-monospace);
+  }
+
   // The day name ("Saturday")
   &-dayname {
     @extend .center;

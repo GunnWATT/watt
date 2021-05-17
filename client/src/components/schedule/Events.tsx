@@ -19,16 +19,20 @@ const Events = (props: EventsProps) => {
 
     // Render events on mount and viewDate change
     useEffect(() => {
-        const currEvents = events?.filter(eventFilter).map(event => <Event {...event} />);
+        const currEvents = events?.filter(eventFilter).map(event => <Event key={event.summary} {...event} />);
         setContent((currEvents && currEvents.length) ? currEvents : null);
     }, [viewDate, events])
 
 
     return (
-        <div className="events">
-            <h2>Events</h2>
-            <hr/>
-            {content ?? <div className="WIP"><span>Nothing to show for today.</span></div>}
+        <div className="events pt-0">
+            <div className="events-heading pt-3">
+                <h2>Events</h2>
+                <hr/>
+            </div>
+            {content
+                ? <div className="events-content">{content}</div>
+                : <div className="WIP"><span>Nothing to show for today.</span></div>}
         </div>
     );
 }

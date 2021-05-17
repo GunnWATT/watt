@@ -21,10 +21,23 @@
     top: 24px;
   }
 
-  .event {
-    p {
-      margin-bottom: 0.5rem;
+  // The heading for the events sidebar
+  &-heading {
+    position: sticky;
+    top: 0;
+    background-color: inherit;
+  }
+
+  // The div content pane for the events sidebar
+  &-content {
+    //height: 100%;
+    //overflow: scroll;
+
+    .event {
+      p {
+        margin-bottom: 0.5rem;
+      }
+      margin-bottom: 1rem;
     }
-    margin-bottom: 1rem;
   }
 }

@@ -429,10 +429,15 @@ ul.material-list li span {
   position: sticky;
   top: 24px;
 }
-.events .event {
+.events-heading {
+  position: sticky;
+  top: 0;
+  background-color: inherit;
+}
+.events-content .event {
   margin-bottom: 1rem;
 }
-.events .event p {
+.events-content .event p {
   margin-bottom: 0.5rem;
 }
 
@@ -458,6 +463,9 @@ ul.material-list li span {
 }
 .schedule .date-selector .react-datepicker-wrapper input:focus {
   outline: none;
+}
+.schedule-datetime {
+  font-family: var(--font-family-monospace);
 }
 .schedule-dayname {
   font-size: 72px;
