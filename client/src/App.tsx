@@ -22,6 +22,10 @@ import {TimeProvider} from './contexts/CurrentTimeContext';
 import firebase from './firebase/Firebase';
 import {useCollection, useDocument} from 'react-firebase-hooks/firestore';
 
+// Utils
+import {parseNextPeriod} from './components/schedule/PeriodIndicator';
+import {parsePeriodName} from './components/schedule/Periods';
+
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
 
 
@@ -45,7 +49,7 @@ const App = () => {
 
 
     // Events data for schedule
-    const [events, setEvents] = useState<null | GCalEvent[]>(null);
+    const [events, setEvents] = useState<GCalEvent[] | null>(null);
 
     // Fetch events on mount
     useEffect(() => {
@@ -58,6 +62,28 @@ const App = () => {
             .then(res => res.json())
             .then(json => setEvents(json.items));
     }, [])
+
+
+    // Update document name based on current period
+    useEffect(() => {
+        const midnight = date.clone().startOf('date');
+        const minutes = date.diff(midnight, 'minutes');
+        const period = parseNextPeriod(date, minutes);
+
+        if (!period) {
+            document.title = 'Web App of The Titans (WATT)';
+            return;
+        }
+        const {next} = period;
+
+        const name = parsePeriodName(next[0], userData?.data() as UserData);
+        const startingIn = next[1].s - minutes;
+        const endingIn = next[1].e - minutes;
+
+        document.title = (startingIn > 0)
+            ? `${name} starting in ${startingIn} minute${startingIn !== 1 ? 's' : ''}.`
+            : `${name} ending in ${endingIn} minute${endingIn !== 1 ? 's' : ''}, started ${-startingIn} minute${startingIn !== -1 ? 's' : ''} ago.`
+    }, [date])
 
 
     // Firestore data

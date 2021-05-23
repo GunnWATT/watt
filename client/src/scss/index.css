@@ -478,6 +478,15 @@ ul.material-list li span {
   font-size: 24px;
 }
 
+.schedule .period-indicator {
+  margin-bottom: 1rem;
+}
+.schedule .period-indicator p {
+  margin-bottom: 0.25rem;
+}
+.schedule .period-indicator .progress {
+  height: 0.5rem;
+}
 .schedule-wrapper {
   max-width: 800px;
   margin: 0 auto 0 auto;

@@ -51,6 +51,18 @@
     }
   }
 
+  .period-indicator {
+    margin-bottom: 1rem;
+
+    p {
+      margin-bottom: 0.25rem;
+    }
+
+    .progress {
+      height: 0.5rem;
+    }
+  }
+
   // Periods container
   &-wrapper {
     max-width: 800px;

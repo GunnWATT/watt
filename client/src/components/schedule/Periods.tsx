@@ -4,6 +4,7 @@ import {Moment} from 'moment';
 
 // Components
 import Period from './Period';
+import PeriodIndicator from './PeriodIndicator';
 import NoSchoolImage from './NoSchoolImage';
 
 // Data
@@ -12,7 +13,7 @@ import alternates from '../../data/alternates';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
-import UserDataContext, {SgyPeriodData} from '../../contexts/UserDataContext';
+import UserDataContext, {SgyPeriodData, UserData} from '../../contexts/UserDataContext';
 
 
 // An object representing a period, with s and e being start and end times (in minutes after 12:00 AM PST)
@@ -41,26 +42,17 @@ const Periods = (props: PeriodsProps) => {
 
     // Load schedule and alternates
     useEffect(() => {
-        // Turns day of the week into schedule object key; Thursday is R, Saturday is A
-        const numToWeekday = (num: number) => ['S', 'M', 'T', 'W', 'R', 'F', 'A'][num];
-        // Sorts object by start times so it is not mismatched
-        const sortByStart = (obj: DayObj) => {
-            return Object.entries(obj)
-                .filter((a): a is [string, PeriodObj] => a[1] !== undefined)
-                .sort(([nameA, valA], [nameB, valB]) => valA.s - valB.s);
-        }
-
         // Check for alternate schedules
         let altFormat = viewDate.format('MM-DD');
         if (alternates.alternates.hasOwnProperty(altFormat)) {
             // If viewDate exists in alt schedules, load that schedule
             let periods = alternates.alternates[altFormat];
-            setPeriods(periods ? sortByStart(periods) : null);
+            setPeriods(periods ? sortPeriodsByStart(periods) : null);
             setAlternate(true);
         } else {
             // Otherwise, use default schedule
             let periods = schedule[numToWeekday(Number(viewDate.format('d')))];
-            setPeriods(periods ? sortByStart(periods) : null);
+            setPeriods(periods ? sortPeriodsByStart(periods) : null);
         }
 
         // Check for Gunn Together
@@ -74,26 +66,6 @@ const Periods = (props: PeriodsProps) => {
     }, [viewDate])
 
 
-    // Turns object key into human readable period name
-    const parsePeriodName = (name: string) => {
-        return classes?.[name]?.n ? classes[name].n : periodNameDefault(name);
-    }
-
-    // Turns object key into period color
-    const parsePeriodColor = (name: string | number | null) => {
-        if (name && classes?.[name]?.c) return classes[name].c;
-
-        let num = Number(name);
-        // Map number periods to their default colors
-        if (num) {
-            if (userData?.options.theme === 'dark') return darkPerColors[num - 1];
-            return periodColors[num - 1];
-        }
-        // Non numbered periods are default colored
-        if (userData?.options.theme === 'dark') return darkPerColors[darkPerColors.length - 1]
-        return periodColors[periodColors.length - 1];
-    }
-
     // Maps periods array to <Period> components
     const renderPeriods = () =>
         periods!.map(([name, value]) => {
@@ -106,7 +78,7 @@ const Periods = (props: PeriodsProps) => {
                 }
             }
 
-            let displayName = parsePeriodName(name);
+            let displayName = parsePeriodName(name, userData);
             let colorKey = name;
             let zoomKey = name;
 
@@ -120,7 +92,7 @@ const Periods = (props: PeriodsProps) => {
             return (
                 <Period
                     name={displayName}
-                    color={parsePeriodColor(colorKey)}
+                    color={parsePeriodColor(colorKey, userData)}
                     key={name}
                     now={currDate}
                     start={viewDate.clone().add(value.s, 'minutes').tz(timeZone)} // Convert PST times back to local timezone
@@ -137,14 +109,20 @@ const Periods = (props: PeriodsProps) => {
         // End time of the last period of the day
         // Do not count non school periods like office hours for the end time
         const validSchoolPeriods = periods!.filter(x => x[0] !== 'O');
-        let end = viewDate.clone().add(
+        const end = viewDate.clone().add(
             validSchoolPeriods[validSchoolPeriods.length - 1][1].e, 'minutes').tz(timeZone);
+
+        // Display the period indicator if there are periods that day and if time is within 20 minutes of the first period
+        // and before the last period
+        const minutes = currDate.diff(viewDate, 'minutes');
+        const displayIndicator = periods && minutes < periods[periods.length - 1][1].e && minutes >= periods[0][1].s - 20;
 
         return (
             <>
                 <p className="schedule-end">
                     School ends at <strong>{end.format(format)}</strong> today.
                 </p>
+                {displayIndicator && <PeriodIndicator currTime={currDate} startTime={periods![0][1].s}/>}
                 {renderPeriods()}
             </>
         )
@@ -197,6 +175,7 @@ const Periods = (props: PeriodsProps) => {
     )
 }
 
+
 // Default period colors
 export const periodColors =
     ['#f4aeafff', '#aef4dcff', '#aedef4ff', '#aeaff4ff', '#f4dcaeff', '#aff4aeff', '#f4f3aeff', '#efefefff'];
@@ -204,7 +183,42 @@ export const darkPerColors =
     //periodColors.map(x => darken(x))
     ['#af4448', '#4f9a94', '#5d99c6', '#836fa9', '#ca9b52', '#94af76', '#cbc26d', '#494949'];
 
-// Gets the default value for the given key
+
+// Turns day of the week into schedule object key; Thursday is R, Saturday is A
+export const numToWeekday = (num: number) => ['S', 'M', 'T', 'W', 'R', 'F', 'A'][num];
+
+// Sorts periods object by start times so it is not mismatched when rendering
+export const sortPeriodsByStart = (obj: DayObj) => {
+    return Object.entries(obj)
+        .filter((a): a is [string, PeriodObj] => a[1] !== undefined)
+        .sort(([nameA, valA], [nameB, valB]) => valA.s - valB.s);
+}
+
+// Turns object key into human readable period name
+export const parsePeriodName = (name: string, userData?: UserData) => {
+    const classes = userData?.classes as {[key: string]: SgyPeriodData} | undefined;
+
+    // Note: ?? will not work here, as the concern is with empty strings rendering empty period names
+    return classes?.[name]?.n ? classes[name].n : periodNameDefault(name);
+}
+
+// Turns object key into period color
+export const parsePeriodColor = (name: string | number | null, userData?: UserData) => {
+    const classes = userData?.classes as {[key: string]: SgyPeriodData} | undefined;
+    if (name && classes?.[name]?.c) return classes[name].c;
+
+    let num = Number(name);
+    // Map number periods to their default colors
+    if (num) {
+        if (userData?.options.theme === 'dark') return darkPerColors[num - 1];
+        return periodColors[num - 1];
+    }
+    // Non numbered periods are default colored
+    if (userData?.options.theme === 'dark') return darkPerColors[darkPerColors.length - 1]
+    return periodColors[periodColors.length - 1];
+}
+
+// Gets the default period name for the given key
 export const periodNameDefault = (name: string) => {
     if (Number(name)) return `Period ${name}`;
 
@@ -221,5 +235,6 @@ export const periodNameDefault = (name: string) => {
             return name;
     }
 }
+
 
 export default Periods;
