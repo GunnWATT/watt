@@ -24,7 +24,7 @@ import {useCollection, useDocument} from 'react-firebase-hooks/firestore';
 
 // Utils
 import {parseNextPeriod} from './components/schedule/PeriodIndicator';
-import {parsePeriodName} from './components/schedule/Periods';
+import {parsePeriodName, parsePeriodColor} from './components/schedule/Periods';
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
 
@@ -63,6 +63,11 @@ const App = () => {
             .then(json => setEvents(json.items));
     }, [])
 
+    function logSometimes(...args:any[]){
+        if (((new Date()).getSeconds()%5) == 0){
+            console.log(...args)
+        }
+    }
 
     // Update document name based on current period
     useEffect(() => {
@@ -83,6 +88,136 @@ const App = () => {
         document.title = (startingIn > 0)
             ? `${name} starting in ${startingIn} minute${startingIn !== 1 ? 's' : ''}.`
             : `${name} ending in ${endingIn} minute${endingIn !== 1 ? 's' : ''}, started ${-startingIn} minute${startingIn !== -1 ? 's' : ''} ago.`
+
+        /** ====== begin favicon ====== */
+
+        const favicon = document.createElement('link');
+        favicon.setAttribute('rel', 'icon')
+        document.head.appendChild(favicon);
+        let numToShow = startingIn > 0 ? startingIn : endingIn;
+        const isSeconds = (numToShow == 1);
+        let seconds;
+        if (isSeconds){
+            seconds = 60 - ( date.diff(midnight, 'seconds') % 60);
+            numToShow = seconds;
+        }
+        // document.title = ['isSeconds: ', isSeconds, ' & numToShow: ', numToShow].join()
+        const color = parsePeriodColor(next[0], userData?.data() as UserData)
+        const FAVICON_SIZE = 32
+        const borderRadius = FAVICON_SIZE * 0.15
+        const sRadius = FAVICON_SIZE * 0.45 // radius for last seconds
+        //  create the canvas
+        const faviconCanvas = document.createElement('canvas')
+        faviconCanvas.width = FAVICON_SIZE
+        faviconCanvas.height = FAVICON_SIZE
+        const fc = faviconCanvas.getContext('2d')!
+
+        // configure it to look nice
+        fc.textAlign = 'center'
+        fc.textBaseline = 'middle'
+        fc.lineWidth = FAVICON_SIZE * 0.1
+        fc.lineJoin = 'round'
+        fc.lineCap = 'round'
+
+        // colourtoy
+
+        const colourtoy = document.createElement('div')
+        function isLight (colour : string) {
+            colourtoy.style.backgroundColor = colour
+            colour = colourtoy.style.backgroundColor
+            let colorArr:number[] = colour
+                .slice(colour.indexOf('(') + 1, colour.indexOf(')'))
+                .split(/,\s*/)
+                .map(a => +a)
+            // https://stackoverflow.com/questions/11867545/change-text-color-based-on-brightness-of-the-covered-background-area
+            return (
+                Math.round(
+                    (parseInt(''+colorArr[0]) * 299 +
+                        parseInt(''+colorArr[1]) * 587 +
+                        parseInt(''+colorArr[2]) * 114) /
+                    1000
+                ) > 150
+            )
+        }
+        if (isSeconds) {
+            fc.fillStyle = color;
+            fc.strokeStyle = color;
+            fc.beginPath();
+            fc.moveTo(FAVICON_SIZE / 2 + sRadius, FAVICON_SIZE / 2)
+            fc.arc(FAVICON_SIZE / 2, FAVICON_SIZE / 2, sRadius, 0, 2 * Math.PI)
+            fc.closePath()
+            fc.fill()
+
+
+            fc.beginPath()
+            fc.moveTo(FAVICON_SIZE / 2, FAVICON_SIZE / 2 - sRadius)
+            // Rounding seconds so when it shows 30 seconds always will show half-way,
+            // even if it's not exactly 30s
+            fc.arc(
+                FAVICON_SIZE / 2,
+                FAVICON_SIZE / 2,
+                sRadius,
+                Math.PI * 1.5,
+                2 * Math.PI * (1 - Math.round(numToShow) / 60) - Math.PI / 2,
+                true
+            )
+            fc.stroke()
+
+
+            fc.fillStyle = isLight(color)? 'black' : 'white';
+            fc.font = `bold ${FAVICON_SIZE * 0.6}px "Roboto", sans-serif`
+            fc.fillText(
+                Math.round(numToShow)
+                    .toString()
+                    .padStart(2, '0'),
+                FAVICON_SIZE / 2,
+                FAVICON_SIZE * 0.575
+            )
+        }
+        else {
+            fc.clearRect(0, 0, FAVICON_SIZE, FAVICON_SIZE)
+
+            fc.fillStyle = color;
+            fc.beginPath()
+            // Rounded square
+            fc.moveTo(0, borderRadius)
+            fc.arc(borderRadius, borderRadius, borderRadius, Math.PI, Math.PI * 1.5)
+            fc.lineTo(FAVICON_SIZE - borderRadius, 0)
+            fc.arc(
+                FAVICON_SIZE - borderRadius,
+                borderRadius,
+                borderRadius,
+                -Math.PI / 2,
+                0
+            )
+            fc.lineTo(FAVICON_SIZE, FAVICON_SIZE - borderRadius)
+            fc.arc(
+                FAVICON_SIZE - borderRadius,
+                FAVICON_SIZE - borderRadius,
+                borderRadius,
+                0,
+                Math.PI / 2
+            )
+            fc.lineTo(borderRadius, FAVICON_SIZE)
+            fc.arc(
+                borderRadius,
+                FAVICON_SIZE - borderRadius,
+                borderRadius,
+                Math.PI / 2,
+                Math.PI
+            )
+            fc.closePath()
+            fc.fill()
+
+            fc.fillStyle = isLight(color)? 'black' : 'white';
+            fc.font = `bold ${FAVICON_SIZE * 0.8}px "Roboto", sans-serif`
+            fc.fillText(''+numToShow, FAVICON_SIZE / 2, FAVICON_SIZE * 0.575)
+        }
+
+        favicon.href = faviconCanvas.toDataURL()
+
+        // end favicon
+
     }, [date])
 
 

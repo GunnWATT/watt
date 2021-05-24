@@ -2,6 +2,7 @@ import React from 'react';
 
 // Represents a course on Schoology.
 // n: class name
+// c: color
 // l: class zoom link
 // o: office hours zoom link
 // s: schoology course id
