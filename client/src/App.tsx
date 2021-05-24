@@ -216,7 +216,7 @@ const App = () => {
 
         favicon.href = faviconCanvas.toDataURL()
 
-        // end favicon
+        /** ====== end favicon ====== */
 
     }, [date])
 
