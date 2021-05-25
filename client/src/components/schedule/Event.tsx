@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import moment from 'moment-timezone';
+import moment, {Moment} from 'moment';
 import UserDataContext from '../../contexts/UserDataContext';
 
 
@@ -14,21 +14,22 @@ const Event = (props: GCalEvent) => {
 
     // User data for preferred time display and zoom links
     const userData = useContext(UserDataContext);
-    const hourFormat = userData?.options.time === '24' ? 'H:mm' : 'h:mm A';
+    const hourFormat = userData?.options.time === '24' ? 'H' : 'h';
 
     // Parses start and end times to be human readable
-    const parseDateTime = (date: EventStartEndTime) => {
-        if (date.date) return moment(date.date).format('MMMM Do YYYY');
-        if (date.dateTime) return moment(date.dateTime).format(`MMMM Do YYYY [at] ${hourFormat}`);
-        return 'Unknown';
+    const formatDateTime = (start: EventStartEndTime, end: EventStartEndTime) => {
+        if (start.date && end.date)
+            return moment(start.date).twix(end.date).format({hideTime: true});
+        if (start.dateTime && end.dateTime)
+            return moment(start.dateTime).twix(end.dateTime).format({hourFormat: hourFormat, implicitMinutes: false});
+        return "Unknown Date";
     }
 
     return (
         <li className="event" key={summary}>
             <strong>{summary}</strong>
-            <p className="secondary">Start: {parseDateTime(start)}</p>
-            <p className="secondary">End: {parseDateTime(end)}</p>
-            {location && <p>Location: {location}</p>}
+            <p className="secondary">{formatDateTime(start, end)}</p>
+            {location && <p className="secondary">@ {location}</p>}
             <p className="secondary">{description}</p>
         </li>
     );

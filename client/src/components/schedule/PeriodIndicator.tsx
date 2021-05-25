@@ -20,6 +20,7 @@ const PeriodIndicator = (props: PeriodIndicatorProps) => {
 
     const midnight = currTime.clone().startOf('date');
     const minutes = currTime.diff(midnight, 'minutes');
+    const seconds = currTime.diff(midnight, 'seconds');
 
     const periods = parseNextPeriod(currTime, minutes);
     if (!periods) return <div />; // Really dumb failsafe for viewdate periods lag
@@ -38,7 +39,7 @@ const PeriodIndicator = (props: PeriodIndicatorProps) => {
                     starting in {startingIn} minute{startingIn !== 1 ? 's' : ''}.
                 </p>
                 <Progress
-                    value={(minutes - end) / (next[1].s - end) * 100}
+                    value={(seconds / 60 - end) / (next[1].s - end) * 100}
                     style={{backgroundColor: 'var(--tertiary)'}}
                     barStyle={{backgroundColor: 'var(--primary)'}}
                 />
@@ -54,7 +55,7 @@ const PeriodIndicator = (props: PeriodIndicatorProps) => {
                 started {-startingIn} minute{startingIn !== -1 ? 's' : ''} ago.
             </p>
             <Progress
-                value={(minutes - next[1].s) / (next[1].e - next[1].s) * 100}
+                value={(seconds / 60 - next[1].s) / (next[1].e - next[1].s) * 100}
                 style={{backgroundColor: 'var(--tertiary)'}}
                 barStyle={{backgroundColor: 'var(--primary)'}}
             />

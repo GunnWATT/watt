@@ -11,8 +11,9 @@ const Events = (props: EventsProps) => {
     // Filter events JSON for events happening on viewed date
     const eventFilter = (event: GCalEvent) => {
         // If given date range (2021-05-06 and 2021-05-08 for example) use twix to determine if the viewDate is in that range
+        // Subtract one minute from end time to make sure an event from 2/25-2/26 doesn't show up on both 2/25 and 2/26
         if (event.start.date && event.end.date)
-            return moment(event.start.date).twix(event.end.date).contains(viewDate);
+            return moment(event.start.date).twix(moment(event.end.date).subtract(1, 'minute')).contains(viewDate);
         // Else if given start and end dateTimes, check to see if they fall on the same day as viewDate
         return event.start.dateTime?.includes(viewDate.format('YYYY-MM-DD'));
     }
