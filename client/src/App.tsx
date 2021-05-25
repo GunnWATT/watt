@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import moment from 'moment';
 import {GCalEvent} from './components/schedule/Event';
 
@@ -51,6 +51,9 @@ const App = () => {
     // Events data for schedule
     const [events, setEvents] = useState<GCalEvent[] | null>(null);
 
+    // Reference to the favicon element
+    const [favicon, setFavicon] = useState<HTMLLinkElement | null>(null);
+
     // Fetch events on mount
     useEffect(() => {
         const googleCalendarId = encodeURIComponent('fg978mo762lqm6get2ubiab0mk0f6m2c@import.calendar.google.com');
@@ -63,8 +66,8 @@ const App = () => {
             .then(json => setEvents(json.items));
     }, [])
 
-    function logSometimes(...args:any[]){
-        if (((new Date()).getSeconds()%5) == 0){
+    function logSometimes(...args: any[]) {
+        if (((new Date()).getSeconds() % 5) == 0) {
             console.log(...args)
         }
     }
@@ -76,6 +79,10 @@ const App = () => {
         const period = parseNextPeriod(date, minutes);
 
         if (!period) {
+            if (favicon) {
+                favicon.remove();
+                setFavicon(null);
+            }
             document.title = 'Web App of The Titans (WATT)';
             return;
         }
@@ -85,20 +92,25 @@ const App = () => {
         const startingIn = next[1].s - minutes;
         const endingIn = next[1].e - minutes;
 
+
         document.title = (startingIn > 0)
             ? `${name} starting in ${startingIn} minute${startingIn !== 1 ? 's' : ''}.`
             : `${name} ending in ${endingIn} minute${endingIn !== 1 ? 's' : ''}, started ${-startingIn} minute${startingIn !== -1 ? 's' : ''} ago.`
 
         /** ====== begin favicon ====== */
 
-        const favicon = document.createElement('link');
-        favicon.setAttribute('rel', 'icon')
-        document.head.appendChild(favicon);
+        if (favicon == null) {
+            const el = document.createElement('link');
+            el.setAttribute('rel', 'icon');
+            document.head.appendChild(el);
+            setFavicon(el);
+        }
+
         let numToShow = startingIn > 0 ? startingIn : endingIn;
         const isSeconds = (numToShow == 1);
         let seconds;
-        if (isSeconds){
-            seconds = 60 - ( date.diff(midnight, 'seconds') % 60);
+        if (isSeconds) {
+            seconds = 60 - (date.diff(midnight, 'seconds') % 60);
             numToShow = seconds;
         }
         // document.title = ['isSeconds: ', isSeconds, ' & numToShow: ', numToShow].join()
@@ -122,23 +134,25 @@ const App = () => {
         // colourtoy
 
         const colourtoy = document.createElement('div')
-        function isLight (colour : string) {
+
+        function isLight(colour: string) {
             colourtoy.style.backgroundColor = colour
             colour = colourtoy.style.backgroundColor
-            let colorArr:number[] = colour
+            let colorArr: number[] = colour
                 .slice(colour.indexOf('(') + 1, colour.indexOf(')'))
                 .split(/,\s*/)
                 .map(a => +a)
             // https://stackoverflow.com/questions/11867545/change-text-color-based-on-brightness-of-the-covered-background-area
             return (
                 Math.round(
-                    (parseInt(''+colorArr[0]) * 299 +
-                        parseInt(''+colorArr[1]) * 587 +
-                        parseInt(''+colorArr[2]) * 114) /
+                    (parseInt('' + colorArr[0]) * 299 +
+                        parseInt('' + colorArr[1]) * 587 +
+                        parseInt('' + colorArr[2]) * 114) /
                     1000
                 ) > 150
             )
         }
+
         if (isSeconds) {
             fc.fillStyle = color;
             fc.strokeStyle = color;
@@ -164,7 +178,7 @@ const App = () => {
             fc.stroke()
 
 
-            fc.fillStyle = isLight(color)? 'black' : 'white';
+            fc.fillStyle = isLight(color) ? 'black' : 'white';
             fc.font = `bold ${FAVICON_SIZE * 0.6}px "Roboto", sans-serif`
             fc.fillText(
                 Math.round(numToShow)
@@ -173,11 +187,18 @@ const App = () => {
                 FAVICON_SIZE / 2,
                 FAVICON_SIZE * 0.575
             )
-        }
-        else {
+        } else {
+            let percent: number;
+
+            if (startingIn > 0) {
+                percent = 1 - (startingIn / 10)
+            } else {
+                percent = numToShow / (endingIn - startingIn);
+            }
+
             fc.clearRect(0, 0, FAVICON_SIZE, FAVICON_SIZE)
 
-            fc.fillStyle = color;
+            fc.fillStyle = color || 'info'
             fc.beginPath()
             // Rounded square
             fc.moveTo(0, borderRadius)
@@ -214,7 +235,8 @@ const App = () => {
             fc.fillText(''+numToShow, FAVICON_SIZE / 2, FAVICON_SIZE * 0.575)
         }
 
-        favicon.href = faviconCanvas.toDataURL()
+        if (favicon) favicon.href = faviconCanvas.toDataURL();
+
 
         /** ====== end favicon ====== */
 
@@ -241,8 +263,8 @@ const App = () => {
                             <Route path='/classes' component={Classes}/>
                             <Route path='/clubs' component={Clubs}/>
                             <Route path='/settings' component={Settings}/>
-                            <Route path='/super-secret-testing' component={Testing} />
-                            <Route path='/schoology/auth' component={SgyAuthRedirect} />
+                            <Route path='/super-secret-testing' component={Testing}/>
+                            <Route path='/schoology/auth' component={SgyAuthRedirect}/>
                             <Route component={PageNotFound}/>
                             {/* gunnData && console.log(gunnData.docs.map(x => x.data())) */}
                             {/* gunnData && gunnData.forEach(e => console.log(e.data())) */}
