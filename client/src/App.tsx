@@ -66,11 +66,6 @@ const App = () => {
             .then(json => setEvents(json.items));
     }, [])
 
-    function logSometimes(...args: any[]) {
-        if (((new Date()).getSeconds() % 5) == 0) {
-            console.log(...args)
-        }
-    }
 
     // Update document name based on current period
     useEffect(() => {
@@ -188,13 +183,13 @@ const App = () => {
                 FAVICON_SIZE * 0.575
             )
         } else {
-            let percent: number;
+            /*let percent: number;
 
             if (startingIn > 0) {
                 percent = 1 - (startingIn / 10)
             } else {
                 percent = numToShow / (endingIn - startingIn);
-            }
+            }*/
 
             fc.clearRect(0, 0, FAVICON_SIZE, FAVICON_SIZE)
 
