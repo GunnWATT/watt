@@ -15,14 +15,13 @@ body {
   background-color: var(--bg-secondary);
 }
 body.dark {
-  color-scheme: dark;
   --primary: white;
   --secondary: rgba(255, 255, 255, 0.54);
   --tertiary: rgba(255, 255, 255, 0.1);
   --bg-primary: rgb(25, 25, 25);
   --bg-secondary: rgb(35, 35, 35);
   --content-primary: rgb(55, 55, 55);
-  --content-secondary: rgb(47, 47, 47);
+  --content-secondary: rgb(42, 42, 42);
   --theme-light: rgba(255, 89, 76, 0.1);
   --active: #ff594c;
 }
@@ -75,9 +74,15 @@ a:hover {
 button {
   border: none;
   background: none;
+  color: inherit;
 }
 button:focus {
   outline: none;
+}
+
+input {
+  background-color: var(--content-primary);
+  color: inherit;
 }
 
 iframe {
@@ -339,6 +344,13 @@ ul.material-list li, .sidebar .toggler {
 .map {
   position: fixed;
   height: 100vh;
+}
+
+.percent-wrapper input {
+  background-color: var(--content-secondary);
+  border: none;
+  border-radius: 2.5px;
+  outline: none;
 }
 
 ul.material-list {

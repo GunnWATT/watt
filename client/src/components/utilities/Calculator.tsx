@@ -8,7 +8,8 @@ const Calculator = () => {
 
     // Takes in variables and calculates minimum finals score
     const calculateFinalsGrade = () => {
-        if (Number(finalsWorth) === 0) return <p>The final cannot be worth 0%!</p>;
+        if (finalsWorth === 0) return <p>The final cannot be worth 0%.</p>;
+        if (finalsWorth > 100) return <p>The final cannot be worth more than 100% of your grade.</p>
 
         let percentCurrGrade = currGrade / 100;
         let percentFinalsWorth = finalsWorth / 100;
@@ -29,39 +30,39 @@ const Calculator = () => {
             <hr/>
             <p>
                 Current grade:{' '}
-                <span className="percent-wrapper" data-l10n-arg="input">
-                        <input
-                            type="text"
-                            id="current-grade"
-                            value={currGrade}
-                            onChange={(e) => setCurrGrade(Number(e.target.value))}
-                        />
-                        <span>%</span>
-                    </span>
+                <span className="percent-wrapper">
+                    <input
+                        type="text"
+                        id="current-grade"
+                        value={currGrade}
+                        onChange={(e) => setCurrGrade(Number(e.target.value))}
+                    />
+                    <span>%</span>
+                </span>
             </p>
             <p>
                 Portion of grade the final determines:{' '}
-                <span className="percent-wrapper" data-l10n-arg="input">
-                        <input
-                            type="text"
-                            id="finals-worth"
-                            value={finalsWorth}
-                            onChange={(e) => setFinalsWorth(Number(e.target.value))}
-                        />
-                        <span>%</span>
-                    </span>
+                <span className="percent-wrapper">
+                    <input
+                        type="text"
+                        id="finals-worth"
+                        value={finalsWorth}
+                        onChange={(e) => setFinalsWorth(Number(e.target.value))}
+                    />
+                    <span>%</span>
+                </span>
             </p>
             <p>
                 Minimum acceptable grade:{' '}
-                <span className="percent-wrapper" data-l10n-arg="input">
-                        <input
-                            type="text"
-                            id="minimum-grade"
-                            value={minGrade}
-                            onChange={(e) => setMinGrade(Number(e.target.value))}
-                        />
-                        <span>%</span>
-                    </span>
+                <span className="percent-wrapper">
+                    <input
+                        type="text"
+                        id="minimum-grade"
+                        value={minGrade}
+                        onChange={(e) => setMinGrade(Number(e.target.value))}
+                    />
+                    <span>%</span>
+                </span>
             </p>
             {calculateFinalsGrade()}
         </>

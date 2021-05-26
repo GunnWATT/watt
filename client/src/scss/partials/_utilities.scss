@@ -7,3 +7,12 @@
   position: fixed;
   height: 100vh;
 }
+
+.percent-wrapper {
+  input {
+    background-color: var(--content-secondary);
+    border: none;
+    border-radius: 2.5px;
+    outline: none;
+  }
+}

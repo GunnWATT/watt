@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import moment, {Moment} from 'moment';
+import moment from 'moment';
 import UserDataContext from '../../contexts/UserDataContext';
 
 
