@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import moment from 'moment';
 import {GCalEvent} from './components/schedule/Event';
@@ -51,9 +51,6 @@ const App = () => {
     // Events data for schedule
     const [events, setEvents] = useState<GCalEvent[] | null>(null);
 
-    // Reference to the favicon element
-    const [favicon, setFavicon] = useState<HTMLLinkElement | null>(null);
-
     // Fetch events on mount
     useEffect(() => {
         const googleCalendarId = encodeURIComponent('fg978mo762lqm6get2ubiab0mk0f6m2c@import.calendar.google.com');
@@ -67,6 +64,9 @@ const App = () => {
     }, [])
 
 
+    // Reference to the favicon element
+    const favicon = useRef<HTMLLinkElement | null>(null);
+
     // Update document name based on current period
     useEffect(() => {
         const midnight = date.clone().startOf('date');
@@ -74,9 +74,9 @@ const App = () => {
         const period = parseNextPeriod(date, minutes);
 
         if (!period) {
-            if (favicon) {
-                favicon.remove();
-                setFavicon(null);
+            if (favicon.current) {
+                favicon.current.remove();
+                favicon.current = null;
             }
             document.title = 'Web App of The Titans (WATT)';
             return;
@@ -92,17 +92,17 @@ const App = () => {
             ? `${name} starting in ${startingIn} minute${startingIn !== 1 ? 's' : ''}.`
             : `${name} ending in ${endingIn} minute${endingIn !== 1 ? 's' : ''}, started ${-startingIn} minute${startingIn !== -1 ? 's' : ''} ago.`
 
-        /** ====== begin favicon ====== */
 
-        if (favicon == null) {
+        // Set favicon
+        if (!favicon.current) {
             const el = document.createElement('link');
             el.setAttribute('rel', 'icon');
             document.head.appendChild(el);
-            setFavicon(el);
+            favicon.current = el;
         }
 
         let numToShow = startingIn > 0 ? startingIn : endingIn;
-        const isSeconds = (numToShow == 1);
+        const isSeconds = (numToShow === 1);
         let seconds;
         if (isSeconds) {
             seconds = 60 - (date.diff(midnight, 'seconds') % 60);
@@ -113,7 +113,7 @@ const App = () => {
         const FAVICON_SIZE = 32
         const borderRadius = FAVICON_SIZE * 0.15
         const sRadius = FAVICON_SIZE * 0.45 // radius for last seconds
-        //  create the canvas
+        // create the canvas
         const faviconCanvas = document.createElement('canvas')
         faviconCanvas.width = FAVICON_SIZE
         faviconCanvas.height = FAVICON_SIZE
@@ -157,7 +157,6 @@ const App = () => {
             fc.closePath()
             fc.fill()
 
-
             fc.beginPath()
             fc.moveTo(FAVICON_SIZE / 2, FAVICON_SIZE / 2 - sRadius)
             // Rounding seconds so when it shows 30 seconds always will show half-way,
@@ -171,7 +170,6 @@ const App = () => {
                 true
             )
             fc.stroke()
-
 
             fc.fillStyle = isLight(color) ? 'black' : 'white';
             fc.font = `bold ${FAVICON_SIZE * 0.6}px "Roboto", sans-serif`
@@ -230,10 +228,7 @@ const App = () => {
             fc.fillText(''+numToShow, FAVICON_SIZE / 2, FAVICON_SIZE * 0.575)
         }
 
-        if (favicon) favicon.href = faviconCanvas.toDataURL();
-
-
-        /** ====== end favicon ====== */
+        favicon.current.href = faviconCanvas.toDataURL();
 
     }, [date])
 
