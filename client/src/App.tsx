@@ -67,17 +67,23 @@ const App = () => {
     // Reference to the favicon element
     const favicon = useRef<HTMLLinkElement | null>(null);
 
-    // Update document name based on current period
+    // Update document name and favicon based on current period
     useEffect(() => {
         const midnight = date.clone().startOf('date');
         const minutes = date.diff(midnight, 'minutes');
         const period = parseNextPeriod(date, minutes);
 
+        // Set favicon
+        if (!favicon.current) {
+            const el = document.createElement('link');
+            el.setAttribute('rel', 'icon');
+            document.head.appendChild(el);
+            favicon.current = el;
+        }
+
+        // If there's no period to display, set favicon and tab title back to defaults
         if (!period) {
-            if (favicon.current) {
-                favicon.current.remove();
-                favicon.current = null;
-            }
+            favicon.current.href = "/icons/watt.png";
             document.title = 'Web App of The Titans (WATT)';
             return;
         }
@@ -87,19 +93,9 @@ const App = () => {
         const startingIn = next[1].s - minutes;
         const endingIn = next[1].e - minutes;
 
-
         document.title = (startingIn > 0)
             ? `${name} starting in ${startingIn} minute${startingIn !== 1 ? 's' : ''}.`
             : `${name} ending in ${endingIn} minute${endingIn !== 1 ? 's' : ''}, started ${-startingIn} minute${startingIn !== -1 ? 's' : ''} ago.`
-
-
-        // Set favicon
-        if (!favicon.current) {
-            const el = document.createElement('link');
-            el.setAttribute('rel', 'icon');
-            document.head.appendChild(el);
-            favicon.current = el;
-        }
 
         let numToShow = startingIn > 0 ? startingIn : endingIn;
         const isSeconds = (numToShow === 1);
