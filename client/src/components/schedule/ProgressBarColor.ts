@@ -1,5 +1,5 @@
 // https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
-const hexToRgb = (hex: string): [number, number, number] | null => {
+export const hexToRgb = (hex: string): [number, number, number] | null => {
     let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})(?:[a-f\d]{2})?$/i.exec(hex);
     return result ? [
         parseInt(result[1], 16),

@@ -25,6 +25,7 @@ import {useCollection, useDocument} from 'react-firebase-hooks/firestore';
 // Utils
 import {parseNextPeriod} from './components/schedule/PeriodIndicator';
 import {parsePeriodName, parsePeriodColor} from './components/schedule/Periods';
+import {hexToRgb} from "./components/schedule/ProgressBarColor";
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
 
@@ -65,7 +66,12 @@ const App = () => {
 
 
     // Reference to the favicon element
-    const favicon = useRef<HTMLLinkElement | null>(null);
+    const favicon = useRef<HTMLLinkElement>();
+    const canvas = useRef<HTMLCanvasElement>();
+
+    const FAVICON_SIZE = 32
+    const borderRadius = FAVICON_SIZE * 0.15
+    const sRadius = FAVICON_SIZE * 0.45 // radius for last seconds
 
     // Update document name and favicon based on current period
     useEffect(() => {
@@ -73,17 +79,22 @@ const App = () => {
         const minutes = date.diff(midnight, 'minutes');
         const period = parseNextPeriod(date, minutes);
 
-        // Set favicon
+        // Initialize favicon link and canvas references
         if (!favicon.current) {
             const el = document.createElement('link');
             el.setAttribute('rel', 'icon');
             document.head.appendChild(el);
             favicon.current = el;
         }
+        if (!canvas.current) {
+            canvas.current = document.createElement('canvas');
+            canvas.current.width = FAVICON_SIZE;
+            canvas.current.height = FAVICON_SIZE;
+        }
 
         // If there's no period to display, set favicon and tab title back to defaults
         if (!period) {
-            favicon.current.href = "/icons/watt.png";
+            favicon.current.href = '/icons/watt.png';
             document.title = 'Web App of The Titans (WATT)';
             return;
         }
@@ -106,14 +117,7 @@ const App = () => {
         }
         // document.title = ['isSeconds: ', isSeconds, ' & numToShow: ', numToShow].join()
         const color = parsePeriodColor(next[0], userData?.data() as UserData)
-        const FAVICON_SIZE = 32
-        const borderRadius = FAVICON_SIZE * 0.15
-        const sRadius = FAVICON_SIZE * 0.45 // radius for last seconds
-        // create the canvas
-        const faviconCanvas = document.createElement('canvas')
-        faviconCanvas.width = FAVICON_SIZE
-        faviconCanvas.height = FAVICON_SIZE
-        const fc = faviconCanvas.getContext('2d')!
+        const fc = canvas.current.getContext('2d')!
 
         // configure it to look nice
         fc.textAlign = 'center'
@@ -122,17 +126,8 @@ const App = () => {
         fc.lineJoin = 'round'
         fc.lineCap = 'round'
 
-        // colourtoy
-
-        const colourtoy = document.createElement('div')
-
         function isLight(colour: string) {
-            colourtoy.style.backgroundColor = colour
-            colour = colourtoy.style.backgroundColor
-            let colorArr: number[] = colour
-                .slice(colour.indexOf('(') + 1, colour.indexOf(')'))
-                .split(/,\s*/)
-                .map(a => +a)
+            const colorArr = hexToRgb(colour)!;
             // https://stackoverflow.com/questions/11867545/change-text-color-based-on-brightness-of-the-covered-background-area
             return (
                 Math.round(
@@ -224,7 +219,7 @@ const App = () => {
             fc.fillText(''+numToShow, FAVICON_SIZE / 2, FAVICON_SIZE * 0.575)
         }
 
-        favicon.current.href = faviconCanvas.toDataURL();
+        favicon.current.href = canvas.current.toDataURL();
 
     }, [date])
 
