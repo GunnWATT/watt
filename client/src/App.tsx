@@ -139,6 +139,8 @@ const App = () => {
             )
         }
 
+        fc.clearRect(0, 0, FAVICON_SIZE, FAVICON_SIZE)
+
         if (isSeconds) {
             fc.fillStyle = color;
             fc.strokeStyle = color;
@@ -179,8 +181,6 @@ const App = () => {
             } else {
                 percent = numToShow / (endingIn - startingIn);
             }*/
-
-            fc.clearRect(0, 0, FAVICON_SIZE, FAVICON_SIZE)
 
             fc.fillStyle = color || 'info'
             fc.beginPath()
