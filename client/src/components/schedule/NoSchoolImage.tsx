@@ -1,5 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {Moment} from 'moment';
+
+// Contexts
+import UserDataContext from '../../contexts/UserDataContext';
 
 // Images
 import noschool1 from '../../assets/electronhw.png';
@@ -65,6 +68,7 @@ const randomImage = (millis: number): string => {
 type NoSchoolImageProps = {viewDate: Moment};
 const NoSchoolImage = (props: NoSchoolImageProps) => {
     const {viewDate} = props;
+    const userData = useContext(UserDataContext);
     const [image, setImage] = useState<string | undefined>(undefined);
 
     useEffect(() => {
@@ -72,7 +76,14 @@ const NoSchoolImage = (props: NoSchoolImageProps) => {
         setImage(img);
     }, [viewDate])
 
-    return <img src={image} alt="Electron doodle" style={{maxHeight: "min(350px, 35vh)", maxWidth: "min(600px, 100%)"}}/>
+    return <img
+        src={image}
+        alt="Electron doodle"
+        style={{
+            maxHeight: "min(350px, 35vh)", maxWidth: "min(600px, 100%)",
+            filter: userData?.options.theme === 'dark' ? 'invert(1) hue-rotate(180deg)' : ''
+        }}
+    />
 }
 
 export default NoSchoolImage;
