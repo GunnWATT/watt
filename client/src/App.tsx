@@ -25,7 +25,7 @@ import {useCollection, useDocument} from 'react-firebase-hooks/firestore';
 // Utils
 import {parseNextPeriod} from './components/schedule/PeriodIndicator';
 import {parsePeriodName, parsePeriodColor} from './components/schedule/Periods';
-import {hexToRgb} from "./components/schedule/ProgressBarColor";
+import {hexToRgb} from './components/schedule/ProgressBarColor';
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
 
