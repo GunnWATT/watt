@@ -1,5 +1,3 @@
-import {DayObj} from '../components/schedule/Periods';
-
 export default {
     "alternates": {
         "09-15": {
@@ -1162,4 +1160,4 @@ export default {
         "06-29": null,
         "06-30": null
     }
-} as {alternates: {[key: string]: DayObj | null}}
+}

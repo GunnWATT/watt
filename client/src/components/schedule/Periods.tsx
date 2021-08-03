@@ -15,12 +15,18 @@ import alternates from '../../data/alternates';
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 import UserDataContext, {SgyPeriodData, UserData} from '../../contexts/UserDataContext';
 
+// Constants
+const SCHOOL_START = new Date(2021,7,11);
+const SCHOOL_END = new Date(2022, 5, 2);
+const SCHOOL_END_EXCLUSIVE = new Date(2022, 5,3);
 
 // An object representing a period, with s and e being start and end times (in minutes after 12:00 AM PST)
 type PeriodObj = {s: number, e: number};
 export type DayObj = {
     1?: PeriodObj, 2?: PeriodObj, 3?: PeriodObj, 4?: PeriodObj, 5?: PeriodObj, 6?: PeriodObj, 7?: PeriodObj,
-    L?: PeriodObj, S?: PeriodObj, G?: PeriodObj, O?: PeriodObj
+    L?: PeriodObj, S?: PeriodObj, B?:PeriodObj, 0?:PeriodObj, 8?:PeriodObj, P?:PeriodObj
+
+    // G?: PeriodObj, O?: PeriodObj
 }
 
 type PeriodsProps = {viewDate: Moment};
@@ -32,16 +38,27 @@ const Periods = (props: PeriodsProps) => {
     // Period handling
     const [periods, setPeriods] = useState<[string, PeriodObj][] | null>(null);
     const [alternate, setAlternate] = useState(false);
+
+    // This is no longer useful
     const [GTPer, setGTPer] = useState<number | null>(null);
 
     // User data for preferred time display and zoom links
     const userData = useContext(UserDataContext);
     const format = userData?.options.time === '24' ? 'H:mm' : 'h:mm A';
     const classes = userData?.classes as {[key: string]: SgyPeriodData} | undefined;
-
-
+    
     // Load schedule and alternates
     useEffect(() => {
+
+        if (viewDate.isBefore(SCHOOL_START)) {
+            setPeriods(null);
+            return;
+        }
+        if (viewDate.isAfter(SCHOOL_END_EXCLUSIVE)) {
+            setPeriods(null);
+            return;
+        }
+
         // Check for alternate schedules
         let altFormat = viewDate.format('MM-DD');
         if (alternates.alternates.hasOwnProperty(altFormat)) {
@@ -55,16 +72,12 @@ const Periods = (props: PeriodsProps) => {
             setPeriods(periods ? sortPeriodsByStart(periods) : null);
         }
 
-        // Check for Gunn Together
-        if (alternates.GT.hasOwnProperty(altFormat)) setGTPer(alternates.GT[altFormat]);
-
         return function cleanup() {
-            //setPeriods(null);
+            // setPeriods(null);
             setAlternate(false);
             setGTPer(null)
         }
     }, [viewDate])
-
 
     // Maps periods array to <Period> components
     const renderPeriods = () =>
@@ -220,7 +233,7 @@ export const parsePeriodColor = (name: string | number | null, userData?: UserDa
 
 // Gets the default period name for the given key
 export const periodNameDefault = (name: string) => {
-    if (Number(name)) return `Period ${name}`;
+    if (!isNaN(parseInt(name))) return `Period ${name}`;
 
     switch (name) {
         case 'L':
@@ -231,6 +244,8 @@ export const periodNameDefault = (name: string) => {
             return 'Gunn Together';
         case 'O':
             return 'Office Hours';
+        case 'B':
+            return 'Brunch';
         default:
             return name;
     }
