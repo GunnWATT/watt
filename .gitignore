@@ -5,8 +5,8 @@
 client/coverage
 client/build
 
-# config
-client/src/firebase/config.js
+# SGY credentials
+/functions/credentials
 
 # misc
 *.DS_Store
