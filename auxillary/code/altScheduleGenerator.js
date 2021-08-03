@@ -38,8 +38,8 @@ const noNbspRegex = /&nbsp;/g
 const timeGetterRegex = /\(?(1?[0-9])(?::([0-9]{2}))? *(?:am)? *(?:-|–) *(1?[0-9])(?::([0-9]{2}))? *(noon|pm)?\)?/
 const newLineRegex = /\r?\n/g
 const noNewLineBeforeTimeRegex = /\n\(/g // hack for 2019-09-06 schedule
-const schoolYearStart = new Date(2021, 7, 11)
-const schoolYearEnd = new Date(2022, 5, 2)
+const schoolYearStart = new Date(2021, 7, 10)
+const schoolYearEnd = new Date(2022, 5, 3)
 
 
 const altScheduleRegex = /schedule|extended|lunch/i
@@ -209,6 +209,7 @@ async function generate() {
 
         if (!(startDateObj >= schoolYearStart && startDateObj <= schoolYearEnd)) {
             // console.log(startDateObj.toISOString().slice(0, 10));
+            // console.log(startDateObj);
             // irrelevant, continue
             continue;
         }
