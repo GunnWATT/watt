@@ -6,7 +6,7 @@ import {Nav} from 'reactstrap';
 import Header from '../components/layout/Header';
 import NavTab from '../components/layout/NavTab';
 import Appearance from '../components/settings/Appearance';
-import Periods from '../components/settings/Periods';
+import PeriodCustomization from '../components/settings/PeriodCustomization';
 import Localization from '../components/settings/Localization';
 import About from '../components/settings/About';
 
@@ -28,7 +28,7 @@ const Settings = () => {
         >
             <Switch>
                 <Route exact path={match.path} component={Appearance}/>
-                <Route path={`${match.path}/periods`} component={Periods}/>
+                <Route path={`${match.path}/periods`} component={PeriodCustomization}/>
                 <Route path={`${match.path}/localization`} component={Localization}/>
                 <Route path={`${match.path}/about`} component={About}/>
             </Switch>

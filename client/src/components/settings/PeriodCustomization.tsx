@@ -6,10 +6,10 @@ import UserDataContext from '../../contexts/UserDataContext';
 
 // Components
 import NotSignedIn from '../misc/NotSignedIn';
-import Period from './Period';
+import PeriodCustomizationInput from './PeriodCustomizationInput';
 
 
-const Periods = () => {
+const PeriodCustomization = () => {
     const userData = useContext(UserDataContext);
 
     return (
@@ -20,7 +20,7 @@ const Periods = () => {
                 ? (<>
                     <Form className="periods-settings">
                         {Object.entries(userData.classes).map(([id, data]) =>
-                            <Period id={id} data={data} key={id}/>)}
+                            <PeriodCustomizationInput id={id} data={data} key={id}/>)}
                     </Form>
                 </>)
                 : <NotSignedIn/>}
@@ -28,4 +28,4 @@ const Periods = () => {
     );
 }
 
-export default Periods;
+export default PeriodCustomization;

@@ -7,7 +7,7 @@ import {periodNameDefault} from '../schedule/Periods';
 
 
 type PeriodProps = {id: string, data: SgyPeriodData};
-const Period = (props: PeriodProps) => {
+const PeriodCustomizationInput = (props: PeriodProps) => {
     const {id, data} = props;
     const {n, c, l, o, s} = data;
 
@@ -46,4 +46,4 @@ const Period = (props: PeriodProps) => {
     );
 }
 
-export default Period;
+export default PeriodCustomizationInput;

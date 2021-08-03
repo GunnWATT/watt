@@ -22,10 +22,12 @@ const SCHOOL_END_EXCLUSIVE = new Date(2022, 5,3);
 
 // An object representing a period, with s and e being start and end times (in minutes after 12:00 AM PST)
 type PeriodObj = {s: number, e: number};
+// An object representing a school day, with period keys that contain info on their start and end times.
+// 0-8 represent periods 0 through 8, while B, L, S, and P represent Brunch, Lunch, SELF, and PRIME, respectively.
+// G and O represent the now deprecated Gunn Together and Office Hours periods.
 export type DayObj = {
-    1?: PeriodObj, 2?: PeriodObj, 3?: PeriodObj, 4?: PeriodObj, 5?: PeriodObj, 6?: PeriodObj, 7?: PeriodObj,
-    L?: PeriodObj, S?: PeriodObj, B?:PeriodObj, 0?:PeriodObj, 8?:PeriodObj, P?:PeriodObj
-
+    0?: PeriodObj, 1?: PeriodObj, 2?: PeriodObj, 3?: PeriodObj, 4?: PeriodObj, 5?: PeriodObj, 6?: PeriodObj, 7?: PeriodObj, 8?: PeriodObj,
+    B?: PeriodObj, L?: PeriodObj, S?: PeriodObj, P?:PeriodObj
     // G?: PeriodObj, O?: PeriodObj
 }
 
@@ -49,12 +51,8 @@ const Periods = (props: PeriodsProps) => {
     
     // Load schedule and alternates
     useEffect(() => {
-
-        if (viewDate.isBefore(SCHOOL_START)) {
-            setPeriods(null);
-            return;
-        }
-        if (viewDate.isAfter(SCHOOL_END_EXCLUSIVE)) {
+        // If the current date falls on summer break, return early
+        if (viewDate.isBefore(SCHOOL_START) || viewDate.isAfter(SCHOOL_END_EXCLUSIVE)) {
             setPeriods(null);
             return;
         }
