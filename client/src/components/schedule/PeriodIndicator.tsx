@@ -10,7 +10,7 @@ import alternates from '../../data/alternates';
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Utils
-import {DayObj, numToWeekday, parsePeriodName, sortPeriodsByStart} from './Periods';
+import {DayObj, numToWeekday, parsePeriodName, sortPeriodsByStart, SCHOOL_START, SCHOOL_END_EXCLUSIVE} from './Periods';
 
 
 type PeriodIndicatorProps = {currTime: Moment, startTime: number};
@@ -66,6 +66,11 @@ const PeriodIndicator = (props: PeriodIndicatorProps) => {
 
 // Returns the current period given the current time
 export function parseNextPeriod(currTime: Moment, minutes: number) {
+    // If the current date falls on summer break, return early
+    if (currTime.isBefore(SCHOOL_START) || currTime.isAfter(SCHOOL_END_EXCLUSIVE)) {
+        return null;
+    }
+
     // Alternates checking
     const altFormat = currTime.format('MM-DD');
     if (alternates.alternates.hasOwnProperty(altFormat)) {
