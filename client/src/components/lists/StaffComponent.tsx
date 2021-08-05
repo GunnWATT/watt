@@ -23,7 +23,7 @@ export type SemesterClassObj = [string, string | null] | 'none';
 export type ClassObj = SemesterClassObj | {1: SemesterClassObj, 2: SemesterClassObj};
 export type PeriodObj = {1: ClassObj, 2: ClassObj};
 export type Staff = {
-    name: string, title: string, email: string,
+    name: string, title?: string, email: string,
     dept?: string, phone?: string, periods?: {[key: string]: PeriodObj}
 };
 
@@ -116,7 +116,7 @@ const StaffComponent = (props: Staff & {id:string}) => {
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>{name}</ModalHeader>
                 <ModalBody>
-                    <p><strong>Title:</strong> {title}</p>
+                    {title ? <p><strong>Title:</strong> {title}</p> : null}
                     {dept ? <p><strong>Department:</strong> {dept}</p> : null}
                     <p><strong>Email:</strong> {email}</p>
                     {phone ? <p><strong>Phone:</strong> {phone}</p> : null}

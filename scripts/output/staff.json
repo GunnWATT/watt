@@ -1,6 +1,4 @@
-import {Staff} from '../components/lists/StaffComponent';
-
-export default {
+{
     "10150": {
         "name": "Gagandeep Cheema",
         "title": "Athletic Trainer",
@@ -5585,8 +5583,7 @@ export default {
         "name": "Shreya Saha",
         "dept": "WL",
         "room": "K building",
-        "phone": "354-8241",
-        "other": "Stud tchr"
+        "phone": "354-8241 ext. Stud tchr"
     },
     "87411": {
         "name": "Kristen Owen",
@@ -6274,4 +6271,4 @@ export default {
         "dept": "Behavior",
         "room": "K10 B"
     }
-} as {[key: string]: Staff}
+}
