@@ -23,12 +23,12 @@ export type SemesterClassObj = [string, string | null] | 'none';
 export type ClassObj = SemesterClassObj | {1: SemesterClassObj, 2: SemesterClassObj};
 export type PeriodObj = {1: ClassObj, 2: ClassObj};
 export type Staff = {
-    name: string, title?: string, email: string,
+    name: string, title?: string, email: string, room: string,
     dept?: string, phone?: string, periods?: {[key: string]: PeriodObj}
 };
 
 const StaffComponent = (props: Staff & {id:string}) => {
-    const {name, id, title, email, dept, phone, periods} = props;
+    const {name, id, title, email, dept, phone, periods, room} = props;
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
@@ -110,7 +110,7 @@ const StaffComponent = (props: Staff & {id:string}) => {
     return (
         <li onClick={toggle}>
             <span className="primary">{name}</span>
-            <span className="secondary">{title}</span>
+            {title || dept ? <span className="secondary">{title === "Teacher" && dept ? `${title}, ${dept}` : title ? title : dept ? dept : ``}</span> : null}
             <span className="secondary">{email}</span>
 
             <Modal isOpen={modal} toggle={toggle}>
@@ -118,6 +118,7 @@ const StaffComponent = (props: Staff & {id:string}) => {
                 <ModalBody>
                     {title ? <p><strong>Title:</strong> {title}</p> : null}
                     {dept ? <p><strong>Department:</strong> {dept}</p> : null}
+                    {room ? <p><strong>Room:</strong> {room}</p> : null}
                     <p><strong>Email:</strong> {email}</p>
                     {phone ? <p><strong>Phone:</strong> {phone}</p> : null}
                     {periods ? <p>

@@ -85,7 +85,7 @@ export default {
         "name": "Brian Northen",
         "dept": "Transitionist",
         "room": "V6",
-        "phone": " ext. 5766"
+        // "phone": " ext. 5766"
     },
     "12070": {
         "email": "ganselmo@pausd.org",

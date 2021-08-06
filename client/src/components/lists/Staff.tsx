@@ -71,6 +71,7 @@ const Staff = () => {
                     query === '' ||
                     staff.name.toLowerCase().includes(query.toLowerCase())
                     || staff.title.toLowerCase().includes(query.toLowerCase())
+                    || staff.dept?.toLowerCase().includes(query.toLowerCase())
                     || staff.email.toLowerCase().includes(query.toLowerCase())
                     || classInQuery(staff)
                 }
