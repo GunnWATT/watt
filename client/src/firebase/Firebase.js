@@ -14,7 +14,7 @@ catch(err) {
     }
 }
 const firestore = firebase.firestore()
-firestore.enablePersistence();
+firestore.enablePersistence().catch(err => { });
 const auth = firebase.auth()
 const functions = firebase.functions()
 const analytics = firebase.analytics()

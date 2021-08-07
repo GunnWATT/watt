@@ -268,7 +268,7 @@ const App = () => {
         if(d) writeToLocalStorage(d);
     }
 
-    const userData = auth.currentUser ? firebaseUserData?.data() : localStorageData;
+    const userData = firebaseUserData?.exists ? firebaseUserData?.data() : localStorageData;
 
     document.body.className = userData?.options.theme ?? 'light';
 
