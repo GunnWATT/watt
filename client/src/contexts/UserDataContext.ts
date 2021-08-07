@@ -19,6 +19,26 @@ export type UserData = {
     sgy: {key: string, sec: string, uid: string}
 };
 
+export const defaultUserData = {
+    v: 0,
+    clubs: [],
+    staff: [],
+    classes: {
+        1: { n: "", c: "", l: "", o: "", s: "" },
+        2: { n: "", c: "", l: "", o: "", s: "" },
+        3: { n: "", c: "", l: "", o: "", s: "" },
+        4: { n: "", c: "", l: "", o: "", s: "" },
+        5: { n: "", c: "", l: "", o: "", s: "" },
+        6: { n: "", c: "", l: "", o: "", s: "" },
+        7: { n: "", c: "", l: "", o: "", s: "" },
+        S: { n: "", c: "", l: "", o: "", s: "" }
+    },
+    options: {
+        theme: "light",
+        time: "12"
+    }
+};
+
 const UserDataContext = React.createContext<UserData | undefined>(undefined);
 
 export const UserDataProvider = UserDataContext.Provider;

@@ -15,7 +15,7 @@ import PageNotFound from './views/404';
 import SgyAuthRedirect from './views/SgyAuthRedirect';
 
 // Context
-import {UserData, UserDataProvider} from './contexts/UserDataContext';
+import {UserData, UserDataProvider, defaultUserData} from './contexts/UserDataContext';
 import {TimeProvider} from './contexts/CurrentTimeContext';
 
 // Firestore
@@ -229,27 +229,7 @@ const App = () => {
     const auth = firebase.auth;
 
     // const [gunnData, gdLoading, gdError] = useCollection(firestore.collection('gunn'));
-    const [firebaseUserData, udLoading, udError] = useDocument(firestore.doc(`users/${auth.currentUser?.uid}`));
-
-    const defaultUserData = {
-        v: 0,
-        clubs: [],
-        staff: [],
-        classes: {
-            1: { n: "", c: "", l: "", o: "", s: "" },
-            2: { n: "", c: "", l: "", o: "", s: "" },
-            3: { n: "", c: "", l: "", o: "", s: "" },
-            4: { n: "", c: "", l: "", o: "", s: "" },
-            5: { n: "", c: "", l: "", o: "", s: "" },
-            6: { n: "", c: "", l: "", o: "", s: "" },
-            7: { n: "", c: "", l: "", o: "", s: "" },
-            S: { n: "", c: "", l: "", o: "", s: "" }
-        },
-        options: {
-            theme: "light",
-            time: "12"
-        }
-    }
+    const [firebaseUserData, udLoading, udError] = useDocument(auth.currentUser && firestore.doc(`users/${auth.currentUser.uid}`));
 
     const localStorageData = {
         ...defaultUserData,
@@ -261,11 +241,11 @@ const App = () => {
     }
 
     // console.log(!auth.currentUser);
-    if(auth.currentUser) {
+    if (auth.currentUser) {
         // if firebase
         // write to localStorage
         let d = firebaseUserData?.data()
-        if(d) writeToLocalStorage(d);
+        if (d) writeToLocalStorage(d);
     }
 
     const userData = firebaseUserData?.exists ? firebaseUserData?.data() : localStorageData;
