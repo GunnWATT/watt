@@ -101,7 +101,7 @@ const App = () => {
         }
         const {next} = period;
 
-        const name = parsePeriodName(next[0], userData?.data() as UserData);
+        const name = parsePeriodName(next[0], userData);
         const startingIn = next[1].s - minutes;
         const endingIn = next[1].e - minutes;
 
@@ -117,7 +117,7 @@ const App = () => {
             numToShow = seconds;
         }
         // document.title = ['isSeconds: ', isSeconds, ' & numToShow: ', numToShow].join()
-        const color = parsePeriodColor(next[0], userData?.data() as UserData)
+        const color = parsePeriodColor(next[0], userData)
         const fc = canvas.current.getContext('2d')!
 
         // configure it to look nice
@@ -246,10 +246,10 @@ const App = () => {
         // if firebase
         // write to localStorage
         let d = firebaseUserData?.data()
-        if (d) writeToLocalStorage(d);
+        if (d) localStorage.setItem("data", JSON.stringify(d));
     }
 
-    const userData = firebaseUserData?.exists ? firebaseUserData?.data() : localStorageData;
+    const userData: UserData = firebaseUserData?.exists ? firebaseUserData?.data() : localStorageData;
 
     // alter existing user data if need be
     // to include info about periods 0 and 8
@@ -272,9 +272,9 @@ const App = () => {
 
     }, [firebaseUserData])
 
-    document.body.className = userData?.options.theme ?? 'light';
+    console.log(userData);
+    document.body.className = userData.options.theme;
 
-    // localStorage.length
 
     return (
         <Router>
