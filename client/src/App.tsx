@@ -237,25 +237,21 @@ const App = () => {
         ...JSON.parse(localStorage.getItem("data") ?? '{}')
     } // should be changed later; not all things are stored in localStorage
 
-    const writeToLocalStorage = (data: Object) => {
-        localStorage.setItem("data", JSON.stringify(data))
-    }
-
-    // TODO: mergs should probably be done here
-    if (auth.currentUser) {
-        // if firebase
-        // write to localStorage
-        let d = firebaseUserData?.data()
-        if (d) localStorage.setItem("data", JSON.stringify(d));
-    }
+    // Update localStorage with cloud data when it becomes available
+    // TODO: support merges
+    useEffect(() => {
+        if (firebaseUserData) {
+            localStorage.setItem("data", JSON.stringify(firebaseUserData.data()));
+        }
+    }, [firebaseUserData]);
 
     const userData: UserData = firebaseUserData?.exists ? firebaseUserData?.data() : localStorageData;
 
     // alter existing user data if need be
     // to include info about periods 0 and 8
     useEffect(() => {
-        if(firebaseUserData) {
-            if( !("period0" in firebaseUserData.data()?.options) ) {
+        if (firebaseUserData) {
+            if (!("period0" in firebaseUserData.data()?.options)) {
                 updateFirebaseUserData("options.period0", false);
                 updateFirebaseUserData("options.period8", false);
                 updateFirebaseUserData("classes.0", { n: "", c: "", l: "", o: "", s: "" });
@@ -263,13 +259,12 @@ const App = () => {
             }
         } 
 
-        if(!("period0" in localStorageData?.options)) {
+        if (!("period0" in localStorageData?.options)) {
             updateLocalStorageUserData("options.period0", false);
             updateLocalStorageUserData("options.period8", false);
             updateLocalStorageUserData("classes.0", { n: "", c: "", l: "", o: "", s: "" });
             updateLocalStorageUserData("classes.8", { n: "", c: "", l: "", o: "", s: "" });
         }
-
     }, [firebaseUserData])
 
     console.log(userData);
