@@ -2,7 +2,7 @@ import React from 'react';
 import {Col, FormGroup, Input, Label, Row} from 'reactstrap';
 
 import {SgyPeriodData} from '../../contexts/UserDataContext';
-import {updateFirestoreField} from '../../firebase/Firestore';
+import { updateUserData } from '../../firebase/updateUserData'
 import {periodNameDefault} from '../schedule/Periods';
 
 
@@ -15,7 +15,7 @@ const PeriodCustomizationInput = (props: PeriodProps) => {
 
     // Function to update this period's fields on firestore
     const updatePeriodData = async (newValue: string, field: string) => {
-        await updateFirestoreField(`classes.${id}.${field}`, newValue);
+        await updateUserData(`classes.${id}.${field}`, newValue);
     }
 
     return (

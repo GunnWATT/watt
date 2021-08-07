@@ -5,9 +5,10 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'react
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Firestore
-import firebase from './../../firebase/Firebase';
-const firestore = firebase.firestore;
-const auth = firebase.auth;
+// import firebase from './../../firebase/Firebase';
+// const firestore = firebase.firestore;
+// const auth = firebase.auth;
+import { updateUserData } from '../../firebase/updateUserData'
 
 
 export type Club = {
@@ -30,20 +31,14 @@ const ClubComponent = (props: Club & {id: string}) => {
     // Function to add this club to pinned
     const addToPinned = async () => {
         if (userData) {
-            await firestore.collection('users').doc(auth.currentUser?.uid).update({
-                clubs: [...userData.clubs, id]
-            });
-        } else {
-            console.error('Ok this isn\'t on me the user did something bad and called this function somehow aiya');
+            await updateUserData("clubs", [...userData.clubs, id]);
         }
     }
 
     // Function to remove this club from pinned
     const removeFromPinned = async () => {
         if (userData) {
-            await firestore.collection("users").doc(auth.currentUser?.uid).update({
-                clubs: userData.clubs.filter(clubID => clubID !== id)
-            });
+            await updateUserData("clubs", userData.clubs.filter(clubID => clubID !== id));
         }
     }
 

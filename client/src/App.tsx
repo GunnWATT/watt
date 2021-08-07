@@ -228,14 +228,55 @@ const App = () => {
     const firestore = firebase.firestore;
     const auth = firebase.auth;
 
-    const [gunnData, gdLoading, gdError] = useCollection(firestore.collection('gunn'));
-    const [userData, udLoading, udError] = useDocument(firestore.doc(`users/${auth.currentUser?.uid}`));
+    // const [gunnData, gdLoading, gdError] = useCollection(firestore.collection('gunn'));
+    const [firebaseUserData, udLoading, udError] = useDocument(firestore.doc(`users/${auth.currentUser?.uid}`));
 
-    document.body.className = userData?.data()?.options.theme ?? 'light';
+    const defaultUserData = {
+        v: 0,
+        clubs: [],
+        staff: [],
+        classes: {
+            1: { n: "", c: "", l: "", o: "", s: "" },
+            2: { n: "", c: "", l: "", o: "", s: "" },
+            3: { n: "", c: "", l: "", o: "", s: "" },
+            4: { n: "", c: "", l: "", o: "", s: "" },
+            5: { n: "", c: "", l: "", o: "", s: "" },
+            6: { n: "", c: "", l: "", o: "", s: "" },
+            7: { n: "", c: "", l: "", o: "", s: "" },
+            S: { n: "", c: "", l: "", o: "", s: "" }
+        },
+        options: {
+            theme: "light",
+            time: "12"
+        }
+    }
+
+    const localStorageData = {
+        ...defaultUserData,
+        ...JSON.parse(localStorage.getItem("data") ?? '{}')
+    } // should be changed later; not all things are stored in localStorage
+
+    const writeToLocalStorage = (data: Object) => {
+        localStorage.setItem("data", JSON.stringify(data))
+    }
+
+    // console.log(!auth.currentUser);
+    if(auth.currentUser) {
+        // if firebase
+        // write to localStorage
+        let d = firebaseUserData?.data()
+        if(d) writeToLocalStorage(d);
+    }
+
+    const userData = auth.currentUser ? firebaseUserData?.data() : localStorageData;
+
+    document.body.className = userData?.options.theme ?? 'light';
+
+    // localStorage.length
 
     return (
         <Router>
-            <UserDataProvider value={userData?.data() as UserData}>
+            <UserDataProvider value={userData as UserData}>
                 <TimeProvider value={date}>
                     <Layout>
                         <Switch>

@@ -8,8 +8,8 @@ import NotSignedIn from '../misc/NotSignedIn';
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 import UserDataContext from '../../contexts/UserDataContext';
 
-// Firestore
-import {updateFirestoreField} from '../../firebase/Firestore';
+// User Data
+import { updateUserData } from '../../firebase/updateUserData'
 
 
 const Localization = () => {
@@ -19,7 +19,7 @@ const Localization = () => {
     const currTime = useContext(CurrentTimeContext);
 
     // Function to update firestore preferred time
-    const changeTime = async (time: string) => await updateFirestoreField('options.time', time);
+    const changeTime = async (time: string) => await updateUserData('options.time', time);
 
 
     return (
