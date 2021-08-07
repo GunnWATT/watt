@@ -26,6 +26,7 @@ import {useCollection, useDocument} from 'react-firebase-hooks/firestore';
 import {parseNextPeriod} from './components/schedule/PeriodIndicator';
 import {parsePeriodName, parsePeriodColor} from './components/schedule/Periods';
 import {hexToRgb} from './components/schedule/ProgressBarColor';
+import { updateFirebaseUserData, updateLocalStorageUserData } from './firebase/updateUserData';
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
 
@@ -240,7 +241,7 @@ const App = () => {
         localStorage.setItem("data", JSON.stringify(data))
     }
 
-    // console.log(!auth.currentUser);
+    // TODO: mergs should probably be done here
     if (auth.currentUser) {
         // if firebase
         // write to localStorage
@@ -249,6 +250,27 @@ const App = () => {
     }
 
     const userData = firebaseUserData?.exists ? firebaseUserData?.data() : localStorageData;
+
+    // alter existing user data if need be
+    // to include info about periods 0 and 8
+    useEffect(() => {
+        if(firebaseUserData) {
+            if( !("period0" in firebaseUserData.data()?.options) ) {
+                updateFirebaseUserData("options.period0", false);
+                updateFirebaseUserData("options.period8", false);
+                updateFirebaseUserData("classes.0", { n: "", c: "", l: "", o: "", s: "" });
+                updateFirebaseUserData("classes.8", { n: "", c: "", l: "", o: "", s: "" });
+            }
+        } 
+
+        if(!("period0" in localStorageData?.options)) {
+            updateLocalStorageUserData("options.period0", false);
+            updateLocalStorageUserData("options.period8", false);
+            updateLocalStorageUserData("classes.0", { n: "", c: "", l: "", o: "", s: "" });
+            updateLocalStorageUserData("classes.8", { n: "", c: "", l: "", o: "", s: "" });
+        }
+
+    }, [firebaseUserData])
 
     document.body.className = userData?.options.theme ?? 'light';
 

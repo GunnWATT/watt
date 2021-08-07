@@ -19,7 +19,11 @@ const PeriodCustomization = () => {
             {userData
                 ? (<>
                     <Form className="periods-settings">
-                        {Object.entries(userData.classes).map(([id, data]) =>
+                        {Object.entries(userData.classes).filter(([id, data]) => {
+                            if (id === "0" && !userData?.options.period0) return false;
+                            if (id === "8" && !userData?.options.period8) return false;
+                            return true;
+                        }).map(([id, data]) =>
                             <PeriodCustomizationInput id={id} data={data} key={id}/>)}
                     </Form>
                 </>)

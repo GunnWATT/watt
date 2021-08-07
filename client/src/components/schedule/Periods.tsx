@@ -80,7 +80,12 @@ const Periods = (props: PeriodsProps) => {
 
     // Maps periods array to <Period> components
     const renderPeriods = () =>
-        periods!.map(([name, value]) => {
+        periods!.filter(([name,value]) => {
+            if (name === "0" && !userData?.options.period0) return false;
+            if (name === "8" && !userData?.options.period8) return false;
+            return true;
+        }).map(([name, value]) => {
+
             // Support Gunn's swapping of GT and SELF every other week
             if (viewDate.isAfter('2021-04-11')) {
                 let offset = viewDate.weeks() % 2;

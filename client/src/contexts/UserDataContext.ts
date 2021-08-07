@@ -11,9 +11,10 @@ export type UserData = {
     v: number,
     classes: {
         1: SgyPeriodData, 2: SgyPeriodData, 3: SgyPeriodData, 4: SgyPeriodData,
-        5: SgyPeriodData, 6: SgyPeriodData, 7: SgyPeriodData, S: SgyPeriodData
+        5: SgyPeriodData, 6: SgyPeriodData, 7: SgyPeriodData, S: SgyPeriodData,
+        0: SgyPeriodData, 8: SgyPeriodData
     },
-    options: {theme: string, time: string},
+    options: {theme: string, time: string, period0: boolean, period8: boolean},
     clubs: string[],
     staff: string[],
     sgy: {key: string, sec: string, uid: string}
@@ -24,6 +25,7 @@ export const defaultUserData = {
     clubs: [],
     staff: [],
     classes: {
+        0: { n: "", c: "", l: "", o: "", s: "" },
         1: { n: "", c: "", l: "", o: "", s: "" },
         2: { n: "", c: "", l: "", o: "", s: "" },
         3: { n: "", c: "", l: "", o: "", s: "" },
@@ -31,11 +33,14 @@ export const defaultUserData = {
         5: { n: "", c: "", l: "", o: "", s: "" },
         6: { n: "", c: "", l: "", o: "", s: "" },
         7: { n: "", c: "", l: "", o: "", s: "" },
+        8: { n: "", c: "", l: "", o: "", s: "" },
         S: { n: "", c: "", l: "", o: "", s: "" }
     },
     options: {
         theme: "light",
-        time: "12"
+        time: "12",
+        period0: false,
+        period8: false
     }
 };
 
