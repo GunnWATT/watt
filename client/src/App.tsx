@@ -100,7 +100,7 @@ const App = () => {
         }
         const {next} = period;
 
-        const name = parsePeriodName(next[0], userData?.data() as UserData);
+        const name = parsePeriodName(next[0], userData);
         const startingIn = next[1].s - minutes;
         const endingIn = next[1].e - minutes;
 
@@ -116,7 +116,7 @@ const App = () => {
             numToShow = seconds;
         }
         // document.title = ['isSeconds: ', isSeconds, ' & numToShow: ', numToShow].join()
-        const color = parsePeriodColor(next[0], userData?.data() as UserData)
+        const color = parsePeriodColor(next[0], userData)
         const fc = canvas.current.getContext('2d')!
 
         // configure it to look nice
@@ -236,23 +236,18 @@ const App = () => {
         ...JSON.parse(localStorage.getItem("data") ?? '{}')
     } // should be changed later; not all things are stored in localStorage
 
-    const writeToLocalStorage = (data: Object) => {
-        localStorage.setItem("data", JSON.stringify(data))
-    }
-
-    // console.log(!auth.currentUser);
     if (auth.currentUser) {
         // if firebase
         // write to localStorage
         let d = firebaseUserData?.data()
-        if (d) writeToLocalStorage(d);
+        if (d) localStorage.setItem("data", JSON.stringify(d));
     }
 
-    const userData = firebaseUserData?.exists ? firebaseUserData?.data() : localStorageData;
+    const userData: UserData = firebaseUserData?.exists ? firebaseUserData?.data() : localStorageData;
 
-    document.body.className = userData?.options.theme ?? 'light';
+    console.log(userData);
+    document.body.className = userData.options.theme;
 
-    // localStorage.length
 
     return (
         <Router>
