@@ -16,9 +16,9 @@ import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 import UserDataContext, {SgyPeriodData, UserData} from '../../contexts/UserDataContext';
 
 // Constants
-export const SCHOOL_START = new Date(2021,7,11);
-const SCHOOL_END = new Date(2022, 5, 2);
-export const SCHOOL_END_EXCLUSIVE = new Date(2022, 5,3);
+export const SCHOOL_START = moment.tz('2021-08-11', 'America/Los_Angeles'); // new Date(2021,7,11);
+export const SCHOOL_END = moment.tz('2022-06-02', 'America/Los_Angeles'); // new Date(2022, 5, 2);
+export const SCHOOL_END_EXCLUSIVE = moment.tz('2022-06-03', 'America/Los_Angeles'); // new Date(2022, 5,3);
 
 
 // An object representing a period, with s and e being start and end times (in minutes after 12:00 AM PST)

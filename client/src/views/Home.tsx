@@ -34,7 +34,7 @@ const Home = (props: HomeProps) => {
     const incDay = () => setViewDate(viewDate.clone().add(1, 'days'));
     const decDay = () => setViewDate(viewDate.clone().subtract(1, 'days'));
     const jumpToPres = () => setViewDate(viewDateCurr.clone());
-    const setViewDateFromJSDate = (d: Date) => setViewDate(moment(d));
+    // const setViewDateFromJSDate = (d: Date) => setViewDate(moment(d));
 
     // Hotkeys for switching date
     useHotkeys('left', () => decDay(), [viewDate]);
@@ -71,7 +71,7 @@ const Home = (props: HomeProps) => {
                     incDay={incDay}
                     decDay={decDay}
                     viewDate={viewDate}
-                    setViewDate={setViewDateFromJSDate}
+                    setViewDate={setViewDate}
                 />
                 <h1 className="schedule-dayname">{viewDate.format('dddd')}</h1>
                 <h2 className="schedule-date">{viewDate.format('MMMM Do, YYYY')}</h2>
