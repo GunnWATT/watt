@@ -14,17 +14,14 @@ type DateSelectorProps = {incDay: () => void, decDay: () => void, setViewDate: (
 const DateSelector = ({incDay, decDay, setViewDate, viewDate}: DateSelectorProps) => {
 
     const [showCalendar, setCalendar] = useState(false);
-
-    const ref = useRef(null);
+    const ref = useRef<HTMLDivElement>(null);
 
     // closing the calendar on click outside
     // https://stackoverflow.com/questions/32553158/detect-click-outside-react-component
     useEffect(() => {
-        let handleClickOutside = (event:any) => {
-            //@ts-ignore shut up typescript
-            if (ref.current && !((ref.current!).contains(event.target))) {
+        let handleClickOutside = (event: MouseEvent) => {
+            if (ref.current && event.target instanceof Node && !(ref.current.contains(event.target))) {
                 setCalendar(false);
-                // alert("hi");
             }
         }
 
@@ -45,7 +42,7 @@ const DateSelector = ({incDay, decDay, setViewDate, viewDate}: DateSelectorProps
     const startmonth = SCHOOL_START.month() + SCHOOL_START.year() * 12;
     const endmonth = SCHOOL_END.month() + SCHOOL_END.year() * 12;
 
-    for(let m = startmonth; m <= endmonth; m++) {
+    for (let m = startmonth; m <= endmonth; m++) {
         months.push(m);
     }
 
@@ -54,9 +51,6 @@ const DateSelector = ({incDay, decDay, setViewDate, viewDate}: DateSelectorProps
         const year = Math.floor(m / 12);
         const month = m % 12
         const startOfMonth = moment.tz(`${year}-${month + 1}`, "YYYY-MM", 'America/Los_Angeles');
-        // console.log(startOfMonth.toISOString());
-
-        // console.log(startOfMonth.daysInMonth());
 
         const days = Array(startOfMonth.daysInMonth())
             .fill(0).map((_, i) => i + 1)
@@ -69,25 +63,24 @@ const DateSelector = ({incDay, decDay, setViewDate, viewDate}: DateSelectorProps
             // extra padding
             ...Array(days[0].weekday()).fill(0).map((_,i) => {
                 return (
-                    <div className="calendar-day" key={"padding " + i}></div>
+                    <div className="calendar-day" key={"padding " + i} />
                 )
             }),
             
             // actual content
-            ...days.map(day => 
-                {
-                    const noSchool = [0, 6].includes(day.weekday()) 
-                        || (day.format("MM-DD") in alternates.alternates && alternates.alternates[day.format("MM-DD")] == null);
-                    return (
-                        <div 
-                            className={"calendar-day" + (noSchool ? " calendar-day-no-school" : "") + (day.isSame(viewDate) ? " calendar-day-selected" : "")}
-                            onClick={() => setViewDate(day)}
-                            key={day.toISOString()}
-                            >
-                            {day.date()}
-                        </div>
-                    );
-                })
+            ...days.map(day => {
+                const noSchool = [0, 6].includes(day.weekday())
+                    || (day.format("MM-DD") in alternates.alternates && alternates.alternates[day.format("MM-DD")] == null);
+                return (
+                    <div
+                        className={"calendar-day" + (noSchool ? " calendar-day-no-school" : "") + (day.isSame(viewDate) ? " calendar-day-selected" : "")}
+                        onClick={() => setViewDate(day)}
+                        key={day.toISOString()}
+                        >
+                        {day.date()}
+                    </div>
+                );
+            })
         ]
 
         return <>
@@ -112,9 +105,11 @@ const DateSelector = ({incDay, decDay, setViewDate, viewDate}: DateSelectorProps
                 <div className="date-selector-main-text" onClick={() => setCalendar(!showCalendar)}>{viewDate.format("MMMM D, yyyy")}</div>
 
                 <div className="mini-calendar" hidden={!showCalendar}>
-                    <div className="calendar-days-wrapper"><div className="calendar-weekdays">
-                        {weekdays.map(char => <div className="calendar-weekday">{char}</div>)} 
-                    </div></div>
+                    <div className="calendar-days-wrapper">
+                        <div className="calendar-weekdays">
+                            {weekdays.map(char => <div className="calendar-weekday">{char}</div>)}
+                        </div>
+                    </div>
 
                     <div className="calendar-wrapper">
                         {monthElements}
@@ -125,7 +120,6 @@ const DateSelector = ({incDay, decDay, setViewDate, viewDate}: DateSelectorProps
                         <div className="calendar-jump-tmrw" onClick={() => setViewDate(tmrw)}>Tomorrow</div>
                     </div>
                 </div>
-
             </div>
 
             <button className="icon" onClick={incDay}>

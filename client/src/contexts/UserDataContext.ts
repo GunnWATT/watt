@@ -17,7 +17,7 @@ export type UserData = {
     options: {theme: string, time: string, period0: boolean, period8: boolean},
     clubs: string[],
     staff: string[],
-    sgy: {key: string, sec: string, uid: string}
+    sgy?: {key: string, sec: string, uid: string}
 };
 
 export const defaultUserData = {

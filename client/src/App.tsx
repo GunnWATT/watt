@@ -243,20 +243,21 @@ const App = () => {
 
     const deepmerge = (a: { [key: string]: any }, b: { [key: string]: any }) => {
         let newobj: { [key: string]: any } = {};
-        for(const key in a) {
+        for (const key in a) {
             newobj[key] = a[key];
         }
 
         for(const key in b) {
             newobj[key] = b[key];
-            if(typeof a[key] === "object" && typeof b[key] === "object") {
-                newobj[key] = deepmerge(a[key],b[key]);
+            if (typeof a[key] === "object" && typeof b[key] === "object") {
+                newobj[key] = deepmerge(a[key], b[key]);
             }
         }
 
         return newobj;
     }
-    const localStorageData:any = deepmerge(
+
+    const localStorageData = deepmerge(
         defaultUserData,
         localStorageRawData
     ) // should be changed later; not all things are stored in localStorage
@@ -269,7 +270,7 @@ const App = () => {
         }
     }, [firebaseUserData]);
 
-    const userData: UserData = firebaseUserData?.exists ? firebaseUserData?.data() : localStorageData;
+    const userData = (firebaseUserData?.exists ? firebaseUserData?.data() : localStorageData) as UserData;
 
     // alter existing user data if need be
     // to include info about periods 0 and 8
@@ -291,7 +292,6 @@ const App = () => {
         }
     }, [firebaseUserData])
 
-    console.log(userData);
     document.body.className = userData.options.theme;
 
 
