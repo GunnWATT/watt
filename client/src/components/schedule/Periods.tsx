@@ -86,25 +86,9 @@ const Periods = (props: PeriodsProps) => {
             return true;
         }).map(([name, value]) => {
 
-            // Support Gunn's swapping of GT and SELF every other week
-            if (viewDate.isAfter('2021-04-11')) {
-                let offset = viewDate.weeks() % 2;
-                if (offset === 0) {
-                    if (name === 'G') name = 'S';
-                    else if (name === 'S') name = 'G';
-                }
-            }
-
             let displayName = parsePeriodName(name, userData);
             let colorKey = name;
             let zoomKey = name;
-
-            // Gunn Together quirkiness handling
-            if (name === 'G') {
-                displayName += ` - Period ${GTPer ? GTPer : '?'}`;
-                colorKey = GTPer + '';
-                zoomKey = GTPer + '';
-            }
 
             return (
                 <Period
@@ -244,8 +228,8 @@ export const periodNameDefault = (name: string) => {
             return 'Lunch';
         case 'S':
             return 'SELF';
-        case 'G':
-            return 'Gunn Together';
+        case 'P':
+            return 'PRIME';
         case 'O':
             return 'Office Hours';
         case 'B':
