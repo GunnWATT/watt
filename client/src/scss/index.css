@@ -570,7 +570,7 @@ ul.material-list li span {
 }
 
 .schedule .date-selector .date-selector-box .mini-calendar .calendar-wrapper {
-  padding: 5px 15px 0px 15px;
+  padding: 5px 15px 10px 15px;
   overflow: auto;
 }
 
