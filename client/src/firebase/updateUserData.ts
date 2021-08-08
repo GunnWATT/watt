@@ -6,15 +6,15 @@ const auth = firebase.auth;
 export const updateUserData = async (field: string, newValue: any) => {
     if (auth.currentUser) {
         // if signed in with firebase, update both
-        await updateFirebaseUserData(field,newValue);
+        await updateFirebaseUserData(field, newValue);
     }
 
     // update localstorage always
-    updateLocalStorageUserData(field,newValue);
+    updateLocalStorageUserData(field, newValue);
 }
 
 export const updateFirebaseUserData = async (field: string, newValue: any) => {
-    if(auth.currentUser) {
+    if (auth.currentUser) {
         await firestore.collection('users').doc(auth.currentUser.uid).update({
             [field]: newValue
         });
