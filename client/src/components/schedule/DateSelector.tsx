@@ -67,21 +67,22 @@ const DateSelector = ({incDay, decDay, setViewDate, viewDate}: DateSelectorProps
         const dayElements = 
         [
             // extra padding
-            ...Array(days[0].weekday()).fill(0).map(() => {
+            ...Array(days[0].weekday()).fill(0).map((_,i) => {
                 return (
-                    <div className="calendar-day"></div>
+                    <div className="calendar-day" key={"padding " + i}></div>
                 )
             }),
             
             // actual content
             ...days.map(day => 
                 {
-                    const noSchool = [0, 7].includes(day.weekday()) 
+                    const noSchool = [0, 6].includes(day.weekday()) 
                         || (day.format("MM-DD") in alternates.alternates && alternates.alternates[day.format("MM-DD")] == null);
                     return (
                         <div 
                             className={"calendar-day" + (noSchool ? " calendar-day-no-school" : "") + (day.isSame(viewDate) ? " calendar-day-selected" : "")}
                             onClick={() => setViewDate(day)}
+                            key={day.toISOString()}
                             >
                             {day.date()}
                         </div>
