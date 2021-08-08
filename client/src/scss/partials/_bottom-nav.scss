@@ -49,5 +49,42 @@
         padding: 0;
       }
     }
+
+    .dropup-wrapper {
+
+        position: relative;
+
+        span {
+            display:block;
+        }
+
+        .bottom-nav-dropup {
+            position: absolute;
+            left: 50%;
+            top: -30px;
+            transform: translate(-50%, -100%);
+
+            display: flex;
+            flex-direction: column-reverse;
+            padding: 5px;
+            
+            background-color: var(--bg-primary);
+            border-radius: 15px;
+
+            .item {
+                margin: 5px;
+                
+                // sacrificing cows for good luck with css override/specificity rules
+                a > span {
+                    display:none;
+                }
+                button > span {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    
   }
 }
