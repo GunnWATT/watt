@@ -232,14 +232,18 @@ const App = () => {
     // const [gunnData, gdLoading, gdError] = useCollection(firestore.collection('gunn'));
     const [firebaseUserData, udLoading, udError] = useDocument(auth.currentUser && firestore.doc(`users/${auth.currentUser.uid}`));
 
-    const localStorageData = {
-        ...defaultUserData,
-        ...JSON.parse(localStorage.getItem("data") ?? '{}')
-    } // should be changed later; not all things are stored in localStorage
+    let localStorageRawData = {};
 
-    const writeToLocalStorage = (data: Object) => {
-        localStorage.setItem("data", JSON.stringify(data))
+    try {
+        localStorageRawData = JSON.parse(localStorage.getItem("data") ?? '{}')
+    } catch(err) { 
+        // something happened
+        localStorage.clear();
     }
+    const localStorageData:any = {
+        ...defaultUserData,
+        ...localStorageRawData
+    } // should be changed later; not all things are stored in localStorage
 
     // TODO: mergs should probably be done here
     if (auth.currentUser) {
