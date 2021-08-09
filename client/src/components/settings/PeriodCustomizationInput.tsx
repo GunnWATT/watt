@@ -2,7 +2,7 @@ import React from 'react';
 import {Col, FormGroup, Input, Label, Row} from 'reactstrap';
 
 import {SgyPeriodData} from '../../contexts/UserDataContext';
-import { updateUserData } from '../../firebase/updateUserData'
+import {updateUserData} from '../../firebase/updateUserData'
 import {periodNameDefault} from '../schedule/Periods';
 
 

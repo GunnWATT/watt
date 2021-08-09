@@ -7,7 +7,7 @@ type ListProps = {
     data: ListEntriesPair[] | {[key: string]: any}, // Data can either be an Object.entries result or the raw JSON
     filter: ([id, value]: ListEntriesPair) => boolean,
     map: ([id, value]: ListEntriesPair) => JSX.Element,
-    sort: ([idA, valueA]: ListEntriesPair, [idB, valueB]: ListEntriesPair) => number
+    sort: ([idA, valueA]: ListEntriesPair, [idB, valueB]: ListEntriesPair) => number,
     pinned: string[]
 }
 

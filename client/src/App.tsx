@@ -233,7 +233,6 @@ const App = () => {
     const [firebaseUserData, udLoading, udError] = useDocument(auth.currentUser && firestore.doc(`users/${auth.currentUser.uid}`));
 
     let localStorageRawData = {};
-
     try {
         localStorageRawData = JSON.parse(localStorage.getItem("data") ?? '{}')
     } catch(err) { 
@@ -241,15 +240,18 @@ const App = () => {
         localStorage.clear();
     }
 
+    // Merges two objects, prioritizing b over a
     const deepmerge = (a: { [key: string]: any }, b: { [key: string]: any }) => {
         let newobj: { [key: string]: any } = {};
         for (const key in a) {
             newobj[key] = a[key];
         }
 
-        for(const key in b) {
+        for (const key in b) {
             newobj[key] = b[key];
-            if (typeof a[key] === "object" && typeof b[key] === "object") {
+            // Do not collapse arrays into objects
+            if (typeof a[key] === 'object' && typeof b[key] === 'object'
+                && !Array.isArray(a[key]) && !Array.isArray(b[key])) {
                 newobj[key] = deepmerge(a[key], b[key]);
             }
         }
@@ -266,7 +268,7 @@ const App = () => {
     // TODO: support merges
     useEffect(() => {
         if (firebaseUserData) {
-            localStorage.setItem("data", JSON.stringify(firebaseUserData.data()));
+            localStorage.setItem('data', JSON.stringify(firebaseUserData.data()));
         }
     }, [firebaseUserData]);
 
