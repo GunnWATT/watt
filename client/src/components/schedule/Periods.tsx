@@ -108,10 +108,11 @@ const Periods = (props: PeriodsProps) => {
     // HTML for a school day, assumes periods is populated
     const schoolDay = () => {
         // End time of the last period of the day
-        // Do not count non school periods like office hours for the end time
-        const validSchoolPeriods = periods!.filter(x => x[0] !== 'O');
-        const end = viewDate.clone().add(
-            validSchoolPeriods[validSchoolPeriods.length - 1][1].e, 'minutes').tz(timeZone);
+        // Exclude office hours and optionally exclude period 8 based on user preferences
+        let endIndex = periods!.length - 1;
+        if (periods![endIndex][0] === 'O') endIndex--;
+        if (!userData?.options.period8 && periods![endIndex][0] === '8') endIndex--;
+        const end = viewDate.clone().add(periods![endIndex][1].e, 'minutes').tz(timeZone);
 
         // Display the period indicator if there are periods that day and if time is within 20 minutes of the first period
         // and before the last period
