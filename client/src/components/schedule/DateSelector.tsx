@@ -84,8 +84,8 @@ const DateSelector = ({incDay, decDay, setViewDate, viewDate}: DateSelectorProps
         ]
 
         return <>
-            <div className="calendar-month-header">{startOfMonth.format("MMMM YYYY")}</div>
-            <div className="calendar-month">
+            <div key={`month ${m} header`} className="calendar-month-header">{startOfMonth.format("MMMM YYYY")}</div>
+            <div key={`month ${m}`} className="calendar-month">
                 {dayElements}
             </div>
         </>
