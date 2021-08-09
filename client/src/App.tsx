@@ -26,7 +26,7 @@ import {useCollection, useDocument} from 'react-firebase-hooks/firestore';
 import {parseNextPeriod} from './components/schedule/PeriodIndicator';
 import {parsePeriodName, parsePeriodColor} from './components/schedule/Periods';
 import {hexToRgb} from './components/schedule/ProgressBarColor';
-import { updateFirebaseUserData, updateLocalStorageUserData } from './firebase/updateUserData';
+import {updateFirebaseUserData, updateLocalStorageUserData} from './firebase/updateUserData';
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
 
@@ -274,24 +274,13 @@ const App = () => {
 
     const userData = (firebaseUserData?.exists ? firebaseUserData?.data() : localStorageData) as UserData;
 
-    // alter existing user data if need be
-    // to include info about periods 0 and 8
+    // Update firebase and local data to be up to date with defaultUserData using deepmerge
     useEffect(() => {
-        if (firebaseUserData) {
-            if (!("period0" in firebaseUserData.data()?.options)) {
-                updateFirebaseUserData("options.period0", false);
-                updateFirebaseUserData("options.period8", false);
-                updateFirebaseUserData("classes.0", { n: "", c: "", l: "", o: "", s: "" });
-                updateFirebaseUserData("classes.8", { n: "", c: "", l: "", o: "", s: "" });
-            }
-        } 
+        const fbData = firebaseUserData?.data()
+        if (fbData)
+            updateFirebaseUserData('', deepmerge(defaultUserData, fbData));
 
-        if (!("period0" in localStorageData?.options)) {
-            updateLocalStorageUserData("options.period0", false);
-            updateLocalStorageUserData("options.period8", false);
-            updateLocalStorageUserData("classes.0", { n: "", c: "", l: "", o: "", s: "" });
-            updateLocalStorageUserData("classes.8", { n: "", c: "", l: "", o: "", s: "" });
-        }
+        updateLocalStorageUserData('', deepmerge(defaultUserData, localStorageData));
     }, [firebaseUserData])
 
     document.body.className = userData.options.theme;
