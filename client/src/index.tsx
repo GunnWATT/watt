@@ -20,8 +20,9 @@ const swConfig = {
     onUpdate: (r: ServiceWorkerRegistration) => {
         if (r.waiting) {
             r.waiting.postMessage({type: 'SKIP_WAITING'});
-            r.waiting.onstatechange = () => {
-                if (r.waiting?.state === 'activated') window.location.reload();
+            r.waiting.onstatechange = function() {
+                console.log(this.state);
+                if (this.state === 'activated') window.location.reload();
             }
         }
     }
