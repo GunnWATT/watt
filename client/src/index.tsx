@@ -14,4 +14,10 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-serviceWorkerRegistration.register();
+// Config for the service worker
+const swConfig = {
+    // When new updates are detected, refresh the page
+    onUpdate: () => window.location.reload()
+}
+
+serviceWorkerRegistration.register(swConfig);
