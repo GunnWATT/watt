@@ -30,7 +30,6 @@ import {updateFirebaseUserData, updateLocalStorageUserData} from './firebase/upd
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
 
-
 const App = () => {
     // Global datetime
     const [date, setDate] = useState(moment());
