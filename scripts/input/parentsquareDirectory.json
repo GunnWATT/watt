@@ -1,0 +1,3937 @@
+{
+    "data": {
+        "id": "SchoolDirectory-6272",
+        "type": "school_directory",
+        "attributes": {
+            "id": "SchoolDirectory-6272",
+            "hidden": true,
+            "staff_count": 258
+        },
+        "relationships": {
+            "institute": {
+                "data": {
+                    "id": "School_6272",
+                    "type": "institute"
+                }
+            },
+            "departments": {
+                "data": [
+                    {
+                        "id": "2967",
+                        "type": "department"
+                    }
+                ]
+            },
+            "staff": {
+                "data": [
+                    {
+                        "id": "3153196",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6242944",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6243737",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6269404",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6269411",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6273071",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6273081",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6273083",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6273085",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6273092",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6273773",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274779",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274780",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274781",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274782",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274783",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274784",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274785",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274786",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274787",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274788",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274789",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274791",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274792",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274793",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274794",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274795",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274796",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274797",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274798",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274799",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274800",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274801",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274802",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274803",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274804",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274805",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274806",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274807",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274808",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274809",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274810",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274811",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274812",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274813",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274814",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274815",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274816",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274817",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274818",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274819",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274820",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274821",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274822",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274824",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274825",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274826",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274827",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274828",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274830",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274831",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274833",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274835",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274836",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274837",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274838",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274839",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274840",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274841",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274842",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274844",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274845",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274846",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274847",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274848",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274849",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274850",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274851",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274852",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274853",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274854",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274855",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274856",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274858",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274859",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274860",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274861",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274862",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274863",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274864",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274865",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274866",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274867",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274868",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274869",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274870",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274872",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274873",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274874",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274875",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274876",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274877",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274878",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274879",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274881",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274882",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274883",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274884",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274885",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274886",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274887",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274888",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274889",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274890",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274891",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274893",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274894",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274895",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274896",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274897",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274898",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274899",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274900",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274901",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274902",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274903",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274905",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274906",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274907",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274908",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274909",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274910",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274911",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274912",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274913",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6274916",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6277359",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6277415",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6278217",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6459508",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6459537",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6459591",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6459663",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6459667",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6459714",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6459726",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6459734",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464056",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464067",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464140",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464205",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464206",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464207",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464208",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464209",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464212",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464214",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464216",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464217",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464218",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464219",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464220",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464221",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464222",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464223",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464225",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464226",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464228",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464229",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464231",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464232",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464234",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464235",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464236",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464238",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464239",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464240",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464244",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464246",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464247",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464249",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464250",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464251",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464252",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464253",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464255",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464256",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464257",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464258",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464259",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464260",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464261",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464262",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464263",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464264",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464266",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464267",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464268",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464269",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464270",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464274",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464275",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464277",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464279",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464281",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464282",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6670415",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6670458",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6670480",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6670485",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6670487",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6670488",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6670493",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6812220",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6812222",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6812223",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6812233",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6812234",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6812240",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6812254",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6829748",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6829751",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6921001",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "7197981",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "7197982",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "7604892",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "7604894",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "7687827",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "7878038",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "8005307",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "8027247",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "8028600",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "8300873",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "8326916",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "9517574",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "9527485",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "9699147",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "9973153",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "10009530",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "10038798",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "10040954",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "10212278",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "10475077",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "10475078",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "11077812",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "11138858",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "11138860",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "11138862",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "11139333",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "11168301",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "11609646",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "11609647",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "11609648",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "11827173",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "11909188",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "11909189",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "11909190",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "11915387",
+                        "type": "staff"
+                    }
+                ]
+            }
+        }
+    },
+    "included": [
+        {
+            "id": "School_6272",
+            "type": "institute",
+            "attributes": {
+                "id": 6272,
+                "name": "Henry M. Gunn High",
+                "time_zone": "Pacific Time (US & Canada)",
+                "phone": "6503548200",
+                "app_name": "ParentSquare",
+                "external_provider": "infinite_campus",
+                "address": "780 Arastradero Rd, Palo Alto, CA 94306",
+                "city_and_region": "Palo Alto, CA",
+                "region": "CA",
+                "type": "school"
+            },
+            "relationships": {
+                "school_api_credential": {
+                    "data": {
+                        "id": "19759",
+                        "type": "school_api_credential"
+                    }
+                }
+            }
+        },
+        {
+            "id": "2967",
+            "type": "department",
+            "attributes": {
+                "id": 2967,
+                "name": "Principal's Office",
+                "phone_number": "6503548200",
+                "phone_extension": null
+            }
+        },
+        {
+            "id": "3153196",
+            "type": "staff",
+            "attributes": {
+                "id": 3153196,
+                "first_name": "Leonel",
+                "last_name": "Argumedo",
+                "role": "STAFF",
+                "user_title": "Assistant Principal-HS"
+            }
+        },
+        {
+            "id": "6242944",
+            "type": "staff",
+            "attributes": {
+                "id": 6242944,
+                "first_name": "Shawn",
+                "last_name": "McGinn",
+                "role": "STAFF",
+                "user_title": "Teacher: Jazz B: McGinn, Shawn (8), Teacher: Jazz Ens: McGinn, Shawn (8)"
+            }
+        },
+        {
+            "id": "6243737",
+            "type": "staff",
+            "attributes": {
+                "id": 6243737,
+                "first_name": "Wendy",
+                "last_name": "Stratton",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6269404",
+            "type": "staff",
+            "attributes": {
+                "id": 6269404,
+                "first_name": "Tzuhuei",
+                "last_name": "Lo",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6269411",
+            "type": "staff",
+            "attributes": {
+                "id": 6269411,
+                "first_name": "Tessa",
+                "last_name": "Huynh",
+                "role": "TEACHER",
+                "user_title": "Teacher: Biology: Huynh, Tessa (3), Teacher: Biology: Huynh, Tessa (4), Teacher: Biology: Huynh, Tessa (6), Teacher: Biology: Huynh, Tessa (7), Teacher: Marine Biology: Huynh, Tessa (2)"
+            }
+        },
+        {
+            "id": "6273071",
+            "type": "staff",
+            "attributes": {
+                "id": 6273071,
+                "first_name": "Mark",
+                "last_name": "Dungan",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6273081",
+            "type": "staff",
+            "attributes": {
+                "id": 6273081,
+                "first_name": "Jennifer",
+                "last_name": "Ellington",
+                "role": "STAFF",
+                "user_title": "Teacher: Stage Tech 2: Ellington, Jennifer (8), Teacher: Stage Tech 2D: Ellington, Jennifer (8), Teacher: Stage Tech: Ellington, Jennifer (8), Teacher: Stg Tech11: Ellington, Jennifer (8)"
+            }
+        },
+        {
+            "id": "6273083",
+            "type": "staff",
+            "attributes": {
+                "id": 6273083,
+                "first_name": "Rachel",
+                "last_name": "Dion",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6273085",
+            "type": "staff",
+            "attributes": {
+                "id": 6273085,
+                "first_name": "Tiffany",
+                "last_name": "Ou-Ponticelli",
+                "role": "STAFF",
+                "user_title": "Teacher: Orchstr H: Lewis/Ou CO (1), Teacher: Orchstr: Lewis/Ou CO (2), Teacher: Orchstr: Lewis/Ou CO (3)"
+            }
+        },
+        {
+            "id": "6273092",
+            "type": "staff",
+            "attributes": {
+                "id": 6273092,
+                "first_name": "Ivette",
+                "last_name": "Daugherty",
+                "role": "STAFF",
+                "user_title": "Teacher: Eng LL 1: Daugherty, Ivette (5), Teacher: Eng LL 1: Daugherty, Ivette (5), Teacher: Eng LL 28: Daugherty, Ivette (1), Teacher: Eng LL 28: Daugherty, Ivette (2), Teacher: Eng LL 2: Daugherty, Ivette (6)"
+            }
+        },
+        {
+            "id": "6273773",
+            "type": "staff",
+            "attributes": {
+                "id": 6273773,
+                "first_name": "Gregory",
+                "last_name": "Miller",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6274779",
+            "type": "staff",
+            "attributes": {
+                "id": 6274779,
+                "first_name": "Laurel",
+                "last_name": "Howard",
+                "role": "STAFF",
+                "user_title": "Teacher: AP US History: Howard, Laurel J (5), Teacher: AP US History: Howard, Laurel J (6), Teacher: AP US History: Howard, Laurel J (7), Teacher: Wld Hist: Howard, Laurel J (3), Teacher: Wld Hist: Howard, Laurel J (4)"
+            }
+        },
+        {
+            "id": "6274780",
+            "type": "staff",
+            "attributes": {
+                "id": 6274780,
+                "first_name": "Steven",
+                "last_name": "Ames",
+                "role": "STAFF",
+                "user_title": "Teacher: PE 9: Ames, Steven B. (5), Teacher: PE 9: Ames, Steven B. (6), Teacher: PE 9: Ames, Steven B. (7), Teacher: SELF: Ames, Steven B. (SELF), Teacher: Yoga: Ames, Steven B. (2), Teacher: Yoga: Ames, Steven B. (3)"
+            }
+        },
+        {
+            "id": "6274781",
+            "type": "staff",
+            "attributes": {
+                "id": 6274781,
+                "first_name": "Olga",
+                "last_name": "Celis",
+                "role": "STAFF",
+                "user_title": "Academic Technology Specialist"
+            }
+        },
+        {
+            "id": "6274782",
+            "type": "staff",
+            "attributes": {
+                "id": 6274782,
+                "first_name": "Braumon",
+                "last_name": "Creighton",
+                "role": "STAFF",
+                "user_title": "Teacher: AthlCond: Creighton, Braumon (4), Teacher: PE 10 zero: Creighton, Braumon (Zero), Teacher: PE 10: Creighton, Braumon (1), Teacher: PE 10: Creighton, Braumon (2), Teacher: PE 10: Creighton, Braumon (5), Teacher: PE 10: Creighton, Braumon (6)"
+            }
+        },
+        {
+            "id": "6274783",
+            "type": "staff",
+            "attributes": {
+                "id": 6274783,
+                "first_name": "Paul",
+                "last_name": "Dunlap",
+                "role": "STAFF",
+                "user_title": "Teacher: AP English Lit & Comp: Dunlap, Paul E. (2), Teacher: AP English Lit & Comp: Dunlap, Paul E. (7), Teacher: ShakesPerf: Dunlap/Lo CO (1), Teacher: WritCr 11: Dunlap, Paul E. (1), Teacher: WritCr 11: Dunlap, Paul E. (5)"
+            }
+        },
+        {
+            "id": "6274784",
+            "type": "staff",
+            "attributes": {
+                "id": 6274784,
+                "first_name": "Marc",
+                "last_name": "Igler",
+                "role": "STAFF",
+                "user_title": "Teacher: Class Myth: Igler, Marc (1), Teacher: Class Myth: Igler, Marc (1), Teacher: Class Myth: Igler, Marc (2), Teacher: Class Myth: Igler, Marc (2), Teacher: Escape Lit: Igler, Marc (5), Teacher: Escape Lit: Igler, Marc (6), Teacher: Escape Lit: Igler/Tabuchi CO (5), Teacher: Escape Lit: Igler/Tabuchi CO (6)"
+            }
+        },
+        {
+            "id": "6274785",
+            "type": "staff",
+            "attributes": {
+                "id": 6274785,
+                "first_name": "Eric",
+                "last_name": "Ledgerwood",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Environmental Science: Ledgerwood, Eric (1), Teacher: AP Environmental Science: Ledgerwood, Eric (5), Teacher: AP Environmental Science: Ledgerwood, Eric (6), Teacher: AP Environmental Science: Ledgerwood, Eric (7), Teacher: Chemistry: Ledgerwood, Eric (4)"
+            }
+        },
+        {
+            "id": "6274786",
+            "type": "staff",
+            "attributes": {
+                "id": 6274786,
+                "first_name": "Sandra",
+                "last_name": "Lewis",
+                "role": "STAFF",
+                "user_title": "Teacher: Orchstr H: Lewis/Ou CO (1), Teacher: Orchstr: Lewis/Ou CO (2), Teacher: Orchstr: Lewis/Ou CO (3), Teacher: Symph Band: Summers/Lewis CO (6)"
+            }
+        },
+        {
+            "id": "6274787",
+            "type": "staff",
+            "attributes": {
+                "id": 6274787,
+                "first_name": "William",
+                "last_name": "Liberatore",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Music Theory: Liberatore, William (2), Teacher: Adv Vocal: Liberatore, William (8), Teacher: Conc Choir: Liberatore/Fitzhugh CO (6), Teacher: SELF: Liberatore, William (SELF), Teacher: Treb Choir: Liberatore, William (1)"
+            }
+        },
+        {
+            "id": "6274788",
+            "type": "staff",
+            "attributes": {
+                "id": 6274788,
+                "first_name": "Carole",
+                "last_name": "Main",
+                "role": "STAFF",
+                "user_title": "Secretary II"
+            }
+        },
+        {
+            "id": "6274789",
+            "type": "staff",
+            "attributes": {
+                "id": 6274789,
+                "first_name": "Elizabeth",
+                "last_name": "Matchett",
+                "role": "STAFF",
+                "user_title": "Teacher: SpCiv/CulH: Matchett, Elizabeth (7), Teacher: Span/Span1: Matchett, Elizabeth (5), Teacher: Spanish 2: Matchett, Elizabeth (6)"
+            }
+        },
+        {
+            "id": "6274791",
+            "type": "staff",
+            "attributes": {
+                "id": 6274791,
+                "first_name": "Joshua",
+                "last_name": "Paley",
+                "role": "STAFF",
+                "user_title": "Teacher: APCompSci A: Paley, Joshua E (6), Teacher: APCompSci A: Paley, Joshua E (7), Teacher: CS Capstone: Paley, Joshua E (4), Teacher: CS Capstone: Paley, Joshua E (8), Teacher: Funct Object Or Prog: Paley, Joshua E (3)"
+            }
+        },
+        {
+            "id": "6274792",
+            "type": "staff",
+            "attributes": {
+                "id": 6274792,
+                "first_name": "Maria",
+                "last_name": "Powell",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Biology: Powell, Maria (3), Teacher: AP Biology: Powell, Maria (6), Teacher: AP Biology: Powell, Maria (7), Teacher: Biology H: Powell, Maria (1), Teacher: Biology H: Powell, Maria (4)"
+            }
+        },
+        {
+            "id": "6274793",
+            "type": "staff",
+            "attributes": {
+                "id": 6274793,
+                "first_name": "Christopher",
+                "last_name": "Redfield",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Calculus BC: Redfield, Christopher (1), Teacher: AP Calculus BC: Redfield, Christopher (3), Teacher: Applied Math: Redfield, Christopher (2), Teacher: Applied Math: Redfield, Christopher (2)"
+            }
+        },
+        {
+            "id": "6274794",
+            "type": "staff",
+            "attributes": {
+                "id": 6274794,
+                "first_name": "Kimberly",
+                "last_name": "Sabbag",
+                "role": "STAFF",
+                "user_title": "Teacher: PE 10: Sabbag, Kimberly A (1), Teacher: PE 10: Sabbag, Kimberly A (4), Teacher: PE 10: Sabbag, Kimberly A (7), Teacher: SELF: Sabbag, Kimberly A (SELF), Teacher: Unity PE: Sabbag, Kimberly A (7)"
+            }
+        },
+        {
+            "id": "6274795",
+            "type": "staff",
+            "attributes": {
+                "id": 6274795,
+                "first_name": "Karen",
+                "last_name": "Saxena",
+                "role": "STAFF",
+                "user_title": "Teacher: Alg2/TrigH: Saxena, Karen (5), Teacher: Alg2/TrigH: Saxena, Karen (6), Teacher: SELF: Saxena, Karen (SELF)"
+            }
+        },
+        {
+            "id": "6274796",
+            "type": "staff",
+            "attributes": {
+                "id": 6274796,
+                "first_name": "Gabriela",
+                "last_name": "Garger",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Spanish Language: Garger, Gabriela M (1), Teacher: AP Spanish Language: Garger, Gabriela M (4), Teacher: AP Spanish Language: Garger, Gabriela M (5), Teacher: AP Spanish Language: Garger, Gabriela M (6), Teacher: AP Spanish Literature: Garger, Gabriela M (7)"
+            }
+        },
+        {
+            "id": "6274797",
+            "type": "staff",
+            "attributes": {
+                "id": 6274797,
+                "first_name": "Dawna",
+                "last_name": "Linsdell",
+                "role": "STAFF",
+                "user_title": "Teacher: Econ 11: Linsdell, Dawna J (2), Teacher: Econ 11: Linsdell, Dawna J (2), Teacher: Econ AP: Linsdell, Dawna J (1), Teacher: Econ AP: Linsdell, Dawna J (3), Teacher: Econ AP: Linsdell, Dawna J (5), Teacher: Econ AP: Linsdell, Dawna J (7), Teacher: SELF: Linsdell, Dawna J (SELF)"
+            }
+        },
+        {
+            "id": "6274798",
+            "type": "staff",
+            "attributes": {
+                "id": 6274798,
+                "first_name": "Christopher",
+                "last_name": "Johnson",
+                "role": "STAFF",
+                "user_title": "Teacher: AP US History: Johnson, Christopher P (1), Teacher: AP US History: Johnson, Christopher P (2), Teacher: AP US History: Johnson, Christopher P (3), Teacher: Wld Hist: Johnson, Christopher P (4), Teacher: Wld Hist: Johnson, Christopher P (5)"
+            }
+        },
+        {
+            "id": "6274799",
+            "type": "staff",
+            "attributes": {
+                "id": 6274799,
+                "first_name": "Laura",
+                "last_name": "Derrick-Navarro",
+                "role": "STAFF",
+                "user_title": "Teacher: Positive Psychology: Derrick-Navarro, Laura L (1), Teacher: Positive Psychology: Derrick-Navarro, Laura L (1)"
+            }
+        },
+        {
+            "id": "6274800",
+            "type": "staff",
+            "attributes": {
+                "id": 6274800,
+                "first_name": "Edward",
+                "last_name": "Corpuz",
+                "role": "STAFF",
+                "user_title": "Teacher: Adv Audio/Music Prod: Corpuz, Edward M (7), Teacher: Adv Video H: Corpuz, Edward M (1), Teacher: AdvDigiVideo: Corpuz, Edward M (1), Teacher: Audio/MusicProd: Corpuz, Edward M (7), Teacher: Broad Joun: Corpuz, Edward M (1), Teacher: Video Prod: Corpuz, Edward M (2), Teacher: Video Prod: Corpuz, Edward M (3)"
+            }
+        },
+        {
+            "id": "6274801",
+            "type": "staff",
+            "attributes": {
+                "id": 6274801,
+                "first_name": "David",
+                "last_name": "Deggeller",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Calculus BC: Deggeller, David M (5), Teacher: AP Calculus BC: Deggeller, David M (6), Teacher: AP Calculus BC: Deggeller, David M (7)"
+            }
+        },
+        {
+            "id": "6274802",
+            "type": "staff",
+            "attributes": {
+                "id": 6274802,
+                "first_name": "Jordan",
+                "last_name": "Wells",
+                "role": "STAFF",
+                "user_title": "Teacher: Class Myth: Wells, Jordan T (7), Teacher: Communic A: Wells, Jordan T (1), Teacher: Communic A: Wells, Jordan T (2), Teacher: Communic A: Wells, Jordan T (5), Teacher: Communic: Wells, Jordan T (1), Teacher: Communic: Wells, Jordan T (2), Teacher: Communic: Wells, Jordan T (5), Teacher: Philos Lit: Wells, Jordan T (4), Teacher: Philos Lit: Wells, Jordan T (4), Teacher: Philos Lit: Wells, Jordan T (7)"
+            }
+        },
+        {
+            "id": "6274803",
+            "type": "staff",
+            "attributes": {
+                "id": 6274803,
+                "first_name": "Norma",
+                "last_name": "Barba-Medina",
+                "role": "STAFF",
+                "user_title": "Teacher: Spanish 2: Barba-Medina, Norma A (4), Teacher: Spanish 2: Barba-Medina, Norma A (5), Teacher: Spanish 2: Barba-Medina, Norma A (7), Teacher: Spanish 3: Barba-Medina, Norma A (2), Teacher: Spanish 3: Barba-Medina, Norma A (6)"
+            }
+        },
+        {
+            "id": "6274804",
+            "type": "staff",
+            "attributes": {
+                "id": 6274804,
+                "first_name": "Florina",
+                "last_name": "Limburg",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Calculus AB: Limburg, Florina A (2), Teacher: AP Calculus AB: Limburg, Florina A (3), Teacher: AP Calculus AB: Limburg, Florina A (4), Teacher: Alg2/TrigH: Limburg, Florina A (6), Teacher: Alg2/TrigH: Limburg, Florina A (7), Teacher: SELF: Limburg, Florina A (SELF)"
+            }
+        },
+        {
+            "id": "6274805",
+            "type": "staff",
+            "attributes": {
+                "id": 6274805,
+                "first_name": "Kristen",
+                "last_name": "Lo",
+                "role": "STAFF",
+                "user_title": "Teacher: ShakesPerf: Dunlap/Lo CO (1), Teacher: Theatre 1: Lo, Kristen K (3), Teacher: Theatre 2: Lo, Kristen K (2), Teacher: Theatre 3: Lo, Kristen K (5), Teacher: Theatre 4: Lo, Kristen K (5)"
+            }
+        },
+        {
+            "id": "6274806",
+            "type": "staff",
+            "attributes": {
+                "id": 6274806,
+                "first_name": "Yanan",
+                "last_name": "Vrudny",
+                "role": "STAFF",
+                "user_title": "Teacher: ChLangCulAP: Vrudny, Yanan (2), Teacher: ChLangCulAP: Vrudny, Yanan (4), Teacher: Chinese 1: Vrudny, Yanan (6), Teacher: Chinese 2: Vrudny, Yanan (3), Teacher: Chinese 3: Vrudny, Yanan (5), Teacher: ChineseCiv&CultureH: Vrudny, Yanan (4)"
+            }
+        },
+        {
+            "id": "6274807",
+            "type": "staff",
+            "attributes": {
+                "id": 6274807,
+                "first_name": "Julie",
+                "last_name": "Munger",
+                "role": "STAFF",
+                "user_title": "Teacher: Communic A: Munger, Julie G (3), Teacher: Communic A: Munger, Julie G (3), Teacher: ERWC: Munger, Julie G (4), Teacher: Inter Comp: Munger, Julie G (1), Teacher: Reading Between Lines: Munger, Julie G (4)"
+            }
+        },
+        {
+            "id": "6274808",
+            "type": "staff",
+            "attributes": {
+                "id": 6274808,
+                "first_name": "Kathy",
+                "last_name": "Hawes",
+                "role": "STAFF",
+                "user_title": "Teacher: Alg2: Hawes/Axelrod CO (1), Teacher: Alg2: Hawes/Axelrod CO (2), Teacher: IntrAnl/Calc: Hawes, Kathy J (4), Teacher: IntrAnl/Calc: Hawes, Kathy J (5), Teacher: IntrAnl/Calc: Hawes, Kathy J (6)"
+            }
+        },
+        {
+            "id": "6274809",
+            "type": "staff",
+            "attributes": {
+                "id": 6274809,
+                "first_name": "Cindy",
+                "last_name": "Peters",
+                "role": "STAFF",
+                "user_title": "Teacher: Culinary Arts - International: Peters, Cindy L (5), Teacher: Culinary Arts - International: Peters, Cindy L (6), Teacher: Culinary Arts - Introduction: Peters, Cindy L (3), Teacher: Culinary Arts - Introduction: Peters, Cindy L (5), Teacher: Culinary Arts - Introduction: Peters, Cindy L (6), Teacher: Fiber Arts: Peters, Cindy L (1), Teacher: Interior11: Peters, Cindy L (1), Teacher: SELF: Peters, Cindy L (SELF), Teacher: Sports Nutrition BLC: Peters, Cindy L (3)"
+            }
+        },
+        {
+            "id": "6274810",
+            "type": "staff",
+            "attributes": {
+                "id": 6274810,
+                "first_name": "Mark",
+                "last_name": "Hernandez",
+                "role": "STAFF",
+                "user_title": "Teacher: AP English Lit & Comp: Hernandez, Mark M (5), Teacher: Film Lit: Hernandez, Mark M (3), Teacher: Film Lit: Hernandez, Mark M (3), Teacher: Film Lit: Hernandez, Mark M (7), Teacher: Film Lit: Hernandez, Mark M (7), Teacher: SELF: Hernandez, Mark M (SELF), Teacher: World Classics H: Hernandez, Mark M (2), Teacher: World Classics H: Hernandez, Mark M (2), Teacher: World Classics H: Hernandez, Mark M (6), Teacher: World Classics H: Hernandez, Mark M (6)"
+            }
+        },
+        {
+            "id": "6274811",
+            "type": "staff",
+            "attributes": {
+                "id": 6274811,
+                "first_name": "Melinda",
+                "last_name": "Wilson",
+                "role": "STAFF",
+                "user_title": "Teacher: ExplExpSJ-AAR: Wilson, Melinda T (3), Teacher: ExplExpSJ-AAR: Wilson, Melinda T (4), Teacher: SELF: Wilson, Melinda T (SELF)"
+            }
+        },
+        {
+            "id": "6274812",
+            "type": "staff",
+            "attributes": {
+                "id": 6274812,
+                "first_name": "Nicole",
+                "last_name": "Menache",
+                "role": "STAFF",
+                "user_title": "Teacher: Focus on Success: Menache, Nicole M (6), Teacher: Focus on Success: Menache, Nicole M (7)"
+            }
+        },
+        {
+            "id": "6274813",
+            "type": "staff",
+            "attributes": {
+                "id": 6274813,
+                "first_name": "Kristy",
+                "last_name": "Blackburn",
+                "role": "STAFF",
+                "user_title": "Teacher Advisor"
+            }
+        },
+        {
+            "id": "6274814",
+            "type": "staff",
+            "attributes": {
+                "id": 6274814,
+                "first_name": "Patricia",
+                "last_name": "Holmes",
+                "role": "STAFF",
+                "user_title": "Teacher: CR/CivLaw: Holmes, Patricia A (6), Teacher: CR/CivLaw: Holmes, Patricia A (6), Teacher: ContWld 11: Holmes, Patricia A (2), Teacher: ContWld 11: Holmes, Patricia A (7), Teacher: Law 1: Holmes, Patricia A (4), Teacher: Law 1: Holmes, Patricia A (5), Teacher: SELF: Holmes, Patricia A (SELF), Teacher: US Govt: Holmes, Patricia A (2), Teacher: US Govt: Holmes, Patricia A (7)"
+            }
+        },
+        {
+            "id": "6274815",
+            "type": "staff",
+            "attributes": {
+                "id": 6274815,
+                "first_name": "Virginia",
+                "last_name": "Moyer",
+                "role": "STAFF",
+                "user_title": "Teacher: Western Culture A: Moyer, Virginia L (1), Teacher: Western Culture A: Moyer, Virginia L (1), Teacher: Western Culture A: Moyer, Virginia L (2), Teacher: Western Culture A: Moyer, Virginia L (2)"
+            }
+        },
+        {
+            "id": "6274816",
+            "type": "staff",
+            "attributes": {
+                "id": 6274816,
+                "first_name": "Myesha",
+                "last_name": "Dickson",
+                "role": "STAFF",
+                "user_title": "Counselor"
+            }
+        },
+        {
+            "id": "6274817",
+            "type": "staff",
+            "attributes": {
+                "id": 6274817,
+                "first_name": "Arlena",
+                "last_name": "Arteaga",
+                "role": "STAFF",
+                "user_title": "Teacher: US Hist LL: Arteaga, Arlena (3), Teacher: US Hist LL: Arteaga, Arlena (7), Teacher: Wld Hist: Arteaga, Arlena (1), Teacher: Wld Hist: Arteaga, Arlena (6), Teacher: WldHist LL: Arteaga, Arlena (4)"
+            }
+        },
+        {
+            "id": "6274818",
+            "type": "staff",
+            "attributes": {
+                "id": 6274818,
+                "first_name": "Michael",
+                "last_name": "Camicia",
+                "role": "STAFF",
+                "user_title": "Teacher: Auto 1: Camicia, Michael A (2), Teacher: Auto 1: Camicia, Michael A (5), Teacher: Auto 1: Camicia, Michael A (6), Teacher: Auto 2: Camicia, Michael A (3), Teacher: SELF: Camicia, Michael A (SELF)"
+            }
+        },
+        {
+            "id": "6274819",
+            "type": "staff",
+            "attributes": {
+                "id": 6274819,
+                "first_name": "Philip",
+                "last_name": "Lyons",
+                "role": "STAFF",
+                "user_title": "Teacher: Econ AP: Lyons, Philip J (1), Teacher: Econ AP: Lyons, Philip J (2), Teacher: Econ AP: Lyons, Philip J (3), Teacher: Econ AP: Lyons, Philip J (4), Teacher: US Hist: Lyons, Philip J (6)"
+            }
+        },
+        {
+            "id": "6274820",
+            "type": "staff",
+            "attributes": {
+                "id": 6274820,
+                "first_name": "Mark",
+                "last_name": "Weisman",
+                "role": "STAFF",
+                "user_title": "Teacher: ContWld 11: Weisman, Mark E (5), Teacher: ContWld 11: Weisman, Mark E (6), Teacher: US Govt: Weisman, Mark E (5), Teacher: US Govt: Weisman, Mark E (6), Teacher: US Hist: Weisman, Mark E (2), Teacher: US Hist: Weisman, Mark E (4), Teacher: US Hist: Weisman, Mark E (7)"
+            }
+        },
+        {
+            "id": "6274821",
+            "type": "staff",
+            "attributes": {
+                "id": 6274821,
+                "first_name": "Adam",
+                "last_name": "Yonkers",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6274822",
+            "type": "staff",
+            "attributes": {
+                "id": 6274822,
+                "first_name": "Daisy",
+                "last_name": "Renazco",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Comp. Sci. Princ: Renazco, Daisy E (5), Teacher: AP Comp. Sci. Princ: Renazco, Daisy E (6), Teacher: Alg2: Renazco/Axelrod CO (3), Teacher: SELF: Renazco, Daisy E (SELF)"
+            }
+        },
+        {
+            "id": "6274824",
+            "type": "staff",
+            "attributes": {
+                "id": 6274824,
+                "first_name": "Kristen",
+                "last_name": "Owen",
+                "role": "STAFF",
+                "user_title": "Teacher: AnalyticCollWrit: Owen, Kristen B (6), Teacher: AnalyticCollWrit: Owen, Kristen B (7), Teacher: AnalyticCollWrit: Owen, Kristen B (7), Teacher: Communic: Owen, Kristen B (6), Teacher: Focus on Success: Owen, Kristen B (1), Teacher: Focus on Success: Owen, Kristen B (2), Teacher: SELF: Owen, Kristen B (SELF)"
+            }
+        },
+        {
+            "id": "6274825",
+            "type": "staff",
+            "attributes": {
+                "id": 6274825,
+                "first_name": "Todd",
+                "last_name": "Summers",
+                "role": "STAFF",
+                "user_title": "Teacher: Band: Summers/Miller CO (7), Teacher: Symph Band: Summers/Lewis CO (6), Teacher: Wind Ens: Summers/Miller CO (5)"
+            }
+        },
+        {
+            "id": "6274826",
+            "type": "staff",
+            "attributes": {
+                "id": 6274826,
+                "first_name": "Justin",
+                "last_name": "Brown",
+                "role": "STAFF",
+                "user_title": "Teacher: Film Lit: Brown, Justin D (1), Teacher: Film Lit: Brown, Justin D (4), Teacher: Film Lit: Brown, Justin D (4), Teacher: Film Lit: Brown/Gonzalez CO (1), Teacher: Western Culture A: Brown, Justin D (3), Teacher: Western Culture A: Brown, Justin D (3), Teacher: Western Culture A: Brown, Justin D (5), Teacher: Western Culture A: Brown, Justin D (5)"
+            }
+        },
+        {
+            "id": "6274827",
+            "type": "staff",
+            "attributes": {
+                "id": 6274827,
+                "first_name": "Cristina",
+                "last_name": "Cismas Florea",
+                "role": "STAFF",
+                "user_title": "Teacher: Alg2/TrigH: Cismas Florea, Cristina I (2), Teacher: Alg2/TrigH: Cismas Florea, Cristina I (3), Teacher: Geom H: Cismas Florea, Cristina I (1)"
+            }
+        },
+        {
+            "id": "6274828",
+            "type": "staff",
+            "attributes": {
+                "id": 6274828,
+                "first_name": "Ann",
+                "last_name": "Lorey",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Physics C: E&M: Lorey, Ann M (1), Teacher: AP Physics C: E&M: Lorey, Ann M (2), Teacher: AP Physics C: E&M: Lorey, Ann M (6), Teacher: AP Physics C: Mechanics: Lorey, Ann M (1), Teacher: AP Physics C: Mechanics: Lorey, Ann M (2), Teacher: AP Physics C: Mechanics: Lorey, Ann M (6), Teacher: SELF: Lorey, Ann M (SELF)"
+            }
+        },
+        {
+            "id": "6274830",
+            "type": "staff",
+            "attributes": {
+                "id": 6274830,
+                "first_name": "Diane",
+                "last_name": "Gleason",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6274831",
+            "type": "staff",
+            "attributes": {
+                "id": 6274831,
+                "first_name": "Angela",
+                "last_name": "Merchant",
+                "role": "STAFF",
+                "user_title": "Teacher: Bio Tech: Merchant, Angela C (1), Teacher: Bio Tech: Merchant, Angela C (2), Teacher: Bio Tech: Merchant, Angela C (3), Teacher: Biology H: Merchant, Angela C (6), Teacher: Biology H: Merchant, Angela C (7)"
+            }
+        },
+        {
+            "id": "6274833",
+            "type": "staff",
+            "attributes": {
+                "id": 6274833,
+                "first_name": "Gopi",
+                "last_name": "Tantod",
+                "role": "STAFF",
+                "user_title": "Teacher: Analysis H: Tantod, Gopi D (1), Teacher: Analysis H: Tantod, Gopi D (2), Teacher: Analysis H: Tantod, Gopi D (5)"
+            }
+        },
+        {
+            "id": "6274835",
+            "type": "staff",
+            "attributes": {
+                "id": 6274835,
+                "first_name": "Heather",
+                "last_name": "Mellows",
+                "role": "STAFF",
+                "user_title": "Teacher: Astrophysics: Mellows, Heather (3), Teacher: Astrophysics: Mellows, Heather (4), Teacher: Chemistry H: Mellows, Heather (5), Teacher: Chemistry H: Mellows, Heather (6), Teacher: Chemistry H: Mellows, Heather (7)"
+            }
+        },
+        {
+            "id": "6274836",
+            "type": "staff",
+            "attributes": {
+                "id": 6274836,
+                "first_name": "Rachael",
+                "last_name": "Kaci",
+                "role": "STAFF",
+                "user_title": "Teacher: ExplExp-AAR: Kaci, Rachael A (3), Teacher: Gen Weep11: Kaci, Rachael A (8)"
+            }
+        },
+        {
+            "id": "6274837",
+            "type": "staff",
+            "attributes": {
+                "id": 6274837,
+                "first_name": "Mark",
+                "last_name": "Gleason",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Stud Art: Gleason, Mark S (3), Teacher: Adv Gr Des: Gleason, Mark S (3), Teacher: Adv Photo H: Gleason, Mark S (1), Teacher: Adv Photo: Gleason, Mark S (4), Teacher: Digital Art Spectrum: Gleason, Mark S (6), Teacher: Digital Art Spectrum: Gleason, Mark S (7), Teacher: GraphDes: Gleason, Mark S (2), Teacher: GraphDes: Gleason, Mark S (3)"
+            }
+        },
+        {
+            "id": "6274838",
+            "type": "staff",
+            "attributes": {
+                "id": 6274838,
+                "first_name": "Laurie",
+                "last_name": "Pennington",
+                "role": "STAFF",
+                "user_title": "Teacher: Chemistry: Pennington, Laurie S (6), Teacher: Conceptual Physics: Pennington, Laurie S (5), Teacher: Conceptual Physics: Pennington/Hanie CO (1), Teacher: Conceptual Physics: Pennington/Hanie CO (3), Teacher: SELF: Pennington, Laurie S (SELF)"
+            }
+        },
+        {
+            "id": "6274839",
+            "type": "staff",
+            "attributes": {
+                "id": 6274839,
+                "first_name": "Matthew",
+                "last_name": "McGinn",
+                "role": "STAFF",
+                "user_title": "Teacher: PE 10: McGinn, Matthew J (5), Teacher: PE 9 zero: McGinn, Matthew J (Zero), Teacher: PE 9: McGinn, Matthew J (2), Teacher: PE 9: McGinn, Matthew J (3), Teacher: PE 9: McGinn, Matthew J (6)"
+            }
+        },
+        {
+            "id": "6274840",
+            "type": "staff",
+            "attributes": {
+                "id": 6274840,
+                "first_name": "Lisa",
+                "last_name": "Hall",
+                "role": "STAFF",
+                "user_title": "Teacher: Communic A: Hall, Lisa A (2), Teacher: Communic A: Hall, Lisa A (2), Teacher: Stu Govt: Hall, Lisa A (6)"
+            }
+        },
+        {
+            "id": "6274841",
+            "type": "staff",
+            "attributes": {
+                "id": 6274841,
+                "first_name": "Casey",
+                "last_name": "O'Connell",
+                "role": "STAFF",
+                "user_title": "Teacher: Chemistry H: O'Connell, Casey J (3), Teacher: Chemistry H: O'Connell, Casey J (4), Teacher: Chemistry: O'Connell, Casey J (5), Teacher: Chemistry: O'Connell, Casey J (6), Teacher: Chemistry: O'Connell, Casey J (7), Teacher: SELF: O'Connell, Casey J (SELF)"
+            }
+        },
+        {
+            "id": "6274842",
+            "type": "staff",
+            "attributes": {
+                "id": 6274842,
+                "first_name": "Rachel",
+                "last_name": "Congress",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Statistics: Congress, Rachel A (4), Teacher: AP Statistics: Congress, Rachel A (6), Teacher: AP Statistics: Congress, Rachel A (7), Teacher: Alg2/Trg A: Congress, Rachel A (1), Teacher: Alg2/Trg A: Congress, Rachel A (2)"
+            }
+        },
+        {
+            "id": "6274844",
+            "type": "staff",
+            "attributes": {
+                "id": 6274844,
+                "first_name": "Warren",
+                "last_name": "Collier",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Psychology: Collier, Warren J (1), Teacher: AP Psychology: Collier, Warren J (2), Teacher: AP Psychology: Collier, Warren J (3), Teacher: AP Psychology: Collier, Warren J (4), Teacher: Psych 11: Collier, Warren J (6), Teacher: Psych 11: Collier, Warren J (6)"
+            }
+        },
+        {
+            "id": "6274845",
+            "type": "staff",
+            "attributes": {
+                "id": 6274845,
+                "first_name": "Teresa",
+                "last_name": "Nino Oliva",
+                "role": "STAFF",
+                "user_title": "Teacher: Spanish 1: Nino Oliva, Teresa V (2), Teacher: Spanish 1: Nino Oliva, Teresa V (3), Teacher: Spanish 1: Nino Oliva, Teresa V (4), Teacher: Spanish 1: Nino Oliva, Teresa V (5)"
+            }
+        },
+        {
+            "id": "6274846",
+            "type": "staff",
+            "attributes": {
+                "id": 6274846,
+                "first_name": "Diane",
+                "last_name": "Ichikawa",
+                "role": "STAFF",
+                "user_title": "Teacher: AP English Lit & Comp: Ichikawa, Diane M (4), Teacher: AP English Lit & Comp: Ichikawa, Diane M (6), Teacher: Communic A: Ichikawa, Diane M (1), Teacher: Communic A: Ichikawa, Diane M (1), Teacher: Communic A: Ichikawa, Diane M (3), Teacher: Communic A: Ichikawa, Diane M (3), Teacher: Communic A: Ichikawa, Diane M (5), Teacher: Communic A: Ichikawa, Diane M (5)"
+            }
+        },
+        {
+            "id": "6274847",
+            "type": "staff",
+            "attributes": {
+                "id": 6274847,
+                "first_name": "Arthur",
+                "last_name": "Kinyanjui",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Human Geography: Kinyanjui, Arthur (3), Teacher: SELF: Kinyanjui, Arthur (SELF), Teacher: Wld Hist: Kinyanjui, Arthur (1), Teacher: Wld Hist: Kinyanjui, Arthur (2), Teacher: Wld Hist: Kinyanjui, Arthur (4), Teacher: Wld Hist: Kinyanjui, Arthur (7)"
+            }
+        },
+        {
+            "id": "6274848",
+            "type": "staff",
+            "attributes": {
+                "id": 6274848,
+                "first_name": "Ana Maria",
+                "last_name": "Gonzalez Barrios",
+                "role": "STAFF",
+                "user_title": "Teacher: Spanish 3: Gonzalez Barrios, Ana Maria (3), Teacher: Spanish 3: Gonzalez Barrios, Ana Maria (4), Teacher: Spanish 3: Gonzalez Barrios, Ana Maria (5), Teacher: Spanish 3: Gonzalez Barrios, Ana Maria (7)"
+            }
+        },
+        {
+            "id": "6274849",
+            "type": "staff",
+            "attributes": {
+                "id": 6274849,
+                "first_name": "Matthew",
+                "last_name": "Hall",
+                "role": "STAFF",
+                "user_title": "Teacher: Japanes 1: Hall, Matthew (5), Teacher: Japanes 1: Hall, Matthew (6), Teacher: Japanes 2: Hall, Matthew (2), Teacher: Japanes 3: Hall, Matthew (3), Teacher: JapnLangAP: Hall, Matthew (4), Teacher: SELF: Hall, Matthew (SELF)"
+            }
+        },
+        {
+            "id": "6274850",
+            "type": "staff",
+            "attributes": {
+                "id": 6274850,
+                "first_name": "Jena",
+                "last_name": "Lee",
+                "role": "STAFF",
+                "user_title": "Teacher: Biology H: Lee, Jena (2), Teacher: Biology H: Lee, Jena (3), Teacher: Biology H: Lee, Jena (6), Teacher: Biology: Lee, Jena (1)"
+            }
+        },
+        {
+            "id": "6274851",
+            "type": "staff",
+            "attributes": {
+                "id": 6274851,
+                "first_name": "Jeanette",
+                "last_name": "Tucker",
+                "role": "STAFF",
+                "user_title": "Teacher: Focus on Success: Tucker, Jeanette (5), Teacher: Liv Skill: Tucker, Jeanette (1), Teacher: Liv Skill: Tucker, Jeanette (1), Teacher: Liv Skill: Tucker, Jeanette (2), Teacher: Liv Skill: Tucker, Jeanette (2), Teacher: Liv Skill: Tucker, Jeanette (4), Teacher: Liv Skill: Tucker, Jeanette (4), Teacher: Liv Skill: Tucker, Jeanette (6), Teacher: SELF: Tucker, Jeanette (SELF)"
+            }
+        },
+        {
+            "id": "6274852",
+            "type": "staff",
+            "attributes": {
+                "id": 6274852,
+                "first_name": "Brenda",
+                "last_name": "Chen",
+                "role": "STAFF",
+                "user_title": "Teacher: Alg2/Trg A: Chen, Brenda (3), Teacher: Alg2/Trg A: Chen, Brenda (4), Teacher: Alg2/Trg A: Chen, Brenda (6), Teacher: Alg2/Trg A: Chen, Brenda (7)"
+            }
+        },
+        {
+            "id": "6274853",
+            "type": "staff",
+            "attributes": {
+                "id": 6274853,
+                "first_name": "Elana",
+                "last_name": "Zizmor",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Chemistry: Zizmor, Elana (5), Teacher: AP Chemistry: Zizmor, Elana (6), Teacher: AP Chemistry: Zizmor, Elana (7), Teacher: Chemistry: Zizmor, Elana (1), Teacher: Chemistry: Zizmor, Elana (3)"
+            }
+        },
+        {
+            "id": "6274854",
+            "type": "staff",
+            "attributes": {
+                "id": 6274854,
+                "first_name": "Jacintha",
+                "last_name": "Kompella",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Physics 1: Kompella, Jacintha (1), Teacher: AP Physics 1: Kompella, Jacintha (2), Teacher: AP Physics 1: Kompella, Jacintha (7), Teacher: AP Physics C: Kompella, Jacintha (3)"
+            }
+        },
+        {
+            "id": "6274855",
+            "type": "staff",
+            "attributes": {
+                "id": 6274855,
+                "first_name": "Nora",
+                "last_name": "Matta",
+                "role": "STAFF",
+                "user_title": "Teacher: US Hist: Matta, Nora (1)"
+            }
+        },
+        {
+            "id": "6274856",
+            "type": "staff",
+            "attributes": {
+                "id": 6274856,
+                "first_name": "Jessica",
+                "last_name": "Hexsel",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Comp. Sci. Princ: Hexsel, Jessica (2), Teacher: AP Comp. Sci. Princ: Hexsel, Jessica (3), Teacher: Geom: Hexsel, Jessica (1), Teacher: SELF: Hexsel, Jessica (SELF)"
+            }
+        },
+        {
+            "id": "6274858",
+            "type": "staff",
+            "attributes": {
+                "id": 6274858,
+                "first_name": "Kristina",
+                "last_name": "Granlund-Moyer",
+                "role": "STAFF",
+                "user_title": "Teacher: Engn Tech: Granlund-Moyer, Kristina (6), Teacher: Engn Tech: Granlund-Moyer, Kristina (7), Teacher: Int Engr Des PLTW: Granlund-Moyer, Kristina (2), Teacher: Int Engr Des PLTW: Granlund-Moyer, Kristina (3), Teacher: IntEngDesH PLTW: Granlund-Moyer, Kristina (1), Teacher: Prnc Of Engr H PLTW: Granlund-Moyer, Kristina (1), Teacher: Prnc Of Engr PLTW: Granlund-Moyer, Kristina (1), Teacher: SELF: Granlund-Moyer, Kristina (SELF)"
+            }
+        },
+        {
+            "id": "6274859",
+            "type": "staff",
+            "attributes": {
+                "id": 6274859,
+                "first_name": "Amy",
+                "last_name": "Anderson",
+                "role": "STAFF",
+                "user_title": "Teacher: PE 9: Anderson, Amy (1), Teacher: PE 9: Anderson, Amy (2), Teacher: PE 9: Anderson, Amy (4), Teacher: PE 9: Anderson, Amy (5), Teacher: PE 9: Anderson, Amy (7), Teacher: SELF: Anderson, Amy (SELF), Teacher: SELF: Anderson, Amy (SELF)"
+            }
+        },
+        {
+            "id": "6274860",
+            "type": "staff",
+            "attributes": {
+                "id": 6274860,
+                "first_name": "Timothy",
+                "last_name": "Aston",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6274861",
+            "type": "staff",
+            "attributes": {
+                "id": 6274861,
+                "first_name": "Ethan",
+                "last_name": "Halter",
+                "role": "STAFF",
+                "user_title": "Teacher: Communic A: Halter, Ethan (6), Teacher: Communic: Halter, Ethan (2), Teacher: Communic: Halter/LaFountain CO (1), Teacher: SELF: Halter, Ethan (SELF), Teacher: Western Literature: Halter, Ethan (2), Teacher: Western Literature: Halter, Ethan (6), Teacher: Western Literature: Halter/LaFountain CO (1), Teacher: World Classics H: Halter, Ethan (3), Teacher: World Classics H: Halter, Ethan (3), Teacher: World Classics H: Halter, Ethan (5), Teacher: World Classics H: Halter, Ethan (5)"
+            }
+        },
+        {
+            "id": "6274862",
+            "type": "staff",
+            "attributes": {
+                "id": 6274862,
+                "first_name": "Courtney",
+                "last_name": "Carlomagno",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6274863",
+            "type": "staff",
+            "attributes": {
+                "id": 6274863,
+                "first_name": "Michael",
+                "last_name": "Bautista",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Calculus AB: Bautista, Michael (1), Teacher: AP Calculus AB: Bautista, Michael (6), Teacher: AP Calculus AB: Bautista, Michael (7), Teacher: APCompSci A: Bautista, Michael (2), Teacher: APCompSci A: Bautista, Michael (3)"
+            }
+        },
+        {
+            "id": "6274864",
+            "type": "staff",
+            "attributes": {
+                "id": 6274864,
+                "first_name": "Marie",
+                "last_name": "Durquet",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Stud Art: Durquet, Marie (1), Teacher: Photo 1: Durquet, Marie (2), Teacher: Photo 1: Durquet, Marie (3), Teacher: Photo 1: Durquet, Marie (4)"
+            }
+        },
+        {
+            "id": "6274865",
+            "type": "staff",
+            "attributes": {
+                "id": 6274865,
+                "first_name": "Shaina",
+                "last_name": "Holdener",
+                "role": "STAFF",
+                "user_title": "Teacher: Western Culture A: Holdener, Shaina (1), Teacher: Western Culture A: Holdener, Shaina (1), Teacher: Western Culture A: Holdener, Shaina (3), Teacher: Western Culture A: Holdener, Shaina (3), Teacher: Western Culture A: Holdener, Shaina (6), Teacher: Western Culture A: Holdener, Shaina (6), Teacher: Western Culture A: Holdener, Shaina (7), Teacher: World Literature: Holdener, Shaina (4), Teacher: World Literature: Holdener, Shaina (4), Teacher: World Literature: Holdener, Shaina (7)"
+            }
+        },
+        {
+            "id": "6274866",
+            "type": "staff",
+            "attributes": {
+                "id": 6274866,
+                "first_name": "Derek",
+                "last_name": "Johanson",
+                "role": "STAFF",
+                "user_title": "Counselor"
+            }
+        },
+        {
+            "id": "6274867",
+            "type": "staff",
+            "attributes": {
+                "id": 6274867,
+                "first_name": "Jordan",
+                "last_name": "King",
+                "role": "STAFF",
+                "user_title": "Teacher: Advanced Ceramics 1: King, Jordan (4), Teacher: Advanced Ceramics 2: King, Jordan (4), Teacher: Art Spec 1: King, Jordan (1), Teacher: Art Spec 1: King, Jordan (2), Teacher: Art Spec 1: King, Jordan (6), Teacher: ArtStu3D AP: King, Jordan (4), Teacher: Ceramics 1: King, Jordan (3)"
+            }
+        },
+        {
+            "id": "6274868",
+            "type": "staff",
+            "attributes": {
+                "id": 6274868,
+                "first_name": "Terence",
+                "last_name": "Kitada",
+                "role": "STAFF",
+                "user_title": "Teacher: Communic A: Kitada, Terence (1), Teacher: Communic A: Kitada, Terence (3), Teacher: Communic A: Kitada, Terence (5), Teacher: SELF: Kitada, Terence (SELF), Teacher: Visual Story: Kitada, Terence (4), Teacher: Visual Story: Kitada, Terence (4), Teacher: Visual Story: Kitada, Terence (7), Teacher: Visual Story: Kitada, Terence (7), Teacher: Western Culture A: Kitada, Terence (1), Teacher: Western Culture A: Kitada, Terence (2), Teacher: Western Culture A: Kitada, Terence (5)"
+            }
+        },
+        {
+            "id": "6274869",
+            "type": "staff",
+            "attributes": {
+                "id": 6274869,
+                "first_name": "Emily",
+                "last_name": "Yun",
+                "role": "STAFF",
+                "user_title": "Teacher: BEAM: Yun, Emily (6), Teacher: Geom H: Yun, Emily (2), Teacher: Geom H: Yun, Emily (3), Teacher: Princ of Bus: Yun, Emily (1), Teacher: Princ of Bus: Yun, Emily (5), Teacher: SELF: Yun, Emily (SELF)"
+            }
+        },
+        {
+            "id": "6274870",
+            "type": "staff",
+            "attributes": {
+                "id": 6274870,
+                "first_name": "Claudia",
+                "last_name": "Schroeppel",
+                "role": "STAFF",
+                "user_title": "Teacher: German 1: Schroeppel, Claudia (6), Teacher: German 2: Schroeppel, Claudia (7), Teacher: German 3: Schroeppel, Claudia (2), Teacher: GermanLangAP: Schroeppel, Claudia (1), Teacher: SELF: Schroeppel, Claudia (SELF)"
+            }
+        },
+        {
+            "id": "6274872",
+            "type": "staff",
+            "attributes": {
+                "id": 6274872,
+                "first_name": "Danielle",
+                "last_name": "Whichard",
+                "role": "STAFF",
+                "user_title": "Teacher: AVID: Whichard, Danielle (1), Teacher: AVID: Whichard, Danielle (5), Teacher: Communic: Whichard/LaFountain CO (2), Teacher: Communic: Whichard/LaFountain CO (6), Teacher: Communic: Whichard/LaFountain CO (7), Teacher: Western Literature: Whichard/LaFountain CO (2), Teacher: Western Literature: Whichard/LaFountain CO (6), Teacher: Western Literature: Whichard/LaFountain CO (7)"
+            }
+        },
+        {
+            "id": "6274873",
+            "type": "staff",
+            "attributes": {
+                "id": 6274873,
+                "first_name": "Daissy",
+                "last_name": "Tabares Ruiz",
+                "role": "STAFF",
+                "user_title": "Teacher: SELF: Tabares Ruiz, Daissy (SELF), Teacher: Span/Span2: Tabares Ruiz, Daissy (5), Teacher: Spanish 2: Tabares Ruiz, Daissy (1), Teacher: Spanish 2: Tabares Ruiz, Daissy (2), Teacher: Spanish 2: Tabares Ruiz, Daissy (3)"
+            }
+        },
+        {
+            "id": "6274874",
+            "type": "staff",
+            "attributes": {
+                "id": 6274874,
+                "first_name": "Anne Marie",
+                "last_name": "Metzler",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6274875",
+            "type": "staff",
+            "attributes": {
+                "id": 6274875,
+                "first_name": "Lynn",
+                "last_name": "Tabuchi",
+                "role": "STAFF",
+                "user_title": "Teacher: Academic Math: Tabuchi, Lynn (1), Teacher: Case Management: Tabuchi, Lynn (Meetings), Teacher: Econ 11: Patrick/Tabuchi CO (5), Teacher: Econ 11: Patrick/Tabuchi CO (6), Teacher: Escape Lit: Igler/Tabuchi CO (5), Teacher: Escape Lit: Igler/Tabuchi CO (6), Teacher: SELF: Tabuchi, Lynn (SELF), Teacher: World Literature: Blackburn/Tabuchi CO (2), Teacher: World Literature: Blackburn/Tabuchi CO (2), Teacher: World Literature: Blackburn/Tabuchi CO (3), Teacher: World Literature: Blackburn/Tabuchi CO (3)"
+            }
+        },
+        {
+            "id": "6274876",
+            "type": "staff",
+            "attributes": {
+                "id": 6274876,
+                "first_name": "Laura",
+                "last_name": "Lizundia",
+                "role": "STAFF",
+                "user_title": "Teacher: AP French Language: Lizundia, Laura (3), Teacher: AP French Language: Lizundia, Laura (5), Teacher: French 3: Lizundia, Laura (1), Teacher: French 3: Lizundia, Laura (2), Teacher: French 3: Lizundia, Laura (4), Teacher: SELF: Lizundia, Laura (SELF)"
+            }
+        },
+        {
+            "id": "6274877",
+            "type": "staff",
+            "attributes": {
+                "id": 6274877,
+                "first_name": "Cora",
+                "last_name": "Ross",
+                "role": "STAFF",
+                "user_title": "Counselor"
+            }
+        },
+        {
+            "id": "6274878",
+            "type": "staff",
+            "attributes": {
+                "id": 6274878,
+                "first_name": "Daljeet",
+                "last_name": "Gill",
+                "role": "STAFF",
+                "user_title": "Librarian Teacher"
+            }
+        },
+        {
+            "id": "6274879",
+            "type": "staff",
+            "attributes": {
+                "id": 6274879,
+                "first_name": "Christina",
+                "last_name": "Woznicki",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6274881",
+            "type": "staff",
+            "attributes": {
+                "id": 6274881,
+                "first_name": "Jeffrey",
+                "last_name": "Patrick",
+                "role": "STAFF",
+                "user_title": "Teacher: ContWld 11: Patrick, Jeffrey (1), Teacher: ContWld 11: Patrick, Jeffrey (2), Teacher: Econ 11: Patrick, Jeffrey (2), Teacher: Econ 11: Patrick, Jeffrey (5), Teacher: Econ 11: Patrick, Jeffrey (6), Teacher: Econ 11: Patrick/Tabuchi CO (5), Teacher: Econ 11: Patrick/Tabuchi CO (6), Teacher: US Govt: Patrick, Jeffrey (1)"
+            }
+        },
+        {
+            "id": "6274882",
+            "type": "staff",
+            "attributes": {
+                "id": 6274882,
+                "first_name": "Curtis",
+                "last_name": "Johansen",
+                "role": "STAFF",
+                "user_title": "Athletic Director"
+            }
+        },
+        {
+            "id": "6274883",
+            "type": "staff",
+            "attributes": {
+                "id": 6274883,
+                "first_name": "David",
+                "last_name": "Leftwich",
+                "role": "STAFF",
+                "user_title": "Counselor"
+            }
+        },
+        {
+            "id": "6274884",
+            "type": "staff",
+            "attributes": {
+                "id": 6274884,
+                "first_name": "Jonathan",
+                "last_name": "Fidani",
+                "role": "STAFF",
+                "user_title": "Counselor"
+            }
+        },
+        {
+            "id": "6274885",
+            "type": "staff",
+            "attributes": {
+                "id": 6274885,
+                "first_name": "David",
+                "last_name": "Bisbee",
+                "role": "STAFF",
+                "user_title": "Teacher: ContWld 11: Bisbee, David Elliot (1), Teacher: ContWld 11: Bisbee, David Elliot (4), Teacher: US Govt: Bisbee, David Elliot (2), Teacher: US Govt: Bisbee, David Elliot (4), Teacher: Wld Hist: Bisbee/Motas CO (5), Teacher: Wld Hist: Bisbee/Motas CO (6), Teacher: Wld Hist: Bisbee/Motas CO (7)"
+            }
+        },
+        {
+            "id": "6274886",
+            "type": "staff",
+            "attributes": {
+                "id": 6274886,
+                "first_name": "Catherine",
+                "last_name": "Cohn",
+                "role": "STAFF",
+                "user_title": "Teacher: Physics: Cohn, Catherine (5), Teacher: Physics: Cohn, Catherine (6), Teacher: Physics: Cohn, Catherine (7), Teacher: SELF: Cohn, Catherine (SELF)"
+            }
+        },
+        {
+            "id": "6274887",
+            "type": "staff",
+            "attributes": {
+                "id": 6274887,
+                "first_name": "Sandra",
+                "last_name": "Conklin",
+                "role": "STAFF",
+                "user_title": "Teacher: Acad Enhancement SAI: Conklin, Sandra (4), Teacher: Case Management: Conklin, Sandra (Meetings), Teacher: Funct Acad: Conklin, Sandra (1), Teacher: Funct Acad: Conklin, Sandra (2), Teacher: Voc Trng: Conklin, Sandra (5), Teacher: Voc Trng: Conklin, Sandra (6)"
+            }
+        },
+        {
+            "id": "6274888",
+            "type": "staff",
+            "attributes": {
+                "id": 6274888,
+                "first_name": "Tara",
+                "last_name": "Firenzi",
+                "role": "STAFF",
+                "user_title": "Teacher: Dance 1: Firenzi, Tara (3), Teacher: SELF: Firenzi, Tara (SELF), Teacher: USFor Pol H: Firenzi, Tara (2)"
+            }
+        },
+        {
+            "id": "6274889",
+            "type": "staff",
+            "attributes": {
+                "id": 6274889,
+                "first_name": "Marcus",
+                "last_name": "Jamison",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Statistics: Jamison, Marcus (1), Teacher: AP Statistics: Jamison, Marcus (3), Teacher: Geom H: Jamison, Marcus (4), Teacher: Geom H: Jamison, Marcus (5), Teacher: Geom H: Jamison, Marcus (7)"
+            }
+        },
+        {
+            "id": "6274890",
+            "type": "staff",
+            "attributes": {
+                "id": 6274890,
+                "first_name": "Takeshi",
+                "last_name": "Kaneko",
+                "role": "STAFF",
+                "user_title": "Teacher: Alg2/TrigH: Kaneko, Takeshi (1), Teacher: Alg2/TrigH: Kaneko, Takeshi (2), Teacher: Alg2/TrigH: Kaneko, Takeshi (4), Teacher: Funct Object Or Prog: Kaneko, Takeshi (5), Teacher: Funct Object Or Prog: Kaneko, Takeshi (7), Teacher: SELF: Kaneko, Takeshi (SELF)"
+            }
+        },
+        {
+            "id": "6274891",
+            "type": "staff",
+            "attributes": {
+                "id": 6274891,
+                "first_name": "Marjorie",
+                "last_name": "Paronable",
+                "role": "STAFF",
+                "user_title": "Teacher: Communic A: Paronable, Marjorie (1), Teacher: Communic A: Paronable, Marjorie (4), Teacher: Communic A: Paronable, Marjorie (6), Teacher: Communic A: Paronable, Marjorie (7), Teacher: SELF: Paronable, Marjorie (SELF), Teacher: Western Culture A: Paronable, Marjorie (3), Teacher: Western Culture A: Paronable, Marjorie (4), Teacher: Western Culture A: Paronable, Marjorie (7), Teacher: Western Literature: Paronable, Marjorie (1), Teacher: Western Literature: Paronable, Marjorie (2), Teacher: Western Literature: Paronable, Marjorie (5)"
+            }
+        },
+        {
+            "id": "6274893",
+            "type": "staff",
+            "attributes": {
+                "id": 6274893,
+                "first_name": "Erika",
+                "last_name": "Garibay Diaz",
+                "role": "STAFF",
+                "user_title": "Instructional Aide GE"
+            }
+        },
+        {
+            "id": "6274894",
+            "type": "staff",
+            "attributes": {
+                "id": 6274894,
+                "first_name": "Katherine",
+                "last_name": "Ja",
+                "role": "STAFF",
+                "user_title": "Teacher: Focus on Success: Ja, Katherine (3), Teacher: World Classics H: Ja, Katherine (1), Teacher: World Classics H: Ja, Katherine (1), Teacher: World Classics H: Ja, Katherine (5), Teacher: World Classics H: Ja, Katherine (7), Teacher: World Literature: Ja, Katherine (5), Teacher: World Literature: Ja, Katherine (7)"
+            }
+        },
+        {
+            "id": "6274895",
+            "type": "staff",
+            "attributes": {
+                "id": 6274895,
+                "first_name": "Kate",
+                "last_name": "Zavack",
+                "role": "STAFF",
+                "user_title": "Teacher: Communic: Zavack/Gonzalez CO (2), Teacher: Communic: Zavack/Gonzalez CO (6), Teacher: Communic: Zavack/Gonzalez CO (7), Teacher: SELF: Zavack, Kate (SELF), Teacher: Western Literature: Zavack/Gonzalez CO (2), Teacher: Western Literature: Zavack/Gonzalez CO (6), Teacher: Western Literature: Zavack/Gonzalez CO (7), Teacher: World Classics H: Zavack, Kate (3), Teacher: World Classics H: Zavack, Kate (4), Teacher: World Literature: Zavack, Kate (3), Teacher: World Literature: Zavack, Kate (4)"
+            }
+        },
+        {
+            "id": "6274896",
+            "type": "staff",
+            "attributes": {
+                "id": 6274896,
+                "first_name": "Kathryn",
+                "last_name": "Catalano",
+                "role": "STAFF",
+                "user_title": "TOSA"
+            }
+        },
+        {
+            "id": "6274897",
+            "type": "staff",
+            "attributes": {
+                "id": 6274897,
+                "first_name": "Joshua",
+                "last_name": "Little",
+                "role": "STAFF",
+                "user_title": "Teacher: Biology: Little, Joshua (4), Teacher: Biology: Little, Joshua (6), Teacher: Biology: Little, Joshua (7), Teacher: Biology: Little/Young  CO (1), Teacher: Biology: Little/Young  CO (2), Teacher: SELF: Little, Joshua (SELF)"
+            }
+        },
+        {
+            "id": "6274898",
+            "type": "staff",
+            "attributes": {
+                "id": 6274898,
+                "first_name": "Haley",
+                "last_name": "Perkins",
+                "role": "STAFF",
+                "user_title": "Teacher: AP Psychology: Perkins, Haley (5), Teacher: AP Psychology: Perkins, Haley (6), Teacher: SELF: Perkins, Haley (SELF), Teacher: US Hist: Perkins, Haley (7)"
+            }
+        },
+        {
+            "id": "6274899",
+            "type": "staff",
+            "attributes": {
+                "id": 6274899,
+                "first_name": "Jason",
+                "last_name": "Miller",
+                "role": "STAFF",
+                "user_title": "Athletic Assistant"
+            }
+        },
+        {
+            "id": "6274900",
+            "type": "staff",
+            "attributes": {
+                "id": 6274900,
+                "first_name": "Greer",
+                "last_name": "Stone",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6274901",
+            "type": "staff",
+            "attributes": {
+                "id": 6274901,
+                "first_name": "Michalis",
+                "last_name": "Gordon",
+                "role": "STAFF",
+                "user_title": "Assistant Principal-HS"
+            }
+        },
+        {
+            "id": "6274902",
+            "type": "staff",
+            "attributes": {
+                "id": 6274902,
+                "first_name": "Jorge",
+                "last_name": "Chavez",
+                "role": "STAFF",
+                "user_title": "Counselor"
+            }
+        },
+        {
+            "id": "6274903",
+            "type": "staff",
+            "attributes": {
+                "id": 6274903,
+                "first_name": "Andrea",
+                "last_name": "Bueno",
+                "role": "STAFF",
+                "user_title": "Counselor"
+            }
+        },
+        {
+            "id": "6274905",
+            "type": "staff",
+            "attributes": {
+                "id": 6274905,
+                "first_name": "Charlotte",
+                "last_name": "Kaufman",
+                "role": "STAFF",
+                "user_title": "Teacher: French 1: Kaufman, Charlotte (3), Teacher: French 2: Kaufman, Charlotte (1), Teacher: French 2: Kaufman, Charlotte (2), Teacher: French 2: Kaufman, Charlotte (5), Teacher: SELF: Kaufman, Charlotte (SELF)"
+            }
+        },
+        {
+            "id": "6274906",
+            "type": "staff",
+            "attributes": {
+                "id": 6274906,
+                "first_name": "Danning",
+                "last_name": "Wang",
+                "role": "STAFF",
+                "user_title": "Teacher: Alg 1A: Wang/Watkins CO (3), Teacher: Alg 1A: Wang/Watkins CO (5), Teacher: Geom A: Wang, Danning (1), Teacher: Geom A: Wang, Danning (6), Teacher: Geom A: Wang, Danning (7), Teacher: SELF: Wang, Danning (SELF)"
+            }
+        },
+        {
+            "id": "6274907",
+            "type": "staff",
+            "attributes": {
+                "id": 6274907,
+                "first_name": "Quan",
+                "last_name": "Sims",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6274908",
+            "type": "staff",
+            "attributes": {
+                "id": 6274908,
+                "first_name": "Rossana",
+                "last_name": "Castillo",
+                "role": "STAFF",
+                "user_title": "Wellness Outreach Worker"
+            }
+        },
+        {
+            "id": "6274909",
+            "type": "staff",
+            "attributes": {
+                "id": 6274909,
+                "first_name": "Catherine",
+                "last_name": "Bissegger",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6274910",
+            "type": "staff",
+            "attributes": {
+                "id": 6274910,
+                "first_name": "Brittany",
+                "last_name": "Axelrod",
+                "role": "STAFF",
+                "user_title": "Teacher Advisor"
+            }
+        },
+        {
+            "id": "6274911",
+            "type": "staff",
+            "attributes": {
+                "id": 6274911,
+                "first_name": "Jose",
+                "last_name": "Ordonez",
+                "role": "STAFF",
+                "user_title": "Tutorial Center Assistant"
+            }
+        },
+        {
+            "id": "6274912",
+            "type": "staff",
+            "attributes": {
+                "id": 6274912,
+                "first_name": "Raquel",
+                "last_name": "Cuevas Ceja",
+                "role": "STAFF",
+                "user_title": "Teacher: Case Management: Cuevas Ceja, Raquel (Meetings), Teacher: Funct Acad: Cuevas Ceja, Raquel (1), Teacher: Funct Acad: Cuevas Ceja, Raquel (2), Teacher: Funct Acad: Cuevas Ceja, Raquel (3), Teacher: Voc Trng: Cuevas Ceja, Raquel (4), Teacher: Voc Trng: Cuevas Ceja, Raquel (6)"
+            }
+        },
+        {
+            "id": "6274913",
+            "type": "staff",
+            "attributes": {
+                "id": 6274913,
+                "first_name": "Barbara",
+                "last_name": "Boissevain",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6274916",
+            "type": "staff",
+            "attributes": {
+                "id": 6274916,
+                "first_name": "Susan",
+                "last_name": "Van Zandt",
+                "role": "STAFF",
+                "user_title": "Teacher: Western Literature: Zavack/Gonzalez CO (6)"
+            }
+        },
+        {
+            "id": "6277359",
+            "type": "staff",
+            "attributes": {
+                "id": 6277359,
+                "first_name": "Angelina",
+                "last_name": "Fitzhugh",
+                "role": "STAFF",
+                "user_title": "Teacher: Conc Choir: Liberatore/Fitzhugh CO (6)"
+            }
+        },
+        {
+            "id": "6277415",
+            "type": "staff",
+            "attributes": {
+                "id": 6277415,
+                "first_name": "Janet",
+                "last_name": "Owen",
+                "role": "STAFF",
+                "user_title": "Instructional Aide"
+            }
+        },
+        {
+            "id": "6278217",
+            "type": "staff",
+            "attributes": {
+                "id": 6278217,
+                "first_name": "Christopher",
+                "last_name": "Bell",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6459508",
+            "type": "staff",
+            "attributes": {
+                "id": 6459508,
+                "first_name": "Denise",
+                "last_name": "Li",
+                "role": "STAFF",
+                "user_title": "Family Engagement Specialist"
+            }
+        },
+        {
+            "id": "6459537",
+            "type": "staff",
+            "attributes": {
+                "id": 6459537,
+                "first_name": "Nancy",
+                "last_name": "Coffey",
+                "role": "STAFF",
+                "user_title": "Coordinator II"
+            }
+        },
+        {
+            "id": "6459591",
+            "type": "staff",
+            "attributes": {
+                "id": 6459591,
+                "first_name": "Syedali",
+                "last_name": "Zaidi",
+                "role": "STAFF",
+                "user_title": "Computer Support Spec II"
+            }
+        },
+        {
+            "id": "6459663",
+            "type": "staff",
+            "attributes": {
+                "id": 6459663,
+                "first_name": "Rosemarie",
+                "last_name": "Dowell",
+                "role": "STAFF",
+                "user_title": "District Nurse"
+            }
+        },
+        {
+            "id": "6459667",
+            "type": "staff",
+            "attributes": {
+                "id": 6459667,
+                "first_name": "Joshua",
+                "last_name": "Hung",
+                "role": "STAFF",
+                "user_title": "Student Data Support Specialist"
+            }
+        },
+        {
+            "id": "6459714",
+            "type": "staff",
+            "attributes": {
+                "id": 6459714,
+                "first_name": "Melenaite",
+                "last_name": "Tupou",
+                "role": "STAFF",
+                "user_title": "Family Engagement Specialist"
+            }
+        },
+        {
+            "id": "6459726",
+            "type": "staff",
+            "attributes": {
+                "id": 6459726,
+                "first_name": "Stacey",
+                "last_name": "Anderson",
+                "role": "STAFF",
+                "user_title": "School-based MHT II"
+            }
+        },
+        {
+            "id": "6459734",
+            "type": "staff",
+            "attributes": {
+                "id": 6459734,
+                "first_name": "Lorebelle",
+                "last_name": "Chang",
+                "role": "STAFF",
+                "user_title": "District Nurse"
+            }
+        },
+        {
+            "id": "6464056",
+            "type": "staff",
+            "attributes": {
+                "id": 6464056,
+                "first_name": "Laurie",
+                "last_name": "Hubert",
+                "role": "STAFF",
+                "user_title": "Student Attendant"
+            }
+        },
+        {
+            "id": "6464067",
+            "type": "staff",
+            "attributes": {
+                "id": 6464067,
+                "first_name": "Romeo",
+                "last_name": "Motas",
+                "role": "TEACHER",
+                "user_title": "Teacher: Acad Planning: Motas, Romeo E (2), Teacher: Acad Planning: Motas, Romeo E (3), Teacher: Case Management: Motas, Romeo E (Meetings), Teacher: Wld Hist: Bisbee/Motas CO (5), Teacher: Wld Hist: Bisbee/Motas CO (6), Teacher: Wld Hist: Bisbee/Motas CO (7)"
+            }
+        },
+        {
+            "id": "6464140",
+            "type": "staff",
+            "attributes": {
+                "id": 6464140,
+                "first_name": "Ana",
+                "last_name": "Reyes",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6464205",
+            "type": "staff",
+            "attributes": {
+                "id": 6464205,
+                "first_name": "Leighton",
+                "last_name": "Lang",
+                "role": "STAFF",
+                "user_title": "College/Career Info Specialist"
+            }
+        },
+        {
+            "id": "6464206",
+            "type": "staff",
+            "attributes": {
+                "id": 6464206,
+                "first_name": "Sofia",
+                "last_name": "Raptis",
+                "role": "STAFF",
+                "user_title": "Instructional Aide GE"
+            }
+        },
+        {
+            "id": "6464207",
+            "type": "staff",
+            "attributes": {
+                "id": 6464207,
+                "first_name": "Pam",
+                "last_name": "Steward",
+                "role": "STAFF",
+                "user_title": "Tutorial Center Assistant"
+            }
+        },
+        {
+            "id": "6464208",
+            "type": "staff",
+            "attributes": {
+                "id": 6464208,
+                "first_name": "Ernesto",
+                "last_name": "Salcedo Aguirre",
+                "role": "STAFF",
+                "user_title": "Custodian I"
+            }
+        },
+        {
+            "id": "6464209",
+            "type": "staff",
+            "attributes": {
+                "id": 6464209,
+                "first_name": "Howard",
+                "last_name": "Selznick",
+                "role": "STAFF",
+                "user_title": "Student Attendant"
+            }
+        },
+        {
+            "id": "6464212",
+            "type": "staff",
+            "attributes": {
+                "id": 6464212,
+                "first_name": "Luciano",
+                "last_name": "Hernandez",
+                "role": "STAFF",
+                "user_title": "Custodial Supervisor"
+            }
+        },
+        {
+            "id": "6464214",
+            "type": "staff",
+            "attributes": {
+                "id": 6464214,
+                "first_name": "Sophie",
+                "last_name": "Magid-Gutkin",
+                "role": "STAFF",
+                "user_title": "Student Attendant"
+            }
+        },
+        {
+            "id": "6464216",
+            "type": "staff",
+            "attributes": {
+                "id": 6464216,
+                "first_name": "Armando",
+                "last_name": "Macias",
+                "role": "STAFF",
+                "user_title": "Custodian I"
+            }
+        },
+        {
+            "id": "6464217",
+            "type": "staff",
+            "attributes": {
+                "id": 6464217,
+                "first_name": "Bridget",
+                "last_name": "Johnson",
+                "role": "STAFF",
+                "user_title": "Secretary II"
+            }
+        },
+        {
+            "id": "6464218",
+            "type": "staff",
+            "attributes": {
+                "id": 6464218,
+                "first_name": "Naomi",
+                "last_name": "Hascalovici",
+                "role": "STAFF",
+                "user_title": "Instructional Aide SpEd"
+            }
+        },
+        {
+            "id": "6464219",
+            "type": "staff",
+            "attributes": {
+                "id": 6464219,
+                "first_name": "Daniel",
+                "last_name": "Hahn",
+                "role": "TEACHER",
+                "user_title": "Teacher: Analysis H: Hahn, Daniel (3), Teacher: Analysis H: Hahn, Daniel (4), Teacher: Analysis H: Hahn, Daniel (6), Teacher: Pre Calc: Hahn, Daniel (5), Teacher: Pre Calc: Hahn, Daniel (7)"
+            }
+        },
+        {
+            "id": "6464220",
+            "type": "staff",
+            "attributes": {
+                "id": 6464220,
+                "first_name": "Jorge",
+                "last_name": "Sanchez Barrera",
+                "role": "STAFF",
+                "user_title": "Campus Supervisor/Secondary"
+            }
+        },
+        {
+            "id": "6464221",
+            "type": "staff",
+            "attributes": {
+                "id": 6464221,
+                "first_name": "Leslie",
+                "last_name": "Kousnetz",
+                "role": "STAFF",
+                "user_title": "Account Clerk/Secretary"
+            }
+        },
+        {
+            "id": "6464222",
+            "type": "staff",
+            "attributes": {
+                "id": 6464222,
+                "first_name": "Gretchen",
+                "last_name": "Berg",
+                "role": "STAFF",
+                "user_title": "Instructional Aide SpEd"
+            }
+        },
+        {
+            "id": "6464223",
+            "type": "staff",
+            "attributes": {
+                "id": 6464223,
+                "first_name": "Norma",
+                "last_name": "Hesterman",
+                "role": "STAFF",
+                "user_title": "Coordinator Volunteer Services"
+            }
+        },
+        {
+            "id": "6464225",
+            "type": "staff",
+            "attributes": {
+                "id": 6464225,
+                "first_name": "Tracy",
+                "last_name": "Douglas",
+                "role": "STAFF",
+                "user_title": "Registrar/Secretary"
+            }
+        },
+        {
+            "id": "6464226",
+            "type": "staff",
+            "attributes": {
+                "id": 6464226,
+                "first_name": "Neil",
+                "last_name": "Barana",
+                "role": "STAFF",
+                "user_title": "Custodian I"
+            }
+        },
+        {
+            "id": "6464228",
+            "type": "staff",
+            "attributes": {
+                "id": 6464228,
+                "first_name": "Lynn",
+                "last_name": "Glover",
+                "role": "STAFF",
+                "user_title": "Typist Clerk III"
+            }
+        },
+        {
+            "id": "6464229",
+            "type": "staff",
+            "attributes": {
+                "id": 6464229,
+                "first_name": "Martha",
+                "last_name": "Elderon",
+                "role": "STAFF",
+                "user_title": "Secretarial Supervisor - HS"
+            }
+        },
+        {
+            "id": "6464231",
+            "type": "staff",
+            "attributes": {
+                "id": 6464231,
+                "first_name": "Christopher",
+                "last_name": "Deans",
+                "role": "STAFF",
+                "user_title": "Custodian I"
+            }
+        },
+        {
+            "id": "6464232",
+            "type": "staff",
+            "attributes": {
+                "id": 6464232,
+                "first_name": "Ginger",
+                "last_name": "Monson",
+                "role": "STAFF",
+                "user_title": "Student Attendant"
+            }
+        },
+        {
+            "id": "6464234",
+            "type": "staff",
+            "attributes": {
+                "id": 6464234,
+                "first_name": "Toshiro",
+                "last_name": "Lang",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6464235",
+            "type": "staff",
+            "attributes": {
+                "id": 6464235,
+                "first_name": "Kim",
+                "last_name": "Knaack",
+                "role": "STAFF",
+                "user_title": "Reproduction Technician"
+            }
+        },
+        {
+            "id": "6464236",
+            "type": "staff",
+            "attributes": {
+                "id": 6464236,
+                "first_name": "Maryam",
+                "last_name": "Didari",
+                "role": "STAFF",
+                "user_title": "Food Services Asst I"
+            }
+        },
+        {
+            "id": "6464238",
+            "type": "staff",
+            "attributes": {
+                "id": 6464238,
+                "first_name": "Melissa",
+                "last_name": "Clark",
+                "role": "STAFF",
+                "user_title": "Psychologist"
+            }
+        },
+        {
+            "id": "6464239",
+            "type": "staff",
+            "attributes": {
+                "id": 6464239,
+                "first_name": "Erika",
+                "last_name": "Zepeda",
+                "role": "STAFF",
+                "user_title": "Psychologist"
+            }
+        },
+        {
+            "id": "6464240",
+            "type": "staff",
+            "attributes": {
+                "id": 6464240,
+                "first_name": "Navneet",
+                "last_name": "Schworetzky",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6464244",
+            "type": "staff",
+            "attributes": {
+                "id": 6464244,
+                "first_name": "Megan",
+                "last_name": "Garcia",
+                "role": "STAFF",
+                "user_title": "Library Assistant II"
+            }
+        },
+        {
+            "id": "6464246",
+            "type": "staff",
+            "attributes": {
+                "id": 6464246,
+                "first_name": "Nestor",
+                "last_name": "Vidonia",
+                "role": "STAFF",
+                "user_title": "Custodian I"
+            }
+        },
+        {
+            "id": "6464247",
+            "type": "staff",
+            "attributes": {
+                "id": 6464247,
+                "first_name": "Vicky",
+                "last_name": "Niemann",
+                "role": "STAFF",
+                "user_title": "Typist Clerk III"
+            }
+        },
+        {
+            "id": "6464249",
+            "type": "staff",
+            "attributes": {
+                "id": 6464249,
+                "first_name": "Brandon",
+                "last_name": "Boyd",
+                "role": "STAFF",
+                "user_title": "Campus Supervisor/Secondary"
+            }
+        },
+        {
+            "id": "6464250",
+            "type": "staff",
+            "attributes": {
+                "id": 6464250,
+                "first_name": "Travis",
+                "last_name": "Schollnick",
+                "role": "STAFF",
+                "user_title": "Campus Supervisor/Secondary"
+            }
+        },
+        {
+            "id": "6464251",
+            "type": "staff",
+            "attributes": {
+                "id": 6464251,
+                "first_name": "Monica",
+                "last_name": "Casey",
+                "role": "STAFF",
+                "user_title": "Library Assistant I"
+            }
+        },
+        {
+            "id": "6464252",
+            "type": "staff",
+            "attributes": {
+                "id": 6464252,
+                "first_name": "Gagan",
+                "last_name": "Cheema",
+                "role": "TEACHER",
+                "user_title": "Athletic Trainer"
+            }
+        },
+        {
+            "id": "6464253",
+            "type": "staff",
+            "attributes": {
+                "id": 6464253,
+                "first_name": "Joanne Marie",
+                "last_name": "Garlejo",
+                "role": "STAFF",
+                "user_title": "Health Technician"
+            }
+        },
+        {
+            "id": "6464255",
+            "type": "staff",
+            "attributes": {
+                "id": 6464255,
+                "first_name": "Thomas",
+                "last_name": "Everett",
+                "role": "STAFF",
+                "user_title": "Student Attendant"
+            }
+        },
+        {
+            "id": "6464256",
+            "type": "staff",
+            "attributes": {
+                "id": 6464256,
+                "first_name": "Gordon",
+                "last_name": "Goodspeed",
+                "role": "STAFF",
+                "user_title": "Custodian I"
+            }
+        },
+        {
+            "id": "6464257",
+            "type": "staff",
+            "attributes": {
+                "id": 6464257,
+                "first_name": "Nigel",
+                "last_name": "Hansen",
+                "role": "STAFF",
+                "user_title": "Custodian I"
+            }
+        },
+        {
+            "id": "6464258",
+            "type": "staff",
+            "attributes": {
+                "id": 6464258,
+                "first_name": "Jane",
+                "last_name": "Miller",
+                "role": "STAFF",
+                "user_title": "Student Attendant"
+            }
+        },
+        {
+            "id": "6464259",
+            "type": "staff",
+            "attributes": {
+                "id": 6464259,
+                "first_name": "Elena",
+                "last_name": "Herrera",
+                "role": "STAFF",
+                "user_title": "Food Services Asst I"
+            }
+        },
+        {
+            "id": "6464260",
+            "type": "staff",
+            "attributes": {
+                "id": 6464260,
+                "first_name": "Rocio",
+                "last_name": "Lopez",
+                "role": "STAFF",
+                "user_title": "Food Services Asst I"
+            }
+        },
+        {
+            "id": "6464261",
+            "type": "staff",
+            "attributes": {
+                "id": 6464261,
+                "first_name": "Normalyn",
+                "last_name": "Bato",
+                "role": "STAFF",
+                "user_title": "Food Services Asst I"
+            }
+        },
+        {
+            "id": "6464262",
+            "type": "staff",
+            "attributes": {
+                "id": 6464262,
+                "first_name": "Christopher",
+                "last_name": "Stephenson",
+                "role": "STAFF",
+                "user_title": "Job Coach"
+            }
+        },
+        {
+            "id": "6464263",
+            "type": "staff",
+            "attributes": {
+                "id": 6464263,
+                "first_name": "Roberto",
+                "last_name": "Ceja",
+                "role": "STAFF",
+                "user_title": "Custodian I"
+            }
+        },
+        {
+            "id": "6464264",
+            "type": "staff",
+            "attributes": {
+                "id": 6464264,
+                "first_name": "Angel",
+                "last_name": "Colon Chin",
+                "role": "STAFF",
+                "user_title": "Job Coach"
+            }
+        },
+        {
+            "id": "6464266",
+            "type": "staff",
+            "attributes": {
+                "id": 6464266,
+                "first_name": "Lisa",
+                "last_name": "Collart",
+                "role": "STAFF",
+                "user_title": "Tutorial Center Assistant"
+            }
+        },
+        {
+            "id": "6464267",
+            "type": "staff",
+            "attributes": {
+                "id": 6464267,
+                "first_name": "Harvey",
+                "last_name": "Newland",
+                "role": "STAFF",
+                "user_title": "Assistant Principal-HS"
+            }
+        },
+        {
+            "id": "6464268",
+            "type": "staff",
+            "attributes": {
+                "id": 6464268,
+                "first_name": "Alana",
+                "last_name": "Young Nicholson",
+                "role": "STAFF",
+                "user_title": "Student Attendant"
+            }
+        },
+        {
+            "id": "6464269",
+            "type": "staff",
+            "attributes": {
+                "id": 6464269,
+                "first_name": "Liz",
+                "last_name": "Libbey",
+                "role": "STAFF",
+                "user_title": "Guidance Technician Asst"
+            }
+        },
+        {
+            "id": "6464270",
+            "type": "staff",
+            "attributes": {
+                "id": 6464270,
+                "first_name": "Angela",
+                "last_name": "Mosqueda",
+                "role": "STAFF",
+                "user_title": "Typist Clerk III"
+            }
+        },
+        {
+            "id": "6464274",
+            "type": "staff",
+            "attributes": {
+                "id": 6464274,
+                "first_name": "Richard",
+                "last_name": "Fujii",
+                "role": "STAFF",
+                "user_title": "Transition Specialist"
+            }
+        },
+        {
+            "id": "6464275",
+            "type": "staff",
+            "attributes": {
+                "id": 6464275,
+                "first_name": "Kristen",
+                "last_name": "Jensen",
+                "role": "STAFF",
+                "user_title": "School-based MHT I"
+            }
+        },
+        {
+            "id": "6464277",
+            "type": "staff",
+            "attributes": {
+                "id": 6464277,
+                "first_name": "Richelle",
+                "last_name": "Ochoa",
+                "role": "STAFF",
+                "user_title": "Student Attendant"
+            }
+        },
+        {
+            "id": "6464279",
+            "type": "staff",
+            "attributes": {
+                "id": 6464279,
+                "first_name": "Karen",
+                "last_name": "Serrano Vides",
+                "role": "STAFF",
+                "user_title": "Student Attendant"
+            }
+        },
+        {
+            "id": "6464281",
+            "type": "staff",
+            "attributes": {
+                "id": 6464281,
+                "first_name": "Kamille",
+                "last_name": "De Guzman",
+                "role": "STAFF",
+                "user_title": "Student Attendant"
+            }
+        },
+        {
+            "id": "6464282",
+            "type": "staff",
+            "attributes": {
+                "id": 6464282,
+                "first_name": "Julius",
+                "last_name": "Phu",
+                "role": "STAFF",
+                "user_title": "Dishwasher"
+            }
+        },
+        {
+            "id": "6670415",
+            "type": "staff",
+            "attributes": {
+                "id": 6670415,
+                "first_name": "Kevin",
+                "last_name": "Johnson",
+                "role": "STAFF",
+                "user_title": "Athletic Assistant"
+            }
+        },
+        {
+            "id": "6670458",
+            "type": "staff",
+            "attributes": {
+                "id": 6670458,
+                "first_name": "Brandymae",
+                "last_name": "Rodriguez",
+                "role": "STAFF",
+                "user_title": "Food Services Asst I"
+            }
+        },
+        {
+            "id": "6670480",
+            "type": "staff",
+            "attributes": {
+                "id": 6670480,
+                "first_name": "Ariane",
+                "last_name": "Tuomy",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6670485",
+            "type": "staff",
+            "attributes": {
+                "id": 6670485,
+                "first_name": "Danny",
+                "last_name": "Lee",
+                "role": "STAFF",
+                "user_title": "Computer Application Specialist"
+            }
+        },
+        {
+            "id": "6670487",
+            "type": "staff",
+            "attributes": {
+                "id": 6670487,
+                "first_name": "Rolando",
+                "last_name": "Ruiz Martinez",
+                "role": "STAFF",
+                "user_title": "Computer Support Spec II"
+            }
+        },
+        {
+            "id": "6670488",
+            "type": "staff",
+            "attributes": {
+                "id": 6670488,
+                "first_name": "Joshua",
+                "last_name": "Shleffar",
+                "role": "STAFF",
+                "user_title": "Behavior Specialist"
+            }
+        },
+        {
+            "id": "6670493",
+            "type": "staff",
+            "attributes": {
+                "id": 6670493,
+                "first_name": "Brenda",
+                "last_name": "Mireles Romo",
+                "role": "STAFF",
+                "user_title": "Instructional Assistant"
+            }
+        },
+        {
+            "id": "6812220",
+            "type": "staff",
+            "attributes": {
+                "id": 6812220,
+                "first_name": "Jennifer",
+                "last_name": "Wells Akis",
+                "role": "STAFF",
+                "user_title": "Instructional Assistant"
+            }
+        },
+        {
+            "id": "6812222",
+            "type": "staff",
+            "attributes": {
+                "id": 6812222,
+                "first_name": "Michelle",
+                "last_name": "Ramos",
+                "role": "STAFF",
+                "user_title": "CASSY Mental Health Therapist"
+            }
+        },
+        {
+            "id": "6812223",
+            "type": "staff",
+            "attributes": {
+                "id": 6812223,
+                "first_name": "Marta",
+                "last_name": "Seoane",
+                "role": "STAFF",
+                "user_title": "Primary Language Tutor"
+            }
+        },
+        {
+            "id": "6812233",
+            "type": "staff",
+            "attributes": {
+                "id": 6812233,
+                "first_name": "Makiya",
+                "last_name": "Francis",
+                "role": "STAFF",
+                "user_title": "Student Attendant"
+            }
+        },
+        {
+            "id": "6812234",
+            "type": "staff",
+            "attributes": {
+                "id": 6812234,
+                "first_name": "Emily",
+                "last_name": "Rubens",
+                "role": "STAFF",
+                "user_title": "CASSY Therapist"
+            }
+        },
+        {
+            "id": "6812240",
+            "type": "staff",
+            "attributes": {
+                "id": 6812240,
+                "first_name": "Arshdeep",
+                "last_name": "Shinh",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "6812254",
+            "type": "staff",
+            "attributes": {
+                "id": 6812254,
+                "first_name": "Benjamin",
+                "last_name": "Parker",
+                "role": "STAFF",
+                "user_title": "Long Term Sub"
+            }
+        },
+        {
+            "id": "6829748",
+            "type": "staff",
+            "attributes": {
+                "id": 6829748,
+                "first_name": "Genavae",
+                "last_name": "Dixon",
+                "role": "STAFF",
+                "user_title": "Mental Health Specialist"
+            }
+        },
+        {
+            "id": "6829751",
+            "type": "staff",
+            "attributes": {
+                "id": 6829751,
+                "first_name": "Sharon",
+                "last_name": "Walker",
+                "role": "STAFF",
+                "user_title": "Adult Ed Teacher"
+            }
+        },
+        {
+            "id": "6921001",
+            "type": "staff",
+            "attributes": {
+                "id": 6921001,
+                "first_name": "Jared",
+                "last_name": "Searl",
+                "role": "STAFF",
+                "user_title": "Contractor"
+            }
+        },
+        {
+            "id": "7197981",
+            "type": "staff",
+            "attributes": {
+                "id": 7197981,
+                "first_name": "Tom",
+                "last_name": "Casavant",
+                "role": "STAFF",
+                "user_title": "Teacher - Long Tem Sub"
+            }
+        },
+        {
+            "id": "7197982",
+            "type": "staff",
+            "attributes": {
+                "id": 7197982,
+                "first_name": "Heidi",
+                "last_name": "Dunn",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "7604892",
+            "type": "staff",
+            "attributes": {
+                "id": 7604892,
+                "first_name": "Christopher",
+                "last_name": "Duff",
+                "role": "STAFF",
+                "user_title": "Long Term Sub"
+            }
+        },
+        {
+            "id": "7604894",
+            "type": "staff",
+            "attributes": {
+                "id": 7604894,
+                "first_name": "Edward",
+                "last_name": "Barrett",
+                "role": "STAFF",
+                "user_title": "Long Term Sub"
+            }
+        },
+        {
+            "id": "7687827",
+            "type": "staff",
+            "attributes": {
+                "id": 7687827,
+                "first_name": "Rosanna",
+                "last_name": "Pena",
+                "role": "STAFF",
+                "user_title": "School-based MHT (NL)"
+            }
+        },
+        {
+            "id": "7878038",
+            "type": "staff",
+            "attributes": {
+                "id": 7878038,
+                "first_name": "Star",
+                "last_name": "Teachout",
+                "role": "STAFF",
+                "user_title": "Long Term Substitute"
+            }
+        },
+        {
+            "id": "8005307",
+            "type": "staff",
+            "attributes": {
+                "id": 8005307,
+                "first_name": "Harold",
+                "last_name": "Daner",
+                "role": "STAFF",
+                "user_title": "Hourly"
+            }
+        },
+        {
+            "id": "8027247",
+            "type": "staff",
+            "attributes": {
+                "id": 8027247,
+                "first_name": "Linda",
+                "last_name": "MacKenzie",
+                "role": "STAFF",
+                "user_title": "Mental Health Provider Contractor"
+            }
+        },
+        {
+            "id": "8028600",
+            "type": "staff",
+            "attributes": {
+                "id": 8028600,
+                "first_name": "Angel",
+                "last_name": "Ceballos",
+                "role": "STAFF",
+                "user_title": "Student Instructional Aide"
+            }
+        },
+        {
+            "id": "8300873",
+            "type": "staff",
+            "attributes": {
+                "id": 8300873,
+                "first_name": "Jessica",
+                "last_name": "Antonio",
+                "role": "TEACHER",
+                "user_title": "Teacher: AP Art History: Antonio, Jessica (5), Teacher: AP Art History: Antonio, Jessica (6), Teacher: ArtHist 11: Antonio, Jessica (5), Teacher: ArtHist 12: Antonio, Jessica (5)"
+            }
+        },
+        {
+            "id": "8326916",
+            "type": "staff",
+            "attributes": {
+                "id": 8326916,
+                "first_name": "Eric",
+                "last_name": "Handa",
+                "role": "STAFF",
+                "user_title": "Custodian I"
+            }
+        },
+        {
+            "id": "9517574",
+            "type": "staff",
+            "attributes": {
+                "id": 9517574,
+                "first_name": "Donald",
+                "last_name": "Watkins",
+                "role": "TEACHER",
+                "user_title": "Teacher: Acad Planning: Watkins, Donald (6), Teacher: Acad Planning: Watkins, Donald (7), Teacher: Academic Math: Watkins, Donald (4), Teacher: Alg 1A: Wang/Watkins CO (3), Teacher: Alg 1A: Wang/Watkins CO (5), Teacher: Case Management: Watkins, Donald (Meetings)"
+            }
+        },
+        {
+            "id": "9527485",
+            "type": "staff",
+            "attributes": {
+                "id": 9527485,
+                "first_name": "Silvia",
+                "last_name": "Griswold",
+                "role": "STAFF",
+                "user_title": "Budget Clerk/Secretary"
+            }
+        },
+        {
+            "id": "9699147",
+            "type": "staff",
+            "attributes": {
+                "id": 9699147,
+                "first_name": "TK",
+                "last_name": "Hanie",
+                "role": "TEACHER",
+                "user_title": "Education Specialist "
+            }
+        },
+        {
+            "id": "9973153",
+            "type": "staff",
+            "attributes": {
+                "id": 9973153,
+                "first_name": "Valerie",
+                "last_name": "LaFountain",
+                "role": "TEACHER",
+                "user_title": "Teacher: Acad Planning: LaFountain, Valerie B (5), Teacher: Case Management: LaFountain, Valerie B (Meetings), Teacher: Communic: Halter/LaFountain CO (1), Teacher: Communic: Whichard/LaFountain CO (2), Teacher: Communic: Whichard/LaFountain CO (6), Teacher: Communic: Whichard/LaFountain CO (7), Teacher: Western Literature: Halter/LaFountain CO (1), Teacher: Western Literature: Whichard/LaFountain CO (2), Teacher: Western Literature: Whichard/LaFountain CO (6), Teacher: Western Literature: Whichard/LaFountain CO (7)"
+            }
+        },
+        {
+            "id": "10009530",
+            "type": "staff",
+            "attributes": {
+                "id": 10009530,
+                "first_name": "Calvin",
+                "last_name": "Li",
+                "role": "STAFF",
+                "user_title": "Therapist"
+            }
+        },
+        {
+            "id": "10038798",
+            "type": "staff",
+            "attributes": {
+                "id": 10038798,
+                "first_name": "Lorenzo",
+                "last_name": "Gomez",
+                "role": "STAFF",
+                "user_title": "Counselor"
+            }
+        },
+        {
+            "id": "10040954",
+            "type": "staff",
+            "attributes": {
+                "id": 10040954,
+                "first_name": "Shin Che",
+                "last_name": "Young",
+                "role": "STAFF",
+                "user_title": ""
+            }
+        },
+        {
+            "id": "10212278",
+            "type": "staff",
+            "attributes": {
+                "id": 10212278,
+                "first_name": "Savannah",
+                "last_name": "Heupel",
+                "role": "TEACHER",
+                "user_title": "Teacher: Geom A: Heupel, Savannah J (2), Teacher: Geom A: Heupel, Savannah J (3), Teacher: Geom A: Heupel, Savannah J (4), Teacher: Geom: Heupel/Axelrod CO (5), Teacher: Geom: Heupel/Axelrod CO (6)"
+            }
+        },
+        {
+            "id": "10475077",
+            "type": "staff",
+            "attributes": {
+                "id": 10475077,
+                "first_name": "Theresa",
+                "last_name": "Liu",
+                "role": "STAFF",
+                "user_title": "Student Attendant"
+            }
+        },
+        {
+            "id": "10475078",
+            "type": "staff",
+            "attributes": {
+                "id": 10475078,
+                "first_name": "Jonathan",
+                "last_name": "Hubbs",
+                "role": "TEACHER",
+                "user_title": "Teacher: ContWld 11: Hubbs, Jonathan M (4), Teacher: ContWld 11: Hubbs, Jonathan M (5), Teacher: ContWld 11: Hubbs, Jonathan M (6), Teacher: ContWld 11: Hubbs, Jonathan M (7), Teacher: US Govt: Hubbs, Jonathan M (4), Teacher: US Govt: Hubbs, Jonathan M (5), Teacher: US Govt: Hubbs, Jonathan M (6), Teacher: US Govt: Hubbs, Jonathan M (7), Teacher: US Hist: Hubbs, Jonathan M (3)"
+            }
+        },
+        {
+            "id": "11077812",
+            "type": "staff",
+            "attributes": {
+                "id": 11077812,
+                "first_name": "Clare",
+                "last_name": "Gleeson",
+                "role": "TEACHER",
+                "user_title": "Teacher: Acad Planning: Gleeson, Clare A (4), Teacher: Case Management: Gleeson, Clare A (Meetings), Teacher: Therapeutic Elective: Gleeson, Clare A (2), Teacher: US Hist: Medina/Gleeson CO (5), Teacher: US Hist: Medina/Gleeson CO (6), Teacher: US Hist: Medina/Gleeson CO (7)"
+            }
+        },
+        {
+            "id": "11138858",
+            "type": "staff",
+            "attributes": {
+                "id": 11138858,
+                "first_name": "Briana",
+                "last_name": "Gonzalez",
+                "role": "TEACHER",
+                "user_title": "Teacher: Acad Planning: Gonzalez, Briana M (1), Teacher: Acad Planning: Gonzalez, Briana M (3), Teacher: Case Management: Gonzalez, Briana M (Meetings), Teacher: Communic: Zavack/Gonzalez CO (2), Teacher: Communic: Zavack/Gonzalez CO (6), Teacher: Communic: Zavack/Gonzalez CO (7), Teacher: Film Lit: Brown/Gonzalez CO (1), Teacher: Western Literature: Zavack/Gonzalez CO (2), Teacher: Western Literature: Zavack/Gonzalez CO (7)"
+            }
+        },
+        {
+            "id": "11138860",
+            "type": "staff",
+            "attributes": {
+                "id": 11138860,
+                "first_name": "Benjamin",
+                "last_name": "Beresford",
+                "role": "TEACHER",
+                "user_title": "Teacher: ContWld 11: Beresford, Benjamin J (1), Teacher: ContWld 11: Beresford, Benjamin J (2), Teacher: ContWld 11: Beresford/Young CO (4), Teacher: ContWld 11: Beresford/Young CO (7), Teacher: US Govt: Beresford, Benjamin J (1), Teacher: US Govt: Beresford, Benjamin J (2), Teacher: US Govt: Beresford/Young CO (4), Teacher: US Govt: Beresford/Young CO (7), Teacher: Wld Hist: Beresford, Benjamin J (3)"
+            }
+        },
+        {
+            "id": "11138862",
+            "type": "staff",
+            "attributes": {
+                "id": 11138862,
+                "first_name": "Jose",
+                "last_name": "Medina",
+                "role": "TEACHER",
+                "user_title": "Teacher: US Hist: Medina, Jose II (1), Teacher: US Hist: Medina/Gleeson CO (5), Teacher: US Hist: Medina/Gleeson CO (6), Teacher: US Hist: Medina/Gleeson CO (7), Teacher: Wld Hist: Medina, Jose II (4)"
+            }
+        },
+        {
+            "id": "11139333",
+            "type": "staff",
+            "attributes": {
+                "id": 11139333,
+                "first_name": "Mark",
+                "last_name": "Brassey",
+                "role": "TEACHER",
+                "user_title": "Teacher: Chemistry: Brassey, Mark S (1)"
+            }
+        },
+        {
+            "id": "11168301",
+            "type": "staff",
+            "attributes": {
+                "id": 11168301,
+                "first_name": "Szu-Yin",
+                "last_name": "Yeh",
+                "role": "TEACHER",
+                "user_title": "Teacher: Chinese 2: Yeh, Szu-Yin (1), Teacher: Chinese 3: Yeh, Szu-Yin (2)"
+            }
+        },
+        {
+            "id": "11609646",
+            "type": "staff",
+            "attributes": {
+                "id": 11609646,
+                "first_name": "Narges",
+                "last_name": "Izadi",
+                "role": "STAFF",
+                "user_title": "Psychologist"
+            }
+        },
+        {
+            "id": "11609647",
+            "type": "staff",
+            "attributes": {
+                "id": 11609647,
+                "first_name": "Abbie",
+                "last_name": "Reynolds",
+                "role": "STAFF",
+                "user_title": "Psychologist"
+            }
+        },
+        {
+            "id": "11609648",
+            "type": "staff",
+            "attributes": {
+                "id": 11609648,
+                "first_name": "Davina",
+                "last_name": "Santos",
+                "role": "STAFF",
+                "user_title": "Counselor"
+            }
+        },
+        {
+            "id": "11827173",
+            "type": "staff",
+            "attributes": {
+                "id": 11827173,
+                "first_name": "Julia",
+                "last_name": "Choi",
+                "role": "TEACHER",
+                "user_title": "Teacher: Alg 1A: Choi, Julia (4), Teacher: Alg 1A: Choi, Julia (6), Teacher: IntrAnl/Calc: Choi, Julia (1), Teacher: IntrAnl/Calc: Choi, Julia (3), Teacher: IntrAnl/Calc: Choi, Julia (5)"
+            }
+        },
+        {
+            "id": "11909188",
+            "type": "staff",
+            "attributes": {
+                "id": 11909188,
+                "first_name": "Radhika",
+                "last_name": "Thampuran",
+                "role": "STAFF",
+                "user_title": "Student Attendant"
+            }
+        },
+        {
+            "id": "11909189",
+            "type": "staff",
+            "attributes": {
+                "id": 11909189,
+                "first_name": "Marie-Anne",
+                "last_name": "Fogel",
+                "role": "STAFF",
+                "user_title": "Student Attendant"
+            }
+        },
+        {
+            "id": "11909190",
+            "type": "staff",
+            "attributes": {
+                "id": 11909190,
+                "first_name": "Ladan",
+                "last_name": "Soroushian",
+                "role": "STAFF",
+                "user_title": "Student Teacher"
+            }
+        },
+        {
+            "id": "11915387",
+            "type": "staff",
+            "attributes": {
+                "id": 11915387,
+                "first_name": "Gabrielle",
+                "last_name": "Gramegna",
+                "role": "TEACHER",
+                "user_title": "Teacher: AP Stud Art: Gramegna, Gabrielle H (1), Teacher: AP Studio Art - Drawing: Gramegna, Gabrielle H (1), Teacher: Adv Pt/Dr: Gramegna, Gabrielle H (4), Teacher: Adv.Draw/Painting H: Gramegna, Gabrielle H (4), Teacher: Adv.Draw/Painting II: Gramegna, Gabrielle H (1), Teacher: Art Spec 1: Gramegna, Gabrielle H (5), Teacher: Art Spec 1: Gramegna, Gabrielle H (7), Teacher: Pt/Dr 1: Gramegna, Gabrielle H (3)"
+            }
+        }
+    ]
+}

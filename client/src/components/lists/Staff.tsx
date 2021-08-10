@@ -24,7 +24,7 @@ const Staff = () => {
 
         for (let lastName of lastNames) {
             let lower = lastName.toLowerCase();
-            if (email.match(lower)) return lastName;
+            if (email?.match(lower)) return lastName;
         }
 
         // If no match is found, return the first last name
@@ -72,7 +72,7 @@ const Staff = () => {
                     staff.name.toLowerCase().includes(query.toLowerCase())
                     || (staff.title && staff.title.toLowerCase().includes(query.toLowerCase()))
                     || (staff.dept && staff.dept.toLowerCase().includes(query.toLowerCase()))
-                    || staff.email.toLowerCase().includes(query.toLowerCase())
+                    || (staff.email && staff.email.toLowerCase().includes(query.toLowerCase()))
                     || classInQuery(staff)
                 }
                 map={([id, staff]) =>
