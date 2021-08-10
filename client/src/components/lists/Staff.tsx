@@ -24,7 +24,7 @@ const Staff = () => {
 
         for (let lastName of lastNames) {
             let lower = lastName.toLowerCase();
-            if (email.match(lower)) return lastName;
+            if (email?.match(lower)) return lastName;
         }
 
         // If no match is found, return the first last name
