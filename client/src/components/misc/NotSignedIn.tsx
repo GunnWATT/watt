@@ -1,6 +1,8 @@
 import React from 'react';
 
 
+// Note: with the retirement of forced sign-in for user data, perhaps this component can be deprecated too
+// though it might be edited and used later for schoology data
 const NotSignedIn = () => {
     return (
         <div className="WIP">

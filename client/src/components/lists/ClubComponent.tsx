@@ -5,10 +5,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'react
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Firestore
-// import firebase from './../../firebase/Firebase';
-// const firestore = firebase.firestore;
-// const auth = firebase.auth;
-import { updateUserData } from '../../firebase/updateUserData'
+import { updateUserData } from '../../firebase/updateUserData';
 
 
 export type Club = {
@@ -25,22 +22,14 @@ const ClubComponent = (props: Club & {id: string}) => {
 
     // UserData from context
     const userData = useContext(UserDataContext);
-    const amIPinned = userData?.clubs.includes(id) ?? false;
+    const pinned = userData.clubs.includes(id);
 
+    // Functions to update pins
+    const addToPinned = async () =>
+        await updateUserData('clubs', [...userData.clubs, id]);
 
-    // Function to add this club to pinned
-    const addToPinned = async () => {
-        if (userData) {
-            await updateUserData("clubs", [...userData.clubs, id]);
-        }
-    }
-
-    // Function to remove this club from pinned
-    const removeFromPinned = async () => {
-        if (userData) {
-            await updateUserData("clubs", userData.clubs.filter(clubID => clubID !== id));
-        }
-    }
+    const removeFromPinned = async () =>
+        await updateUserData('clubs', userData.clubs.filter(clubID => clubID !== id));
 
 
     return (
@@ -50,31 +39,29 @@ const ClubComponent = (props: Club & {id: string}) => {
             <span className="secondary">{day}</span>
 
             <Modal isOpen={modal} toggle={toggle}>
-                <ModalHeader toggle={toggle}>{name}{props.new ? <Badge>New</Badge> : null}</ModalHeader>
+                <ModalHeader toggle={toggle}>{name}{props.new && <Badge>New</Badge>}</ModalHeader>
                 <ModalBody>
                     <p><strong>Meeting day:</strong> {day}</p>
                     <p><strong>Meeting time:</strong> {time}</p>
                     {/* <p><strong>Location:</strong> {room}</p> */}
                     <p><strong>Description:</strong> {desc}</p>
-                    {video ? <p><strong>Club Video:</strong> <a href={video} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{video}</a></p> : null}
-                    {signup ? <p><strong>Signup Form:</strong> <a href={signup} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{signup}</a></p> : null}
-                    {zoom ? <p><strong>Zoom Link:</strong> <a href={zoom} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{zoom}</a></p> : null}
+                    {video && <p><strong>Club Video:</strong> <a href={video} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{video}</a></p>}
+                    {signup && <p><strong>Signup Form:</strong> <a href={signup} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{signup}</a></p>}
+                    {zoom && <p><strong>Zoom Link:</strong> <a href={zoom} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{zoom}</a></p>}
                     <p><strong>President(s):</strong> {prez}</p>
                     <p><strong>Teacher Advisor(s):</strong> {advisor}</p>
                     <p><strong>Teacher Email:</strong> {email}</p>
                 </ModalBody>
                 <ModalFooter>
-                    {(!userData) ? '' // If I'm not signed in don't do anything
-                        : (amIPinned) ? <Button outline className="remove-from-list" onClick={removeFromPinned}>Remove from my list</Button> // If I'm pinned give option to remove from pinned
+                    {pinned
+                        ? <Button outline className="remove-from-list" onClick={removeFromPinned}>Remove from my list</Button> // If pinned give option to remove from pinned
                         : <Button outline className="add-to-list" onClick={addToPinned}>Add to my list</Button> // Otherwise give option to add to list
                     }
-                    {' '}
                     <Button outline color="danger" onClick={toggle}>Close</Button>
                 </ModalFooter>
             </Modal>
         </li>
     );
-
 }
 
 export default ClubComponent;

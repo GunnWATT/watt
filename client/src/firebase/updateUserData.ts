@@ -15,13 +15,19 @@ export const updateUserData = async (field: string, newValue: any) => {
 
 export const updateFirebaseUserData = async (field: string, newValue: any) => {
     if (auth.currentUser) {
-        await firestore.collection('users').doc(auth.currentUser.uid).update({
+        // If field is '', update the entire object
+        if (field === '')
+            await firestore.collection('users').doc(auth.currentUser.uid).set(newValue);
+        else await firestore.collection('users').doc(auth.currentUser.uid).update({
             [field]: newValue
         });
     }
 }
 
 export const updateLocalStorageUserData = (field: string, newValue: any) => {
+    // If field is '', update the entire object
+    if (field === '')
+        return localStorage.setItem("data", JSON.stringify(newValue));
 
     let data = JSON.parse(localStorage.getItem("data") ?? "{}");
     let path = field.split('.');

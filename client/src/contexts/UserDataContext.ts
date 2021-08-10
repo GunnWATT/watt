@@ -44,7 +44,7 @@ export const defaultUserData = {
     }
 };
 
-const UserDataContext = React.createContext<UserData | undefined>(undefined);
+const UserDataContext = React.createContext<UserData>(defaultUserData);
 
 export const UserDataProvider = UserDataContext.Provider;
 export default UserDataContext;

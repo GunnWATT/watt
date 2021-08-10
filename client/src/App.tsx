@@ -26,7 +26,7 @@ import {useCollection, useDocument} from 'react-firebase-hooks/firestore';
 import {parseNextPeriod} from './components/schedule/PeriodIndicator';
 import {parsePeriodName, parsePeriodColor} from './components/schedule/Periods';
 import {hexToRgb} from './components/schedule/ProgressBarColor';
-import { updateFirebaseUserData, updateLocalStorageUserData } from './firebase/updateUserData';
+import {updateFirebaseUserData, updateLocalStorageUserData} from './firebase/updateUserData';
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
 
@@ -233,7 +233,6 @@ const App = () => {
     const [firebaseUserData, udLoading, udError] = useDocument(auth.currentUser && firestore.doc(`users/${auth.currentUser.uid}`));
 
     let localStorageRawData = {};
-
     try {
         localStorageRawData = JSON.parse(localStorage.getItem("data") ?? '{}')
     } catch(err) { 
@@ -241,15 +240,18 @@ const App = () => {
         localStorage.clear();
     }
 
+    // Merges two objects, prioritizing b over a
     const deepmerge = (a: { [key: string]: any }, b: { [key: string]: any }) => {
         let newobj: { [key: string]: any } = {};
         for (const key in a) {
             newobj[key] = a[key];
         }
 
-        for(const key in b) {
+        for (const key in b) {
             newobj[key] = b[key];
-            if (typeof a[key] === "object" && typeof b[key] === "object") {
+            // Do not collapse arrays into objects
+            if (typeof a[key] === 'object' && typeof b[key] === 'object'
+                && !Array.isArray(a[key]) && !Array.isArray(b[key])) {
                 newobj[key] = deepmerge(a[key], b[key]);
             }
         }
@@ -266,30 +268,19 @@ const App = () => {
     // TODO: support merges
     useEffect(() => {
         if (firebaseUserData) {
-            localStorage.setItem("data", JSON.stringify(firebaseUserData.data()));
+            localStorage.setItem('data', JSON.stringify(firebaseUserData.data()));
         }
     }, [firebaseUserData]);
 
     const userData = (firebaseUserData?.exists ? firebaseUserData?.data() : localStorageData) as UserData;
 
-    // alter existing user data if need be
-    // to include info about periods 0 and 8
+    // Update firebase and local data to be up to date with defaultUserData using deepmerge
     useEffect(() => {
-        if (firebaseUserData) {
-            if (!("period0" in firebaseUserData.data()?.options)) {
-                updateFirebaseUserData("options.period0", false);
-                updateFirebaseUserData("options.period8", false);
-                updateFirebaseUserData("classes.0", { n: "", c: "", l: "", o: "", s: "" });
-                updateFirebaseUserData("classes.8", { n: "", c: "", l: "", o: "", s: "" });
-            }
-        } 
+        const fbData = firebaseUserData?.data()
+        if (fbData)
+            updateFirebaseUserData('', deepmerge(defaultUserData, fbData));
 
-        if (!("period0" in localStorageData?.options)) {
-            updateLocalStorageUserData("options.period0", false);
-            updateLocalStorageUserData("options.period8", false);
-            updateLocalStorageUserData("classes.0", { n: "", c: "", l: "", o: "", s: "" });
-            updateLocalStorageUserData("classes.8", { n: "", c: "", l: "", o: "", s: "" });
-        }
+        updateLocalStorageUserData('', deepmerge(defaultUserData, localStorageData));
     }, [firebaseUserData])
 
     document.body.className = userData.options.theme;
