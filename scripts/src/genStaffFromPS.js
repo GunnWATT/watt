@@ -252,6 +252,18 @@ const staffMatch = (staffA, staffB) => {
 
     const FINAL = {};
     for(const staff of mergedData) {
+        // if it's only the name, there's honestly no point adding
+
+        let validFields = 0;
+        for(const key in staff) {
+            if(staff[key] && (typeof staff === "object" || staff[key].length > 0)) {
+                validFields++;
+            }
+        }
+
+        if(validFields === 1) continue;
+
+        if (staff.name === "Christopher Bell") console.log(staff, Object.keys(staff).length)
         
         let matched = false;
         for(const id in prev) {

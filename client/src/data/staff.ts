@@ -9,6 +9,10 @@ export default {
         "dept": "Trainer",
         "room": "Athletics"
     },
+    "10532": {
+        "name": "Narges Izadi",
+        "title": "Psychologist"
+    },
     "10619": {
         "email": "smcginn@pausd.org",
         "name": "Shawn McGinn",
@@ -89,10 +93,6 @@ export default {
         "dept": "VPA",
         "room": "M3"
     },
-    "11048": {
-        "name": "Jorge Sanchez Barrera",
-        "title": "Campus Supervisor/Secondary"
-    },
     "11614": {
         "name": "Erin Reyes",
         "title": "Counselor",
@@ -107,65 +107,6 @@ export default {
         "name": "Brian Northen",
         "dept": "Transitionist",
         "room": "V6"
-    },
-    "12058": {
-        "name": "Julia Choi",
-        "dept": "Math",
-        "room": "",
-        "phone": "354-8247",
-        "title": "Teacher",
-        "periods": {
-            "1": {
-                "1": [
-                    "IntrAnl/Calc",
-                    ""
-                ],
-                "2": [
-                    "IntrAnl/Calc",
-                    ""
-                ]
-            },
-            "3": {
-                "1": [
-                    "IntrAnl/Calc",
-                    ""
-                ],
-                "2": [
-                    "IntrAnl/Calc",
-                    ""
-                ]
-            },
-            "4": {
-                "1": [
-                    "Alg 1A",
-                    ""
-                ],
-                "2": [
-                    "Alg 1A",
-                    ""
-                ]
-            },
-            "5": {
-                "1": [
-                    "IntrAnl/Calc",
-                    ""
-                ],
-                "2": [
-                    "IntrAnl/Calc",
-                    ""
-                ]
-            },
-            "6": {
-                "1": [
-                    "Alg 1A",
-                    ""
-                ],
-                "2": [
-                    "Alg 1A",
-                    ""
-                ]
-            }
-        }
     },
     "12070": {
         "email": "ganselmo@pausd.org",
@@ -284,25 +225,31 @@ export default {
         "room": "G2",
         "phone": "354-8241 ext. 5006"
     },
-    "13550": {
-        "name": "Laura Derrick-Navarro",
+    "13206": {
+        "name": "Jessica Antonio",
         "title": "Teacher",
         "periods": {
-            "1": {
+            "5": {
                 "1": [
-                    "Positive Psychology",
+                    "ArtHist 12",
                     ""
                 ],
                 "2": [
-                    "Positive Psychology",
+                    "ArtHist 12",
+                    ""
+                ]
+            },
+            "6": {
+                "1": [
+                    "AP Art History",
+                    ""
+                ],
+                "2": [
+                    "AP Art History",
                     ""
                 ]
             }
         }
-    },
-    "13600": {
-        "name": "Toshiro Lang",
-        "title": ""
     },
     "13631": {
         "email": "kkim@pausd.org",
@@ -420,13 +367,64 @@ export default {
         "dept": "Athletics",
         "room": "Titan Gym"
     },
-    "14647": {
-        "name": "Christopher Duff",
-        "title": "Long Term Sub"
-    },
-    "15153": {
-        "name": "Ana Reyes",
-        "title": ""
+    "14892": {
+        "name": "Julia Choi",
+        "dept": "Math",
+        "room": "",
+        "phone": "354-8247",
+        "title": "Teacher",
+        "periods": {
+            "1": {
+                "1": [
+                    "IntrAnl/Calc",
+                    ""
+                ],
+                "2": [
+                    "IntrAnl/Calc",
+                    ""
+                ]
+            },
+            "3": {
+                "1": [
+                    "IntrAnl/Calc",
+                    ""
+                ],
+                "2": [
+                    "IntrAnl/Calc",
+                    ""
+                ]
+            },
+            "4": {
+                "1": [
+                    "Alg 1A",
+                    ""
+                ],
+                "2": [
+                    "Alg 1A",
+                    ""
+                ]
+            },
+            "5": {
+                "1": [
+                    "IntrAnl/Calc",
+                    ""
+                ],
+                "2": [
+                    "IntrAnl/Calc",
+                    ""
+                ]
+            },
+            "6": {
+                "1": [
+                    "Alg 1A",
+                    ""
+                ],
+                "2": [
+                    "Alg 1A",
+                    ""
+                ]
+            }
+        }
     },
     "15193": {
         "name": "Travis Schollnick",
@@ -444,9 +442,73 @@ export default {
         "phone": "",
         "title": ""
     },
-    "17009": {
-        "name": "TK Hanie",
-        "title": "Education Specialist "
+    "15614": {
+        "name": "Lorenzo Gomez",
+        "title": "Counselor"
+    },
+    "16298": {
+        "name": "Angel Colon Chin",
+        "title": "Job Coach"
+    },
+    "16389": {
+        "name": "Clare Gleeson",
+        "title": "Teacher",
+        "periods": {
+            "2": {
+                "1": [
+                    "Therapeutic Elective",
+                    ""
+                ],
+                "2": [
+                    "Therapeutic Elective",
+                    ""
+                ]
+            },
+            "4": {
+                "1": [
+                    "Acad Planning",
+                    ""
+                ],
+                "2": [
+                    "Acad Planning",
+                    ""
+                ]
+            },
+            "5": {
+                "1": [
+                    "US Hist",
+                    ""
+                ],
+                "2": [
+                    "US Hist",
+                    ""
+                ]
+            },
+            "6": {
+                "1": [
+                    "US Hist",
+                    ""
+                ],
+                "2": [
+                    "US Hist",
+                    ""
+                ]
+            },
+            "7": {
+                "1": [
+                    "US Hist",
+                    ""
+                ],
+                "2": [
+                    "US Hist",
+                    ""
+                ]
+            }
+        }
+    },
+    "16987": {
+        "name": "Rossana Castillo",
+        "title": "Wellness Outreach Worker"
     },
     "17492": {
         "email": "atuomy@pausd.org",
@@ -456,9 +518,9 @@ export default {
         "phone": "354-8237",
         "title": ""
     },
-    "17660": {
-        "name": "Laurie Hubert",
-        "title": "Student Attendant"
+    "17751": {
+        "name": "Melenaite Tupou",
+        "title": "Family Engagement Specialist"
     },
     "17998": {
         "name": "Paul Brown",
@@ -467,6 +529,10 @@ export default {
         "phone": "354-8262",
         "dept": "SpEd aide",
         "room": "K building"
+    },
+    "18047": {
+        "name": "Joshua Hung",
+        "title": "Student Data Support Specialist"
     },
     "18134": {
         "name": "Ann Lorey",
@@ -560,61 +626,13 @@ export default {
         "dept": "Science",
         "room": "J9, J10"
     },
-    "19051": {
-        "name": "Savannah Heupel",
-        "title": "Teacher",
-        "periods": {
-            "2": {
-                "1": [
-                    "Geom A",
-                    ""
-                ],
-                "2": [
-                    "Geom A",
-                    ""
-                ]
-            },
-            "3": {
-                "1": [
-                    "Geom A",
-                    ""
-                ],
-                "2": [
-                    "Geom A",
-                    ""
-                ]
-            },
-            "4": {
-                "1": [
-                    "Geom A",
-                    ""
-                ],
-                "2": [
-                    "Geom A",
-                    ""
-                ]
-            },
-            "5": {
-                "1": [
-                    "Geom",
-                    ""
-                ],
-                "2": [
-                    "Geom",
-                    ""
-                ]
-            },
-            "6": {
-                "1": [
-                    "Geom",
-                    ""
-                ],
-                "2": [
-                    "Geom",
-                    ""
-                ]
-            }
-        }
+    "19290": {
+        "name": "Brandymae Rodriguez",
+        "title": "Food Services Asst I"
+    },
+    "19343": {
+        "name": "Jorge Sanchez Barrera",
+        "title": "Campus Supervisor/Secondary"
     },
     "19348": {
         "name": "Lynn Tabuchi",
@@ -677,24 +695,12 @@ export default {
         "room": "K building",
         "phone": "354-8262 ext. 5269"
     },
-    "19358": {
-        "email": "hdunn@pausd.org",
-        "name": "Heidi Dunn",
-        "dept": "SpEd",
-        "room": "K10, V25",
-        "phone": "354-8262",
-        "title": ""
-    },
     "19379": {
         "email": "psharma@pausd.org",
         "name": "Portia Sharma",
         "dept": "Science",
         "room": "",
         "phone": "354-8238"
-    },
-    "19483": {
-        "name": "Calvin Li",
-        "title": "Therapist"
     },
     "19495": {
         "name": "Anne Marie Metzler",
@@ -712,6 +718,56 @@ export default {
         "room": "Spangenberg",
         "phone": "354-8220 ext. 906-0223"
     },
+    "19707": {
+        "name": "William Liberatore",
+        "title": "Teacher",
+        "periods": {
+            "1": {
+                "1": [
+                    "Treb Choir",
+                    ""
+                ],
+                "2": [
+                    "Treb Choir",
+                    ""
+                ]
+            },
+            "2": {
+                "1": [
+                    "AP Music Theory",
+                    ""
+                ],
+                "2": [
+                    "AP Music Theory",
+                    ""
+                ]
+            },
+            "6": {
+                "1": [
+                    "Conc Choir",
+                    ""
+                ],
+                "2": [
+                    "Conc Choir",
+                    ""
+                ]
+            },
+            "8": {
+                "1": [
+                    "Adv Vocal",
+                    ""
+                ],
+                "2": [
+                    "Adv Vocal",
+                    ""
+                ]
+            }
+        }
+    },
+    "19943": {
+        "name": "Danny Lee",
+        "title": "Computer Application Specialist"
+    },
     "20013": {
         "name": "Quan Sims",
         "title": "",
@@ -720,6 +776,62 @@ export default {
         "dept": "SpEd",
         "room": "K15",
         "phone": "354-8262 ext. 5813"
+    },
+    "20049": {
+        "name": "Jonathan Hubbs",
+        "title": "Teacher",
+        "periods": {
+            "3": {
+                "1": [
+                    "US Hist",
+                    ""
+                ],
+                "2": [
+                    "US Hist",
+                    ""
+                ]
+            },
+            "4": {
+                "1": [
+                    "US Govt",
+                    ""
+                ],
+                "2": [
+                    "US Govt",
+                    ""
+                ]
+            },
+            "5": {
+                "1": [
+                    "US Govt",
+                    ""
+                ],
+                "2": [
+                    "US Govt",
+                    ""
+                ]
+            },
+            "6": {
+                "1": [
+                    "US Govt",
+                    ""
+                ],
+                "2": [
+                    "US Govt",
+                    ""
+                ]
+            },
+            "7": {
+                "1": [
+                    "US Govt",
+                    ""
+                ],
+                "2": [
+                    "US Govt",
+                    ""
+                ]
+            }
+        }
     },
     "20250": {
         "name": "David Bisbee",
@@ -861,6 +973,10 @@ export default {
         "room": "K9",
         "phone": "354-8262"
     },
+    "20479": {
+        "name": "Nancy Coffey",
+        "title": "Coordinator II"
+    },
     "20547": {
         "name": "Cindy Peters",
         "title": "Teacher",
@@ -911,66 +1027,6 @@ export default {
         "dept": "CTE",
         "room": "K3, K5",
         "phone": "354-8245 ext. 5544"
-    },
-    "20628": {
-        "name": "Maryam Didari",
-        "title": "Food Services Asst I"
-    },
-    "20644": {
-        "name": "Donald Watkins",
-        "title": "Teacher",
-        "periods": {
-            "3": {
-                "1": [
-                    "Alg 1A",
-                    ""
-                ],
-                "2": [
-                    "Alg 1A",
-                    ""
-                ]
-            },
-            "4": {
-                "1": [
-                    "Academic Math",
-                    ""
-                ],
-                "2": [
-                    "Academic Math",
-                    ""
-                ]
-            },
-            "5": {
-                "1": [
-                    "Alg 1A",
-                    ""
-                ],
-                "2": [
-                    "Alg 1A",
-                    ""
-                ]
-            },
-            "6": {
-                "1": [
-                    "Acad Planning",
-                    ""
-                ],
-                "2": [
-                    "Acad Planning",
-                    ""
-                ]
-            },
-            "7": {
-                "1": [
-                    "Acad Planning",
-                    ""
-                ],
-                "2": [
-                    "Acad Planning",
-                    ""
-                ]
-            }
-        }
     },
     "20765": {
         "email": "mcaballero@pausd.org",
@@ -1097,10 +1153,6 @@ export default {
         "room": "C8",
         "phone": "354-8247 ext. 5165"
     },
-    "22374": {
-        "name": "Benjamin Parker",
-        "title": "Long Term Sub"
-    },
     "22783": {
         "name": "Joanne Marie Garlejo",
         "title": "Health Technician",
@@ -1117,21 +1169,9 @@ export default {
         "room": "C3",
         "phone": "354-8237 ext. 5351"
     },
-    "23326": {
-        "name": "Mark Brassey",
-        "title": "Teacher",
-        "periods": {
-            "1": {
-                "1": [
-                    "Chemistry",
-                    ""
-                ],
-                "2": [
-                    "Chemistry",
-                    ""
-                ]
-            }
-        }
+    "23089": {
+        "name": "Ernesto Salcedo Aguirre",
+        "title": "Custodian I"
     },
     "23948": {
         "name": "Tracy Douglas",
@@ -1140,6 +1180,10 @@ export default {
         "phone": "354-8284 ext. 5266",
         "dept": "Registrar",
         "room": "P209"
+    },
+    "24057": {
+        "name": "Julius Phu",
+        "title": "Dishwasher"
     },
     "24075": {
         "name": "Teresa Nino Oliva",
@@ -1191,57 +1235,57 @@ export default {
         "dept": "WL",
         "room": "G1"
     },
-    "24136": {
-        "name": "Briana Gonzalez",
+    "24081": {
+        "name": "Donald Watkins",
         "title": "Teacher",
         "periods": {
-            "1": {
-                "1": [
-                    "Film Lit",
-                    ""
-                ],
-                "2": [
-                    "Film Lit",
-                    ""
-                ]
-            },
-            "2": {
-                "1": [
-                    "Western Literature",
-                    ""
-                ],
-                "2": [
-                    "Western Literature",
-                    ""
-                ]
-            },
             "3": {
                 "1": [
-                    "Acad Planning",
+                    "Alg 1A",
                     ""
                 ],
                 "2": [
-                    "Acad Planning",
+                    "Alg 1A",
+                    ""
+                ]
+            },
+            "4": {
+                "1": [
+                    "Academic Math",
+                    ""
+                ],
+                "2": [
+                    "Academic Math",
+                    ""
+                ]
+            },
+            "5": {
+                "1": [
+                    "Alg 1A",
+                    ""
+                ],
+                "2": [
+                    "Alg 1A",
                     ""
                 ]
             },
             "6": {
                 "1": [
-                    "Communic",
+                    "Acad Planning",
                     ""
                 ],
                 "2": [
-                    "Communic",
+                    "Acad Planning",
                     ""
                 ]
             },
             "7": {
                 "1": [
-                    "Western Literature",
+                    "Acad Planning",
                     ""
                 ],
                 "2": [
-                    "Western Literature",
+                    "Acad Planning",
                     ""
                 ]
             }
@@ -1305,10 +1349,6 @@ export default {
         "dept": "Acad Center",
         "room": "D2",
         "phone": "354-8271 ext. 1510"
-    },
-    "24655": {
-        "name": "Lorebelle Chang",
-        "title": "District Nurse"
     },
     "24754": {
         "name": "Raquel Cuevas Ceja",
@@ -1378,42 +1418,6 @@ export default {
         "other": "Has counseling",
         "dept": "Guidance",
         "room": "P bldg, 2nd floor"
-    },
-    "26013": {
-        "name": "Catherine Cohn",
-        "title": "Teacher",
-        "periods": {
-            "5": {
-                "1": [
-                    "Physics",
-                    ""
-                ],
-                "2": [
-                    "Physics",
-                    ""
-                ]
-            },
-            "6": {
-                "1": [
-                    "Physics",
-                    ""
-                ],
-                "2": [
-                    "Physics",
-                    ""
-                ]
-            },
-            "7": {
-                "1": [
-                    "Physics",
-                    ""
-                ],
-                "2": [
-                    "Physics",
-                    ""
-                ]
-            }
-        }
     },
     "26094": {
         "name": "David Leftwich",
@@ -1760,62 +1764,6 @@ export default {
         "room": "H4",
         "phone": "354-8241 ext. 6182"
     },
-    "28583": {
-        "name": "Jose Medina",
-        "title": "Teacher",
-        "periods": {
-            "1": {
-                "1": [
-                    "US Hist",
-                    ""
-                ],
-                "2": [
-                    "US Hist",
-                    ""
-                ]
-            },
-            "4": {
-                "1": [
-                    "Wld Hist",
-                    ""
-                ],
-                "2": [
-                    "Wld Hist",
-                    ""
-                ]
-            },
-            "5": {
-                "1": [
-                    "US Hist",
-                    ""
-                ],
-                "2": [
-                    "US Hist",
-                    ""
-                ]
-            },
-            "6": {
-                "1": [
-                    "US Hist",
-                    ""
-                ],
-                "2": [
-                    "US Hist",
-                    ""
-                ]
-            },
-            "7": {
-                "1": [
-                    "US Hist",
-                    ""
-                ],
-                "2": [
-                    "US Hist",
-                    ""
-                ]
-            }
-        }
-    },
     "28720": {
         "name": "Nigel Hansen",
         "title": "Custodian I",
@@ -1823,10 +1771,6 @@ export default {
         "phone": "354-8205",
         "dept": "Custodian",
         "room": "Custodial"
-    },
-    "29229": {
-        "name": "Silvia Griswold",
-        "title": "Budget Clerk/Secretary"
     },
     "29392": {
         "name": "Jordan French",
@@ -1836,27 +1780,57 @@ export default {
         "room": "K Building",
         "phone": "354-8262"
     },
-    "29564": {
-        "name": "Szu-Yin Yeh",
+    "29629": {
+        "name": "Daniel Hahn",
         "title": "Teacher",
         "periods": {
-            "1": {
+            "3": {
                 "1": [
-                    "Chinese 2",
+                    "Analysis H",
                     ""
                 ],
                 "2": [
-                    "Chinese 2",
+                    "Analysis H",
                     ""
                 ]
             },
-            "2": {
+            "4": {
                 "1": [
-                    "Chinese 3",
+                    "Analysis H",
                     ""
                 ],
                 "2": [
-                    "Chinese 3",
+                    "Analysis H",
+                    ""
+                ]
+            },
+            "5": {
+                "1": [
+                    "Pre Calc",
+                    ""
+                ],
+                "2": [
+                    "Pre Calc",
+                    ""
+                ]
+            },
+            "6": {
+                "1": [
+                    "Analysis H",
+                    ""
+                ],
+                "2": [
+                    "Analysis H",
+                    ""
+                ]
+            },
+            "7": {
+                "1": [
+                    "Pre Calc",
+                    ""
+                ],
+                "2": [
+                    "Pre Calc",
                     ""
                 ]
             }
@@ -1996,6 +1970,32 @@ export default {
         "dept": "Custodial",
         "room": "Custodial",
         "phone": "354-8205"
+    },
+    "30745": {
+        "name": "Virginia Moyer",
+        "title": "Teacher",
+        "periods": {
+            "1": {
+                "1": [
+                    "Western Culture A",
+                    ""
+                ],
+                "2": [
+                    "Western Culture A",
+                    ""
+                ]
+            },
+            "2": {
+                "1": [
+                    "Western Culture A",
+                    ""
+                ],
+                "2": [
+                    "Western Culture A",
+                    ""
+                ]
+            }
+        }
     },
     "30830": {
         "name": "Armando Macias",
@@ -2176,10 +2176,6 @@ export default {
         "dept": "Math",
         "room": "N115, N205"
     },
-    "33843": {
-        "name": "Sharon Walker",
-        "title": "Adult Ed Teacher"
-    },
     "34070": {
         "name": "Jon Martinez",
         "title": "Teacher",
@@ -2187,6 +2183,10 @@ export default {
         "phone": "354-8262",
         "dept": "SpEd aide",
         "room": "K building"
+    },
+    "34133": {
+        "name": "Karen Serrano Vides",
+        "title": "Student Attendant"
     },
     "34953": {
         "email": "jostil@pausd.org",
@@ -2255,10 +2255,6 @@ export default {
         "other": "Teaches SELF.",
         "dept": "Science",
         "room": "J6, L1"
-    },
-    "35308": {
-        "name": "Star Teachout",
-        "title": "Long Term Substitute"
     },
     "35806": {
         "name": "Tarn Wilson",
@@ -2334,6 +2330,10 @@ export default {
         "dept": "Math/English secretary",
         "room": "N100"
     },
+    "36948": {
+        "name": "Janet Owen",
+        "title": "Instructional Aide"
+    },
     "37282": {
         "name": "Kathryn Catalano",
         "title": "TOSA",
@@ -2342,10 +2342,6 @@ export default {
         "other": "Teaches SELF.",
         "dept": "Science",
         "room": "J8, L1"
-    },
-    "37361": {
-        "name": "Shin Che Young",
-        "title": ""
     },
     "37498": {
         "name": "Laura Lizundia",
@@ -2468,39 +2464,9 @@ export default {
         "room": "V26",
         "phone": "354-8237 ext. 6094"
     },
-    "37938": {
-        "name": "Lorenzo Gomez",
-        "title": "Counselor"
-    },
-    "37943": {
-        "name": "Rosemarie Dowell",
-        "title": "District Nurse"
-    },
-    "38295": {
-        "name": "Melinda Wilson",
-        "title": "Teacher",
-        "periods": {
-            "3": {
-                "1": [
-                    "ExplExpSJ-AAR",
-                    ""
-                ],
-                "2": [
-                    "ExplExpSJ-AAR",
-                    ""
-                ]
-            },
-            "4": {
-                "1": [
-                    "ExplExpSJ-AAR",
-                    ""
-                ],
-                "2": [
-                    "ExplExpSJ-AAR",
-                    ""
-                ]
-            }
-        }
+    "37673": {
+        "name": "Christopher Stephenson",
+        "title": "Job Coach"
     },
     "39153": {
         "name": "Ethan Halter",
@@ -2572,10 +2538,6 @@ export default {
         "room": "Main Office",
         "phone": "354-8276 ext. 6884"
     },
-    "39543": {
-        "name": "Diane Gleason",
-        "title": ""
-    },
     "39884": {
         "name": "Cathy Cohn",
         "title": "Teacher",
@@ -2630,10 +2592,6 @@ export default {
         "other": "Teaches SELF.",
         "dept": "FOS aide",
         "room": "K building"
-    },
-    "40104": {
-        "name": "Edward Barrett",
-        "title": "Long Term Sub"
     },
     "40148": {
         "name": "Warren Collier",
@@ -2703,65 +2661,61 @@ export default {
         "dept": "SpEd aide",
         "room": "K building"
     },
-    "40636": {
-        "name": "Jonathan Hubbs",
+    "41007": {
+        "name": "Romeo Motas",
         "title": "Teacher",
         "periods": {
-            "3": {
+            "2": {
                 "1": [
-                    "US Hist",
+                    "Acad Planning",
                     ""
                 ],
                 "2": [
-                    "US Hist",
+                    "Acad Planning",
                     ""
                 ]
             },
-            "4": {
+            "3": {
                 "1": [
-                    "US Govt",
+                    "Acad Planning",
                     ""
                 ],
                 "2": [
-                    "US Govt",
+                    "Acad Planning",
                     ""
                 ]
             },
             "5": {
                 "1": [
-                    "US Govt",
+                    "Wld Hist",
                     ""
                 ],
                 "2": [
-                    "US Govt",
+                    "Wld Hist",
                     ""
                 ]
             },
             "6": {
                 "1": [
-                    "US Govt",
+                    "Wld Hist",
                     ""
                 ],
                 "2": [
-                    "US Govt",
+                    "Wld Hist",
                     ""
                 ]
             },
             "7": {
                 "1": [
-                    "US Govt",
+                    "Wld Hist",
                     ""
                 ],
                 "2": [
-                    "US Govt",
+                    "Wld Hist",
                     ""
                 ]
             }
         }
-    },
-    "41033": {
-        "name": "Christina Woznicki",
-        "title": ""
     },
     "41651": {
         "name": "Normalyn Bato",
@@ -2921,6 +2875,32 @@ export default {
         "dept": "VPA",
         "room": "S121"
     },
+    "42357": {
+        "name": "Szu-Yin Yeh",
+        "title": "Teacher",
+        "periods": {
+            "1": {
+                "1": [
+                    "Chinese 2",
+                    ""
+                ],
+                "2": [
+                    "Chinese 2",
+                    ""
+                ]
+            },
+            "2": {
+                "1": [
+                    "Chinese 3",
+                    ""
+                ],
+                "2": [
+                    "Chinese 3",
+                    ""
+                ]
+            }
+        }
+    },
     "42624": {
         "name": "Brian Miguel",
         "title": "Teacher",
@@ -2979,103 +2959,7 @@ export default {
         "dept": "SS",
         "room": "C6"
     },
-    "42796": {
-        "name": "Gregory Miller",
-        "title": ""
-    },
-    "42937": {
-        "name": "Rolando Ruiz Martinez",
-        "title": "Computer Support Spec II",
-        "email": "rmartinez@pausd.org",
-        "phone": "354-8292 ext. 6874",
-        "dept": "Technology",
-        "room": "E3"
-    },
-    "43116": {
-        "name": "Jessica Antonio",
-        "title": "Teacher",
-        "periods": {
-            "5": {
-                "1": [
-                    "ArtHist 12",
-                    ""
-                ],
-                "2": [
-                    "ArtHist 12",
-                    ""
-                ]
-            },
-            "6": {
-                "1": [
-                    "AP Art History",
-                    ""
-                ],
-                "2": [
-                    "AP Art History",
-                    ""
-                ]
-            }
-        }
-    },
-    "43208": {
-        "name": "Angel Colon Chin",
-        "title": "Job Coach"
-    },
-    "43345": {
-        "name": "William Liberatore",
-        "title": "Teacher",
-        "periods": {
-            "1": {
-                "1": [
-                    "Treb Choir",
-                    ""
-                ],
-                "2": [
-                    "Treb Choir",
-                    ""
-                ]
-            },
-            "2": {
-                "1": [
-                    "AP Music Theory",
-                    ""
-                ],
-                "2": [
-                    "AP Music Theory",
-                    ""
-                ]
-            },
-            "6": {
-                "1": [
-                    "Conc Choir",
-                    ""
-                ],
-                "2": [
-                    "Conc Choir",
-                    ""
-                ]
-            },
-            "8": {
-                "1": [
-                    "Adv Vocal",
-                    ""
-                ],
-                "2": [
-                    "Adv Vocal",
-                    ""
-                ]
-            }
-        }
-    },
-    "43431": {
-        "name": "Christopher Deans",
-        "title": "Custodian I",
-        "email": "cdean@pausd.org",
-        "phone": "354-8205",
-        "dept": "Custodian",
-        "room": "Custodian"
-    },
-    "43485": {
+    "42697": {
         "name": "Elizabeth Matchett",
         "title": "Teacher",
         "periods": {
@@ -3111,6 +2995,22 @@ export default {
             }
         }
     },
+    "42937": {
+        "name": "Rolando Ruiz Martinez",
+        "title": "Computer Support Spec II",
+        "email": "rmartinez@pausd.org",
+        "phone": "354-8292 ext. 6874",
+        "dept": "Technology",
+        "room": "E3"
+    },
+    "43431": {
+        "name": "Christopher Deans",
+        "title": "Custodian I",
+        "email": "cdean@pausd.org",
+        "phone": "354-8205",
+        "dept": "Custodian",
+        "room": "Custodian"
+    },
     "43576": {
         "name": "Liz Libbey",
         "title": "Guidance Technician Asst",
@@ -3119,55 +3019,9 @@ export default {
         "room": "Guidance Office",
         "phone": "354-8212 ext. 1662"
     },
-    "44179": {
-        "name": "Ivette Daugherty",
-        "title": "Teacher",
-        "periods": {
-            "1": {
-                "1": [
-                    "Eng LL 28",
-                    ""
-                ],
-                "2": [
-                    "Eng LL 28",
-                    ""
-                ]
-            },
-            "2": {
-                "1": [
-                    "Eng LL 28",
-                    ""
-                ],
-                "2": [
-                    "Eng LL 28",
-                    ""
-                ]
-            },
-            "5": {
-                "1": [
-                    "Eng LL 1",
-                    ""
-                ],
-                "2": [
-                    "Eng LL 1",
-                    ""
-                ]
-            },
-            "6": {
-                "1": [
-                    "Eng LL 2",
-                    ""
-                ],
-                "2": [
-                    "Eng LL 2",
-                    ""
-                ]
-            }
-        }
-    },
-    "44758": {
-        "name": "Linda MacKenzie",
-        "title": "Mental Health Provider Contractor"
+    "44871": {
+        "name": "Maryam Didari",
+        "title": "Food Services Asst I"
     },
     "45116": {
         "name": "Jeanette Tucker",
@@ -3230,15 +3084,6 @@ export default {
         "room": "V3",
         "phone": "354-8262 ext. 6573"
     },
-    "45514": {
-        "name": "Rachel Dion",
-        "title": "",
-        "email": "rdion@pausd.org",
-        "phone": "354-8247 ext. 5483",
-        "other": "Teaches SELF.",
-        "dept": "Math",
-        "room": "N212"
-    },
     "45972": {
         "name": "Ana Maria Gonzalez Barrios",
         "title": "Teacher",
@@ -3289,17 +3134,39 @@ export default {
         "dept": "WL",
         "room": "H5"
     },
-    "46039": {
-        "name": "Romeo Motas",
+    "46600": {
+        "name": "Wendy Stratton",
+        "title": "",
+        "email": "wstratton@pausd.org",
+        "dept": "Principal",
+        "room": "Main Office",
+        "phone": "354-8288"
+    },
+    "46670": {
+        "name": "Laurie Hubert",
+        "title": "Student Attendant"
+    },
+    "46882": {
+        "name": "Briana Gonzalez",
         "title": "Teacher",
         "periods": {
-            "2": {
+            "1": {
                 "1": [
-                    "Acad Planning",
+                    "Film Lit",
                     ""
                 ],
                 "2": [
-                    "Acad Planning",
+                    "Film Lit",
+                    ""
+                ]
+            },
+            "2": {
+                "1": [
+                    "Western Literature",
+                    ""
+                ],
+                "2": [
+                    "Western Literature",
                     ""
                 ]
             },
@@ -3313,28 +3180,44 @@ export default {
                     ""
                 ]
             },
-            "5": {
-                "1": [
-                    "Wld Hist",
-                    ""
-                ],
-                "2": [
-                    "Wld Hist",
-                    ""
-                ]
-            },
             "6": {
                 "1": [
-                    "Wld Hist",
+                    "Communic",
                     ""
                 ],
                 "2": [
-                    "Wld Hist",
+                    "Communic",
                     ""
                 ]
             },
             "7": {
                 "1": [
+                    "Western Literature",
+                    ""
+                ],
+                "2": [
+                    "Western Literature",
+                    ""
+                ]
+            }
+        }
+    },
+    "47360": {
+        "name": "Jose Medina",
+        "title": "Teacher",
+        "periods": {
+            "1": {
+                "1": [
+                    "US Hist",
+                    ""
+                ],
+                "2": [
+                    "US Hist",
+                    ""
+                ]
+            },
+            "4": {
+                "1": [
                     "Wld Hist",
                     ""
                 ],
@@ -3342,20 +3225,38 @@ export default {
                     "Wld Hist",
                     ""
                 ]
+            },
+            "5": {
+                "1": [
+                    "US Hist",
+                    ""
+                ],
+                "2": [
+                    "US Hist",
+                    ""
+                ]
+            },
+            "6": {
+                "1": [
+                    "US Hist",
+                    ""
+                ],
+                "2": [
+                    "US Hist",
+                    ""
+                ]
+            },
+            "7": {
+                "1": [
+                    "US Hist",
+                    ""
+                ],
+                "2": [
+                    "US Hist",
+                    ""
+                ]
             }
         }
-    },
-    "46600": {
-        "name": "Wendy Stratton",
-        "title": "",
-        "email": "wstratton@pausd.org",
-        "dept": "Principal",
-        "room": "Main Office",
-        "phone": "354-8288"
-    },
-    "47299": {
-        "name": "Julius Phu",
-        "title": "Dishwasher"
     },
     "47636": {
         "email": "thuynh@pausd.org",
@@ -3417,6 +3318,62 @@ export default {
             }
         }
     },
+    "47701": {
+        "name": "Benjamin Beresford",
+        "title": "Teacher",
+        "periods": {
+            "1": {
+                "1": [
+                    "US Govt",
+                    ""
+                ],
+                "2": [
+                    "US Govt",
+                    ""
+                ]
+            },
+            "2": {
+                "1": [
+                    "US Govt",
+                    ""
+                ],
+                "2": [
+                    "US Govt",
+                    ""
+                ]
+            },
+            "3": {
+                "1": [
+                    "Wld Hist",
+                    ""
+                ],
+                "2": [
+                    "Wld Hist",
+                    ""
+                ]
+            },
+            "4": {
+                "1": [
+                    "US Govt",
+                    ""
+                ],
+                "2": [
+                    "US Govt",
+                    ""
+                ]
+            },
+            "7": {
+                "1": [
+                    "US Govt",
+                    ""
+                ],
+                "2": [
+                    "US Govt",
+                    ""
+                ]
+            }
+        }
+    },
     "47849": {
         "name": "William Foster",
         "title": "Student Attendant",
@@ -3440,6 +3397,10 @@ export default {
         "phone": "354-8237 ext. 1437",
         "dept": "SS",
         "room": "K8, K14"
+    },
+    "48220": {
+        "name": "Roberto Ceja",
+        "title": "Custodian I"
     },
     "48326": {
         "name": "Paul Dunlap",
@@ -3491,6 +3452,22 @@ export default {
         "dept": "English",
         "room": "N114"
     },
+    "48369": {
+        "name": "Laura Derrick-Navarro",
+        "title": "Teacher",
+        "periods": {
+            "1": {
+                "1": [
+                    "Positive Psychology",
+                    ""
+                ],
+                "2": [
+                    "Positive Psychology",
+                    ""
+                ]
+            }
+        }
+    },
     "48669": {
         "name": "Naomi Hascalovici",
         "title": "Instructional Aide SpEd",
@@ -3499,9 +3476,51 @@ export default {
         "room": "K Building",
         "phone": "354-8262"
     },
-    "48808": {
-        "name": "Radhika Thampuran",
-        "title": "Student Attendant"
+    "48841": {
+        "name": "Ivette Daugherty",
+        "title": "Teacher",
+        "periods": {
+            "1": {
+                "1": [
+                    "Eng LL 28",
+                    ""
+                ],
+                "2": [
+                    "Eng LL 28",
+                    ""
+                ]
+            },
+            "2": {
+                "1": [
+                    "Eng LL 28",
+                    ""
+                ],
+                "2": [
+                    "Eng LL 28",
+                    ""
+                ]
+            },
+            "5": {
+                "1": [
+                    "Eng LL 1",
+                    ""
+                ],
+                "2": [
+                    "Eng LL 1",
+                    ""
+                ]
+            },
+            "6": {
+                "1": [
+                    "Eng LL 2",
+                    ""
+                ],
+                "2": [
+                    "Eng LL 2",
+                    ""
+                ]
+            }
+        }
     },
     "50039": {
         "name": "Rosie Castillo",
@@ -3561,10 +3580,6 @@ export default {
         "dept": "English",
         "room": "N111"
     },
-    "50833": {
-        "name": "Brandymae Rodriguez",
-        "title": "Food Services Asst I"
-    },
     "51060": {
         "name": "Justin Brown",
         "title": "Teacher",
@@ -3614,6 +3629,10 @@ export default {
         },
         "dept": "English",
         "room": "N106"
+    },
+    "51353": {
+        "name": "Calvin Li",
+        "title": "Therapist"
     },
     "51429": {
         "name": "Jordan Wells",
@@ -3682,6 +3701,10 @@ export default {
         "phone": "354-8262 ext. 6902",
         "dept": "SpEd secy",
         "room": "K building office"
+    },
+    "51769": {
+        "name": "Christopher Duff",
+        "title": "Long Term Sub"
     },
     "51781": {
         "name": "Andrea Bueno",
@@ -3753,66 +3776,6 @@ export default {
         "dept": "SS",
         "room": "E1"
     },
-    "52077": {
-        "name": "Abbie Reynolds",
-        "title": "Psychologist"
-    },
-    "52278": {
-        "name": "Gabrielle Gramegna",
-        "title": "Teacher",
-        "periods": {
-            "1": {
-                "1": [
-                    "Adv.Draw/Painting II",
-                    ""
-                ],
-                "2": [
-                    "Adv.Draw/Painting II",
-                    ""
-                ]
-            },
-            "3": {
-                "1": [
-                    "Pt/Dr 1",
-                    ""
-                ],
-                "2": [
-                    "Pt/Dr 1",
-                    ""
-                ]
-            },
-            "4": {
-                "1": [
-                    "Adv.Draw/Painting H",
-                    ""
-                ],
-                "2": [
-                    "Adv.Draw/Painting H",
-                    ""
-                ]
-            },
-            "5": {
-                "1": [
-                    "Art Spec 1",
-                    ""
-                ],
-                "2": [
-                    "Art Spec 1",
-                    ""
-                ]
-            },
-            "7": {
-                "1": [
-                    "Art Spec 1",
-                    ""
-                ],
-                "2": [
-                    "Art Spec 1",
-                    ""
-                ]
-            }
-        }
-    },
     "52507": {
         "name": "Norma Hesterman",
         "title": "Coordinator Volunteer Services",
@@ -3821,13 +3784,9 @@ export default {
         "dept": "Volunteer Coor",
         "room": "Main Office"
     },
-    "52537": {
-        "name": "Joshua Shleffar",
-        "title": "Behavior Specialist"
-    },
-    "52848": {
-        "name": "Eric Handa",
-        "title": "Custodian I"
+    "53537": {
+        "name": "Benjamin Parker",
+        "title": "Long Term Sub"
     },
     "53716": {
         "email": "jellington@pausd.org",
@@ -3897,17 +3856,61 @@ export default {
         "room": "Gym",
         "phone": "354-8215 ext. 6752"
     },
-    "54574": {
-        "name": "Navneet Schworetzky",
-        "title": ""
-    },
-    "54583": {
-        "name": "Karen Serrano Vides",
-        "title": "Student Attendant"
-    },
-    "54973": {
-        "name": "Christopher Bell",
-        "title": ""
+    "54892": {
+        "name": "Valerie LaFountain",
+        "title": "Teacher",
+        "periods": {
+            "1": {
+                "1": [
+                    "Western Literature",
+                    ""
+                ],
+                "2": [
+                    "Western Literature",
+                    ""
+                ]
+            },
+            "2": {
+                "1": [
+                    "Western Literature",
+                    ""
+                ],
+                "2": [
+                    "Western Literature",
+                    ""
+                ]
+            },
+            "5": {
+                "1": [
+                    "Acad Planning",
+                    ""
+                ],
+                "2": [
+                    "Acad Planning",
+                    ""
+                ]
+            },
+            "6": {
+                "1": [
+                    "Western Literature",
+                    ""
+                ],
+                "2": [
+                    "Western Literature",
+                    ""
+                ]
+            },
+            "7": {
+                "1": [
+                    "Western Literature",
+                    ""
+                ],
+                "2": [
+                    "Western Literature",
+                    ""
+                ]
+            }
+        }
     },
     "55208": {
         "name": "Danielle Whichard",
@@ -4019,62 +4022,6 @@ export default {
         "dept": "SpEd aide",
         "room": "F-2"
     },
-    "55596": {
-        "name": "Clare Gleeson",
-        "title": "Teacher",
-        "periods": {
-            "2": {
-                "1": [
-                    "Therapeutic Elective",
-                    ""
-                ],
-                "2": [
-                    "Therapeutic Elective",
-                    ""
-                ]
-            },
-            "4": {
-                "1": [
-                    "Acad Planning",
-                    ""
-                ],
-                "2": [
-                    "Acad Planning",
-                    ""
-                ]
-            },
-            "5": {
-                "1": [
-                    "US Hist",
-                    ""
-                ],
-                "2": [
-                    "US Hist",
-                    ""
-                ]
-            },
-            "6": {
-                "1": [
-                    "US Hist",
-                    ""
-                ],
-                "2": [
-                    "US Hist",
-                    ""
-                ]
-            },
-            "7": {
-                "1": [
-                    "US Hist",
-                    ""
-                ],
-                "2": [
-                    "US Hist",
-                    ""
-                ]
-            }
-        }
-    },
     "55884": {
         "name": "Martha Elderon",
         "title": "Secretarial Supervisor - HS",
@@ -4168,10 +4115,6 @@ export default {
         "other": "Teaches SELF.",
         "dept": "Librarian",
         "room": "Library"
-    },
-    "56700": {
-        "name": "Makiya Francis",
-        "title": "Student Attendant"
     },
     "56887": {
         "name": "Alana Young Nicholson",
@@ -4316,6 +4259,10 @@ export default {
         "room": "P106",
         "phone": "354-8229 ext. 6214"
     },
+    "58452": {
+        "name": "Sharon Walker",
+        "title": "Adult Ed Teacher"
+    },
     "58637": {
         "name": "Susan Van Zandt",
         "title": "Teacher",
@@ -4336,14 +4283,6 @@ export default {
         "room": "K15",
         "phone": "354-8262"
     },
-    "58707": {
-        "name": "Harold Daner",
-        "title": "Hourly"
-    },
-    "58945": {
-        "name": "Marie-Anne Fogel",
-        "title": "Student Attendant"
-    },
     "59932": {
         "name": "Jonathan Fidani",
         "title": "Counselor",
@@ -4361,10 +4300,6 @@ export default {
         "room": "K building",
         "phone": "354-8262"
     },
-    "60367": {
-        "name": "Theresa Liu",
-        "title": "Student Attendant"
-    },
     "60766": {
         "name": "Kristy Blackburn",
         "title": "Teacher Advisor",
@@ -4373,6 +4308,10 @@ export default {
         "other": "Teaches SELF.",
         "dept": "English",
         "room": "P117, N106"
+    },
+    "60813": {
+        "name": "Marta Seoane",
+        "title": "Primary Language Tutor"
     },
     "61633": {
         "name": "Richelle Ochoa",
@@ -4398,13 +4337,13 @@ export default {
         "phone": "329- 3721 ext. 5559",
         "title": "Computer Support Spec II"
     },
-    "62081": {
-        "name": "Catherine Bissegger",
-        "title": ""
+    "62569": {
+        "name": "Marie-Anne Fogel",
+        "title": "Student Attendant"
     },
-    "62436": {
-        "name": "Tzuhuei Lo",
-        "title": ""
+    "62771": {
+        "name": "Radhika Thampuran",
+        "title": "Student Attendant"
     },
     "62794": {
         "name": "Mark Gleason",
@@ -4646,13 +4585,41 @@ export default {
         "dept": "Math",
         "room": "N210"
     },
-    "64338": {
-        "name": "Timothy Aston",
-        "title": "",
-        "email": "taston@pausd.org",
-        "phone": "354-8246 ext. 6749",
-        "dept": "Science",
-        "room": "V1, K14"
+    "64664": {
+        "name": "Catherine Cohn",
+        "title": "Teacher",
+        "periods": {
+            "5": {
+                "1": [
+                    "Physics",
+                    ""
+                ],
+                "2": [
+                    "Physics",
+                    ""
+                ]
+            },
+            "6": {
+                "1": [
+                    "Physics",
+                    ""
+                ],
+                "2": [
+                    "Physics",
+                    ""
+                ]
+            },
+            "7": {
+                "1": [
+                    "Physics",
+                    ""
+                ],
+                "2": [
+                    "Physics",
+                    ""
+                ]
+            }
+        }
     },
     "64834": {
         "name": "Kristen Lo",
@@ -4858,6 +4825,52 @@ export default {
         "dept": "SpEd aide",
         "room": "K building"
     },
+    "66089": {
+        "name": "Michael Camicia",
+        "title": "Teacher",
+        "periods": {
+            "2": {
+                "1": [
+                    "Auto 1",
+                    ""
+                ],
+                "2": [
+                    "Auto 1",
+                    ""
+                ]
+            },
+            "3": {
+                "1": [
+                    "Auto 2",
+                    ""
+                ],
+                "2": [
+                    "Auto 2",
+                    ""
+                ]
+            },
+            "5": {
+                "1": [
+                    "Auto 1",
+                    ""
+                ],
+                "2": [
+                    "Auto 1",
+                    ""
+                ]
+            },
+            "6": {
+                "1": [
+                    "Auto 1",
+                    ""
+                ],
+                "2": [
+                    "Auto 1",
+                    ""
+                ]
+            }
+        }
+    },
     "66551": {
         "name": "Ginny Moyer",
         "title": "Teacher",
@@ -4907,6 +4920,10 @@ export default {
         },
         "dept": "SS",
         "room": "E2"
+    },
+    "66756": {
+        "name": "Theresa Liu",
+        "title": "Student Attendant"
     },
     "67140": {
         "name": "Laurel Howard",
@@ -5058,10 +5075,6 @@ export default {
         "room": "Main Office",
         "phone": "354-8200 ext. 1518"
     },
-    "69009": {
-        "name": "Christopher Stephenson",
-        "title": "Job Coach"
-    },
     "69363": {
         "name": "Terence Kitada",
         "title": "Teacher",
@@ -5150,10 +5163,6 @@ export default {
         "dept": "SpEd",
         "room": "L1"
     },
-    "69877": {
-        "name": "Ladan Soroushian",
-        "title": "Student Teacher"
-    },
     "70365": {
         "name": "Jane Miller",
         "title": "Student Attendant",
@@ -5162,10 +5171,6 @@ export default {
         "other": "Teaches SELF.",
         "dept": "SpEd aide",
         "room": "K building"
-    },
-    "70561": {
-        "name": "Joshua Hung",
-        "title": "Student Data Support Specialist"
     },
     "70583": {
         "name": "Matthew McGinn",
@@ -5241,73 +5246,9 @@ export default {
         "phone": "354-8246",
         "title": "Teacher - Long Tem Sub"
     },
-    "71390": {
-        "name": "Barbara Boissevain",
-        "title": "",
-        "email": "bbouissevain@pausd.org",
-        "phone": "354-8264",
-        "dept": "VPA",
-        "room": "M1, M4, M5"
-    },
-    "71643": {
-        "name": "Janet Owen",
-        "title": "Instructional Aide"
-    },
-    "71685": {
-        "name": "Daniel Hahn",
-        "title": "Teacher",
-        "periods": {
-            "3": {
-                "1": [
-                    "Analysis H",
-                    ""
-                ],
-                "2": [
-                    "Analysis H",
-                    ""
-                ]
-            },
-            "4": {
-                "1": [
-                    "Analysis H",
-                    ""
-                ],
-                "2": [
-                    "Analysis H",
-                    ""
-                ]
-            },
-            "5": {
-                "1": [
-                    "Pre Calc",
-                    ""
-                ],
-                "2": [
-                    "Pre Calc",
-                    ""
-                ]
-            },
-            "6": {
-                "1": [
-                    "Analysis H",
-                    ""
-                ],
-                "2": [
-                    "Analysis H",
-                    ""
-                ]
-            },
-            "7": {
-                "1": [
-                    "Pre Calc",
-                    ""
-                ],
-                "2": [
-                    "Pre Calc",
-                    ""
-                ]
-            }
-        }
+    "71493": {
+        "name": "Brenda Mireles Romo",
+        "title": "Instructional Assistant"
     },
     "71834": {
         "email": "wchu@pausd.org",
@@ -5322,10 +5263,6 @@ export default {
         "dept": "Kitchen superv",
         "room": "Kitchen",
         "phone": "354-8233 ext. 5830"
-    },
-    "71899": {
-        "name": "Melenaite Tupou",
-        "title": "Family Engagement Specialist"
     },
     "72064": {
         "name": "Emily Yun",
@@ -5428,66 +5365,6 @@ export default {
         "room": "N205",
         "phone": "354-8247 ext. N213"
     },
-    "72359": {
-        "name": "Davina Santos",
-        "title": "Counselor"
-    },
-    "72581": {
-        "name": "Valerie LaFountain",
-        "title": "Teacher",
-        "periods": {
-            "1": {
-                "1": [
-                    "Western Literature",
-                    ""
-                ],
-                "2": [
-                    "Western Literature",
-                    ""
-                ]
-            },
-            "2": {
-                "1": [
-                    "Western Literature",
-                    ""
-                ],
-                "2": [
-                    "Western Literature",
-                    ""
-                ]
-            },
-            "5": {
-                "1": [
-                    "Acad Planning",
-                    ""
-                ],
-                "2": [
-                    "Acad Planning",
-                    ""
-                ]
-            },
-            "6": {
-                "1": [
-                    "Western Literature",
-                    ""
-                ],
-                "2": [
-                    "Western Literature",
-                    ""
-                ]
-            },
-            "7": {
-                "1": [
-                    "Western Literature",
-                    ""
-                ],
-                "2": [
-                    "Western Literature",
-                    ""
-                ]
-            }
-        }
-    },
     "72969": {
         "name": "Tara Firenzi",
         "title": "Teacher",
@@ -5527,97 +5404,17 @@ export default {
         "room": "Gym",
         "phone": "354-8257 ext. 5923"
     },
-    "74485": {
-        "name": "Daissy Tabares Ruiz",
-        "title": "Teacher",
-        "periods": {
-            "1": {
-                "1": [
-                    "Spanish 2",
-                    ""
-                ],
-                "2": [
-                    "Spanish 2",
-                    ""
-                ]
-            },
-            "2": {
-                "1": [
-                    "Spanish 2",
-                    ""
-                ],
-                "2": [
-                    "Spanish 2",
-                    ""
-                ]
-            },
-            "3": {
-                "1": [
-                    "Spanish 2",
-                    ""
-                ],
-                "2": [
-                    "Spanish 2",
-                    ""
-                ]
-            },
-            "5": {
-                "1": [
-                    "Span/Span2",
-                    ""
-                ],
-                "2": [
-                    "Span/Span2",
-                    ""
-                ]
-            }
-        }
+    "74306": {
+        "name": "Ladan Soroushian",
+        "title": "Student Teacher"
     },
-    "74512": {
-        "name": "Michael Camicia",
-        "title": "Teacher",
-        "periods": {
-            "2": {
-                "1": [
-                    "Auto 1",
-                    ""
-                ],
-                "2": [
-                    "Auto 1",
-                    ""
-                ]
-            },
-            "3": {
-                "1": [
-                    "Auto 2",
-                    ""
-                ],
-                "2": [
-                    "Auto 2",
-                    ""
-                ]
-            },
-            "5": {
-                "1": [
-                    "Auto 1",
-                    ""
-                ],
-                "2": [
-                    "Auto 1",
-                    ""
-                ]
-            },
-            "6": {
-                "1": [
-                    "Auto 1",
-                    ""
-                ],
-                "2": [
-                    "Auto 1",
-                    ""
-                ]
-            }
-        }
+    "74653": {
+        "name": "Linda MacKenzie",
+        "title": "Mental Health Provider Contractor"
+    },
+    "74851": {
+        "name": "Joshua Shleffar",
+        "title": "Behavior Specialist"
     },
     "75241": {
         "name": "Bridget Johnson",
@@ -5627,6 +5424,10 @@ export default {
         "dept": "Secretary",
         "room": "Main Office"
     },
+    "75268": {
+        "name": "Abbie Reynolds",
+        "title": "Psychologist"
+    },
     "75348": {
         "email": "enguyen@pausd.org",
         "name": "Emily Nguyen",
@@ -5634,9 +5435,9 @@ export default {
         "room": "K building",
         "phone": "354-8262"
     },
-    "76051": {
-        "name": "Roberto Ceja",
-        "title": "Custodian I"
+    "76786": {
+        "name": "Rosemarie Dowell",
+        "title": "District Nurse"
     },
     "76883": {
         "name": "Robert Glenister",
@@ -5644,10 +5445,6 @@ export default {
         "email": "rglenister@pausd.org",
         "dept": "Transitionist",
         "room": "V7"
-    },
-    "76945": {
-        "name": "Ernesto Salcedo Aguirre",
-        "title": "Custodian I"
     },
     "77108": {
         "name": "Neil Barana",
@@ -5870,6 +5667,10 @@ export default {
         "room": "N213",
         "phone": "354-8247"
     },
+    "79269": {
+        "name": "Stacey Anderson",
+        "title": "School-based MHT II"
+    },
     "79348": {
         "name": "Liz Matchett",
         "title": "Teacher",
@@ -5933,35 +5734,9 @@ export default {
         "dept": "Camp Sup",
         "room": "Main Office"
     },
-    "79931": {
-        "name": "Virginia Moyer",
-        "title": "Teacher",
-        "periods": {
-            "1": {
-                "1": [
-                    "Western Culture A",
-                    ""
-                ],
-                "2": [
-                    "Western Culture A",
-                    ""
-                ]
-            },
-            "2": {
-                "1": [
-                    "Western Culture A",
-                    ""
-                ],
-                "2": [
-                    "Western Culture A",
-                    ""
-                ]
-            }
-        }
-    },
-    "79944": {
-        "name": "Stacey Anderson",
-        "title": "School-based MHT II"
+    "80810": {
+        "name": "Harold Daner",
+        "title": "Hourly"
     },
     "80959": {
         "name": "Philip Lyons",
@@ -6198,10 +5973,6 @@ export default {
         "dept": "WL",
         "room": "G4"
     },
-    "81509": {
-        "name": "Nancy Coffey",
-        "title": "Coordinator II"
-    },
     "81709": {
         "email": "asoofiani@pausd.org",
         "name": "Arya Soofiani",
@@ -6270,10 +6041,6 @@ export default {
         "room": "N211, N203",
         "phone": "354-8247 ext. 5854"
     },
-    "82073": {
-        "name": "Narges Izadi",
-        "title": "Psychologist"
-    },
     "82166": {
         "name": "Angela Mosqueda",
         "title": "Typist Clerk III",
@@ -6281,6 +6048,22 @@ export default {
         "phone": "354-8237 ext. 1663",
         "dept": "SS/Sci/WL sec",
         "room": "K Building"
+    },
+    "82255": {
+        "name": "Mark Brassey",
+        "title": "Teacher",
+        "periods": {
+            "1": {
+                "1": [
+                    "Chemistry",
+                    ""
+                ],
+                "2": [
+                    "Chemistry",
+                    ""
+                ]
+            }
+        }
     },
     "83070": {
         "email": "lmartinez@pausd.org",
@@ -6339,10 +6122,6 @@ export default {
         "other": "Teaches SELF.",
         "dept": "WL",
         "room": "G3"
-    },
-    "84406": {
-        "name": "Angel Ceballos",
-        "title": "Student Instructional Aide"
     },
     "84674": {
         "name": "Kathy Hawes",
@@ -6404,9 +6183,9 @@ export default {
         "dept": "Math",
         "room": "N209"
     },
-    "84867": {
-        "name": "Marta Seoane",
-        "title": "Primary Language Tutor"
+    "85356": {
+        "name": "Silvia Griswold",
+        "title": "Budget Clerk/Secretary"
     },
     "85434": {
         "name": "Mike Camicia",
@@ -6453,62 +6232,6 @@ export default {
         "other": "Teaches SELF.",
         "dept": "CTE",
         "room": "L8"
-    },
-    "85633": {
-        "name": "Benjamin Beresford",
-        "title": "Teacher",
-        "periods": {
-            "1": {
-                "1": [
-                    "US Govt",
-                    ""
-                ],
-                "2": [
-                    "US Govt",
-                    ""
-                ]
-            },
-            "2": {
-                "1": [
-                    "US Govt",
-                    ""
-                ],
-                "2": [
-                    "US Govt",
-                    ""
-                ]
-            },
-            "3": {
-                "1": [
-                    "Wld Hist",
-                    ""
-                ],
-                "2": [
-                    "Wld Hist",
-                    ""
-                ]
-            },
-            "4": {
-                "1": [
-                    "US Govt",
-                    ""
-                ],
-                "2": [
-                    "US Govt",
-                    ""
-                ]
-            },
-            "7": {
-                "1": [
-                    "US Govt",
-                    ""
-                ],
-                "2": [
-                    "US Govt",
-                    ""
-                ]
-            }
-        }
     },
     "86079": {
         "name": "Heather Mellows",
@@ -6715,10 +6438,6 @@ export default {
         "room": "Kitchen",
         "phone": "354-8233"
     },
-    "86572": {
-        "name": "Brenda Mireles Romo",
-        "title": "Instructional Assistant"
-    },
     "86596": {
         "email": "jwellsakis@pausd.org",
         "name": "Jennifer Wells Akis",
@@ -6776,10 +6495,6 @@ export default {
         },
         "dept": "VPA",
         "room": "M1, M3"
-    },
-    "86917": {
-        "name": "Danny Lee",
-        "title": "Computer Application Specialist"
     },
     "87246": {
         "email": "ssaha@pausd.org",
@@ -6839,6 +6554,10 @@ export default {
         "room": "N110, K14",
         "phone": "354-8238 ext. 6176"
     },
+    "87693": {
+        "name": "Edward Barrett",
+        "title": "Long Term Sub"
+    },
     "87712": {
         "email": "afitzhugh@pausd.org",
         "name": "Angelina Fitzhugh",
@@ -6858,6 +6577,10 @@ export default {
                 ]
             }
         }
+    },
+    "88381": {
+        "name": "Jared Searl",
+        "title": "Contractor"
     },
     "88433": {
         "name": "Howard Selznick",
@@ -6944,6 +6667,14 @@ export default {
         "room": "N110",
         "phone": "354-8238 ext. 6960"
     },
+    "89586": {
+        "name": "Makiya Francis",
+        "title": "Student Attendant"
+    },
+    "90262": {
+        "name": "Lorebelle Chang",
+        "title": "District Nurse"
+    },
     "90275": {
         "name": "Thomas Everett",
         "title": "Student Attendant",
@@ -6959,6 +6690,18 @@ export default {
         "phone": "354-8279 ext. 5537",
         "dept": "Copy Room",
         "room": "K building"
+    },
+    "90344": {
+        "name": "TK Hanie",
+        "title": "Education Specialist "
+    },
+    "90589": {
+        "name": "Eric Handa",
+        "title": "Custodian I"
+    },
+    "90979": {
+        "name": "Davina Santos",
+        "title": "Counselor"
     },
     "91387": {
         "email": "jwellsakis@pausd.org",
@@ -7095,6 +6838,36 @@ export default {
         "dept": "Transitionist",
         "room": "V7"
     },
+    "93809": {
+        "name": "Melinda Wilson",
+        "title": "Teacher",
+        "periods": {
+            "3": {
+                "1": [
+                    "ExplExpSJ-AAR",
+                    ""
+                ],
+                "2": [
+                    "ExplExpSJ-AAR",
+                    ""
+                ]
+            },
+            "4": {
+                "1": [
+                    "ExplExpSJ-AAR",
+                    ""
+                ],
+                "2": [
+                    "ExplExpSJ-AAR",
+                    ""
+                ]
+            }
+        }
+    },
+    "94247": {
+        "name": "Star Teachout",
+        "title": "Long Term Substitute"
+    },
     "94685": {
         "name": "Jorge Chavez",
         "title": "Counselor",
@@ -7163,6 +6936,62 @@ export default {
         "other": "Teaches SELF.",
         "dept": "Science",
         "room": "V2"
+    },
+    "95604": {
+        "name": "Savannah Heupel",
+        "title": "Teacher",
+        "periods": {
+            "2": {
+                "1": [
+                    "Geom A",
+                    ""
+                ],
+                "2": [
+                    "Geom A",
+                    ""
+                ]
+            },
+            "3": {
+                "1": [
+                    "Geom A",
+                    ""
+                ],
+                "2": [
+                    "Geom A",
+                    ""
+                ]
+            },
+            "4": {
+                "1": [
+                    "Geom A",
+                    ""
+                ],
+                "2": [
+                    "Geom A",
+                    ""
+                ]
+            },
+            "5": {
+                "1": [
+                    "Geom",
+                    ""
+                ],
+                "2": [
+                    "Geom",
+                    ""
+                ]
+            },
+            "6": {
+                "1": [
+                    "Geom",
+                    ""
+                ],
+                "2": [
+                    "Geom",
+                    ""
+                ]
+            }
+        }
     },
     "95789": {
         "name": "Marjorie Paronable",
@@ -7366,14 +7195,6 @@ export default {
         "room": "J7",
         "phone": "354-8246 ext. 6605"
     },
-    "96225": {
-        "name": "Rossana Castillo",
-        "title": "Wellness Outreach Worker"
-    },
-    "96305": {
-        "name": "Jared Searl",
-        "title": "Contractor"
-    },
     "97107": {
         "email": "mdungan@pausd.org",
         "name": "Mark Dungan",
@@ -7446,6 +7267,52 @@ export default {
         "dept": "SpEd",
         "room": "K15"
     },
+    "97414": {
+        "name": "Daissy Tabares Ruiz",
+        "title": "Teacher",
+        "periods": {
+            "1": {
+                "1": [
+                    "Spanish 2",
+                    ""
+                ],
+                "2": [
+                    "Spanish 2",
+                    ""
+                ]
+            },
+            "2": {
+                "1": [
+                    "Spanish 2",
+                    ""
+                ],
+                "2": [
+                    "Spanish 2",
+                    ""
+                ]
+            },
+            "3": {
+                "1": [
+                    "Spanish 2",
+                    ""
+                ],
+                "2": [
+                    "Spanish 2",
+                    ""
+                ]
+            },
+            "5": {
+                "1": [
+                    "Span/Span2",
+                    ""
+                ],
+                "2": [
+                    "Span/Span2",
+                    ""
+                ]
+            }
+        }
+    },
     "97761": {
         "name": "Angela Merchant",
         "title": "Teacher",
@@ -7506,6 +7373,62 @@ export default {
         "other": "Teaches SELF.",
         "dept": "Science/CTE",
         "room": "L2"
+    },
+    "97983": {
+        "name": "Gabrielle Gramegna",
+        "title": "Teacher",
+        "periods": {
+            "1": {
+                "1": [
+                    "Adv.Draw/Painting II",
+                    ""
+                ],
+                "2": [
+                    "Adv.Draw/Painting II",
+                    ""
+                ]
+            },
+            "3": {
+                "1": [
+                    "Pt/Dr 1",
+                    ""
+                ],
+                "2": [
+                    "Pt/Dr 1",
+                    ""
+                ]
+            },
+            "4": {
+                "1": [
+                    "Adv.Draw/Painting H",
+                    ""
+                ],
+                "2": [
+                    "Adv.Draw/Painting H",
+                    ""
+                ]
+            },
+            "5": {
+                "1": [
+                    "Art Spec 1",
+                    ""
+                ],
+                "2": [
+                    "Art Spec 1",
+                    ""
+                ]
+            },
+            "7": {
+                "1": [
+                    "Art Spec 1",
+                    ""
+                ],
+                "2": [
+                    "Art Spec 1",
+                    ""
+                ]
+            }
+        }
     },
     "98414": {
         "name": "Daissy Tabares",
@@ -7575,6 +7498,10 @@ export default {
         "other": "Teaches SELF.",
         "dept": "Science",
         "room": "J3, J6"
+    },
+    "98924": {
+        "name": "Angel Ceballos",
+        "title": "Student Instructional Aide"
     },
     "99511": {
         "name": "Gretchen Berg",

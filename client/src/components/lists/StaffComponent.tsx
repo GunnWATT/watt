@@ -73,7 +73,7 @@ const StaffComponent = (props: Staff & {id:string}) => {
                 <tr key={name}>
                     <th scope="row">{name}</th>
                     <td>{course}</td>
-                    <td>{room}</td>
+                    {/* <td>{room}</td> */}
                 </tr>
             )
         }
@@ -84,7 +84,7 @@ const StaffComponent = (props: Staff & {id:string}) => {
                 <tr>
                     <th>Period</th>
                     <th>Class</th>
-                    <th>Room</th>
+                    {/* <th>Room</th> */}
                 </tr>
                 </thead>
                 <tbody>
@@ -100,7 +100,7 @@ const StaffComponent = (props: Staff & {id:string}) => {
         <li onClick={toggle}>
             <span className="primary">{name}</span>
             {(title || dept) && <span className="secondary">{title === "Teacher" && dept ? `${title}, ${dept}` : title ? title : dept ? dept : ``}</span>}
-            <span className="secondary">{email}</span>
+            {email ? <span className="secondary">{email}</span> : null}
 
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>{name}</ModalHeader>
@@ -108,7 +108,7 @@ const StaffComponent = (props: Staff & {id:string}) => {
                     {title && <p><strong>Title:</strong> {title}</p>}
                     {dept && <p><strong>Department:</strong> {dept}</p>}
                     {room && <p><strong>Room:</strong> {room}</p>}
-                    <p><strong>Email:</strong> {email}</p>
+                    {email ? <p><strong>Email:</strong> {email}</p> : null}
                     {phone && <p><strong>Phone:</strong> {phone}</p>}
                     {periods && <p>
                         <strong>Schedule:
