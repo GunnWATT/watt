@@ -198,7 +198,6 @@ ul.material-list li, .sidebar .toggler {
   color: inherit;
   display: block;
   transition: background-color 200ms ease;
-  padding: 0.5rem;
 }
 .sidebar .item:hover {
   border-radius: 5px;
@@ -222,11 +221,11 @@ ul.material-list li, .sidebar .toggler {
   color: var(--active);
 }
 .sidebar .item a, .sidebar .item button {
+  padding: 0.5rem;
   display: block;
   color: inherit;
   width: 100%;
   text-align: left;
-  padding: 0;
 }
 .sidebar .bottom {
   margin-top: auto;

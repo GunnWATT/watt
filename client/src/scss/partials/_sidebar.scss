@@ -62,7 +62,6 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
     color: inherit;
     display: block;
     transition: background-color 200ms ease;
-    padding: $link-padding;
 
     &:hover {
       a {
@@ -97,11 +96,11 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
 
     // The <Link> components
     a, button {
+      padding: $link-padding;
       display: block;
       color: inherit;
       width: 100%;
       text-align: left;
-      padding: 0;
     }
   }
 
