@@ -227,7 +227,7 @@ const staffMatch = (staffA, staffB) => {
             }
         }
 
-        if(exactMatch || nameSimilarity(bestMatch.name, staff.name) >= 0.8) {
+        if(exactMatch || nameSimilarity(bestMatch.name, staff.name) >= 0.7) {
             // match!
 
             gunnWebsiteStaff.splice( i, 1 );
@@ -239,6 +239,8 @@ const staffMatch = (staffA, staffB) => {
         } else {
             // alone... sad!
             mergedData.push(staff);
+
+            // if (nameSimilarity(bestMatch.name, staff.name) >= 0.6) console.log(bestMatch.name, staff.name);
         }
     }
 
