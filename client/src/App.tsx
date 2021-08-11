@@ -77,7 +77,7 @@ const App = () => {
     useEffect(() => {
         const midnight = date.clone().startOf('date');
         const minutes = date.diff(midnight, 'minutes');
-        const period = parseNextPeriod(date, minutes);
+        const period = parseNextPeriod(date, minutes, userData);
 
         // Initialize favicon link and canvas references
         if (!favicon.current) {
@@ -276,9 +276,7 @@ const App = () => {
     // Update firebase and local data to be up to date with defaultUserData using deepmerge
     useEffect(() => {
         const fbData = firebaseUserData?.data()
-        if (fbData)
-            updateFirebaseUserData('', deepmerge(defaultUserData, fbData));
-
+        if (fbData) updateFirebaseUserData('', deepmerge(defaultUserData, fbData));
         updateLocalStorageUserData('', deepmerge(defaultUserData, localStorageData));
     }, [firebaseUserData])
 
