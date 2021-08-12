@@ -470,7 +470,7 @@ ul.material-list li span {
   position: sticky;
   top: 24px;
 }
-.events-heading {
+.two-col .events-heading {
   position: sticky;
   top: 0;
   background-color: inherit;

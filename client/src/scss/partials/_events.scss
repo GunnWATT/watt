@@ -19,13 +19,13 @@
     box-sizing:         border-box;
     position: sticky;
     top: 24px;
-  }
 
-  // The heading for the events sidebar
-  &-heading {
-    position: sticky;
-    top: 0;
-    background-color: inherit;
+    // The heading for the events sidebar
+    &-heading {
+      position: sticky;
+      top: 0;
+      background-color: inherit;
+    }
   }
 
   // The div content pane for the events sidebar
