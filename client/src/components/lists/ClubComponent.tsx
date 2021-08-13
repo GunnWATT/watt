@@ -38,7 +38,7 @@ const ClubComponent = (props: Club & {id: string}) => {
             {/* <span className="secondary">{room}</span> */}
             <span className="secondary">{day}</span>
 
-            <Modal isOpen={modal} toggle={toggle}>
+            <Modal isOpen={modal} toggle={toggle} scrollable>
                 <ModalHeader toggle={toggle}>{name}{props.new && <Badge>New</Badge>}</ModalHeader>
                 <ModalBody>
                     <p><strong>Meeting day:</strong> {day}</p>

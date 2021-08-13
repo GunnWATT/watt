@@ -102,7 +102,7 @@ const StaffComponent = (props: Staff & {id:string}) => {
             {(title || dept) && <span className="secondary">{title === "Teacher" && dept ? `${title}, ${dept}` : title ? title : dept ? dept : ``}</span>}
             {email ? <span className="secondary">{email}</span> : null}
 
-            <Modal isOpen={modal} toggle={toggle}>
+            <Modal isOpen={modal} toggle={toggle} scrollable>
                 <ModalHeader toggle={toggle}>{name}</ModalHeader>
                 <ModalBody>
                     {title && <p><strong>Title:</strong> {title}</p>}
