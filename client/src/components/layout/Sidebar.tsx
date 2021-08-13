@@ -48,36 +48,38 @@ const Sidebar = (props: SidebarProps) => {
 
     return (
         <div className={`sidebar ${!isOpen ? 'collapsed' : ''}`}>
-            {/* Toggler */}
-            <span
-                className="toggler"
-                onClick={toggle}
-            >
-                {isOpen
-                    ? <ChevronLeft/>
-                    : <ChevronRight/>}
-            </span>
+            {/* The outer <div> only exists to occupy space to squish #content; the inner <div> has position: fixed; */}
+            <div className='sidebar-content'>
+                {/* Toggler */}
+                <span
+                    className="toggler"
+                    onClick={toggle}
+                >
+                    {isOpen
+                        ? <ChevronLeft/>
+                        : <ChevronRight/>}
+                </span>
 
-            {/* Heading */}
-            <Link to="/" className="logo">
-                <img src={logo} className="logo" alt="WATT Logo"/>
-            </Link>
-            <h1>Web App of the Titans</h1>
+                {/* Heading */}
+                <Link to="/" className="logo">
+                    <img src={logo} className="logo" alt="WATT Logo"/>
+                </Link>
+                <h1>Web App of the Titans</h1>
 
-            {/* Nav */}
-            <SidebarItem name="Home" to="/" icon={<Home/>} exact/>
-            <SidebarItem name="Classes" to="/classes" icon={<CheckSquare/>}/>
-            <SidebarItem name="Clubs" to="/clubs" icon={<Users/>}/>
-            <SidebarItem name="Utilities" to="/utilities" icon={<Tool/>}/>
-            <SidebarItem name="Settings" to="/settings" icon={<Settings/>}/>
+                {/* Nav */}
+                <SidebarItem name="Home" to="/" icon={<Home/>} exact/>
+                <SidebarItem name="Classes" to="/classes" icon={<CheckSquare/>}/>
+                <SidebarItem name="Clubs" to="/clubs" icon={<Users/>}/>
+                <SidebarItem name="Utilities" to="/utilities" icon={<Tool/>}/>
+                <SidebarItem name="Settings" to="/settings" icon={<Settings/>}/>
 
-            {/* Bottom Account Status Button */}
-            <span className="bottom">
-                {user
-                    ? <GoogleSignOutBtn/>
-                    : <GoogleSignInBtn/>}
-            </span>
-
+                {/* Bottom Account Status Button */}
+                <span className="bottom">
+                    {user
+                        ? <GoogleSignOutBtn/>
+                        : <GoogleSignInBtn/>}
+                </span>
+            </div>
         </div>
     )
 }

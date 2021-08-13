@@ -1,4 +1,7 @@
 .bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
   background: var(--bg-primary);
   width: 100vw;
   padding: 1rem;
