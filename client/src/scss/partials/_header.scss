@@ -5,6 +5,11 @@
   padding: 24px;
   z-index: 2;
 
+  // Lower padding on small screens
+  .vertical & {
+    padding: 15px;
+  }
+
   // Red box that displays the heading
   .header {
     @include content-box($padding: 12px 20px, $bg-color: $theme);

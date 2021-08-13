@@ -308,6 +308,9 @@ ul.material-list li, .sidebar .toggler {
   padding: 24px;
   z-index: 2;
 }
+.vertical .header-background, .vertical .testing {
+  padding: 15px;
+}
 .header-background .header, .testing .header {
   display: flex;
   flex-direction: column;
