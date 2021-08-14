@@ -19,12 +19,14 @@
 // Home
 @import 'partials/events';
 @import 'partials/schedule';
-
-// Misc
-@import 'partials/search';
 @import 'partials/datepicker';
+
+// Settings
+@import 'partials/period-customization';
+
+// Components
+@import 'partials/search';
 @import 'partials/loading';
 @import 'partials/no-results';
 @import 'partials/WIP';
 @import 'partials/dashboard';
-@import 'partials/periods';
