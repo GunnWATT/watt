@@ -236,7 +236,7 @@ const App = () => {
         localStorageRawData = JSON.parse(localStorage.getItem("data") ?? '{}')
     } catch(err) { 
         // something happened
-        localStorage.clear();
+        localStorage.removeItem('data');
     }
 
     // Merges two objects, prioritizing b over a

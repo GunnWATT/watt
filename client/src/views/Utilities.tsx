@@ -12,6 +12,7 @@ import Support from '../components/utilities/Support';
 import Map from '../components/utilities/Map';
 import Calculator from '../components/utilities/Calculator';
 import WIP from '../components/misc/WIP';
+import Barcode from '../components/utilities/Barcode';
 
 
 const Utilities = () => {
@@ -27,6 +28,7 @@ const Utilities = () => {
                     <NavTab to={`${match.url}/map`} name="Map" />
                     <NavTab to={`${match.url}/support`} name="Support" />
                     <NavTab to={`${match.url}/staff`} name="Staff" />
+                    <NavTab to={`${match.url}/barcode`} name="Barcode" />
                     <NavTab to={`${match.url}/courses`} name="Courses" />
                 </Nav>
             }
@@ -37,6 +39,7 @@ const Utilities = () => {
                 <Route path={`${match.path}/map`} component={Map}/>
                 <Route path={`${match.path}/support`} component={Support}/>
                 <Route path={`${match.path}/staff`} component={Staff}/>
+                <Route path={`${match.path}/barcode`} component={Barcode} />
                 <Route path={`${match.path}/courses`} component={WIP}/> {/* WIP is temporary, will replace with courses when it's finished */}
             </Switch>
         </Header>
