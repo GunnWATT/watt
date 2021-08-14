@@ -17,6 +17,7 @@ export type UserData = {
     options: {theme: string, time: string, period0: boolean, period8: boolean},
     clubs: string[],
     staff: string[],
+    id: string,
     sgy?: {key: string, sec: string, uid: string}
 };
 
@@ -41,7 +42,8 @@ export const defaultUserData = {
         time: "12",
         period0: false,
         period8: false
-    }
+    },
+    id: '00000'
 };
 
 const UserDataContext = React.createContext<UserData>(defaultUserData);
