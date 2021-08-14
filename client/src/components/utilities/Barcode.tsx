@@ -74,7 +74,7 @@ const Barcode = () => {
         if(userData.id) {
             setCode('950' + userData.id)
         }
-    }, [userData])
+    }, [userData.id])
 
     const [barcodeOverlay, setOverlay] = useState(false);
 
