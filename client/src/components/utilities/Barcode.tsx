@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-// import firebase from '../../firebase/Firebase';
-// import { useAuthState } from 'react-firebase-hooks/auth';
+import firebase from '../../firebase/Firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 
 import { Eye } from 'react-feather'
@@ -127,6 +127,7 @@ const Barcode = () => {
         }
     }, [code, overlayCanvasRef]);
 
+    const [user] = useAuthState(firebase.auth);
     
     return (
         <div>
@@ -134,6 +135,13 @@ const Barcode = () => {
             <hr />
 
             <div className="barcode-burrito">
+
+                {user ? null : <div style ={{
+                    textAlign: "center"
+                }}>
+                    Sign in for the best experience. <br /> (We'll know your ID automatically!)
+                    </div>}
+
                 <input className="barcode-input" value={code} onChange={e => setCode(e.target.value)} />
 
                 <canvas ref={canvasRef} style={{
