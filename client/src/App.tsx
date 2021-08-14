@@ -278,6 +278,8 @@ const App = () => {
         const fbData = firebaseUserData?.data()
 
         // set ID
+        // ID causes a lot of stupid problems, hence all this stupid code
+        // can probably be fixed up later
 
         let id: boolean|string = false;
         if (auth.currentUser) {
@@ -288,6 +290,7 @@ const App = () => {
             }
         }
 
+        // Do things with firebase data
         if (fbData) {
             let newdata = deepmerge(defaultUserData, fbData);
             if(id) {
@@ -296,9 +299,18 @@ const App = () => {
             updateFirebaseUserData('', newdata);
             updateLocalStorageUserData('', newdata);
         }
-        updateLocalStorageUserData('', deepmerge(defaultUserData, localStorageData));
-        // console.log(fbData?.id);
 
+        try {
+            // strange things for strange problems
+            const newLocalStorageData = deepmerge(
+                defaultUserData,
+                JSON.parse(localStorage.getItem("data") ?? '{}')
+            )
+            updateLocalStorageUserData('', newLocalStorageData);
+        } catch(err) {
+            localStorage.removeItem('data');
+        }
+        
         
     }, [firebaseUserData])
 
