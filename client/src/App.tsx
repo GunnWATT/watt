@@ -276,18 +276,30 @@ const App = () => {
     // Update firebase and local data to be up to date with defaultUserData using deepmerge
     useEffect(() => {
         const fbData = firebaseUserData?.data()
-        if (fbData) updateFirebaseUserData('', deepmerge(defaultUserData, fbData));
-        updateLocalStorageUserData('', deepmerge(defaultUserData, localStorageData));
 
         // set ID
-        if(auth.currentUser) {
+
+        let id: boolean|string = false;
+        if (auth.currentUser) {
             const id950 = auth.currentUser.email!.slice(2, 7);
             const validID = id950.split('').every(char => '0123456789'.includes(char)); // make sure all are digits!
-            if(validID) {
-                updateFirebaseUserData('id', id950);
-                updateLocalStorageUserData('id', id950);
+            if (validID) {
+                id = id950;
             }
         }
+
+        if (fbData) {
+            let newdata = deepmerge(defaultUserData, fbData);
+            if(id) {
+                newdata = {...newdata, id};
+            }
+            updateFirebaseUserData('', newdata);
+            updateLocalStorageUserData('', newdata);
+        }
+        updateLocalStorageUserData('', deepmerge(defaultUserData, localStorageData));
+        // console.log(fbData?.id);
+
+        
     }, [firebaseUserData])
 
     document.body.className = userData.options.theme;
