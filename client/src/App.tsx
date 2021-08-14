@@ -278,6 +278,16 @@ const App = () => {
         const fbData = firebaseUserData?.data()
         if (fbData) updateFirebaseUserData('', deepmerge(defaultUserData, fbData));
         updateLocalStorageUserData('', deepmerge(defaultUserData, localStorageData));
+
+        // set ID
+        if(auth.currentUser) {
+            const id950 = auth.currentUser.email!.slice(2, 7);
+            const validID = id950.split('').every(char => '0123456789'.includes(char)); // make sure all are digits!
+            if(validID) {
+                updateFirebaseUserData('id', id950);
+                updateLocalStorageUserData('id', id950);
+            }
+        }
     }, [firebaseUserData])
 
     document.body.className = userData.options.theme;

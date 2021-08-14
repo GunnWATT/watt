@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
-import firebase from '../../firebase/Firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+// import firebase from '../../firebase/Firebase';
+// import { useAuthState } from 'react-firebase-hooks/auth';
+
 
 import { Eye } from 'react-feather'
 import ReactDOM from 'react-dom';
+import UserDataContext from '../../contexts/UserDataContext';
 
 /*
   ORIGINALLY MADE BY SEAN (https://github.com/SheepTester), PORTED FROM GUNN.APP
@@ -66,22 +68,15 @@ const code39Values: {[key:string]: number} = {
 const Barcode = () => {
     const [code, setCode] = useState('95000000');
 
-    const auth = firebase.auth;
-    const [user] = useAuthState(auth);
-
-    const [barcodeOverlay, setOverlay] = useState(false);
+    const userData = useContext(UserDataContext);
 
     useEffect(() => {
-        if (user?.email) {
-            // supposedly the [2, 7)th digits (0 indexed) are the ID
-            const id950 = user.email.slice(2, 7);
-            const validID = id950.split('').every(char => '0123456789'.includes(char)); // make sure all are digits!
-
-            if (validID) {
-                setCode('950' + (id950))
-            }
+        if(userData.id) {
+            setCode('950' + userData.id)
         }
-    }, [user]);
+    }, [userData])
+
+    const [barcodeOverlay, setOverlay] = useState(false);
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const overlayCanvasRef = useRef<HTMLCanvasElement>(null);
