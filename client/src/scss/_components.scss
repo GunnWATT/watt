@@ -22,6 +22,8 @@ button {
 input {
   background-color: var(--content-primary);
   color: inherit;
+  border: none;
+  outline: none;
 }
 
 iframe {border: none;}
@@ -42,4 +44,4 @@ hr {
 
 
 // Utility inheritables
-%clickable {cursor: pointer;}
+.clickable {cursor: pointer;}

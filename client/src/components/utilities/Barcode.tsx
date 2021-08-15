@@ -1,171 +1,60 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
-import firebase from '../../firebase/Firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
-
-
-import { Eye } from 'react-feather'
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect, useContext } from 'react';
 import UserDataContext from '../../contexts/UserDataContext';
+import {updateUserData} from '../../firebase/updateUserData';
+import BarcodeRow from './BarcodeRow';
 
-/*
-  ORIGINALLY MADE BY SEAN (https://github.com/SheepTester), PORTED FROM GUNN.APP
-  
-  "
-  CREDITS TO WIKIPEDIA
-  https://en.wikipedia.org/wiki/Code_39
-  I USED THEIR JQUERY AS WELL TO TURN THEIR HELPFUL TABLE INTO JSON THAT I COPIED AND PASTED HERE
-  "
-  - SEAN
-*/
+const DEFAULT_BARCODE = '95000000'
 
-const code39Values: {[key:string]: number} = {
-    '0': 349,
-    '1': 581,
-    '2': 419,
-    '3': 661,
-    '4': 347,
-    '5': 589,
-    '6': 427,
-    '7': 341,
-    '8': 583,
-    '9': 421,
-    A: 599,
-    K: 605,
-    U: 527,
-    B: 437,
-    L: 443,
-    V: 311,
-    C: 679,
-    M: 685,
-    W: 553,
-    D: 383,
-    N: 389,
-    X: 293,
-    E: 625,
-    O: 631,
-    Y: 535,
-    F: 463,
-    P: 469,
-    Z: 319,
-    G: 359,
-    Q: 371,
-    '-': 287,
-    H: 601,
-    R: 613,
-    '.': 529,
-    I: 439,
-    S: 451,
-    ' ': 313,
-    J: 385,
-    T: 397,
-    '*': 295,
-    '+': 2521,
-    '/': 2467,
-    $: 2461,
-    '%': 3007
-}
 
 const Barcode = () => {
-    const [code, setCode] = useState('95000000');
-
+    const [code, setCode] = useState(DEFAULT_BARCODE);
     const userData = useContext(UserDataContext);
+    const [barcodes, setBarcodes] = useState<[string, string][]>(JSON.parse(userData.barcodes));
 
-    useEffect(() => {
-        if(userData.id) {
-            setCode('950' + userData.id)
-        }
-    }, [userData.id])
-
-    const [barcodeOverlay, setOverlay] = useState(false);
-
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const overlayCanvasRef = useRef<HTMLCanvasElement>(null);
-
-    const drawCodeOnCanvas = (canvas:HTMLCanvasElement) => {
-        const c = canvas.getContext('2d')!;
-
-        const chars = ['*', ...code.split(''), '*'];
-
-        canvas.height = 100
-        canvas.width = chars.length * 16 - 1
-        c.clearRect(0, 0, canvas.width, canvas.height)
-        c.fillStyle = 'white'
-        c.fillRect(0, 0, canvas.width, canvas.height)
-        c.fillStyle = 'black'
-        for (let i = 0, x = 0; i < chars.length; i++) {
-            const pattern = code39Values[chars[i]].toString(3)
-            for (let j = 0; j < pattern.length; j++)
-                switch (pattern[j]) {
-                    case '2':
-                        c.fillRect(x, 0, 3, canvas.height)
-                        x += 4
-                        break
-                    case '1':
-                        c.fillRect(x, 0, 1, canvas.height)
-                        x += 2
-                        break
-                    case '0':
-                        x += 2
-                        break
-                }
-        }
+    // Add a default barcode
+    function addBarcode() {
+        const newBarcodes: [string, string][] = [...barcodes, [`Barcode ${barcodes.length + 1}`, DEFAULT_BARCODE]];
+        setBarcodes(newBarcodes)
+        updateUserData('barcodes', JSON.stringify(newBarcodes));
+    }
+    // Remove a barcode at an index
+    function removeBarcode(i: number) {
+        barcodes.splice(i, 1);
+        setBarcodes([...barcodes]);
+        updateUserData('barcodes', JSON.stringify(barcodes));
+    }
+    // Update a barcode name at an index
+    function updateBarcodeName(i: number, value: string) {
+        barcodes[i][0] = value;
+        setBarcodes([...barcodes]);
+        updateUserData('barcodes', JSON.stringify(barcodes));
+    }
+    // Update a barcode value at an index
+    function updateBarcodeValue(i: number, value: string) {
+        barcodes[i][1] = value;
+        setBarcodes([...barcodes]);
+        updateUserData('barcodes', JSON.stringify(barcodes));
     }
 
-    useEffect( () => {
-        const canvas = canvasRef.current;
-
-        if (canvas) {
-            drawCodeOnCanvas(canvas);
-        }
-    }, [code, canvasRef])
-
+    // Set the "you" barcode to the proper ID
     useEffect(() => {
-        const canvas = overlayCanvasRef.current;
+        setCode('950' + userData.id);
+    }, [userData.id])
 
-        if (canvas) {
-            drawCodeOnCanvas(canvas);
-        }
-    }, [code, overlayCanvasRef]);
 
-    const [user] = useAuthState(firebase.auth);
-    
     return (
         <div>
             <h1>Barcode</h1>
             <hr />
 
-            <div className="barcode-burrito">
+            <BarcodeRow name="You" code={code} nonRemovable />
+            {barcodes.map(([name, code], index) =>
+                <BarcodeRow name={name} code={code}
+                    removeBarcode={removeBarcode.bind(null, index)}
+                    updateBarcodeName={updateBarcodeName.bind(null, index)}
+                    updateBarcodeValue={updateBarcodeValue.bind(null, index)}/>)}
 
-                {user ? null : <div style ={{
-                    textAlign: "center"
-                }}>
-                    Sign in for the best experience. <br /> (We'll know your ID automatically!)
-                    </div>}
-
-                <input className="barcode-input" value={code} onChange={e => setCode(e.target.value)} />
-
-                <canvas ref={canvasRef} style={{
-                    imageRendering: 'pixelated'
-                }} />
-
-                <Eye style={{
-                    cursor: 'pointer'
-                }} onClick={() => setOverlay(true)}/>
-            </div>
-
-            {/* Overlay using PORTALS */}
-            {ReactDOM.createPortal((
-                <div className="barcode-overlay" hidden={!barcodeOverlay} onClick={() => setOverlay(false)}>
-                    <div className="barcode-overlay-warning">Click/tap anywhere to close.</div>
-
-                    <div className="barcode-overlay-bar">
-                        <canvas ref={overlayCanvasRef} style={{
-                            imageRendering: 'pixelated'
-                        }} />
-                    </div>
-                </div>
-            ), document.body)}
-
+            <button className="barcode-add-button" onClick={addBarcode}>ADD BARCODE</button>
         </div>
     );
 }

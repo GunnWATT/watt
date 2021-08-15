@@ -18,6 +18,7 @@ export type UserData = {
     clubs: string[],
     staff: string[],
     id: string,
+    barcodes: string, // stringified [string, string][] because firestore doesn't support nested arrays
     sgy?: {key: string, sec: string, uid: string}
 };
 
@@ -25,6 +26,7 @@ export const defaultUserData = {
     v: 0,
     clubs: [],
     staff: [],
+    barcodes: "[]",
     classes: {
         0: { n: "", c: "", l: "", o: "", s: "" },
         1: { n: "", c: "", l: "", o: "", s: "" },

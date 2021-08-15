@@ -2,11 +2,6 @@ input[type=search] {
   background-color: white;
   color: black;
   padding: 6px 10px;
-  border: none;
   border-radius: 20px;
   width: min(12.5rem, 100%);
-
-  &:focus {
-    outline: none;
-  }
 }

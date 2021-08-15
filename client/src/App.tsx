@@ -277,27 +277,21 @@ const App = () => {
     useEffect(() => {
         const fbData = firebaseUserData?.data()
 
-        // set ID
-        // ID causes a lot of stupid problems, hence all this stupid code
-        // can probably be fixed up later
-
-        let id: boolean|string = false;
+        let id: string | undefined;
         if (auth.currentUser) {
             const id950 = auth.currentUser.email!.slice(2, 7);
             const validID = id950.split('').every(char => '0123456789'.includes(char)); // make sure all are digits!
-            if (validID) {
-                id = id950;
-            }
+            if (validID) id = id950;
         }
 
         // Do things with firebase data
         if (fbData) {
             let newdata = deepmerge(defaultUserData, fbData);
-            if(id) {
-                newdata = {...newdata, id};
-            }
+            if (id) newdata = {...newdata, id};
+
             updateFirebaseUserData('', newdata);
             updateLocalStorageUserData('', newdata);
+            console.log(newdata)
         }
 
         try {
@@ -310,16 +304,14 @@ const App = () => {
         } catch(err) {
             localStorage.removeItem('data');
         }
-        
-        
-    }, [firebaseUserData])
+    }, [udLoading])
 
     document.body.className = userData.options.theme;
 
 
     return (
         <Router>
-            <UserDataProvider value={userData as UserData}>
+            <UserDataProvider value={userData}>
                 <TimeProvider value={date}>
                     <Layout>
                         <Switch>

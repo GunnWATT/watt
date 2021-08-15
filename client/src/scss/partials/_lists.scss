@@ -14,7 +14,7 @@ ul.material-list {
     overflow: hidden;
     position: relative;
     font-size: 14px;
-    @extend %clickable;
+    @extend .clickable;
 
     span {
       display: block;
