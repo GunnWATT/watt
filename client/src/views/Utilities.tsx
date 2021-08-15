@@ -34,11 +34,11 @@ const Utilities = () => {
             }
         >
             <Switch>
-                <Route path={match.path} component={Barcode} />
+                <Route exact path={match.path} component={Barcode} />
                 {/* <Route path={`${match.path}/graphing`} component={GraphingCalculator}/> */}
                 <Route path={`${match.path}/map`} component={Map}/>
                 <Route path={`${match.path}/support`} component={Support}/>
-                <Route exact path={`${match.path}/calculator`} component={Calculator}/>
+                <Route path={`${match.path}/calculator`} component={Calculator}/>
                 <Route path={`${match.path}/staff`} component={Staff}/>
                 <Route path={`${match.path}/courses`} component={WIP}/> {/* WIP is temporary, will replace with courses when it's finished */}
             </Switch>
