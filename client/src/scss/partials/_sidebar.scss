@@ -71,7 +71,6 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
     margin: 12px 0 0 0;
     color: inherit;
     display: block;
-    transition: background-color 200ms ease;
     border-radius: 5px;
 
     // Text
@@ -98,6 +97,7 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
 
     // The <Link> components
     a, button {
+      transition: background-color 200ms ease;
       padding: $link-padding;
       display: block;
       color: inherit;
