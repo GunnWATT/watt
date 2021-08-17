@@ -4,11 +4,11 @@ import {Eye, X} from 'react-feather';
 
 
 type BarcodeRowProps = {
-    name: string, code: string, nonRemovable?: boolean,
+    name: string, code: string, readOnly?: boolean,
     removeBarcode?: () => void, updateBarcodeName?: (v: string) => void, updateBarcodeValue?: (v: string) => void
 };
 const BarcodeRow = (props: BarcodeRowProps) => {
-    const {name, code, nonRemovable, removeBarcode, updateBarcodeName, updateBarcodeValue} = props;
+    const {name, code, readOnly, removeBarcode, updateBarcodeName, updateBarcodeValue} = props;
 
     const [barcodeOverlay, setOverlay] = useState(false);
 
@@ -27,7 +27,7 @@ const BarcodeRow = (props: BarcodeRowProps) => {
         c.fillRect(0, 0, canvas.width, canvas.height)
         c.fillStyle = 'black'
         for (let i = 0, x = 0; i < chars.length; i++) {
-            const pattern = code39Values[chars[i]].toString(3)
+            const pattern = code39Values[chars[i]].toString(3);
             for (let j = 0; j < pattern.length; j++)
                 switch (pattern[j]) {
                     case '2':
@@ -59,12 +59,27 @@ const BarcodeRow = (props: BarcodeRowProps) => {
         <>
             <div className="barcode-row">
                 <div className="canvas-wrapper">
-                    <input className="barcode-label" value={name} onChange={e => updateBarcodeName && updateBarcodeName(e.target.value)} />
-                    <input className="barcode-input" value={code} onChange={e => updateBarcodeValue && updateBarcodeValue(e.target.value)} />
+                    <input
+                        className="barcode-label"
+                        value={name}
+                        readOnly={readOnly}
+                        onChange={e => updateBarcodeName && updateBarcodeName(e.target.value)}
+                    />
+                    <input
+                        className="barcode-input"
+                        value={code}
+                        readOnly={readOnly}
+                        onChange={e => {
+                            // Check if the barcode contains any illegal characters
+                            if (![...e.target.value.toUpperCase()].every(x => code39Values[x])) return;
+                            // Autocapitalize letters
+                            updateBarcodeValue && updateBarcodeValue(e.target.value.toUpperCase())
+                        }}
+                    />
                     <canvas ref={canvasRef} style={{imageRendering: 'pixelated'}} />
                 </div>
                 <div className="buttons-wrapper">
-                    {!nonRemovable && <X className="clickable" onClick={() => removeBarcode && removeBarcode()}/>}
+                    {!readOnly && <X className="clickable" onClick={() => removeBarcode && removeBarcode()}/>}
                     <Eye className="clickable" onClick={() => setOverlay(true)}/>
                 </div>
             </div>

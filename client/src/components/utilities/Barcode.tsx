@@ -47,7 +47,7 @@ const Barcode = () => {
             <h1>Barcode</h1>
             <hr />
 
-            <BarcodeRow name="You" code={code} nonRemovable />
+            <BarcodeRow name="You" code={code} readOnly />
             {barcodes.map(([name, code], index) =>
                 <BarcodeRow name={name} code={code}
                     removeBarcode={removeBarcode.bind(null, index)}
