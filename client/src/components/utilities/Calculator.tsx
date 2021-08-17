@@ -2,18 +2,18 @@ import React, {useState} from 'react';
 
 
 const Calculator = () => {
-    const [currGrade, setCurrGrade] = useState(95.00);
-    const [finalsWorth, setFinalsWorth] = useState(15.00);
-    const [minGrade, setMinGrade] = useState(90.00);
+    const [currGrade, setCurrGrade] = useState('95.00');
+    const [finalsWorth, setFinalsWorth] = useState('15.00');
+    const [minGrade, setMinGrade] = useState('90.00');
 
     // Takes in variables and calculates minimum finals score
     const calculateFinalsGrade = () => {
-        if (finalsWorth === 0) return <p>The final cannot be worth 0%.</p>;
-        if (finalsWorth > 100) return <p>The final cannot be worth more than 100% of your grade.</p>
+        if (Number(finalsWorth) === 0) return <p>The final cannot be worth 0%.</p>;
+        if (Number(finalsWorth) > 100) return <p>The final cannot be worth more than 100% of your grade.</p>
 
-        let percentCurrGrade = currGrade / 100;
-        let percentFinalsWorth = finalsWorth / 100;
-        let percentMinGrade = minGrade / 100;
+        let percentCurrGrade = Number(currGrade) / 100;
+        let percentFinalsWorth = Number(finalsWorth) / 100;
+        let percentMinGrade = Number(minGrade) / 100;
         let result = Math.round(((percentMinGrade - percentCurrGrade * (1 - percentFinalsWorth)) / percentFinalsWorth) * 10000) / 100;
 
         if (result <= 0) return <p>You <strong>don't need to study</strong>; even if you score 0%, you'll be above your
@@ -35,7 +35,9 @@ const Calculator = () => {
                         type="text"
                         id="current-grade"
                         value={currGrade}
-                        onChange={(e) => setCurrGrade(Number(e.target.value))}
+                        onChange={(e) => {
+                            !isNaN(Number(e.target.value)) && setCurrGrade(e.target.value);
+                        }}
                     />
                     <span>%</span>
                 </span>
@@ -47,7 +49,9 @@ const Calculator = () => {
                         type="text"
                         id="finals-worth"
                         value={finalsWorth}
-                        onChange={(e) => setFinalsWorth(Number(e.target.value))}
+                        onChange={(e) => {
+                            !isNaN(Number(e.target.value)) && setFinalsWorth(e.target.value);
+                        }}
                     />
                     <span>%</span>
                 </span>
@@ -59,7 +63,9 @@ const Calculator = () => {
                         type="text"
                         id="minimum-grade"
                         value={minGrade}
-                        onChange={(e) => setMinGrade(Number(e.target.value))}
+                        onChange={(e) => {
+                            !isNaN(Number(e.target.value)) && setMinGrade(e.target.value);
+                        }}
                     />
                     <span>%</span>
                 </span>
