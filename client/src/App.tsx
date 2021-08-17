@@ -291,7 +291,6 @@ const App = () => {
 
             updateFirebaseUserData('', newdata);
             updateLocalStorageUserData('', newdata);
-            console.log(newdata)
         }
 
         try {

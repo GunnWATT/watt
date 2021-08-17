@@ -5,10 +5,11 @@ import {Eye, X} from 'react-feather';
 
 type BarcodeRowProps = {
     name: string, code: string, readOnly?: boolean,
-    removeBarcode?: () => void, updateBarcodeName?: (v: string) => void, updateBarcodeValue?: (v: string) => void
+    removeBarcode?: () => void, updateBarcodeName?: (v: string) => void, updateBarcodeValue?: (v: string) => void,
+    updateBarcodes?: () => void
 };
 const BarcodeRow = (props: BarcodeRowProps) => {
-    const {name, code, readOnly, removeBarcode, updateBarcodeName, updateBarcodeValue} = props;
+    const {name, code, readOnly, removeBarcode, updateBarcodeName, updateBarcodeValue, updateBarcodes} = props;
 
     const [barcodeOverlay, setOverlay] = useState(false);
 
@@ -64,6 +65,7 @@ const BarcodeRow = (props: BarcodeRowProps) => {
                         value={name}
                         readOnly={readOnly}
                         onChange={e => updateBarcodeName && updateBarcodeName(e.target.value)}
+                        onBlur={() => updateBarcodes && updateBarcodes()}
                     />
                     <input
                         className="barcode-input"
@@ -75,6 +77,7 @@ const BarcodeRow = (props: BarcodeRowProps) => {
                             // Autocapitalize letters
                             updateBarcodeValue && updateBarcodeValue(e.target.value.toUpperCase())
                         }}
+                        onBlur={() => updateBarcodes && updateBarcodes()}
                     />
                     <canvas ref={canvasRef} style={{imageRendering: 'pixelated'}} />
                 </div>
