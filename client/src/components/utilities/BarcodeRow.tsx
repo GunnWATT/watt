@@ -19,7 +19,7 @@ const BarcodeRow = (props: BarcodeRowProps) => {
     const drawCodeOnCanvas = (canvas: HTMLCanvasElement) => {
         const c = canvas.getContext('2d')!;
 
-        const chars = ['*', ...code.split(''), '*'];
+        const chars = ['*', ...code.toUpperCase().split('').filter(char => code39Values.hasOwnProperty(char)), '*'];
 
         canvas.height = 100
         canvas.width = chars.length * 16 - 1
@@ -72,10 +72,17 @@ const BarcodeRow = (props: BarcodeRowProps) => {
                         value={code}
                         readOnly={readOnly}
                         onChange={e => {
-                            // Check if the barcode contains any illegal characters
-                            if (![...e.target.value.toUpperCase()].every(x => code39Values[x])) return;
-                            // Autocapitalize letters
-                            updateBarcodeValue && updateBarcodeValue(e.target.value.toUpperCase())
+                            // Filter illegal characters out from the barcode.
+                            // Note: Lowercase letters are capitalised when
+                            // rendering the barcode (so the cursor position
+                            // doesn't reset when typing lowercase letters).
+                            updateBarcodeValue && updateBarcodeValue(
+                                e.target.value
+                                    .split('')
+                                    .filter(char =>
+                                        code39Values.hasOwnProperty(char.toUpperCase()))
+                                    .join('')
+                            )
                         }}
                         onBlur={() => updateBarcodes && updateBarcodes()}
                     />
