@@ -7,7 +7,7 @@ import Header from '../components/layout/Header';
 import NavTab from '../components/layout/NavTab';
 import Appearance from '../components/settings/Appearance';
 import PeriodCustomization from '../components/settings/PeriodCustomization';
-import Localization from '../components/settings/Localization';
+import Features from '../components/settings/Features';
 import About from '../components/settings/About';
 
 
@@ -20,16 +20,16 @@ const Settings = () => {
             nav={
                 <Nav fill tabs>
                     <NavTab to={match.url} name="Appearance" exact/>
+                    <NavTab to={`${match.url}/features`} name="Features" />
                     <NavTab to={`${match.url}/periods`} name="Periods" />
-                    <NavTab to={`${match.url}/localization`} name="Localization" />
                     <NavTab to={`${match.url}/about`} name="About" />
                 </Nav>
             }
         >
             <Switch>
                 <Route exact path={match.path} component={Appearance}/>
+                <Route path={`${match.path}/features`} component={Features}/>
                 <Route path={`${match.path}/periods`} component={PeriodCustomization}/>
-                <Route path={`${match.path}/localization`} component={Localization}/>
                 <Route path={`${match.path}/about`} component={About}/>
             </Switch>
         </Header>

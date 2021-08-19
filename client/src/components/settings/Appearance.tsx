@@ -7,20 +7,19 @@ import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
 // Firestore
 // import {updateFirestoreField} from '../../firebase/Firestore';
-import { updateUserData } from '../../firebase/updateUserData'
+import { updateUserData } from '../../firebase/updateUserData';
 
 
 const Appearance = () => {
     const userData = useContext(UserDataContext);
-    const {theme: currThemePref, time: currTimePref, period0: showPeriod0, period8: showPeriod8} = userData.options;
+    const {theme: currThemePref, time: currTimePref} = userData.options;
 
     const currTime = useContext(CurrentTimeContext);
 
     // Functions to update firestore fields
     const changeTheme = async (theme: string) => await updateUserData('options.theme', theme);
     const changeTime = async (time: string) => await updateUserData('options.time', time);
-    const changePeriod0 = async (show: boolean) => await updateUserData('options.period0', show);
-    const changePeriod8 = async (show: boolean) => await updateUserData('options.period8', show);
+
 
     return (
         <>
@@ -76,55 +75,6 @@ const Appearance = () => {
                 </Label>
             </FormGroup>
             <br/>
-
-            <h4>Show 0 Period</h4>
-            <FormGroup check>
-                <Label check>
-                    <Input
-                        type="radio"
-                        name="period-0-pref"
-                        checked={showPeriod0}
-                        onClick={() => changePeriod0(true)}
-                    />{' '}
-                    Yes
-                </Label>
-            </FormGroup>
-            <FormGroup check>
-                <Label check>
-                    <Input
-                        type="radio"
-                        name="period-0-pref"
-                        checked={!showPeriod0}
-                        onClick={() => changePeriod0(false)}
-                    />{' '}
-                    No
-                </Label>
-            </FormGroup>
-            <br/>
-
-            <h4>Show Period 8</h4>
-            <FormGroup check>
-                <Label check>
-                    <Input
-                        type="radio"
-                        name="period-8-pref"
-                        checked={showPeriod8}
-                        onClick={() => changePeriod8(true)}
-                    />{' '}
-                    Yes
-                </Label>
-            </FormGroup>
-            <FormGroup check>
-                <Label check>
-                    <Input
-                        type="radio"
-                        name="period-8-pref"
-                        checked={!showPeriod8}
-                        onClick={() => changePeriod8(false)}
-                    />{' '}
-                    No
-                </Label>
-            </FormGroup>
         </>
     );
 }
