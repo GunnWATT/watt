@@ -27,7 +27,7 @@ input {
   border: none;
   outline: none;
 
-  //
+  // UGWA material radio
   &[type="radio"] {
     appearance: none;
     -moz-appearance: none;
@@ -38,8 +38,7 @@ input {
     &::after, &::before {
       content: '';
       display: block;
-      height: 8px;
-      width: 8px;
+      @include circle(8px);
       position: absolute;
       transform: scale(0);
       background: var(--active);
@@ -47,7 +46,6 @@ input {
       left: 2px;
       transition: all .2s;
       pointer-events: none;
-      border-radius: 50%;
     }
 
     &:checked {
