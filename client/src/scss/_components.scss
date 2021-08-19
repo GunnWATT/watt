@@ -1,3 +1,5 @@
+@import 'mixins/circle';
+
 // Components
 a {
   color: $theme;
@@ -24,6 +26,38 @@ input {
   color: inherit;
   border: none;
   outline: none;
+
+  //
+  &[type="radio"] {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    @include circle(16px);
+    border: 2px solid var(--secondary);
+
+    &::after, &::before {
+      content: '';
+      display: block;
+      height: 8px;
+      width: 8px;
+      position: absolute;
+      transform: scale(0);
+      background: var(--active);
+      top: 2px;
+      left: 2px;
+      transition: all .2s;
+      pointer-events: none;
+      border-radius: 50%;
+    }
+
+    &:checked {
+      border-color: var(--active);
+
+      &::after {
+        transform: scale(1);
+      }
+    }
+  }
 }
 
 iframe {border: none;}

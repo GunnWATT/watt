@@ -1,3 +1,5 @@
+@import '../mixins/square';
+
 $sidebar-width: 14rem;
 $sidebar-collapsed-width: 5rem;
 $sidebar-collapse-time: 400ms;
@@ -51,9 +53,7 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
   .logo {
     text-align: center;
     align-self: center;
-    $size: 4rem;
-    width: $size;
-    height: $size;
+    @include square(4rem);
   }
 
   // Header
