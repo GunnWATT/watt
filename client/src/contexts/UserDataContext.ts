@@ -40,7 +40,7 @@ export const defaultUserData = {
         S: { n: "", c: "", l: "", o: "", s: "" }
     },
     options: {
-        theme: "light",
+        theme: "dark",
         time: "12",
         period0: false,
         period8: false
