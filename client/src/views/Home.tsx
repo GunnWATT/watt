@@ -8,6 +8,7 @@ import DateSelector from '../components/schedule/DateSelector';
 import Periods from '../components/schedule/Periods';
 import DayAlert from '../components/schedule/DayAlert';
 import Events from '../components/schedule/Events';
+import iosModal from '../components/misc/iosModal';
 
 // Hooks
 import {useScreenType} from '../hooks/useScreenType';
@@ -87,6 +88,9 @@ const Home = (props: HomeProps) => {
 
             {/* Events */}
             <Events events={props.events} viewDate={viewDate} />
+
+            {/* iOS Modal */}
+            {iosModal()}
         </div>
     );
 }
