@@ -7,8 +7,8 @@ $sidebar-padding: 1rem;
 
 $link-padding: 0.5rem;
 // Ensure that icon will always fill collapsed space
-$icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 2);
-
+$icon-width: $sidebar-collapsed-width -
+  ($sidebar-padding * 2 + $link-padding * 2);
 
 %text-truncate {
   overflow: hidden;
@@ -19,6 +19,7 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
 .sidebar {
   width: $sidebar-width;
   transition: width $sidebar-collapse-time ease;
+  flex: none;
 
   // Style for when the sidebar is collapsed
   &.collapsed {
@@ -37,7 +38,6 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
   position: fixed;
   top: 0;
   bottom: 0;
-  flex: none;
   padding: $sidebar-padding;
   display: flex;
   flex-direction: column;
@@ -96,7 +96,8 @@ $icon-width: $sidebar-collapsed-width - ($sidebar-padding * 2 + $link-padding * 
     }
 
     // The <Link> components
-    a, button {
+    a,
+    button {
       transition: background-color 200ms ease;
       padding: $link-padding;
       display: block;
