@@ -33,10 +33,10 @@ const PeriodCustomizationInput = (props: PeriodProps) => {
             </Col>
             <Col md={6}>
                 <FormGroup>
-                    <Label for="zoom-link">{name} Zoom Link</Label>
+                    <Label for="link">{name} Link</Label>
                     <Input
-                        type="text" name="zoom" id="zoom-link"
-                        placeholder={`${name} Zoom Link`}
+                        type="text" name="link" id="link"
+                        placeholder={`${name} Link`}
                         defaultValue={l}
                         onBlur={e => updatePeriodData(e.target.value, 'l')}
                     />

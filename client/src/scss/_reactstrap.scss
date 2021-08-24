@@ -57,3 +57,16 @@
 .card {
   background-color: var(--bg-secondary);
 }
+
+// <Input>
+input.form-control {
+  color: var(--primary);
+  background-color: var(--content-secondary);
+  border-color: var(--tertiary);
+
+  &:focus {
+    color: var(--primary);
+    background-color: var(--content-secondary);
+    border-color: var(--tertiary);
+  }
+}

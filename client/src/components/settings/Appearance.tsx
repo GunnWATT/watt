@@ -74,7 +74,6 @@ const Appearance = () => {
                     24-hour time <strong>({currTime.format('H:mm:ss')})</strong>
                 </Label>
             </FormGroup>
-            <br/>
         </>
     );
 }
