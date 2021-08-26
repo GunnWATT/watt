@@ -54,6 +54,7 @@
       .calendar-wrapper {
         padding: 5px 15px 10px 15px;
         overflow: auto;
+        -webkit-overflow-scrolling: touch;
 
         .calendar-month-header {
           display: flex;

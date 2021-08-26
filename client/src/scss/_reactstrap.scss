@@ -28,6 +28,7 @@
 
 // <Modal>
 .modal-content {
+  -webkit-overflow-scrolling: touch;
   background-color: var(--content-primary);
 
   .modal-header, .modal-footer {
