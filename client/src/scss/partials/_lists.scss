@@ -25,7 +25,7 @@ ul.material-list {
 // [New] badge
 .modal-content {
   .modal-header .badge {
-    background-color: $theme;
+    background-color: var(--active);
     margin-left: 0.5rem;
   }
 
