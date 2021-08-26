@@ -73,16 +73,16 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-          }
 
-          .calendar-day-no-school {
-            color: var(--secondary)
-          }
+            &-no-school {
+              color: var(--secondary)
+            }
 
-          .calendar-day-selected {
-            background-color: var(--active);
-            color: white;
-            border-radius: 15px;
+            &-selected {
+              background-color: var(--active);
+              color: white;
+              border-radius: 15px;
+            }
           }
         }
       }
@@ -90,6 +90,7 @@
       .calendar-jump {
         background-color: var(--content-secondary);
         color: var(--primary);
+        flex: none;
         padding: 5px 15px 10px 15px;
         border-radius: 0 0 15px 15px;
         display:flex;
