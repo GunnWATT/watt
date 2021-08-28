@@ -132,7 +132,7 @@ const Map = () => {
 
     useEffect(() => setMap(ReactDOM.createPortal(
         <img src={GunnMapImage} ref={mapRef} draggable={false} alt="" style={{
-            position: "absolute",
+            position: "fixed",
             width: '1000px',
             transform: `translate(-50%,-50%) ${pos.toString()}`,
             left: 0,
