@@ -161,9 +161,11 @@ const Map = () => {
                     // scale up
                     const deg = Math.atan2(nx2 - nx, ny2 - ny) - Math.atan2(sx2-sx, sy2-sy);
                     const scale = Math.sqrt((nx2 - nx) ** 2 + (ny2 - ny) ** 2) / Math.sqrt((sx2-sx)**2 + (sy2-sy)**2)
-                    const newtrans = new Transform(scale * Math.cos(deg), -scale*Math.sin(deg), scale*Math.sin(deg), scale*Math.cos(deg), nx - sx, ny - sy);
+                    const trans = new Transform(1,0,0,1, nx - sx, ny - sy);
+                    const rotandscale = new Transform(scale * Math.cos(deg), -scale*Math.sin(deg), scale*Math.sin(deg), scale*Math.cos(deg), 0, 0);
 
-                    pos.matrix = dragging.t.matrix.multiply(newtrans.matrix);
+                    // transformation, rotate, then apply to original
+                    pos.matrix = dragging.t.matrix.multiply(rotandscale.matrix.multiply(trans.matrix));
                     gmap.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
 
                     e.preventDefault();
