@@ -132,7 +132,7 @@ const Map = () => {
 
             gmap.current.addEventListener('touchstart', (e) => {
                 if(dragging) {
-                    dragging.simpleDrag = true;
+                    dragging.simpleDrag = false;
                     dragging.sx = e.touches[0].clientX;
                     dragging.sy = e.touches[0].clientY;
                     dragging.sx2 = e.touches[1].clientX;
