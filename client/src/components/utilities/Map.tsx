@@ -98,10 +98,6 @@ class Transform {
     }
 }
 
-// let m1 = new Matrix([[1,2],[3,4]]);
-// let m2 = new Matrix([[0,1], [2,3]]);
-// console.log(m1.multiply(m2).getRaw());
-
 const Map = () => {
     const [map, setMap] = useState<JSX.Element | null>(null);
     let pos = (new Transform(1, 0, 0, 1, window.innerWidth/2, window.innerHeight/2));
@@ -191,16 +187,16 @@ const Map = () => {
                     const { sx, sy, sx2, sy2 } = dragging;
                     const [nx, ny, nx2, ny2] = [e.touches[0].clientX, e.touches[0].clientY, e.touches[1].clientX, e.touches[1].clientY];
 
-                    // align (sx,sy) and (nx,ny)
-                    // rotate by some number of degrees
-                    // scale up
-                    const deg = Math.atan2(nx2 - nx, ny2 - ny) - Math.atan2(sx2 - sx, sy2 - sy);
+                    const deg = Math.atan2(sx2 - sx, sy2 - sy) - Math.atan2(nx2 - nx, ny2 - ny);
                     const scale = Math.sqrt((nx2 - nx) ** 2 + (ny2 - ny) ** 2) / Math.sqrt((sx2 - sx) ** 2 + (sy2 - sy) ** 2)
-                    const trans = new Transform(1, 0, 0, 1, nx - sx, ny - sy);
+                    const trans = new Transform(1, 0, 0, 1, nx, ny);
+                    const ntrans = new Transform(1, 0, 0, 1, -sx, -sy);
                     const rotandscale = new Transform(scale * Math.cos(deg), -scale * Math.sin(deg), scale * Math.sin(deg), scale * Math.cos(deg), 0, 0);
 
-                    // transformation, rotate, then apply to original
-                    pos.matrix = dragging.t.matrix.multiply(trans.matrix.multiply(rotandscale.matrix));
+                    // console.log(scale);
+
+                    // math
+                    pos.matrix = dragging.t.matrix.multiply(trans.matrix.multiply(rotandscale.matrix.multiply(ntrans.matrix)));
                     mapRef.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
 
                     e.preventDefault();
