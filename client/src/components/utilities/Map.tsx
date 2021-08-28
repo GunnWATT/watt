@@ -130,7 +130,7 @@ const Map = () => {
         <img src={GunnMapImage} ref={mapRef} draggable={false} alt="" style={{
             position: "fixed",
             width: '1000px',
-            transform: `translate(-50%, -50%) ${pos.toString()}`,
+            transform: `${pos.toString()}`,
             left: 0,
             top: 100,
             maxHeight: '100vh',
@@ -148,7 +148,7 @@ const Map = () => {
             mapRef.current!.addEventListener('mousemove', (e) => {
                 if (dragging && dragging.simpleDrag && mapRef.current) {
                     (pos.setTranslate(e.clientX - dragging.sx + dragging.t.getTranslate().x, e.clientY - dragging.sy + dragging.t.getTranslate().y));
-                    mapRef.current.style.transform = `translate(-50%, -50%) ${pos.toString()}`;
+                    mapRef.current.style.transform = `${pos.toString()}`;
                 }
             })
             mapRef.current.addEventListener('mouseup', () => {
@@ -157,7 +157,7 @@ const Map = () => {
             mapRef.current.addEventListener('wheel', (e) => {
                 //@ts-ignore
                 pos.dilate(Math.pow(1.002, -e.deltaY))
-                if (mapRef.current) mapRef.current.style.transform = `translate(-50%, -50%) ${pos.toString()}`;
+                if (mapRef.current) mapRef.current.style.transform = `${pos.toString()}`;
                 e.preventDefault();
             })
 
@@ -177,7 +177,7 @@ const Map = () => {
             mapRef.current.addEventListener('touchmove', (e) => {
                 if (dragging && dragging.simpleDrag && mapRef.current) {
                     (pos.setTranslate(e.touches[0].clientX - dragging.sx + dragging.t.getTranslate().x, e.touches[0].clientY - dragging.sy + dragging.t.getTranslate().y));
-                    mapRef.current.style.transform = `translate(-50%, -50%) ${pos.toString()}`;
+                    mapRef.current.style.transform = `${pos.toString()}`;
                     e.preventDefault();
                 }
 
@@ -187,7 +187,7 @@ const Map = () => {
                     const { sx, sy, sx2, sy2 } = dragging;
                     const [nx, ny, nx2, ny2] = [e.touches[0].clientX, e.touches[0].clientY, e.touches[1].clientX, e.touches[1].clientY];
 
-                    const deg = Math.atan2(sy2 - sy, sx2 - sx) - Math.atan2(ny2 - ny, nx2 - nx);
+                    const deg = Math.atan2(ny2 - ny, nx2 - nx) - Math.atan2(sy2 - sy, sx2 - sx);
                     const scale = Math.sqrt((nx2 - nx) ** 2 + (ny2 - ny) ** 2) / Math.sqrt((sx2 - sx) ** 2 + (sy2 - sy) ** 2)
                     const trans = new Transform(1, 0, 0, 1, nx, ny);
                     const ntrans = new Transform(1, 0, 0, 1, -sx, -sy);
@@ -197,7 +197,7 @@ const Map = () => {
                     // first apply previous transform
                     // then apply the affine transformation
                     pos.matrix = trans.matrix.multiply(rotandscale.matrix).multiply(ntrans.matrix).multiply(dragging.t.matrix);
-                    mapRef.current.style.transform = `translate(-50%, -50%) ${pos.toString()}`;
+                    mapRef.current.style.transform = `${pos.toString()}`;
 
                     e.preventDefault();
                 }
