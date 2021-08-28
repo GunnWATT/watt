@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useContext } from 'react';
 import ReactDOM from 'react-dom';
 
-import gunnmapimg from '../../assets/gunnmap.png';
+import GunnMapImage from '../../assets/gunnmap.png';
+import UserDataContext from '../../contexts/UserDataContext';
 
 // Pay attention in 'nal kids
 class Matrix {
@@ -107,78 +108,9 @@ const Map = () => {
     let dragging: {simpleDrag: boolean, singleClick?: boolean, sx:number, sy:number, t: Transform, sx2?: number, sy2?: number}|null = (null);
 
     // const [gunnMap, setGunnMap] = useState<JSX.Element | null>(null)
-    const gmap = useRef<null|HTMLImageElement>(null);
+    const mapRef = useRef<null|HTMLImageElement>(null);
 
-    useEffect(() => {
-        if(gmap.current) {
-            gmap.current!.addEventListener('mousedown', (e) => {
-                dragging = ({ simpleDrag: true, sx: e.clientX, sy: e.clientY, t: pos.copy() });
-            })
-            gmap.current!.addEventListener('mousemove', (e) => {
-                if (dragging && dragging.simpleDrag && gmap.current) {
-                    (pos.setTranslate(e.clientX - dragging.sx + dragging.t.getTranslate().x, e.clientY - dragging.sy + dragging.t.getTranslate().y));
-                    gmap.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
-                }
-            })
-            gmap.current.addEventListener('mouseup', () =>{
-                dragging = null;
-            })
-            gmap.current.addEventListener('wheel', (e) => {
-                //@ts-ignore
-                pos.dilate(Math.pow(1.002, -e.deltaY))
-                if(gmap.current) gmap.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
-                e.preventDefault();
-            })
-
-            gmap.current.addEventListener('touchstart', (e) => {
-                if(dragging) {
-                    dragging.simpleDrag = false;
-                    dragging.sx = e.touches[0].clientX;
-                    dragging.sy = e.touches[0].clientY;
-                    dragging.sx2 = e.touches[1].clientX;
-                    dragging.sy2 = e.touches[1].clientY;
-                    dragging.t = pos.copy();
-                } else {
-                    dragging = ({ simpleDrag: true, sx: e.touches[0].clientX, sy: e.touches[0].clientY, t: pos.copy() });
-                }
-            })
-
-            gmap.current.addEventListener('touchmove', (e) => {
-                if (dragging && dragging.simpleDrag && gmap.current) {
-                    (pos.setTranslate(e.touches[0].clientX - dragging.sx + dragging.t.getTranslate().x, e.touches[0].clientY - dragging.sy + dragging.t.getTranslate().y));
-                    gmap.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
-                    e.preventDefault();
-                }
-
-                if(dragging && !dragging.simpleDrag && gmap.current && dragging.sx2 && dragging.sy2) {
-                    // ruh roh
-                    // have to find some way to map from (sx,sy) and (sx2,sy2) to (nx,ny) and (nx2, ny2) respectively
-                    const {sx,sy, sx2,sy2} = dragging;
-                    const [nx, ny, nx2, ny2] = [e.touches[0].clientX, e.touches[0].clientY, e.touches[1].clientX, e.touches[1].clientY];
-
-                    // align (sx,sy) and (nx,ny)
-                    // rotate by some number of degrees
-                    // scale up
-                    const deg = Math.atan2(nx2 - nx, ny2 - ny) - Math.atan2(sx2-sx, sy2-sy);
-                    const scale = Math.sqrt((nx2 - nx) ** 2 + (ny2 - ny) ** 2) / Math.sqrt((sx2-sx)**2 + (sy2-sy)**2)
-                    const trans = new Transform(1,0,0,1, nx - sx, ny - sy);
-                    const rotandscale = new Transform(scale * Math.cos(deg), -scale*Math.sin(deg), scale*Math.sin(deg), scale*Math.cos(deg), 0, 0);
-
-                    // transformation, rotate, then apply to original
-                    pos.matrix = dragging.t.matrix.multiply(trans.matrix.multiply(rotandscale.matrix));
-                    gmap.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
-
-                    e.preventDefault();
-                }
-            })
-
-            gmap.current.addEventListener('touchend', (e) => {
-                dragging = null;
-            })
-
-        }
-        
-    }, [gmap])
+    const userData = useContext(UserDataContext);
 
     // Render the portal in the useEffect to guarantee that all elements have been rendered into the DOM and
     // document.getElementById('content') is not null
@@ -197,30 +129,98 @@ const Map = () => {
     //     ,
     //     document.getElementById('content')!
     // )), [])
+
+    useEffect(() => setMap(ReactDOM.createPortal(
+        <img src={GunnMapImage} ref={mapRef} draggable={false} alt="" style={{
+            position: "absolute",
+            width: '1000px',
+            transform: `translate(-50%,-50%) ${pos.toString()}`,
+            left: 0,
+            top: 100,
+            maxHeight: '100vh',
+            maxWidth: '100%',
+            filter: userData.options.theme === "dark" ? 'invert(1)' : ''
+        }} />,
+        document.getElementById('content')!)), 
+        [])
     
+    useEffect(() => {
+        if (mapRef.current) {
+            mapRef.current!.addEventListener('mousedown', (e) => {
+                dragging = ({ simpleDrag: true, sx: e.clientX, sy: e.clientY, t: pos.copy() });
+            })
+            mapRef.current!.addEventListener('mousemove', (e) => {
+                if (dragging && dragging.simpleDrag && mapRef.current) {
+                    (pos.setTranslate(e.clientX - dragging.sx + dragging.t.getTranslate().x, e.clientY - dragging.sy + dragging.t.getTranslate().y));
+                    mapRef.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
+                }
+            })
+            mapRef.current.addEventListener('mouseup', () => {
+                dragging = null;
+            })
+            mapRef.current.addEventListener('wheel', (e) => {
+                //@ts-ignore
+                pos.dilate(Math.pow(1.002, -e.deltaY))
+                if (mapRef.current) mapRef.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
+                e.preventDefault();
+            })
+
+            mapRef.current.addEventListener('touchstart', (e) => {
+                if (dragging) {
+                    dragging.simpleDrag = false;
+                    dragging.sx = e.touches[0].clientX;
+                    dragging.sy = e.touches[0].clientY;
+                    dragging.sx2 = e.touches[1].clientX;
+                    dragging.sy2 = e.touches[1].clientY;
+                    dragging.t = pos.copy();
+                } else {
+                    dragging = ({ simpleDrag: true, sx: e.touches[0].clientX, sy: e.touches[0].clientY, t: pos.copy() });
+                }
+            })
+
+            mapRef.current.addEventListener('touchmove', (e) => {
+                if (dragging && dragging.simpleDrag && mapRef.current) {
+                    (pos.setTranslate(e.touches[0].clientX - dragging.sx + dragging.t.getTranslate().x, e.touches[0].clientY - dragging.sy + dragging.t.getTranslate().y));
+                    mapRef.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
+                    e.preventDefault();
+                }
+
+                if (dragging && !dragging.simpleDrag && mapRef.current && dragging.sx2 && dragging.sy2) {
+                    // ruh roh
+                    // have to find some way to map from (sx,sy) and (sx2,sy2) to (nx,ny) and (nx2, ny2) respectively
+                    const { sx, sy, sx2, sy2 } = dragging;
+                    const [nx, ny, nx2, ny2] = [e.touches[0].clientX, e.touches[0].clientY, e.touches[1].clientX, e.touches[1].clientY];
+
+                    // align (sx,sy) and (nx,ny)
+                    // rotate by some number of degrees
+                    // scale up
+                    const deg = Math.atan2(nx2 - nx, ny2 - ny) - Math.atan2(sx2 - sx, sy2 - sy);
+                    const scale = Math.sqrt((nx2 - nx) ** 2 + (ny2 - ny) ** 2) / Math.sqrt((sx2 - sx) ** 2 + (sy2 - sy) ** 2)
+                    const trans = new Transform(1, 0, 0, 1, nx - sx, ny - sy);
+                    const rotandscale = new Transform(scale * Math.cos(deg), -scale * Math.sin(deg), scale * Math.sin(deg), scale * Math.cos(deg), 0, 0);
+
+                    // transformation, rotate, then apply to original
+                    pos.matrix = dragging.t.matrix.multiply(trans.matrix.multiply(rotandscale.matrix));
+                    mapRef.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
+
+                    e.preventDefault();
+                }
+            })
+
+            mapRef.current.addEventListener('touchend', (e) => {
+                dragging = null;
+            })
+
+        }
+
+    }, [mapRef, map])
+
     return (
         <>
             <h1>Map</h1>
             <p>Use the mouse to pan and ctrl+scroll to zoom.</p>
             {map}
-
-            <img ref={gmap} src={gunnmapimg} draggable={false} alt="" style={{
-                position: "absolute",
-                width: 1000,
-                transform: `translate(-50%,-50%) ${pos.toString()}`,
-                left: 0,
-                top: 0,
-            }} />
             
-            { /* draggable={false} onMouseDown={(e) => {
-                setDragging({touch: false, sx: e.clientX, sy: e.clientY, tx: pos.getTranslate().x, ty: pos.getTranslate().y});
-            }} onMouseMove={(e) => {
-                // console.log(pos.setTranslate(e.clientX, e.clientY));
-                console.log("hi");
-                if(dragging && !dragging.touch) setPos(pos.setTranslate(e.clientX - dragging.sx + dragging.tx, e.clientY - dragging.sy + dragging.ty));
-            }} onMouseUp={() => {
-                setDragging(null);
-            }} /> */}
         </>
     );
 }
