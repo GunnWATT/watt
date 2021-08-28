@@ -187,7 +187,7 @@ const Map = () => {
                     const { sx, sy, sx2, sy2 } = dragging;
                     const [nx, ny, nx2, ny2] = [e.touches[0].clientX, e.touches[0].clientY, e.touches[1].clientX, e.touches[1].clientY];
 
-                    const deg = Math.atan2(nx2 - nx, ny2 - ny) - Math.atan2(sx2 - sx, sy2 - sy);
+                    const deg = Math.atan2(sx2 - sx, sy2 - sy) - Math.atan2(nx2 - nx, ny2 - ny);
                     const scale = Math.sqrt((nx2 - nx) ** 2 + (ny2 - ny) ** 2) / Math.sqrt((sx2 - sx) ** 2 + (sy2 - sy) ** 2)
                     const trans = new Transform(1, 0, 0, 1, nx, ny);
                     const ntrans = new Transform(1, 0, 0, 1, -sx, -sy);
