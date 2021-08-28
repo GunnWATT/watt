@@ -165,7 +165,7 @@ const Map = () => {
                     const rotandscale = new Transform(scale * Math.cos(deg), -scale*Math.sin(deg), scale*Math.sin(deg), scale*Math.cos(deg), 0, 0);
 
                     // transformation, rotate, then apply to original
-                    pos.matrix = dragging.t.matrix.multiply(rotandscale.matrix.multiply(trans.matrix));
+                    pos.matrix = dragging.t.matrix.multiply(trans.matrix.multiply(rotandscale.matrix));
                     gmap.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
 
                     e.preventDefault();
