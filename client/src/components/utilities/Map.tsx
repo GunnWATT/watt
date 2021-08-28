@@ -165,6 +165,8 @@ const Map = () => {
 
                     pos.matrix = dragging.t.matrix.multiply(newtrans.matrix);
                     gmap.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
+
+                    e.preventDefault();
                 }
             })
 
