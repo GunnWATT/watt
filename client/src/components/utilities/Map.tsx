@@ -130,7 +130,7 @@ const Map = () => {
         <img src={GunnMapImage} ref={mapRef} draggable={false} alt="" style={{
             position: "fixed",
             width: '1000px',
-            transform: `translate(-50%,-50%) ${pos.toString()}`,
+            transform: `translate(-50%, -50%) ${pos.toString()}`,
             left: 0,
             top: 100,
             maxHeight: '100vh',
@@ -148,7 +148,7 @@ const Map = () => {
             mapRef.current!.addEventListener('mousemove', (e) => {
                 if (dragging && dragging.simpleDrag && mapRef.current) {
                     (pos.setTranslate(e.clientX - dragging.sx + dragging.t.getTranslate().x, e.clientY - dragging.sy + dragging.t.getTranslate().y));
-                    mapRef.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
+                    mapRef.current.style.transform = `translate(-50%, -50%) ${pos.toString()}`;
                 }
             })
             mapRef.current.addEventListener('mouseup', () => {
@@ -157,7 +157,7 @@ const Map = () => {
             mapRef.current.addEventListener('wheel', (e) => {
                 //@ts-ignore
                 pos.dilate(Math.pow(1.002, -e.deltaY))
-                if (mapRef.current) mapRef.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
+                if (mapRef.current) mapRef.current.style.transform = `translate(-50%, -50%) ${pos.toString()}`;
                 e.preventDefault();
             })
 
@@ -177,13 +177,13 @@ const Map = () => {
             mapRef.current.addEventListener('touchmove', (e) => {
                 if (dragging && dragging.simpleDrag && mapRef.current) {
                     (pos.setTranslate(e.touches[0].clientX - dragging.sx + dragging.t.getTranslate().x, e.touches[0].clientY - dragging.sy + dragging.t.getTranslate().y));
-                    mapRef.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
+                    mapRef.current.style.transform = `translate(-50%, -50%) ${pos.toString()}`;
                     e.preventDefault();
                 }
 
                 if (dragging && !dragging.simpleDrag && mapRef.current && dragging.sx2 && dragging.sy2) {
                     // ruh roh
-                    // have to find some way to map from (sx,sy) and (sx2,sy2) to (nx,ny) and (nx2, ny2) respectively
+                    // have to find some way to map from (sx,sy) and (sx2,sy2) to (nx,ny) and (nx2, ny2) respectively using an affine transformation
                     const { sx, sy, sx2, sy2 } = dragging;
                     const [nx, ny, nx2, ny2] = [e.touches[0].clientX, e.touches[0].clientY, e.touches[1].clientX, e.touches[1].clientY];
 
@@ -194,8 +194,10 @@ const Map = () => {
                     const rotandscale = new Transform(scale * Math.cos(deg), -scale * Math.sin(deg), scale * Math.sin(deg), scale * Math.cos(deg), 0, 0);
 
                     // math
-                    pos.matrix = (trans.matrix.multiply(rotandscale.matrix.multiply(ntrans.matrix.multiply(dragging.t.matrix))));
-                    mapRef.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
+                    // first apply previous transform
+                    // then apply the affine transformation
+                    pos.matrix = trans.matrix.multiply(rotandscale.matrix).multiply(ntrans.matrix).multiply(dragging.t.matrix);
+                    mapRef.current.style.transform = `translate(-50%, -50%) ${pos.toString()}`;
 
                     e.preventDefault();
                 }
