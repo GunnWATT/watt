@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
 import gunnmapimg from '../../assets/gunnmap.png';
@@ -46,86 +46,6 @@ class Matrix {
         return new Matrix(newMat);
     }
 
-    // DESTRUCTIVE
-    // DESTRUCTIVE!!!!
-    private rowOp(rFrom:number, factor:number, rTo:number) {
-        for(let i = 0; i < this.c; i++) {
-            this.arr[rTo][i] += this.arr[rFrom][i] * factor;
-        }
-    }
-    private rowMult(r: number, factor:number) {
-        for(let i = 0; i < this.c; i++) {
-            this.arr[r][i] *= factor;
-        }
-    }
-
-    inv() {
-        if(this.r !== this.c) throw "Bruh";
-        // Gauss Jordan Elim
-
-        let m = this.copy();
-
-        let id: number[][] = [];
-        for(let i = 0; i < m.r; i++) {
-            id.push([]);
-            for (let j = 0; j < m.c; j++) {
-                id[i].push(i === j ? 1 : 0);
-            }
-        }
-
-        let inv = new Matrix(id);
-        
-        for(let j = 0; j < m.c; j++) {
-            for (let i = 0; i < m.r; i++) {
-                if(i === j) {
-                    // ideally turns into 1
-                    if(m.arr[i][j] === 0) {
-                        // uh oh!
-                        let doom = true;
-                        for(let r = 0; r < m.r; r++) {
-                            if(r === i) continue;
-                            if(m.arr[r][j] !== 0) {
-                                inv.rowOp(r, 1, i);
-                                m.rowOp(r, 1, i); // make it not 1
-                                
-                                doom = false;
-                                break;
-                            }
-                        }
-
-                        if(doom) {
-                            throw "Non Invertible Matrix!";
-                        }
-                    }
-
-                    // scale
-                    inv.rowMult(i, 1 / m.arr[i][j]);
-                    m.rowMult(i, 1/m.arr[i][j]);
-                } else {
-                    // turns into 0
-                    // kill it with fire
-                    let doom = true;
-                    for (let r = 0; r < m.r; r++) {
-                        if(r === i) continue;
-                        if (m.arr[r][j] !== 0) {
-                            inv.rowOp(r, -m.arr[i][j] / m.arr[r][j], i);
-                            m.rowOp(r, -m.arr[i][j]/m.arr[r][j], i); // kill
-                            
-                            doom = false;
-                            break;
-                        }
-                    }
-
-                    if(doom) {
-                        throw "Non Invertible Matrix!";
-                    }
-                }
-            }
-        }
-
-        return inv;
-    }
-
     getRaw():number[][] {
         return this.arr.map(row => row.map(datum => datum));
     }
@@ -150,18 +70,9 @@ class Transform {
         }
     }
 
-    getOrigPoint(x:number, y:number) {
-        let result = this.matrix.inv().multiply(new Matrix([[x], [y], [1]])).getRaw();
-        return {
-            x: result[0],
-            y: result[1]
-        }
-    }
-
     setTranslate(x:number,y: number) {
         this.matrix.set(0, 2, x);
         this.matrix.set(1, 2, y);
-        return this;
     }
 
     getTranslate() {
@@ -171,8 +82,18 @@ class Transform {
         }
     }
 
+    dilate(factor:number) {
+        this.matrix = this.matrix.multiply(new Matrix([[factor, 0, 0], [0,factor,0], [0,0,1]]));
+    }
+
     toString() {
         return `matrix(${this.matrix.get(0, 0)}, ${this.matrix.get(0, 1)}, ${this.matrix.get(1, 0)}, ${this.matrix.get(1, 1)}, ${this.matrix.get(0, 2)}, ${this.matrix.get(1, 2)})`
+    }
+
+    copy() {
+        let c = new Transform(1,0,0,1,0,0);
+        c.matrix = this.matrix.copy();
+        return c;
     }
 }
 
@@ -182,9 +103,78 @@ class Transform {
 
 const Map = () => {
     const [map, setMap] = useState<JSX.Element | null>(null);
-    const [pos, setPos] = useState<Transform>(new Transform(1, 0, 0, 1, 500, 500));
-    const [dragging, setDragging] = useState<{touch: boolean, sx:number, sy:number, tx:number, ty:number}|null>(null);
-    // const [gunnMap, setGunnMap] = useState<JSX.Element | null>(null);
+    let pos = (new Transform(1, 0, 0, 1, window.innerWidth/2, window.innerHeight/2));
+    let dragging: {simpleDrag: boolean, singleClick?: boolean, sx:number, sy:number, t: Transform, sx2?: number, sy2?: number}|null = (null);
+
+    // const [gunnMap, setGunnMap] = useState<JSX.Element | null>(null)
+    const gmap = useRef<null|HTMLImageElement>(null);
+
+    useEffect(() => {
+        if(gmap.current) {
+            gmap.current!.addEventListener('mousedown', (e) => {
+                dragging = ({ simpleDrag: true, sx: e.clientX, sy: e.clientY, t: pos.copy() });
+            })
+            gmap.current!.addEventListener('mousemove', (e) => {
+                if (dragging && dragging.simpleDrag && gmap.current) {
+                    (pos.setTranslate(e.clientX - dragging.sx + dragging.t.getTranslate().x, e.clientY - dragging.sy + dragging.t.getTranslate().y));
+                    gmap.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
+                }
+            })
+            gmap.current.addEventListener('mouseup', () =>{
+                dragging = null;
+            })
+            gmap.current.addEventListener('wheel', (e) => {
+                //@ts-ignore
+                pos.dilate(Math.pow(1.002, -e.deltaY))
+                if(gmap.current) gmap.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
+                e.preventDefault();
+            })
+
+            gmap.current.addEventListener('touchstart', (e) => {
+                if(dragging) {
+                    dragging.simpleDrag = true;
+                    dragging.sx = e.touches[0].clientX;
+                    dragging.sy = e.touches[0].clientY;
+                    dragging.sx2 = e.touches[1].clientX;
+                    dragging.sy2 = e.touches[1].clientY;
+                    dragging.t = pos.copy();
+                } else {
+                    dragging = ({ simpleDrag: true, sx: e.touches[0].clientX, sy: e.touches[0].clientY, t: pos.copy() });
+                }
+            })
+
+            gmap.current.addEventListener('touchmove', (e) => {
+                if (dragging && dragging.simpleDrag && gmap.current) {
+                    (pos.setTranslate(e.touches[0].clientX - dragging.sx + dragging.t.getTranslate().x, e.touches[0].clientY - dragging.sy + dragging.t.getTranslate().y));
+                    gmap.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
+                    e.preventDefault();
+                }
+
+                if(dragging && !dragging.simpleDrag && gmap.current && dragging.sx2 && dragging.sy2) {
+                    // ruh roh
+                    // have to find some way to map from (sx,sy) and (sx2,sy2) to (nx,ny) and (nx2, ny2) respectively
+                    const {sx,sy, sx2,sy2} = dragging;
+                    const [nx, ny, nx2, ny2] = [e.touches[0].clientX, e.touches[0].clientY, e.touches[1].clientX, e.touches[1].clientY];
+
+                    // align (sx,sy) and (nx,ny)
+                    // rotate by some number of degrees
+                    // scale up
+                    const deg = Math.atan2(nx2 - nx, ny2 - ny) - Math.atan2(sx2-sx, sy2-sy);
+                    const scale = Math.sqrt((nx2 - nx) ** 2 + (ny2 - ny) ** 2) / Math.sqrt((sx2-sx)**2 + (sy2-sy)**2)
+                    const newtrans = new Transform(scale * Math.cos(deg), -scale*Math.sin(deg), scale*Math.sin(deg), scale*Math.cos(deg), nx - sx, ny - sy);
+
+                    pos.matrix = dragging.t.matrix.multiply(newtrans.matrix);
+                    gmap.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
+                }
+            })
+
+            gmap.current.addEventListener('touchend', (e) => {
+                dragging = null;
+            })
+
+        }
+        
+    }, [gmap])
 
     // Render the portal in the useEffect to guarantee that all elements have been rendered into the DOM and
     // document.getElementById('content') is not null
@@ -210,14 +200,15 @@ const Map = () => {
             <p>Use the mouse to pan and ctrl+scroll to zoom.</p>
             {map}
 
-            <img src={gunnmapimg} alt="" style={{
+            <img ref={gmap} src={gunnmapimg} draggable={false} alt="" style={{
                 position: "absolute",
                 width: 1000,
                 transform: `translate(-50%,-50%) ${pos.toString()}`,
                 left: 0,
                 top: 0,
-                
-            }} draggable={false} onMouseDown={(e) => {
+            }} />
+            
+            { /* draggable={false} onMouseDown={(e) => {
                 setDragging({touch: false, sx: e.clientX, sy: e.clientY, tx: pos.getTranslate().x, ty: pos.getTranslate().y});
             }} onMouseMove={(e) => {
                 // console.log(pos.setTranslate(e.clientX, e.clientY));
@@ -225,7 +216,7 @@ const Map = () => {
                 if(dragging && !dragging.touch) setPos(pos.setTranslate(e.clientX - dragging.sx + dragging.tx, e.clientY - dragging.sy + dragging.ty));
             }} onMouseUp={() => {
                 setDragging(null);
-            }} />
+            }} /> */}
         </>
     );
 }
