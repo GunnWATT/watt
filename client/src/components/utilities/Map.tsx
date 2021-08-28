@@ -194,7 +194,7 @@ const Map = () => {
                     const rotandscale = new Transform(scale * Math.cos(deg), -scale * Math.sin(deg), scale * Math.sin(deg), scale * Math.cos(deg), 0, 0);
 
                     // math
-                    pos.matrix = dragging.t.matrix.multiply(trans.matrix.multiply(rotandscale.matrix.multiply(ntrans.matrix)));
+                    pos.matrix = (trans.matrix.multiply(rotandscale.matrix.multiply(ntrans.matrix.multiply(dragging.t.matrix))));
                     mapRef.current.style.transform = `translate(-50%,-50%) ${pos.toString()}`;
 
                     e.preventDefault();
