@@ -77,8 +77,8 @@ const Clock = (props: {time: moment.Moment}) => {
 
             {/* Second Hand */}
             <line x1={size / 2} y1={size / 2} x2={size / 2} y2={size / 2 - radius * 0.8} style={{
-                stroke: 'var(--primary)',
-                strokeWidth: 2,
+                stroke: 'var(--secondary)',
+                strokeWidth: 1.5,
                 strokeLinecap: 'round',
                 transform: `rotate(${secondDegs}deg)`,
                 transformOrigin: `center`,

@@ -67,7 +67,7 @@ const Home = (props: HomeProps) => {
             <div className="schedule">
                 {relDays !== 0 && <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>}
 
-                <Clock time={date} />
+                { userData.options?.clock ? <Clock time={date} /> : null }
                 <h2 className="schedule-datetime center">{date.format(format)}</h2>
                 <DateSelector
                     incDay={incDay}
