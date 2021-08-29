@@ -22,7 +22,7 @@ export const SCHOOL_END_EXCLUSIVE = moment.tz('2022-06-03', 'America/Los_Angeles
 
 
 // An object representing a period, with s and e being start and end times (in minutes after 12:00 AM PST)
-type PeriodObj = {s: number, e: number};
+export type PeriodObj = {s: number, e: number};
 // An object representing a school day, with period keys that contain info on their start and end times.
 // 0-8 represent periods 0 through 8, while B, L, S, and P represent Brunch, Lunch, SELF, and PRIME, respectively.
 // G and O represent the now deprecated Gunn Together and Office Hours periods.

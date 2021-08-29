@@ -16,6 +16,7 @@ import {useHotkeys} from 'react-hotkeys-hook';
 // Contexts
 import CurrentTimeContext from '../contexts/CurrentTimeContext';
 import UserDataContext from '../contexts/UserDataContext';
+import Clock from '../components/misc/Clock';
 
 
 type HomeProps = {events: GCalEvent[] | null};
@@ -66,6 +67,7 @@ const Home = (props: HomeProps) => {
             <div className="schedule">
                 {relDays !== 0 && <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>}
 
+                { userData.options?.clock ? <Clock time={date} /> : null }
                 <h2 className="schedule-datetime center">{date.format(format)}</h2>
                 <DateSelector
                     incDay={incDay}
