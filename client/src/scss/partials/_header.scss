@@ -12,7 +12,7 @@
 
   // Red box that displays the heading
   .header {
-    @include content-box($padding: 12px 20px, $bg-color: $theme);
+    @include content-box($padding: 12px 20px, $bg-color: var(--active));
     color: white;
   }
 

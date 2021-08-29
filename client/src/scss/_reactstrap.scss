@@ -28,6 +28,7 @@
 
 // <Modal>
 .modal-content {
+  -webkit-overflow-scrolling: touch;
   background-color: var(--content-primary);
 
   .modal-header, .modal-footer {
@@ -70,3 +71,18 @@ input.form-control {
     border-color: var(--tertiary);
   }
 }
+
+// <Button>
+@mixin recolorBootstrapButton($button, $variable) {
+  .btn-outline-#{$button} {
+    color: var($variable);
+    border-color: var($variable);
+
+    &:hover {
+      border-color: var($variable);
+      background-color: var($variable);
+    }
+  }
+}
+@include recolorBootstrapButton(danger, --active);
+@include recolorBootstrapButton(secondary, --secondary);
