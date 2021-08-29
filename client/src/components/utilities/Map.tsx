@@ -6,25 +6,25 @@ import UserDataContext from '../../contexts/UserDataContext';
 
 // Pay attention in 'nal kids
 class Matrix {
-    private arr:number[][];
-    private readonly r:number;
-    private readonly c:number;
+    private readonly arr: number[][];
+    private readonly r: number;
+    private readonly c: number;
     constructor(arr: number[][]) {
         this.arr = arr;
         this.r = arr.length;
         this.c = arr[0].length;
     }
 
-    get(i:number,j:number){
+    get(i: number,j: number) {
         return this.arr[i][j];
     }
 
-    set(i:number, j:number, v:number) {
+    set(i: number, j: number, v: number) {
         this.arr[i][j] = v;
     }
 
-    multiply(m: Matrix): Matrix {
-        if(this.c !== m.r) throw "Incompatible Matrices!";
+    multiply(m: Matrix) {
+        if (this.c !== m.r) throw new Error('Incompatible Matrices!');
 
         const R = this.r;
         const C = m.c;
@@ -32,11 +32,11 @@ class Matrix {
         let newMat = Array(R).fill(0).map(() => Array(C)); // create a R x C array
 
         // uncool n^3 algo
-        for(let i = 0; i < R; i++) {
-            for(let j = 0; j < C; j++) {
+        for (let i = 0; i < R; i++) {
+            for (let j = 0; j < C; j++) {
                 let sum = 0;
 
-                for(let k = 0; k < A; k++) {
+                for (let k = 0; k < A; k++) {
                     sum += this.arr[i][k] * m.arr[k][j];
                 }
 
@@ -47,7 +47,7 @@ class Matrix {
         return new Matrix(newMat);
     }
 
-    getRaw():number[][] {
+    getRaw() {
         return this.arr.map(row => row.map(datum => datum));
     }
     copy() {
@@ -58,13 +58,13 @@ class Matrix {
 class Transform {
     public matrix: Matrix;
     // public inv: Matrix;
-    constructor(a:number,b:number,c:number,d:number,x:number,y:number) {
-        this.matrix = new Matrix([[a,b,x], [c,d,y], [0,0,1]]);
+    constructor(a: number, b: number, c: number, d: number, x: number, y: number) {
+        this.matrix = new Matrix([[a, b, x], [c, d, y], [0, 0, 1]]);
         // this.inv = this.matrix.inv();
     }
  
-    apply(x:number,y:number) {
-        let result = this.matrix.multiply(new Matrix([[x],[y],[1]])).getRaw();
+    apply(x: number, y: number) {
+        let result = this.matrix.multiply(new Matrix([[x], [y], [1]])).getRaw();
         return {
             x: result[0],
             y: result[1]
@@ -83,7 +83,7 @@ class Transform {
         }
     }
 
-    dilate(factor:number) {
+    dilate(factor: number) {
         this.matrix = this.matrix.multiply(new Matrix([[factor, 0, 0], [0,factor,0], [0,0,1]]));
     }
 
@@ -127,41 +127,40 @@ const Map = () => {
     // )), [])
 
     useEffect(() => setMap(ReactDOM.createPortal(
-        <img src={GunnMapImage} ref={mapRef} draggable={false} alt="" style={{
-            position: "fixed",
-            width: '1000px',
-            transform: `${pos.toString()}`,
-            left: 0,
-            top: 100,
-            maxHeight: '100vh',
-            maxWidth: '100%',
-            filter: userData.options.theme === "dark" ? 'invert(1)' : ''
-        }} />,
-        document.getElementById('content')!)), 
-        [])
-    
-    useEffect(() => {
-        if (mapRef.current) {
-            mapRef.current!.addEventListener('mousedown', (e) => {
+        <img
+            src={GunnMapImage}
+            ref={mapRef}
+            draggable={false}
+            alt=""
+            style={{
+                position: "fixed",
+                width: '1000px',
+                transform: `${pos.toString()}`,
+                left: 0,
+                top: 100,
+                maxHeight: '100vh',
+                maxWidth: '100%',
+                filter: userData.options.theme === "dark" ? 'invert(1)' : ''
+            }}
+            onMouseDown={(e) => {
                 dragging = ({ simpleDrag: true, sx: e.clientX, sy: e.clientY, t: pos.copy() });
-            })
-            mapRef.current!.addEventListener('mousemove', (e) => {
-                if (dragging && dragging.simpleDrag && mapRef.current) {
+            }}
+            onMouseMove={(e) => {
+                if (dragging && dragging.simpleDrag) {
                     (pos.setTranslate(e.clientX - dragging.sx + dragging.t.getTranslate().x, e.clientY - dragging.sy + dragging.t.getTranslate().y));
-                    mapRef.current.style.transform = `${pos.toString()}`;
+                    e.currentTarget.style.transform = `${pos.toString()}`;
                 }
-            })
-            mapRef.current.addEventListener('mouseup', () => {
-                dragging = null;
-            })
-            mapRef.current.addEventListener('wheel', (e) => {
-                //@ts-ignore
-                pos.dilate(Math.pow(1.002, -e.deltaY))
-                if (mapRef.current) mapRef.current.style.transform = `${pos.toString()}`;
-                e.preventDefault();
-            })
+            }}
+            onMouseUp={() => {
+                dragging = null
+            }}
+            onWheel={(e) => {
+                //e.preventDefault();
 
-            mapRef.current.addEventListener('touchstart', (e) => {
+                pos.dilate(Math.pow(1.002, -e.deltaY))
+                e.currentTarget.style.transform = `${pos.toString()}`;
+            }}
+            onTouchStart={(e) => {
                 if (dragging) {
                     dragging.simpleDrag = false;
                     dragging.sx = e.touches[0].clientX;
@@ -172,16 +171,16 @@ const Map = () => {
                 } else {
                     dragging = ({ simpleDrag: true, sx: e.touches[0].clientX, sy: e.touches[0].clientY, t: pos.copy() });
                 }
-            })
+            }}
+            onTouchMove={(e) => {
+                //e.preventDefault();
 
-            mapRef.current.addEventListener('touchmove', (e) => {
-                if (dragging && dragging.simpleDrag && mapRef.current) {
+                if (dragging && dragging.simpleDrag) {
                     (pos.setTranslate(e.touches[0].clientX - dragging.sx + dragging.t.getTranslate().x, e.touches[0].clientY - dragging.sy + dragging.t.getTranslate().y));
-                    mapRef.current.style.transform = `${pos.toString()}`;
-                    e.preventDefault();
+                    e.currentTarget.style.transform = `${pos.toString()}`;
                 }
 
-                if (dragging && !dragging.simpleDrag && mapRef.current && dragging.sx2 && dragging.sy2) {
+                if (dragging && !dragging.simpleDrag && dragging.sx2 && dragging.sy2) {
                     // ruh roh
                     // have to find some way to map from (sx,sy) and (sx2,sy2) to (nx,ny) and (nx2, ny2) respectively using an affine transformation
                     const { sx, sy, sx2, sy2 } = dragging;
@@ -197,26 +196,29 @@ const Map = () => {
                     // first apply previous transform
                     // then apply the affine transformation
                     pos.matrix = trans.matrix.multiply(rotandscale.matrix).multiply(ntrans.matrix).multiply(dragging.t.matrix);
-                    mapRef.current.style.transform = `${pos.toString()}`;
-
-                    e.preventDefault();
+                    e.currentTarget.style.transform = `${pos.toString()}`;
                 }
-            })
-
-            mapRef.current.addEventListener('touchend', (e) => {
+            }}
+            onTouchEnd={() => {
                 dragging = null;
-            })
+            }}
+        />,
+        document.getElementById('content')!
+    )), [])
 
-        }
+    useEffect(() => {
+        // Unideal, but https://github.com/facebook/react/issues/14856 forces this
+        // onWheel and onTouchMove are both passive event listeners so preventDefault does not work within them
+        mapRef.current?.addEventListener('wheel', (e) => e.preventDefault());
+        mapRef.current?.addEventListener('touchmove', (e) => e.preventDefault());
+    }, [mapRef])
 
-    }, [mapRef, map])
 
     return (
         <>
             <h1>Map</h1>
             <p>Use the mouse to pan and ctrl+scroll to zoom.</p>
             {map}
-            
         </>
     );
 }
