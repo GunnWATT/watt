@@ -11,10 +11,10 @@ import UserDataContext from '../../contexts/UserDataContext';
 
 const Clock = (props: {time: moment.Moment}) => {
 
-    // const { time } = props;
+    const { time } = props;
     // const time = props.time.add('days', 2);
-    const time = moment('2021-08-30 10:34:15')
-    console.log(time.format('YYYY-DD-MM hh:mm:ss'));
+    // const time = moment('2021-08-30 10:34:15')
+    // console.log(time.format('YYYY-DD-MM hh:mm:ss'));
     
     const radius = 40;
     const size = radius * 2 + 20;
