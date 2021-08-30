@@ -27,6 +27,11 @@ const DayAlert = (props: DayAlertProps) => {
             className="day-alert"
             isOpen={visible}
             toggle={onDismiss}
+            style={{
+                position: 'absolute',
+                left: 0,
+                right: 0
+            }}
         >
             {makeDateString()}{' '}
             <button onClick={jumpToPres}>JUMP TO PRESENT</button>

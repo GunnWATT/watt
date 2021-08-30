@@ -1,6 +1,7 @@
 // The schedule portion of the home page
 .schedule {
   padding: 15px;
+  position: relative;
 
   // The datetime ("5:31:30 PM")
   &-datetime {
