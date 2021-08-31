@@ -78,7 +78,7 @@ const Features = () => {
                 <Label check>
                     <Input
                         type="radio"
-                        name="period-8-pref"
+                        name="clock-pref"
                         checked={showClock}
                         onClick={() => changeClock(true)}
                     />{' '}
@@ -89,7 +89,7 @@ const Features = () => {
                 <Label check>
                     <Input
                         type="radio"
-                        name="period-8-pref"
+                        name="clock-pref"
                         checked={!showClock}
                         onClick={() => changeClock(false)}
                     />{' '}
