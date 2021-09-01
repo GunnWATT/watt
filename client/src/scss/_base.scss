@@ -33,10 +33,10 @@ body {
 
 ::-webkit-scrollbar {
   width: 0.25rem;
-}
 
-::-webkit-scrollbar-thumb {
-  background: var(--secondary);
+  &-thumb {
+    background: var(--secondary);
+  }
 }
 
 #root {
