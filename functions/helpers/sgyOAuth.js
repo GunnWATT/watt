@@ -1,5 +1,6 @@
+const functions = require('firebase-functions');
 const { OAuth } = require('oauth')
-const { key, secret } = require('../credentials/schoologyAPI.json')
+const { key, secret } = functions.config().schoology; // require('../credentials/schoologyAPI.json')
 const apiBase = 'https://api.schoology.com/v1'
 
 const promiseify = (fn) => {
