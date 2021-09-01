@@ -24,10 +24,8 @@ process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080';
 process.env.FIREBASE_AUTH_EMULATOR_HOST = 'localhost:9099';
 process.env.FIREBASE_FIRESTORE_EMULATOR_HOST = 'localhost:9099';
 
-admin.initializeApp({
-    // credential: admin.credential.cert(serviceAccount),
-    projectId: "gunnwatt"
-})
+admin.initializeApp()
+    // credential: admin.credential.cert(serviceAccount)
 
 module.exports = admin
 ```
@@ -36,8 +34,8 @@ module.exports = admin
 
 ## Step 4: Schoology API Key
 
-Create the folder `credentials` in the `/functions` folder, then create `schoologyAPI.json` inside that.
-Visit <https://pausd.schoology.com/api> and obtain your API keys. (Make sure to keep them secret.) Then put the key and secret inside the `schoologyAPI.json` file.
+In `functions`, create `.runtimeconfig.json`.
+Visit <https://pausd.schoology.com/api> and obtain your API keys. (Make sure to keep them secret.) Then put the key and secret inside the `.runtimeconfig.json` file.
 Here's an example
 
 ```json
@@ -81,6 +79,6 @@ const analytics = firebase.analytics()
 
 >Reminder: DO NOT commit changes in the two files `adminInit.js` and `Firebase.js`.
 
-## Step 7: Pray.
+## Step 7: Pray
 
 I hate Firebase.
