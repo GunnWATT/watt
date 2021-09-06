@@ -24,8 +24,7 @@ You will also have to set up the [Firebase CLI](https://firebase.google.com/docs
 
 ### Contributing
 If you have features you want to add or fixes for bugs, you can fork this repository and create a pull request with your changes.
-Pull requests will automatically have preview URLs generated for them to test what your changes would look like in production, and
-once your pull request is merged your changes will automatically be deployed to the live website.
+Once your pull request is merged, your changes will automatically be deployed to the live website.
 
 ### Credits
 [Yu-Ting](https://github.com/ytchang05), [Kevin](https://github.com/ky28059), and [Roger](https://github.com/ImNotRog) are the primary creators of WATT. 
