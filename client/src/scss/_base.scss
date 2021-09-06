@@ -65,9 +65,8 @@ body {
 }
 
 #red-bg {
-  background-color: var(--theme-light);
-  height: 40vh;
-  width: 100%;
+  // Hacky fix for phones
+  width: max(800px, 100%);
   position: fixed;
   top: 0;
   left: 0;

@@ -1,8 +1,8 @@
 import React, {useContext, useState} from 'react';
-import moment from 'moment-timezone';
 import {GCalEvent} from '../components/schedule/Event';
 
 // Components
+import RedBackground from '../components/layout/RedBackground';
 //import Clock from './schedule/Clock.js'; // Date handling has been passed down to Home.js, retiring this
 import DateSelector from '../components/schedule/DateSelector';
 import Periods from '../components/schedule/Periods';
@@ -61,7 +61,7 @@ const Home = (props: HomeProps) => {
 
     return (
         <div className={`home ${displayFromScreenType()}`}>
-            <div id="red-bg" />
+            <RedBackground />
 
             {/* Schedule */}
             <div className="schedule">
