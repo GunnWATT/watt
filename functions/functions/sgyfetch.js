@@ -4,7 +4,7 @@ const firestore = admin.firestore()
 
 const apiBase = 'https://api.schoology.com/v1'
 const oauth = require('../helpers/sgyOAuth')
-const periods = ['1', '2', '3', '4', '5', '6', '7', 'SELF']
+const periods = ['1', '2', '3', '4', '5', '6', '7', '8', 'SELF']
 
 const pausdZoomRegex = /pausd.zoom.us\/[js]\/(\d+)(\?pwd=\w+)?/i
 const maybeLinkRegex = /Zoom|Meeting|Link/i
@@ -16,7 +16,7 @@ function toJson ([data]) {return JSON.parse(data)}
 
 const getSgyInfo = async (uid) => {
     const creds = (await firestore.collection('users').doc(uid).get()).data()
-    if (creds) {
+    if (creds.sgy) {
         return {uid: creds.sgy.uid, key: creds.sgy.key, sec: creds.sgy.sec, classes: creds.classes}
     }
     else {
@@ -150,32 +150,42 @@ const init = async (data, context) => {
         })
 
     const classes = {}
+
+    for(const p in periods) {
+        classes[p[0]] = { n: "", c: "", l: "", o: "", s: "" };
+    }
+
     const teachers = {}
     for (const element of sgyClasses) {
         let {pName, pTeacher} = getClassInfo(element['section_title'])
         if (periods.indexOf(pName) > -1) {
             if (pName === 'SELF') pName = 'S'
+            if (pName === 'PRIME') pName = 'P'
             classes[pName] = {
-                n: element['course_title'],
+                n: `${element['course_title']} · ${pTeacher}`,
                 c: sgyInfo.classes[pName]["c"],
                 l: '',
                 o: '',
-                s: element.id,
+                s: element.id
             }
 
-            let periodLinks = await getLinks(element.id, pName, sgyInfo)
-            if (periodLinks.l) {
-                classes[pName].l = periodLinks.l
-            }
-            if (periodLinks.o) {
-                classes[pName].o = periodLinks.o
-            }
+            if (['0','8'].includes(pName)) await firestore.collection('users').doc(uid).update({ [`options.period${pName}`]: true }).catch(e => console.log(e))
 
-            teachers[element['course_title']] = [pTeacher, periodLinks.ln, periodLinks.on]
+            // Zoom is deprecated
+
+            // let periodLinks = await getLinks(element.id, pName, sgyInfo)
+            // if (periodLinks.l) {
+            //     classes[pName].l = periodLinks.l
+            // }
+            // if (periodLinks.o) {
+            //     classes[pName].o = periodLinks.o
+            // }
+
+            teachers[pName] = [element['course_title'], pTeacher]
         }
     }
 
-    firestore.collection('users').doc(uid).update({classes: classes}).catch(e => console.log(e))
+    await firestore.collection('users').doc(uid).update({classes: classes}).catch(e => console.log(e))
 
     return teachers
 }
@@ -223,11 +233,14 @@ const fetchMaterials = async (data, context) => {
 
     const sgyInfo = await getSgyInfo(uid)
 
+    // Fetch grades, cuz that takes a while
+    const grades = makeReq(`/users/${sgyInfo.uid}/grades?timestamp=1627801200`, sgyInfo.key, sgyInfo.sec); //
+
     // Fetch courses, then kick out yucky ones
     let courses = (await makeReq(`/users/${sgyInfo.uid}/sections`, sgyInfo.key, sgyInfo.sec)).section.filter((sec) => periods.indexOf(sec.section_title.split(' ')[0]) >= 0);
 
     // Flattened promises because Promise.all unepicly
-    // They go by 3s: every 3 is documents, assignments, then pages for each course
+    // They go by 4s: every 4 is documents, assignments, pages, then events for each course
     let promises = [];
 
     for(let i = 0; i < courses.length; i++) {
@@ -237,8 +250,9 @@ const fetchMaterials = async (data, context) => {
         const documents = makeReq(`/sections/${id}/documents?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
         const assignments = makeReq(`/sections/${id}/assignments?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
         const pages = makeReq(`/sections/${id}/pages?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
+        const events = makeReq(`/sections/${id}/events?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
 
-        promises.push(documents,assignments,pages);
+        promises.push(documents,assignments,pages,events);
     }
 
     // Promise.all and I have a love hate relationship
@@ -246,27 +260,30 @@ const fetchMaterials = async (data, context) => {
     // BUT WHY CANT I JUST HAVE NESTED STUFF WHY ARE YOU LIKE THIS
     let responses = await Promise.all(promises);
 
-    let sections = [];
+    let sections = {};
 
     // Unflattening smh my head my head my head
     for (let i = 0; i < courses.length; i++) {
-    // for (let i = 0; i < 1; i++) {
         const course = courses[i];
 
         // Un-flatten the responses
-        const documents = responses[3 * i].document;
-        const assignments = responses[3 * i + 1].assignment;
-        const pages = responses[3 * i + 2].page;
+        const documents = responses[4 * i].document;
+        const assignments = responses[4 * i + 1].assignment;
+        const pages = responses[4 * i + 2].page;
+        const events = responses[4 * i + 3].event;
 
         let section = {
             info: course,
             documents,
             assignments,
-            pages
+            pages,
+            events
         }
 
-        sections.push(section);
+        sections[course.section_title.split(' ')[0][0]] = (section);
     }
+
+    sections.grades = (await grades).section;
 
     return sections;
 
