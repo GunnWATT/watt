@@ -9,7 +9,8 @@ const promiseify = (fn) => {
             if (err) {
                 err.args = args
                 err.out = out
-                console.error(err, out)
+                // v This always triggers on 303 errors, no bueno
+                // console.error(err, out)
                 reject(err)
             } else {
                 resolve(out)
