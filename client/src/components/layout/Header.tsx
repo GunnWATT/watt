@@ -1,4 +1,5 @@
 import React from 'react';
+import RedBackground from '../layout/RedBackground';
 import {Container} from 'reactstrap';
 
 
@@ -8,7 +9,8 @@ const Header = (props: HeaderProps) => {
 
     return (
         <>
-            <div id="red-bg" />
+            <RedBackground />
+            
             <Container className="header-background">
                 <Container className="header">
                 <span className="heading">
