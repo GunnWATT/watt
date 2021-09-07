@@ -1,0 +1,23 @@
+.sgy-loading {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.sgy-period-number {
+    background-color: var(--bg-secondary);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    border-radius: 30px;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+}
+
+.sgy-period-burrito {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

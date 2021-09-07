@@ -1,5 +1,10 @@
 @import '../mixins/content-box';
 
+.sgy-auth-button {
+    @include content-box($bg-color: var(--bg-primary));
+    margin: 10px 0;
+}
+
 // dashboard
 .dashboard {
     display:flex;
@@ -11,11 +16,12 @@
 .dashboard-class-list {
     display: flex;
     flex-direction: column;
-    width: 30%;
+    // width: 30%;
     padding: 5px;
     margin: 5px;
     align-items: center;
     overflow-y: auto;
+    flex-basis: 30%;
 }
 
 // dashbaord course
@@ -49,11 +55,12 @@ $arrow-thickness: 2.5px;
 // Dashboard info
 .dashboard-class-info {
     padding: 10px;
-    @include content-box($bg-color: white);
+    @include content-box($bg-color: var(--bg-primary));
     flex-grow: 1;
     margin: 5px;
     padding: 30px;
     overflow-y: scroll;
+    flex-basis: 70%;
 }
 
 .dashboard-class-header {
@@ -71,7 +78,8 @@ $arrow-thickness: 2.5px;
 
 .dashboard-class-grade {
     // margin-left: 50%;
-    flex-grow: 1;
+    margin-left: auto;
+    margin-right: 15px;
 }
 
 .dashboard-class-link {
@@ -80,9 +88,9 @@ $arrow-thickness: 2.5px;
     margin-left: auto;
 }
 
-@mixin dashboard-header() {
+@mixin dashboard-header($color: #ccc) {
     padding: 10px;
-    border: 2px solid #ccc;
+    border: 2px solid $color;
     border-radius: 5px;
     font-size: 1.1em;
 }
@@ -93,7 +101,7 @@ $arrow-thickness: 2.5px;
 }
 
 .dashboard-warnings-header {
-    @include dashboard-header();
+    @include dashboard-header($color: var(--active));
     margin-bottom: 20px;
 }
 

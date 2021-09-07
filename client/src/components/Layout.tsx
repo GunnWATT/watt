@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import {useLocation, useHistory} from 'react-router-dom';
-import {Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 
 // Components
 import Sidebar from './layout/Sidebar';
@@ -17,20 +15,6 @@ type LayoutProps = {children: React.ReactNode};
 const Layout = (props: LayoutProps) => {
     // Screen type for responsive layout
     const screenType = useScreenType();
-
-    // Search params handling
-    const { search, pathname } = useLocation();
-    const { replace } = useHistory();
-    const searchParams = new URLSearchParams(search);
-
-    // Modals
-    // Consider extracting this elsewhere
-    const [sgyModal, setSgyModal] = useState(searchParams.get('modal') === 'sgyauth');
-    const toggle = () => {
-        setSgyModal(false);
-        searchParams.delete('modal'); // Delete modal param from url to prevent retrigger on page refresh
-        replace(`${pathname}${searchParams}`); // Replace current instance in history stack with updated search params
-    }
 
     // Render layout dynamically
     let content;
@@ -68,15 +52,7 @@ const Layout = (props: LayoutProps) => {
             {content}
 
             {/* Schoology auth success modal */}
-            <Modal isOpen={sgyModal} toggle={toggle}>
-                <ModalHeader toggle={toggle}>You're almost set! Just one last step remaining.</ModalHeader>
-                <ModalBody>
-                    <SgyInitResults />
-                </ModalBody>
-                <ModalFooter>
-
-                </ModalFooter>
-            </Modal>
+            <SgyInitResults />
         </>
     );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Assignment, Document, Event, Page, Section, SectionGrade } from '../schoology/SgyTypes';
 
 // Represents a course on Schoology.
 // n: class name
@@ -14,7 +15,7 @@ export type UserData = {
         5: SgyPeriodData, 6: SgyPeriodData, 7: SgyPeriodData, S: SgyPeriodData,
         0: SgyPeriodData, 8: SgyPeriodData
     },
-    options: {theme: string, time: string, period0: boolean, period8: boolean, clock:boolean},
+    options: {theme: string, time: string, period0: boolean, period8: boolean, clock:boolean, sgy:boolean},
     clubs: string[],
     staff: string[],
     id: string,
@@ -44,7 +45,8 @@ export const defaultUserData = {
         time: "12",
         period0: false,
         period8: false,
-        clock: true
+        clock: true,
+        sgy: false
     },
     id: '00000'
 };
@@ -52,4 +54,13 @@ export const defaultUserData = {
 const UserDataContext = React.createContext<UserData>(defaultUserData);
 
 export const UserDataProvider = UserDataContext.Provider;
+
+export type SgyData = {grades: SectionGrade[]} & {[key:string]: {
+    info: Section
+    documents: Document[];
+    assignments: Assignment[];
+    pages: Page[];
+    events: Event[];
+}}
+
 export default UserDataContext;

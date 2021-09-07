@@ -27,6 +27,7 @@ import {parseNextPeriod} from './components/schedule/PeriodIndicator';
 import {parsePeriodName, parsePeriodColor} from './components/schedule/Periods';
 import {hexToRgb} from './components/schedule/ProgressBarColor';
 import {updateFirebaseUserData, updateLocalStorageUserData} from './firebase/updateUserData';
+import { fetchSgyMaterials } from './components/classes/Dashboard';
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
 
@@ -258,6 +259,28 @@ const App = () => {
         return newobj;
     }
 
+    // Returns the updates that need to be made so that b can become the shape of a
+    const deepdifferences = (a: { [key: string]: any }, b: { [key: string]: any } ) => {
+        let diff: { [key: string]: any } = {};
+        for(const key in a) {
+            if(!(key in b)) {
+                diff[key] = a[key];
+            } else {
+                // Do not collapse arrays into objects
+                if (typeof a[key] === 'object' && typeof b[key] === 'object'
+                    && !Array.isArray(a[key]) && !Array.isArray(b[key])) {
+                    const subdiffs = deepdifferences(a[key], b[key]);
+
+                    for(const subdiffkey in subdiffs) {
+                        diff[`${key}.${subdiffkey}`] = subdiffs[subdiffkey];
+                    }
+                }
+            }
+        }
+
+        return diff;
+    }
+
     const localStorageData = deepmerge(
         defaultUserData,
         localStorageRawData
@@ -277,36 +300,44 @@ const App = () => {
     useEffect(() => {
         const fbData = firebaseUserData?.data()
 
+        // Deal with ID shenanigans
         let id: string | undefined;
         if (auth.currentUser) {
             const id950 = auth.currentUser.email!.slice(2, 7);
             const validID = id950.split('').every(char => '0123456789'.includes(char)); // make sure all are digits!
             if (validID) id = id950;
+
+            if (fbData && fbData.id !== id && id) {
+                updateFirebaseUserData('id', id);
+            }
+
+            updateLocalStorageUserData('id', id);
         }
 
-        // Do things with firebase data
-        if (fbData) {
-            let newdata = deepmerge(defaultUserData, fbData);
-            if (id) newdata = {...newdata, id};
-
-            updateFirebaseUserData('', newdata);
-            updateLocalStorageUserData('', newdata);
+        // merge firestore data with defaults!
+        if(auth.currentUser && fbData) {
+            firestore.collection('users').doc(auth.currentUser.uid).update(deepdifferences(defaultUserData, fbData));
         }
-
-        try {
-            // strange things for strange problems
-            const newLocalStorageData = deepmerge(
-                defaultUserData,
-                JSON.parse(localStorage.getItem("data") ?? '{}')
-            )
-            updateLocalStorageUserData('', newLocalStorageData);
-        } catch(err) {
-            localStorage.removeItem('data');
-        }
+        
     }, [udLoading])
 
     document.body.className = userData.options.theme;
 
+    if(auth.currentUser && userData.options.sgy) {
+        // Fetching Schoology stuff
+        try {
+            const diff = Date.now() - parseInt(localStorage.getItem('sgy-last-fetched') ?? '0');
+            if (isNaN(diff)) {
+                throw 'Strange!';
+            }
+            if (diff > 1000 * 60 * 15) // 15 minutes
+            {
+                fetchSgyMaterials();
+            }
+        } catch (err) {
+            localStorage.setItem('sgy-last-fetched', '' + Date.now());
+        }
+    }
 
     return (
         <Router>

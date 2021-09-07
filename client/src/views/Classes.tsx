@@ -7,6 +7,9 @@ import Header from '../components/layout/Header';
 import WIP from '../components/misc/WIP';
 import NavTab from "../components/layout/NavTab";
 
+// Firebase
+import Dashboard from '../components/classes/Dashboard';
+
 
 const Classes = () => {
     let match = useRouteMatch();
@@ -14,7 +17,7 @@ const Classes = () => {
     return (
         <>
             <Header
-                heading="Grades"
+                heading="Classes"
                 nav={
                     <Nav fill tabs>
                         <NavTab to={match.url} name="Dashboard" exact/>
@@ -23,7 +26,7 @@ const Classes = () => {
                 }
             >
                 <Switch>
-                    <Route exact path={match.path} component={WIP} />
+                    <Route exact path={match.path} component={Dashboard} />
                     <Route path={`${match.path}/courses`} component={WIP} />
                 </Switch>
             </Header>
