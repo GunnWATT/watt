@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import moment, {Moment} from 'moment-timezone';
 import Event, {GCalEvent} from './Event';
+import {RefreshCw} from "react-feather";
 
 
-type EventsProps = {events: GCalEvent[] | null, viewDate: Moment};
+type EventsProps = {events: GCalEvent[] | null, eventsError: Error | null, fetchEvents: () => void, viewDate: Moment};
 const Events = (props: EventsProps) => {
-    const {events, viewDate} = props;
+    const {events, eventsError, fetchEvents, viewDate} = props;
     const [content, setContent] = useState<JSX.Element[] | null>(null);
 
     // Filter events JSON for events happening on viewed date
@@ -32,9 +33,15 @@ const Events = (props: EventsProps) => {
                 <h2>Events</h2>
                 <hr/>
             </div>
-            {content
+            {eventsError &&
+                <div className="WIP">
+                    <span>Error fetching events.</span>
+                    <RefreshCw onClick={fetchEvents} className="clickable"/>
+                </div>}
+            {!eventsError && !events && <div className="WIP"><span>Loading events...</span></div>}
+            {!eventsError && events && (content
                 ? <div className="events-content">{content}</div>
-                : <div className="WIP"><span>Nothing to show for today.</span></div>}
+                : <div className="WIP"><span>Nothing to show for today.</span></div>)}
         </div>
     );
 }
