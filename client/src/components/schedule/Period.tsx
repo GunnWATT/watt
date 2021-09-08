@@ -27,7 +27,8 @@ const Period = (props: PeriodProps) => {
             <CardBody>
                 {zoom && <CardLink href={zoom} rel="noopener noreferrer" target="_blank"><Link/></CardLink>}
                 <CardTitle>{name}</CardTitle>
-                <CardSubtitle className="secondary">{t.simpleFormat(format).replace('-', '–')}</CardSubtitle>
+                <CardSubtitle className="secondary">{t.simpleFormat(format)}</CardSubtitle>
+                {/* em dash */}
                 <CardText className="secondary">{parseStartEnd()} — {t.countInner('minutes')} minutes long</CardText>
                 {t.isCurrent()
                     ? <Progress
