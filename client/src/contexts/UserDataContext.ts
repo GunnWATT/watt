@@ -14,7 +14,7 @@ export type UserData = {
         5: SgyPeriodData, 6: SgyPeriodData, 7: SgyPeriodData, S: SgyPeriodData,
         0: SgyPeriodData, 8: SgyPeriodData
     },
-    options: {theme: string, time: string, period0: boolean, period8: boolean, clock:boolean},
+    options: {theme: string, time: string, period0: boolean, period8: boolean, clock: boolean},
     clubs: string[],
     staff: string[],
     id: string,
