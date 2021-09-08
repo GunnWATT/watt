@@ -20,9 +20,9 @@ import UserDataContext from '../contexts/UserDataContext';
 import Clock from '../components/misc/Clock';
 
 
-type HomeProps = {events: GCalEvent[] | null, eventsMessage: string};
+type HomeProps = {events: GCalEvent[] | null, eventsError: Error | null, fetchEvents: () => void};
 const Home = (props: HomeProps) => {
-    const { events, eventsMessage } = props;
+    const { events, eventsError, fetchEvents } = props;
 
     // Date variables
     // Here, date is the current time of the user (passed in from outer scope), used for things that should not be
@@ -93,7 +93,7 @@ const Home = (props: HomeProps) => {
             </div>
 
             {/* Events */}
-            <Events events={events} viewDate={viewDate} eventsMessage={eventsMessage} />
+            <Events events={events} viewDate={viewDate} eventsError={eventsError} fetchEvents={fetchEvents} />
         </div>
     );
 }

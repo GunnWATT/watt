@@ -51,10 +51,11 @@ const App = () => {
 
     // Events data for schedule
     const [events, setEvents] = useState<GCalEvent[] | null>(null);
-    const [eventsMessage, setEventsMessage] = useState('Loading events...')
+    const [eventsError, setEventsError] = useState<Error | null>(null)
 
-    // Fetch events on mount
-    useEffect(() => {
+    const fetchEvents = () => {
+        setEventsError(null);
+
         const googleCalendarId = encodeURIComponent('fg978mo762lqm6get2ubiab0mk0f6m2c@import.calendar.google.com');
         const target = `https://www.googleapis.com/calendar/v3/calendars/${googleCalendarId}/events?`
             + `key=${calendarAPIKey}&timeZone=America/Los_Angeles&showDeleted=false&singleEvents=true&orderBy=startTime&`
@@ -62,12 +63,12 @@ const App = () => {
 
         fetch(target)
             .then(res => res.json())
-            .then(json => {
-                setEvents(json.items);
-                setEventsMessage('');
-            })
-            .catch(err => setEventsMessage('Error loading events.'))
-    }, [])
+            .then(json => setEvents(json.items))
+            .catch(err => setEventsError(err))
+    }
+
+    // Fetch events on mount
+    useEffect(fetchEvents, [])
 
 
     // Reference to the favicon element
@@ -319,7 +320,7 @@ const App = () => {
                 <TimeProvider value={date}>
                     <Layout>
                         <Switch>
-                            <Route exact path='/' render={() => <Home events={events} eventsMessage={eventsMessage}/>}/>
+                            <Route exact path='/' render={() => <Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />}/>
                             <Route path='/utilities' component={Utilities}/>
                             <Route path='/classes' component={Classes}/>
                             <Route path='/clubs' component={Clubs}/>
