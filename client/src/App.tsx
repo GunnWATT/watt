@@ -51,6 +51,7 @@ const App = () => {
 
     // Events data for schedule
     const [events, setEvents] = useState<GCalEvent[] | null>(null);
+    const [eventsMessage, setEventsMessage] = useState('Loading events...')
 
     // Fetch events on mount
     useEffect(() => {
@@ -61,7 +62,11 @@ const App = () => {
 
         fetch(target)
             .then(res => res.json())
-            .then(json => setEvents(json.items));
+            .then(json => {
+                setEvents(json.items);
+                setEventsMessage('');
+            })
+            .catch(err => setEventsMessage('Error loading events.'))
     }, [])
 
 
@@ -234,7 +239,7 @@ const App = () => {
     let localStorageRawData = {};
     try {
         localStorageRawData = JSON.parse(localStorage.getItem("data") ?? '{}')
-    } catch(err) { 
+    } catch(err) {
         // something happened
         localStorage.removeItem('data');
     }
@@ -314,7 +319,7 @@ const App = () => {
                 <TimeProvider value={date}>
                     <Layout>
                         <Switch>
-                            <Route exact path='/' render={() => <Home events={events}/>}/>
+                            <Route exact path='/' render={() => <Home events={events} eventsMessage={eventsMessage}/>}/>
                             <Route path='/utilities' component={Utilities}/>
                             <Route path='/classes' component={Classes}/>
                             <Route path='/clubs' component={Clubs}/>

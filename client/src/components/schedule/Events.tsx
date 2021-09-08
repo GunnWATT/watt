@@ -3,9 +3,9 @@ import moment, {Moment} from 'moment-timezone';
 import Event, {GCalEvent} from './Event';
 
 
-type EventsProps = {events: GCalEvent[] | null, viewDate: Moment};
+type EventsProps = {events: GCalEvent[] | null, eventsMessage: string, viewDate: Moment};
 const Events = (props: EventsProps) => {
-    const {events, viewDate} = props;
+    const {events, eventsMessage, viewDate} = props;
     const [content, setContent] = useState<JSX.Element[] | null>(null);
 
     // Filter events JSON for events happening on viewed date
@@ -32,9 +32,10 @@ const Events = (props: EventsProps) => {
                 <h2>Events</h2>
                 <hr/>
             </div>
-            {content
+            {eventsMessage && <div className="WIP"><span>{eventsMessage}</span></div>}
+            {!eventsMessage && (content
                 ? <div className="events-content">{content}</div>
-                : <div className="WIP"><span>Nothing to show for today.</span></div>}
+                : <div className="WIP"><span>Nothing to show for today.</span></div>)}
         </div>
     );
 }

@@ -20,8 +20,10 @@ import UserDataContext from '../contexts/UserDataContext';
 import Clock from '../components/misc/Clock';
 
 
-type HomeProps = {events: GCalEvent[] | null};
+type HomeProps = {events: GCalEvent[] | null, eventsMessage: string};
 const Home = (props: HomeProps) => {
+    const { events, eventsMessage } = props;
+
     // Date variables
     // Here, date is the current time of the user (passed in from outer scope), used for things that should not be
     // normalized to PST (like the clock), while viewDate is the current day but converted to PST for things that should be normalized;
@@ -91,7 +93,7 @@ const Home = (props: HomeProps) => {
             </div>
 
             {/* Events */}
-            <Events events={props.events} viewDate={viewDate} />
+            <Events events={events} viewDate={viewDate} eventsMessage={eventsMessage} />
         </div>
     );
 }
