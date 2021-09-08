@@ -57,6 +57,8 @@ const Home = (props: HomeProps) => {
     // User data for preferred time display
     const userData = useContext(UserDataContext);
     const format = userData?.options.time === '24' ? 'H:mm:ss' : 'h:mm:ss A';
+    // Use spaced en dash for twix time range formatting
+    moment.twixClass.formatTemplate = (left, right) => left + ' – ' + right;
 
 
     return (

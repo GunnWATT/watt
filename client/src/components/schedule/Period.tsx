@@ -28,7 +28,8 @@ const Period = (props: PeriodProps) => {
                 {zoom && <CardLink href={zoom} rel="noopener noreferrer" target="_blank"><Link/></CardLink>}
                 <CardTitle>{name}</CardTitle>
                 <CardSubtitle className="secondary">{t.simpleFormat(format)}</CardSubtitle>
-                <CardText className="secondary">{parseStartEnd()} - {t.countInner('minutes')} minutes long</CardText>
+                {/* em dash */}
+                <CardText className="secondary">{parseStartEnd()} — {t.countInner('minutes')} minutes long</CardText>
                 {t.isCurrent()
                     ? <Progress
                         value={(now.valueOf() - start.valueOf()) / (end.valueOf() - start.valueOf()) * 100}
