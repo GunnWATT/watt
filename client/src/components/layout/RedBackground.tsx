@@ -1,13 +1,26 @@
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 
 
 const RedBackground = () => {
     const leftColor = 'ff594c';
     const rightColor = 'eb144c';
 
+    // Parallax
+    const svg = useRef<SVGSVGElement>(null);
+
+    useEffect(() => {
+        if (!svg.current) return;
+        const handleScroll = () => {
+            svg.current!.style.top = '-' + window.scrollY / 5 + 'px';
+        }
+        document.addEventListener('wheel', handleScroll);
+        return function cleanup() {
+            document.removeEventListener('wheel', handleScroll);
+        }
+    }, [svg])
+
     return (
-        <svg width="100%" id="red-bg" viewBox="0 0 1440 700" xmlns="http://www.w3.org/2000/svg"
-             className="transition duration-300 ease-in-out delay-150">
+        <svg width="100%" id="red-bg" ref={svg} viewBox="0 0 1440 700" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="gradient">
                     <stop offset="5%" stopColor={`#${rightColor}66`}/>
