@@ -113,6 +113,7 @@ const App = () => {
         document.title = (startingIn > 0)
             ? `${name} starting in ${startingIn} minute${startingIn !== 1 ? 's' : ''}.`
             : `${name} ending in ${endingIn} minute${endingIn !== 1 ? 's' : ''}, started ${-startingIn} minute${startingIn !== -1 ? 's' : ''} ago.`
+            + ' (WATT)'
 
         let numToShow = startingIn > 0 ? startingIn : endingIn;
         const isSeconds = (numToShow === 1);
