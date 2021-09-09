@@ -5081,7 +5081,7 @@ export default {
         "dept": "Science",
         "room": "J10",
         "phone": "354-8246",
-        "title": "Teacher - Long Tem Sub"
+        "title": "Teacher - Long Term Sub"
     },
     "71714": {
         "name": "Maryam Didari",
