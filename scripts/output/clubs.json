@@ -1,6 +1,4 @@
-import {Club} from '../components/lists/ClubComponent';
-
-export default {
+{
     "10880": {
         "new": true,
         "name": "The Gunn Improv Farce (T.G.I.F)",
@@ -1343,4 +1341,4 @@ export default {
         "advisor": "Casey O'Connell",
         "email": "coconnell@pausd.org"
     }
-} as {[key: string]: Club}
+}
