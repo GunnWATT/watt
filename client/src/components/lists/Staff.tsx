@@ -52,7 +52,7 @@ const Staff = () => {
     // Checks if a query matches a given semester class
     const searchInner = (semClass: SemesterClassObj) => {
         if (semClass === 'none') return false;
-        return semClass[0].toLowerCase().includes(query);
+        return semClass[0].toLowerCase().includes(query.toLowerCase());
     }
 
     return (
