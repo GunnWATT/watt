@@ -7,11 +7,35 @@ export default {
         "email": "gcheema@pausd.org",
         "phone": "354-8257",
         "dept": "Trainer",
-        "room": "Athletics"
+        "room": "Athletics",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "10460": {
         "name": "Jared Searl",
-        "title": "Contractor"
+        "title": "Contractor",
+        "email": "jsearls@pausd.org",
+        "dept": "SpEd aide",
+        "room": "K building",
+        "phone": "354-8262",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "10619": {
         "email": "smcginn@pausd.org",
@@ -31,13 +55,23 @@ export default {
                     ""
                 ]
             }
-        }
+        },
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "10968": {
         "name": "Jordan King",
         "title": "Teacher",
         "email": "jking@pausd.org",
-        "phone": "849-7906 ext. 6820",
+        "phone": "849-7906",
         "periods": {
             "1": {
                 "1": [
@@ -88,25 +122,43 @@ export default {
                     "Art Spec 1",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "VPA",
-        "room": "M3"
-    },
-    "11614": {
-        "name": "Erin Reyes",
-        "title": "Counselor",
-        "email": "ereyes@pausd.org",
-        "other": "Has counseling",
-        "dept": "Counselor",
-        "room": "P bldg, 2nd fl",
-        "phone": "354-8242 ext. 5403"
+        "room": "M3",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "11906": {
         "email": "bnorthen@pausd.org",
         "name": "Brian Northen",
         "dept": "Transitionist",
-        "room": "V6"
+        "room": "V6",
+        "phone": "",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "11973": {
         "name": "Ivette Daugherty",
@@ -151,21 +203,48 @@ export default {
                     "Eng LL 2",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
-        }
-    },
-    "12070": {
-        "email": "ganselmo@pausd.org",
-        "name": "Gio Anselmo",
-        "dept": "Budget Sec",
-        "room": "Main Office",
-        "phone": "354-8274 ext. 5102"
+        },
+        "email": "idaugherty@pausd.org",
+        "dept": "ELL",
+        "room": "K4",
+        "phone": "849-7922",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "12197": {
         "name": "Brenda Chen",
         "title": "Teacher",
         "email": "bchen@pausd.org",
-        "phone": "354-8247 ext. 5621",
+        "phone": "354-8247",
         "periods": {
             "3": {
                 "1": [
@@ -209,7 +288,26 @@ export default {
             }
         },
         "dept": "Math",
-        "room": "N203, N204"
+        "room": "N206",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
+    },
+    "12588": {
+        "email": "akibler@pausd.org",
+        "name": "Austin Kibler",
+        "dept": "Campus Sup.",
+        "room": "Main Office",
+        "phone": "354-8200",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "13143": {
         "name": "Norma Barba-Medina",
@@ -265,25 +363,48 @@ export default {
                     "Spanish 2",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "WL",
         "room": "G2",
-        "phone": "354-8241 ext. 5006"
+        "phone": "354-8241",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
-    "13631": {
-        "email": "kkim@pausd.org",
-        "name": "Kristen Kim",
-        "dept": "English",
-        "room": "",
-        "phone": "354-8238"
+    "13207": {
+        "name": "Yulinglong Li",
+        "title": "Mental Health Therapist Contractor",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "13761": {
         "name": "Amy Anderson",
         "title": "Teacher",
         "email": "amanderson@pausd.org",
         "dept": "PE",
-        "phone": "354-8215 ext. 6752",
+        "phone": "354-8215",
         "periods": {
             "1": {
                 "1": [
@@ -334,10 +455,40 @@ export default {
                     "PE 9",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
-        "room": "Gym"
+        "room": "Gym",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "13848": {
         "name": "Christopher Redfield",
@@ -376,28 +527,64 @@ export default {
             }
         },
         "dept": "Math",
-        "room": "N208, N212",
-        "phone": "354-8247"
+        "room": "N208",
+        "phone": "354-8247",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "13946": {
         "name": "Curtis Johansen",
         "title": "Athletic Director",
         "email": "cjohansen@pausd.org",
-        "phone": "354-8257 ext. 5923",
+        "phone": "354-8257",
         "dept": "Athletics",
-        "room": "Titan Gym"
+        "room": "Titan Gym",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "15011": {
         "name": "Christopher Duff",
-        "title": "Long Term Sub"
+        "title": "Long Term Sub",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "15193": {
         "name": "Travis Schollnick",
         "title": "Campus Supervisor/Secondary",
         "email": "tschollnick@pausd.org",
-        "dept": "Camp Sup",
+        "dept": "Camp. Sup.",
         "room": "Main Office",
-        "phone": "354-8200"
+        "phone": "354-8200",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "15499": {
         "email": "ashinh@pausd.org",
@@ -405,7 +592,29 @@ export default {
         "dept": "Transitionist",
         "room": "K10",
         "phone": "",
-        "title": ""
+        "title": "Teacher",
+        "periods": {
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
+            }
+        },
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "15969": {
         "name": "Gabrielle Gramegna",
@@ -413,11 +622,11 @@ export default {
         "periods": {
             "1": {
                 "1": [
-                    "Adv.Draw/Painting II",
+                    "AP Studio Art - Drawing",
                     ""
                 ],
                 "2": [
-                    "Adv.Draw/Painting II",
+                    "AP Studio Art - Drawing",
                     ""
                 ]
             },
@@ -460,12 +669,42 @@ export default {
                     "Art Spec 1",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
-        }
+        },
+        "email": "ggramegna@pausd.org",
+        "dept": "VPA",
+        "room": "M4, M5",
+        "phone": "354-8264",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "16448": {
         "name": "Ernesto Salcedo Aguirre",
-        "title": "Custodian I"
+        "title": "Custodian I",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "16910": {
         "name": "Briana Gonzalez",
@@ -503,11 +742,11 @@ export default {
             },
             "6": {
                 "1": [
-                    "Communic",
+                    "Western Literature",
                     ""
                 ],
                 "2": [
-                    "Communic",
+                    "Western Literature",
                     ""
                 ]
             },
@@ -520,8 +759,32 @@ export default {
                     "Western Literature",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
-        }
+        },
+        "email": "bgonzalez@pausd.org",
+        "dept": "SpEd",
+        "room": "K12",
+        "phone": "354-8262",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "17492": {
         "email": "atuomy@pausd.org",
@@ -529,21 +792,19 @@ export default {
         "dept": "SS",
         "room": "K2",
         "phone": "354-8237",
-        "title": ""
-    },
-    "17998": {
-        "name": "Paul Brown",
-        "title": "Student Attendant",
-        "email": "pbrown@pausd.org",
-        "phone": "354-8262",
-        "dept": "SpEd aide",
-        "room": "K building"
+        "title": "",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "18134": {
         "name": "Ann Lorey",
         "title": "Teacher",
         "email": "alorey@pausd.org",
-        "phone": "354-8246 ext. 5375",
+        "phone": "354-8246",
         "periods": {
             "1": {
                 "1": [
@@ -574,11 +835,31 @@ export default {
                     "AP Physics C: Mechanics",
                     ""
                 ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "Science",
-        "room": "J9, J10"
+        "room": "J9",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "18706": {
         "name": "Jacintha Kompella",
@@ -629,7 +910,30 @@ export default {
         },
         "other": "Teaches SELF.",
         "dept": "Science",
-        "room": "J9, J10"
+        "room": "J10",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "18709": {
+        "email": "yrivera@pausd.org",
+        "name": "Yesenia Rivera",
+        "dept": "SpEd aide",
+        "room": "K building",
+        "phone": "354-8262",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "19348": {
         "name": "Lynn Tabuchi",
@@ -685,19 +989,42 @@ export default {
                     "Escape Lit",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "SpEd",
-        "room": "K building",
-        "phone": "354-8262 ext. 5269"
-    },
-    "19379": {
-        "email": "psharma@pausd.org",
-        "name": "Portia Sharma",
-        "dept": "Science",
-        "room": "",
-        "phone": "354-8238"
+        "room": "K9, N113",
+        "phone": "354-8262",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "19495": {
         "name": "Anne Marie Metzler",
@@ -706,14 +1033,26 @@ export default {
         "phone": "354-8262 ext. 5119",
         "other": "Teaches SELF.",
         "dept": "SpEd",
-        "room": "K9"
+        "room": "K9",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "19554": {
         "email": "klangdon@pausd.org",
         "name": "Kyle Langdon",
-        "dept": "Spang Coord",
+        "dept": "Spang. Coord.",
         "room": "Spangenberg",
-        "phone": "354-8220 ext. 906-0223"
+        "phone": "354-8220",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "20013": {
         "name": "Quan Sims",
@@ -722,7 +1061,13 @@ export default {
         "other": "Teaches SELF.",
         "dept": "SpEd",
         "room": "K15",
-        "phone": "354-8262 ext. 5813"
+        "phone": "354-8262 ext. 5813",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "20250": {
         "name": "David Bisbee",
@@ -789,17 +1134,47 @@ export default {
                     "Wld Hist",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "SS",
-        "room": "V25"
+        "room": "V25",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "20453": {
         "name": "Michael Bautista",
         "title": "Teacher",
         "email": "mbautista@pausd.org",
-        "phone": "354-8247 ext. 6781",
+        "phone": "354-8247",
         "periods": {
             "1": {
                 "1": [
@@ -850,19 +1225,59 @@ export default {
                     "AP Calculus AB",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "Math",
-        "room": "N203, N215"
+        "room": "N203",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "20461": {
         "name": "Brittany Axelrod",
         "title": "Teacher Advisor",
         "email": "baxelrod@pausd.org",
         "dept": "SpEd",
-        "room": "K9",
-        "phone": "354-8262"
+        "room": "N209, N202, N213",
+        "phone": "354-8262",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "20547": {
         "name": "Cindy Peters",
@@ -876,6 +1291,16 @@ export default {
                 ],
                 "2": [
                     "Interior11",
+                    ""
+                ]
+            },
+            "2": {
+                "1": [
+                    "Edgenuity CA-WldHist,Cult&Geog",
+                    ""
+                ],
+                "2": [
+                    "Edgenuity CA-WldHist,Cult&Geog",
                     ""
                 ]
             },
@@ -908,26 +1333,68 @@ export default {
                     "Culinary Arts - Introduction",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "CTE",
         "room": "K3, K5",
-        "phone": "354-8245 ext. 5544"
+        "phone": "354-8245",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "20765": {
         "email": "mcaballero@pausd.org",
         "name": "Maria Caballero",
         "dept": "Kitchen",
         "room": "Kitchen",
-        "phone": "354-8233"
+        "phone": "354-8233",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "20854": {
         "email": "erobinson@pausd.org",
         "name": "Elizabeth Robinson",
         "dept": "Kitchen",
         "room": "Kitchen",
-        "phone": "354-8233"
+        "phone": "354-8233",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "20994": {
         "name": "Maria Powell",
@@ -983,11 +1450,31 @@ export default {
                     "AP Biology",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "Science",
-        "room": "J2, J4",
-        "phone": "354-8238 ext. 6089"
+        "room": "J2",
+        "phone": "354-8238",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "21801": {
         "name": "Jeffrey Patrick",
@@ -1033,15 +1520,63 @@ export default {
                     "Econ 11",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "SS",
         "room": "C8",
-        "phone": "354-8247 ext. 5165"
+        "phone": "354-8247",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "22191": {
+        "email": "tshi@pausd.org",
+        "name": "Tingting Shi",
+        "dept": "SpEd aide",
+        "room": "K building",
+        "phone": "354-8262",
+        "title": "Student Attendant",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "22282": {
-        "name": "Daissy Tabares Ruiz",
+        "name": "Daissy Tabares",
         "title": "Teacher",
         "periods": {
             "1": {
@@ -1084,45 +1619,177 @@ export default {
                     ""
                 ]
             }
-        }
+        },
+        "email": "dtabares@pausd.org",
+        "dept": "WL",
+        "room": "G7",
+        "phone": "354-8241",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "22346": {
-        "name": "Christopher Stephenson",
-        "title": "Job Coach"
+        "name": "Christopher Johnson",
+        "title": "Teacher",
+        "email": "cjohnson@pausd.org",
+        "dept": "SS",
+        "room": "C1",
+        "phone": "354-8237",
+        "periods": {
+            "1": {
+                "1": [
+                    "AP US History",
+                    ""
+                ],
+                "2": [
+                    "AP US History",
+                    ""
+                ]
+            },
+            "2": {
+                "1": [
+                    "AP US History",
+                    ""
+                ],
+                "2": [
+                    "AP US History",
+                    ""
+                ]
+            },
+            "3": {
+                "1": [
+                    "AP US History",
+                    ""
+                ],
+                "2": [
+                    "AP US History",
+                    ""
+                ]
+            },
+            "4": {
+                "1": [
+                    "Wld Hist",
+                    ""
+                ],
+                "2": [
+                    "Wld Hist",
+                    ""
+                ]
+            },
+            "5": {
+                "1": [
+                    "Wld Hist",
+                    ""
+                ],
+                "2": [
+                    "Wld Hist",
+                    ""
+                ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            }
+        },
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "22486": {
+        "name": "Barbara Boissevain",
+        "title": "",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "22783": {
         "name": "Joanne Marie Garlejo",
         "title": "Health Technician",
         "email": "jgarlejo@pausd.org",
-        "phone": "354-8211 ext. 5274",
+        "phone": "354-8211",
         "dept": "Nurse",
-        "room": "Health Office"
+        "room": "Health Office",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "22857": {
         "name": "Jason Miller",
         "title": "Athletic Assistant",
         "email": "jasmiller@pausd.org",
         "dept": "SS",
-        "room": "C3",
-        "phone": "354-8237 ext. 5351"
+        "room": "V9",
+        "phone": "354-8237",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "23382": {
         "name": "Roberto Ceja",
-        "title": "Custodian I"
+        "title": "Custodian I",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "23948": {
         "name": "Tracy Douglas",
         "title": "Registrar/Secretary",
         "email": "tdouglas@pausd.org",
-        "phone": "354-8284 ext. 5266",
+        "phone": "354-8284",
         "dept": "Registrar",
-        "room": "P209"
+        "room": "P209",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "24075": {
         "name": "Teresa Nino Oliva",
         "title": "Teacher",
         "email": "tninooliva@pausd.org",
-        "phone": "354-8241 ext. 5405",
+        "phone": "354-8241",
         "periods": {
             "2": {
                 "1": [
@@ -1166,11 +1833,27 @@ export default {
             }
         },
         "dept": "WL",
-        "room": "G1"
+        "room": "G1",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "24262": {
         "name": "Marta Seoane",
-        "title": "Primary Language Tutor"
+        "title": "Primary Language Tutor",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "24281": {
         "name": "Laurie Pennington",
@@ -1216,20 +1899,60 @@ export default {
                     "Chemistry",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "Science",
-        "room": "L1, J5",
-        "phone": "354-8246 ext. 5215"
+        "room": "L1",
+        "phone": "354-8246",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "24372": {
         "name": "Pam Steward",
         "title": "Tutorial Center Assistant",
         "email": "psteward@pausd.org",
-        "dept": "Acad Center",
+        "dept": "Acad. Center",
         "room": "D2",
-        "phone": "354-8271 ext. 1510"
+        "phone": "354-8271",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "24754": {
         "name": "Raquel Cuevas Ceja",
@@ -1277,7 +2000,7 @@ export default {
                     ""
                 ]
             },
-            "6": {
+            "7": {
                 "1": [
                     "Voc Trng",
                     ""
@@ -1286,50 +2009,136 @@ export default {
                     "Voc Trng",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "SpEd",
-        "room": "K12"
+        "room": "K12",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "24823": {
+        "name": "Jayme Moses",
+        "title": "Student Attendant",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "24904": {
         "name": "Jorge Chavez",
         "title": "Counselor",
         "email": "jchavez@pausd.org",
-        "phone": "354-8226 ext. 5406",
+        "phone": "354-8226",
         "other": "Has counseling",
         "dept": "Guidance",
-        "room": "P bldg, 2nd floor"
+        "room": "P bldg, 2nd floor",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "24988": {
         "name": "Lorebelle Chang",
-        "title": "District Nurse"
+        "title": "District Nurse",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "25864": {
+        "name": "Ana Reyes",
+        "title": "",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "25867": {
         "name": "TK Hanie",
-        "title": "Education Specialist "
+        "title": "Education Specialist ",
+        "email": "thanie@pausd.org",
+        "dept": "SpEd",
+        "room": "K12",
+        "phone": "354-8262",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "26094": {
         "name": "David Leftwich",
         "title": "Counselor",
         "email": "dleftwich@pausd.org",
-        "phone": "354-8225 ext. 4710",
+        "phone": "354-8225",
         "other": "Has counseling",
         "dept": "Guidance",
-        "room": "P bldg, 2nd floor"
+        "room": "P bldg, 2nd floor",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "26409": {
         "name": "Leighton Lang",
         "title": "College/Career Info Specialist",
         "email": "llang@pausd.org",
-        "phone": "354-8219 ext. 6267",
+        "phone": "354-8219",
         "dept": "Guidance",
-        "room": "P233"
+        "room": "P233",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "26417": {
         "name": "Florina Limburg",
         "title": "Teacher",
         "email": "flimburg@pausd.org",
-        "phone": "354-8247 ext. 5975",
+        "phone": "354-8247",
         "periods": {
             "2": {
                 "1": [
@@ -1380,26 +2189,66 @@ export default {
                     "Alg2/TrigH",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "Math",
-        "room": "N207"
+        "room": "N207",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "26643": {
         "email": "kjensen@pausd.org",
         "name": "Kristen Jensen",
         "dept": "Therapist",
         "room": "K-6B",
-        "phone": "354-8200 ext. 6971",
-        "title": "School-based MHT I"
+        "phone": "354-8200",
+        "title": "School-based MHT I",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "26776": {
         "email": "rkaci@pausd.org",
         "name": "Rachael Kaci",
-        "dept": "Work Exper",
+        "dept": "Work Exper.",
         "room": "Main Office, V4",
-        "phone": "833-4239 ext. 5574",
+        "phone": "833-4239",
         "title": "Teacher",
         "periods": {
             "3": {
@@ -1421,23 +2270,53 @@ export default {
                     "Gen Weep11",
                     ""
                 ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
-        }
+        },
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "26840": {
         "name": "Derek Johanson",
         "title": "Counselor",
         "email": "djohanson@pausd.org",
-        "phone": "849-7935 ext. 6818",
+        "phone": "849-7935",
         "other": "Has counseling",
         "dept": "Guidance",
-        "room": "P bldg, 2nd floor"
+        "room": "P bldg, 2nd floor",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "27128": {
         "name": "Edward Corpuz",
         "title": "Teacher",
         "email": "ecorpuz@pausd.org",
-        "phone": "849-7905 ext. 6105",
+        "phone": "849-7905",
         "periods": {
             "1": {
                 "1": [
@@ -1478,16 +2357,36 @@ export default {
                     "Audio/MusicProd",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "CTE",
-        "room": "L6"
+        "room": "L6",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "27606": {
         "name": "Jena Lee",
         "title": "Teacher",
         "email": "jlee@pausd.org",
-        "phone": "354-8246 ext. 6582",
+        "phone": "354-8246",
         "periods": {
             "1": {
                 "1": [
@@ -1531,13 +2430,23 @@ export default {
             }
         },
         "dept": "Science",
-        "room": "J2, J4"
+        "room": "J4",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "27824": {
         "name": "Shaina Holdener",
         "title": "Teacher",
         "email": "sholdener@pausd.org",
-        "phone": "354-8238 ext. 6795",
+        "phone": "354-8238",
         "periods": {
             "1": {
                 "1": [
@@ -1588,10 +2497,56 @@ export default {
                     "World Literature",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "English",
-        "room": "N103"
+        "room": "N103",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "28054": {
+        "email": "slo@pausd.org",
+        "name": "Sophia Lo",
+        "dept": "Speech",
+        "room": "F4",
+        "phone": "",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
+    },
+    "28202": {
+        "email": "jadefrancesco@pausd.org",
+        "name": "Jake De Francesco",
+        "dept": "PE",
+        "room": "Gym",
+        "phone": "354-8266",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "28472": {
         "name": "Yanan Vrudny",
@@ -1647,11 +2602,31 @@ export default {
                     "Chinese 1",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "WL",
         "room": "H4",
-        "phone": "354-8241 ext. 6182"
+        "phone": "354-8241",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "28720": {
         "name": "Nigel Hansen",
@@ -1659,29 +2634,36 @@ export default {
         "email": "nhansen@pausd.org",
         "phone": "354-8205",
         "dept": "Custodian",
-        "room": "Custodial"
+        "room": "Custodial",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
-    "29392": {
-        "name": "Jordan French",
-        "title": "Instructional Assistant",
-        "email": "jfrench@pausd.org",
+    "29007": {
+        "email": "tradhika@pausd.org",
+        "name": "Thampuran Radhika",
         "dept": "SpEd aide",
-        "room": "K Building",
-        "phone": "354-8262"
-    },
-    "29665": {
-        "name": "Peggy Syvertson",
-        "title": "Teacher",
-        "email": "psyvertson@pausd.org",
-        "dept": "Speech",
-        "room": "F3",
-        "phone": "354-8236 ext. 5906"
+        "room": "K building",
+        "phone": "354-8262",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "29738": {
         "name": "Kristina Granlund-Moyer",
         "title": "Teacher",
         "email": "kgranlund@pausd.org",
-        "phone": "354-8254 ext. 6722",
+        "phone": "354-8254",
         "periods": {
             "1": {
                 "1": [
@@ -1695,21 +2677,21 @@ export default {
             },
             "2": {
                 "1": [
-                    "Int Engr Des PLTW",
+                    "IntEngDesH PLTW",
                     ""
                 ],
                 "2": [
-                    "Int Engr Des PLTW",
+                    "IntEngDesH PLTW",
                     ""
                 ]
             },
             "3": {
                 "1": [
-                    "Int Engr Des PLTW",
+                    "IntEngDesH PLTW",
                     ""
                 ],
                 "2": [
-                    "Int Engr Des PLTW",
+                    "IntEngDesH PLTW",
                     ""
                 ]
             },
@@ -1732,17 +2714,47 @@ export default {
                     "Engn Tech",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "CTE",
-        "room": "F4, L5"
+        "room": "F4, L5",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "29757": {
         "name": "Marc Igler",
         "title": "Teacher",
         "email": "migler@pausd.org",
-        "phone": "354-8238 ext. 5807",
+        "phone": "354-8238",
         "periods": {
             "1": {
                 "1": [
@@ -1786,15 +2798,76 @@ export default {
             }
         },
         "dept": "English",
-        "room": "N107, N105"
+        "room": "N107",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "29758": {
         "name": "Lisa Collart",
         "title": "Tutorial Center Assistant",
         "email": "lcollart@pausd.org",
         "phone": "354-8271",
-        "dept": "Acad Center",
-        "room": "D2"
+        "dept": "Acad. Center",
+        "room": "D2",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "29846": {
+        "name": "Timothy Aston",
+        "title": "",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "30383": {
+        "name": "Karen Natoci",
+        "title": "",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "30458": {
+        "name": "Diane Gleason",
+        "title": "",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "30488": {
+        "name": "Kris Lockley",
+        "title": "Teacher",
+        "periods": {},
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "30595": {
         "name": "Nestor Vidonia",
@@ -1802,7 +2875,17 @@ export default {
         "email": "nvidonia@pausd.org",
         "dept": "Custodial",
         "room": "Custodial",
-        "phone": "354-8205"
+        "phone": "354-8205",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "30830": {
         "name": "Armando Macias",
@@ -1810,7 +2893,17 @@ export default {
         "email": "amacias@pausd.org",
         "phone": "354-8205",
         "dept": "Custodian",
-        "room": "Custodian"
+        "room": "Custodian",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "31135": {
         "name": "Cora Ross",
@@ -1818,8 +2911,18 @@ export default {
         "email": "cross@pausd.org",
         "other": "Has counseling",
         "dept": "Guidance",
-        "room": "P bldg, 2nd fl",
-        "phone": "354-8290 ext. 4711"
+        "room": "P bldg, 2nd fl.",
+        "phone": "354-8290",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "31237": {
         "name": "Haley Perkins",
@@ -1855,25 +2958,69 @@ export default {
                     "US Hist",
                     ""
                 ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "SS",
         "room": "C4",
-        "phone": "354-8237"
+        "phone": "354-8237",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "32043": {
         "name": "Olga Celis",
         "title": "Academic Technology Specialist",
         "email": "ocelis@pausd.org",
-        "phone": "354-8285 ext. 6359",
+        "phone": "354-8285",
         "other": "Teaches SELF.",
         "dept": "Technology",
-        "room": "Main Office"
+        "room": "Main Office",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "33103": {
         "name": "Janet Owen",
-        "title": "Instructional Aide"
+        "title": "Instructional Aide",
+        "email": "jowen@pausd.org",
+        "dept": "Attendance",
+        "room": "",
+        "phone": "354-8210",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "33271": {
         "name": "Laura Derrick-Navarro",
@@ -1889,7 +3036,13 @@ export default {
                     ""
                 ]
             }
-        }
+        },
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "33337": {
         "name": "Claudia Schroeppel",
@@ -1935,12 +3088,32 @@ export default {
                     "German 2",
                     ""
                 ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "WL",
         "room": "H2",
-        "phone": "354-8241 ext. 6458"
+        "phone": "354-8241",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "33603": {
         "name": "Takeshi Kaneko",
@@ -1997,40 +3170,75 @@ export default {
                     "Funct Object Or Prog",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "Math",
-        "room": "N115, N205"
+        "room": "N204, N115",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "34070": {
         "name": "Jon Martinez",
-        "title": "Teacher",
+        "title": "Student Attendant",
         "email": "jmartinez@pausd.org",
         "phone": "354-8262",
         "dept": "SpEd aide",
-        "room": "K building"
-    },
-    "34908": {
-        "name": "Linda MacKenzie",
-        "title": "Mental Health Provider Contractor"
-    },
-    "34953": {
-        "email": "jostil@pausd.org",
-        "name": "Jessica Ostil",
-        "dept": "SpEd aide",
         "room": "K building",
-        "phone": "354-8262"
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "34993": {
         "name": "Danny Lee",
-        "title": "Computer Application Specialist"
+        "title": "Computer Application Specialist",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "35254": {
         "name": "Casey O'Connell",
         "title": "Teacher",
         "email": "coconnell@pausd.org",
-        "phone": "354-8246 ext. 5582",
+        "phone": "354-8246",
         "periods": {
             "3": {
                 "1": [
@@ -2081,11 +3289,41 @@ export default {
                     "Chemistry",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "Science",
-        "room": "J6, L1"
+        "room": "J6, J8",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "35806": {
         "name": "Tarn Wilson",
@@ -2111,19 +3349,39 @@ export default {
             }
         },
         "other": "Teaches SELF.",
-        "dept": "English",
-        "room": "N101",
-        "phone": "354-8238 ext. 5597"
+        "dept": "AAR/CTE",
+        "room": "K8",
+        "phone": "354-8238",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "36023": {
         "name": "Davina Santos",
-        "title": "Counselor"
+        "title": "Counselor",
+        "email": "dsantos@pausd.org",
+        "dept": "Guidance",
+        "room": "Pbldg, 2nd floor",
+        "phone": "354-8212",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "36350": {
         "name": "Lisa Hall",
         "title": "Teacher",
         "email": "lhall@pausd.org",
-        "phone": "354-8228 ext. 5956",
+        "phone": "354-8228",
         "periods": {
             "2": {
                 "1": [
@@ -2144,10 +3402,100 @@ export default {
                     "Stu Govt",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "English/SAC",
-        "room": "P105"
+        "room": "P105",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "36459": {
+        "email": "",
+        "name": "Brenda Chen",
+        "dept": "Kitchen",
+        "room": "Cafeteria",
+        "phone": "354-8233",
+        "title": "Teacher",
+        "periods": {
+            "3": {
+                "1": [
+                    "Alg2/Trg A",
+                    ""
+                ],
+                "2": [
+                    "Alg2/Trg A",
+                    ""
+                ]
+            },
+            "4": {
+                "1": [
+                    "Alg2/Trg A",
+                    ""
+                ],
+                "2": [
+                    "Alg2/Trg A",
+                    ""
+                ]
+            },
+            "6": {
+                "1": [
+                    "Alg2/Trg A",
+                    ""
+                ],
+                "2": [
+                    "Alg2/Trg A",
+                    ""
+                ]
+            },
+            "7": {
+                "1": [
+                    "Alg2/Trg A",
+                    ""
+                ],
+                "2": [
+                    "Alg2/Trg A",
+                    ""
+                ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            }
+        },
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "36511": {
         "email": "erubens@pausd.org",
@@ -2155,30 +3503,56 @@ export default {
         "dept": "Wellness",
         "room": "Wellness, P231",
         "phone": "354-8214",
-        "title": "CASSY Therapist"
+        "title": "CASSY Therapist",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "36735": {
         "name": "Lynn Glover",
         "title": "Typist Clerk III",
         "email": "lglover@pausd.org",
-        "phone": "354-8247 ext. 1660",
+        "phone": "354-8247",
         "dept": "Math/English secretary",
-        "room": "N100"
+        "room": "N100",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "37282": {
         "name": "Kathryn Catalano",
         "title": "TOSA",
         "email": "kcatalano@pausd.org",
-        "phone": "354-8246 ext. 6953",
+        "phone": "354-8246",
         "other": "Teaches SELF.",
         "dept": "Science",
-        "room": "J8, L1"
+        "room": "J8",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "37498": {
         "name": "Laura Lizundia",
         "title": "Teacher",
         "email": "llizundia@pausd.org",
-        "phone": "354-8241 ext. 5101",
+        "phone": "354-8241",
         "periods": {
             "1": {
                 "1": [
@@ -2229,11 +3603,41 @@ export default {
                     "AP French Language",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "WL",
-        "room": "H1"
+        "room": "H1",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "37551": {
         "name": "Mark Weisman",
@@ -2289,21 +3693,37 @@ export default {
                     "US Hist",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "SS",
         "room": "V26",
-        "phone": "354-8237 ext. 6094"
-    },
-    "38358": {
-        "name": "Nancy Coffey",
-        "title": "Coordinator II"
+        "phone": "354-8237",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "39153": {
         "name": "Ethan Halter",
         "title": "Teacher",
         "email": "ehalter@pausd.org",
-        "phone": "354-8238 ext. 5429",
+        "phone": "354-8238",
         "periods": {
             "1": {
                 "1": [
@@ -2354,24 +3774,70 @@ export default {
                     "Western Literature",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "English",
-        "room": "V4"
+        "room": "V4",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "39311": {
         "name": "Leonel Argumedo",
         "title": "Assistant Principal-HS",
         "email": "largumedo@pausd.org",
         "other": "Teaches SELF.",
-        "dept": "Asst Principal",
+        "dept": "Asst. Principal",
         "room": "Main Office",
-        "phone": "354-8276 ext. 6884"
+        "phone": "354-8276",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "39622": {
         "name": "Brandymae Rodriguez",
-        "title": "Food Services Asst I"
+        "title": "Food Services Asst I",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "39884": {
         "name": "Catherine Cohn",
@@ -2408,11 +3874,41 @@ export default {
                     "Physics",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "Science",
-        "room": "J5"
+        "room": "J5",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "39959": {
         "name": "Erika Garibay Diaz",
@@ -2421,13 +3917,23 @@ export default {
         "phone": "354-8262",
         "other": "Teaches SELF.",
         "dept": "FOS aide",
-        "room": "K building"
+        "room": "K building",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "40148": {
         "name": "Warren Collier",
         "title": "Teacher",
         "email": "wcollier@pausd.org",
-        "phone": "354-8237 ext. 6382",
+        "phone": "354-8237",
         "periods": {
             "1": {
                 "1": [
@@ -2478,10 +3984,43 @@ export default {
                     "Psych 11",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "SS",
-        "room": "C2"
+        "room": "C2",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "40410": {
+        "email": "ayoung@pausd.org",
+        "name": "Alana Young",
+        "dept": "SpEd aide",
+        "room": "K building",
+        "phone": "354-8262",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "40491": {
         "name": "Sophie Magid-Gutkin",
@@ -2489,7 +4028,17 @@ export default {
         "email": "sgutkin@pausd.org",
         "phone": "354-8262",
         "dept": "SpEd aide",
-        "room": "K building"
+        "room": "K building",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "41651": {
         "name": "Normalyn Bato",
@@ -2497,71 +4046,27 @@ export default {
         "email": "nbato@pausd.org",
         "phone": "354-8233",
         "dept": "Kitchen",
-        "room": "Kitchen"
-    },
-    "41678": {
-        "name": "Christopher Johnson",
-        "title": "Teacher",
-        "email": "cjohnson@pausd.org",
-        "phone": "354-8237 ext. 6078",
-        "periods": {
-            "1": {
-                "1": [
-                    "AP US History",
-                    ""
-                ],
-                "2": [
-                    "AP US History",
-                    ""
-                ]
+        "room": "Kitchen",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
             },
-            "2": {
-                "1": [
-                    "AP US History",
-                    ""
-                ],
-                "2": [
-                    "AP US History",
-                    ""
-                ]
-            },
-            "3": {
-                "1": [
-                    "AP US History",
-                    ""
-                ],
-                "2": [
-                    "AP US History",
-                    ""
-                ]
-            },
-            "4": {
-                "1": [
-                    "Wld Hist",
-                    ""
-                ],
-                "2": [
-                    "Wld Hist",
-                    ""
-                ]
-            },
-            "5": {
-                "1": [
-                    "Wld Hist",
-                    ""
-                ],
-                "2": [
-                    "Wld Hist",
-                    ""
-                ]
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
             }
-        },
-        "dept": "SS",
-        "room": "C1, C3"
+        ]
     },
     "41963": {
         "name": "Stacey Anderson",
-        "title": "School-based MHT II"
+        "title": "School-based MHT II",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "42076": {
         "name": "Clare Gleeson",
@@ -2616,65 +4121,38 @@ export default {
                     "US Hist",
                     ""
                 ]
-            }
-        }
-    },
-    "42148": {
-        "name": "Kerstin Helbing",
-        "title": "Teacher",
-        "email": "khelbing@pausd.org",
-        "phone": "849-7922 ext. 5008",
-        "periods": {
-            "1": {
+            },
+            "P": {
                 "1": [
-                    "EL 28",
-                    "K - 04"
+                    "PRIME",
+                    ""
                 ],
-                "2": "none"
-            },
-            "2": {
-                "1": [
-                    "EL 28",
-                    "K - 04"
-                ],
-                "2": "none"
-            },
-            "5": {
-                "1": {
-                    "1": [
-                        "Eng LL 1",
-                        "K - 04"
-                    ],
-                    "2": [
-                        "Eng LL 2",
-                        "K - 04"
-                    ]
-                },
-                "2": "none"
-            },
-            "6": {
-                "1": {
-                    "1": [
-                        "Eng LL 1",
-                        "K - 04"
-                    ],
-                    "2": [
-                        "Eng LL 2",
-                        "K - 04"
-                    ]
-                },
-                "2": "none"
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
-        "other": "Teaches SELF.",
-        "dept": "ELL",
-        "room": "K4"
+        "email": "cgleeson@pausd.org",
+        "dept": "SpEd",
+        "room": "K12, C6",
+        "phone": "354-8262",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "42311": {
         "name": "William Liberatore",
         "title": "Teacher",
         "email": "bliberatore@pausd.org",
-        "phone": "354-8287 ext. 5130",
+        "phone": "354-8287",
         "periods": {
             "1": {
                 "1": [
@@ -2715,77 +4193,49 @@ export default {
                     "Adv Vocal",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "VPA",
-        "room": "S121"
-    },
-    "42624": {
-        "name": "Brian Miguel",
-        "title": "Teacher",
-        "email": "bmiguel@pausd.org",
-        "phone": "354-8237",
-        "periods": {
-            "1": {
-                "1": [
-                    "US Govt",
-                    "C-06"
-                ],
-                "2": [
-                    "ContWld 11",
-                    "C-06"
-                ]
+        "room": "S121",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
             },
-            "2": {
-                "1": [
-                    "US Govt",
-                    "C-06"
-                ],
-                "2": [
-                    "ContWld 11",
-                    "C-06"
-                ]
-            },
-            "3": {
-                "1": [
-                    "World History-SLC",
-                    "C-06"
-                ],
-                "2": "none"
-            },
-            "4": {
-                "1": [
-                    "US Govt",
-                    "C-06"
-                ],
-                "2": [
-                    "ContWld 11",
-                    "C-06"
-                ]
-            },
-            "6": {
-                "1": [
-                    "US Govt",
-                    "C-06"
-                ],
-                "2": [
-                    "ContWld 11",
-                    "C-06"
-                ]
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
             }
-        },
-        "other": "Teaches SELF.",
-        "dept": "SS",
-        "room": "C6"
+        ]
     },
     "42937": {
         "name": "Rolando Ruiz Martinez",
         "title": "Computer Support Spec II",
         "email": "rmartinez@pausd.org",
-        "phone": "354-8292 ext. 6874",
+        "phone": "354-8292",
         "dept": "Technology",
-        "room": "E3"
+        "room": "E3",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "43431": {
         "name": "Christopher Deans",
@@ -2793,7 +4243,17 @@ export default {
         "email": "cdean@pausd.org",
         "phone": "354-8205",
         "dept": "Custodian",
-        "room": "Custodian"
+        "room": "Custodian",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "43576": {
         "name": "Liz Libbey",
@@ -2801,7 +4261,17 @@ export default {
         "email": "llibbey@pausd.org",
         "dept": "Guidance Tech",
         "room": "Guidance Office",
-        "phone": "354-8212 ext. 1662"
+        "phone": "354-8212",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "43979": {
         "name": "Jose Medina",
@@ -2856,8 +4326,42 @@ export default {
                     "US Hist",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
-        }
+        },
+        "email": "jomedina@pausd.org",
+        "dept": "SS",
+        "room": "C6",
+        "phone": "354-8237",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "45116": {
         "name": "Jeanette Tucker",
@@ -2913,22 +4417,58 @@ export default {
                     "Liv Skill",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
-        "dept": "SpEd",
+        "dept": "CTE",
         "room": "V3",
-        "phone": "354-8262 ext. 6573"
+        "phone": "354-8262",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "45924": {
         "name": "Harold Daner",
-        "title": "Hourly"
+        "title": "Hourly",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "45972": {
         "name": "Ana Maria Gonzalez Barrios",
         "title": "Teacher",
         "email": "abarrios@pausd.org",
-        "phone": "354-8241 ext. 6592",
+        "phone": "354-8241",
         "periods": {
             "3": {
                 "1": [
@@ -2972,26 +4512,52 @@ export default {
             }
         },
         "dept": "WL",
-        "room": "H5"
-    },
-    "46127": {
-        "name": "Brenda Mireles Romo",
-        "title": "Instructional Assistant"
+        "room": "K2",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "46600": {
         "name": "Wendy Stratton",
-        "title": "",
+        "title": "Principal",
         "email": "wstratton@pausd.org",
         "dept": "Principal",
         "room": "Main Office",
-        "phone": "354-8288"
+        "phone": "354-8288",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "47191": {
+        "name": "Tzuhuei Lo",
+        "title": "",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "47636": {
         "email": "thuynh@pausd.org",
         "name": "Tessa Huynh",
-        "dept": "SpEd",
-        "room": "K bldg",
-        "phone": "354-8262",
+        "dept": "Science",
+        "room": "J1",
+        "phone": "",
         "title": "Teacher",
         "periods": {
             "2": {
@@ -3043,38 +4609,76 @@ export default {
                     "Biology",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
-        }
-    },
-    "47849": {
-        "name": "William Foster",
-        "title": "Student Attendant",
-        "email": "wfoster@pausd.org",
-        "phone": "354-8262",
-        "dept": "SpEd aide",
-        "room": "K building"
+        },
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "47914": {
         "name": "Harvey Newland",
         "title": "Assistant Principal-HS",
         "email": "hnewland@pausd.org",
-        "phone": "354-8260 ext. 6885",
-        "dept": "Asst Principal",
-        "room": "Main Office"
+        "phone": "354-8260",
+        "dept": "Asst. Principal",
+        "room": "Main Office",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "47991": {
         "name": "Lynne Navarro",
         "title": "Teacher",
         "email": "lnavarro@pausd.org",
-        "phone": "354-8237 ext. 1437",
+        "phone": "354-8237",
         "dept": "SS",
-        "room": "K8, K14"
+        "room": "K8, K14",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "48326": {
         "name": "Paul Dunlap",
         "title": "Teacher",
         "email": "pdunlap@pausd.org",
-        "phone": "354-8238 ext. 5248",
+        "phone": "354-8238",
         "periods": {
             "1": {
                 "1": [
@@ -3115,10 +4719,30 @@ export default {
                     "AP English Lit & Comp",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "English",
-        "room": "N114"
+        "room": "N114",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "48669": {
         "name": "Naomi Hascalovici",
@@ -3126,46 +4750,106 @@ export default {
         "email": "nhascalovici@pausd.org",
         "dept": "SpEd aide",
         "room": "K Building",
-        "phone": "354-8262"
+        "phone": "354-8262",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "49241": {
         "name": "Julius Phu",
-        "title": "Dishwasher"
+        "title": "Dishwasher",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "49787": {
         "name": "Narges Izadi",
-        "title": "Psychologist"
+        "title": "Psychologist",
+        "email": "nizadi@pausd.org",
+        "dept": "Psychologist",
+        "room": "",
+        "phone": "",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "50039": {
         "name": "Rossana Castillo",
         "title": "Wellness Outreach Worker",
         "email": "rcastillo@pausd.org",
-        "phone": "354-8214 ext. 6941",
+        "phone": "354-8214",
         "dept": "Wellness, P231",
-        "room": "Wellness, P231"
+        "room": "Wellness, P231",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "50114": {
         "name": "Michalis Gordon",
         "title": "Assistant Principal-HS",
         "email": "mgordon@pausd.org",
-        "phone": "354-8206 ext. 6865",
+        "phone": "354-8206",
         "other": "Teaches SELF.",
-        "dept": "Asst Principal",
-        "room": "Main Office"
+        "dept": "Asst. Principal",
+        "room": "Main Office",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "50293": {
+        "name": "Rachel Truhitte",
+        "title": "Mental Health Therapist Contractor",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "50709": {
         "name": "Julie Munger",
         "title": "Teacher",
         "email": "jmunger@pausd.org",
-        "phone": "354-8238 ext. 6229",
+        "phone": "354-8238",
         "periods": {
             "1": {
                 "1": [
-                    "Inter Comp",
+                    "World Literature",
                     ""
                 ],
                 "2": [
-                    "Inter Comp",
+                    "World Literature",
                     ""
                 ]
             },
@@ -3192,13 +4876,23 @@ export default {
         },
         "other": "Teaches SELF.",
         "dept": "English",
-        "room": "N111"
+        "room": "N111",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "51060": {
         "name": "Justin Brown",
         "title": "Teacher",
         "email": "jdbrown@pausd.org",
-        "phone": "354-8238 ext. 6084",
+        "phone": "354-8238",
         "periods": {
             "1": {
                 "1": [
@@ -3242,7 +4936,17 @@ export default {
             }
         },
         "dept": "English",
-        "room": "N106"
+        "room": "N106",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "51429": {
         "name": "Jordan Wells",
@@ -3298,34 +5002,74 @@ export default {
                     "Philos Lit",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "English",
         "room": "N101",
-        "phone": "354-8238 ext. 6074"
+        "phone": "354-8238",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "51599": {
         "name": "Vicky Niemann",
         "title": "Typist Clerk III",
         "email": "vniemann@pausd.org",
-        "phone": "354-8262 ext. 6902",
-        "dept": "SpEd secy",
-        "room": "K building office"
+        "phone": "354-8262",
+        "dept": "SpEd secy.",
+        "room": "K building office",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "51781": {
         "name": "Andrea Bueno",
         "title": "Counselor",
         "email": "abueno@pausd.org",
-        "phone": "354-8263 ext. 6531",
+        "phone": "354-8263",
         "other": "Has counseling",
         "dept": "Guidance",
-        "room": "P bldg, 2nd floor"
+        "room": "P Bldg, 2nd floor",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "51832": {
         "name": "Dawna Linsdell",
         "title": "Teacher",
         "email": "dlinsdell@pausd.org",
-        "phone": "354-8237 ext. 5229",
+        "phone": "354-8237",
         "periods": {
             "1": {
                 "1": [
@@ -3376,26 +5120,66 @@ export default {
                     "Econ AP",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "SS",
-        "room": "E1"
+        "room": "E1",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "52507": {
         "name": "Norma Hesterman",
         "title": "Coordinator Volunteer Services",
         "email": "nhesterman@pausd.org",
-        "phone": "354-8234 ext. 5095",
-        "dept": "Volunteer Coor",
-        "room": "Main Office"
+        "phone": "354-8234",
+        "dept": "Volunteer Coor.",
+        "room": "Main Office",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "53716": {
         "email": "jellington@pausd.org",
         "name": "Jennifer Ellington",
         "dept": "VPA",
-        "room": "S1",
-        "phone": "354-8264 ext. 5366",
+        "room": "S147",
+        "phone": "354-8264",
         "title": "Teacher",
         "periods": {
             "8": {
@@ -3408,7 +5192,17 @@ export default {
                     ""
                 ]
             }
-        }
+        },
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "53776": {
         "name": "Benjamin Beresford",
@@ -3463,15 +5257,55 @@ export default {
                     "US Govt",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
-        }
+        },
+        "email": "bberesford@pausd.org",
+        "dept": "SS",
+        "room": "C3",
+        "phone": "354-8237",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "53877": {
         "email": "rstoddard@pausd.org",
         "name": "Rachel Stoddard",
         "dept": "Therapist",
         "room": "K15A",
-        "phone": "(510) 629-1711"
+        "phone": "(510) 629-1711",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "54091": {
         "name": "Kimberly Sabbag",
@@ -3479,6 +5313,16 @@ export default {
         "email": "ksabbag@pausd.org",
         "periods": {
             "1": {
+                "1": [
+                    "PE 10",
+                    ""
+                ],
+                "2": [
+                    "PE 10",
+                    ""
+                ]
+            },
+            "2": {
                 "1": [
                     "PE 10",
                     ""
@@ -3498,13 +5342,43 @@ export default {
                     ""
                 ]
             },
-            "7": {
+            "6": {
                 "1": [
-                    "Unity PE",
+                    "PE 10",
                     ""
                 ],
                 "2": [
-                    "Unity PE",
+                    "PE 10",
+                    ""
+                ]
+            },
+            "7": {
+                "1": [
+                    "PE 10",
+                    ""
+                ],
+                "2": [
+                    "PE 10",
+                    ""
+                ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
                     ""
                 ]
             }
@@ -3512,7 +5386,17 @@ export default {
         "other": "Teaches SELF.",
         "dept": "PE",
         "room": "Gym",
-        "phone": "354-8215 ext. 6752"
+        "phone": "354-8215",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "55208": {
         "name": "Danielle Whichard",
@@ -3568,12 +5452,42 @@ export default {
                     "Western Literature",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "English",
         "room": "N109",
-        "phone": "354-8238 ext. 5454"
+        "phone": "354-8238",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "55220": {
         "name": "Daisy Renazco",
@@ -3609,12 +5523,42 @@ export default {
                     "AP Comp. Sci. Princ",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "Math",
-        "room": "N213",
-        "phone": "354-8247 ext. 5785"
+        "room": "N213, N209",
+        "phone": "354-8247",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "55414": {
         "name": "Ginger Monson",
@@ -3622,21 +5566,41 @@ export default {
         "email": "gmonson@pausd.org",
         "phone": "354-8262",
         "dept": "SpEd aide",
-        "room": "F-2"
+        "room": "F-2",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "55884": {
         "name": "Martha Elderon",
         "title": "Secretarial Supervisor - HS",
         "email": "melderon@pausd.org",
-        "phone": "354-8288 ext. 5233",
+        "phone": "354-8288",
         "dept": "Secretary",
-        "room": "Main Office"
+        "room": "Main Office",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "55907": {
         "name": "Julia Choi",
         "dept": "Math",
-        "room": "",
-        "phone": "354-8247",
+        "room": "N212",
+        "phone": "",
         "title": "Teacher",
         "periods": {
             "1": {
@@ -3688,15 +5652,46 @@ export default {
                     "Alg 1A",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
-        }
+        },
+        "email": "jchoi@pausd.org",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "55999": {
         "name": "Nicole Menache",
         "title": "Teacher",
         "email": "nmenache@pausd.org",
-        "phone": "354-8238 ext. 5220",
+        "phone": "354-8238",
         "periods": {
+            "1": {
+                "1": [
+                    "Focus on Success",
+                    ""
+                ],
+                "2": [
+                    "Focus on Success",
+                    ""
+                ]
+            },
             "6": {
                 "1": [
                     "Focus on Success",
@@ -3707,19 +5702,29 @@ export default {
                     ""
                 ]
             },
-            "7": {
+            "P": {
                 "1": [
-                    "Focus on Success",
+                    "PRIME",
                     ""
                 ],
                 "2": [
-                    "Focus on Success",
+                    "PRIME",
                     ""
                 ]
             }
         },
-        "dept": "English",
-        "room": "N102, K14"
+        "dept": "FOS/AARTOSA",
+        "room": "K14",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "56043": {
         "name": "Cristina Cismas Florea",
@@ -3759,23 +5764,154 @@ export default {
             }
         },
         "dept": "Math",
-        "room": "N208"
+        "room": "N205",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "56352": {
+        "email": "tyoung@pausd.org",
+        "name": "Timothy Young",
+        "dept": "SpEd",
+        "room": "K12",
+        "phone": "354-8262",
+        "title": "Teacher",
+        "periods": {
+            "1": {
+                "1": [
+                    "Biology",
+                    ""
+                ],
+                "2": [
+                    "Biology",
+                    ""
+                ]
+            },
+            "2": {
+                "1": [
+                    "Biology",
+                    ""
+                ],
+                "2": [
+                    "Biology",
+                    ""
+                ]
+            },
+            "3": {
+                "1": [
+                    "Acad Planning",
+                    ""
+                ],
+                "2": [
+                    "Acad Planning",
+                    ""
+                ]
+            },
+            "4": {
+                "1": [
+                    "US Govt",
+                    ""
+                ],
+                "2": [
+                    "US Govt",
+                    ""
+                ]
+            },
+            "7": {
+                "1": [
+                    "US Govt",
+                    ""
+                ],
+                "2": [
+                    "US Govt",
+                    ""
+                ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
+            }
+        },
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "56619": {
         "email": "mlaszlo@pausd.org",
         "name": "Marianne Laszlo",
         "dept": "SpEd aide",
         "room": "K building",
-        "phone": "354-8262"
+        "phone": "354-8262",
+        "title": "Student Attendant",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "56631": {
         "name": "Daljeet Gill",
         "title": "Librarian Teacher",
         "email": "dgill@pausd.org",
-        "phone": "354-8252 ext. 6802",
+        "phone": "354-8252",
         "other": "Teaches SELF.",
         "dept": "Librarian",
-        "room": "Library"
+        "room": "Library",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "56659": {
+        "name": "Emily Kingshill",
+        "title": "Student Teacher",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "56887": {
         "name": "Alana Young Nicholson",
@@ -3783,13 +5919,23 @@ export default {
         "email": "anicholson@pausd.org",
         "dept": "SpEd aide",
         "room": "K building",
-        "phone": "354-8262"
+        "phone": "354-8262",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "57090": {
         "name": "Katherine Ja",
         "title": "Teacher",
         "email": "kja@pausd.org",
-        "phone": "354-8238 ext. 6957",
+        "phone": "354-8238",
         "periods": {
             "1": {
                 "1": [
@@ -3801,7 +5947,7 @@ export default {
                     ""
                 ]
             },
-            "3": {
+            "4": {
                 "1": [
                     "Focus on Success",
                     ""
@@ -3833,15 +5979,35 @@ export default {
             }
         },
         "dept": "English",
-        "room": "N113"
+        "room": "N113, K14",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "57530": {
         "email": "rpena@pausd.org",
         "name": "Rosanna Pena",
         "dept": "Therapist",
         "room": "K10-B",
-        "phone": "354-8200 ext. 1498",
-        "title": "School-based MHT (NL)"
+        "phone": "354-8200",
+        "title": "School-based MHT (NL)",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "57560": {
         "name": "Adam Yonkers",
@@ -3849,13 +6015,19 @@ export default {
         "email": "ayonkers@pausd.org",
         "dept": "SS",
         "room": "K1",
-        "phone": "354-8237"
+        "phone": "354-8237",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "57913": {
         "name": "Rachel Congress",
         "title": "Teacher",
         "email": "rcongress@pausd.org",
-        "phone": "354-8247 ext. 5719",
+        "phone": "354-8247",
         "periods": {
             "1": {
                 "1": [
@@ -3906,11 +6078,31 @@ export default {
                     "AP Statistics",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "Math",
-        "room": "N201, N204"
+        "room": "N201",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "58138": {
         "name": "Leslie Kousnetz",
@@ -3918,27 +6110,41 @@ export default {
         "email": "lkousnetz@pausd.org",
         "dept": "SAC clerk",
         "room": "P106",
-        "phone": "354-8229 ext. 6214"
+        "phone": "354-8229",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "58373": {
+        "name": "Angeline Sheridan",
+        "title": "",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "58637": {
         "name": "Susan Van Zandt",
-        "title": "Teacher",
+        "title": "",
         "email": "svanzandt@pausd.org",
-        "periods": {
-            "6": {
-                "1": [
-                    "Western Literature",
-                    ""
-                ],
-                "2": [
-                    "Western Literature",
-                    ""
-                ]
-            }
-        },
         "dept": "SpEd",
         "room": "K15",
-        "phone": "354-8262"
+        "phone": "354-8262",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "59788": {
         "name": "Valerie LaFountain",
@@ -3993,46 +6199,110 @@ export default {
                     "Western Literature",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
-        }
+        },
+        "email": "vlafountain@pausd.org",
+        "dept": "SpEd",
+        "room": "K12",
+        "phone": "354-8262",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "59932": {
         "name": "Jonathan Fidani",
         "title": "Counselor",
         "email": "jfidani@pausd.org",
-        "phone": "354-8224 ext. 6917",
+        "phone": "354-8224",
         "other": "Has counseling",
         "dept": "Guidance",
-        "room": "P bldg, 2nd floor"
+        "room": "P bldg, 2nd floor",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "59937": {
         "name": "Calvin Li",
-        "title": "Therapist"
-    },
-    "60284": {
-        "name": "Amanda Valenzuela",
-        "title": "Student Attendant",
-        "email": "avalenzuela@pausd.org",
-        "dept": "SpEd aide",
-        "room": "K building",
-        "phone": "354-8262"
+        "title": "Therapist",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "60359": {
         "name": "Benjamin Parker",
-        "title": "Long Term Sub"
+        "title": "Long Term Sub",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "60766": {
         "name": "Kristy Blackburn",
         "title": "Teacher Advisor",
         "email": "kblackburn@pausd.org",
-        "phone": "354-8238 ext. 5112",
+        "phone": "354-8238",
         "other": "Teaches SELF.",
         "dept": "English",
-        "room": "P117, N106"
+        "room": "N113, P115",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "60799": {
         "name": "Edward Barrett",
-        "title": "Long Term Sub"
+        "title": "Long Term Sub",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "60984": {
         "name": "Savannah Heupel",
@@ -4087,8 +6357,32 @@ export default {
                     "Geom",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
-        }
+        },
+        "email": "sheupel@pausd.org",
+        "dept": "Math",
+        "room": "N202",
+        "phone": "354-8247",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "61633": {
         "name": "Richelle Ochoa",
@@ -4096,37 +6390,59 @@ export default {
         "email": "rochoa@pausd.org",
         "phone": "354-8262",
         "dept": "SpEd aide",
-        "room": "K building"
-    },
-    "61727": {
-        "name": "Steven Kelly",
-        "title": "Custodian II",
-        "email": "skelly@pausd.org",
-        "phone": "354-8205 ext. 6439",
-        "dept": "Custodian",
-        "room": "Custodian"
+        "room": "K building",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "61940": {
         "email": "szaidi@pausd.org",
         "name": "Syedali Zaidi",
         "dept": "Technology",
         "room": "E3",
-        "phone": "329- 3721 ext. 5559",
-        "title": "Computer Support Spec II"
+        "phone": "329- 3721",
+        "title": "Computer Support Spec II",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "62208": {
+        "name": "Kausalya Ganapathi",
+        "title": "Attendance/Secretary",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "62794": {
         "name": "Mark Gleason",
         "title": "Teacher",
         "email": "mgleason@pausd.org",
-        "phone": "849-7906 ext. 5981",
+        "phone": "849-7906",
         "periods": {
             "1": {
                 "1": [
-                    "Adv Photo H",
+                    "Adv Photo",
                     ""
                 ],
                 "2": [
-                    "Adv Photo H",
+                    "Adv Photo",
                     ""
                 ]
             },
@@ -4150,16 +6466,6 @@ export default {
                     ""
                 ]
             },
-            "4": {
-                "1": [
-                    "Adv Photo",
-                    ""
-                ],
-                "2": [
-                    "Adv Photo",
-                    ""
-                ]
-            },
             "6": {
                 "1": [
                     "Digital Art Spectrum",
@@ -4179,17 +6485,37 @@ export default {
                     "Digital Art Spectrum",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "VPA",
-        "room": "P117"
+        "room": "P117, M1",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "62837": {
         "name": "Steven Ames",
         "title": "Teacher",
         "email": "sames@pausd.org",
         "dept": "PE",
-        "phone": "354-8266 ext. 5242",
+        "phone": "354-8266",
         "periods": {
             "2": {
                 "1": [
@@ -4211,6 +6537,16 @@ export default {
                     ""
                 ]
             },
+            "4": {
+                "1": [
+                    "PE 9",
+                    ""
+                ],
+                "2": [
+                    "PE 9",
+                    ""
+                ]
+            },
             "5": {
                 "1": [
                     "PE 9",
@@ -4240,28 +6576,56 @@ export default {
                     "PE 9",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
-        "room": "Gym & V17"
+        "room": "Gym & V17",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "63156": {
         "name": "Sharon Walker",
-        "title": "Adult Ed Teacher"
-    },
-    "63160": {
-        "name": "Erika Zepeda",
-        "title": "Psychologist",
-        "email": "ezepeda@pausd.org",
-        "dept": "Psychologist",
-        "room": "K13-A",
-        "phone": "354-8213 ext. 1419"
+        "title": "Adult Ed Teacher",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "63639": {
         "name": "David Deggeller",
         "title": "Teacher",
         "email": "ddeggeller@pausd.org",
-        "phone": "354-8247 ext. 5327",
+        "phone": "354-8247",
         "periods": {
             "5": {
                 "1": [
@@ -4292,14 +6656,40 @@ export default {
                     "AP Calculus BC",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "Math",
-        "room": "N204"
+        "room": "N208",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "64073": {
         "name": "Radhika Thampuran",
-        "title": "Student Attendant"
+        "title": "Student Attendant",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "64280": {
         "name": "Romeo Motas",
@@ -4354,8 +6744,32 @@ export default {
                     "Wld Hist",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
-        }
+        },
+        "email": "rmotas@pausd.org",
+        "dept": "SpEd",
+        "room": "K12",
+        "phone": "354-8262",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "64295": {
         "name": "Marcus Jamison",
@@ -4412,17 +6826,47 @@ export default {
                     "Geom H",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "Math",
-        "room": "N210"
+        "room": "N210",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "64834": {
         "name": "Kristen Lo",
         "title": "Teacher",
         "email": "klo@pausd.org",
-        "phone": "354-8258 ext. 5682",
+        "phone": "354-8258",
         "periods": {
             "1": {
                 "1": [
@@ -4463,38 +6907,68 @@ export default {
                     "Theatre 4",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "VPA",
-        "room": "S1, S147"
+        "room": "S1, S147",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "64908": {
         "name": "Jose Ordonez",
         "title": "Tutorial Center Assistant",
         "email": "jordonez@pausd.org",
         "other": "Teaches SELF.",
-        "dept": "TRC",
-        "room": "D-2",
-        "phone": ""
+        "dept": "SAFE",
+        "room": "Main off.",
+        "phone": "354-8271",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "65100": {
         "name": "Braumon Creighton",
         "title": "Teacher",
         "email": "bcreighton@pausd.org",
-        "phone": "354-8266 ext. 6954",
+        "phone": "354-8266",
         "periods": {
             "1": {
-                "1": [
-                    "PE 10",
-                    ""
-                ],
-                "2": [
-                    "PE 10",
-                    ""
-                ]
-            },
-            "2": {
                 "1": [
                     "PE 10",
                     ""
@@ -4533,18 +7007,48 @@ export default {
                     "PE 10",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "PE",
-        "room": "Gym"
+        "room": "Gym",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "65155": {
         "name": "Megan Garcia",
         "title": "Library Assistant II",
         "email": "mgarcia@pausd.org",
-        "phone": "354-8252 ext. 6802",
-        "dept": "Asst Lib",
-        "room": "Library"
+        "phone": "354-8252",
+        "dept": "Asst. Lib.",
+        "room": "Library",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "65253": {
         "email": "gstone@pausd.org",
@@ -4552,21 +7056,49 @@ export default {
         "dept": "SS",
         "room": "K2",
         "phone": "354-8237",
-        "title": ""
+        "title": "",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "65304": {
+        "name": "Deepty Jain",
+        "title": "Student Teacher",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "65459": {
         "name": "Rosemarie Dowell",
-        "title": "District Nurse"
+        "title": "District Nurse",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "65469": {
         "name": "Melenaite Tupou",
-        "title": "Family Engagement Specialist"
+        "title": "Family Engagement Specialist",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "65766": {
         "name": "Sandra Conklin",
         "title": "Teacher",
         "email": "sconklin@pausd.org",
-        "phone": "354-8265 ext. 1560",
+        "phone": "354-8265",
         "periods": {
             "1": {
                 "1": [
@@ -4617,24 +7149,36 @@ export default {
                     "Voc Trng",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "SpEd",
-        "room": "F2, K9"
-    },
-    "66042": {
-        "name": "Narinder Dhillon",
-        "title": "Student Attendant",
-        "email": "ndhillon@pausd.org",
-        "phone": "354-8262",
-        "dept": "SpEd aide",
-        "room": "K building"
+        "room": "F2",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "66551": {
         "name": "Virginia Moyer",
         "title": "Teacher",
         "email": "vmoyer@pausd.org",
-        "phone": "354-8238 ext. 5430",
+        "phone": "354-8238",
         "periods": {
             "1": {
                 "1": [
@@ -4658,13 +7202,23 @@ export default {
             }
         },
         "dept": "English",
-        "room": "N113"
+        "room": "N102",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "66745": {
         "name": "Nora Matta",
         "title": "Teacher",
         "email": "nmatta@pausd.org",
-        "phone": "354-8237 ext. 6959",
+        "phone": "354-8237",
         "periods": {
             "1": {
                 "1": [
@@ -4678,7 +7232,37 @@ export default {
             }
         },
         "dept": "SS",
-        "room": "E2"
+        "room": "F6",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "66989": {
+        "name": "Paul Hickey",
+        "title": "Mental Health Therapist Contractor",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "67066": {
+        "name": "Sarah Raphael",
+        "title": "Counselor",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "67140": {
         "name": "Laurel Howard",
@@ -4735,17 +7319,47 @@ export default {
                     "AP US History",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "SS",
-        "room": "C7"
+        "room": "C7",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "67835": {
         "name": "Jessica Hexsel",
         "title": "Teacher",
         "email": "jhexsel@pausd.org",
-        "phone": "354-8247 ext. 6796",
+        "phone": "354-8247",
         "periods": {
             "1": {
                 "1": [
@@ -4774,20 +7388,50 @@ export default {
                 ],
                 "2": [
                     "AP Comp. Sci. Princ",
+                    ""
+                ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
                     ""
                 ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "Math",
-        "room": "N115, N206"
+        "room": "N115",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "67966": {
         "email": "tou@pausd.org",
         "name": "Tiffany Ou-Ponticelli",
         "dept": "Music",
         "room": "S102",
-        "phone": "354-8264 ext. 6827",
+        "phone": "354-8264",
         "title": "Teacher",
         "periods": {
             "1": {
@@ -4820,7 +7464,17 @@ export default {
                     ""
                 ]
             }
-        }
+        },
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "68384": {
         "name": "Denise Li",
@@ -4828,7 +7482,17 @@ export default {
         "email": "dli@pausd.org",
         "dept": "Family Liaison",
         "room": "Main Office",
-        "phone": "354-8200 ext. 1518"
+        "phone": "354-8200",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "68776": {
         "name": "Jonathan Hubbs",
@@ -4883,14 +7547,58 @@ export default {
                     "US Govt",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
-        }
+        },
+        "email": "jhubbs@pausd.org",
+        "dept": "SS",
+        "room": "K1",
+        "phone": "354-8262",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "68935": {
+        "name": "Toshiro Lang",
+        "title": "",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "69363": {
         "name": "Terence Kitada",
         "title": "Teacher",
         "email": "tkitada@pausd.org",
-        "phone": "354-8238 ext. 6798",
+        "phone": "354-8238",
         "periods": {
             "1": {
                 "1": [
@@ -4951,11 +7659,41 @@ export default {
                     "Visual Story",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "English",
-        "room": "N108"
+        "room": "N108",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "69506": {
         "name": "Sofia Raptis",
@@ -4963,7 +7701,17 @@ export default {
         "email": "sraptis@pausd.org",
         "dept": "Science",
         "room": "J Science Prep",
-        "phone": "354-8246"
+        "phone": "354-8246",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "69648": {
         "name": "Szu-Yin Yeh",
@@ -4989,16 +7737,32 @@ export default {
                     ""
                 ]
             }
-        }
+        },
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "69815": {
         "name": "Courtney Carlomagno",
-        "title": "",
+        "title": "Assistant Principal-HS",
         "email": "ccarlomagno@pausd.org",
-        "phone": "354-8262 ext. 1446",
+        "phone": "354-8244",
         "other": "Teaches SELF.",
-        "dept": "SpEd",
-        "room": "L1"
+        "dept": "Assistant Principal",
+        "room": "Main Office",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "70365": {
         "name": "Jane Miller",
@@ -5007,13 +7771,23 @@ export default {
         "phone": "354-8262",
         "other": "Teaches SELF.",
         "dept": "SpEd aide",
-        "room": "K building"
+        "room": "K building",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "70583": {
         "name": "Matthew McGinn",
         "title": "Teacher",
         "email": "mmcginn@pausd.org",
-        "phone": "354-8266 ext. 5778",
+        "phone": "354-8266",
         "periods": {
             "2": {
                 "1": [
@@ -5054,10 +7828,40 @@ export default {
                     "PE 9",
                     ""
                 ]
+            },
+            "8": {
+                "1": [
+                    "PE 52",
+                    ""
+                ],
+                "2": [
+                    "PE 52",
+                    ""
+                ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "PE",
-        "room": "Gym"
+        "room": "Gym",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "70862": {
         "name": "Elena Herrera",
@@ -5065,7 +7869,17 @@ export default {
         "email": "eherrera@pausd.org",
         "phone": "354-8233",
         "dept": "Kitchen",
-        "room": "Kitchen"
+        "room": "Kitchen",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "71038": {
         "name": "Kamille De Guzman",
@@ -5073,33 +7887,58 @@ export default {
         "email": "kdeguzman@pausd.org",
         "dept": "SpEd aide",
         "room": "K building",
-        "phone": "354-8262"
+        "phone": "354-8262",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "71355": {
         "email": "tcasavant@pausd.org",
         "name": "Tom Casavant",
         "dept": "Science",
-        "room": "J10",
-        "phone": "354-8246",
-        "title": "Teacher - Long Term Sub"
+        "room": "J5, J10, L",
+        "phone": "",
+        "title": "Teacher - Long Tem Sub",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "71714": {
         "name": "Maryam Didari",
-        "title": "Food Services Asst I"
+        "title": "Food Services Asst I",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "71834": {
         "email": "wchu@pausd.org",
         "name": "Wendy Chu",
-        "dept": "Speech Ther",
+        "dept": "Speech Therapist",
         "room": "F3",
-        "phone": "354-8236"
-    },
-    "71882": {
-        "email": "ehernandez@pausd.org",
-        "name": "Estrella Hernandez",
-        "dept": "Kitchen superv",
-        "room": "Kitchen",
-        "phone": "354-8233 ext. 5830"
+        "phone": "354-8236",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "72064": {
         "name": "Emily Yun",
@@ -5155,12 +7994,32 @@ export default {
                     "BEAM",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "Math",
-        "room": "N204, N205, N210",
-        "phone": "354-8247 ext. 6810"
+        "room": "N204",
+        "phone": "354-8247",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "72249": {
         "name": "Gopi Tantod",
@@ -5199,14 +8058,24 @@ export default {
             }
         },
         "dept": "Math",
-        "room": "N205",
-        "phone": "354-8247 ext. N213"
+        "room": "N206",
+        "phone": "354-8247",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "72969": {
         "name": "Tara Firenzi",
         "title": "Teacher",
         "email": "tfirenzi@pausd.org",
-        "phone": "354-8237 ext. 6002",
+        "phone": "354-8237",
         "periods": {
             "2": {
                 "1": [
@@ -5227,11 +8096,41 @@ export default {
                     "Dance 1",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "SS",
-        "room": "C4"
+        "room": "C4, Titan Gym, P105",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "73888": {
         "name": "Kevin Johnson",
@@ -5239,7 +8138,17 @@ export default {
         "email": "kjohnson@pausd.org",
         "dept": "Athletics",
         "room": "Gym",
-        "phone": "354-8257 ext. 5923"
+        "phone": "354-8257",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "74479": {
         "name": "Jessica Antonio",
@@ -5265,41 +8174,101 @@ export default {
                     ""
                 ]
             }
-        }
+        },
+        "email": "jantonio@pausd.org",
+        "dept": "VPA",
+        "room": "M1",
+        "phone": "354-8264",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "75241": {
         "name": "Bridget Johnson",
         "title": "Secretary II",
         "email": "bjohnson@pausd.org",
-        "phone": "354-8280 ext. 6250",
+        "phone": "354-8280",
         "dept": "Secretary",
-        "room": "Main Office"
+        "room": "Main Office",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
-    "75348": {
-        "email": "enguyen@pausd.org",
-        "name": "Emily Nguyen",
-        "dept": "SpEd aide",
-        "room": "K building",
-        "phone": "354-8262"
+    "75731": {
+        "name": "Navneet Schworetzky",
+        "title": "",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "75838": {
         "name": "Jorge Sanchez Barrera",
-        "title": "Campus Supervisor/Secondary"
+        "title": "Campus Supervisor/Secondary",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "76245": {
         "name": "Ladan Soroushian",
-        "title": "Student Teacher"
+        "title": "Student Teacher",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "76815": {
         "name": "Silvia Griswold",
-        "title": "Budget Clerk/Secretary"
+        "title": "Budget Clerk/Secretary",
+        "email": "sgriswold@pausd.org",
+        "dept": "Budget Sec.",
+        "room": "Main Office",
+        "phone": "354-8222",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "76883": {
         "name": "Robert Glenister",
         "title": "H.S. Empl. Spec.",
         "email": "rglenister@pausd.org",
         "dept": "Transitionist",
-        "room": "V7"
+        "room": "V7",
+        "phone": "",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "77108": {
         "name": "Neil Barana",
@@ -5307,19 +8276,45 @@ export default {
         "email": "nbarana@pausd.org",
         "phone": "354-8205",
         "dept": "Custodian",
-        "room": "Custodial"
+        "room": "Custodial",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "77446": {
         "name": "Monica Casey",
         "title": "Library Assistant I",
         "email": "mcasey@pausd.org",
         "phone": "354-8252",
-        "dept": "Library Asst",
-        "room": "Library"
+        "dept": "Library Assistant",
+        "room": "Library",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "77464": {
         "name": "Karen Serrano Vides",
-        "title": "Student Attendant"
+        "title": "Student Attendant",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "77467": {
         "name": "Myesha Dickson",
@@ -5327,13 +8322,23 @@ export default {
         "email": "mdickson@pausd.org",
         "dept": "Guidance",
         "room": "P233",
-        "phone": "354-8207 ext. 5718"
+        "phone": "354-8207",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "77530": {
         "name": "Arthur Kinyanjui",
         "title": "Teacher",
         "email": "akinyanjui@pausd.org",
-        "phone": "354-8237 ext. 5937",
+        "phone": "354-8237",
         "periods": {
             "1": {
                 "1": [
@@ -5384,41 +8389,107 @@ export default {
                     "Wld Hist",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "SS",
-        "room": "E2"
+        "room": "E2",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "78385": {
         "email": "krocha@pausd.org",
         "name": "Kris Rocha",
-        "dept": "Ath Trainer",
+        "dept": "Ath.Trainer",
         "room": "Gym",
-        "phone": "354-8257"
+        "phone": "354-8257",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "78625": {
         "name": "Melissa Clark",
         "title": "Psychologist",
         "email": "mclark@pausd.org",
-        "phone": "354-8216 ext. 5109",
-        "dept": "Psychol",
-        "room": "K13B"
+        "phone": "354-8216",
+        "dept": "Psychol.",
+        "room": "K13B",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "78679": {
         "name": "Abbie Reynolds",
-        "title": "Psychologist"
+        "title": "Psychologist",
+        "email": "areynolds@pausd.org",
+        "dept": "Psychologist",
+        "room": "K13A",
+        "phone": "354-8212",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "78966": {
         "name": "Joshua Shleffar",
-        "title": "Behavior Specialist"
+        "title": "Behavior Specialist",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "79115": {
         "name": "Sandra Lewis",
         "title": "Teacher",
         "email": "slewis@pausd.org",
         "dept": "VPA",
-        "phone": "354-8264 ext. 1444",
+        "phone": "354-8264",
         "periods": {
             "1": {
                 "1": [
@@ -5459,9 +8530,29 @@ export default {
                     "Symph Band",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
-        "room": "S102"
+        "room": "S102",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "79192": {
         "name": "Todd Summers",
@@ -5497,11 +8588,31 @@ export default {
                     "Band",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "VPA",
         "room": "S102",
-        "phone": "354-8264 ext. 1441"
+        "phone": "354-8264",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "79252": {
         "name": "Karen Saxena",
@@ -5527,18 +8638,38 @@ export default {
                     "Alg2/TrigH",
                     ""
                 ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "Math",
-        "room": "N213",
-        "phone": "354-8247"
+        "room": "N205",
+        "phone": "354-8247",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "79348": {
         "name": "Elizabeth Matchett",
         "title": "Teacher",
         "email": "lmatchett@pausd.org",
-        "phone": "354-8241 ext. 5019",
+        "phone": "354-8241",
         "periods": {
             "5": {
                 "1": [
@@ -5569,11 +8700,41 @@ export default {
                     "SpCiv/CulH",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "WL",
-        "room": "H5, G3"
+        "room": "H5",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "79421": {
         "name": "Genavae Dixon",
@@ -5581,7 +8742,13 @@ export default {
         "email": "gdixon@pausd.org",
         "phone": "354-8214 ext. 6894",
         "dept": "CASSY",
-        "room": "Wellness, P231"
+        "room": "Wellness, P231",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "79485": {
         "name": "Rocio Lopez",
@@ -5589,7 +8756,17 @@ export default {
         "email": "rlopez@pausd.org",
         "phone": "354-8233",
         "dept": "Kitchen",
-        "room": "Kitchen"
+        "room": "Kitchen",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "79781": {
         "name": "Daniel Hahn",
@@ -5644,22 +8821,66 @@ export default {
                     "Pre Calc",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
-        }
+        },
+        "email": "dhahn@pausd.org",
+        "dept": "Math",
+        "room": "N214",
+        "phone": "354-8247",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "79799": {
         "name": "Brandon Boyd",
         "title": "Campus Supervisor/Secondary",
         "email": "bboyd@pausd.org",
         "phone": "354-8200",
-        "dept": "Camp Sup",
-        "room": "Main Office"
+        "dept": "Camp. Sup.",
+        "room": "Main Office",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "80522": {
+        "name": "Christopher Bell",
+        "title": "",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "80959": {
         "name": "Philip Lyons",
         "title": "Teacher",
         "email": "plyons@pausd.org",
-        "phone": "354-8237 ext. 5576",
+        "phone": "354-8237",
         "periods": {
             "1": {
                 "1": [
@@ -5710,23 +8931,36 @@ export default {
                     "US Hist",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "SS",
-        "room": "F1"
-    },
-    "81086": {
-        "email": "mnevels@pausd.org",
-        "name": "Michael Nevels",
-        "dept": "SpEd Ind Stud",
-        "room": "K building",
-        "phone": "354-8262"
+        "room": "F1",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "81236": {
         "name": "Patricia Holmes",
         "title": "Teacher",
         "email": "pholmes@pausd.org",
-        "phone": "849-7951 ext. 5479",
+        "phone": "849-7951",
         "periods": {
             "2": {
                 "1": [
@@ -5775,65 +9009,49 @@ export default {
                 ],
                 "2": [
                     "US Govt",
+                    ""
+                ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
                     ""
                 ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "CTE",
-        "room": "F6"
-    },
-    "81300": {
-        "name": "Jennel Lopez",
-        "title": "Teacher",
-        "email": "jlopez@pausd.org",
-        "periods": {
-            "2": {
-                "1": [
-                    "Geom",
-                    "N - 206"
-                ],
-                "2": "none"
+        "room": "F6",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
             },
-            "4": {
-                "1": [
-                    "Geom",
-                    "N - 206"
-                ],
-                "2": "none"
-            },
-            "5": {
-                "1": [
-                    "Acad Planning",
-                    "K - 15"
-                ],
-                "2": "none"
-            },
-            "6": {
-                "1": [
-                    "Geom",
-                    "N - 202"
-                ],
-                "2": "none"
-            },
-            "7": {
-                "1": [
-                    "Acad Planning",
-                    "K - 15"
-                ],
-                "2": "none"
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
             }
-        },
-        "other": "Teaches SELF.",
-        "dept": "SpEd",
-        "room": "K15",
-        "phone": "354-8262"
+        ]
     },
     "81317": {
         "name": "Gabriela Garger",
         "title": "Teacher",
         "email": "ggarger@pausd.org",
-        "phone": "354-8241 ext. 5980",
+        "phone": "354-8241",
         "periods": {
             "1": {
                 "1": [
@@ -5884,18 +9102,41 @@ export default {
                     "AP Spanish Literature",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "WL",
-        "room": "G4"
-    },
-    "81709": {
-        "email": "asoofiani@pausd.org",
-        "name": "Arya Soofiani",
-        "dept": "SpEd aide",
-        "room": "K building",
-        "phone": "354-8262"
+        "room": "G4",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "82062": {
         "name": "Danning Wang",
@@ -5951,28 +9192,80 @@ export default {
                     "Geom A",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "Math",
-        "room": "N211, N203",
-        "phone": "354-8247 ext. 5854"
+        "room": "N211",
+        "phone": "354-8247",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "82166": {
         "name": "Angela Mosqueda",
         "title": "Typist Clerk III",
         "email": "amosqueda@pausd.org",
-        "phone": "354-8237 ext. 1663",
-        "dept": "SS/Sci/WL sec",
-        "room": "K Building"
+        "phone": "354-8237",
+        "dept": "SS/Sci/WL sec.",
+        "room": "K Building",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "82721": {
         "name": "Eric Handa",
-        "title": "Custodian I"
+        "title": "Custodian I",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "82823": {
         "name": "Angel Ceballos",
-        "title": "Student Instructional Aide"
+        "title": "Student Instructional Aide",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "83029": {
         "name": "Melinda Wilson",
@@ -5998,14 +9291,26 @@ export default {
                     ""
                 ]
             }
-        }
+        },
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "83070": {
         "email": "lmartinez@pausd.org",
         "name": "Leticia Martinez",
         "dept": "Transitionist",
         "room": "V7",
-        "phone": ""
+        "phone": "",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "83233": {
         "name": "Charlotte Kaufman",
@@ -6052,11 +9357,41 @@ export default {
                     "French 2",
                     ""
                 ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "WL",
-        "room": "G3"
+        "room": "G3",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "84637": {
+        "name": "Reva Balakrishnan",
+        "title": "Debate Coach",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "84674": {
         "name": "Kathy Hawes",
@@ -6113,16 +9448,46 @@ export default {
                     "IntrAnl/Calc",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "dept": "Math",
-        "room": "N209"
+        "room": "N209",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "85434": {
         "name": "Michael Camicia",
         "title": "Teacher",
         "email": "mcamicia@pausd.org",
-        "phone": "354-8255 ext. 5373",
+        "phone": "354-8255",
         "periods": {
             "2": {
                 "1": [
@@ -6163,17 +9528,37 @@ export default {
                     "Auto 1",
                     ""
                 ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "CTE",
-        "room": "L8"
+        "room": "L8",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "86079": {
         "name": "Heather Mellows",
         "title": "Teacher",
         "email": "hmellows@pausd.org",
-        "phone": "354-8246 ext. 6835",
+        "phone": "354-8246",
         "periods": {
             "3": {
                 "1": [
@@ -6224,24 +9609,50 @@ export default {
                     "Chemistry H",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "Science",
-        "room": "J3, J8"
+        "room": "J3, J8",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "86164": {
         "name": "Teri Lee",
         "title": "Teacher",
         "email": "tlee@pausd.org",
-        "phone": "354-8262 ext. 5460",
+        "phone": "354-8262",
         "dept": "Secondary Program Specialist",
-        "room": "E1"
+        "room": "E1, K12",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "86216": {
         "name": "Diane Ichikawa",
         "title": "Teacher",
         "email": "dichikawa@pausd.org",
-        "phone": "354-8238 ext. 5489",
+        "phone": "354-8238",
         "periods": {
             "1": {
                 "1": [
@@ -6292,16 +9703,76 @@ export default {
                     "AP English Lit & Comp",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "English",
-        "room": "N112"
+        "room": "N112",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "86258": {
+        "email": "gmiller@pausd.org",
+        "name": "Gregory Miller",
+        "dept": "VPA",
+        "room": "S102",
+        "phone": "354-8264",
+        "title": "Teacher",
+        "periods": {
+            "5": {
+                "1": [
+                    "Wind Ens",
+                    ""
+                ],
+                "2": [
+                    "Wind Ens",
+                    ""
+                ]
+            },
+            "7": {
+                "1": [
+                    "Band",
+                    ""
+                ],
+                "2": [
+                    "Band",
+                    ""
+                ]
+            }
+        },
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "86325": {
         "name": "Mark Hernandez",
         "title": "Teacher",
         "email": "mhernandez@pausd.org",
-        "phone": "354-8238 ext. 5569",
+        "phone": "354-8238",
         "periods": {
             "2": {
                 "1": [
@@ -6352,27 +9823,83 @@ export default {
                     "Film Lit",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "English",
-        "room": "N105"
+        "room": "N105",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "86434": {
         "name": "Carole Main",
         "title": "Secretary II",
         "email": "cmain@pausd.org",
-        "phone": "354-8254 ext. 6746",
+        "phone": "354-8254",
         "other": "Teaches SELF.",
         "dept": "Secretary",
-        "room": "Main Office"
+        "room": "Main Office",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "86476": {
         "email": "mmendoza@pausd.org",
         "name": "Mayra Mendoza",
         "dept": "Kitchen",
         "room": "Kitchen",
-        "phone": "354-8233"
+        "phone": "354-8233",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
+    },
+    "86542": {
+        "name": "Chaehoon Ko",
+        "title": "Debate Coach",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "86596": {
         "email": "jwellsakis@pausd.org",
@@ -6380,24 +9907,24 @@ export default {
         "dept": "ELL",
         "room": "K4",
         "phone": "849-7922",
-        "title": "Instructional Assistant"
+        "title": "Instructional Assistant",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "86606": {
         "name": "Marie Durquet",
         "title": "Teacher",
         "email": "mdurquet@pausd.org",
-        "phone": "849-7903 ext. 1403",
+        "phone": "849-7903",
         "periods": {
-            "1": {
-                "1": [
-                    "AP Stud Art",
-                    ""
-                ],
-                "2": [
-                    "AP Stud Art",
-                    ""
-                ]
-            },
             "2": {
                 "1": [
                     "Photo 1",
@@ -6430,25 +9957,42 @@ export default {
             }
         },
         "dept": "VPA",
-        "room": "M1, M3"
-    },
-    "87246": {
-        "email": "ssaha@pausd.org",
-        "name": "Shreya Saha",
-        "dept": "WL",
-        "room": "K building",
-        "phone": "354-8241"
+        "room": "M1",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "87383": {
         "name": "Theresa Liu",
-        "title": "Student Attendant"
+        "title": "Student Attendant",
+        "email": "tliu@pausd.org",
+        "dept": "SpEd aide",
+        "room": "K building",
+        "phone": "354-8262",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "87411": {
         "name": "Kristen Owen",
         "title": "Teacher",
         "email": "kowen@pausd.org",
         "periods": {
-            "1": {
+            "2": {
                 "1": [
                     "Focus on Success",
                     ""
@@ -6458,7 +10002,7 @@ export default {
                     ""
                 ]
             },
-            "2": {
+            "3": {
                 "1": [
                     "Focus on Success",
                     ""
@@ -6487,23 +10031,59 @@ export default {
                     "AnalyticCollWrit",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "English",
-        "room": "N110, K14",
-        "phone": "354-8238 ext. 6176"
+        "room": "N102,, K14",
+        "phone": "354-8238",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "87572": {
         "name": "Star Teachout",
-        "title": "Long Term Substitute"
+        "title": "Long Term Substitute",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "87712": {
         "email": "afitzhugh@pausd.org",
         "name": "Angelina Fitzhugh",
         "dept": "VPA",
         "room": "S121",
-        "phone": "354-8264 ext. 5664",
+        "phone": "354-8264",
         "title": "Teacher",
         "periods": {
             "6": {
@@ -6515,8 +10095,38 @@ export default {
                     "Conc Choir",
                     ""
                 ]
+            },
+            "8": {
+                "1": [
+                    "Adv Vocal",
+                    ""
+                ],
+                "2": [
+                    "Adv Vocal",
+                    ""
+                ]
             }
-        }
+        },
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "88051": {
+        "name": "Timothy Johnson",
+        "title": "Debate Coach",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "88433": {
         "name": "Howard Selznick",
@@ -6524,15 +10134,35 @@ export default {
         "email": "hselznick@pausd.org",
         "dept": "SpEd aide",
         "room": "K building",
-        "phone": "354-8262"
+        "phone": "354-8262",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "88807": {
         "name": "Luciano Hernandez",
         "title": "Custodial Supervisor",
         "email": "lhernandez@pausd.org",
-        "phone": "354-8204 ext. 5527",
-        "dept": "Custodian superv",
-        "room": "Custodian"
+        "phone": "354-8204",
+        "dept": "Custodian superv.",
+        "room": "Custodian",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "88914": {
         "name": "Gordon Goodspeed",
@@ -6540,11 +10170,27 @@ export default {
         "email": "ggoodspeed@pausd.org",
         "phone": "354-8205",
         "dept": "Custodian",
-        "room": "Custodial"
+        "room": "Custodial",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "89474": {
         "name": "Angel Colon Chin",
-        "title": "Job Coach"
+        "title": "Job Coach",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "89500": {
         "name": "Kate Zavack",
@@ -6600,36 +10246,144 @@ export default {
                     "Western Literature",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "English",
         "room": "N110",
-        "phone": "354-8238 ext. 6960"
+        "phone": "354-8238",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "89642": {
+        "name": "Rachel Dion",
+        "title": "",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "90248": {
+        "name": "Juhee Kim",
+        "title": "Instructional Aide GE",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "90260": {
         "name": "Laurie Hubert",
-        "title": "Student Attendant"
+        "title": "Student Attendant",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "90275": {
-        "name": "Thomas Everett",
-        "title": "Student Attendant",
+        "name": "Thomas Everynh",
+        "title": "Instructional Aide GE",
         "email": "teverett@pausd.org",
         "phone": "354-8262",
         "dept": "SpEd aide",
-        "room": "K building"
+        "room": "K building",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "90306": {
         "name": "Kim Knaack",
         "title": "Reproduction Technician",
         "email": "kknaack@pausd.org",
-        "phone": "354-8279 ext. 5537",
+        "phone": "354-8279",
         "dept": "Copy Room",
-        "room": "K building"
+        "room": "K building",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "90499": {
+        "email": "ryeh@pausd.org",
+        "name": "Rita Yeh",
+        "dept": "WL",
+        "room": "H5",
+        "phone": "354-8241",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "90717": {
         "name": "Joshua Hung",
-        "title": "Student Data Support Specialist"
+        "title": "Student Data Support Specialist",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
+    },
+    "91110": {
+        "email": "",
+        "name": "Wellness, P231 Center",
+        "dept": "Wellness, P231",
+        "room": "Admin 1 bldg.",
+        "phone": "354-8299",
+        "source": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            }
+        ]
     },
     "91371": {
         "name": "Donald Watkins",
@@ -6642,16 +10396,6 @@ export default {
                 ],
                 "2": [
                     "Alg 1A",
-                    ""
-                ]
-            },
-            "4": {
-                "1": [
-                    "Academic Math",
-                    ""
-                ],
-                "2": [
-                    "Academic Math",
                     ""
                 ]
             },
@@ -6684,15 +10428,32 @@ export default {
                     "Acad Planning",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
-        }
-    },
-    "91387": {
-        "email": "jwellsakis@pausd.org",
-        "name": "Jennifer Akis",
-        "dept": "ELL",
-        "room": "K4",
-        "phone": "849-7922"
+        },
+        "email": "dwatkins@pausd.org",
+        "dept": "SpEd",
+        "room": "K12, N211",
+        "phone": "354-8262",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "92464": {
         "name": "Joshua Paley",
@@ -6748,21 +10509,55 @@ export default {
                     "CS Capstone",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "Math",
         "room": "N215",
-        "phone": "354-8247 ext. 5782"
+        "phone": "354-8247",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "92576": {
         "name": "Lorenzo Gomez",
-        "title": "Counselor"
+        "title": "Counselor",
+        "email": "lgomez@pausd.org",
+        "dept": "Guidance",
+        "room": "",
+        "phone": "",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "92642": {
         "name": "Arlena Arteaga",
         "title": "Teacher",
         "email": "aarteaga@pausd.org",
-        "phone": "354-8237 ext. 5873",
+        "phone": "354-8237",
         "periods": {
             "1": {
                 "1": [
@@ -6813,18 +10608,48 @@ export default {
                     "US Hist LL",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "dept": "SS",
-        "room": "G6"
+        "room": "G6",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "92812": {
         "name": "Richard Fujii",
         "title": "Transition Specialist",
         "email": "rfujii@pausd.org",
-        "phone": "868-8752 ext. 5668",
+        "phone": "868-8752",
         "dept": "Transitionist",
-        "room": "V7"
+        "room": "V7",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "92942": {
         "name": "Mark Brassey",
@@ -6840,25 +10665,45 @@ export default {
                     ""
                 ]
             }
-        }
+        },
+        "email": "mbrassey@pausd.org",
+        "dept": "Science",
+        "room": "J6",
+        "phone": "",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "94685": {
         "name": "Jorge Chavez",
         "title": "Counselor",
         "email": "jbarrera@pausd.org",
-        "dept": "Camp Sup",
+        "dept": "Camp. Sup.",
         "room": "Main Office",
-        "phone": "354-8200"
-    },
-    "94795": {
-        "name": "Marie-Anne Fogel",
-        "title": "Student Attendant"
+        "phone": "354-8200",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "94848": {
         "name": "Joshua Little",
         "title": "Teacher",
         "email": "jlittle@pausd.org",
-        "phone": "354-8246 ext. 6958",
+        "phone": "354-8246",
         "periods": {
             "1": {
                 "1": [
@@ -6909,11 +10754,41 @@ export default {
                     "Biology",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "Science",
-        "room": "V2"
+        "room": "V2",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "95789": {
         "name": "Marjorie Paronable",
@@ -6989,12 +10864,42 @@ export default {
                     "Western Culture A",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "English",
         "room": "N104",
-        "phone": "354-8238"
+        "phone": "354-8238",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "95953": {
         "name": "Matthew Hall",
@@ -7051,11 +10956,31 @@ export default {
                     "Japanes 1",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "WL",
-        "room": "H3"
+        "room": "H3",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "95959": {
         "name": "Elana Zizmor",
@@ -7111,11 +11036,31 @@ export default {
                     "AP Chemistry",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
             }
         },
-        "dept": "J7",
+        "dept": "Science",
         "room": "J7",
-        "phone": "354-8246 ext. 6605"
+        "phone": "354-8246",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "97107": {
         "email": "mdungan@pausd.org",
@@ -7123,7 +11068,17 @@ export default {
         "dept": "VPA",
         "room": "S102",
         "phone": "354-8264",
-        "title": ""
+        "title": "",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "97119": {
         "name": "Catherine Bissegger",
@@ -7132,13 +11087,19 @@ export default {
         "phone": "354-8262",
         "other": "Teaches SELF.",
         "dept": "SpEd",
-        "room": "K15"
+        "room": "K15",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "97761": {
         "name": "Angela Merchant",
         "title": "Teacher",
-        "email": "amerchantt@pausd.org",
-        "phone": "354-8241 ext. 5677",
+        "email": "amerchant@pausd.org",
+        "phone": "354-8241",
         "periods": {
             "1": {
                 "1": [
@@ -7189,25 +11150,123 @@ export default {
                     "Biology H",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "Science/CTE",
-        "room": "L2"
+        "room": "L2",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "98414": {
-        "name": "Daissy Tabares",
+        "name": "Daissy Tabares Ruiz",
         "title": "Teacher",
         "email": "dtabares@pausd.org",
         "dept": "WL",
         "room": "G7",
-        "phone": "354-8241"
+        "phone": "354-8241",
+        "periods": {
+            "1": {
+                "1": [
+                    "Spanish 2",
+                    ""
+                ],
+                "2": [
+                    "Spanish 2",
+                    ""
+                ]
+            },
+            "2": {
+                "1": [
+                    "Spanish 2",
+                    ""
+                ],
+                "2": [
+                    "Spanish 2",
+                    ""
+                ]
+            },
+            "3": {
+                "1": [
+                    "Spanish 2",
+                    ""
+                ],
+                "2": [
+                    "Spanish 2",
+                    ""
+                ]
+            },
+            "5": {
+                "1": [
+                    "Span/Span2",
+                    ""
+                ],
+                "2": [
+                    "Span/Span2",
+                    ""
+                ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
+            }
+        },
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "98648": {
         "name": "Eric Ledgerwood",
         "title": "Teacher",
         "email": "eledgerwood@pausd.org",
-        "phone": "354-8246 ext. 5772",
+        "phone": "354-8246",
         "periods": {
             "1": {
                 "1": [
@@ -7258,11 +11317,41 @@ export default {
                     "AP Environmental Science",
                     ""
                 ]
+            },
+            "P": {
+                "1": [
+                    "PRIME",
+                    ""
+                ],
+                "2": [
+                    "PRIME",
+                    ""
+                ]
+            },
+            "S": {
+                "1": [
+                    "SELF",
+                    ""
+                ],
+                "2": [
+                    "SELF",
+                    ""
+                ]
             }
         },
         "other": "Teaches SELF.",
         "dept": "Science",
-        "room": "J3, J6"
+        "room": "J3",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "99511": {
         "name": "Gretchen Berg",
@@ -7270,36 +11359,40 @@ export default {
         "email": "gberg@pausd.org",
         "phone": "354-8262",
         "dept": "SpEd aide",
-        "room": "K building"
+        "room": "K building",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "99789": {
         "email": "mramos@pausd.org",
         "name": "Michelle Ramos",
-        "dept": "CASSY coord",
+        "dept": "Wellness coordinator",
         "room": "Wellness, P231",
-        "phone": "354-8243 ext. 1518",
-        "title": "CASSY Mental Health Therapist"
+        "phone": "354-8243",
+        "title": "CASSY Mental Health Therapist",
+        "sources": [
+            {
+                "title": "Gunn Website",
+                "link": "https://gunn.pausd.org/connecting/staff-directory"
+            },
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
+            }
+        ]
     },
     "99909": {
         "name": "Makiya Francis",
-        "title": "Student Attendant"
-    },
-    "99979": {
-        "name": "Michelle Lee",
-        "title": "School-based MHT I",
-        "email": "mlee@pausd.org",
-        "phone": "354-8200 ext. 1498",
-        "periods": {
-            "3": {
-                "1": [
-                    "Therapeutic Elective",
-                    "K - 10"
-                ],
-                "2": "none"
+        "title": "Student Attendant",
+        "source": [
+            {
+                "title": "ParentSquare",
+                "link": "https://www.parentsquare.com/api/v2/schools/6272/directory"
             }
-        },
-        "other": "Teaches SELF.",
-        "dept": "Behavior",
-        "room": "K10 B"
+        ]
     }
 } as {[key: string]: Staff}

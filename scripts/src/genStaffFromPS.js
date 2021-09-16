@@ -103,16 +103,25 @@ const parseUserTitle = (title) => {
 
 const parsePeriods = (fn, ln, title) => {
     if(title.length === 0) return null;
-    const periods = title.replace(new RegExp(`${ln}, ${fn}`, 'gi'), '').split(', ').map((str) => {
+    const periods = title.split('), ').map((str) => {
         // i regret everything.
-        const [className, period] = ((str) => 
-            [str.slice(0, str.lastIndexOf(':')), str.slice(str.lastIndexOf(':') + 1).match(/\(([^\)]+)\)/)[1]].map(str => str.trim())
+        try {
+            const [className, period] = ((str) =>
+                [str.slice(0, str.lastIndexOf(':')), str.slice(str.lastIndexOf(':') + 1).match(/\(([0-9A-Z]+)/)[1]].map(str => str.trim())
             )(str.slice(str.indexOf(":") + 1));
-        return [className, period];
-    });
+            return [className, period];
+        } catch(err) {
+            throw `Something went wrong!`
+        }
+    }).filter(([className, period]) => className !== 'Tchr Asst');
 
     const final = {};
-    for(const period of periods) if(!isNaN(period[1][0]) || period[1][0] === "SELF") final[period[1][0]] = {"1": [period[0], ''], "2": [period[0], '']}
+    for(const period of periods) {
+        const letter = parseInt(period[1]) === 9 ? 'P' : 
+            !isNaN(period[1][0]) || period[1] === "SELF" ? period[1][0]
+            : null;
+        if(letter) final[letter] = {"1": [period[0], ''], "2": [period[0], '']}
+    }
     return final;
 }
 
@@ -139,7 +148,14 @@ const staffMatch = (staffA, staffB) => {
     return score >= 0.8;
 }
 
-// console.log(parsePeriods("Tessa", "Huynh", "Teacher: Biology: Huynh, Tessa (3), Teacher: Biology: Huynh, Tessa (4), Teacher: Biology: Huynh, Tessa (6), Teacher: Biology: Huynh, Tessa (7), Teacher: Marine Biology: Huynh, Tessa (2)"));
+const PARENTSQUARE_SOURCE = {
+    title: 'ParentSquare', 
+    link: 'https://www.parentsquare.com/api/v2/schools/6272/directory'
+};
+const GUNNWEBSITE_SOURCE = {
+    title: 'Gunn Website',
+    link: 'https://gunn.pausd.org/connecting/staff-directory'
+}
 
 ;(async () => {
 
@@ -159,8 +175,8 @@ const staffMatch = (staffA, staffB) => {
         // this is bc Gunn puts all sorts of strange things in the fields
         // like Gym & Field or idk
         // would just be best to accept all characters in a field rather than get stuck on an ampersand or smthg
-        const regexOut = str.match(/<\/td><td>([^<]*)<\/td><td>([^<]*)<\/td><td>([^<]*)<\/td><td>([^<]*)/);
-        const nameAndEmailRegex = str.match(/mailto:(.*)">([^<]*)<\/a><\/u>/);
+        const regexOut = str.match(/<\/td><td>([^<]*)<\/td><td>([^<]*)<\/td><td>([^<]*)/);
+        const nameAndEmailRegex = str.match(/mailto:(.*)">([^<]*)<\/a>/);
         const fallbackNameRegex = str.match(/<td>([^<]*)<\/td>/);
 
         if (regexOut == null) {
@@ -173,7 +189,7 @@ const staffMatch = (staffA, staffB) => {
         const name = nameAndEmailRegex ? nameAndEmailRegex[2] : fallbackNameRegex[1];
         const dept = regexOut[1];
         const room = regexOut[2];
-        const phone = regexOut[4].length > 0 ? `${regexOut[3]} ext. ${regexOut[4]}` : regexOut[3];
+        const phone = regexOut[3];
 
         return { email, name, dept, room, phone };
     });
@@ -234,11 +250,11 @@ const staffMatch = (staffA, staffB) => {
             ParentSquareStaff.splice( bestMatchIndex, 1 );
 
             // staff and bestMatch should be MERGED
-            const merged = {...staff, ...bestMatch};
+            const merged = {...staff, ...bestMatch, sources: [GUNNWEBSITE_SOURCE, PARENTSQUARE_SOURCE]};
             mergedData.push(merged);
         } else {
             // alone... sad!
-            mergedData.push(staff);
+            mergedData.push({...staff, source: [GUNNWEBSITE_SOURCE]});
 
             // if (nameSimilarity(bestMatch.name, staff.name) >= 0.6) console.log(bestMatch.name, staff.name);
         }
@@ -246,7 +262,7 @@ const staffMatch = (staffA, staffB) => {
 
     for(const staff of ParentSquareStaff) {
         // the unmatched staff in Parent Square
-        mergedData.push(staff);
+        mergedData.push({...staff, source: [PARENTSQUARE_SOURCE]});
     }
 
     // PART 2
@@ -265,7 +281,7 @@ const staffMatch = (staffA, staffB) => {
 
         if(validFields === 1) continue;
 
-        if (staff.name === "Christopher Bell") console.log(staff, Object.keys(staff).length)
+        // if (staff.name === "Christopher Bell") console.log(staff, Object.keys(staff).length)
         
         let matched = false;
         for(const id in prev) {
