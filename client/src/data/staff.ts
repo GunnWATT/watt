@@ -1,6 +1,6 @@
 import {Staff} from '../components/lists/StaffComponent';
 
-export default {
+const data: {[key: string]: Staff} = {
     "10150": {
         "name": "Gagan Cheema",
         "title": "Athletic Trainer",
@@ -11395,4 +11395,5 @@ export default {
             }
         ]
     }
-} as {[key: string]: Staff}
+}
+export default data;

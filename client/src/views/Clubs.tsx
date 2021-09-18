@@ -1,5 +1,6 @@
 import React, {useContext, useState} from 'react';
 import {Nav} from 'reactstrap';
+import moment from 'moment';
 
 // Components
 import List from '../components/lists/List';
@@ -17,6 +18,8 @@ import {useScreenType} from "../hooks/useScreenType";
 
 
 const Clubs = () => {
+    const {timestamp, data} = clubs;
+
     // Dynamically setting default tab
     const currTime = useContext(CurrentTimeContext)
     let date = (Number(currTime.format('d')) + 1).toString(); // :weary:
@@ -40,10 +43,10 @@ const Clubs = () => {
 
     // Filtering based on active tab
     const dataFromTab = () => {
-        if (activeTab === '1') return clubs;
+        if (activeTab === '1') return data;
 
         let day = dayFromTabNum(activeTab);
-        return Object.entries(clubs).filter(([name, info]) => info.day.includes(day));
+        return Object.entries(data).filter(([name, info]) => info.day.includes(day));
     }
 
     // Function to get day string from tab number
@@ -89,6 +92,11 @@ const Clubs = () => {
                 </Nav>
             }
         >
+            <p>
+                Please note that club information was taken from{' '}
+                <a href="https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vQ-UXugiZ8GznB367cO8JptTO9BLm5OE4D3WO8oZvYk_365lY25Q6eAFNSEIC5DGXGWOXwK_wauoTFT/pubhtml" target="_blank" rel="noopener noreferrer">the chartered clubs spreadsheet</a>{' '}
+                as of {moment(timestamp).format('MMMM Do, YYYY')}. Attribute inaccuracies to them.
+            </p>
             <List
                 data={dataFromTab()}
                 filter={([id, club]) =>

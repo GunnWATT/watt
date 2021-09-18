@@ -1,7 +1,7 @@
 import * as fetch from "node-fetch";
 import * as fs from "fs";
 
-const prev = JSON.parse(fs.readFileSync("../input/clubs.json"));
+const prev = JSON.parse(fs.readFileSync('../input/clubs.json'));
 const raw = fs.readFileSync('../input/clubs.tsv').toString();
 
 const data = raw.split('\n').map(row => row.split('\t'));
@@ -68,24 +68,25 @@ const clubs = data.slice(1) // first is header
         }
     })
 
-const FINAL = {};
+const FINAL = {timestamp: new Date(), data: {}};
 
-for(const club of clubs) {
+for (const club of clubs) {
 
     let match = null;
-    for(const key in prev) {
-        if(similarity(prev[key].name, club.name) > 0.8) {
+    for (const key in prev.data) {
+        if (similarity(prev.data[key].name, club.name) > 0.8) {
             // same club
             match = key;
             break;
         }
     }
 
-    if(match) {
-        FINAL[match] = club;
+    if (match) {
+        FINAL.data[match] = club;
     } else {
-        FINAL[newID()] = club;
+        FINAL.data[newID()] = club;
     }
 }
 
+fs.writeFileSync('../input/clubs.json', JSON.stringify(FINAL));
 fs.writeFileSync('../output/clubs.json', JSON.stringify(FINAL));

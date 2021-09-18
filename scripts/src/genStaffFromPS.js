@@ -102,7 +102,7 @@ const parseUserTitle = (title) => {
 }
 
 const parsePeriods = (fn, ln, title) => {
-    if(title.length === 0) return null;
+    if (title.length === 0) return null;
     const periods = title.split('), ').map((str) => {
         // i regret everything.
         try {
@@ -116,11 +116,11 @@ const parsePeriods = (fn, ln, title) => {
     }).filter(([className, period]) => className !== 'Tchr Asst');
 
     const final = {};
-    for(const period of periods) {
+    for (const period of periods) {
         const letter = parseInt(period[1]) === 9 ? 'P' : 
             !isNaN(period[1][0]) || period[1] === "SELF" ? period[1][0]
             : null;
-        if(letter) final[letter] = {"1": [period[0], ''], "2": [period[0], '']}
+        if (letter) final[letter] = {"1": [period[0], ''], "2": [period[0], '']}
     }
     return final;
 }
@@ -134,7 +134,7 @@ const staffMatch = (staffA, staffB) => {
     const weights = [8, 10, 2, 1];
     
     let denom = 0;
-    for(let i = 0; i < fields.length; i++) {
+    for (let i = 0; i < fields.length; i++) {
         const field = fields[i];
         if (staffA[field] && staffB[field]) {
             scores.push(similarity(staffA[field], staffB[field]) * weights[i]);
@@ -167,32 +167,35 @@ const GUNNWEBSITE_SOURCE = {
     const scraped = html.slice(html.indexOf("<tbody>") + "<tbody>".length, html.indexOf("</tbody>"));
 
     // have fun reading this :D
-    const gunnWebsiteStaff = scraped.replace(/(\n|\t)/g, "").split(/(<tr>|<\/tr>)/g).filter(a => !a.match(/(<tr>|<\/tr>)/g) && a.length > 0)
-    .map((str) => {
-        str = str.replace(/&nbsp;/g, '').replace(/&#39;/g, '\'').replace(/&amp;/g, '&');
-        // ungodly regex
-        // it works mostly, just doesn't do validation
-        // this is bc Gunn puts all sorts of strange things in the fields
-        // like Gym & Field or idk
-        // would just be best to accept all characters in a field rather than get stuck on an ampersand or smthg
-        const regexOut = str.match(/<\/td><td>([^<]*)<\/td><td>([^<]*)<\/td><td>([^<]*)/);
-        const nameAndEmailRegex = str.match(/mailto:(.*)">([^<]*)<\/a>/);
-        const fallbackNameRegex = str.match(/<td>([^<]*)<\/td>/);
+    const gunnWebsiteStaff = scraped
+        .replace(/(\n|\t)/g, "")
+        .split(/(<tr>|<\/tr>)/g)
+        .filter(a => !a.match(/(<tr>|<\/tr>)/g) && a.length > 0)
+        .map((str) => {
+            str = str.replace(/&nbsp;/g, '').replace(/&#39;/g, '\'').replace(/&amp;/g, '&');
+            // ungodly regex
+            // it works mostly, just doesn't do validation
+            // this is bc Gunn puts all sorts of strange things in the fields
+            // like Gym & Field or idk
+            // would just be best to accept all characters in a field rather than get stuck on an ampersand or smthg
+            const regexOut = str.match(/<\/td><td>([^<]*)<\/td><td>([^<]*)<\/td><td>([^<]*)/);
+            const nameAndEmailRegex = str.match(/mailto:(.*)">([^<]*)<\/a>/);
+            const fallbackNameRegex = str.match(/<td>([^<]*)<\/td>/);
 
-        if (regexOut == null) {
-            throw `There was an error! "${str}" not parsable!`
-        }
+            if (regexOut == null) {
+                throw `There was an error! "${str}" not parsable!`
+            }
 
-        // console.log(regexOut);
+            // console.log(regexOut);
 
-        const email = nameAndEmailRegex ? nameAndEmailRegex[1] : undefined;
-        const name = nameAndEmailRegex ? nameAndEmailRegex[2] : fallbackNameRegex[1];
-        const dept = regexOut[1];
-        const room = regexOut[2];
-        const phone = regexOut[3];
+            const email = nameAndEmailRegex ? nameAndEmailRegex[1] : undefined;
+            const name = nameAndEmailRegex ? nameAndEmailRegex[2] : fallbackNameRegex[1];
+            const dept = regexOut[1];
+            const room = regexOut[2];
+            const phone = regexOut[3];
 
-        return { email, name, dept, room, phone };
-    });
+            return { email, name, dept, room, phone };
+        });
 
     let ParentSquareStaff = [];
 
@@ -223,71 +226,71 @@ const GUNNWEBSITE_SOURCE = {
 
     const mergedData = [];
 
-    for(let i = gunnWebsiteStaff.length-1; i>=0; i--) {
+    for (let i = gunnWebsiteStaff.length-1; i>=0; i--) {
         const staff = gunnWebsiteStaff[i];
         
         // Step 1: Attempt to find matching pair in ParentSquare; however, this operation is limited by name.
         let bestMatch = ParentSquareStaff[0];
         let bestMatchIndex = 0;
         let exactMatch = false;
-        for(let j = 0; j < ParentSquareStaff.length; j++) {
+        for (let j = 0; j < ParentSquareStaff.length; j++) {
             const dopplegangerStaff = ParentSquareStaff[j];
-            if(dopplegangerStaff.name === staff.name) { // if exact match
+            if (dopplegangerStaff.name === staff.name) { // if exact match
                 exactMatch = true;
                 bestMatch = dopplegangerStaff;
                 bestMatchIndex = j;
                 break;
-            } else if(nameSimilarity(dopplegangerStaff.name, staff.name) > nameSimilarity(bestMatch.name, staff.name)) {
+            } else if (nameSimilarity(dopplegangerStaff.name, staff.name) > nameSimilarity(bestMatch.name, staff.name)) {
                 bestMatch = dopplegangerStaff;
                 bestMatchIndex = j;
             }
         }
 
-        if(exactMatch || nameSimilarity(bestMatch.name, staff.name) >= 0.7) {
+        if (exactMatch || nameSimilarity(bestMatch.name, staff.name) >= 0.7) {
             // match!
 
             gunnWebsiteStaff.splice( i, 1 );
             ParentSquareStaff.splice( bestMatchIndex, 1 );
 
             // staff and bestMatch should be MERGED
-            const merged = {...staff, ...bestMatch, sources: [GUNNWEBSITE_SOURCE, PARENTSQUARE_SOURCE]};
+            const merged = {...staff, ...bestMatch};
             mergedData.push(merged);
         } else {
             // alone... sad!
-            mergedData.push({...staff, source: [GUNNWEBSITE_SOURCE]});
+            mergedData.push({...staff});
 
             // if (nameSimilarity(bestMatch.name, staff.name) >= 0.6) console.log(bestMatch.name, staff.name);
         }
     }
 
-    for(const staff of ParentSquareStaff) {
+    for (const staff of ParentSquareStaff) {
         // the unmatched staff in Parent Square
-        mergedData.push({...staff, source: [PARENTSQUARE_SOURCE]});
+        mergedData.push({...staff});
     }
 
     // PART 2
     // MATCHING DATA FROM MERGED DATA TO THE PREVIOUS STAFF.JSON
 
-    const FINAL = {};
-    for(const staff of mergedData) {
+    const FINAL = {timestamp: new Date(), data: {}};
+    for (const staff of mergedData) {
         // if it's only the name, there's honestly no point adding
 
         let validFields = 0;
-        for(const key in staff) {
-            if(staff[key] && (typeof staff === "object" || staff[key].length > 0)) {
+        for (const key in staff) {
+            if (staff[key] && (typeof staff === "object" || staff[key].length > 0)) {
                 validFields++;
             }
         }
 
-        if(validFields === 1) continue;
+        if (validFields === 1) continue;
 
         // if (staff.name === "Christopher Bell") console.log(staff, Object.keys(staff).length)
         
         let matched = false;
-        for(const id in prev) {
-            if(staffMatch(prev[id],staff)) {
+        for (const id in prev) {
+            if (staffMatch(prev[id],staff)) {
                 // match!
-                FINAL[id] = {...prev[id], ...staff};
+                FINAL.data[id] = {...prev[id], ...staff};
                 
                 delete prev[id];
                 matched = true;
@@ -295,11 +298,12 @@ const GUNNWEBSITE_SOURCE = {
             }
         }
 
-        if(!matched) {
-            FINAL[newID()] = staff;
+        if (!matched) {
+            FINAL.data[newID()] = staff;
         }
     }
 
+    fs.writeFileSync('../input/staff.json', JSON.stringify(FINAL));
     fs.writeFileSync('../output/staff.json', JSON.stringify(FINAL));
 })();
 
