@@ -8,9 +8,12 @@ import StaffComponent, {ClassObj, SemesterClassObj, Staff as StaffComponentProps
 
 // Data
 import staff from '../../data/staff';
+import moment from "moment";
 
 
 const Staff = () => {
+    const {timestamp, data} = staff;
+
     const userData = useContext(UserDataContext)
     const [query, setQuery] = useState('');
 
@@ -65,8 +68,14 @@ const Staff = () => {
                     onChange={e => setQuery(e.target.value)}
                 />
             </span>
+            <p>
+                Please note that staff information was taken from{' '}
+                <a href="https://www.parentsquare.com/api/v2/schools/6272/directory" target="_blank" rel="noopener noreferrer">ParentSquare</a> and the{' '}
+                <a href="https://gunn.pausd.org/connecting/staff-directory" target="_blank" rel="noopener noreferrer">Gunn website</a>{' '}
+                as of {moment(timestamp).format('MMMM Do, YYYY')}. Attribute inaccuracies to them.
+            </p>
             <List
-                data={staff}
+                data={data}
                 filter={([id, staff]) =>
                     query === '' ||
                     staff.name.toLowerCase().includes(query.toLowerCase())

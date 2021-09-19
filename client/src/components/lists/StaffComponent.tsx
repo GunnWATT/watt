@@ -23,11 +23,11 @@ export type PeriodObj = {1: ClassObj, 2: ClassObj};
 export type Staff = {
     name: string, title?: string, email?: string, room?: string,
     dept?: string, phone?: string, periods?: {[key: string]: PeriodObj},
-    sources?: {title: string, link: string}[]
+    other?: string // "other" info like "Teaches SELF", "Has Counseling"
 };
 
-const StaffComponent = (props: Staff & {id:string}) => {
-    const {name, id, title, email, dept, phone, periods, room} = props;
+const StaffComponent = (props: Staff & {id: string}) => {
+    const {name, id, title, email, room, dept, phone, periods, other} = props;
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
@@ -117,6 +117,7 @@ const StaffComponent = (props: Staff & {id:string}) => {
                             <button onClick={() => setSemester('2')}>2</button>
                         </strong>
                     </p>}
+                    {/* other && <p>{other}</p> */}
                     {periods && renderSchedule(periods)}
                 </ModalBody>
                 <ModalFooter>

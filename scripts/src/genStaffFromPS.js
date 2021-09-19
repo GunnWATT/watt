@@ -130,7 +130,7 @@ const newID = () => 10000 + Math.floor(Math.random() * 90000) + '';
 const staffMatch = (staffA, staffB) => {
     const scores = [];
 
-    const fields = ['name', 'email', 'room', 'dept'];
+    const fields = ['name', 'email', 'dept'];
     const weights = [8, 10, 2, 1];
     
     let denom = 0;
@@ -146,15 +146,6 @@ const staffMatch = (staffA, staffB) => {
     const score = total / denom;
     
     return score >= 0.8;
-}
-
-const PARENTSQUARE_SOURCE = {
-    title: 'ParentSquare', 
-    link: 'https://www.parentsquare.com/api/v2/schools/6272/directory'
-};
-const GUNNWEBSITE_SOURCE = {
-    title: 'Gunn Website',
-    link: 'https://gunn.pausd.org/connecting/staff-directory'
 }
 
 ;(async () => {
@@ -173,28 +164,18 @@ const GUNNWEBSITE_SOURCE = {
         .filter(a => !a.match(/(<tr>|<\/tr>)/g) && a.length > 0)
         .map((str) => {
             str = str.replace(/&nbsp;/g, '').replace(/&#39;/g, '\'').replace(/&amp;/g, '&');
-            // ungodly regex
-            // it works mostly, just doesn't do validation
-            // this is bc Gunn puts all sorts of strange things in the fields
-            // like Gym & Field or idk
-            // would just be best to accept all characters in a field rather than get stuck on an ampersand or smthg
-            const regexOut = str.match(/<\/td><td>([^<]*)<\/td><td>([^<]*)<\/td><td>([^<]*)/);
-            const nameAndEmailRegex = str.match(/mailto:(.*)">([^<]*)<\/a>/);
-            const fallbackNameRegex = str.match(/<td>([^<]*)<\/td>/);
+            // The returned data seems to be in the form of
+            // <td><a href="mailto:email">name</a></td><td>department</td><td>phone</td>
+            const regexOut = str.match(/<td><a href="mailto:(?<email>[^"]+)?">(?<name>[^<]+)<\/a><\/td><td>(?<dept>[^<]*)<\/td><td>(?<phone>[^<]*)<\/td>/);
 
-            if (regexOut == null) {
+            if (!regexOut)
                 throw `There was an error! "${str}" not parsable!`
-            }
 
             // console.log(regexOut);
 
-            const email = nameAndEmailRegex ? nameAndEmailRegex[1] : undefined;
-            const name = nameAndEmailRegex ? nameAndEmailRegex[2] : fallbackNameRegex[1];
-            const dept = regexOut[1];
-            const room = regexOut[2];
-            const phone = regexOut[3];
+            const {email, name, dept, phone} = regexOut.groups;
 
-            return { email, name, dept, room, phone };
+            return { email, name, dept, phone };
         });
 
     let ParentSquareStaff = [];
