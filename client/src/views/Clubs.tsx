@@ -102,7 +102,7 @@ const Clubs = () => {
                 filter={([id, club]) =>
                     query === '' ||
                     club.name.toLowerCase().includes(query.toLowerCase())
-                    // || club.room.toLowerCase().includes(query.toLowerCase()) // Room exists not in Zoom School
+                    || club.room.toLowerCase().includes(query.toLowerCase())
                     || club.day.toLowerCase().includes(query.toLowerCase())
                 }
                 map={([id, club]) =>
