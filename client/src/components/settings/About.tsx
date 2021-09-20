@@ -15,10 +15,13 @@ const About = () => {
             </Jumbotron>
 
             <p>
-                <strong>Gunn WATT</strong> is a Gunn App and UGWA successor that uses a React.js frontend and Firebase backend.{' '}
-                Unlike our competitors, we are open to contribution from everyone.{' '}
+                <strong>Gunn WATT</strong> is a Gunn App and UGWA successor that uses a React.js frontend and Firebase backend.
+                Unlike our competitors, we are open to contribution from everyone.
                 Check out our source code on GitHub <a href="https://github.com/GunnWATT/watt" target="_blank" rel="noopener noreferrer">here</a>!{' '}
-                Contribute through a pull request or by opening an issue, all opinions welcome!
+                Contribute by <a href="https://github.com/GunnWATT/watt/compare" target="_blank" rel="noopener noreferrer">creating a pull request</a>,{' '}
+                <a href="https://github.com/GunnWATT/watt/issues/new" target="_blank" rel="noopener noreferrer">opening an issue</a>,
+                or giving feedback in our <a href="https://discord.gg/4BUgdqdWfs" target="_blank" rel="noopener noreferrer">Discord server</a>;
+                all opinions are welcome!
             </p>
 
             <p>

@@ -72,6 +72,16 @@ input.form-control {
   }
 }
 
+// <FormGroup check>
+.form-check {
+  $size: 1.75rem;
+  padding-left: $size;
+
+  .form-check-input {
+    margin-left: -$size;
+  }
+}
+
 // <Button>
 @mixin recolorBootstrapButton($button, $variable) {
   .btn-outline-#{$button} {
