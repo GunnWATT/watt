@@ -45,5 +45,5 @@ const multiplyHex = (hex: string, scale: number) => {
     return `rgb(${[returnArray].join()})`;
 }
 
-export const bgColor = (hex: string) => multiplyHex(hex, 0.8);
-export const barColor = (hex: string) => multiplyHex(hex, 0.9);
+export const bgColor = (hex: string) => multiplyHex(hex, 0.7);
+export const barColor = (hex: string) => multiplyHex(hex, 0.85);
