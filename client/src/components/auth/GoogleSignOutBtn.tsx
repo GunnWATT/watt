@@ -1,13 +1,15 @@
-import React from "react";
-import {SignOut} from "../../firebase/Authentication";
+import React from 'react';
+import {useAuth} from 'reactfire';
 
-import {LogOut} from "react-feather";
+import {LogOut} from 'react-feather';
 
 
 const GoogleSignOutBtn = () => {
+    const auth = useAuth();
+
     return (
-        <span className={'item'}>
-            <button onClick={SignOut}>
+        <span className="item">
+            <button onClick={() => auth.signOut()}>
                 <LogOut/>
                 <span>Sign Out</span>
             </button>

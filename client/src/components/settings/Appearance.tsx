@@ -6,6 +6,7 @@ import UserDataContext from '../../contexts/UserDataContext';
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
 // Firestore
+import {useAuth, useFirestore} from 'reactfire';
 // import {updateFirestoreField} from '../../firebase/Firestore';
 import { updateUserData } from '../../firebase/updateUserData';
 
@@ -17,8 +18,11 @@ const Appearance = () => {
     const currTime = useContext(CurrentTimeContext);
 
     // Functions to update firestore fields
-    const changeTheme = async (theme: string) => await updateUserData('options.theme', theme);
-    const changeTime = async (time: string) => await updateUserData('options.time', time);
+    const auth = useAuth();
+    const firestore = useFirestore();
+
+    const changeTheme = async (theme: string) => await updateUserData('options.theme', theme, auth, firestore);
+    const changeTime = async (time: string) => await updateUserData('options.time', time, auth, firestore);
 
 
     return (

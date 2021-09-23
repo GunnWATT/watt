@@ -5,6 +5,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'react
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Firestore
+import {useAuth, useFirestore} from 'reactfire';
 import { updateUserData } from '../../firebase/updateUserData';
 
 
@@ -20,16 +21,18 @@ const ClubComponent = (props: Club & {id: string}) => {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
-    // UserData from context
+    // Firestore
+    const auth = useAuth();
+    const firestore = useFirestore();
     const userData = useContext(UserDataContext);
     const pinned = userData.clubs.includes(id);
 
     // Functions to update pins
     const addToPinned = async () =>
-        await updateUserData('clubs', [...userData.clubs, id]);
+        await updateUserData('clubs', [...userData.clubs, id], auth, firestore);
 
     const removeFromPinned = async () =>
-        await updateUserData('clubs', userData.clubs.filter(clubID => clubID !== id));
+        await updateUserData('clubs', userData.clubs.filter(clubID => clubID !== id), auth, firestore);
 
 
     return (

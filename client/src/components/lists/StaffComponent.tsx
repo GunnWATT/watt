@@ -5,6 +5,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'react
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Firestore
+import {useAuth, useFirestore} from 'reactfire';
 import { updateUserData } from '../../firebase/updateUserData';
 
 
@@ -32,16 +33,18 @@ const StaffComponent = (props: Staff & {id: string}) => {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
-    // Firestore stuff
+    // Firestore
+    const auth = useAuth();
+    const firestore = useFirestore();
     const userData = useContext(UserDataContext);
     const pinned = userData.staff.includes(id);
 
     // Functions to update pins
     const addToPinned = async () =>
-        updateUserData('staff', [...userData.staff, id]);
+        updateUserData('staff', [...userData.staff, id], auth, firestore);
 
     const removeFromPinned = async () =>
-        updateUserData('staff', userData.staff.filter(staffID => staffID !== id));
+        updateUserData('staff', userData.staff.filter(staffID => staffID !== id), auth, firestore);
 
 
     const [semester, setSemester] = useState<'1' | '2'>('1'); // Consider dynamically setting semester later

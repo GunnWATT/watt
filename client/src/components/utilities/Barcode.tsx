@@ -1,12 +1,18 @@
 import React, { useState, useEffect, useContext } from 'react';
 import UserDataContext from '../../contexts/UserDataContext';
-import {updateUserData} from '../../firebase/updateUserData';
 import BarcodeRow from './BarcodeRow';
+
+// Firestore
+import {useAuth, useFirestore} from 'reactfire';
+import {updateUserData} from '../../firebase/updateUserData';
 
 const DEFAULT_BARCODE = '95000000'
 
 
 const Barcode = () => {
+    const auth = useAuth();
+    const firestore = useFirestore();
+
     const [code, setCode] = useState(DEFAULT_BARCODE);
     const userData = useContext(UserDataContext);
     const [barcodes, setBarcodes] = useState<[string, string][]>(JSON.parse(userData.barcodes));
@@ -35,7 +41,7 @@ const Barcode = () => {
     }
     // Update user data with changed barcodes
     // Call this function in onBlur instead of onChange to prevent excessive writes
-    const updateBarcodes = () => updateUserData('barcodes', JSON.stringify(barcodes));
+    const updateBarcodes = () => updateUserData('barcodes', JSON.stringify(barcodes), auth, firestore);
 
     // Set the "you" barcode to the proper ID
     useEffect(() => {

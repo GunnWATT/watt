@@ -1,27 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 
-// Icons
-import logo from '../../assets/watt.png';
-import {
-    Home,
-    CheckSquare,
-    Users,
-    Settings,
-    Tool,
-    ChevronRight,
-    ChevronLeft,
-} from 'react-feather';
+// Authentication
+import {useAuth, useFirestore, useSigninCheck} from 'reactfire';
+import {getRedirectResult} from 'firebase/auth';
+import {firestoreInit} from '../../firebase/auth';
 
 // Components
 import SidebarItem from './SidebarItem';
-
-// Authentication
-import firebase from '../../firebase/Firebase';
-import {useAuthState} from 'react-firebase-hooks/auth';
-import {FirestoreInit} from '../../firebase/Authentication';
 import GoogleSignInBtn from '../auth/GoogleSignInBtn';
 import GoogleSignOutBtn from '../auth/GoogleSignOutBtn';
+
+// Icons
+import logo from '../../assets/watt.png';
+import {Home, CheckSquare, Users, Settings, Tool, ChevronRight, ChevronLeft} from 'react-feather';
 
 
 type SidebarProps = {forceCollapsed?: boolean};
@@ -29,11 +21,12 @@ const Sidebar = (props: SidebarProps) => {
     const {forceCollapsed} = props;
 
     // Authentication
-    const auth = firebase.auth;
-    const [user] = useAuthState(auth);
+    const auth = useAuth();
+    const firestore = useFirestore();
+    const {status, data: signInCheckResult} = useSigninCheck();
 
     useEffect(() => {
-        auth.getRedirectResult().then(r => FirestoreInit(r))
+        getRedirectResult(auth).then(r => r && firestoreInit(firestore, r))
     }, []);
 
     // Collapse
@@ -75,7 +68,7 @@ const Sidebar = (props: SidebarProps) => {
 
                 {/* Bottom Account Status Button */}
                 <span className="bottom">
-                    {user
+                    {signInCheckResult?.signedIn
                         ? <GoogleSignOutBtn/>
                         : <GoogleSignInBtn/>}
                 </span>

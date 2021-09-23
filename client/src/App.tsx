@@ -19,8 +19,8 @@ import {UserData, UserDataProvider, defaultUserData} from './contexts/UserDataCo
 import {TimeProvider} from './contexts/CurrentTimeContext';
 
 // Firestore
-import firebase from './firebase/Firebase';
-import {useCollection, useDocument} from 'react-firebase-hooks/firestore';
+import {useFirestore, useAuth, useFirestoreDoc} from 'reactfire';
+import {doc} from 'firebase/firestore';
 
 // Utils
 import {parseNextPeriod} from './components/schedule/PeriodIndicator';
@@ -232,11 +232,10 @@ const App = () => {
 
 
     // Firestore data
-    const firestore = firebase.firestore;
-    const auth = firebase.auth;
-
+    const auth = useAuth();
+    const firestore = useFirestore();
     // const [gunnData, gdLoading, gdError] = useCollection(firestore.collection('gunn'));
-    const [firebaseUserData, udLoading, udError] = useDocument(auth.currentUser && firestore.doc(`users/${auth.currentUser.uid}`));
+    const { status, data: firebaseDoc } = useFirestoreDoc(doc(firestore, 'users', auth.currentUser?.uid ?? 'kjhjvgcf'));
 
     let localStorageRawData = {};
     try {
@@ -273,16 +272,16 @@ const App = () => {
     // Update localStorage with cloud data when it becomes available
     // TODO: support merges
     useEffect(() => {
-        if (firebaseUserData) {
-            localStorage.setItem('data', JSON.stringify(firebaseUserData.data()));
+        if (firebaseDoc) {
+            localStorage.setItem('data', JSON.stringify(firebaseDoc.data()));
         }
-    }, [firebaseUserData]);
+    }, [firebaseDoc]);
 
-    const userData = (firebaseUserData?.exists ? firebaseUserData?.data() : localStorageData) as UserData;
+    const userData = (firebaseDoc?.exists() ? firebaseDoc.data() : localStorageData) as UserData;
 
     // Update firebase and local data to be up to date with defaultUserData using deepmerge
     useEffect(() => {
-        const fbData = firebaseUserData?.data()
+        const fbData = firebaseDoc?.data();
 
         let id: string | undefined;
         if (auth.currentUser) {
@@ -296,7 +295,7 @@ const App = () => {
             let newdata = deepmerge(defaultUserData, fbData);
             if (id) newdata = {...newdata, id};
 
-            updateFirebaseUserData('', newdata);
+            updateFirebaseUserData('', newdata, auth, firestore);
             updateLocalStorageUserData('', newdata);
         }
 
@@ -310,9 +309,11 @@ const App = () => {
         } catch(err) {
             localStorage.removeItem('data');
         }
-    }, [udLoading])
+    }, [status])
 
-    document.body.className = userData.options.theme;
+    useEffect(() => {
+        document.body.className = userData.options.theme;
+    }, [userData.options.theme])
 
 
     return (
