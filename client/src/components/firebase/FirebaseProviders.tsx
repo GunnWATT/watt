@@ -1,8 +1,8 @@
 import {ReactNode} from 'react';
 import { useFirebaseApp, useInitFirestore, AuthProvider, FunctionsProvider, FirestoreProvider } from 'reactfire';
-import { getFirestore, initializeFirestore, enableIndexedDbPersistence } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
-import { getFunctions } from 'firebase/functions';
+import { getFirestore, initializeFirestore, enableIndexedDbPersistence, connectFirestoreEmulator } from 'firebase/firestore';
+import { getAuth, connectAuthEmulator } from 'firebase/auth';
+import { getFunctions, connectFunctionsEmulator } from 'firebase/functions';
 
 
 export default function FirebaseProviders(props: {children: ReactNode}) {
@@ -24,6 +24,13 @@ export default function FirebaseProviders(props: {children: ReactNode}) {
     const firestore = getFirestore(firebase);
 
     //if (status === 'loading') return null;
+
+    // Set up emulators on dev build
+    if (process.env.NODE_ENV !== 'production') {
+        connectAuthEmulator(auth, 'http://localhost:9099');
+        connectFunctionsEmulator(functions, 'localhost', 5001);
+        connectFirestoreEmulator(firestore, 'localhost', 8080);
+    }
 
     return (
         <AuthProvider sdk={auth}>
