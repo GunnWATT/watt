@@ -8,7 +8,7 @@ import Period from '../components/schedule/Period';
 import Loading from '../components/misc/Loading';
 import WIP from '../components/misc/WIP';
 import NoResults from '../components/lists/NoResults';
-import SgySignInBtn from '../components/auth/SgySignInBtn';
+import SgySignInBtn from '../components/firebase/SgySignInBtn';
 import Dashboard from '../components/classes/Dashboard';
 
 // Images

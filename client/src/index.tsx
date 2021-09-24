@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Firebase
-import FirebaseProviders from './firebase/FirebaseProviders';
+import FirebaseProviders from './components/firebase/FirebaseProviders';
 import {FirebaseAppProvider} from 'reactfire';
 import {fbconfig} from './firebase/config';
 

@@ -1,11 +1,11 @@
-import React from 'react';
+import {ReactNode} from 'react';
 import { useFirebaseApp, useInitFirestore, AuthProvider, FunctionsProvider, FirestoreProvider } from 'reactfire';
 import { getFirestore, initializeFirestore, enableIndexedDbPersistence } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { getFunctions } from 'firebase/functions';
 
 
-export default function FirebaseProviders(props: {children: React.ReactNode}) {
+export default function FirebaseProviders(props: {children: ReactNode}) {
     const firebase = useFirebaseApp();
 
     // Initialize auth and functions

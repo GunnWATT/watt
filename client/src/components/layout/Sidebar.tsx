@@ -8,8 +8,8 @@ import {firestoreInit} from '../../firebase/auth';
 
 // Components
 import SidebarItem from './SidebarItem';
-import GoogleSignInBtn from '../auth/GoogleSignInBtn';
-import GoogleSignOutBtn from '../auth/GoogleSignOutBtn';
+import GoogleSignInBtn from '../firebase/GoogleSignInBtn';
+import GoogleSignOutBtn from '../firebase/GoogleSignOutBtn';
 
 // Icons
 import logo from '../../assets/watt.png';
