@@ -1,10 +1,10 @@
-import React from 'react';
+import {ReactNode} from 'react';
 import RedBackground from '../layout/RedBackground';
 import {Container} from 'reactstrap';
 
 
-type HeaderProps = {heading: string, nav: React.ReactNode, children: React.ReactNode, other?: React.ReactNode};
-const Header = (props: HeaderProps) => {
+type HeaderProps = {heading: string, nav: ReactNode, children: ReactNode, other?: ReactNode};
+export default function Header(props: HeaderProps) {
     const {heading, nav, children, other} = props;
 
     return (
@@ -28,5 +28,3 @@ const Header = (props: HeaderProps) => {
         </>
     );
 }
-
-export default Header;

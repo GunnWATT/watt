@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'reactstrap';
 
 // Context
@@ -27,7 +27,7 @@ export type Staff = {
     other?: string // "other" info like "Teaches SELF", "Has Counseling"
 };
 
-const StaffComponent = (props: Staff & {id: string}) => {
+export default function StaffComponent(props: Staff & {id: string}) {
     const {name, id, title, email, room, dept, phone, periods, other} = props;
 
     const [modal, setModal] = useState(false);
@@ -134,5 +134,3 @@ const StaffComponent = (props: Staff & {id: string}) => {
         </li>
     );
 }
-
-export default StaffComponent;

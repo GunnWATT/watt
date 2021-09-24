@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import moment from 'moment';
 import { ColorResult, SketchPicker, ChromePicker, BlockPicker } from 'react-color';
 import { Row, Carousel, CarouselControl, CarouselIndicators, CarouselItem, CarouselCaption } from 'reactstrap';
 
 // Components
 import Period from '../components/schedule/Period';
-import Loading from '../components/misc/Loading';
-import WIP from '../components/misc/WIP';
+import Loading from '../components/layout/Loading';
+import WIP from '../components/layout/WIP';
 import NoResults from '../components/lists/NoResults';
 import SgySignInBtn from '../components/firebase/SgySignInBtn';
 import Dashboard from '../components/classes/Dashboard';
@@ -53,7 +53,7 @@ const items = [
 ];
 
 
-const Testing = () => {
+export default function Testing() {
     // Color picker background
     const [color, setColor] = useState('#fff');
     const changeColor = (color: ColorResult) => setColor(color.hex);
@@ -212,5 +212,3 @@ const Testing = () => {
         </div>
     )
 }
-
-export default Testing;

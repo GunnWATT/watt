@@ -1,9 +1,8 @@
-import React from 'react';
 import {useAuth, useFunctions} from 'reactfire';
 import {httpsCallable} from 'firebase/functions';
 
 
-const SgySignInBtn = () => {
+export default function SgySignInBtn() {
     const auth = useAuth();
     const functions = useFunctions();
 
@@ -24,5 +23,3 @@ const SgySignInBtn = () => {
         //<button onClick={SgyInit}>Initialize Schoology</button>
     )
 }
-
-export default SgySignInBtn;

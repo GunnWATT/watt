@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 
 // Authentication
@@ -17,7 +17,7 @@ import {Home, CheckSquare, Users, Settings, Tool, ChevronRight, ChevronLeft} fro
 
 
 type SidebarProps = {forceCollapsed?: boolean};
-const Sidebar = (props: SidebarProps) => {
+export default function Sidebar(props: SidebarProps) {
     const {forceCollapsed} = props;
 
     // Authentication
@@ -76,5 +76,3 @@ const Sidebar = (props: SidebarProps) => {
         </div>
     )
 }
-
-export default Sidebar;

@@ -1,8 +1,7 @@
-import React from 'react';
 import {Spinner} from 'reactstrap';
 
 
-const Loading = () => {
+export default function Loading() {
     return (
         <div className="loading">
             <span>
@@ -12,5 +11,3 @@ const Loading = () => {
         </div>
     )
 }
-
-export default Loading;

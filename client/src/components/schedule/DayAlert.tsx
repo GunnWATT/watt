@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Alert, Button } from 'reactstrap';
 
 
 type DayAlertProps = {daysRelToCur: number, jumpToPres: () => void};
-const DayAlert = (props: DayAlertProps) => {
+export default function DayAlert(props: DayAlertProps) {
     const {daysRelToCur, jumpToPres} = props;
 
     const [visible, setVisible] = useState(true);
@@ -38,5 +38,3 @@ const DayAlert = (props: DayAlertProps) => {
         </Alert>
     );
 }
-
-export default DayAlert;

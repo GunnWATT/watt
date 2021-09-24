@@ -1,6 +1,7 @@
-import React, {useContext, useState} from 'react';
+import {useContext, useState} from 'react';
 import {Nav} from 'reactstrap';
 import moment from 'moment';
+import {useScreenType} from '../hooks/useScreenType';
 
 // Components
 import List from '../components/lists/List';
@@ -14,10 +15,9 @@ import clubs from '../data/clubs';
 // Contexts
 import CurrentTimeContext from '../contexts/CurrentTimeContext';
 import UserDataContext from '../contexts/UserDataContext';
-import {useScreenType} from "../hooks/useScreenType";
 
 
-const Clubs = () => {
+export default function Clubs() {
     const {timestamp, data} = clubs;
 
     // Dynamically setting default tab
@@ -118,5 +118,3 @@ const Clubs = () => {
         </Header>
     );
 }
-
-export default Clubs;

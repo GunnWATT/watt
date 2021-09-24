@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
 import {useCallableFunctionResponse} from 'reactfire';
 
 
-const SgyAuthRedirect = () => {
+export default function SgyAuthRedirect() {
     // Search params handling
     const { search } = useLocation();
     const searchParams = new URLSearchParams(search);
@@ -21,5 +21,3 @@ const SgyAuthRedirect = () => {
         <span>Preparing to redirect you...</span>
     )
 }
-
-export default SgyAuthRedirect

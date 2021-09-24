@@ -1,7 +1,4 @@
-import React from 'react';
-
-
-const RedBackground = () => {
+export default function RedBackground() {
     const leftColor = 'ff594c';
     const rightColor = 'eb144c';
 
@@ -47,5 +44,3 @@ const RedBackground = () => {
         </svg>
     )
 }
-
-export default RedBackground;

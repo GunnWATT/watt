@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import {useContext} from 'react';
 import {FormGroup, Label, Input} from 'reactstrap';
 
 // Contexts
@@ -9,7 +9,7 @@ import {useAuth, useFirestore} from 'reactfire';
 import { updateUserData } from '../../firebase/updateUserData';
 
 
-const Features = () => {
+export default function Features() {
     const userData = useContext(UserDataContext);
     const {period0: showPeriod0, period8: showPeriod8, clock: showClock} = userData.options;
 
@@ -103,5 +103,3 @@ const Features = () => {
         </>
     );
 }
-
-export default Features;

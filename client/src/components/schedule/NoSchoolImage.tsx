@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import {Moment} from 'moment';
 
 // Contexts
@@ -38,7 +38,7 @@ export function mulberry32(a: number) {
 }
 
 // Get a random no-school image
-const randomImage = (millis: number): string => {
+function randomImage(millis: number): string {
     const options = [noschool1, noschool2, noschool3, noschool4, noschool5, noschool6, noschool7, noschool8,
         noschool9, noschool10, noschool11, noschool12, noschool13, noschool14, noschool15, noschool16,
         noschool17];
@@ -66,7 +66,7 @@ const randomImage = (millis: number): string => {
 
 
 type NoSchoolImageProps = {viewDate: Moment};
-const NoSchoolImage = (props: NoSchoolImageProps) => {
+export default function NoSchoolImage(props: NoSchoolImageProps) {
     const {viewDate} = props;
     const userData = useContext(UserDataContext);
     const [image, setImage] = useState<string | undefined>(undefined);
@@ -85,5 +85,3 @@ const NoSchoolImage = (props: NoSchoolImageProps) => {
         }}
     />
 }
-
-export default NoSchoolImage;

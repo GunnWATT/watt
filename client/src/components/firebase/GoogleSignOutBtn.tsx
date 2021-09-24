@@ -1,10 +1,8 @@
-import React from 'react';
 import {useAuth} from 'reactfire';
-
 import {LogOut} from 'react-feather';
 
 
-const GoogleSignOutBtn = () => {
+export default function GoogleSignOutBtn() {
     const auth = useAuth();
 
     return (
@@ -16,5 +14,3 @@ const GoogleSignOutBtn = () => {
         </span>
     )
 }
-
-export default GoogleSignOutBtn

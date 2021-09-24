@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import {useContext} from 'react';
 import {FormGroup, Input, Label} from 'reactstrap';
 
 // Context
@@ -11,7 +11,7 @@ import {useAuth, useFirestore} from 'reactfire';
 import { updateUserData } from '../../firebase/updateUserData';
 
 
-const Appearance = () => {
+export default function Appearance() {
     const userData = useContext(UserDataContext);
     const {theme: currThemePref, time: currTimePref} = userData.options;
 
@@ -81,5 +81,3 @@ const Appearance = () => {
         </>
     );
 }
-
-export default Appearance;

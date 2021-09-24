@@ -1,12 +1,10 @@
-import React from 'react';
 import {CardGroup, Card, CardBody, CardTitle, CardSubtitle, CardText} from 'reactstrap';
 
 
-const Support = () => {
+export default function Support() {
     return (
         <>
             <h1>Student resources</h1>
-            <p className="secondary">Sponsored by the ROCK team.</p>
             <CardGroup>
                 <Card>
                     <CardBody>
@@ -57,5 +55,3 @@ const Support = () => {
         </>
     );
 }
-
-export default Support;

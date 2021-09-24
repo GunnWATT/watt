@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState, ReactNode, useRef} from 'react';
+import {useContext, useEffect, useState, useRef, ReactNode} from 'react';
 import {useLocation, useHistory} from 'react-router-dom';
 import {Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import {useScreenType} from '../hooks/useScreenType';
@@ -17,11 +17,11 @@ import SgyInitResults from './firebase/SgyInitResults';
 // Utils
 import {parseNextPeriod} from './schedule/PeriodIndicator';
 import {parsePeriodName, parsePeriodColor} from './schedule/Periods';
-import {hexToRgb} from './schedule/ProgressBarColor';
+import {hexToRgb} from './schedule/progressBarColor';
 
 
 type LayoutProps = {children: ReactNode};
-const Layout = (props: LayoutProps) => {
+export default function Layout(props: LayoutProps) {
     // Screen type for responsive layout
     const screenType = useScreenType();
 
@@ -256,5 +256,3 @@ const Layout = (props: LayoutProps) => {
         </>
     );
 }
-
-export default Layout;

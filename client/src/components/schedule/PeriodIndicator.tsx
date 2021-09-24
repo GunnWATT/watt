@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import {useContext} from 'react';
 import {Progress} from 'reactstrap';
 import {Moment} from 'moment';
 
@@ -14,7 +14,7 @@ import {DayObj, numToWeekday, parsePeriodName, sortPeriodsByStart, SCHOOL_START,
 
 
 type PeriodIndicatorProps = {currTime: Moment, startTime: number};
-const PeriodIndicator = (props: PeriodIndicatorProps) => {
+export default function PeriodIndicator(props: PeriodIndicatorProps) {
     const {currTime, startTime} = props;
     const userData = useContext(UserDataContext);
 
@@ -23,7 +23,7 @@ const PeriodIndicator = (props: PeriodIndicatorProps) => {
     const seconds = currTime.diff(midnight, 'seconds');
 
     const periods = parseNextPeriod(currTime, minutes, userData);
-    if (!periods) return <div />; // Really dumb failsafe for viewdate periods lag
+    if (!periods) return null;
     const {next, prev} = periods;
 
     const startingIn = next[1].s - minutes;
@@ -101,6 +101,3 @@ function parsePeriodFromJSON(minutes: number, periods: DayObj | null, userData: 
     if (currPd >= flattened.length) return null;
     return {prev: flattened[currPd - 1], next: flattened[currPd]};
 }
-
-
-export default PeriodIndicator;

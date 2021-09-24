@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import {useContext} from 'react';
 import moment from 'moment';
 import UserDataContext from '../../contexts/UserDataContext';
 
@@ -9,7 +9,7 @@ export type GCalEvent = {
     start: EventStartEndTime, end: EventStartEndTime
 };
 
-const Event = (props: GCalEvent) => {
+export default function Event(props: GCalEvent) {
     const {summary, description, location, start, end} = props;
 
     // User data for preferred time display and zoom links
@@ -34,5 +34,3 @@ const Event = (props: GCalEvent) => {
         </li>
     );
 }
-
-export default Event;

@@ -1,11 +1,9 @@
-import React from 'react';
 import {useAuth} from 'reactfire';
 import {signInWithRedirect, getRedirectResult, GoogleAuthProvider} from 'firebase/auth';
-
 import {LogIn} from 'react-feather';
 
 
-const GoogleSignInBtn = () => {
+export default function GoogleSignInBtn() {
     const auth = useAuth();
 
     const googleSignIn = async () => {
@@ -28,5 +26,3 @@ const GoogleSignInBtn = () => {
         </span>
     )
 }
-
-export default GoogleSignInBtn

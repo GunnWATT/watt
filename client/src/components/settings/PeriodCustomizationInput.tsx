@@ -1,4 +1,3 @@
-import React from 'react';
 import {Col, FormGroup, Input, Label, Row} from 'reactstrap';
 
 import {SgyPeriodData} from '../../contexts/UserDataContext';
@@ -10,7 +9,7 @@ import {updateUserData} from '../../firebase/updateUserData'
 
 
 type PeriodProps = {id: string, data: SgyPeriodData};
-const PeriodCustomizationInput = (props: PeriodProps) => {
+export default function PeriodCustomizationInput(props: PeriodProps) {
     const {id, data: {n, c, l, o, s}} = props;
     const name = periodNameDefault(id);
 
@@ -48,5 +47,3 @@ const PeriodCustomizationInput = (props: PeriodProps) => {
         </Row>
     );
 }
-
-export default PeriodCustomizationInput;

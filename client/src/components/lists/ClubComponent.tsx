@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'reactstrap';
 
 // Context
@@ -15,7 +15,7 @@ export type Club = {
     prez: string, advisor: string, email: string, coadvisor?: string, coemail?: string;
 }
 
-const ClubComponent = (props: Club & {id: string}) => {
+export default function ClubComponent(props: Club & {id: string}) {
     const {name, desc, id, room, day, time, zoom, video, signup, prez, advisor, email, coadvisor, coemail} = props;
 
     const [modal, setModal] = useState(false);
@@ -66,5 +66,3 @@ const ClubComponent = (props: Club & {id: string}) => {
         </li>
     );
 }
-
-export default ClubComponent;

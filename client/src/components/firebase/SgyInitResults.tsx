@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 
 // Components
 //import Loading from '../misc/Loading'; // Doesn't mesh well with the modal
@@ -8,7 +8,7 @@ import { useFunctions, useUser } from 'reactfire';
 import { httpsCallable } from 'firebase/functions';
 
 
-const SgyInitResults = () => {
+export default function SgyInitResults() {
     const functions = useFunctions();
     const {status, data} = useUser();
 
@@ -34,5 +34,3 @@ const SgyInitResults = () => {
         </span>
     )
 }
-
-export default SgyInitResults;

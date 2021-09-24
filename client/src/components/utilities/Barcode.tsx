@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import UserDataContext from '../../contexts/UserDataContext';
 import BarcodeRow from './BarcodeRow';
 
@@ -9,7 +9,7 @@ import {updateUserData} from '../../firebase/updateUserData';
 const DEFAULT_BARCODE = '95000000'
 
 
-const Barcode = () => {
+export default function Barcode() {
     const auth = useAuth();
     const firestore = useFirestore();
 
@@ -76,5 +76,3 @@ const Barcode = () => {
         </div>
     );
 }
-
-export default Barcode;

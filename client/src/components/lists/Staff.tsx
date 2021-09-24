@@ -1,4 +1,5 @@
-import React, {useContext, useState} from 'react';
+import {useContext, useState} from 'react';
+import moment from 'moment';
 import {Container} from 'reactstrap';
 import UserDataContext from '../../contexts/UserDataContext';
 
@@ -8,10 +9,9 @@ import StaffComponent, {ClassObj, SemesterClassObj, Staff as StaffComponentProps
 
 // Data
 import staff from '../../data/staff';
-import moment from "moment";
 
 
-const Staff = () => {
+export default function Staff() {
     const {timestamp, data} = staff;
 
     const userData = useContext(UserDataContext)
@@ -97,5 +97,3 @@ const Staff = () => {
         </>
     );
 }
-
-export default Staff;

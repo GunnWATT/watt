@@ -1,7 +1,4 @@
-import React from 'react';
-
-
-const WIP = () => {
+export default function WIP() {
     return (
         <div className="WIP">
             <span>
@@ -11,5 +8,3 @@ const WIP = () => {
         </div>
     )
 }
-
-export default WIP;

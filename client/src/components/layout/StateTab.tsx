@@ -1,4 +1,3 @@
-import React from 'react';
 import {NavItem, NavLink} from 'reactstrap';
 
 
@@ -7,7 +6,7 @@ import {NavItem, NavLink} from 'reactstrap';
 // what value to set the state to when this tab is clicked.
 
 type StateTabProps = {value: string, name: string, state: string, setState: (state: string) => void};
-const StateTab = (props: StateTabProps) => {
+export default function StateTab(props: StateTabProps) {
     let {value, name, state, setState} = props;
 
     return (
@@ -21,5 +20,3 @@ const StateTab = (props: StateTabProps) => {
         </NavItem>
     )
 }
-
-export default StateTab;

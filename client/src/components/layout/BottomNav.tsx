@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {Container} from 'reactstrap';
 
 // Authentication
@@ -14,8 +14,7 @@ import GoogleSignOutBtn from '../firebase/GoogleSignOutBtn';
 import {Home, CheckSquare, Users, Settings, Tool, ChevronUp, ChevronDown} from 'react-feather';
 
 
-const BottomNav = () => {
-
+export default function BottomNav() {
     const [showDropUp, setDropUp] = useState<boolean>(false);
     const {status, data: signInCheckResult} = useSigninCheck();
 
@@ -51,5 +50,3 @@ const BottomNav = () => {
         </footer>
     );
 }
-
-export default BottomNav;
