@@ -1,22 +1,24 @@
-import React from 'react';
 import {Col, FormGroup, Input, Label, Row} from 'reactstrap';
 
 import {SgyPeriodData} from '../../contexts/UserDataContext';
-import {updateUserData} from '../../firebase/updateUserData'
 import {periodNameDefault} from '../schedule/Periods';
+
+// Firestore
+import {useAuth, useFirestore} from 'reactfire';
+import {updateUserData} from '../../firebase/updateUserData'
 
 
 type PeriodProps = {id: string, data: SgyPeriodData};
-const PeriodCustomizationInput = (props: PeriodProps) => {
-    const {id, data} = props;
-    const {n, c, l, o, s} = data;
-
-    const name = periodNameDefault(id)
+export default function PeriodCustomizationInput(props: PeriodProps) {
+    const {id, data: {n, c, l, o, s}} = props;
+    const name = periodNameDefault(id);
 
     // Function to update this period's fields on firestore
-    const updatePeriodData = async (newValue: string, field: string) => {
-        await updateUserData(`classes.${id}.${field}`, newValue);
-    }
+    const auth = useAuth();
+    const firestore = useFirestore();
+
+    const updatePeriodData = async (newValue: string, field: string) =>
+        await updateUserData(`classes.${id}.${field}`, newValue, auth, firestore);
 
     return (
         <Row form>
@@ -45,5 +47,3 @@ const PeriodCustomizationInput = (props: PeriodProps) => {
         </Row>
     );
 }
-
-export default PeriodCustomizationInput;

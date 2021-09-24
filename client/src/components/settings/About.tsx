@@ -1,8 +1,7 @@
-import React from 'react';
 import {Jumbotron} from 'reactstrap';
 
 
-const About = () => {
+export default function About() {
     return (
         <>
             <h1>About</h1>
@@ -34,5 +33,3 @@ const About = () => {
         </>
     );
 }
-
-export default About;

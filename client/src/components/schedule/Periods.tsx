@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import moment from 'moment-timezone';
 import {Moment} from 'moment';
 
@@ -33,7 +33,7 @@ export type DayObj = {
 }
 
 type PeriodsProps = {viewDate: Moment};
-const Periods = (props: PeriodsProps) => {
+export default function Periods(props: PeriodsProps) {
     const {viewDate} = props;
     const currDate = useContext(CurrentTimeContext);
     const timeZone = moment.tz.guess(true);
@@ -222,6 +222,3 @@ export const periodNameDefault = (name: string) => {
             return name;
     }
 }
-
-
-export default Periods;

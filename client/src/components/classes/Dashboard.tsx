@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import linkimg from '../../assets/link.png';
 
 const Dashboard = (props: {}) => {

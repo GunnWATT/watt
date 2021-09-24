@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import moment, {Moment} from 'moment-timezone';
 import Event, {GCalEvent} from './Event';
-import {RefreshCw} from "react-feather";
+import {RefreshCw} from 'react-feather';
 
 
 type EventsProps = {events: GCalEvent[] | null, eventsError: Error | null, fetchEvents: () => void, viewDate: Moment};
-const Events = (props: EventsProps) => {
+export default function Events(props: EventsProps) {
     const {events, eventsError, fetchEvents, viewDate} = props;
     const [content, setContent] = useState<JSX.Element[] | null>(null);
 
@@ -45,5 +45,3 @@ const Events = (props: EventsProps) => {
         </div>
     );
 }
-
-export default Events;

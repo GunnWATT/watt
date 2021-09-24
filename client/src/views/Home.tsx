@@ -1,10 +1,10 @@
-import React, {useContext, useState} from 'react';
+import {useContext, useState} from 'react';
 import moment from 'moment';
 import {GCalEvent} from '../components/schedule/Event';
 
 // Components
 import RedBackground from '../components/layout/RedBackground';
-//import Clock from './schedule/Clock.js'; // Date handling has been passed down to Home.js, retiring this
+import Clock from '../components/schedule/Clock';
 import DateSelector from '../components/schedule/DateSelector';
 import Periods from '../components/schedule/Periods';
 import DayAlert from '../components/schedule/DayAlert';
@@ -17,11 +17,10 @@ import {useHotkeys} from 'react-hotkeys-hook';
 // Contexts
 import CurrentTimeContext from '../contexts/CurrentTimeContext';
 import UserDataContext from '../contexts/UserDataContext';
-import Clock from '../components/misc/Clock';
 
 
 type HomeProps = {events: GCalEvent[] | null, eventsError: Error | null, fetchEvents: () => void};
-const Home = (props: HomeProps) => {
+export default function Home(props: HomeProps) {
     const { events, eventsError, fetchEvents } = props;
 
     // Date variables
@@ -72,7 +71,7 @@ const Home = (props: HomeProps) => {
             <div className="schedule">
                 {relDays !== 0 && <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>}
 
-                { userData.options?.clock ? <Clock time={date} /> : null }
+                { userData.options?.clock && <Clock time={date} /> }
                 <h2 className="schedule-datetime center">{date.format(format)}</h2>
                 <DateSelector
                     incDay={incDay}
@@ -97,5 +96,3 @@ const Home = (props: HomeProps) => {
         </div>
     );
 }
-
-export default Home;

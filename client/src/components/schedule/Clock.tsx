@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import moment from 'moment-timezone';
 
-import { SCHOOL_START, SCHOOL_END_EXCLUSIVE, PeriodObj, sortPeriodsByStart, numToWeekday, parsePeriodColor } from '../schedule/Periods';
+import { SCHOOL_START, SCHOOL_END_EXCLUSIVE, PeriodObj, sortPeriodsByStart, numToWeekday, parsePeriodColor } from './Periods';
 
 // Data
 import schedule from '../../data/schedule';
@@ -9,8 +9,8 @@ import alternates from '../../data/alternates';
 
 import UserDataContext from '../../contexts/UserDataContext';
 
-const Clock = (props: {time: moment.Moment}) => {
 
+export default function Clock(props: {time: moment.Moment}) {
     const { time } = props;
     // const time = props.time.add('days', 2);
     // const time = moment('2021-08-30 10:34:15')
@@ -114,5 +114,3 @@ const Clock = (props: {time: moment.Moment}) => {
         </svg>
     </div>
 }
-
-export default Clock;

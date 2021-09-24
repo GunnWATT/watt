@@ -1,9 +1,9 @@
-import React from 'react';
+import {ReactNode} from 'react';
 import {Link, Route} from "react-router-dom";
 
 
-type SidebarItemProps = {to: string, icon: React.ReactNode, name: string, exact?: boolean};
-const SidebarItem = (props: SidebarItemProps) => {
+type SidebarItemProps = {to: string, icon: ReactNode, name: string, exact?: boolean};
+export default function SidebarItem(props: SidebarItemProps) {
     let {to, icon, name, exact} = props;
 
     return (
@@ -20,5 +20,3 @@ const SidebarItem = (props: SidebarItemProps) => {
         </Route>
     )
 }
-
-export default SidebarItem;

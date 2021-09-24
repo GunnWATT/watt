@@ -1,24 +1,22 @@
-import firebase from './Firebase';
-const firestore = firebase.firestore;
-const auth = firebase.auth;
+import {Auth} from 'firebase/auth';
+import {doc, setDoc, updateDoc, Firestore} from 'firebase/firestore';
 
 
-export const updateUserData = async (field: string, newValue: any) => {
+export const updateUserData = async (field: string, newValue: any, auth: Auth, firestore: Firestore) => {
     if (auth.currentUser) {
-        // if signed in with firebase, update both
-        await updateFirebaseUserData(field, newValue);
+        // If signed in with firebase, update both
+        await updateFirebaseUserData(field, newValue, auth, firestore);
     }
-
-    // update localstorage always
+    // Update localstorage always
     updateLocalStorageUserData(field, newValue);
 }
 
-export const updateFirebaseUserData = async (field: string, newValue: any) => {
+export const updateFirebaseUserData = async (field: string, newValue: any, auth: Auth, firestore: Firestore) => {
     if (auth.currentUser) {
         // If field is '', update the entire object
         if (field === '')
-            await firestore.collection('users').doc(auth.currentUser.uid).set(newValue);
-        else await firestore.collection('users').doc(auth.currentUser.uid).update({
+            await setDoc(doc(firestore, 'users', auth.currentUser.uid), newValue);
+        else await updateDoc(doc(firestore, 'users', auth.currentUser.uid), {
             [field]: newValue
         });
     }
