@@ -31,6 +31,7 @@
     position: absolute;
     left: calc(100% - 40px);
     z-index: 5;
+    touch-action: none;
 }
 
 .periods-custom-picker-div-bottom {

@@ -62,6 +62,7 @@ export default function PeriodCustomizationInput(props: PeriodProps) {
                         onChange={changeColor}
                         onChangeComplete={(color: ColorResult) => updatePeriodData(color.hex, 'c')}
                         presetColors={userData.options.theme === 'light' ? periodColors : darkPerColors}
+                        disableAlpha={true}
                     />
                 </div>
             </div>
