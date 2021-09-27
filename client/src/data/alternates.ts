@@ -1,6 +1,6 @@
 import {DayObj} from '../components/schedule/Periods';
 
-export default {
+const data: {alternates: {[key: string]: DayObj | null}} = {
     "alternates": {
         "08-11": {
             "0": {
@@ -115,12 +115,8 @@ export default {
                 "e": 740
             },
             "7": {
-                "s": 840,
-                "e": 930
-            },
-            "8": {
-                "s": 960,
-                "e": 1005
+                "s": 780,
+                "e": 870
             },
             "B": {
                 "s": 635,
@@ -128,11 +124,11 @@ export default {
             },
             "L": {
                 "s": 740,
-                "e": 790
+                "e": 770
             },
-            "S": {
-                "s": 800,
-                "e": 830
+            "P": {
+                "s": 880,
+                "e": 930
             }
         },
         "09-29": {
@@ -1178,4 +1174,5 @@ export default {
         },
         "06-03": null
     }
-} as {alternates: {[key: string]: DayObj | null}}
+}
+export default data;
