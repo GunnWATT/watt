@@ -23,7 +23,7 @@
     width: 40px;
     height: 40px;
     border-radius: 5px;
-    border: 2px solid var(--primary);
+    border: 2px solid var(--tertiary);
     cursor: pointer;
 }
 
@@ -32,6 +32,25 @@
     left: calc(100% - 40px);
     z-index: 5;
     touch-action: none;
+
+    > div {
+        background-color: var(--bg-primary) !important;
+        
+        * { 
+            color: var(--primary) !important;
+        }
+
+        input {
+            box-shadow: var(--tertiary) 0px 0px 0px 1px inset !important;
+            text-align: center;
+            border-radius: .2rem;
+            width: 100% !important;
+        }
+
+        >:last-child {
+            border-top: 1px solid var(--tertiary) !important;
+        }
+    }
 }
 
 .periods-custom-picker-div-bottom {
