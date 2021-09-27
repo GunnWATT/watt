@@ -4,3 +4,61 @@
     color: var(--secondary);
   }
 }
+
+.periods-custom-row-burrito {
+    display: flex;
+    align-items: center;
+}
+
+.periods-custom-picker-burrito {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+
+.periods-custom-picker-square {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--tertiary);
+    cursor: pointer;
+}
+
+@mixin periods-custom-picker-div {
+    position: absolute;
+    left: calc(100% - 40px);
+    z-index: 5;
+    touch-action: none;
+
+    > div {
+        background-color: var(--bg-primary) !important;
+        
+        * { 
+            color: var(--primary) !important;
+        }
+
+        input {
+            box-shadow: var(--tertiary) 0px 0px 0px 1px inset !important;
+            text-align: center;
+            border-radius: .2rem;
+            width: 100% !important;
+        }
+
+        >:last-child {
+            border-top: 1px solid var(--tertiary) !important;
+        }
+    }
+}
+
+.periods-custom-picker-div-bottom {
+    @include periods-custom-picker-div();
+    bottom: calc(100% + 10px);
+}
+
+.periods-custom-picker-div-top {
+    @include periods-custom-picker-div();
+    top: calc(100% + 10px);
+}
