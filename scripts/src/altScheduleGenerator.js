@@ -249,7 +249,7 @@ import * as fs from "fs";
 (async () => {
     const alternates = await complete;
 
-    fs.writeFileSync("../output/alternates.json", JSON.stringify({alternates}))
+    fs.writeFileSync("../output/alternates.json", JSON.stringify({alternates}, null, 4))
 }) ();
 
 export default complete

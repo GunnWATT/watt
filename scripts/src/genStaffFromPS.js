@@ -284,8 +284,9 @@ const staffMatch = (staffA, staffB) => {
         }
     }
 
-    fs.writeFileSync('../input/staff.json', JSON.stringify(FINAL));
-    fs.writeFileSync('../output/staff.json', JSON.stringify(FINAL));
+    const str = JSON.stringify(FINAL, null, 4);
+    fs.writeFileSync('../input/staff.json', str);
+    fs.writeFileSync('../output/staff.json', str);
 })();
 
 

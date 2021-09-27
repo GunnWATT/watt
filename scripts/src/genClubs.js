@@ -88,5 +88,6 @@ for (const club of clubs) {
     }
 }
 
-fs.writeFileSync('../input/clubs.json', JSON.stringify(FINAL));
-fs.writeFileSync('../output/clubs.json', JSON.stringify(FINAL));
+const str = JSON.stringify(FINAL, null, 4);
+fs.writeFileSync('../input/clubs.json', str);
+fs.writeFileSync('../output/clubs.json', str);
