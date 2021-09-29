@@ -1,4 +1,5 @@
 import {useState, useEffect, useContext} from 'react';
+import {useSchedule} from '../../hooks/useSchedule';
 import moment from 'moment-timezone';
 import {Moment} from 'moment';
 
@@ -6,10 +7,6 @@ import {Moment} from 'moment';
 import Period from './Period';
 import PeriodIndicator from './PeriodIndicator';
 import NoSchoolImage from './NoSchoolImage';
-
-// Data
-import schedule from '../../data/schedule';
-import alternates from '../../data/alternates';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
@@ -39,48 +36,17 @@ export default function Periods(props: PeriodsProps) {
     const timeZone = moment.tz.guess(true);
 
     // Period handling
-    const [periods, setPeriods] = useState<[string, PeriodObj][] | null>(null);
-    const [alternate, setAlternate] = useState(false);
+    const {periods, alternate} = useSchedule(viewDate);
 
     // User data for preferred time display and zoom links
     const userData = useContext(UserDataContext);
     const format = userData.options.time === '24' ? 'H:mm' : 'h:mm A';
     const classes = userData.classes as {[key: string]: SgyPeriodData};
     
-    // Load schedule and alternates
-    useEffect(() => {
-        // If the current date falls on summer break, return early
-        if (viewDate.isBefore(SCHOOL_START) || viewDate.isAfter(SCHOOL_END_EXCLUSIVE)) {
-            setPeriods(null);
-            return;
-        }
-
-        // Check for alternate schedules
-        let altFormat = viewDate.format('MM-DD');
-        if (alternates.alternates.hasOwnProperty(altFormat)) {
-            // If viewDate exists in alt schedules, load that schedule
-            let periods = alternates.alternates[altFormat];
-            setPeriods(periods ? sortPeriodsByStart(periods) : null);
-            setAlternate(true);
-        } else {
-            // Otherwise, use default schedule
-            let periods = schedule[numToWeekday(Number(viewDate.format('d')))];
-            setPeriods(periods ? sortPeriodsByStart(periods) : null);
-        }
-
-        return function cleanup() {
-            // setPeriods(null);
-            setAlternate(false);
-        }
-    }, [viewDate])
 
     // Maps periods array to <Period> components
     const renderPeriods = () =>
-        periods!.filter(([name,value]) => {
-            if (name === "0" && !userData.options.period0) return false;
-            if (name === "8" && !userData.options.period8) return false;
-            return true;
-        }).map(([name, value]) =>
+        periods!.map(([name, value]) =>
             <Period
                 name={parsePeriodName(name, userData)}
                 color={parsePeriodColor(name, userData)}
