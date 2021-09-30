@@ -15,9 +15,9 @@ import CurrentTimeContext from '../contexts/CurrentTimeContext';
 import SgyInitResults from './firebase/SgyInitResults';
 
 // Utils
-import {parseNextPeriod} from './schedule/PeriodIndicator';
 import {parsePeriodName, parsePeriodColor} from './schedule/Periods';
 import {hexToRgb} from './schedule/progressBarColor';
+import {useNextPeriod} from "../hooks/useNextPeriod";
 
 
 type LayoutProps = {children: ReactNode};
@@ -79,6 +79,7 @@ export default function Layout(props: LayoutProps) {
     // Favicon
     // TODO: use timeouts and move this out of Layout
     const date = useContext(CurrentTimeContext);
+    const period = useNextPeriod(date);
 
     // Reference to the favicon element
     const favicon = useRef<HTMLLinkElement>();
@@ -92,7 +93,6 @@ export default function Layout(props: LayoutProps) {
     useEffect(() => {
         const midnight = date.clone().startOf('date');
         const minutes = date.diff(midnight, 'minutes');
-        const period = parseNextPeriod(date, minutes, userData);
 
         // Initialize favicon link and canvas references
         if (!favicon.current) {

@@ -1,11 +1,8 @@
 import { useContext, useState } from 'react';
+import {useSchedule} from '../../hooks/useSchedule';
 import moment from 'moment-timezone';
 
 import { SCHOOL_START, SCHOOL_END_EXCLUSIVE, PeriodObj, sortPeriodsByStart, numToWeekday, parsePeriodColor } from './Periods';
-
-// Data
-import schedule from '../../data/schedule';
-import alternates from '../../data/alternates';
 
 import UserDataContext from '../../contexts/UserDataContext';
 
@@ -23,39 +20,10 @@ export default function Clock(props: {time: moment.Moment}) {
     const minuteDegs = s/(60**2) * 360;
     const hourDegs = s/(60**2)/12 * 360;
 
-    
-    let periods: [string, PeriodObj][] | null = [];
-
-    // If the current date falls on summer break, return early
-    if (time.isBefore(SCHOOL_START) || time.isAfter(SCHOOL_END_EXCLUSIVE)) {
-        periods = (null);
-    } else {
-        // Check for alternate schedules
-        let altFormat = time.format('MM-DD');
-        if (alternates.alternates.hasOwnProperty(altFormat)) {
-            // If viewDate exists in alt schedules, load that schedule
-            let p = alternates.alternates[altFormat];
-            periods = (p ? sortPeriodsByStart(p) : null);
-        } else {
-            // Otherwise, use default schedule
-            let p = schedule[numToWeekday(Number(time.format('d')))];
-            periods = (p ? sortPeriodsByStart(p) : null);
-        }
-    }
-
+    // Period handling
+    const {periods} = useSchedule(time);
     const userData = useContext(UserDataContext);
 
-    if(periods) {
-
-        periods = periods.filter(([name, value]) => {
-            if (name === "0" && !userData?.options.period0) return false;
-            if (name === "8" && !userData?.options.period8) return false;
-            return true;
-        })
-        // console.log(s / 60, periods[0][1].s + 720, periods[periods.length - 1][1].s - 720);
-
-        if (periods && (s / 60 >= periods[0][1].s + 660 || s / 60 <= periods[periods.length - 1][1].s - 660)) periods = null;
-    }
 
     return <div style={{
         display: 'flex',
