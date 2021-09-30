@@ -1,6 +1,6 @@
 import {DayObj} from '../components/schedule/Periods';
 
-const data: {alternates: {[key: string]: DayObj | null}} = {
+const data: { alternates: { [key: string]: DayObj | null } } = {
     "alternates": {
         "08-11": {
             "0": {
@@ -192,10 +192,10 @@ const data: {alternates: {[key: string]: DayObj | null}} = {
             },
             "L": {
                 "s": 740,
-                "e": 790
+                "e": 770
             },
             "S": {
-                "s": 800,
+                "s": 780,
                 "e": 830
             }
         },
@@ -264,12 +264,6 @@ const data: {alternates: {[key: string]: DayObj | null}} = {
                 "e": 930
             }
         },
-        "10-13": {
-            "S": {
-                "s": 510,
-                "e": 735
-            }
-        },
         "10-14": {
             "0": {
                 "s": 475,
@@ -327,10 +321,10 @@ const data: {alternates: {[key: string]: DayObj | null}} = {
             },
             "L": {
                 "s": 740,
-                "e": 790
+                "e": 770
             },
             "S": {
-                "s": 800,
+                "s": 780,
                 "e": 830
             }
         },
@@ -456,10 +450,10 @@ const data: {alternates: {[key: string]: DayObj | null}} = {
             },
             "L": {
                 "s": 740,
-                "e": 790
+                "e": 770
             },
             "S": {
-                "s": 800,
+                "s": 780,
                 "e": 830
             }
         },
@@ -829,10 +823,10 @@ const data: {alternates: {[key: string]: DayObj | null}} = {
             },
             "L": {
                 "s": 740,
-                "e": 790
+                "e": 770
             },
             "S": {
-                "s": 800,
+                "s": 780,
                 "e": 830
             }
         },
@@ -955,10 +949,10 @@ const data: {alternates: {[key: string]: DayObj | null}} = {
             },
             "L": {
                 "s": 740,
-                "e": 790
+                "e": 770
             },
             "S": {
-                "s": 800,
+                "s": 780,
                 "e": 830
             }
         },
@@ -1081,10 +1075,10 @@ const data: {alternates: {[key: string]: DayObj | null}} = {
             },
             "L": {
                 "s": 740,
-                "e": 790
+                "e": 770
             },
             "S": {
-                "s": 800,
+                "s": 780,
                 "e": 830
             }
         },

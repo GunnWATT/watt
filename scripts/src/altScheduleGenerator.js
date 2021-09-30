@@ -214,15 +214,23 @@ async function generate() {
             continue;
         }
 
+        
+
+
         let schedule = parseAlternate(event["summary"], event["description"], startDateObj.toISOString().slice(0, 10))
         if (!(schedule)) continue
 
+        if (startDateObj.toISOString().slice(5, 10) === '09-30') {
+            console.log(schedule);
+        }
+
         if (endDateObj && endDateObj >= schoolYearStart && endDateObj <= schoolYearEnd) { 
             // this kind of never happens ,'/
-            while (startDateObj.toISOString().slice(5, 10) !== endDateObj.toISOString().slice(5, 10)) {
-                fAlternates[startDateObj.toISOString().slice(5, 10)] = schedule
-                startDateObj.setUTCDate(startDateObj.getUTCDate() + 1)
-            }
+            // while (startDateObj.toISOString().slice(5, 10) !== endDateObj.toISOString().slice(5, 10)) {
+            //     fAlternates[startDateObj.toISOString().slice(5, 10)] = schedule
+            //     startDateObj.setUTCDate(startDateObj.getUTCDate() + 1)
+            //     console.log('why');
+            // }
         } else {
             fAlternates[startDateObj.toISOString().slice(5, 10)] = schedule
         }
@@ -236,6 +244,7 @@ async function generate() {
             periods[element["n"]] = {s: element["s"], e: element["e"]}
         )
         if (Object.keys(periods).length === 0 && periods.constructor === Object) periods = null
+        if(day[0] === '09-30') console.log(periods);
         FINAL[day[0]] = periods
     }
 
