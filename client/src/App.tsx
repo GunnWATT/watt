@@ -1,5 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import PageVisibility from 'react-page-visibility';
 import moment from 'moment';
 import {GCalEvent} from './components/schedule/Event';
 
@@ -71,6 +72,7 @@ const App = () => {
 
     return (
         <Router>
+            <PageVisibility onChange={() => navigator.serviceWorker.getRegistration().then(res => res?.update())} />
             <UserDataProvider>
                 <TimeProvider value={date}>
                     <Layout>
