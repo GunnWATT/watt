@@ -24,7 +24,6 @@ import {TimeProvider} from './contexts/CurrentTimeContext';
 import {useAuth} from 'reactfire';
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
-console.log('a')
 
 
 const App = () => {
