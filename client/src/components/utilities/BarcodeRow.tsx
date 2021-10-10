@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import ReactDOM from 'react-dom';
 import {Eye, X} from 'react-feather';
 
@@ -8,7 +8,7 @@ type BarcodeRowProps = {
     removeBarcode?: () => void, updateBarcodeName?: (v: string) => void, updateBarcodeValue?: (v: string) => void,
     updateBarcodes?: () => void
 };
-const BarcodeRow = (props: BarcodeRowProps) => {
+export default function BarcodeRow(props: BarcodeRowProps) {
     const {name, code, readOnly, removeBarcode, updateBarcodeName, updateBarcodeValue, updateBarcodes} = props;
 
     const [barcodeOverlay, setOverlay] = useState(false);
@@ -116,5 +116,3 @@ const code39Values: {[key: string]: number} = {
     E: 625, O: 631, Y: 535, F: 463, P: 469, Z: 319, G: 359, Q: 371, '-': 287, H: 601, R: 613, '.': 529,
     I: 439, S: 451, ' ': 313, J: 385, T: 397, '*': 295, '+': 2521, '/': 2467, $: 2461, '%': 3007
 }
-
-export default BarcodeRow;

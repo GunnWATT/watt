@@ -20,6 +20,7 @@
  */
 
 import iCalFetch from "./ical.js";
+import chalk from 'chalk';
 
 // Helper function to find size of an object
 Object.size = function(obj) {
@@ -44,6 +45,16 @@ const schoolYearEnd = new Date(2022, 5, 3)
 
 const altScheduleRegex = /schedule|extended|lunch/i
 const noSchoolRegex = /holiday|no\s(students|school)|break|development/i
+
+const ErrorConsole = (date) => {
+    return `${chalk.bgRedBright.black(`Error`)} on ${chalk.red.underline(date)}`;
+}
+const WarningConsole = (date) => {
+    return `${chalk.yellow(`Warning`)} on ${chalk.underline(date)}`;
+}
+
+const warnings = [];
+const errors = [];
 
 function parseAlternate (summary, description, date) { // extra date parameter is only for warnings
     if (altScheduleRegex.test(summary)) {
@@ -120,7 +131,7 @@ function parseAlternate (summary, description, date) { // extra date parameter i
                     fname = isClass[1].toString()
                 } else if (isOH) {
                     fname = "O"
-                    console.log(`Warning on ${date}: Office Hours RETURNS, somehow.`)
+                    warnings.push(`${WarningConsole(date)}: Office Hours RETURNS, somehow.`)
                 } else if (isLunch) {
                     fname = "L"
                 } else if(isBrunch) {
@@ -129,13 +140,13 @@ function parseAlternate (summary, description, date) { // extra date parameter i
                     fname = "S"
                 } else if (isGT) {
                     fname = "G"
-                    console.log(`Warning on ${date}: Gunn Together RETURNS, somehow.`)
+                    warnings.push(`${WarningConsole(date)}: Gunn Together RETURNS, somehow.`)
                 } else if(isPrime) {
                     fname = "P"
                 } else if(isZero) {
                     fname = "0"
                 } else if(!isStaffPrep) {
-                    console.log(`Error on ${date}: Unrecognized period name "${fname}"`);
+                    errors.push(`${ErrorConsole(date)}: Unrecognized period name "${chalk.cyan(fname)}"`);
                 }
 
                 if (!isStaffPrep) {
@@ -149,7 +160,8 @@ function parseAlternate (summary, description, date) { // extra date parameter i
         })
 
         // lunch fix
-        const lunch = periods.find(({n}) => n === "L");
+        const lunch = periods.find(({n}) => n === 'L');
+        const brunch = periods.find(({n}) => n === 'B');
         
         if(lunch) {
             let periodAfterLunch = periods.find(({ n, s }) => n !== "L" && s > lunch.s);
@@ -169,7 +181,27 @@ function parseAlternate (summary, description, date) { // extra date parameter i
 
                 // console.log(lunch, periodAfterLunch);
                 lunch.e = periodAfterLunch.s - 10;
-                console.log(`Warning on ${date}: Period "${periodAfterLunch.n}" collides with lunch. Automatically corrected lunch's end time to 10 minutes before this period.`)
+                warnings.push(`${WarningConsole(date)}: Period "${chalk.cyan(periodAfterLunch.n)}" collides with lunch. Automatically corrected lunch's end time to 10 minutes before this period.`)
+            }
+        }
+
+        if(brunch) {
+            let periodAfterBrunch = periods.find(({ n, s }) => n !== "L" && s > brunch.s);
+
+            for (const period of periods) {
+                if (period === brunch) {
+                    continue;
+                }
+
+                if (period.s > brunch.s && period.s < periodAfterBrunch.s) {
+                    periodAfterBrunch = period;
+                }
+            }
+
+            // next period should start 10 minutes after brunch
+            if (!(periodAfterBrunch.s >= brunch.e + 10)) {
+                brunch.e = periodAfterBrunch.s - 10;
+                warnings.push(`${WarningConsole(date)}: Period "${chalk.cyan(periodAfterBrunch.n)}" collides with brunch. Automatically corrected brunch's end time to 10 minutes before this period.`)
             }
         }
         
@@ -177,7 +209,7 @@ function parseAlternate (summary, description, date) { // extra date parameter i
         // period validation (make sure none collide)
         for(let i = 0; i < periods.length; i++) {
             const p1 = periods[i];
-            if(!(p1.e > p1.s)) console.log(`Error on ${date}: Period "${periods[i].n}" starts at ${p1.s} but ends at ${p1.e}. Cannot end before it begins!`)
+            if (!(p1.e > p1.s)) errors.push(`${ErrorConsole(date)}: ${chalk.underline(`Period "${chalk.cyan(periods[i].n)}" starts at ${chalk.green(p1.s)} but ends at ${chalk.green(p1.e)}. Cannot end before it begins!`)}`)
             
             for(let j = i+1; j < periods.length; j++) {
                 
@@ -185,7 +217,7 @@ function parseAlternate (summary, description, date) { // extra date parameter i
 
                 // one must be directly after another; if this doesn't work, the district is being false and fradulent.
                 if(!(p1.s >= p2.e || p2.s >= p1.e) ) {
-                    console.log(`Warning on ${date}: Periods "${p1.n}" and "${p2.n}" collide!`);
+                    warnings.push(`${WarningConsole(date)}: Periods "${p1.n}" and "${p2.n}" collide!`);
                 }
             }
         }
@@ -205,7 +237,7 @@ async function generate() {
         let event = Object.entries(calendar)[i][1]
 
         const startDateObj = new Date(event["dtstart"].substr(0, 10))
-        const endDateObj = event["dtend"] ? new Date(event["dtend"].substr(0, 9)) : null
+        const endDateObj = event["dtend"] ? new Date(event["dtend"].substr(0, 10)) : null
 
         if (!(startDateObj >= schoolYearStart && startDateObj <= schoolYearEnd)) {
             // console.log(startDateObj.toISOString().slice(0, 10));
@@ -214,6 +246,9 @@ async function generate() {
             continue;
         }
 
+        
+
+
         let schedule = parseAlternate(event["summary"], event["description"], startDateObj.toISOString().slice(0, 10))
         if (!(schedule)) continue
 
@@ -221,11 +256,12 @@ async function generate() {
             // this kind of never happens ,'/
             while (startDateObj.toISOString().slice(5, 10) !== endDateObj.toISOString().slice(5, 10)) {
                 fAlternates[startDateObj.toISOString().slice(5, 10)] = schedule
-                startDateObj.setUTCDate(startDateObj.getUTCDate() + 1)
+                startDateObj.setUTCDate(startDateObj.getUTCDate() + 1);
             }
-        } else {
-            fAlternates[startDateObj.toISOString().slice(5, 10)] = schedule
         }
+        
+        fAlternates[startDateObj.toISOString().slice(5, 10)] = schedule
+        
     }
 
     let FINAL = {}
@@ -238,6 +274,14 @@ async function generate() {
         if (Object.keys(periods).length === 0 && periods.constructor === Object) periods = null
         FINAL[day[0]] = periods
     }
+    
+    for(const warning of warnings) {
+        console.log(warning);
+    }
+
+    for(const error of errors ) {
+        console.log(error);
+    }
 
     return FINAL
 }
@@ -249,7 +293,7 @@ import * as fs from "fs";
 (async () => {
     const alternates = await complete;
 
-    fs.writeFileSync("../output/alternates.json", JSON.stringify({alternates}))
+    fs.writeFileSync("../output/alternates.json", JSON.stringify({alternates}, null, 4))
 }) ();
 
 export default complete

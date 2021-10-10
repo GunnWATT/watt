@@ -1,4 +1,3 @@
-import React from 'react';
 import {Switch, Route, useRouteMatch} from 'react-router-dom';
 import {Nav} from 'reactstrap';
 
@@ -7,15 +6,13 @@ import Header from '../components/layout/Header';
 import NavTab from '../components/layout/NavTab';
 import Staff from '../components/lists/Staff';
 import Support from '../components/utilities/Support';
-//import Ad from './utilities/Ad';
-//import GraphingCalculator from '../components/utilities/GraphingCalculator';
 import Map from '../components/utilities/Map';
 import Calculator from '../components/utilities/Calculator';
-import WIP from '../components/misc/WIP';
+import WIP from '../components/layout/WIP';
 import Barcode from '../components/utilities/Barcode';
 
 
-const Utilities = () => {
+export default function Utilities() {
     let match = useRouteMatch();
 
     return (
@@ -45,5 +42,3 @@ const Utilities = () => {
         </Header>
     );
 }
-
-export default Utilities;

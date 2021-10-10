@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 
 
-const Map = () => {
+export default function Map() {
     const [map, setMap] = useState<JSX.Element | null>(null);
 
     // Render the portal in the useEffect to guarantee that all elements have been rendered into the DOM and
@@ -28,5 +28,3 @@ const Map = () => {
         </>
     );
 }
-
-export default Map;

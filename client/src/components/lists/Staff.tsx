@@ -1,4 +1,5 @@
-import React, {useContext, useState} from 'react';
+import {useContext, useState} from 'react';
+import moment from 'moment';
 import {Container} from 'reactstrap';
 import UserDataContext from '../../contexts/UserDataContext';
 
@@ -10,7 +11,9 @@ import StaffComponent, {ClassObj, SemesterClassObj, Staff as StaffComponentProps
 import staff from '../../data/staff';
 
 
-const Staff = () => {
+export default function Staff() {
+    const {timestamp, data} = staff;
+
     const userData = useContext(UserDataContext)
     const [query, setQuery] = useState('');
 
@@ -52,7 +55,7 @@ const Staff = () => {
     // Checks if a query matches a given semester class
     const searchInner = (semClass: SemesterClassObj) => {
         if (semClass === 'none') return false;
-        return semClass[0].toLowerCase().includes(query);
+        return semClass[0].toLowerCase().includes(query.toLowerCase());
     }
 
     return (
@@ -65,8 +68,14 @@ const Staff = () => {
                     onChange={e => setQuery(e.target.value)}
                 />
             </span>
+            <p>
+                Please note that staff information was taken from{' '}
+                <a href="https://www.parentsquare.com/api/v2/schools/6272/directory" target="_blank" rel="noopener noreferrer">ParentSquare</a> and the{' '}
+                <a href="https://gunn.pausd.org/connecting/staff-directory" target="_blank" rel="noopener noreferrer">Gunn website</a>{' '}
+                as of {moment(timestamp).format('MMMM Do, YYYY')}. Attribute inaccuracies to them.
+            </p>
             <List
-                data={staff}
+                data={data}
                 filter={([id, staff]) =>
                     query === '' ||
                     staff.name.toLowerCase().includes(query.toLowerCase())
@@ -88,5 +97,3 @@ const Staff = () => {
         </>
     );
 }
-
-export default Staff;

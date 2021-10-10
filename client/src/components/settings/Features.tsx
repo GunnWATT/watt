@@ -1,21 +1,25 @@
-import React, {useContext} from 'react';
+import {useContext} from 'react';
 import {FormGroup, Label, Input} from 'reactstrap';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
 
-// User Data
+// Firestore
+import {useAuth, useFirestore} from 'reactfire';
 import { updateUserData } from '../../firebase/updateUserData';
 
 
-const Features = () => {
+export default function Features() {
     const userData = useContext(UserDataContext);
     const {period0: showPeriod0, period8: showPeriod8, clock: showClock} = userData.options;
 
     // Function to update firestore fields
-    const changePeriod0 = async (show: boolean) => await updateUserData('options.period0', show);
-    const changePeriod8 = async (show: boolean) => await updateUserData('options.period8', show);
-    const changeClock = async (show: boolean) => await updateUserData('options.clock', show);
+    const auth = useAuth();
+    const firestore = useFirestore();
+
+    const changePeriod0 = async (show: boolean) => await updateUserData('options.period0', show, auth, firestore);
+    const changePeriod8 = async (show: boolean) => await updateUserData('options.period8', show, auth, firestore);
+    const changeClock = async (show: boolean) => await updateUserData('options.clock', show, auth, firestore);
 
 
     return (
@@ -99,5 +103,3 @@ const Features = () => {
         </>
     );
 }
-
-export default Features;

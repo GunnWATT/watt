@@ -1,5 +1,7 @@
-import React, {useContext, useState} from 'react';
+import {useContext, useState} from 'react';
 import {Nav} from 'reactstrap';
+import moment from 'moment';
+import {useScreenType} from '../hooks/useScreenType';
 
 // Components
 import List from '../components/lists/List';
@@ -13,10 +15,11 @@ import clubs from '../data/clubs';
 // Contexts
 import CurrentTimeContext from '../contexts/CurrentTimeContext';
 import UserDataContext from '../contexts/UserDataContext';
-import {useScreenType} from "../hooks/useScreenType";
 
 
-const Clubs = () => {
+export default function Clubs() {
+    const {timestamp, data} = clubs;
+
     // Dynamically setting default tab
     const currTime = useContext(CurrentTimeContext)
     let date = (Number(currTime.format('d')) + 1).toString(); // :weary:
@@ -40,10 +43,10 @@ const Clubs = () => {
 
     // Filtering based on active tab
     const dataFromTab = () => {
-        if (activeTab === '1') return clubs;
+        if (activeTab === '1') return data;
 
         let day = dayFromTabNum(activeTab);
-        return Object.entries(clubs).filter(([name, info]) => info.day.includes(day));
+        return Object.entries(data).filter(([name, info]) => info.day.includes(day));
     }
 
     // Function to get day string from tab number
@@ -89,12 +92,17 @@ const Clubs = () => {
                 </Nav>
             }
         >
+            <p>
+                Please note that club information was taken from{' '}
+                <a href="https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vQ-UXugiZ8GznB367cO8JptTO9BLm5OE4D3WO8oZvYk_365lY25Q6eAFNSEIC5DGXGWOXwK_wauoTFT/pubhtml" target="_blank" rel="noopener noreferrer">the 2021-2022 chartered clubs spreadsheet</a>{' '}
+                as of {moment(timestamp).format('MMMM Do, YYYY')}. Attribute inaccuracies to them.
+            </p>
             <List
                 data={dataFromTab()}
                 filter={([id, club]) =>
                     query === '' ||
                     club.name.toLowerCase().includes(query.toLowerCase())
-                    // || club.room.toLowerCase().includes(query.toLowerCase()) // Room exists not in Zoom School
+                    || club.room.toLowerCase().includes(query.toLowerCase())
                     || club.day.toLowerCase().includes(query.toLowerCase())
                 }
                 map={([id, club]) =>
@@ -110,5 +118,3 @@ const Clubs = () => {
         </Header>
     );
 }
-
-export default Clubs;

@@ -1,17 +1,16 @@
-import React from 'react';
 import {Switch, Route, useRouteMatch, Link} from 'react-router-dom';
-import {Nav, Modal, ModalHeader, ModalBody, ModalFooter} from "reactstrap";
+import {Nav, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 
 // Components
 import Header from '../components/layout/Header';
-import WIP from '../components/misc/WIP';
-import NavTab from "../components/layout/NavTab";
+import WIP from '../components/layout/WIP';
+import NavTab from '../components/layout/NavTab';
 
 // Firebase
 import Dashboard from '../components/classes/Dashboard';
 
 
-const Classes = () => {
+export default function Classes() {
     let match = useRouteMatch();
 
     return (
@@ -45,5 +44,3 @@ const Classes = () => {
         </>
     );
 }
-
-export default Classes;

@@ -1,9 +1,10 @@
-import React, {useContext, useState} from 'react';
-import moment from 'moment-timezone';
+import {useContext, useState} from 'react';
+import moment from 'moment';
 import {GCalEvent} from '../components/schedule/Event';
 
 // Components
-//import Clock from './schedule/Clock.js'; // Date handling has been passed down to Home.js, retiring this
+import RedBackground from '../components/layout/RedBackground';
+import Clock from '../components/schedule/Clock';
 import DateSelector from '../components/schedule/DateSelector';
 import Periods from '../components/schedule/Periods';
 import DayAlert from '../components/schedule/DayAlert';
@@ -16,11 +17,12 @@ import {useHotkeys} from 'react-hotkeys-hook';
 // Contexts
 import CurrentTimeContext from '../contexts/CurrentTimeContext';
 import UserDataContext from '../contexts/UserDataContext';
-import Clock from '../components/misc/Clock';
 
 
-type HomeProps = {events: GCalEvent[] | null};
-const Home = (props: HomeProps) => {
+type HomeProps = {events: GCalEvent[] | null, eventsError: Error | null, fetchEvents: () => void};
+export default function Home(props: HomeProps) {
+    const { events, eventsError, fetchEvents } = props;
+
     // Date variables
     // Here, date is the current time of the user (passed in from outer scope), used for things that should not be
     // normalized to PST (like the clock), while viewDate is the current day but converted to PST for things that should be normalized;
@@ -57,17 +59,19 @@ const Home = (props: HomeProps) => {
     // User data for preferred time display
     const userData = useContext(UserDataContext);
     const format = userData?.options.time === '24' ? 'H:mm:ss' : 'h:mm:ss A';
+    // Use spaced en dash for twix time range formatting
+    moment.twixClass.formatTemplate = (left, right) => left + ' – ' + right;
 
 
     return (
         <div className={`home ${displayFromScreenType()}`}>
-            <div id="red-bg" />
+            <RedBackground />
 
             {/* Schedule */}
             <div className="schedule">
                 {relDays !== 0 && <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>}
 
-                { userData.options?.clock ? <Clock time={date} /> : null }
+                { userData.options?.clock && <Clock time={date} /> }
                 <h2 className="schedule-datetime center">{date.format(format)}</h2>
                 <DateSelector
                     incDay={incDay}
@@ -88,9 +92,7 @@ const Home = (props: HomeProps) => {
             </div>
 
             {/* Events */}
-            <Events events={props.events} viewDate={viewDate} />
+            <Events events={events} viewDate={viewDate} eventsError={eventsError} fetchEvents={fetchEvents} />
         </div>
     );
 }
-
-export default Home;

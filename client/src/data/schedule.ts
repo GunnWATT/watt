@@ -1,6 +1,6 @@
 import {DayObj} from '../components/schedule/Periods';
 
-export default {
+const data: {[key: string]: DayObj} = {
     "M": {
         "0": {
             "s": 475,
@@ -171,4 +171,5 @@ export default {
             "e": 830
         }
     }
-} as {[key: string]: DayObj}
+}
+export default data;

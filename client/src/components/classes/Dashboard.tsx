@@ -4,14 +4,12 @@ import linkimg from '../../assets/link.png';
 import CurrentTimeContext from "../../contexts/CurrentTimeContext";
 import UserDataContext, { SgyData, SgyPeriodData } from "../../contexts/UserDataContext";
 
-
-import firebase from '../../firebase/Firebase';
 import { Assignment, Event } from "../../schoology/SgyTypes";
-import SgySignInBtn from "../auth/SgySignInBtn";
-import Loading from "../misc/Loading";
+import SgySignInBtn from "../firebase/SgySignInBtn";
+import Loading from "../layout/Loading";
 import { parsePeriodColor } from "../schedule/Periods";
-const firestore = firebase.firestore;
-const auth = firebase.auth;
+import { Functions, httpsCallable } from 'firebase/functions';
+import { useAuth, useFunctions } from "reactfire";
 
 type dashboardCourse = {
     name: string;
@@ -32,8 +30,8 @@ type dashboardUpcomingDay = {
     upcoming: dashboardAssi[];
 }
 
-export const fetchSgyMaterials = (async () => {
-    const fetchMaterials = firebase.functions.httpsCallable('sgyfetch-fetchMaterials');
+export const fetchSgyMaterials = (async (functions: Functions) => {
+    const fetchMaterials = httpsCallable(functions, 'sgyfetch-fetchMaterials');
     localStorage.setItem('sgy-last-fetched', '' + Date.now()); // This redundancy is important!
     const res = (await fetchMaterials());
     console.log(res);
@@ -42,6 +40,11 @@ export const fetchSgyMaterials = (async () => {
 });
 
 const Dashboard = (props: {}) => {
+
+    const functions = useFunctions();
+    const auth = useAuth();
+
+
     const userData = useContext(UserDataContext);
     const time = useContext(CurrentTimeContext);
 
@@ -203,7 +206,7 @@ const Dashboard = (props: {}) => {
                     <h2>Something Went Wrong.</h2>
                     <p>Your user data is missing! Please click the button below to fetch materials. If this is a recurring problem, please submit an issue to Github.</p>
                     <div className='sgy-auth-button'>
-                        <button onClick={() => fetchSgyMaterials()}>Fetch Materials</button>
+                        <button onClick={() => fetchSgyMaterials(functions)}>Fetch Materials</button>
                     </div>
                 </div>
             )
