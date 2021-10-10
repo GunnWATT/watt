@@ -41,7 +41,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 640,
-                "e": 655
+                "e": 645
             },
             "L": {
                 "s": 755,
@@ -63,7 +63,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 615,
-                "e": 630
+                "e": 620
             }
         },
         "09-06": null,
@@ -94,7 +94,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -120,7 +120,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -158,7 +158,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -188,7 +188,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -227,7 +227,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -253,7 +253,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -262,6 +262,12 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             "P": {
                 "s": 880,
                 "e": 930
+            }
+        },
+        "10-13": {
+            "S": {
+                "s": 540,
+                "e": 780
             }
         },
         "10-14": {
@@ -291,7 +297,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -317,7 +323,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -355,7 +361,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -381,7 +387,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -419,7 +425,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -446,7 +452,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -455,6 +461,40 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             "S": {
                 "s": 780,
                 "e": 830
+            }
+        },
+        "11-18": {
+            "0": {
+                "s": 475,
+                "e": 530
+            },
+            "1": {
+                "s": 540,
+                "e": 630
+            },
+            "2": {
+                "s": 645,
+                "e": 730
+            },
+            "3": {
+                "s": 790,
+                "e": 875
+            },
+            "4": {
+                "s": 885,
+                "e": 970
+            },
+            "8": {
+                "s": 980,
+                "e": 1075
+            },
+            "B": {
+                "s": 630,
+                "e": 635
+            },
+            "L": {
+                "s": 730,
+                "e": 780
             }
         },
         "11-22": null,
@@ -489,7 +529,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -515,7 +555,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -541,7 +581,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 640,
-                "e": 660
+                "e": 650
             },
             "L": {
                 "s": 760,
@@ -563,7 +603,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 640,
-                "e": 660
+                "e": 650
             },
             "L": {
                 "s": 760,
@@ -581,7 +621,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 640,
-                "e": 660
+                "e": 650
             }
         },
         "12-20": null,
@@ -635,7 +675,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 640,
-                "e": 655
+                "e": 645
             },
             "L": {
                 "s": 755,
@@ -669,7 +709,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -691,7 +731,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -729,7 +769,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -755,7 +795,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -793,7 +833,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -819,7 +859,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -859,7 +899,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -885,7 +925,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -919,7 +959,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -945,7 +985,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -985,7 +1025,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -1011,7 +1051,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -1041,7 +1081,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -1071,7 +1111,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 635,
-                "e": 650
+                "e": 640
             },
             "L": {
                 "s": 740,
@@ -1099,7 +1139,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 605,
-                "e": 620
+                "e": 610
             }
         },
         "04-04": null,
@@ -1123,7 +1163,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 640,
-                "e": 660
+                "e": 650
             },
             "L": {
                 "s": 760,
@@ -1145,7 +1185,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 640,
-                "e": 660
+                "e": 650
             },
             "L": {
                 "s": 760,
@@ -1163,7 +1203,7 @@ const data: { alternates: { [key: string]: DayObj | null } } = {
             },
             "B": {
                 "s": 640,
-                "e": 660
+                "e": 650
             }
         },
         "06-03": null
