@@ -74,7 +74,8 @@ for (const club of clubs) {
 
     let match = null;
     for (const key in prev.data) {
-        if (similarity(prev.data[key].name, club.name) > 0.8) {
+        if (similarity(prev.data[key].name, club.name) > 0.85) {
+            console.log(`Matched ${prev.data[key].name} with ${club.name}`);
             // same club
             match = key;
             break;

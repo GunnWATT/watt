@@ -1,7 +1,7 @@
 import {Club} from '../components/lists/ClubComponent';
 
 const data: {timestamp: string, data: {[key: string]: Club}} = {
-    "timestamp": "2021-09-18T06:14:34.384Z",
+    "timestamp": "2021-10-19T23:50:26.422Z",
     "data": {
         "10880": {
             "new": true,
@@ -150,6 +150,18 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "prez": "Anushka Basu",
             "advisor": "Jessica Hexsel",
             "email": "jhexsel@pausd.org"
+        },
+        "19916": {
+            "new": false,
+            "name": "Chinese Culture Club",
+            "tier": 2,
+            "desc": "The Chinese Culture Club is dedicated to educating Gunn students about Chinese cultures and language. Through games, demonstrations, and arts and crafts, the club aims to use interactive activities to spread knowledge on Chinese events.",
+            "day": "Thursday",
+            "time": "Lunch",
+            "room": "H-4",
+            "prez": "Elise Naddell",
+            "advisor": "Yanan Vrudny",
+            "email": "yvrudny@pausd.org"
         },
         "20181": {
             "new": true,
@@ -990,6 +1002,18 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "prez": "Siham Arsalane",
             "advisor": "Paul Dunlap",
             "email": "pdunlap@pausd.org"
+        },
+        "68265": {
+            "new": false,
+            "name": "Mythology Club",
+            "tier": 1,
+            "desc": "Myth Club is a place where anyone interested in any kind of world mythology can come to learn, discuss, and play games about these ancient stories!",
+            "day": "Thursday",
+            "time": "Lunch",
+            "room": "N-107",
+            "prez": "Maya DeBolle",
+            "advisor": "Marc Igler",
+            "email": "migler@pausd.org"
         },
         "72020": {
             "new": true,
