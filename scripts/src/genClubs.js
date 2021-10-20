@@ -1,8 +1,8 @@
-import * as fetch from "node-fetch";
-import * as fs from "fs";
+import fetch from "node-fetch";
+import fs from "fs";
 
 const prev = JSON.parse(fs.readFileSync('../input/clubs.json'));
-const raw = fs.readFileSync('../input/clubs.tsv').toString();
+const raw = await (await fetch('https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vQ-UXugiZ8GznB367cO8JptTO9BLm5OE4D3WO8oZvYk_365lY25Q6eAFNSEIC5DGXGWOXwK_wauoTFT/pub?output=tsv')).text();
 
 const data = raw.split('\n').map(row => row.split('\t'));
 
@@ -21,7 +21,7 @@ const similarity = (a, b) => {
                 if (substr.length > maxsubstr.length && ind >= 0) {
                     maxsubstr = substr;
 
-                    ;[starta, enda, startb, endb] = [i, j, ind, ind + substr.length];
+                    [starta, enda, startb, endb] = [i, j, ind, ind + substr.length];
                 }
             }
         }
@@ -46,7 +46,8 @@ const newID = () => 10000 + Math.floor(Math.random() * 90000) + '';
 // console.log(data);
 
 const clubs = data.slice(1) // first is header
-    .map(([ReturningOrNew, name, typeText, desc, day, time, room, prez, advisor, email, coadvisor, coemail]) => {
+    .map(club => {
+        const [ReturningOrNew, name, typeText, desc, day, time, room, prez, advisor, email, coadvisor, coemail] = club.map(x => x.trim());
         const newClub = (ReturningOrNew.toLowerCase().includes('new'));
         const tier = parseInt(typeText[5]);
 
@@ -82,11 +83,7 @@ for (const club of clubs) {
         }
     }
 
-    if (match) {
-        FINAL.data[match] = club;
-    } else {
-        FINAL.data[newID()] = club;
-    }
+    FINAL.data[match ?? newID()] = club;
 }
 
 const str = JSON.stringify(FINAL, null, 4);
