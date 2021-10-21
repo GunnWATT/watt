@@ -4,14 +4,19 @@
 }
 
 .map-wrapper {
+  display: flex;
   position: fixed;
+  left: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
   touch-action: none;
 
   .map-image {
-    max-height: 100vh;
-    max-width: 100%;
+    margin: auto;
+    max-height: 90vh;
+    max-width: 90%;
+    //object-fit: contain;
+    box-shadow: 0 10px 15px -3px var(--tertiary), 0 4px 6px -2px var(--tertiary);
   }
 }

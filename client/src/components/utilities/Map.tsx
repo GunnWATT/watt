@@ -1,5 +1,7 @@
-import React, { useEffect, useState, useRef, useContext } from 'react';
+import {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
+
+// Components
 import ImageMap from './ImageMap';
 
 

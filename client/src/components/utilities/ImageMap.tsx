@@ -130,7 +130,7 @@ const ImageMap = () => {
                             pointer.transformation!
                         ))
                     }
-                    mapRef.current!.style.transform = toCss(transformation);
+                    //mapRef.current!.style.transform = toCss(transformation);
                 }
             }}
             onPointerUp={pointerEnd}
@@ -146,7 +146,7 @@ const ImageMap = () => {
                     translate(-centreX, -centreY),
                     transformation
                 ))
-                mapRef.current!.style.transform = toCss(transformation);
+                //mapRef.current!.style.transform = toCss(transformation);
             }}
         >
             <img
