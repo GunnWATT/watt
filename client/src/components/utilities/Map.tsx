@@ -6,7 +6,7 @@ import ImageMap from './ImageMap';
 
 
 export default function Map() {
-    const [map, setMap] = useState<JSX.Element | null>(null);
+    const [showMap, setShowMap] = useState(false);
 
     // const [gunnMap, setGunnMap] = useState<JSX.Element | null>(null)
 
@@ -28,17 +28,16 @@ export default function Map() {
     //     document.getElementById('content')!
     // )), [])
 
-    useEffect(() => setMap(ReactDOM.createPortal(
-        <ImageMap/>,
-        document.getElementById('content')!
-    )), [])
-
-
     return (
         <>
             <h1>Map</h1>
             <p>Use the mouse to pan and ctrl+scroll to zoom.</p>
-            {map}
+            <button onClick={() => setShowMap(!showMap)}>[SHOW MAP (TEMP)]</button>
+
+            {showMap && ReactDOM.createPortal(
+                <ImageMap />,
+                document.getElementById('content')!
+            )}
         </>
     );
 }

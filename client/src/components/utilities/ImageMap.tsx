@@ -2,6 +2,8 @@ import React, {useContext, useEffect, useRef, useState} from 'react';
 import GunnMapImage from '../../assets/gunnmap.png';
 import UserDataContext from '../../contexts/UserDataContext';
 
+import RedBackground from '../layout/RedBackground';
+
 
 type Pointer = {
     id: number,
@@ -149,6 +151,7 @@ const ImageMap = () => {
                 //mapRef.current!.style.transform = toCss(transformation);
             }}
         >
+            <RedBackground />
             <img
                 src={GunnMapImage}
                 ref={mapRef}
