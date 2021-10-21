@@ -1,7 +1,6 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
+import { useContext, useState, useRef, useEffect } from 'react';
 import moment from 'moment-timezone';
 import {Moment} from 'moment';
-import 'react-datepicker/dist/react-datepicker.css';
 import { SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE } from "./Periods";
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 import alternates from '../../data/alternates';
@@ -11,7 +10,7 @@ import {ChevronLeft, ChevronRight} from 'react-feather'
 
 
 type DateSelectorProps = {incDay: () => void, decDay: () => void, setViewDate: (d: moment.Moment) => void, viewDate: Moment}
-const DateSelector = ({incDay, decDay, setViewDate, viewDate}: DateSelectorProps) => {
+export default function DateSelector({incDay, decDay, setViewDate, viewDate}: DateSelectorProps) {
 
     const [showCalendar, setCalendar] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
@@ -128,5 +127,3 @@ const DateSelector = ({incDay, decDay, setViewDate, viewDate}: DateSelectorProps
         </div>
     );
 }
-
-export default DateSelector;

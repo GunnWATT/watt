@@ -1,4 +1,3 @@
-import React from 'react';
 import {Switch, Route, useRouteMatch} from 'react-router-dom';
 import {Nav} from 'reactstrap';
 
@@ -11,7 +10,7 @@ import Features from '../components/settings/Features';
 import About from '../components/settings/About';
 
 
-const Settings = () => {
+export default function Settings() {
     let match = useRouteMatch();
 
     return (
@@ -35,5 +34,3 @@ const Settings = () => {
         </Header>
     );
 }
-
-export default Settings;

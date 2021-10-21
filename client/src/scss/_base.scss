@@ -19,11 +19,11 @@ body {
     --primary: white;
     --secondary: rgba(255, 255, 255, 0.54);
     --tertiary: rgba(255, 255, 255, 0.1);
-    --bg-primary: rgb(25, 25, 25);
-    --bg-secondary: rgb(35, 35, 35);
-    --content-primary: rgb(55, 55, 55);
-    --content-secondary: rgb(42, 42, 42);
-    --theme-light: rgba(255, 89, 76, 0.1);
+    --bg-primary: rgb(25, 25, 27);
+    --bg-secondary: rgb(35, 35, 37);
+    --content-primary: rgb(55, 55, 57);
+    --content-secondary: rgb(42, 42, 44);
+    --theme-light: rgba(255, 89, 76, 0.15);
     --active: #ff594c;
   }
 
@@ -33,10 +33,10 @@ body {
 
 ::-webkit-scrollbar {
   width: 0.25rem;
-}
 
-::-webkit-scrollbar-thumb {
-  background: var(--secondary);
+  &-thumb {
+    background: var(--secondary);
+  }
 }
 
 #root {
@@ -65,9 +65,8 @@ body {
 }
 
 #red-bg {
-  background-color: var(--theme-light);
-  height: 40vh;
-  width: 100%;
+  // Hacky fix for phones
+  width: max(800px, 100%);
   position: fixed;
   top: 0;
   left: 0;

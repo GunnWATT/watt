@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import NoResults from './NoResults';
 
 
@@ -12,7 +12,7 @@ type ListProps = {
 }
 
 // Higher order List component for clubs and staff now that they are separate
-const List = (props: ListProps) => {
+export default function List(props: ListProps) {
     // Filter and map are different for each list, so pass them in as props
     let {data, filter, map, sort, pinned} = props;
 
@@ -61,5 +61,3 @@ const List = (props: ListProps) => {
             : <NoResults/>
     );
 }
-
-export default List;

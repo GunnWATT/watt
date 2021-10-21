@@ -20,6 +20,10 @@
         "function": "sgyfetch"
       },
       {
+        "source": "/weather/**",
+        "function": "weather"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

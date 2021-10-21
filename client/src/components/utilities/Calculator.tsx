@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 
-const Calculator = () => {
+export default function Calculator() {
     const [currGrade, setCurrGrade] = useState('95.00');
     const [finalsWorth, setFinalsWorth] = useState('15.00');
     const [minGrade, setMinGrade] = useState('90.00');
@@ -74,5 +74,3 @@ const Calculator = () => {
         </>
     );
 }
-
-export default Calculator;

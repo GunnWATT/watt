@@ -4,10 +4,10 @@ const oauth = require('../helpers/sgyOAuth')
 
 const firestore = admin.firestore()
 
-const setRequestToken = (u, k, s) => {
+const setRequestToken = async (u, k, s) => {
     let temp = {}
     temp[k] = {uid: u, sec: s}
-    firestore.collection('temp').doc('sgyauth').update(temp).catch(e => console.log(e))
+    await firestore.collection('temp').doc('sgyauth').update(temp).catch(e => console.trace(e))
 }
 
 const getRequestToken = async (k) => {
@@ -19,11 +19,16 @@ const getRequestToken = async (k) => {
     }
 }
 
-const setAccessToken = (uid, creds, originalKey) => {
-    firestore.collection('users').doc(uid).update({sgy: creds}).catch(e => console.log(e))
-    firestore.collection('temp').doc('sgyauth').update({
+const setAccessToken = async (uid, creds, originalKey) => {
+
+    await firestore.collection('users').doc(uid).update({ 
+        'sgy.key': creds.key,
+        'sgy.sec': creds.sec
+    }).catch(e => console.trace(e))
+
+    await firestore.collection('temp').doc('sgyauth').update({
         [originalKey]: admin.firestore.FieldValue.delete()
-    }).catch(e => console.log(e))
+    }).catch(e => console.trace(e));
 }
 
 // Schoology redirects /users/me with a 303 status
@@ -50,30 +55,42 @@ const auth = async (data, context) => {
             throw new functions.https.HttpsError('not-found', 'Error: request token not associated to any user.')
         }
 
-        const [key, secret] = await oauth.getOAuthAccessToken(
-            requestToken.key,
-            requestToken.sec
-        )
+        let key, secret;
+        try {
+            ;[key, secret] = await oauth.getOAuthAccessToken(
+                requestToken.key,
+                requestToken.sec
+            )
+        } catch(err) {
+            // Rejected! 
 
-        setAccessToken(requestToken.uid, { key: key, sec: secret }, requestToken.key)
+            // clear key off of sgyauth
+            await firestore.collection('temp').doc('sgyauth').update({
+                [requestToken.key]: admin.firestore.FieldValue.delete()
+            }).catch(e => console.trace(e));
+
+            return false;
+        }
+        
+        await setAccessToken(requestToken.uid, { key: key, sec: secret }, requestToken.key)
 
         const me = await oauth.get("https://api.schoology.com/v1/users/me", key, secret)
             .catch(follow303)
             .then(toJson)
-            .catch(e => console.log(e))
+            .catch(e => console.trace(e))
 
-        firestore.collection('users').doc(uid).update({
+        await firestore.collection('users').doc(uid).update({
             "sgy.uid": me['uid'],
             "sgy.name": me['name_display'],
             "sgy.sid": me['username'],
             "sgy.grad": me['grad_year']
-        }).catch(e => console.log(e))
+        }).catch(e => console.trace(e))
 
         return true
 
     } else {
         const [key, secret] = await oauth.getOAuthRequestToken()
-        setRequestToken(uid, key, secret)
+        await setRequestToken(uid, key, secret)
         return key
     }
 }

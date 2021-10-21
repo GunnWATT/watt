@@ -1,14 +1,14 @@
-import React, {useContext} from 'react';
+import {useContext} from 'react';
 import {Form} from 'reactstrap';
-
-// Contexts
-import UserDataContext from '../../contexts/UserDataContext';
 
 // Components
 import PeriodCustomizationInput from './PeriodCustomizationInput';
 
+// Context
+import UserDataContext from '../../contexts/UserDataContext';
 
-const PeriodCustomization = () => {
+
+export default function PeriodCustomization() {
     const userData = useContext(UserDataContext);
 
     return (
@@ -27,5 +27,3 @@ const PeriodCustomization = () => {
         </>
     );
 }
-
-export default PeriodCustomization;

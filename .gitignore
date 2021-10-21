@@ -8,6 +8,9 @@ client/build
 # SGY credentials
 /functions/credentials
 
+# Emulators Config
+.runtimeconfig.json
+
 # misc
 *.DS_Store
 /.firebase

@@ -1,33 +1,22 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {Container} from 'reactstrap';
 
-// Icons
-import logo from '../../assets/watt.png';
-import {
-    Home,
-    CheckSquare,
-    Users,
-    Settings,
-    Tool,
-    ChevronUp,
-    ChevronDown
-} from 'react-feather';
+// Authentication
+import {useAuth, useSigninCheck} from 'reactfire';
 
 // Components
 import SidebarItem from './SidebarItem';
-import GoogleSignInBtn from "../auth/GoogleSignInBtn"
-import GoogleSignOutBtn from '../auth/GoogleSignOutBtn';
+import GoogleSignInBtn from "../firebase/GoogleSignInBtn"
+import GoogleSignOutBtn from '../firebase/GoogleSignOutBtn';
 
-import firebase from '../../firebase/Firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
+// Icons
+// import logo from '../../assets/watt.png';
+import {Home, CheckSquare, Users, Settings, Tool, ChevronUp, ChevronDown} from 'react-feather';
 
 
-const BottomNav = () => {
-
+export default function BottomNav() {
     const [showDropUp, setDropUp] = useState<boolean>(false);
-
-    const auth = firebase.auth;
-    const [user] = useAuthState(auth);
+    const {status, data: signInCheckResult} = useSigninCheck();
 
     return (
         <footer className="bottom-nav">
@@ -50,11 +39,9 @@ const BottomNav = () => {
                         <SidebarItem name="Settings" to="/settings" icon={<Settings />} />
                         
                         {/* Sign In / Out */}
-                        {
-                            user ?
-                                <GoogleSignOutBtn /> :
-                                <GoogleSignInBtn />
-                        }
+                        {signInCheckResult?.signedIn
+                            ? <GoogleSignOutBtn />
+                            : <GoogleSignInBtn />}
                     </div>
                 </div>
 
@@ -63,5 +50,3 @@ const BottomNav = () => {
         </footer>
     );
 }
-
-export default BottomNav;

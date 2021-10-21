@@ -40,16 +40,18 @@ let currentDay = null;
 
 let schedule = {};
 
-for(const {line, index} of lines) {
+for (const {line, index} of lines) {
 
     // day declaration line
-    if(!line.includes(':')) {
-        if(DAYS.includes(line[0].toUpperCase())) {
+    if (!line.includes(':')) {
+        if (DAYS.includes(line[0].toUpperCase())) {
             const dayLetter = line[0].toUpperCase();
-            if(!DAYS.includes(line[0])) console.log(`Warning on line ${index}: Day declarations should begin with a capital letter.`);
+            if (!DAYS.includes(line[0]))
+                console.log(`Warning on line ${index}: Day declarations should begin with a capital letter.`);
             currentDay = dayLetter;
             
-            if(currentDay in schedule) throw `Error on line ${index}: Repeat day! Day "${currentDay}" has already been declared!\nNote that Thursday must be written as Rsday or something of the like.`;
+            if (currentDay in schedule)
+                throw `Error on line ${index}: Repeat day! Day "${currentDay}" has already been declared!\nNote that Thursday must be written as Rsday or something of the like.`;
 
             schedule[currentDay] = [];
         } else {
@@ -59,26 +61,29 @@ for(const {line, index} of lines) {
 
     // period declaration line
     else {
-        if(currentDay == null) throw `Error on line ${index}: Period declaration not preceeded by day declaration! Process terminated.`;
+        if (currentDay == null)
+            throw `Error on line ${index}: Period declaration not preceeded by day declaration! Process terminated.`;
 
         const period = line.slice(0,line.indexOf(':'));
         const timesString = line.slice(line.indexOf(":")+1);
 
-        if(!PERIODS.includes(period[0].toUpperCase())) {
+        if (!PERIODS.includes(period[0].toUpperCase())) {
             throw `Error on line ${index}: Period declaration expected, but first character of period name ${period} is not in ${PERIODS}! Process terminated.`;
         }
 
-        if(!PERIODS.includes(period[0])) console.log(`Warning on line ${index}: Period declarations should begin with a capital letter.`);
+        if (!PERIODS.includes(period[0]))
+            console.log(`Warning on line ${index}: Period declarations should begin with a capital letter.`);
 
         const periodLetter = period[0].toUpperCase();
 
-        if(!timesString.includes("-")) throw `Error on line ${index}: delimiter - expected in period declaration, but none found.`;
+        if (!timesString.includes("-"))
+            throw `Error on line ${index}: delimiter - expected in period declaration, but none found.`;
 
         const times = timesString
             .split('-')
             .map(time => {
                 let numbers = time.split(':');
-                if(numbers.length !== 2) throw `Error on line ${index}: Invalid time!`;
+                if (numbers.length !== 2) throw `Error on line ${index}: Invalid time!`;
                 return numbers;
             })
             .map(([hourStr,minuteStr]) => {
@@ -88,7 +93,7 @@ for(const {line, index} of lines) {
                 if (isNaN(hour) || !(hour>=1 && hour <= 12) ) throw `Error on line ${index}: Invalid time!`;
                 if (isNaN(minute) || !(minute >= 0 && minute < 60)) throw `Error on line ${index}: Invalid time!`;
 
-                if(hour < EARLIEST_AM_HOUR) {
+                if (hour < EARLIEST_AM_HOUR) {
                     hour += 12;
                 }
 
@@ -96,13 +101,13 @@ for(const {line, index} of lines) {
             })
         
         // Validation
-        if(times[1] <= times[0]) {
+        if (times[1] <= times[0]) {
             throw `Error on line ${index}: Start time is after end time!`;
         }
 
-        if(schedule[currentDay].length) {
+        if (schedule[currentDay].length) {
             const prevPeriod = schedule[currentDay][schedule[currentDay].length - 1];
-            if(times[0] < prevPeriod.e) {
+            if (times[0] < prevPeriod.e) {
                 throw `Error on line ${index}: Start time is before the end of the previous period!`;
             }
         }
@@ -118,12 +123,12 @@ for(const {line, index} of lines) {
 
 let FINAL = {};
 
-for(const day in schedule) {
+for (const day in schedule) {
     let periods = schedule[day];
 
     FINAL[day] = {};
 
-    for(const {n,s,e} of periods) {
+    for (const {n,s,e} of periods) {
         FINAL[day][n] = {
             s,
             e

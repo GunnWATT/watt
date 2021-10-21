@@ -1,4 +1,3 @@
-import React from 'react';
 import {NavLink as Link} from 'react-router-dom';
 import {NavItem, NavLink} from 'reactstrap';
 
@@ -7,7 +6,7 @@ import {NavItem, NavLink} from 'reactstrap';
 // `to` is the url this tab should redirect to, which also determines whether this tab is active.
 
 type NavTabProps = {to: string, name: string, exact?: boolean};
-const NavTab = (props: NavTabProps) => {
+export default function NavTab(props: NavTabProps) {
     let {to, name, exact} = props;
 
     return (
@@ -24,5 +23,3 @@ const NavTab = (props: NavTabProps) => {
         </NavItem>
     )
 }
-
-export default NavTab;

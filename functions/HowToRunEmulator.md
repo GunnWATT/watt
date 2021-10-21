@@ -24,10 +24,8 @@ process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080';
 process.env.FIREBASE_AUTH_EMULATOR_HOST = 'localhost:9099';
 process.env.FIREBASE_FIRESTORE_EMULATOR_HOST = 'localhost:9099';
 
-admin.initializeApp({
-    // credential: admin.credential.cert(serviceAccount),
-    projectId: "gunnwatt"
-})
+admin.initializeApp()
+    // credential: admin.credential.cert(serviceAccount)
 
 module.exports = admin
 ```
@@ -36,8 +34,8 @@ module.exports = admin
 
 ## Step 4: Schoology API Key
 
-Create the folder `credentials` in the `/functions` folder, then create `schoologyAPI.json` inside that.
-Visit <https://pausd.schoology.com/api> and obtain your API keys. (Make sure to keep them secret.) Then put the key and secret inside the `schoologyAPI.json` file.
+In `functions`, create `.runtimeconfig.json`.
+Visit <https://pausd.schoology.com/api> and obtain your API keys. (Make sure to keep them secret.) Then put the key and secret inside the `.runtimeconfig.json` file.
 Here's an example
 
 ```json
@@ -49,38 +47,5 @@ Here's an example
 
 ## Step 5: Run Backend
 
-Try running `firebase emulators:start` and see if it works. If it does, visit <http://localhost:4001/> and it should be working. If something went wrong, go spam ping someone idk.
-
-## Step 6: Frontend
-
-In the file `/client/src/firebase/Firebase.js`, replace the lines that say
-
-```js
-const firestore = firebase.firestore()
-const auth = firebase.auth()
-const functions = firebase.functions()
-const analytics = firebase.analytics()
-```
-
-with
-
-```js
-const firestore = firebase.firestore()
-firestore.settings({
-    host: 'localhost:8080',
-    ssl: false
-})
-const auth = firebase.auth()
-auth.useEmulator("http://localhost:9099")
-const functions = firebase.functions()
-functions.useFunctionsEmulator("http://localhost:5001")
-const analytics = firebase.analytics()
-```
-
-**Don't commit this change either.**
-
->Reminder: DO NOT commit changes in the two files `adminInit.js` and `Firebase.js`.
-
-## Step 7: Pray.
-
-I hate Firebase.
+Try running `firebase emulators:start --import ./functions/presets` and see if it works. If it does, visit <http://localhost:4001/> and it should be working. 
+If something went wrong, go spam ping someone idk.

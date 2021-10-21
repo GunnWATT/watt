@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ImageMap from './ImageMap';
 
 
-const Map = () => {
+export default function Map() {
     const [map, setMap] = useState<JSX.Element | null>(null);
 
     // const [gunnMap, setGunnMap] = useState<JSX.Element | null>(null)
@@ -40,5 +40,3 @@ const Map = () => {
         </>
     );
 }
-
-export default Map;

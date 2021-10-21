@@ -2,12 +2,12 @@
 
 // Components
 a {
-  color: $theme;
+  color: var(--active);
   text-decoration: none;
 
   &:hover {
+    color: var(--active);
     text-decoration: underline;
-    color: $theme;
   }
 }
 

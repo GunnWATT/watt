@@ -1,7 +1,7 @@
-import React from 'react';
 import {Link} from 'react-router-dom';
 
-const PageNotFound = () => {
+
+export default function PageNotFound() {
     return (
         <div className="404">
             <h3>Page not found! Check your URL and try again?</h3>
@@ -9,5 +9,3 @@ const PageNotFound = () => {
         </div>
     )
 }
-
-export default PageNotFound;

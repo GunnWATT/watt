@@ -1,17 +1,27 @@
-import 'bootstrap/dist/css/bootstrap.css'
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+// Firebase
+import FirebaseProviders from './components/firebase/FirebaseProviders';
+import {FirebaseAppProvider} from 'reactfire';
+import {fbconfig} from './firebase/config';
+
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
+import 'bootstrap/dist/css/bootstrap.css'
 import './scss/index.scss';
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <FirebaseAppProvider firebaseConfig={fbconfig}>
+            <FirebaseProviders>
+                <App/>
+            </FirebaseProviders>
+        </FirebaseAppProvider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // Config for the service worker

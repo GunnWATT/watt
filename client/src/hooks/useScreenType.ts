@@ -1,7 +1,7 @@
 // Paste from https://github.com/GunnWATT/watt/issues/6#issuecomment-817066179
 import {useMediaQuery} from 'react-responsive';
 
-export const useScreenType = () => {
+export function useScreenType() {
     const desktop = useMediaQuery({ minWidth: 1440 });
     const tablet = useMediaQuery({ minWidth: 1265 });
     const smallScreen = useMediaQuery({ minWidth: 800 });
