@@ -53,120 +53,123 @@ export default function ImageMap(props : ImageMapProps) {
     }
 
     return (
-        <div
-            className="map-wrapper"
-            ref={wrapperRef}
-            onPointerDown={(e) => {
-                if (pointer) {
-                    if (!pointer.other) {
+        <div className="map-overlay">
+            <RedBackground />
+            <Button close className="map-toggle" onClick={close} />
+
+            <div
+                className="map-wrapper"
+                ref={wrapperRef}
+                onPointerDown={(e) => {
+                    if (pointer) {
+                        if (!pointer.other) {
+                            setPointer({
+                                ...pointer,
+                                initX: pointer.lastX,
+                                initY: pointer.lastY,
+                                transformation,
+                                other: {
+                                    id: e.pointerId,
+                                    initX: e.clientX,
+                                    initY: e.clientY,
+                                    lastX: e.clientX,
+                                    lastY: e.clientY
+                                }
+                            })
+                            e.currentTarget.setPointerCapture(e.pointerId)
+                        }
+                    } else {
                         setPointer({
-                            ...pointer,
-                            initX: pointer.lastX,
-                            initY: pointer.lastY,
+                            id: e.pointerId,
+                            initX: e.clientX,
+                            initY: e.clientY,
+                            lastX: e.clientX,
+                            lastY: e.clientY,
                             transformation,
-                            other: {
-                                id: e.pointerId,
-                                initX: e.clientX,
-                                initY: e.clientY,
-                                lastX: e.clientX,
-                                lastY: e.clientY
-                            }
+                            other: null
                         })
                         e.currentTarget.setPointerCapture(e.pointerId)
                     }
-                } else {
-                    setPointer({
-                        id: e.pointerId,
-                        initX: e.clientX,
-                        initY: e.clientY,
-                        lastX: e.clientX,
-                        lastY: e.clientY,
-                        transformation,
-                        other: null
-                    })
-                    e.currentTarget.setPointerCapture(e.pointerId)
-                }
-            }}
-            onPointerMove={(e) => {
-                if (pointer?.id === e.pointerId || pointer?.other?.id === e.pointerId) {
-                    if (pointer.id === e.pointerId) {
-                        pointer.lastX = e.clientX;
-                        pointer.lastY = e.clientY;
-                    } else if (pointer.other) {
-                        pointer.other.lastX = e.clientX;
-                        pointer.other.lastY = e.clientY;
-                    }
-                    if (pointer.other) {
-                        const rect = e.currentTarget.getBoundingClientRect();
-                        const initXDiff = pointer.initX - pointer.other.initX;
-                        const initYDiff = pointer.initY - pointer.other.initY;
-                        const currentXDiff = pointer.lastX - pointer.other.lastX;
-                        const currentYDiff = pointer.lastY - pointer.other.lastY;
-                        // Difference between the angles of the initial and current line
-                        // between the pointers.
-                        const angleDiff =
-                            Math.atan2(currentYDiff, currentXDiff) -
-                            Math.atan2(initYDiff, initXDiff);
-                        // Distance between the pointers relative to their initial distance.
-                        const scale =
-                            Math.hypot(currentXDiff, currentYDiff) /
-                            Math.hypot(initXDiff, initYDiff);
-                        // Midpoint between the two pointers.
-                        const midX = (pointer.lastX + pointer.other.lastX) / 2;
-                        const midY = (pointer.lastY + pointer.other.lastY) / 2;
-                        // Offset of current midpoint from initial midpoint.
-                        const deltaX = midX - (pointer.initX + pointer.other.initX) / 2;
-                        const deltaY = midY - (pointer.initY + pointer.other.initY) / 2;
-                        // Centre of rotation/dilation
-                        const centreX = midX - (rect.left + rect.width / 2);
-                        const centreY = midY - (rect.top + rect.height / 2);
-                        setTransformation(multiply(
-                            // Rotate and scale around midpoint
-                            translate(centreX, centreY),
-                            rotate(angleDiff),
-                            dilate(scale),
-                            translate(-centreX, -centreY),
-                            translate(deltaX, deltaY),
-                            pointer.transformation!
-                        ));
-                    } else {
-                        setTransformation(multiply(
-                            translate(e.clientX - pointer.initX, e.clientY - pointer.initY),
-                            pointer.transformation!
-                        ))
-                    }
-                    //mapRef.current!.style.transform = toCss(transformation);
-                }
-            }}
-            onPointerUp={pointerEnd}
-            onPointerCancel={pointerEnd}
-            onWheel={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                const centreX = e.clientX - (rect.left + rect.width / 2);
-                const centreY = e.clientY - (rect.top + rect.height / 2);
-                setTransformation(multiply(
-                    translate(centreX, centreY),
-                    // Thanks Roger!
-                    dilate(1.001 ** -e.deltaY),
-                    translate(-centreX, -centreY),
-                    transformation
-                ))
-                //mapRef.current!.style.transform = toCss(transformation);
-            }}
-        >
-            <RedBackground />
-            <Button close className="map-toggle" onClick={close} />
-            <img
-                src={GunnMapImage}
-                ref={mapRef}
-                draggable={false}
-                alt="Gunn map"
-                className="map-image"
-                style={{
-                    transform: toCss(transformation),
-                    filter: userData.options.theme === "dark" ? 'invert(1)' : ''
                 }}
-            />
+                onPointerMove={(e) => {
+                    if (pointer?.id === e.pointerId || pointer?.other?.id === e.pointerId) {
+                        if (pointer.id === e.pointerId) {
+                            pointer.lastX = e.clientX;
+                            pointer.lastY = e.clientY;
+                        } else if (pointer.other) {
+                            pointer.other.lastX = e.clientX;
+                            pointer.other.lastY = e.clientY;
+                        }
+                        if (pointer.other) {
+                            const rect = e.currentTarget.getBoundingClientRect();
+                            const initXDiff = pointer.initX - pointer.other.initX;
+                            const initYDiff = pointer.initY - pointer.other.initY;
+                            const currentXDiff = pointer.lastX - pointer.other.lastX;
+                            const currentYDiff = pointer.lastY - pointer.other.lastY;
+                            // Difference between the angles of the initial and current line
+                            // between the pointers.
+                            const angleDiff =
+                                Math.atan2(currentYDiff, currentXDiff) -
+                                Math.atan2(initYDiff, initXDiff);
+                            // Distance between the pointers relative to their initial distance.
+                            const scale =
+                                Math.hypot(currentXDiff, currentYDiff) /
+                                Math.hypot(initXDiff, initYDiff);
+                            // Midpoint between the two pointers.
+                            const midX = (pointer.lastX + pointer.other.lastX) / 2;
+                            const midY = (pointer.lastY + pointer.other.lastY) / 2;
+                            // Offset of current midpoint from initial midpoint.
+                            const deltaX = midX - (pointer.initX + pointer.other.initX) / 2;
+                            const deltaY = midY - (pointer.initY + pointer.other.initY) / 2;
+                            // Centre of rotation/dilation
+                            const centreX = midX - (rect.left + rect.width / 2);
+                            const centreY = midY - (rect.top + rect.height / 2);
+                            setTransformation(multiply(
+                                // Rotate and scale around midpoint
+                                translate(centreX, centreY),
+                                rotate(angleDiff),
+                                dilate(scale),
+                                translate(-centreX, -centreY),
+                                translate(deltaX, deltaY),
+                                pointer.transformation!
+                            ));
+                        } else {
+                            setTransformation(multiply(
+                                translate(e.clientX - pointer.initX, e.clientY - pointer.initY),
+                                pointer.transformation!
+                            ))
+                        }
+                        //mapRef.current!.style.transform = toCss(transformation);
+                    }
+                }}
+                onPointerUp={pointerEnd}
+                onPointerCancel={pointerEnd}
+                onWheel={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const centreX = e.clientX - (rect.left + rect.width / 2);
+                    const centreY = e.clientY - (rect.top + rect.height / 2);
+                    setTransformation(multiply(
+                        translate(centreX, centreY),
+                        // Thanks Roger!
+                        dilate(1.001 ** -e.deltaY),
+                        translate(-centreX, -centreY),
+                        transformation
+                    ))
+                    //mapRef.current!.style.transform = toCss(transformation);
+                }}
+            >
+                <img
+                    src={GunnMapImage}
+                    ref={mapRef}
+                    draggable={false}
+                    alt="Gunn map"
+                    className="map-image"
+                    style={{
+                        transform: toCss(transformation),
+                        filter: userData.options.theme === "dark" ? 'invert(1)' : ''
+                    }}
+                />
+            </div>
         </div>
     )
 }
