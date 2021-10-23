@@ -96,3 +96,13 @@ input.form-control {
 }
 @include recolorBootstrapButton(danger, --active);
 @include recolorBootstrapButton(secondary, --secondary);
+
+// <Button close>
+button.close {
+  color: var(--primary);
+  text-shadow: 0 1px 0 var(--tertiary);
+
+  &:hover {
+    color: var(--primary);
+  }
+}
