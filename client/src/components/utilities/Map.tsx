@@ -1,8 +1,10 @@
 import {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
+import imageMap from '../../assets/imageMap.png';
 
 // Components
 import ImageMap from './ImageMap';
+import ImageBox from '../layout/ImageBox';
 
 
 export default function Map() {
@@ -31,8 +33,13 @@ export default function Map() {
     return (
         <>
             <h1>Map</h1>
-            <p>Use the mouse to pan and ctrl+scroll to zoom.</p>
-            <button onClick={() => setShowMap(!showMap)}>[SHOW MAP (TEMP)]</button>
+            <br />
+            <ImageBox
+                src={imageMap}
+                onClick={() => setShowMap(true)}
+                header="Image Map"
+                caption="Use the mouse to pan and scroll to zoom."
+            />
 
             {showMap && ReactDOM.createPortal(
                 <ImageMap close={() => setShowMap(false)} />,

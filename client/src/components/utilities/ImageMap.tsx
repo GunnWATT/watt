@@ -1,9 +1,11 @@
 import {useContext, useEffect, useRef, useState, PointerEvent} from 'react';
 import {Button} from 'reactstrap';
-import GunnMapImage from '../../assets/gunnmap.png';
-import UserDataContext from '../../contexts/UserDataContext';
+import {useHotkeys} from 'react-hotkeys-hook';
 
 import RedBackground from '../layout/RedBackground';
+
+import GunnMapImage from '../../assets/gunnmap.png';
+import UserDataContext from '../../contexts/UserDataContext';
 
 
 type Pointer = {
@@ -18,6 +20,7 @@ export default function ImageMap(props : ImageMapProps) {
     const {close} = props;
     const userData = useContext(UserDataContext);
 
+    // Refs, pointers, and transformations for manipulating the map image
     const mapRef = useRef<HTMLImageElement | null>(null);
     const wrapperRef = useRef<HTMLDivElement | null>(null);
     const [pointer, setPointer] = useState<Pointer | null>(null);
@@ -28,6 +31,9 @@ export default function ImageMap(props : ImageMapProps) {
         // onWheel and onTouchMove are both passive event listeners so preventDefault does not work within them
         mapRef.current?.addEventListener('wheel', (e) => e.preventDefault());
     }, [mapRef])
+
+    // Hotkey for closing map overlay
+    useHotkeys('escape', close);
 
     // When a pointer deactivates
     const pointerEnd = (e: PointerEvent<HTMLImageElement>) => {

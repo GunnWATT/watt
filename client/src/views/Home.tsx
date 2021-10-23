@@ -1,4 +1,5 @@
 import {useContext, useState} from 'react';
+import {useHotkeys} from 'react-hotkeys-hook';
 import moment from 'moment';
 import {GCalEvent} from '../components/schedule/Event';
 
@@ -12,7 +13,6 @@ import Events from '../components/schedule/Events';
 
 // Hooks
 import {useScreenType} from '../hooks/useScreenType';
-import {useHotkeys} from 'react-hotkeys-hook';
 
 // Contexts
 import CurrentTimeContext from '../contexts/CurrentTimeContext';
@@ -40,8 +40,8 @@ export default function Home(props: HomeProps) {
     // const setViewDateFromJSDate = (d: Date) => setViewDate(moment(d));
 
     // Hotkeys for switching date
-    useHotkeys('left', () => decDay(), [viewDate]);
-    useHotkeys('right', () => incDay(), [viewDate]);
+    useHotkeys('left', decDay, [viewDate]);
+    useHotkeys('right', incDay, [viewDate]);
 
     // Relative days for the day alert
     // viewDate here is compared to viewDateCurr instead of simply date because date still possesses minutes and seconds,
