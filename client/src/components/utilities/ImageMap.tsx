@@ -1,4 +1,5 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import {useContext, useEffect, useRef, useState, PointerEvent} from 'react';
+import {Button} from 'reactstrap';
 import GunnMapImage from '../../assets/gunnmap.png';
 import UserDataContext from '../../contexts/UserDataContext';
 
@@ -12,7 +13,9 @@ type Pointer = {
     transformation?: Matrix,
     other?: Pointer | null
 }
-const ImageMap = () => {
+type ImageMapProps = {close: () => void};
+export default function ImageMap(props : ImageMapProps) {
+    const {close} = props;
     const userData = useContext(UserDataContext);
 
     const mapRef = useRef<HTMLImageElement | null>(null);
@@ -27,7 +30,7 @@ const ImageMap = () => {
     }, [mapRef])
 
     // When a pointer deactivates
-    const pointerEnd = (e: React.PointerEvent<HTMLImageElement>) => {
+    const pointerEnd = (e: PointerEvent<HTMLImageElement>) => {
         if (pointer?.id === e.pointerId) {
             if (pointer.other) {
                 // Make the other pointer the primary pointer now
@@ -152,6 +155,7 @@ const ImageMap = () => {
             }}
         >
             <RedBackground />
+            <Button close className="map-toggle" onClick={close} />
             <img
                 src={GunnMapImage}
                 ref={mapRef}
@@ -219,5 +223,3 @@ function multiply(matrix1: Matrix, ...matrices: Matrix[]): Matrix {
     }
     return product;
 }
-
-export default ImageMap;

@@ -35,7 +35,7 @@ export default function Map() {
             <button onClick={() => setShowMap(!showMap)}>[SHOW MAP (TEMP)]</button>
 
             {showMap && ReactDOM.createPortal(
-                <ImageMap />,
+                <ImageMap close={() => setShowMap(false)} />,
                 document.getElementById('content')!
             )}
         </>

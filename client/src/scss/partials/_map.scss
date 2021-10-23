@@ -21,4 +21,10 @@
     //object-fit: contain;
     box-shadow: 0 10px 15px -3px var(--tertiary), 0 4px 6px -2px var(--tertiary);
   }
+
+  .map-toggle {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
 }
