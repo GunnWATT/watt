@@ -1,8 +1,9 @@
 import {ReactNode} from 'react';
-import { useFirebaseApp, useInitFirestore, AuthProvider, FunctionsProvider, FirestoreProvider } from 'reactfire';
+import { useFirebaseApp, useInitFirestore, AuthProvider, FunctionsProvider, FirestoreProvider, AnalyticsProvider } from 'reactfire';
 import { getFirestore, initializeFirestore, enableIndexedDbPersistence, connectFirestoreEmulator } from 'firebase/firestore';
 import { getAuth, connectAuthEmulator } from 'firebase/auth';
 import { getFunctions, connectFunctionsEmulator } from 'firebase/functions';
+import { getAnalytics } from 'firebase/analytics';
 
 
 export default function FirebaseProviders(props: {children: ReactNode}) {
@@ -11,6 +12,7 @@ export default function FirebaseProviders(props: {children: ReactNode}) {
     // Initialize auth and functions
     const auth = getAuth(firebase);
     const functions = getFunctions(firebase);
+    const analytics = getAnalytics(firebase);
 
     // Initialize firestore with indexed db persistence
     // Currently throws weird errors, see https://github.com/FirebaseExtended/reactfire/issues/443
@@ -36,7 +38,9 @@ export default function FirebaseProviders(props: {children: ReactNode}) {
         <AuthProvider sdk={auth}>
             <FunctionsProvider sdk={functions}>
                 <FirestoreProvider sdk={firestore}>
-                    {props.children}
+                    <AnalyticsProvider sdk={analytics}>
+                        {props.children}
+                    </AnalyticsProvider>
                 </FirestoreProvider>
             </FunctionsProvider>
         </AuthProvider>

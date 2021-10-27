@@ -1,7 +1,8 @@
 import {useContext, useEffect, useState, useRef, ReactNode} from 'react';
 import {useLocation, useHistory} from 'react-router-dom';
 import {Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
-import {useScreenType} from '../hooks/useScreenType';
+import {useAnalytics} from 'reactfire';
+import {logEvent} from 'firebase/analytics';
 
 // Components
 import Sidebar from './layout/Sidebar';
@@ -17,7 +18,8 @@ import SgyInitResults from './firebase/SgyInitResults';
 // Utils
 import {parsePeriodName, parsePeriodColor} from './schedule/Periods';
 import {hexToRgb} from './schedule/progressBarColor';
-import {useNextPeriod} from "../hooks/useNextPeriod";
+import {useScreenType} from '../hooks/useScreenType';
+import {useNextPeriod} from '../hooks/useNextPeriod';
 
 
 type LayoutProps = {children: ReactNode};
@@ -75,6 +77,16 @@ export default function Layout(props: LayoutProps) {
     useEffect(() => {
         document.body.className = userData.options.theme;
     }, [userData.options.theme])
+
+    // Analytics
+    const location = useLocation();
+    const analytics = useAnalytics();
+    useEffect(() => {
+        logEvent(analytics, 'screen_view', {
+            firebase_screen: location.pathname,
+            firebase_screen_class: location.pathname
+        });
+    }, [location])
 
     // Favicon
     // TODO: use timeouts and move this out of Layout
