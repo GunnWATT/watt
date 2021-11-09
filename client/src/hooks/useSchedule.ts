@@ -19,10 +19,13 @@ export function useSchedule(date: Moment) {
 
     const userData = useContext(UserDataContext);
 
-    const altFormat = date.format('MM-DD');
+    // Localize date to PST before attempting to parse schedule
+    const localizedDate = date.clone().tz('America/Los_Angeles');
+    const altFormat = localizedDate.format('MM-DD');
+
     useEffect(() => {
         // If the current date falls on summer break, return early
-        if (date.isBefore(SCHOOL_START) || date.isAfter(SCHOOL_END_EXCLUSIVE))
+        if (localizedDate.isBefore(SCHOOL_START) || localizedDate.isAfter(SCHOOL_END_EXCLUSIVE))
             return setPeriods(null);
 
         // Check for alternate schedules
@@ -33,7 +36,7 @@ export function useSchedule(date: Moment) {
             setAlternate(true);
         } else {
             // Otherwise, use default schedule
-            periods = schedule[numToWeekday(Number(date.format('d')))];
+            periods = schedule[numToWeekday(Number(localizedDate.format('d')))];
         }
         setPeriods(periods && sortPeriodsByStart(periods).filter(([name, per]) => {
             if (name === '0' && !userData.options.period0) return false;

@@ -7,8 +7,10 @@ import {Moment} from 'moment';
 export function useNextPeriod(date: Moment) {
     const {periods} = useSchedule(date);
 
-    const midnight = date.clone().startOf('date');
-    const minutes = date.diff(midnight, 'minutes');
+    // Localize date to PST before attempting to parse next period
+    const localizedDate = date.clone().tz('America/Los_Angeles');
+    const midnight = localizedDate.clone().startOf('date');
+    const minutes = localizedDate.diff(midnight, 'minutes');
 
     if (!periods) return null;
     if (minutes < periods[0][1].s - 20) return null;

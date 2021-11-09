@@ -1,7 +1,7 @@
 import React from 'react';
+import {Card, CardBody, CardTitle, CardSubtitle, CardText, Progress, CardLink} from 'reactstrap';
 import {Moment} from 'moment';
 import 'twix';
-import {Card, CardBody, CardTitle, CardSubtitle, CardText, Progress, CardLink} from 'reactstrap';
 import {bgColor, barColor, hexToRgb} from './progressBarColor';
 import {Link} from 'react-feather';
 
@@ -31,12 +31,11 @@ const Period = (props: PeriodProps) => {
                 {/* em dash */}
                 <CardText className="secondary">{parseStartEnd()} — {t.countInner('minutes')} minutes long</CardText>
                 {t.isCurrent()
-                    ? <Progress
+                    && <Progress
                         value={(now.valueOf() - start.valueOf()) / (end.valueOf() - start.valueOf()) * 100}
                         style={{backgroundColor: bgColor(color)}}
                         barStyle={{backgroundColor: barColor(color)}}
                       />
-                    : null
                 }
             </CardBody>
         </Card>

@@ -1,7 +1,6 @@
 import {useState, useEffect, useContext} from 'react';
 import {useSchedule} from '../../hooks/useSchedule';
-import moment from 'moment-timezone';
-import {Moment} from 'moment';
+import moment, {Moment} from 'moment-timezone';
 
 // Components
 import Period from './Period';

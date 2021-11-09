@@ -3,6 +3,7 @@ import {useLocation, useHistory} from 'react-router-dom';
 import {Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import {useAnalytics} from 'reactfire';
 import {logEvent} from 'firebase/analytics';
+import moment from 'moment-timezone';
 
 // Components
 import Sidebar from './layout/Sidebar';
@@ -97,9 +98,9 @@ export default function Layout(props: LayoutProps) {
     const favicon = useRef<HTMLLinkElement>();
     const canvas = useRef<HTMLCanvasElement>();
 
-    const FAVICON_SIZE = 32
-    const borderRadius = FAVICON_SIZE * 0.15
-    const sRadius = FAVICON_SIZE * 0.45 // radius for last seconds
+    const FAVICON_SIZE = 32;
+    const borderRadius = FAVICON_SIZE * 0.15;
+    const sRadius = FAVICON_SIZE * 0.45; // radius for last seconds
 
     // Update document name and favicon based on current period
     useEffect(() => {
