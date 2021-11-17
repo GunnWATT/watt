@@ -5,7 +5,7 @@
  * - Rog
  */
 
-import ical from 'ical.js'
+import ical from './node_modules/ical.js/build/ical'
 import fetch from "node-fetch";
 
 function flattenEvent(e) {

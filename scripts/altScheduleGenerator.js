@@ -22,15 +22,6 @@
 import iCalFetch from "./ical.js";
 import chalk from 'chalk';
 
-// Helper function to find size of an object
-Object.size = function(obj) {
-    let size = 0, key;
-    for (key in obj) {
-        if (obj.hasOwnProperty(key)) size++;
-    }
-    return size;
-};
-
 // Constants
 const EARLIEST_AM_HOUR = 6
 const HTMLnewlineRegex = /<\/?(p|div|br).*?>|\),? *(?=[A-Z0-9])/g
@@ -56,9 +47,9 @@ const WarningConsole = (date) => {
 const warnings = [];
 const errors = [];
 
-function parseAlternate (summary, description, date) { // extra date parameter is only for warnings
+function parseAlternate(summary, description, date) { // extra date parameter is only for warnings
     if (altScheduleRegex.test(summary)) {
-        if (!description) return undefined
+        if (!description) return
         description =
             '\n' +
             description
@@ -84,7 +75,6 @@ function parseAlternate (summary, description, date) { // extra date parameter i
                 and is */
                 return
             }
-
 
             let [, sH, sM = 0, eH, eM = 0, pm] = times
 
@@ -123,7 +113,6 @@ function parseAlternate (summary, description, date) { // extra date parameter i
                 const isStaffPrep = name.match(teacherRegex)
                 const isPrime = name.match(primeRegex)
                 const isZero = name.match(zeroRegex)
-                
 
                 let fname = name
                 let newEndTime = endTime
@@ -204,19 +193,18 @@ function parseAlternate (summary, description, date) { // extra date parameter i
                 warnings.push(`${WarningConsole(date)}: Period "${chalk.cyan(periodAfterBrunch.n)}" collides with brunch. Automatically corrected brunch's end time to 10 minutes before this period.`)
             }
         }
-        
 
         // period validation (make sure none collide)
         for(let i = 0; i < periods.length; i++) {
             const p1 = periods[i];
             if (!(p1.e > p1.s)) errors.push(`${ErrorConsole(date)}: ${chalk.underline(`Period "${chalk.cyan(periods[i].n)}" starts at ${chalk.green(p1.s)} but ends at ${chalk.green(p1.e)}. Cannot end before it begins!`)}`)
             
-            for(let j = i+1; j < periods.length; j++) {
+            for (let j = i+1; j < periods.length; j++) {
                 
                 const p2 = periods[j];
 
                 // one must be directly after another; if this doesn't work, the district is being false and fradulent.
-                if(!(p1.s >= p2.e || p2.s >= p1.e) ) {
+                if (!(p1.s >= p2.e || p2.s >= p1.e) ) {
                     warnings.push(`${WarningConsole(date)}: Periods "${p1.n}" and "${p2.n}" collide!`);
                 }
             }
@@ -224,7 +212,7 @@ function parseAlternate (summary, description, date) { // extra date parameter i
 
         return periods
     } else if (noSchoolRegex.test(summary)) {
-        if (description) return undefined
+        if (description) return
         return []
     }
 }
@@ -246,9 +234,6 @@ async function generate() {
             continue;
         }
 
-        
-
-
         let schedule = parseAlternate(event["summary"], event["description"], startDateObj.toISOString().slice(0, 10))
         if (!(schedule)) continue
 
@@ -261,7 +246,6 @@ async function generate() {
         }
         
         fAlternates[startDateObj.toISOString().slice(5, 10)] = schedule
-        
     }
 
     let FINAL = {}
@@ -275,11 +259,11 @@ async function generate() {
         FINAL[day[0]] = periods
     }
     
-    for(const warning of warnings) {
+    for (const warning of warnings) {
         console.log(warning);
     }
 
-    for(const error of errors ) {
+    for (const error of errors ) {
         console.log(error);
     }
 
