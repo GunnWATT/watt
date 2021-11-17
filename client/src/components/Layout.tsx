@@ -3,7 +3,6 @@ import {useLocation, useHistory} from 'react-router-dom';
 import {Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import {useAnalytics} from 'reactfire';
 import {logEvent} from 'firebase/analytics';
-import moment from 'moment-timezone';
 
 // Components
 import Sidebar from './layout/Sidebar';
@@ -92,7 +91,7 @@ export default function Layout(props: LayoutProps) {
     // Favicon
     // TODO: use timeouts and move this out of Layout
     const date = useContext(CurrentTimeContext);
-    const period = useNextPeriod(date);
+    const {next, startingIn, endingIn} = useNextPeriod(date);
 
     // Reference to the favicon element
     const favicon = useRef<HTMLLinkElement>();
@@ -105,7 +104,6 @@ export default function Layout(props: LayoutProps) {
     // Update document name and favicon based on current period
     useEffect(() => {
         const midnight = date.clone().startOf('date');
-        const minutes = date.diff(midnight, 'minutes');
 
         // Initialize favicon link and canvas references
         if (!favicon.current) {
@@ -121,16 +119,13 @@ export default function Layout(props: LayoutProps) {
         }
 
         // If there's no period to display, set favicon and tab title back to defaults
-        if (!period) {
+        if (!next || !startingIn || !endingIn) {
             favicon.current.href = '/icons/watt.png';
             document.title = 'Web App of The Titans (WATT)';
             return;
         }
-        const {next} = period;
 
         const name = parsePeriodName(next[0], userData);
-        const startingIn = next[1].s - minutes;
-        const endingIn = next[1].e - minutes;
 
         document.title = (startingIn > 0)
             ? `${name} starting in ${startingIn} minute${startingIn !== 1 ? 's' : ''}.`
