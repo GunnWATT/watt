@@ -30,7 +30,7 @@ const clubs = data.slice(1)
 
 const final: {timestamp: Date, data: any} = {timestamp: new Date(), data: {}};
 
-// Populate object with club objects, referencing the previous generated JSON to match clubs to their IDs
+// Populate `final` with club objects, referencing the previous generated JSON to match clubs to their IDs
 // Proper ID matching is imperative to ensure that pinned clubs persist between regens
 for (const club of clubs) {
     let match;
@@ -51,5 +51,5 @@ for (const club of clubs) {
 const str = JSON.stringify(final, null, 4);
 
 // TODO: do we need both input and output if they are just the same file?
-writeFileSync('../input/clubs.json', str);
-writeFileSync('../output/clubs.json', str);
+writeFileSync('./input/clubs.json', str);
+writeFileSync('./output/clubs.json', str);

@@ -1,31 +1,9 @@
+// Function to calculate Ratcliff-Obershelp string similarity
+// https://en.wikipedia.org/wiki/Gestalt_Pattern_Matching
 export function similarity(a: string, b: string) {
-    const lcs = (a, b) => { // longest common substring
-        let maxsubstr = "";
-        let starta = 0;
-        let enda = 0;
-        let startb = 0;
-        let endb = 0;
-
-        for (let i = 0; i < a.length; i++) {
-            for (let j = i + 1; j <= a.length; j++) {
-                let substr = a.slice(i, j);
-
-                let ind = b.indexOf(substr);
-                if (substr.length > maxsubstr.length && ind >= 0) {
-                    maxsubstr = substr;
-
-                    [starta, enda, startb, endb] = [i, j, ind, ind + substr.length];
-                }
-            }
-        }
-
-        // returns longest substring, its length, the start/end of it in a and b.
-        return [maxsubstr, maxsubstr.length, starta, enda, startb, endb];
-    }
-
     // returns numerator of the R-O formula thing
-    const raw = (a, b) => {
-        let longest = lcs(a, b);
+    const raw = (a: string, b: string): number => {
+        const longest = lcs(a, b);
         if (longest[1] === 0)
             return 0;
 
@@ -35,4 +13,26 @@ export function similarity(a: string, b: string) {
     }
 
     return raw(a.toLowerCase(), b.toLowerCase()) * 2 / (a.length + b.length);
+}
+
+// Function to find longest common substring between two strings
+// Returns the longest substring, its length, and the start/end indices of it in a and b
+function lcs(a: string, b: string): [string, number, number, number, number, number] {
+    let maxSubstr = "";
+    let starta = 0, enda = 0, startb = 0, endb = 0;
+
+    for (let i = 0; i < a.length; i++) {
+        for (let j = i + 1; j <= a.length; j++) {
+            let substr = a.slice(i, j);
+
+            let ind = b.indexOf(substr);
+            if (substr.length > maxSubstr.length && ind >= 0) {
+                maxSubstr = substr;
+
+                [starta, enda, startb, endb] = [i, j, ind, ind + substr.length];
+            }
+        }
+    }
+
+    return [maxSubstr, maxSubstr.length, starta, enda, startb, endb];
 }
