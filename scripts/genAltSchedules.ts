@@ -49,15 +49,12 @@ const schoolYearEnd = new Date(2022, 5, 3)
 const altScheduleRegex = /schedule|extended|lunch/i
 const noSchoolRegex = /holiday|no\s(students|school)|break|development/i
 
-const ErrorConsole = (date) => {
+const ErrorConsole = (date: string) => {
     return `${chalk.bgRedBright.black(`Error`)} on ${chalk.red.underline(date)}`;
 }
-const WarningConsole = (date) => {
+const WarningConsole = (date: string) => {
     return `${chalk.yellow(`Warning`)} on ${chalk.underline(date)}`;
 }
-
-const warnings = [];
-const errors = [];
 
 // Parse an iCal summary and description into an array of `UnparsedPeriodObj`s
 function parseAlternate(summary: string | undefined, description: string | undefined, date: string) { // extra date parameter is only for warnings
@@ -100,64 +97,57 @@ function parseAlternate(summary: string | undefined, description: string | undef
         const startTime = sH * 60 + sM;
         const endTime = eH * 60 + eM;
 
-        const duplicatePeriod = periods.findIndex(p => p.start === startTime)
-        if (~duplicatePeriod) {
-            periods[duplicatePeriod].name += '\n' + name
-            if (endTime > periods[duplicatePeriod].end)
-                periods[duplicatePeriod].end = endTime
-        } else {
-            // regex and pray
-            const classRegex = /Period (\d)/i
-            const officeHoursRegex = /(Office Hours|Tutorial)/i
-            const lunchRegex = /(Lunch)/i
-            const brunchRegex = /(Brunch)/i
-            const selfRegex = /(SELF)/i
-            const gunnTogRegex = /(Together)/i
-            const teacherRegex = /(Collaboration|Prep|Meetings|Training|Mtgs|PLC)/i
-            const primeRegex = /(PRIME)/i
-            const zeroRegex = /(Zero Period)/i
+        // regex and pray
+        const classRegex = /Period (\d)/i
+        const officeHoursRegex = /(Office Hours|Tutorial)/i
+        const lunchRegex = /(Lunch)/i
+        const brunchRegex = /(Brunch)/i
+        const selfRegex = /(SELF)/i
+        const gunnTogRegex = /(Together)/i
+        const teacherRegex = /(Collaboration|Prep|Meetings|Training|Mtgs|PLC)/i
+        const primeRegex = /(PRIME)/i
+        const zeroRegex = /(Zero Period)/i
 
-            const isClass = name.match(classRegex)
-            const isOH = name.match(officeHoursRegex)
-            const isLunch = name.match(lunchRegex)
-            const isBrunch = name.match(brunchRegex)
-            const isSELF = name.match(selfRegex)
-            const isGT = name.match(gunnTogRegex)
-            const isStaffPrep = name.match(teacherRegex)
-            const isPrime = name.match(primeRegex)
-            const isZero = name.match(zeroRegex)
+        const isClass = name.match(classRegex)
+        const isOH = name.match(officeHoursRegex)
+        const isLunch = name.match(lunchRegex)
+        const isBrunch = name.match(brunchRegex)
+        const isSELF = name.match(selfRegex)
+        const isGT = name.match(gunnTogRegex)
+        const isStaffPrep = name.match(teacherRegex)
+        const isPrime = name.match(primeRegex)
+        const isZero = name.match(zeroRegex)
 
-            let fname = name
-            let newEndTime = endTime
-            if (isClass) {
-                fname = isClass[1].toString()
-            } else if (isOH) {
-                fname = "O"
-                warnings.push(`${WarningConsole(date)}: Office Hours RETURNS, somehow.`)
-            } else if (isLunch) {
-                fname = "L"
-            } else if (isBrunch) {
-                fname = "B"
-            } else if (isSELF) {
-                fname = "S"
-            } else if (isGT) {
-                fname = "G"
-                warnings.push(`${WarningConsole(date)}: Gunn Together RETURNS, somehow.`)
-            } else if (isPrime) {
-                fname = "P"
-            } else if (isZero) {
-                fname = "0"
-            } else if (!isStaffPrep) {
-                errors.push(`${ErrorConsole(date)}: Unrecognized period name "${chalk.cyan(fname)}"`);
-            }
+        let fname = name
+        let newEndTime = endTime
+        if (isClass) {
+            fname = isClass[1].toString()
+        } else if (isOH) {
+            fname = "O"
+            console.log(`${WarningConsole(date)}: Office Hours RETURNS, somehow.`)
+        } else if (isLunch) {
+            fname = "L"
+        } else if (isBrunch) {
+            fname = "B"
+        } else if (isSELF) {
+            fname = "S"
+        } else if (isGT) {
+            fname = "G"
+            console.log(`${WarningConsole(date)}: Gunn Together RETURNS, somehow.`)
+        } else if (isPrime) {
+            fname = "P"
+        } else if (isZero) {
+            fname = "0"
+        } else if (!isStaffPrep) {
+            console.log(`${ErrorConsole(date)}: Unrecognized period name "${chalk.cyan(fname)}"`);
+        }
 
-            if (!isStaffPrep) {
-                periods.push({
-                    n: fname,
-                    s: startTime,
-                    e: newEndTime
-                })
-            }
+        if (!isStaffPrep) {
+            periods.push({
+                n: fname,
+                s: startTime,
+                e: newEndTime
+            });
         }
     })
 
@@ -165,8 +155,8 @@ function parseAlternate(summary: string | undefined, description: string | undef
     const lunch = periods.find(({n}) => n === 'L');
     const brunch = periods.find(({n}) => n === 'B');
 
-    if(lunch) {
-        let periodAfterLunch = periods.find(({ n, s }) => n !== "L" && s > lunch.s);
+    if (lunch) {
+        let periodAfterLunch = periods.find(({ n, s }) => n !== "L" && s > lunch.s)!;
 
         for (const period of periods) {
             if (period === lunch) {
@@ -183,12 +173,12 @@ function parseAlternate(summary: string | undefined, description: string | undef
 
             // console.log(lunch, periodAfterLunch);
             lunch.e = periodAfterLunch.s - 10;
-            warnings.push(`${WarningConsole(date)}: Period "${chalk.cyan(periodAfterLunch.n)}" collides with lunch. Automatically corrected lunch's end time to 10 minutes before this period.`)
+            console.log(`${WarningConsole(date)}: Period "${chalk.cyan(periodAfterLunch.n)}" collides with lunch. Automatically corrected lunch's end time to 10 minutes before this period.`)
         }
     }
 
-    if(brunch) {
-        let periodAfterBrunch = periods.find(({ n, s }) => n !== "L" && s > brunch.s);
+    if (brunch) {
+        let periodAfterBrunch = periods.find(({ n, s }) => n !== "L" && s > brunch.s)!;
 
         for (const period of periods) {
             if (period === brunch) {
@@ -203,22 +193,23 @@ function parseAlternate(summary: string | undefined, description: string | undef
         // next period should start 10 minutes after brunch
         if (!(periodAfterBrunch.s >= brunch.e + 10)) {
             brunch.e = periodAfterBrunch.s - 10;
-            warnings.push(`${WarningConsole(date)}: Period "${chalk.cyan(periodAfterBrunch.n)}" collides with brunch. Automatically corrected brunch's end time to 10 minutes before this period.`)
+            console.log(`${WarningConsole(date)}: Period "${chalk.cyan(periodAfterBrunch.n)}" collides with brunch. Automatically corrected brunch's end time to 10 minutes before this period.`)
         }
     }
 
     // period validation (make sure none collide)
-    for(let i = 0; i < periods.length; i++) {
+    for (let i = 0; i < periods.length; i++) {
         const p1 = periods[i];
-        if (!(p1.e > p1.s)) errors.push(`${ErrorConsole(date)}: ${chalk.underline(`Period "${chalk.cyan(periods[i].n)}" starts at ${chalk.green(p1.s)} but ends at ${chalk.green(p1.e)}. Cannot end before it begins!`)}`)
+        if (!(p1.e > p1.s))
+            console.log(`${ErrorConsole(date)}: ${chalk.underline(`Period "${chalk.cyan(periods[i].n)}" starts at ${chalk.green(p1.s)} but ends at ${chalk.green(p1.e)}. Cannot end before it begins!`)}`)
 
         for (let j = i+1; j < periods.length; j++) {
 
             const p2 = periods[j];
 
-            // one must be directly after another; if this doesn't work, the district is being false and fradulent.
+            // one must be directly after another; if this doesn't work, the district is being false and fraudulent.
             if (!(p1.s >= p2.e || p2.s >= p1.e) ) {
-                warnings.push(`${WarningConsole(date)}: Periods "${p1.n}" and "${p2.n}" collide!`);
+                console.log(`${WarningConsole(date)}: Periods "${p1.n}" and "${p2.n}" collide!`);
             }
         }
     }
@@ -226,48 +217,50 @@ function parseAlternate(summary: string | undefined, description: string | undef
     return periods;
 }
 
-// Fetch iCal source, parse
-const raw = await (await fetch('https://gunn.pausd.org/cf_calendar/feed.cfm?type=ical&feedID=6012BB54F3F048F09CBB988709E5E625')).text();
-const calendar = Object.values(ical.parseICS(raw));
+;(async () => {
+    // Fetch iCal source, parse
+    const raw = await (await fetch('https://gunn.pausd.org/cf_calendar/feed.cfm?type=ical&feedID=6012BB54F3F048F09CBB988709E5E625')).text();
+    const calendar = Object.values(ical.parseICS(raw));
 
-const fAlternates: {[key: string]: UnparsedPeriodObj[]} = {};
+    const fAlternates: {[key: string]: UnparsedPeriodObj[]} = {};
 
-// Populate `fAlternates` with unparsed day objects from iCal fetch
-for (const event of calendar) {
-    const startDateObj = event.start!;
-    const endDateObj = event.end;
+    // Populate `fAlternates` with unparsed day objects from iCal fetch
+    for (const event of calendar) {
+        const startDateObj = event.start!;
+        const endDateObj = event.end;
 
-    // If the alternate schedule does not lie within the school year, skip it
-    if (!(startDateObj >= schoolYearStart && startDateObj <= schoolYearEnd))
-        continue;
+        // If the alternate schedule does not lie within the school year, skip it
+        if (!(startDateObj >= schoolYearStart && startDateObj <= schoolYearEnd))
+            continue;
 
-    const schedule = parseAlternate(event.summary, event.description, startDateObj.toISOString().slice(0, 10))
-    if (!schedule) continue;
+        const schedule = parseAlternate(event.summary, event.description, startDateObj.toISOString().slice(0, 10))
+        if (!schedule) continue;
 
-    // If an end date exists, add all dates between the start and end dates with the alternate schedule
-    if (endDateObj && endDateObj >= schoolYearStart && endDateObj <= schoolYearEnd) {
-        while (startDateObj.toISOString().slice(5, 10) !== endDateObj.toISOString().slice(5, 10)) {
-            fAlternates[startDateObj.toISOString().slice(5, 10)] = schedule;
-            startDateObj.setUTCDate(startDateObj.getUTCDate() + 1);
+        // If an end date exists, add all dates between the start and end dates with the alternate schedule
+        if (endDateObj && endDateObj >= schoolYearStart && endDateObj <= schoolYearEnd) {
+            while (startDateObj.toISOString().slice(5, 10) !== endDateObj.toISOString().slice(5, 10)) {
+                fAlternates[startDateObj.toISOString().slice(5, 10)] = schedule;
+                startDateObj.setUTCDate(startDateObj.getUTCDate() + 1);
+            }
         }
+
+        fAlternates[startDateObj.toISOString().slice(5, 10)] = schedule;
     }
 
-    fAlternates[startDateObj.toISOString().slice(5, 10)] = schedule;
-}
+    const alternates: {[key: string]: DayObj | null} = {}
 
-const final: {[key: string]: DayObj | null} = {}
+    // Populate `alternates` with parsed schedule objects, flattening `name` and normalizing no-school days
+    for (const [date, schedule] of Object.entries(fAlternates)) {
+        let parsedSchedule: DayObj | null = {};
 
-// Populate `final` with parsed schedule objects, flattening `name` and normalizing no-school days
-for (const [date, schedule] of Object.entries(fAlternates)) {
-    let parsedSchedule: DayObj | null = {};
+        // If the schedule array is empty, parse it as a no school day
+        if (schedule.length === 0)
+            parsedSchedule = null;
+        else schedule.forEach(element =>
+            parsedSchedule![element.n as keyof DayObj] = {s: element.s, e: element.e});
 
-    // If schedule is an empty object `{}`, parse it as a no-school day
-    if (Object.keys(schedule).length === 0 && schedule.constructor === Object)
-        parsedSchedule = null;
-    else schedule.forEach(element =>
-        parsedSchedule![element.n as keyof DayObj] = {s: element.s, e: element.e});
+        alternates[date] = parsedSchedule;
+    }
 
-    final[date] = parsedSchedule;
-}
-
-writeFileSync('./output/alternates.json', JSON.stringify({final}, null, 4));
+    writeFileSync('./output/alternates.json', JSON.stringify({alternates}, null, 4));
+})()
