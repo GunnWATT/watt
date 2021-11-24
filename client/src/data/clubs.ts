@@ -1,7 +1,7 @@
 import {Club} from '../components/lists/ClubComponent';
 
 const data: {timestamp: string, data: {[key: string]: Club}} = {
-    "timestamp": "2021-10-20T05:43:43.516Z",
+    "timestamp": "2021-11-23T19:04:30.649Z",
     "data": {
         "10880": {
             "new": true,
@@ -104,7 +104,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "Economics Club",
             "tier": 1,
             "desc": "If you want to learn about economic theories, notable economic thinkers, and economic events past and present, then this is the club for you! Economics Club is open to all people regardless of prior knowledge. In addition, if interest is sufficient, members of the club may participate in the online National Economics Challenge.",
-            "day": "Wednesday",
+            "day": "Every other Monday",
             "time": "Lunch",
             "room": "C8",
             "prez": "Isaac Oh",
@@ -387,8 +387,8 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "tier": 1,
             "desc": "We are a tight-knit group of students whose personalities may be all over the place, but we share one thing in common: our passion for video games! If you, too, love video games and want to find your people, then this club is the place for you. During club meets (Friday after school), we play games like Super Smash Bros., Among Us, Minecraft, and various other games, socialize, and have fun; simple as that.   While the IGL has always been a social club dedicated to creating a home for gamers at Gunn, we are also looking to introduce some academic value to the club, such as having guest speakers talk about what the game industry is like. There is still a lot in the air right now and we will likely come up with new ideas as the year goes on and we get to know our members better.",
             "day": "Friday",
-            "time": "After School",
-            "room": "N building, Room N-108",
+            "time": "Lunch",
+            "room": "N-108",
             "prez": "Leonidas (Leo) Assimes",
             "advisor": "Terence Kitada",
             "email": "tkitada@pausd.org"
@@ -461,7 +461,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "new": false,
             "name": "Med Club",
             "tier": 1,
-            "desc": "",
+            "desc": "Gunn Med will provide students with knowledge about the different aspects and careers in the medical field in an interesting and interactive way. There are many medical careers in the world that many students may not know of, and our most important goal is to let these students know of the career paths they can choose to pursue in the future. By informing these students, we can help them learn more about themselves, as well as help them decipher which medical career they are most interested in studying. Our club will provide an educational opportunity to dig into the field of medicine and help confirm the member’s interests to pursue a career related to medicine.",
             "day": "Friday",
             "time": "Lunch",
             "room": "G4",
@@ -1152,7 +1152,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "Inventors Club",
             "tier": 1,
             "desc": "This club is to encourage students to have brilliant ideas and help foster those ideas by providing them with a group of like-minded students as well as resources. Whatever students want to create, whether that be software, games, or robots, we intend to be a place where such creative students can gather and work together to make their ideas into reality. Even if you are not tech-savvy, there is no need to worry because there are many people who are willing to help you learn.",
-            "day": "Wednesday",
+            "day": "Monday",
             "time": "Lunch",
             "room": "C-6",
             "prez": "Veer Ruparel",

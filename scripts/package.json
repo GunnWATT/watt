@@ -5,15 +5,17 @@
   "scripts": {
     "clubs": "ts-node genClubs.ts",
     "staff": "ts-node genStaffFromPS.ts",
-    "alternates": "ts-node altScheduleGenerator.ts"
+    "alternates": "ts-node genAltSchedules.ts"
   },
   "license": "MIT",
   "dependencies": {
     "@types/ical": "^0.8.0",
     "@types/node": "^16.11.7",
+    "@types/node-fetch": "^2.5.12",
     "chalk": "^4.1.2",
     "ical": "^0.8.0",
-    "node-fetch": "^3.1.0",
-    "ts-node": "^10.4.0"
+    "node-fetch": "^2.6.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2"
   }
 }
