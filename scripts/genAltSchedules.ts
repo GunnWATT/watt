@@ -49,6 +49,7 @@ const schoolYearEnd = new Date(2022, 5, 3)
 const altScheduleRegex = /schedule|extended|lunch/i
 const noSchoolRegex = /holiday|no\s(students|school)|break|development/i
 
+// TODO: extract this to a shared util
 const ErrorConsole = (date: string) => {
     return `${chalk.bgRedBright.black(`Error`)} on ${chalk.red.underline(date)}`;
 }
@@ -60,29 +61,39 @@ const WarningConsole = (date: string) => {
 function parseAlternate(summary: string | undefined, description: string | undefined, date: string) { // extra date parameter is only for warnings
     if (!summary) return;
 
-    // If it's a no school day, return an empty array
+    // If WATT thinks it's a no-school day
     if (noSchoolRegex.test(summary)) {
+        // Prevent false positives like "Holiday staff luncheon" from causing fake no-school days
+        // https://github.com/GunnWATT/watt/pull/73#discussion_r756518819
         if (description) return;
+
+        // Otherwise, return an empty schedule array
         return [];
     }
 
+    // If the event is neither an alternate schedule or a no-school day, return
     if (!altScheduleRegex.test(summary)) return;
+
+    // Prevent false positive events like "Staff luncheon" that are missing parseable descriptions from causing
+    // empty alternate schedules (and thus no-school days)
+    // https://github.com/GunnWATT/watt/pull/73#discussion_r756519137
     if (!description) return;
 
-    description =
-        '\n' +
-        description
-            .replace(noNewLineBeforeTimeRegex, '(')
-            .replace(HTMLnewlineRegex, '\n')
-            .replace(noHTMLRegex, '')
-            .replace(noNbspRegex, ' ')
+    // Parse away HTML tags, entities, and oddities
+    description = description
+        .replace(noNewLineBeforeTimeRegex, '(') // https://github.com/GunnWATT/watt/pull/73#discussion_r756519526
+        .replace(HTMLnewlineRegex, '\n')
+        .replace(noHTMLRegex, '')
+        .replace(noNbspRegex, ' ')
 
     const periods: UnparsedPeriodObj[] = [];
 
-    description.split(newLineRegex).map(str => {
+    description.split(newLineRegex).forEach(str => {
         const times = str.match(timeGetterRegex);
-        const name = str.replace(timeGetterRegex,  '').trim()
+        const name = str.replace(timeGetterRegex,  '').trim();
 
+        // Ignore irrelevant non-time-containing lines
+        // https://github.com/GunnWATT/watt/pull/73#discussion_r756519858
         if (!times) return;
 
         // Extract start and end hours and minutes and convert to numbers
@@ -92,56 +103,53 @@ function parseAlternate(summary: string | undefined, description: string | undef
         eH = +eH;
         eM = +eM;
 
+        // https://github.com/GunnWATT/watt/pull/73#discussion_r756520204
         if (sH < EARLIEST_AM_HOUR || pm === 'pm') sH += 12;
         if (eH < EARLIEST_AM_HOUR || pm === 'pm') eH += 12;
         const startTime = sH * 60 + sM;
         const endTime = eH * 60 + eM;
 
-        // regex and pray
-        const classRegex = /Period (\d)/i
-        const officeHoursRegex = /(Office Hours|Tutorial)/i
-        const lunchRegex = /(Lunch)/i
-        const brunchRegex = /(Brunch)/i
-        const selfRegex = /(SELF)/i
-        const gunnTogRegex = /(Together)/i
-        const teacherRegex = /(Collaboration|Prep|Meetings|Training|Mtgs|PLC)/i
-        const primeRegex = /(PRIME)/i
-        const zeroRegex = /(Zero Period)/i
+        // Regices to match specific periods
+        const numberPeriodRegex = /Period (\d)/i;
+        const lunchRegex = /Lunch/i;
+        const brunchRegex = /Brunch/i;
+        const selfRegex = /SELF/i;
+        const primeRegex = /PRIME/i;
+        const gunnTogRegex = /Together/i;
+        const officeHoursRegex = /Office Hours|Tutorial/i;
+        const teacherRegex = /Collaboration|Prep|Meetings|Training|Mtgs|PLC/i;
+        const zeroPeriodRegex = /Zero Period/i;
 
-        const isClass = name.match(classRegex)
-        const isOH = name.match(officeHoursRegex)
-        const isLunch = name.match(lunchRegex)
-        const isBrunch = name.match(brunchRegex)
-        const isSELF = name.match(selfRegex)
-        const isGT = name.match(gunnTogRegex)
-        const isStaffPrep = name.match(teacherRegex)
-        const isPrime = name.match(primeRegex)
-        const isZero = name.match(zeroRegex)
+        const isNumberPeriod = name.match(numberPeriodRegex);
+        const isStaffPrep = name.match(teacherRegex);
 
-        let fname = name
-        let newEndTime = endTime
-        if (isClass) {
-            fname = isClass[1].toString()
-        } else if (isOH) {
-            fname = "O"
-            console.log(`${WarningConsole(date)}: Office Hours RETURNS, somehow.`)
-        } else if (isLunch) {
-            fname = "L"
-        } else if (isBrunch) {
-            fname = "B"
-        } else if (isSELF) {
-            fname = "S"
-        } else if (isGT) {
-            fname = "G"
-            console.log(`${WarningConsole(date)}: Gunn Together RETURNS, somehow.`)
-        } else if (isPrime) {
-            fname = "P"
-        } else if (isZero) {
-            fname = "0"
+        let fname = name;
+        let newEndTime = endTime;
+
+        if (isNumberPeriod) {
+            fname = isNumberPeriod[1];
+        } else if (name.match(officeHoursRegex)) {
+            fname = "O";
+            console.log(`${WarningConsole(date)}: Office Hours RETURNS, somehow.`);
+        } else if (name.match(lunchRegex)) {
+            fname = "L";
+        } else if (name.match(brunchRegex)) {
+            fname = "B";
+        } else if (name.match(selfRegex)) {
+            fname = "S";
+        } else if (name.match(gunnTogRegex)) {
+            fname = "G";
+            console.log(`${WarningConsole(date)}: Gunn Together RETURNS, somehow.`);
+        } else if (name.match(primeRegex)) {
+            fname = "P";
+        } else if (name.match(zeroPeriodRegex)) {
+            fname = "0";
         } else if (!isStaffPrep) {
+            // If no regices match, we've encountered an unrecognized period
             console.log(`${ErrorConsole(date)}: Unrecognized period name "${chalk.cyan(fname)}"`);
         }
 
+        // If the period is a class, push it to the schedule array
         if (!isStaffPrep) {
             periods.push({
                 n: fname,
@@ -155,6 +163,7 @@ function parseAlternate(summary: string | undefined, description: string | undef
     const lunch = periods.find(({n}) => n === 'L');
     const brunch = periods.find(({n}) => n === 'B');
 
+    // TODO: make this neater
     if (lunch) {
         let periodAfterLunch = periods.find(({ n, s }) => n !== "L" && s > lunch.s)!;
 
@@ -177,6 +186,7 @@ function parseAlternate(summary: string | undefined, description: string | undef
         }
     }
 
+    // TODO: make this neater
     if (brunch) {
         let periodAfterBrunch = periods.find(({ n, s }) => n !== "L" && s > brunch.s)!;
 
