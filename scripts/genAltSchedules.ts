@@ -23,6 +23,7 @@ import fetch from 'node-fetch';
 import {writeFileSync} from 'fs';
 import ical from 'ical';
 import chalk from 'chalk';
+import {error, warn} from './logging';
 
 
 // Types modified from `../client/src/components/schedule/Periods.tsx`;
@@ -130,7 +131,7 @@ function parseAlternate(summary: string | undefined, description: string | undef
             fname = isNumberPeriod[1];
         } else if (name.match(officeHoursRegex)) {
             fname = "O";
-            console.log(`${WarningConsole(date)}: Office Hours RETURNS, somehow.`);
+            warn(`[${chalk.underline(date)}] Parsed deprecated period Office Hours`);
         } else if (name.match(lunchRegex)) {
             fname = "L";
         } else if (name.match(brunchRegex)) {
@@ -139,14 +140,14 @@ function parseAlternate(summary: string | undefined, description: string | undef
             fname = "S";
         } else if (name.match(gunnTogRegex)) {
             fname = "G";
-            console.log(`${WarningConsole(date)}: Gunn Together RETURNS, somehow.`);
+            warn(`[${chalk.underline(date)}] Parsed deprecated period Gunn Together`);
         } else if (name.match(primeRegex)) {
             fname = "P";
         } else if (name.match(zeroPeriodRegex)) {
             fname = "0";
         } else if (!isStaffPrep) {
             // If no regices match, we've encountered an unrecognized period
-            console.log(`${ErrorConsole(date)}: Unrecognized period name "${chalk.cyan(fname)}"`);
+            error(`[${chalk.underline(date)}] Unrecognized period name "${chalk.cyan(fname)}"`);
         }
 
         // If the period is a class, push it to the schedule array
@@ -179,10 +180,8 @@ function parseAlternate(summary: string | undefined, description: string | undef
 
         // next period should start 10 minutes after lunch
         if (!(periodAfterLunch.s >= lunch.e + 10)) {
-
-            // console.log(lunch, periodAfterLunch);
             lunch.e = periodAfterLunch.s - 10;
-            console.log(`${WarningConsole(date)}: Period "${chalk.cyan(periodAfterLunch.n)}" collides with lunch. Automatically corrected lunch's end time to 10 minutes before this period.`)
+            warn(`[${chalk.underline(date)}] Period "${chalk.cyan(periodAfterLunch.n)}" collides with lunch. Automatically corrected lunch's end time to 10 minutes before this period.`);
         }
     }
 
@@ -203,7 +202,7 @@ function parseAlternate(summary: string | undefined, description: string | undef
         // next period should start 10 minutes after brunch
         if (!(periodAfterBrunch.s >= brunch.e + 10)) {
             brunch.e = periodAfterBrunch.s - 10;
-            console.log(`${WarningConsole(date)}: Period "${chalk.cyan(periodAfterBrunch.n)}" collides with brunch. Automatically corrected brunch's end time to 10 minutes before this period.`)
+            warn(`[${chalk.underline(date)}] Period "${chalk.cyan(periodAfterBrunch.n)}" collides with brunch. Automatically corrected brunch's end time to 10 minutes before this period.`);
         }
     }
 
@@ -211,7 +210,7 @@ function parseAlternate(summary: string | undefined, description: string | undef
     for (let i = 0; i < periods.length; i++) {
         const p1 = periods[i];
         if (!(p1.e > p1.s))
-            console.log(`${ErrorConsole(date)}: ${chalk.underline(`Period "${chalk.cyan(periods[i].n)}" starts at ${chalk.green(p1.s)} but ends at ${chalk.green(p1.e)}. Cannot end before it begins!`)}`)
+            error(`[${chalk.underline(date)}] Period "${chalk.cyan(periods[i].n)}" starts at ${chalk.green(p1.s)} but ends at ${chalk.green(p1.e)}. Cannot end before it begins!`);
 
         for (let j = i+1; j < periods.length; j++) {
 
@@ -219,7 +218,7 @@ function parseAlternate(summary: string | undefined, description: string | undef
 
             // one must be directly after another; if this doesn't work, the district is being false and fraudulent.
             if (!(p1.s >= p2.e || p2.s >= p1.e) ) {
-                console.log(`${WarningConsole(date)}: Periods "${p1.n}" and "${p2.n}" collide!`);
+                warn(`[${chalk.underline(date)}] Periods "${p1.n}" and "${p2.n}" collide!`);
             }
         }
     }

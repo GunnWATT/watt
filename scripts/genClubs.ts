@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import {readFileSync, writeFileSync} from 'fs';
 import {similarity} from './util';
+import {info, warn} from './logging';
 
 
 (async () => {
@@ -39,13 +40,21 @@ import {similarity} from './util';
             // Match two clubs if the string similarity between their names is greater than 0.85
             // This is to not break with clubs that have changed their name slightly, such as
             // competative programming club -> competitive programming club
-            if (similarity(prev.data[key].name, club.name) > 0.85) {
-                console.log(`Matched ${prev.data[key].name} with ${club.name}`);
+
+            const nameSimilarity = similarity(prev.data[key].name, club.name);
+            if (nameSimilarity > 0.85) {
+                // Log if we are using an imperfect match just in case
+                if (nameSimilarity < 1)
+                    warn(`Matched similar keys ${prev.data[key].name} and ${club.name}`);
+                else
+                    info(`Matched ${prev.data[key].name} with ${club.name}`);
+
                 match = key;
                 break;
             }
         }
 
+        if (!match) warn(`${club.name} not matched, generating new ID`);
         final.data[match ?? newID()] = club;
     }
 
