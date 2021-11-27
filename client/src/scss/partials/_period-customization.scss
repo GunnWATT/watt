@@ -6,59 +6,72 @@
 }
 
 .periods-custom-row-burrito {
+  display: flex;
+  align-items: center;
+
+  .periods-custom-inputs {
+    flex-grow: 1;
+    margin-left: 1.5rem;
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 1rem;
+
+    .form-group {
+      flex-grow: 1;
+      flex-basis: 200px;
+    }
+  }
 }
 
 .periods-custom-picker-burrito {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  position: relative;
 }
 
 .periods-custom-picker-square {
-    width: 40px;
-    height: 40px;
-    border-radius: 5px;
-    border: 2px solid var(--tertiary);
-    cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid var(--tertiary);
+  cursor: pointer;
 }
 
-@mixin periods-custom-picker-div {
-    position: absolute;
-    left: calc(100% - 40px);
-    z-index: 5;
-    touch-action: none;
+%periods-custom-picker-div {
+  position: absolute;
+  left: calc(100% - 40px);
+  z-index: 5;
+  touch-action: none;
 
-    > div {
-        background-color: var(--bg-primary) !important;
-        
-        * { 
-            color: var(--primary) !important;
-        }
+  > div {
+    background-color: var(--bg-primary) !important;
 
-        input {
-            box-shadow: var(--tertiary) 0px 0px 0px 1px inset !important;
-            text-align: center;
-            border-radius: .2rem;
-            width: 100% !important;
-        }
-
-        >:last-child {
-            border-top: 1px solid var(--tertiary) !important;
-        }
+    * {
+      color: var(--primary) !important;
     }
+
+    input {
+      box-shadow: var(--tertiary) 0 0 0 1px inset !important;
+      text-align: center;
+      border-radius: .2rem;
+      width: 100% !important;
+    }
+
+    > :last-child {
+      border-top: 1px solid var(--tertiary) !important;
+    }
+  }
 }
 
 .periods-custom-picker-div-bottom {
-    @include periods-custom-picker-div();
-    bottom: calc(100% + 10px);
+  @extend %periods-custom-picker-div;
+  bottom: calc(100% + 10px);
 }
 
 .periods-custom-picker-div-top {
-    @include periods-custom-picker-div();
-    top: calc(100% + 10px);
+  @extend %periods-custom-picker-div;
+  top: calc(100% + 10px);
 }

@@ -1,7 +1,8 @@
 import {useContext, useEffect, useState, useRef, ReactNode} from 'react';
 import {useLocation, useHistory} from 'react-router-dom';
 import {Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
-import {useScreenType} from '../hooks/useScreenType';
+import {useAnalytics} from 'reactfire';
+import {logEvent} from 'firebase/analytics';
 
 // Components
 import Sidebar from './layout/Sidebar';
@@ -17,7 +18,8 @@ import SgyInitResults from './firebase/SgyInitResults';
 // Utils
 import {parsePeriodName, parsePeriodColor} from './schedule/Periods';
 import {hexToRgb} from './schedule/progressBarColor';
-import {useNextPeriod} from "../hooks/useNextPeriod";
+import {useScreenType} from '../hooks/useScreenType';
+import {useNextPeriod} from '../hooks/useNextPeriod';
 
 
 type LayoutProps = {children: ReactNode};
@@ -62,23 +64,32 @@ export default function Layout(props: LayoutProps) {
         document.body.className = userData.options.theme;
     }, [userData.options.theme])
 
+    // Analytics
+    const location = useLocation();
+    const analytics = useAnalytics();
+    useEffect(() => {
+        logEvent(analytics, 'screen_view', {
+            firebase_screen: location.pathname,
+            firebase_screen_class: location.pathname
+        });
+    }, [location])
+
     // Favicon
     // TODO: use timeouts and move this out of Layout
     const date = useContext(CurrentTimeContext);
-    const period = useNextPeriod(date);
+    const {next, startingIn, endingIn} = useNextPeriod(date);
 
     // Reference to the favicon element
     const favicon = useRef<HTMLLinkElement>();
     const canvas = useRef<HTMLCanvasElement>();
 
-    const FAVICON_SIZE = 32
-    const borderRadius = FAVICON_SIZE * 0.15
-    const sRadius = FAVICON_SIZE * 0.45 // radius for last seconds
+    const FAVICON_SIZE = 32;
+    const borderRadius = FAVICON_SIZE * 0.15;
+    const sRadius = FAVICON_SIZE * 0.45; // radius for last seconds
 
     // Update document name and favicon based on current period
     useEffect(() => {
         const midnight = date.clone().startOf('date');
-        const minutes = date.diff(midnight, 'minutes');
 
         // Initialize favicon link and canvas references
         if (!favicon.current) {
@@ -94,16 +105,13 @@ export default function Layout(props: LayoutProps) {
         }
 
         // If there's no period to display, set favicon and tab title back to defaults
-        if (!period) {
+        if (!next || !startingIn || !endingIn) {
             favicon.current.href = '/icons/watt.png';
             document.title = 'Web App of The Titans (WATT)';
             return;
         }
-        const {next} = period;
 
         const name = parsePeriodName(next[0], userData);
-        const startingIn = next[1].s - minutes;
-        const endingIn = next[1].e - minutes;
 
         document.title = (startingIn > 0)
             ? `${name} starting in ${startingIn} minute${startingIn !== 1 ? 's' : ''}.`

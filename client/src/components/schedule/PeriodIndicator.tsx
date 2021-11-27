@@ -15,16 +15,8 @@ export default function PeriodIndicator(props: PeriodIndicatorProps) {
     const {currTime, startTime} = props;
     const userData = useContext(UserDataContext);
 
-    const midnight = currTime.clone().startOf('date');
-    const minutes = currTime.diff(midnight, 'minutes');
-    const seconds = currTime.diff(midnight, 'seconds');
-
-    const periods = useNextPeriod(currTime);
-    if (!periods) return null;
-    const {next, prev} = periods;
-
-    const startingIn = next[1].s - minutes;
-    const endingIn = next[1].e - minutes;
+    const {next, prev, startingIn, endingIn, seconds} = useNextPeriod(currTime);
+    if (!next || !startingIn || !endingIn) return null;
 
     // If current period has yet to start
     if (startingIn > 0) {

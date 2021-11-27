@@ -1,7 +1,7 @@
 import {Club} from '../components/lists/ClubComponent';
 
 const data: {timestamp: string, data: {[key: string]: Club}} = {
-    "timestamp": "2021-09-18T06:14:34.384Z",
+    "timestamp": "2021-11-23T19:04:30.649Z",
     "data": {
         "10880": {
             "new": true,
@@ -79,7 +79,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "new": false,
             "name": "P.A.A.S (Plant-based animal activist society)",
             "tier": 2,
-            "desc": "Throughout this semester, we will be working towards creating a pamphlet that dives into creating a more eco-friendly environment. By exploring topics such as reducing one’s carbon footprint with their diet and animal cruelty, we will create an educational pamphlet on being sustainable in Palo Alto. We’ll also be watching many fun movies and playing kahoots, and quizizz together. Feel free to simply drop by and just hang out with friends while playing fun trivias.",
+            "desc": "Throughout this semester, we will be working towards creating a pamphlet that dives into creating a more eco-friendly environment. By exploring topics such as reducing one’s carbon footprint with their diet and animal cruelty, we will create an educational pamphlet on being sustainable in Palo Alto. We’ll also be watching many fun movies and playing kahoots, and quizizz together.  Feel free to simply drop by and just hang out with friends while playing fun trivias.",
             "day": "Wednesday",
             "time": "Lunch",
             "room": "N-206",
@@ -104,7 +104,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "Economics Club",
             "tier": 1,
             "desc": "If you want to learn about economic theories, notable economic thinkers, and economic events past and present, then this is the club for you! Economics Club is open to all people regardless of prior knowledge. In addition, if interest is sufficient, members of the club may participate in the online National Economics Challenge.",
-            "day": "Wednesday",
+            "day": "Every other Monday",
             "time": "Lunch",
             "room": "C8",
             "prez": "Isaac Oh",
@@ -123,7 +123,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Jordan Wells",
             "email": "jwells@pausd.org",
             "coadvisor": "Leighton Lang",
-            "coemail": "llang@pausd.org\r"
+            "coemail": "llang@pausd.org"
         },
         "17947": {
             "new": false,
@@ -137,7 +137,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Cindy Peters",
             "email": "cpeters@pausd.org",
             "coadvisor": "Elizabeth Matchett",
-            "coemail": "lmatchett@pausd.org\r"
+            "coemail": "lmatchett@pausd.org"
         },
         "19856": {
             "new": true,
@@ -150,6 +150,18 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "prez": "Anushka Basu",
             "advisor": "Jessica Hexsel",
             "email": "jhexsel@pausd.org"
+        },
+        "19916": {
+            "new": false,
+            "name": "Chinese Culture Club",
+            "tier": 2,
+            "desc": "The Chinese Culture Club is dedicated to educating Gunn students about Chinese cultures and language. Through games, demonstrations, and arts and crafts, the club aims to use interactive activities to spread knowledge on Chinese events.",
+            "day": "Thursday",
+            "time": "Lunch",
+            "room": "H-4",
+            "prez": "Elise Naddell",
+            "advisor": "Yanan Vrudny",
+            "email": "yvrudny@pausd.org"
         },
         "20181": {
             "new": true,
@@ -179,7 +191,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "new": false,
             "name": "Japanese Culture Club",
             "tier": 2,
-            "desc": "The purpose of the Japanese Culture Club is to educate students about the many aspects of Japanese Culture. We want to emphasize traditions, history, and pop culture. We want to teach the rich culture of this amazing country to all students! We will have a wide variety of lessons taught by the members of our club, including Japanese pop culture, traditions, and history. We will also have hands-on activities, such as calligraphy and food days. We will also include different pop-culture lessons in the format of videos and presentations, including occasional Japanese movie viewing (Anime, Documentary, etc) that will expose members to the present-day trends and culture in Japan.",
+            "desc": "The purpose of the Japanese Culture Club is to educate students about the many aspects of Japanese Culture. We want to emphasize traditions, history, and pop culture. We want to teach the rich culture of this amazing country to all students!  We will have a wide variety of lessons taught by the members of our club, including Japanese pop culture, traditions, and history. We will also have hands-on activities, such as calligraphy and food days. We will also include different pop-culture lessons in the format of videos and presentations, including occasional Japanese movie viewing (Anime, Documentary, etc) that will expose members to the present-day trends and culture in Japan.",
             "day": "Friday",
             "time": "Lunch",
             "room": "H-03",
@@ -251,7 +263,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "new": false,
             "name": "412 Gunn Christian Club",
             "tier": 1,
-            "desc": "412 GCC is a Gospel-Centered community where students edify one another, have fellowship, witness, and learn more about Jesus! 412 Gunn Christian Club's purpose is to learn what it means to be a follower of Jesus and grow in an intimate relationship with Jesus, through Bible study, prayer, worship, fellowship, teaching, events, and witnessing! We'll also have a lot of fun playing games and having a great time. Everyone is welcome! See you at the club!",
+            "desc": "412 GCC is a Gospel-Centered community where students edify one another, have fellowship, witness, and learn more about Jesus!  412 Gunn Christian Club's purpose is to learn what it means to be a follower of Jesus and grow in an intimate relationship with Jesus, through Bible study, prayer, worship, fellowship, teaching, events, and witnessing! We'll also have a lot of fun playing games and having a great time. Everyone is welcome! See you at the club!",
             "day": "Thursday",
             "time": "Lunch",
             "room": "F-6",
@@ -271,7 +283,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Mr. Bautista",
             "email": "mbautista@pausd.org",
             "coadvisor": "Mr. Bautista",
-            "coemail": "mbautista@pausd.org\r"
+            "coemail": "mbautista@pausd.org"
         },
         "27850": {
             "new": false,
@@ -373,10 +385,10 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "new": false,
             "name": "Interscholastic Gaming League (IGL)",
             "tier": 1,
-            "desc": "We are a tight-knit group of students whose personalities may be all over the place, but we share one thing in common: our passion for video games! If you, too, love video games and want to find your people, then this club is the place for you. During club meets (Friday after school), we play games like Super Smash Bros., Among Us, Minecraft, and various other games, socialize, and have fun; simple as that.  While the IGL has always been a social club dedicated to creating a home for gamers at Gunn, we are also looking to introduce some academic value to the club, such as having guest speakers talk about what the game industry is like. There is still a lot in the air right now and we will likely come up with new ideas as the year goes on and we get to know our members better.",
+            "desc": "We are a tight-knit group of students whose personalities may be all over the place, but we share one thing in common: our passion for video games! If you, too, love video games and want to find your people, then this club is the place for you. During club meets (Friday after school), we play games like Super Smash Bros., Among Us, Minecraft, and various other games, socialize, and have fun; simple as that.   While the IGL has always been a social club dedicated to creating a home for gamers at Gunn, we are also looking to introduce some academic value to the club, such as having guest speakers talk about what the game industry is like. There is still a lot in the air right now and we will likely come up with new ideas as the year goes on and we get to know our members better.",
             "day": "Friday",
-            "time": "After School",
-            "room": "N building, Room N-108",
+            "time": "Lunch",
+            "room": "N-108",
             "prez": "Leonidas (Leo) Assimes",
             "advisor": "Terence Kitada",
             "email": "tkitada@pausd.org"
@@ -393,7 +405,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Tara Firenzi",
             "email": "tfirenzi@pausd.org",
             "coadvisor": "Firenzi",
-            "coemail": "tfirenzi@pausd.org\r"
+            "coemail": "tfirenzi@pausd.org"
         },
         "34258": {
             "new": false,
@@ -443,13 +455,13 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Marcus Jamison",
             "email": "mjamison@pausd.org",
             "coadvisor": "Steve Ames",
-            "coemail": "sames@pausd.org\r"
+            "coemail": "sames@pausd.org"
         },
         "36508": {
             "new": false,
             "name": "Med Club",
             "tier": 1,
-            "desc": "",
+            "desc": "Gunn Med will provide students with knowledge about the different aspects and careers in the medical field in an interesting and interactive way. There are many medical careers in the world that many students may not know of, and our most important goal is to let these students know of the career paths they can choose to pursue in the future. By informing these students, we can help them learn more about themselves, as well as help them decipher which medical career they are most interested in studying. Our club will provide an educational opportunity to dig into the field of medicine and help confirm the member’s interests to pursue a career related to medicine.",
             "day": "Friday",
             "time": "Lunch",
             "room": "G4",
@@ -465,7 +477,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "day": "Friday",
             "time": "Lunch",
             "room": "N-208",
-            "prez": "Alex Gu",
+            "prez": "Alan Lee",
             "advisor": "David Deggeller",
             "email": "ddeggeller@pausd.org"
         },
@@ -569,7 +581,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "new": false,
             "name": "TEDxGunnHighSchool",
             "tier": 2,
-            "desc": "Our mission is to cultivate ideas and conversation through an annually hosted TEDx conference held in Spangenberg Theatre. Our three committees, business, speakers, and design work hard each year to improve quality of speakers and quality of experience for all our audience members. The speakers committee works with each speaker individually to write, edit and rehearse each talk. The business committee raises all funds to cover the cost of a fully fledged TEDx conference, which include grants and small fundraisers. The design committee creates logos, merchandise design, and social media designs.  It's TEDx, but Gunn.",
+            "desc": "Our mission is to cultivate ideas and conversation through an annually hosted TEDx conference held in Spangenberg Theatre. Our three committees, business, speakers, and design work hard each year to improve quality of speakers and quality of experience for all our audience members. The speakers committee works with each speaker individually to write, edit and rehearse each talk. The business committee raises all funds to cover the cost of a fully fledged TEDx conference, which include grants and small fundraisers. The design committee creates logos, merchandise design, and social media designs.   It's TEDx, but Gunn.",
             "day": "Tuesday",
             "time": "Lunch",
             "room": "N-115",
@@ -577,7 +589,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Jessica Hexsel",
             "email": "jhexsel@pausd.org",
             "coadvisor": "Daljeet Gill",
-            "coemail": "dgill@pausd.org\r"
+            "coemail": "dgill@pausd.org"
         },
         "47183": {
             "new": false,
@@ -596,7 +608,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "H.A.N.D.S. (Hair and Nail Design Society)",
             "tier": 1,
             "desc": "H.A.N.D.S. focuses on the designs of the Hair and Nails. We teach you how to do different hairstyles such as braiding, curling, straightening, coloring of the hair and so much more. Along with this, different shapes, designs, and colors for a manicure will be introduced. Fun and engaging activities will be used to create your own “manicure”. The simple and easy things we pay for in a salon, can be learned in this club. If any of this interests you then we encourage you to come see what’s happening and come join our club!!!",
-            "day": "Tuesday",
+            "day": "Wednesday",
             "time": "Lunch",
             "room": "G-7",
             "prez": "Ashley Sarkosh",
@@ -632,7 +644,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "Korean Club",
             "tier": 1,
             "desc": "The purpose of our club is to provide a space for students who are interested in Korean culture to share their interests with other people in our school. During club meetings, we will display Korean TV shows or dramas with club members’ choices. Also, during the year, we will inform members about Korean-related competitions and events to encourage them to participate in the Korean community. Through creating this atmosphere we hope to spread the value and beauty of our culture to all Gunn students.",
-            "day": "Tuesday",
+            "day": "Wednesday",
             "time": "Lunch",
             "room": "N-212",
             "prez": "Ryan Choi",
@@ -667,7 +679,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "new": true,
             "name": "Aviation Club",
             "tier": 1,
-            "desc": "Gunn Aviation Club invites anyone interested in learning or being a part of any and all fields in aviation. Members of the club will be exposed to the unique and distinctive world of aviation, and will be able to experience and gain a understanding of basic principles up to complex topics. The core of the club includes but is not limited to presentations, activities, and mentoring by professionals in the industry, and fellow club members. Additional activities may include: flight simulation, designing and building airfoils and more.  Whether you are a novice or an expert, join Gunn Aviation Club.",
+            "desc": "Gunn Aviation Club invites anyone interested in learning or being a part of any and all fields in aviation. Members of the club will be exposed to the unique and distinctive world of aviation, and will be able to experience and gain a understanding of basic principles up to complex topics. The core of the club includes but is not limited to presentations, activities, and mentoring by professionals in the industry, and fellow club members. Additional activities may include: flight simulation, designing and building airfoils and more.   Whether you are a novice or an expert, join Gunn Aviation Club.",
             "day": "Wednesday",
             "time": "Lunch",
             "room": "F-6",
@@ -680,9 +692,9 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "Cartoons Club",
             "tier": 1,
             "desc": "Cartoons Club welcomes all who enjoy animated shows, whether it's a TV show, a mini web series, a movie, or anything in between. It's a place where long-time fans and intrigued newcomers can celebrate their favorite animated fandoms and learn more about the art of animation in the entertainment industry. While we focus mainly on American shows, anime and foreign animation lovers are welcome too. We watch shows as a group while also offering fun opportunities to discuss theories and lore, analyze story arcs, world-building, and characters, watch cast and crew panels, and much more. Come join us!",
-            "day": "Wednesday",
+            "day": "Tuesday",
             "time": "Lunch",
-            "room": "S-1 Little Theatre",
+            "room": "S-147, Little Theatre",
             "prez": "Jacqueline See-Tho",
             "advisor": "Kristen Lo",
             "email": "klo@pausd.org"
@@ -711,7 +723,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Edward Corpuz",
             "email": "ecorpuz@pausd.org",
             "coadvisor": "Marie-Jose Durquet",
-            "coemail": "mdurquet@pausd.org\r"
+            "coemail": "mdurquet@pausd.org"
         },
         "53611": {
             "new": false,
@@ -809,7 +821,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Julia Choi",
             "email": "jchoi@pausd.org",
             "coadvisor": "Diane Ichikawa",
-            "coemail": "dichikawa@pausd.org\r"
+            "coemail": "dichikawa@pausd.org"
         },
         "58187": {
             "new": false,
@@ -991,6 +1003,18 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Paul Dunlap",
             "email": "pdunlap@pausd.org"
         },
+        "68265": {
+            "new": false,
+            "name": "Mythology Club",
+            "tier": 1,
+            "desc": "Myth Club is a place where anyone interested in any kind of world mythology can come to learn, discuss, and play games about these ancient stories!",
+            "day": "Thursday",
+            "time": "Lunch",
+            "room": "N-107",
+            "prez": "Maya DeBolle",
+            "advisor": "Marc Igler",
+            "email": "migler@pausd.org"
+        },
         "72020": {
             "new": true,
             "name": "Anatomy and Physiology",
@@ -1079,7 +1103,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "new": false,
             "name": "AI4Girls",
             "tier": 2,
-            "desc": "Join our community of computer science and artificial intelligence (AI) enthusiasts! AI4Girls has many exciting opportunities for you.  Whether you’re just a) curious about what AI really is, b) starting your journey in computer science, or c) an advanced coder looking to make an impact in your community with your knowledge & skills, then Join us to learn, get involved, and create! We will have opportunities for developing LEADERSHIP and TECHNICAL skills, such as organizing workshops for middle schools as a club, guest speaker panels (previously: Google, Stanford, Capital One), AI and Ethics discussions, and organizing Hackathons! Importantly, members will receive resources (ex: guides and project inspo) to learn about the process of creating an AI project (potentially: tiktok trend prediction, testing for COVID based on sound of cough, predicting heart disease, chatbot buddy...) and ultimately create one of their own!!  We hope to serve as the stepping stone for you to get more involved and excited about AI and CS. :) AI4Girls is a place for everyone, to explore the realm of AI. We especially encourage people who identify as female, nonbinary, or any underrepresented group to be a part of our community!  And of course, come check us out for FOOD, MERCH, and to make new FRIENDS!!  (We were honored to receive grant funding last year from AI4ALL, an AI-education nonprofit founded by the renowned Stanford professor Dr. Fei Fei Li)",
+            "desc": "Join our community of computer science and artificial intelligence (AI) enthusiasts! AI4Girls has many exciting opportunities for you.   Whether you’re just a) curious about what AI really is, b) starting your journey in computer science, or c) an advanced coder looking to make an impact in your community with your knowledge & skills, then Join us to learn, get involved, and create!  We will have opportunities for developing LEADERSHIP and TECHNICAL skills, such as organizing workshops for middle schools as a club, guest speaker panels (previously: Google, Stanford, Capital One), AI and Ethics discussions, and organizing Hackathons! Importantly, members will receive resources (ex: guides and project inspo) to learn about the process of creating an AI project (potentially: tiktok trend prediction, testing for COVID based on sound of cough, predicting heart disease, chatbot buddy...) and ultimately create one of their own!!   We hope to serve as the stepping stone for you to get more involved and excited about AI and CS. :) AI4Girls is a place for everyone, to explore the realm of AI. We especially encourage people who identify as female, nonbinary, or any underrepresented group to be a part of our community!   And of course, come check us out for FOOD, MERCH, and to make new FRIENDS!!  (We were honored to receive grant funding last year from AI4ALL, an AI-education nonprofit founded by the renowned Stanford professor Dr. Fei Fei Li)",
             "day": "Thursday",
             "time": "Lunch",
             "room": "N-204",
@@ -1128,7 +1152,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "Inventors Club",
             "tier": 1,
             "desc": "This club is to encourage students to have brilliant ideas and help foster those ideas by providing them with a group of like-minded students as well as resources. Whatever students want to create, whether that be software, games, or robots, we intend to be a place where such creative students can gather and work together to make their ideas into reality. Even if you are not tech-savvy, there is no need to worry because there are many people who are willing to help you learn.",
-            "day": "Wednesday",
+            "day": "Monday",
             "time": "Lunch",
             "room": "C-6",
             "prez": "Veer Ruparel",
@@ -1183,7 +1207,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Ms. Renazco",
             "email": "drenazco@pausd.org",
             "coadvisor": "Mr. Summers",
-            "coemail": "tsummers@pausd.org\r"
+            "coemail": "tsummers@pausd.org"
         },
         "85893": {
             "new": false,
@@ -1269,7 +1293,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Liz Matchett",
             "email": "lmatchett@pausd.org",
             "coadvisor": "Charlotte Kaufman",
-            "coemail": "ckaufman@pausd.org\r"
+            "coemail": "ckaufman@pausd.org"
         },
         "94646": {
             "new": false,
@@ -1283,7 +1307,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Diane Ichikawa",
             "email": "dichikawa@pausd.org",
             "coadvisor": "David Deggeller",
-            "coemail": "ddeggeller@pausd.org\r"
+            "coemail": "ddeggeller@pausd.org"
         },
         "95845": {
             "new": false,

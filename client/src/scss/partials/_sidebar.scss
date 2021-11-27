@@ -20,6 +20,8 @@ $icon-width: $sidebar-collapsed-width -
   width: $sidebar-width;
   transition: width $sidebar-collapse-time ease;
   flex: none;
+  position: relative;
+  z-index: 10;
 
   // Style for when the sidebar is collapsed
   &.collapsed {
@@ -75,7 +77,6 @@ $icon-width: $sidebar-collapsed-width -
 
     // Text
     span {
-      //overflow: hidden;
       //transition: width $sidebar-collapse-time ease;
       margin-left: 1rem;
     }

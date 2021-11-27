@@ -40,37 +40,36 @@ export default function PeriodCustomizationInput(props: PeriodProps) {
         }
 
         // Bind the event listener
-        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener('mousedown', handleClickOutside);
         return () => {
             // Unbind the event listener on clean up
-            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [ref]);
 
-    const upperPeriods = ['0','1','2','3'];
+    const upperPeriods = ['0', '1', '2', '3'];
     const isUpperPeriod = upperPeriods.includes(id);
 
     return (
-        <div className='periods-custom-row-burrito'>
-            <div className='periods-custom-picker-burrito' ref={ref}>
-                <div className='periods-custom-picker-square' style={{
-                    backgroundColor: `${color}`,
-                }} onClick={() => setColorPicker(!colorPicker)} />
+        <div className="periods-custom-row-burrito">
+            <div className="periods-custom-picker-burrito" ref={ref}>
+                <div
+                    className='periods-custom-picker-square'
+                    style={{backgroundColor: color}}
+                    onClick={() => setColorPicker(!colorPicker)}
+                />
                 <div className={`periods-custom-picker-div-${isUpperPeriod ? 'top' : 'bottom'}`} hidden={!colorPicker}>
                     <SketchPicker
                         color={color}
                         onChange={changeColor}
                         onChangeComplete={(color: ColorResult) => updatePeriodData(color.hex, 'c')}
                         presetColors={userData.options.theme === 'light' ? periodColors : darkPerColors}
-                        disableAlpha={true}
+                        disableAlpha
                     />
                 </div>
             </div>
 
-            <div style={{
-                flexGrow: 1,
-                marginLeft: 15
-            }}>
+            <div className="periods-custom-inputs">
                 <FormGroup>
                     <Label for="class-name">{name}</Label>
                     <Input
@@ -80,9 +79,8 @@ export default function PeriodCustomizationInput(props: PeriodProps) {
                         onBlur={e => updatePeriodData(e.target.value, 'n')}
                     />
                 </FormGroup>
-            </div>
-                
-                {/* <FormGroup>
+
+                <FormGroup>
                     <Label for="link">{name} Link</Label>
                     <Input
                         type="text" name="link" id="link"
@@ -90,9 +88,8 @@ export default function PeriodCustomizationInput(props: PeriodProps) {
                         defaultValue={l}
                         onBlur={e => updatePeriodData(e.target.value, 'l')}
                     />
-                </FormGroup> */}
-
-            
+                </FormGroup>
+            </div>
         </div>
     );
 }

@@ -36,89 +36,60 @@
  *
  */
 
-import * as fetch from "node-fetch";
-import * as fs from "fs";
+import fetch from 'node-fetch';
+import {readFileSync, writeFileSync} from 'fs';
+import {similarity} from './util';
 
 
-const raw = JSON.parse(fs.readFileSync("../input/parentsquareDirectory.json"));
-const prev = JSON.parse(fs.readFileSync("../input/staff.json"));
+const raw = JSON.parse(readFileSync('../input/parentsquareDirectory.json').toString());
+const prev = JSON.parse(readFileSync('../input/staff.json').toString());
 
-let similarity = (a, b) => {
-    let lcs = (a, b) => { // longest common substring
-        let maxsubstr = "";
-        let starta = 0;
-        let enda = 0;
-        let startb = 0;
-        let endb = 0;
-        for (let i = 0; i < a.length; i++) {
-            for (let j = i + 1; j <= a.length; j++) {
-                let substr = a.slice(i, j);
 
-                let ind = b.indexOf(substr);
-                if (substr.length > maxsubstr.length && ind >= 0) {
-                    maxsubstr = substr;
-
-                    ;[starta, enda, startb, endb] = [i, j, ind, ind + substr.length];
-                }
-            }
-        }
-
-        // returns longest substring, its length, the start/end of it in a and b.
-        return [maxsubstr, maxsubstr.length, starta, enda, startb, endb];
-    }
-
-    // returns numerator of the R-O formula thing
-    let raw = (a, b) => {
-        let longest = lcs(a, b);
-        if (longest[1] === 0) {
-            return 0;
-        }
-        return longest[1] + raw(a.slice(0, longest[2]), b.slice(0, longest[4])) + raw(a.slice(longest[3]), b.slice(longest[5]));
-    };
-
-    return raw(a.toLowerCase(), b.toLowerCase()) * 2 / (a.length + b.length);
-
-}
-
-let nameSimilarity = (a,b) => {
+function nameSimilarity(a: string, b: string) {
     // this is the most cursed thing i have ever written
-    const lf = (str) => ((strs) => [strs.slice(0,strs.length - 1).join(' '), strs[strs.length-1]])(str.toLowerCase().split(" "));
+    const lf = (str: string) => {
+        const strs = str.toLowerCase().split(" ")
+        return [strs.slice(0, strs.length - 1).join(' '), strs[strs.length - 1]]
+    }
 
     const [fa, la] = lf(a);
     const [fb, lb] = lf(b);
 
     // nvm *this* is the most cursed thing i have ever written
-    const includes = (a,b) => [[a,b], [b,a]].some(([c,d]) => c.startsWith(d) || c.endsWith(d));
-    const score = (a,b) => includes(a,b) ? 1 : similarity(a,b);
+    const includes = (a: string, b: string) =>
+        [[a,b], [b,a]].some(([c,d]) => c.startsWith(d) || c.endsWith(d));
+    const score = (a: string, b: string) => includes(a, b) ? 1 : similarity(a, b);
 
-    const firstNameScore = score(fa,fb);
-    const lastNameScore = score(la,lb);
+    const firstNameScore = score(fa, fb);
+    const lastNameScore = score(la, lb);
 
-    return (firstNameScore + lastNameScore)/2;
+    return (firstNameScore + lastNameScore) / 2;
 }
 
-const parseUserTitle = (title) => {
+function parseUserTitle(title: string) {
     return title.split(':')[0];
 }
 
-const parsePeriods = (fn, ln, title) => {
+function parsePeriods(firstName: string, lastName: string, title: string) {
     if (title.length === 0) return null;
     const periods = title.split('), ').map((str) => {
         // i regret everything.
         try {
-            const [className, period] = ((str) =>
-                [str.slice(0, str.lastIndexOf(':')), str.slice(str.lastIndexOf(':') + 1).match(/\(([0-9A-Z]+)/)[1]].map(str => str.trim())
-            )(str.slice(str.indexOf(":") + 1));
+            const parsed = str.slice(str.indexOf(":") + 1);
+            const [className, period] =
+                [parsed.slice(0, parsed.lastIndexOf(':')), parsed.slice(parsed.lastIndexOf(':') + 1)
+                    .match(/\(([0-9A-Z]+)/)![1]]
+                    .map(str => str.trim());
             return [className, period];
-        } catch(err) {
+        } catch (err) {
             throw `Something went wrong!`
         }
     }).filter(([className, period]) => className !== 'Tchr Asst');
 
-    const final = {};
+    const final: any = {};
     for (const period of periods) {
         const letter = parseInt(period[1]) === 9 ? 'P' : 
-            !isNaN(period[1][0]) || period[1] === "SELF" ? period[1][0]
+            !isNaN(Number(period[1][0])) || period[1] === "SELF" ? period[1][0]
             : null;
         if (letter) final[letter] = {"1": [period[0], ''], "2": [period[0], '']}
     }
@@ -142,7 +113,7 @@ const staffMatch = (staffA, staffB) => {
         }
     }
     
-    const total = scores.reduce((a,b) => a+b,0);
+    const total = scores.reduce((a, b) => a + b, 0);
     const score = total / denom;
     
     return score >= 0.8;
@@ -151,8 +122,7 @@ const staffMatch = (staffA, staffB) => {
 ;(async () => {
 
     // fetch from Gunn website
-    const data = await fetch.default(`https://gunn.pausd.org/connecting/staff-directory`);
-    const html = await data.text();
+    const html = await (await fetch(`https://gunn.pausd.org/connecting/staff-directory`)).text();
 
     // I would do this using regex but it wasn't rly working (?)
     const scraped = html.slice(html.indexOf("<tbody>") + "<tbody>".length, html.indexOf("</tbody>"));
@@ -171,14 +141,11 @@ const staffMatch = (staffA, staffB) => {
             if (!regexOut)
                 throw `There was an error! "${str}" not parsable!`
 
-            // console.log(regexOut);
-
             const {email, name, dept, phone} = regexOut.groups;
-
             return { email, name, dept, phone };
         });
 
-    let ParentSquareStaff = [];
+    let parentSquareStaff = [];
 
     for (const staff of raw.included) {
         if (staff.type !== "staff") continue;
@@ -191,15 +158,14 @@ const staffMatch = (staffA, staffB) => {
         const title = parseUserTitle(user_title);
         const periods = title === "Teacher" ? parsePeriods(first_name, last_name, user_title) : null;
 
-        ParentSquareStaff.push({
+        parentSquareStaff.push({
             name: `${first_name} ${last_name}`,
             title,
             periods: periods ?? undefined
         })
-        
     }
 
-    // fs.writeFileSync('../output/test.json', JSON.stringify(ParentSquareStaff));
+    // fs.writeFileSync('../output/test.json', JSON.stringify(parentSquareStaff));
 
     // PART 1 
     // MATCHING DATA FROM GUNN WEBSITE TO DATA IN PARENTSQUARE
@@ -211,11 +177,11 @@ const staffMatch = (staffA, staffB) => {
         const staff = gunnWebsiteStaff[i];
         
         // Step 1: Attempt to find matching pair in ParentSquare; however, this operation is limited by name.
-        let bestMatch = ParentSquareStaff[0];
+        let bestMatch = parentSquareStaff[0];
         let bestMatchIndex = 0;
         let exactMatch = false;
-        for (let j = 0; j < ParentSquareStaff.length; j++) {
-            const dopplegangerStaff = ParentSquareStaff[j];
+        for (let j = 0; j < parentSquareStaff.length; j++) {
+            const dopplegangerStaff = parentSquareStaff[j];
             if (dopplegangerStaff.name === staff.name) { // if exact match
                 exactMatch = true;
                 bestMatch = dopplegangerStaff;
@@ -231,7 +197,7 @@ const staffMatch = (staffA, staffB) => {
             // match!
 
             gunnWebsiteStaff.splice( i, 1 );
-            ParentSquareStaff.splice( bestMatchIndex, 1 );
+            parentSquareStaff.splice( bestMatchIndex, 1 );
 
             // staff and bestMatch should be MERGED
             const merged = {...staff, ...bestMatch};
@@ -244,7 +210,7 @@ const staffMatch = (staffA, staffB) => {
         }
     }
 
-    for (const staff of ParentSquareStaff) {
+    for (const staff of parentSquareStaff) {
         // the unmatched staff in Parent Square
         mergedData.push({...staff});
     }
@@ -285,8 +251,8 @@ const staffMatch = (staffA, staffB) => {
     }
 
     const str = JSON.stringify(FINAL, null, 4);
-    fs.writeFileSync('../input/staff.json', str);
-    fs.writeFileSync('../output/staff.json', str);
+    writeFileSync('../input/staff.json', str);
+    writeFileSync('../output/staff.json', str);
 })();
 
 

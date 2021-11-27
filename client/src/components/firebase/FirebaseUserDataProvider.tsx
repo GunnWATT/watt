@@ -36,8 +36,13 @@ export default function FirebaseUserDataProvider(props: FirebaseUserDataProvider
     // TODO: support merges
     useEffect(() => {
         if (status !== 'success') return;
-        updateFirebaseUserData('', deepmerge(defaultUserData, firebaseDoc.data()!), auth, firestore);
-        localStorage.setItem('data', JSON.stringify(firebaseDoc.data()));
+
+        const data = firebaseDoc.data();
+        if (!data) return console.error('[ERR] Firebase data nonexistent, cancelling merge'); // Try to prevent user data resetting
+
+        const merged = deepmerge(defaultUserData, data);
+        updateFirebaseUserData('', merged, auth, firestore);
+        localStorage.setItem('data', JSON.stringify(merged));
     }, [status])
 
     // preferably this would trigger every 15 minutes
