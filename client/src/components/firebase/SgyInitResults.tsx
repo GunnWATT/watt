@@ -65,7 +65,7 @@ export default function SgyInitResults() {
                 setResults(r);
             });
         }
-        return (() => {console.log('I am unmounted!!!!!')});
+        // return (() => {console.log('I am unmounted!!!!!')});
     }, [])
 
     const toggle = () => {
@@ -85,7 +85,7 @@ export default function SgyInitResults() {
     }
 
     return (
-        <Modal isOpen={sgyModal}>
+        <Modal isOpen={sgyModal} fade={false}>
             <ModalHeader>You're almost set! Just one last step remaining.</ModalHeader>
             <ModalBody>
                 <span>
