@@ -22,7 +22,6 @@ import {TimeProvider} from './contexts/CurrentTimeContext';
 
 // Firestore
 import {useAuth} from 'reactfire';
-import { fetchSgyMaterials } from './components/classes/Dashboard';
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
 

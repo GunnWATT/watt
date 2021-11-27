@@ -1,46 +1,183 @@
-import {Switch, Route, useRouteMatch, Link} from 'react-router-dom';
-import {Nav, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import moment from "moment";
+import React, { useContext, useEffect, useState } from "react";
+import CurrentTimeContext from "../contexts/CurrentTimeContext";
+import UserDataContext, { SgyData, SgyPeriodData, UserData } from "../contexts/UserDataContext";
+import SgySignInBtn from "../components/firebase/SgySignInBtn";
+import Loading from "../components/layout/Loading";
+import RedBackground from '../components/layout/RedBackground';
 
-// Components
-import Header from '../components/layout/Header';
-import WIP from '../components/layout/WIP';
-import NavTab from '../components/layout/NavTab';
+// firebase
+import { Functions, httpsCallable } from 'firebase/functions';
+import { useAuth, useFunctions } from "reactfire";
 
-// Firebase
+// views
 import Dashboard from '../components/classes/Dashboard';
+import { parsePeriodColor } from "../components/schedule/Periods";
 
+export const fetchSgyMaterials = (async (functions: Functions) => {
+    const fetchMaterials = httpsCallable(functions, 'sgyfetch-fetchMaterials');
+    localStorage.setItem('sgy-last-fetched', '' + Date.now()); // This redundancy is important!
+    const res = (await fetchMaterials());
+    // console.log(res);
+    localStorage.setItem('sgy-data', JSON.stringify(res.data));
+    localStorage.setItem('sgy-last-fetched', '' + Date.now());
+});
+
+export const findLastFetched = () => {
+    try {
+        return parseInt(localStorage.getItem('sgy-last-fetched') ?? '0')
+    } catch (err) {
+        return null;
+    }
+};
+
+// A wrapper that centers all the error messages
+const ClassesErrorBurrito = (props: { children?: React.ReactNode}) => {
+    return <> 
+        <div className="classes-error-burrito">
+            <div className="classes-error-content">
+                {props.children}
+            </div>
+        </div>
+    </>
+}
+
+const ClassesNotSignedIn = () => {
+    return (
+        <ClassesErrorBurrito>
+            <h2>You aren't signed in!</h2>
+            <p>Classes requires Schoology integration, which requires an account. Please sign in to continue.</p>
+        </ClassesErrorBurrito>
+    )
+}
+
+const ClassesSgyNotConnected = () => {
+    return (
+        <ClassesErrorBurrito>
+            <h2>Connect Schoology</h2>
+            <p>This section uses Schoology integration, which requires you to connect your Schoology account. Press the button below to continue.</p>
+            <div className='sgy-auth-button'>
+                <SgySignInBtn />
+            </div>
+        </ClassesErrorBurrito>
+    )
+}
+
+const ClassesDataMissing = (props: { lastFetched: number | null, fetchMaterials: () => void }) => {
+    const { lastFetched, fetchMaterials } = props;
+    // if it's fetching probably soon (within 60 secs of last fetch)
+    if (lastFetched && Date.now() - lastFetched < 1000 * 60) {
+        return <ClassesErrorBurrito>
+            <Loading message={'Fetching materials. This can take up to a minute...'} />
+        </ClassesErrorBurrito>
+    } else {
+        return (
+            <ClassesErrorBurrito>
+                <h2>Something Went Wrong.</h2>
+                <p>Your user data is missing! Please click the button below to fetch materials. If this is a recurring problem, please submit an issue to Github.</p>
+                <div className='sgy-auth-button'>
+                    <button onClick={fetchMaterials}>Fetch Materials</button>
+                </div>
+            </ClassesErrorBurrito>
+        )
+    }
+}
+
+const SidebarItem = (props:{collapsed:boolean, name: string, color:string, period:string, onClick:()=>void}) => {
+    const {collapsed,name,color,period,onClick} = props;
+
+    if(collapsed) {
+        return <div style={{ backgroundColor: color }} 
+            className={"classes-collapsed-sidebar-item"} 
+            onClick={onClick}>
+                {period}
+        </div>
+    }
+
+    return null;
+}
+
+const Sidebar = (props:{userData: UserData, setSelected:(selected:string)=>void }) => {
+
+    const {userData, setSelected} = props;
+
+    // collapsed?
+    const [collapsed, setCollapsed] = useState<boolean>(true);
+
+    // find classes from userData
+    const classes:{name:string, color:string, period:string}[] = [];
+
+    // All courses
+    classes.push({
+        name: "All Courses",
+        color: parsePeriodColor("default", userData), // lol it spits out the default color if it doesn't recognize the period name; kinda a hacky workaround
+        period: "A"
+    })
+
+    for (const p in userData.classes) {
+
+        // @ts-ignore
+        const course: SgyPeriodData = userData.classes[p];
+
+        if (course.s) {
+            const c = {
+                name: course.n,
+                color: parsePeriodColor(p, userData),
+                period: p
+            };
+            classes.push(c)
+        }
+    }
+
+    return <div className={"classes-sidebar"}> 
+        {classes.map(({name,color,period}) => <SidebarItem name={name} color={color} period={period} collapsed={collapsed} onClick={() => setSelected(period)} />)}
+    </div>
+}
 
 export default function Classes() {
-    let match = useRouteMatch();
 
+    const functions = useFunctions();
+    const auth = useAuth();
+
+    const userData = useContext(UserDataContext);
+    const time = useContext(CurrentTimeContext);
+
+    // Selected
+    const [selected, setSelected] = useState<string>('A');
+
+    // Raw Schoology Data
+    const [sgyData, setSgyData] = useState<null | SgyData>(null);
+
+    // Every time last fetched changes, fetch Schoology Data
+    const lastFetched = findLastFetched();
+    useEffect(() => {
+        try {
+            setSgyData(JSON.parse(localStorage.getItem('sgy-data') ?? 'null'));
+        } catch (err) {
+            setSgyData(null);
+            console.log(err);
+        }
+    }, [lastFetched])
+
+    // we are ok to go if: 1) we're signed in 2) the user enabled schoology 3) the sgy data exists
+    const ok = auth.currentUser && userData.options.sgy && sgyData != null;
+
+    // not ok :pnsv:
+    if(!ok) {
+        if (!auth.currentUser) return <ClassesNotSignedIn />
+
+        if (!userData.options.sgy) return <ClassesSgyNotConnected />
+
+        if (sgyData == null) return <ClassesDataMissing fetchMaterials={() => fetchSgyMaterials(functions)} lastFetched={lastFetched} />
+    }
+    
     return (
-        <>
-            <Header
-                heading="Classes"
-                nav={
-                    <Nav fill tabs>
-                        <NavTab to={match.url} name="Dashboard" exact/>
-                        <NavTab to={`${match.url}/courses`} name="Courses" />
-                    </Nav>
-                }
-            >
-                <Switch>
-                    <Route exact path={match.path} component={Dashboard} />
-                    <Route path={`${match.path}/courses`} component={WIP} />
-                </Switch>
-            </Header>
+        <div className={"classes-burrito"}>
+            <RedBackground />
+            <div className={"classes-content"}>
 
-            {/* Modal for not signed in users */}
-            {/*<Modal isOpen={true} centered>
-                <ModalHeader>You're not signed in!</ModalHeader>
-                <ModalBody>
-                    WATT needs your Schoology to be linked in order to get and display your grades and assignments.{' '}
-                    To link your Schoology, go to _____.
-                </ModalBody>
-                <ModalFooter>
-                    <Link to="/">I understand, go home</Link>
-                </ModalFooter>
-            </Modal>*/}
-        </>
+            </div>
+           <Sidebar userData={userData} setSelected={setSelected} />
+        </div>
     );
 }

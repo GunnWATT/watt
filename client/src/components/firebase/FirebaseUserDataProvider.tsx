@@ -1,14 +1,14 @@
 import {useEffect, ReactNode} from 'react';
-import {deepmerge} from './LocalStorageUserDataProvider';
+import {deepdifferences, deepmerge} from './LocalStorageUserDataProvider';
 
 // Firestore
 import {useAuth, useFirestore, useFirestoreDoc, useFunctions} from 'reactfire';
 import {doc} from 'firebase/firestore';
-import {updateFirebaseUserData} from '../../firebase/updateUserData';
+import {bulkUpdateFirebaseUserData, updateFirebaseUserData} from '../../firebase/updateUserData';
 
 // Context
 import {UserData, UserDataProvider, defaultUserData} from '../../contexts/UserDataContext';
-import { fetchSgyMaterials } from '../classes/Dashboard';
+import { fetchSgyMaterials } from '../../views/Classes';
 
 
 type FirebaseUserDataProviderProps = {children: ReactNode};
@@ -41,7 +41,8 @@ export default function FirebaseUserDataProvider(props: FirebaseUserDataProvider
         if (!data) return console.error('[ERR] Firebase data nonexistent, cancelling merge'); // Try to prevent user data resetting
 
         const merged = deepmerge(defaultUserData, data);
-        updateFirebaseUserData('', merged, auth, firestore);
+        const changes = deepdifferences(data, merged);
+        bulkUpdateFirebaseUserData(changes, auth, firestore);
         localStorage.setItem('data', JSON.stringify(merged));
     }, [status])
 

@@ -1,132 +1,134 @@
 @import '../mixins/content-box';
 
 .sgy-auth-button {
-    @include content-box($bg-color: var(--bg-primary));
+    @include content-box($bg-color: var(--bg-secondary));
     margin: 10px 0;
 }
 
-// dashboard
-.dashboard {
-    display:flex;
-    flex-direction: row;
-    height: 80vh;
-}
+// // dashboard
+// .dashboard {
+//     display:flex;
+//     flex-direction: row;
+//     height: 80vh;
+// }
 
-// dashboard class list thing
-.dashboard-class-list {
-    display: flex;
-    flex-direction: column;
-    // width: 30%;
-    padding: 5px;
-    margin: 5px;
-    align-items: center;
-    overflow-y: auto;
-    flex-basis: 30%;
-}
+// // dashboard class list thing
+// .dashboard-class-list {
+//     display: flex;
+//     flex-direction: column;
+//     // width: 30%;
+//     padding: 5px;
+//     margin: 5px;
+//     align-items: center;
+//     overflow-y: auto;
+//     flex-basis: 30%;
+// }
 
-// dashbaord course
-.dashboard-course {
-    width: 90%;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 7px;
-    font-size: 1.1em;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-right: 20px;
-    cursor: pointer;
-}
+// // dashbaord course
+// .dashboard-course {
+//     width: 90%;
+//     margin: 10px;
+//     padding: 10px;
+//     border-radius: 7px;
+//     font-size: 1.1em;
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     padding-right: 20px;
+//     cursor: pointer;
+// }
 
-$arrow-size: 18px;
-$arrow-thickness: 2.5px;
+// $arrow-size: 18px;
+// $arrow-thickness: 2.5px;
 
-// CSS ::after hack to make arrows using borders and rotate(45deg)
-.dashboard-course::after {
-    content: "";
-    margin-left: auto;
-    height: $arrow-size;
-    width: $arrow-size;
-    transform: rotate(45deg);
-    border-top: $arrow-thickness solid black;
-    border-right: $arrow-thickness solid black;
-}
+// // CSS ::after hack to make arrows using borders and rotate(45deg)
+// .dashboard-course-arrow {
+//     content: "";
+//     margin-left: auto;
+//     height: $arrow-size;
+//     width: $arrow-size;
+//     transform: rotate(45deg);
+//     border-top-style: solid;
+//     border-top-width: $arrow-thickness;
+//     border-right-style: solid;
+//     border-right-width: $arrow-thickness;
+// }
 
-// Dashboard info
-.dashboard-class-info {
-    padding: 10px;
-    @include content-box($bg-color: var(--bg-primary));
-    flex-grow: 1;
-    margin: 5px;
-    padding: 30px;
-    overflow-y: scroll;
-    flex-basis: 70%;
-}
+// // Dashboard info
+// .dashboard-class-info {
+//     padding: 10px;
+//     @include content-box($bg-color: var(--bg-primary));
+//     flex-grow: 1;
+//     margin: 5px;
+//     padding: 30px;
+//     overflow-y: scroll;
+//     flex-basis: 70%;
+// }
 
-.dashboard-class-header {
-    display: flex;
-    flex-direction: row;
-    font-size: 1.3rem;
-    align-items: center;
-    margin-bottom: 20px;
-}
+// .dashboard-class-header {
+//     display: flex;
+//     flex-direction: row;
+//     font-size: 1.3rem;
+//     align-items: center;
+//     margin-bottom: 20px;
+// }
 
-.dashboard-class-title {
-    font-size: 1.3rem;
-    flex-grow: 5;
-}
+// .dashboard-class-title {
+//     font-size: 1.3rem;
+//     flex-grow: 5;
+// }
 
-.dashboard-class-grade {
-    // margin-left: 50%;
-    margin-left: auto;
-    margin-right: 15px;
-}
+// .dashboard-class-grade {
+//     // margin-left: 50%;
+//     margin-left: auto;
+//     margin-right: 15px;
+// }
 
-.dashboard-class-link {
-    width: 30px;
-    height: 30px;
-    margin-left: auto;
-}
+// .dashboard-class-link {
+//     width: 30px;
+//     height: 30px;
+//     margin-left: auto;
+// }
 
-@mixin dashboard-header($color: #ccc) {
-    padding: 10px;
-    border: 2px solid $color;
-    border-radius: 5px;
-    font-size: 1.1em;
-}
+// @mixin dashboard-header($color: #ccc) {
+//     padding: 10px;
+//     border: 2px solid $color;
+//     border-radius: 5px;
+//     font-size: 1.1em;
+// }
 
-// Warnings
-.dashboard-warnings {
-    margin-bottom: 20px;
-}
+// // Warnings
+// .dashboard-warnings {
+//     margin-bottom: 20px;
+// }
 
-.dashboard-warnings-header {
-    @include dashboard-header($color: var(--active));
-    margin-bottom: 20px;
-}
+// .dashboard-warnings-header {
+//     @include dashboard-header($color: var(--active));
+//     margin-bottom: 20px;
+// }
 
-.dashboard-warnings-list {
-    list-style-type: none;
-}
+// .dashboard-warnings-list {
+//     list-style-type: none;
+// }
 
-.dashboard-warnings-list li::before {
-    content: "MISSING: "
-}
+// .dashboard-warnings-list li::before {
+//     content: "MISSING: "
+// }
 
-// Upcoming
-.dashboard-upcoming-header {
-    @include dashboard-header();
-}
+// // Upcoming
+// .dashboard-upcoming-header {
+//     @include dashboard-header();
+// }
 
-.dashboard-upcoming-container {
-    padding: 15px;
-}
+// .dashboard-upcoming-container {
+//     padding: 15px;
+// }
 
-.dashboard-upcoming-list {
-    list-style-type: none;
-}
+// .dashboard-upcoming-list {
+//     list-style-type: none;
+// }
 
-.dashboard-upcoming-day-header {
-    margin-bottom: 5px;
-    font-size: 1.05em;
-}
+// .dashboard-upcoming-day-header {
+//     margin-bottom: 5px;
+//     font-size: 1.05em;
+// }

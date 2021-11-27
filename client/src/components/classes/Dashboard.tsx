@@ -2,7 +2,7 @@ import moment from "moment";
 import React, { useContext, useEffect, useState } from "react";
 import linkimg from '../../assets/link.png';
 import CurrentTimeContext from "../../contexts/CurrentTimeContext";
-import UserDataContext, { SgyData, SgyPeriodData } from "../../contexts/UserDataContext";
+import UserDataContext, { SgyData, SgyPeriodData, UserData } from "../../contexts/UserDataContext";
 
 import { Assignment, Event } from "../../schoology/SgyTypes";
 import SgySignInBtn from "../firebase/SgySignInBtn";
@@ -10,6 +10,7 @@ import Loading from "../layout/Loading";
 import { parsePeriodColor } from "../schedule/Periods";
 import { Functions, httpsCallable } from 'firebase/functions';
 import { useAuth, useFunctions } from "reactfire";
+import { fetchSgyMaterials } from "../../views/Classes";
 
 type dashboardCourse = {
     name: string;
@@ -30,14 +31,61 @@ type dashboardUpcomingDay = {
     upcoming: dashboardAssi[];
 }
 
-export const fetchSgyMaterials = (async (functions: Functions) => {
-    const fetchMaterials = httpsCallable(functions, 'sgyfetch-fetchMaterials');
-    localStorage.setItem('sgy-last-fetched', '' + Date.now()); // This redundancy is important!
-    const res = (await fetchMaterials());
-    console.log(res);
-    localStorage.setItem('sgy-data', JSON.stringify(res.data));
-    localStorage.setItem('sgy-last-fetched', '' + Date.now());
-});
+const DashboardSidebarCourse = (props:{name:string, period:string, setSelected: (s:string)=>void, color:string, userData:UserData }) => {
+    const {name,period, setSelected, color,userData} = props;
+    return <> 
+        <div key={name} onClick={() => setSelected(period)} className="dashboard-course" style={{ backgroundColor: color }}>
+            {name}
+            <div className="dashboard-course-arrow" style={userData.options.theme === "light" ? {
+                borderColor: "black"
+            } : {
+                borderColor: "white"
+            }}></div>
+        </div>
+        
+    </>
+}
+
+const DashboardNotSignedIn = () => {
+    return (
+        <>
+            <h2>You aren't signed in!</h2>
+            <p>Please sign in to continue.</p>
+        </>
+    )
+}
+
+const DashboardSgyNotConnected = () => {
+    return (
+        <>
+            <h2>Connect Schoology</h2>
+            <p>This section uses Schoology integration, which requires you to connect your Schoology account. Press the button below to continue.</p>
+            <div className='sgy-auth-button'>
+                <SgySignInBtn />
+            </div>
+        </>
+    )
+}
+
+const DashboardDataMissing = (props:{lastFetched:number|null, fetchMaterials:()=>void} ) => {
+    const {lastFetched, fetchMaterials} = props;
+    // if it's fetching probably soon (within 60 secs of last fetch)
+    if (lastFetched && Date.now() - lastFetched < 1000 * 60) {
+        return (
+            <Loading message={'Fetching materials. This can take up to a minute...'} />
+        )
+    } else {
+        return (
+            <>
+                <h2>Something Went Wrong.</h2>
+                <p>Your user data is missing! Please click the button below to fetch materials. If this is a recurring problem, please submit an issue to Github.</p>
+                <div className='sgy-auth-button'>
+                    <button onClick={fetchMaterials}>Fetch Materials</button>
+                </div>
+            </>
+        )
+    }
+}
 
 const Dashboard = (props: {}) => {
 
@@ -83,7 +131,7 @@ const Dashboard = (props: {}) => {
                 let selectedCourseGrades = sgyData.grades.find(sec => sec.section_id === selectedCourse.info.id);
 
                 if(!selectedCourseGrades) {
-                    // they do this quirky and uwu thing where THEY CHANGE THE FRICKIN ID
+                    // they do this quirky and uwu thing where THEY CHANGE THE ID
                     for(const course in sgyData.grades) {
                         if(sgyData.grades[course].period[0].assignment.length > 0) {
                             const assiToFind = sgyData.grades[course].period[0].assignment.find(assignment => assignment.type === 'assignment');
@@ -173,45 +221,11 @@ const Dashboard = (props: {}) => {
         
     }, [sgyData, selected])
 
-    if (!auth.currentUser) {
-        return (
-            <div>
-                <h2>You aren't signed in!</h2>
-                <p>Please sign in to continue.</p>
-            </div>
-        )
-    }
+    if (!auth.currentUser) return <DashboardNotSignedIn />
 
-    if(!userData.options.sgy) {
-        return (
-            <div>
-                <h2>Connect Schoology</h2>
-                <p>This section uses Schoology integration, which requires you to connect your Schoology account. Press the button below to continue.</p>
-                <div className='sgy-auth-button'> 
-                    <SgySignInBtn />
-                </div>
-            </div>
-        )
-    }
+    if(!userData.options.sgy) return <DashboardSgyNotConnected />
 
-    if(sgyData == null) {
-        // if it's fetching probably soon (within 60 secs of last fetch)
-        if (lastFetched && Date.now() - lastFetched < 1000 * 60) {
-            return (
-                <Loading message={'Fetching materials. This can take up to a minute...'} />
-            )
-        } else {
-            return (
-                <div>
-                    <h2>Something Went Wrong.</h2>
-                    <p>Your user data is missing! Please click the button below to fetch materials. If this is a recurring problem, please submit an issue to Github.</p>
-                    <div className='sgy-auth-button'>
-                        <button onClick={() => fetchSgyMaterials(functions)}>Fetch Materials</button>
-                    </div>
-                </div>
-            )
-        }
-    }
+    if(sgyData == null) return <DashboardDataMissing fetchMaterials={() => fetchSgyMaterials(functions)} lastFetched={lastFetched} />
 
     // console.log(sgyData.grades);
 
@@ -241,7 +255,7 @@ const Dashboard = (props: {}) => {
             <div className="dashboard-class-list">
                 <div onClick={() => setSelected('ALL')} className="dashboard-course" style={{ backgroundColor: "#bbbbbb" }}>All Classes</div>
                 {classesArray.map(({ name, color, period }) => {
-                    return <div key={name} onClick={() => setSelected(period)} className="dashboard-course" style={{ backgroundColor: color }}>{name}</div>;
+                    return <DashboardSidebarCourse name={name} color={color} period={period} setSelected={setSelected} userData={userData} />
                 })}
             </div>
             <div className="dashboard-class-info">
