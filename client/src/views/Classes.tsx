@@ -83,7 +83,7 @@ const ClassesDataMissing = (props: { lastFetched: number | null, fetchMaterials:
     }
 }
 
-const SidebarItem = (props:{collapsed:boolean, name: string, color:string, period:string, onClick:()=>void}) => {
+const ClassesSidebarItem = (props:{collapsed:boolean, name: string, color:string, period:string, onClick:()=>void}) => {
     const {collapsed,name,color,period,onClick} = props;
 
     if(collapsed) {
@@ -97,15 +97,9 @@ const SidebarItem = (props:{collapsed:boolean, name: string, color:string, perio
     return null;
 }
 
-const Sidebar = (props:{userData: UserData, setSelected:(selected:string)=>void }) => {
-
-    const {userData, setSelected} = props;
-
-    // collapsed?
-    const [collapsed, setCollapsed] = useState<boolean>(true);
-
+export const findClassesList = (userData:UserData) => {
     // find classes from userData
-    const classes:{name:string, color:string, period:string}[] = [];
+    const classes: { name: string, color: string, period: string }[] = [];
 
     // All courses
     classes.push({
@@ -129,8 +123,51 @@ const Sidebar = (props:{userData: UserData, setSelected:(selected:string)=>void 
         }
     }
 
+    return classes;
+}
+
+const ClassesSidebar = (props:{userData: UserData, setSelected:(selected:string)=>void }) => {
+
+    const {userData, setSelected} = props;
+
+    // collapsed?
+    const [collapsed, setCollapsed] = useState<boolean>(true);
+
+    const classes = findClassesList(userData);
+
     return <div className={"classes-sidebar"}> 
-        {classes.map(({name,color,period}) => <SidebarItem name={name} color={color} period={period} collapsed={collapsed} onClick={() => setSelected(period)} />)}
+        {classes.map(({name,color,period}) => <ClassesSidebarItem name={name} color={color} period={period} collapsed={collapsed} onClick={() => setSelected(period)} />)}
+    </div>
+}
+
+const ClassesHeader = (props:{userData:UserData, selected:string}) => {
+    const {userData, selected} = props;
+    const classInfo = findClassesList(userData).find(({period}) => period === selected);
+
+    const {name, color} = classInfo!; // lol this is fine
+
+    return <div className="classes-header">
+        <div className="classes-header-bubble" style={{backgroundColor:color}}></div>
+        <div className="classes-header-text">{name}</div>
+    </div>
+}
+
+const ClassesNavBarItem = (props:{selected:boolean, onClick:()=>void, text:string}) => {
+    const {selected,onClick,text} = props;
+    return <div onClick={onClick} className={selected ? "classes-navbar-item-selected" : "classes-navbar-item"}>
+        {text}
+    </div>
+}
+
+const ClassesNavBar = (props:{view: number, setView:(view:number)=>void}) => {
+
+    const {view, setView} = props;
+    const views = ["Dashboard", "Upcoming", "Materials"]
+
+    return <div className={"classes-navbar"}>
+        {views.map((name, index) => 
+            <ClassesNavBarItem selected={index===view} text={name} onClick={() => setView(index)} />
+        )}
     </div>
 }
 
@@ -144,6 +181,13 @@ export default function Classes() {
 
     // Selected
     const [selected, setSelected] = useState<string>('A');
+
+    // Selected View
+    // 0 - dashboard
+    // 1 - upcoming
+    // 2 - materials
+    // possible 3 - tasks
+    const [view, setView] = useState(0);
 
     // Raw Schoology Data
     const [sgyData, setSgyData] = useState<null | SgyData>(null);
@@ -175,9 +219,12 @@ export default function Classes() {
         <div className={"classes-burrito"}>
             <RedBackground />
             <div className={"classes-content"}>
+                <ClassesHeader selected={selected} userData={userData} />
+                <ClassesNavBar view={view} setView={setView} />
 
+                <Dashboard selected={selected} sgyData={sgyData} />
             </div>
-           <Sidebar userData={userData} setSelected={setSelected} />
+           <ClassesSidebar userData={userData} setSelected={setSelected} />
         </div>
     );
 }

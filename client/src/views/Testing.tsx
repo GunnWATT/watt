@@ -105,9 +105,6 @@ export default function Testing() {
             <div className="auth-test">
                 <SgySignInBtn/>
             </div>
-            <div className="dashboard-test">
-                <Dashboard/>
-            </div>
             <div className="colorpicker-test">
                 <div style={{backgroundColor: color}}>
                     <Row>

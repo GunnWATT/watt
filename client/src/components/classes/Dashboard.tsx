@@ -4,306 +4,286 @@ import linkimg from '../../assets/link.png';
 import CurrentTimeContext from "../../contexts/CurrentTimeContext";
 import UserDataContext, { SgyData, SgyPeriodData, UserData } from "../../contexts/UserDataContext";
 
-import { Assignment, Event } from "../../schoology/SgyTypes";
-import SgySignInBtn from "../firebase/SgySignInBtn";
-import Loading from "../layout/Loading";
 import { parsePeriodColor } from "../schedule/Periods";
 import { Functions, httpsCallable } from 'firebase/functions';
 import { useAuth, useFunctions } from "reactfire";
-import { fetchSgyMaterials } from "../../views/Classes";
+import { fetchSgyMaterials, findClassesList } from "../../views/Classes";
 
-type dashboardCourse = {
-    name: string;
-    color: string;
-    link: string;
-    grade: string;
-    period: string;
-}
-
-type dashboardAssi = {
+type DashboardAssignment = {
     name: string;
     link: string;
     timestamp: moment.Moment;
+    description:string;
+    period: string;
 }
 
-type dashboardUpcomingDay = {
-    day: string;
-    upcoming: dashboardAssi[];
-}
-
-const DashboardSidebarCourse = (props:{name:string, period:string, setSelected: (s:string)=>void, color:string, userData:UserData }) => {
-    const {name,period, setSelected, color,userData} = props;
-    return <> 
-        <div key={name} onClick={() => setSelected(period)} className="dashboard-course" style={{ backgroundColor: color }}>
-            {name}
-            <div className="dashboard-course-arrow" style={userData.options.theme === "light" ? {
-                borderColor: "black"
-            } : {
-                borderColor: "white"
-            }}></div>
-        </div>
-        
-    </>
-}
-
-const DashboardNotSignedIn = () => {
-    return (
-        <>
-            <h2>You aren't signed in!</h2>
-            <p>Please sign in to continue.</p>
-        </>
-    )
-}
-
-const DashboardSgyNotConnected = () => {
-    return (
-        <>
-            <h2>Connect Schoology</h2>
-            <p>This section uses Schoology integration, which requires you to connect your Schoology account. Press the button below to continue.</p>
-            <div className='sgy-auth-button'>
-                <SgySignInBtn />
-            </div>
-        </>
-    )
-}
-
-const DashboardDataMissing = (props:{lastFetched:number|null, fetchMaterials:()=>void} ) => {
-    const {lastFetched, fetchMaterials} = props;
-    // if it's fetching probably soon (within 60 secs of last fetch)
-    if (lastFetched && Date.now() - lastFetched < 1000 * 60) {
-        return (
-            <Loading message={'Fetching materials. This can take up to a minute...'} />
-        )
-    } else {
-        return (
-            <>
-                <h2>Something Went Wrong.</h2>
-                <p>Your user data is missing! Please click the button below to fetch materials. If this is a recurring problem, please submit an issue to Github.</p>
-                <div className='sgy-auth-button'>
-                    <button onClick={fetchMaterials}>Fetch Materials</button>
-                </div>
-            </>
-        )
-    }
-}
-
-const Dashboard = (props: {}) => {
-
-    const functions = useFunctions();
-    const auth = useAuth();
-
-
+const UpcomingQuickCalDot = (props: {course:string}) => {
     const userData = useContext(UserDataContext);
+    return <div className="upcoming-blurb-qc-dot" style={{backgroundColor:parsePeriodColor(props.course, userData)}}></div>
+}
+
+const UpcomingQuickCalDay = (props: { day: moment.Moment, upcoming: DashboardAssignment[]}) => {
+
+    const { day, upcoming } = props;
+
+    const weekdays = ['U', 'M', 'T', 'W', 'θ', 'F', 'S']
+
+    const relevantAssigments = upcoming.filter((a) => a.timestamp.dayOfYear() === day.dayOfYear());
+
+    return <div className="upcoming-blurb-qc-day">
+        <div className="upcoming-blurb-qc-day-num">{weekdays[day.weekday()]} • {day.date()}</div>
+        <div className="upcoming-blurb-qc-dots">
+            {relevantAssigments.map((a) => <UpcomingQuickCalDot course={a.period} />)}
+        </div>
+    </div>
+}
+
+const UpcomingQuickCal = (props: { upcoming: DashboardAssignment[] }) => {
+    const {upcoming} = props;
     const time = useContext(CurrentTimeContext);
+    let mutableTime = moment(time);
+    const days = [];
+    for(let i = 0; i < 7; i++) {
+        days.push(moment(mutableTime));
+        mutableTime.add(1, "days");
+    }
 
-    // Selected
-    const [selected, setSelected] = useState<string>('ALL');
-    
-    const [sgyData, setSgyData] = useState<null|SgyData>(null);
+    return <div className="upcoming-blurb-quick-cal">
+        {days.map((day) => <UpcomingQuickCalDay day={day} upcoming={upcoming} />)}
+    </div>
+}
 
-    const [warnings, setWarnings] = useState<dashboardAssi[]>([]);
-    const [upcoming, setUpcoming] = useState<dashboardUpcomingDay[]>([]);
-    const [courseGrade, setCourseGrade] = useState<null|string>(null);
+const UBAssignment = (props:{name:string, due:string, period:string}) => {
+    const {name,due,period} = props;
+    const userData = useContext(UserDataContext);
+    return <div className="ub-assignment">
+        <div className="ub-assignment-dot" style={{backgroundColor: parsePeriodColor(period,userData)}}></div>
+        <div className="ub-assignment-content">
+            <div className="up-assignment-title">{name}</div>
+            <div className="up-assignment-due">{due}</div>
+        </div>
+    </div>
+}
 
-    const lastFetched = (() => {
-        try {
-            return parseInt(localStorage.getItem('sgy-last-fetched') ?? '0')
-        } catch (err) {
-            return null;
-        }
-    })();
+const UBAssignments = (props: { upcoming: DashboardAssignment[] }) => {
 
-    useEffect(() => {
-        try {
-            setSgyData(JSON.parse(localStorage.getItem('sgy-data') ?? 'null'));
-        } catch(err) {
-            setSgyData(null);
-            console.log(err);
-        }
-    }, [lastFetched])
+    const upcoming = props.upcoming.slice(0,5); // only display up to 5
 
-    useEffect(() => {
-        if(auth.currentUser && sgyData) {
-            if (selected === 'ALL') {
-                // big case
-            } else {
-                const selectedCourse = sgyData[selected];
-                let selectedCourseGrades = sgyData.grades.find(sec => sec.section_id === selectedCourse.info.id);
+    return <div>
+        {/* <UBAssignment name={"Activity Series of Metals Lab - Get your document here"} due={"Wednesday, December 1st • In 5 days"} />
+        {Array(2).fill(<UBAssignment name={"e"} due={"Wednesday, December 1st • In 5 days"} />)} */}
 
-                if(!selectedCourseGrades) {
-                    // they do this quirky and uwu thing where THEY CHANGE THE ID
-                    for(const course in sgyData.grades) {
-                        if(sgyData.grades[course].period[0].assignment.length > 0) {
-                            const assiToFind = sgyData.grades[course].period[0].assignment.find(assignment => assignment.type === 'assignment');
-                            if(assiToFind && selectedCourse.assignments.find(assi => assi.id === assiToFind.assignment_id)) {
-                                // BANANA
-                                selectedCourseGrades = sgyData.grades[course];
-                                break;
-                            }
-                        }
-                    }
+        {upcoming.map((a) => <UBAssignment name={a.name} due={`${a.timestamp.format("dddd, MMMM Do")} • ${a.timestamp.fromNow()}`} period={a.period} />)}
+        <div className="ub-upcoming-redirect"><div>See More in Upcoming</div></div>
+    </div>
+}
+
+const UpcomingBlurb = (props:{upcoming: DashboardAssignment[]}) => {
+
+    const {upcoming} = props;
+
+    const time = useContext(CurrentTimeContext);
+    const inAWeek = moment(time).add(7, 'days');
+    const assignmentsNextWeek = upcoming.filter((assi) => assi.timestamp.isBefore(inAWeek));
+
+    return <div className="upcoming-blurb">
+        <div className="dashboard-header">Upcoming • Blurb</div>
+        <div>You have {assignmentsNextWeek.length} assignment{assignmentsNextWeek.length === 1 ? "" : "s"} due in the next week.</div>
+
+        <UpcomingQuickCal upcoming={upcoming} />
+        <UBAssignments upcoming={upcoming} />
+    </div>
+}
+
+const DashLeftSection = (props: { upcoming: DashboardAssignment[] | null } ) => {
+    return <div className="dashboard-section dashboard-section-left">
+        {props.upcoming != null ? <UpcomingBlurb upcoming={props.upcoming} /> : null}
+    </div>
+}
+const DashRightSection = () => {
+    return <div className="dashboard-section dashboard-section-right">
+
+    </div>
+}
+
+const findGrades = (sgyData: SgyData, selected: string) => {
+    const selectedCourse = sgyData[selected];
+    // Attempt to match the id of the selected course to the id in the course grades
+    let selectedCourseGrades = sgyData.grades.find(sec => sec.section_id === selectedCourse.info.id);
+
+    if(!selectedCourseGrades) {
+        // they do this quirky and uwu thing where THEY CHANGE THE ID
+
+        // the way we match this is by searching through the courses and seeing if the assignments match up, which is so stupid that it works
+        for(const course in sgyData.grades) {
+            if(sgyData.grades[course].period[0].assignment.length > 0) {
+                const assiToFind = sgyData.grades[course].period[0].assignment.find(assignment => assignment.type === 'assignment');
+                if(assiToFind && selectedCourse.assignments.find(assi => assi.id === assiToFind.assignment_id)) {
+                    // BANANA
+                    selectedCourseGrades = sgyData.grades[course];
+                    break;
                 }
-
-                setCourseGrade(null);
-                if(selectedCourseGrades) {
-                    setCourseGrade('' + selectedCourseGrades.final_grade[0].grade);
-                }
-
-                // console.log({selectedCourseGrades}, sgyData.grades.map(grade => { return { grade: grade.final_grade[0].grade, id: grade.section_id, thing: grade.period[0].assignment[0]}}));
-
-                const newUpcoming:dashboardUpcomingDay[] = [];
-                const overdue: dashboardAssi[] = [];
-
-                const upcomingMap = new Map<string, dashboardAssi[]>();
-                for (const item of selectedCourse.assignments) {
-                    // console.log(item.title, item.grade_stats);
-                    if(item.due.length > 0) {
-                        const due = moment(item.due);
-                        const formatted = due.format('MM-DD-YYYY');
-                        // console.log(formatted, due.isAfter(time));
-                        if(due.isAfter(time)) {
-                            const assi: dashboardAssi = {
-                                name: item.title,
-                                link: `https://pausd.schoology.com/assignment/${item.id}`,
-                                timestamp: moment(item.due)
-                            }
-                            if(upcomingMap.has(formatted)) upcomingMap.get(formatted)?.push(assi);
-                            else upcomingMap.set(formatted, [assi]);
-                        } else {
-                            if(selectedCourseGrades) {
-                                let found = false;
-                                for(const period of selectedCourseGrades.period) {
-                                    for(const assi of period.assignment) {
-                                        if(assi.assignment_id === item.id) {
-                                            found = true;
-                                        } 
-                                    }
-                                }
-
-                                if(!found) {
-                                    overdue.push({
-                                        name: item.title,
-                                        link: `https://pausd.schoology.com/assignment/${item.id}`,
-                                        timestamp: moment(item.due)
-                                    });
-                                }
-                            }
-                        }
-                    }
-                }
-                
-                for (const item of selectedCourse.events) {
-                    // console.log(item.assignment_id);
-                    const due = moment(item.start);
-                    const formatted = due.format('MM-DD-YYYY');
-                    if (due.isAfter(time) && !item.assignment_id) {
-                        const assi: dashboardAssi = {
-                            name: item.title,
-                            link: `https://pausd.schoology.com/event/${item.id}`,
-                            timestamp: moment(item.start)
-                        }
-                        if (upcomingMap.has(formatted)) upcomingMap.get(formatted)?.push(assi);
-                        else upcomingMap.set(formatted, [assi]);
-                    }
-                }
-
-                for(const day of upcomingMap.keys()) {
-                    newUpcoming.push({
-                        day: day,
-                        upcoming: upcomingMap.get(day)!
-                    })
-                }
-
-                setUpcoming(newUpcoming);
-                setWarnings(overdue);
             }
         }
+    }
+
+    return selectedCourseGrades || null;
+
+}
+
+const momentComparator = (a:moment.Moment, b:moment.Moment) => {
+    if(a.isBefore(b)) {
+        return -1;
+    }
+    if(a.isAfter(b)) {
+        return 1;
+    }
+    return 0;
+}
+
+const getUpcomingInfo = (sgyData:SgyData, selected:string, userData: UserData, time:moment.Moment) => {
+
+    if(selected === 'A') {
+        const upcoming: DashboardAssignment[]  = [];
+        const overdue: DashboardAssignment[] = [];
+        const grades: {[key:string]:number} = {};
+
+        const classes = findClassesList(userData);
+
+        for(const c of classes) {
+            if(c.period === "A") continue;
+            const courseStuff = getUpcomingInfo(sgyData, c.period, userData, time);
+            if(courseStuff) {
+                upcoming.push(...courseStuff.upcoming);
+                overdue.push(...courseStuff.overdue);
+                if(courseStuff.finalGrade) grades[c.period] = courseStuff.finalGrade;
+            }
+        }
+
+        upcoming.sort((a,b) => momentComparator(a.timestamp,b.timestamp));
+        overdue.sort((a, b) => momentComparator(a.timestamp, b.timestamp));
         
-    }, [sgyData, selected])
+        return {upcoming, overdue, grades}; 
+    }
 
-    if (!auth.currentUser) return <DashboardNotSignedIn />
+    // Select the course
+    const selectedCourse = sgyData[selected];
+    const selectedCourseGrades = findGrades(sgyData,selected); // find the grades
 
-    if(!userData.options.sgy) return <DashboardSgyNotConnected />
+    const upcoming: DashboardAssignment[] = [];
+    const overdue: DashboardAssignment[] = [];
 
-    if(sgyData == null) return <DashboardDataMissing fetchMaterials={() => fetchSgyMaterials(functions)} lastFetched={lastFetched} />
+    // search thru assignments
+    for (const item of selectedCourse.assignments) {
+        // console.log(item.title, item.grade_stats);
+        if(item.due.length > 0) { // if it's actually due
 
-    // console.log(sgyData.grades);
+            const due = moment(item.due);
 
-    // Mock array
-    const classesArray: dashboardCourse[] = [];
-    const classesObj: {[key:string]: dashboardCourse} = {};
-    for(const p in userData.classes) {
+            if(due.isAfter(time)) { // if it's due after right now
 
-        // @ts-ignore
-        const course:SgyPeriodData = userData.classes[p];
-        
-        if(course.s)  {
-            const c = {
-                name: course.n,
-                color: parsePeriodColor(p, userData),
-                link: `https://pausd.schoology.com/course/${course.s}/materials`,
-                grade: 'B+',
-                period: p
-            };
-            classesArray.push(c)
-            classesObj[p] = c;
+                // format the assignment
+                const assi: DashboardAssignment = {
+                    name: item.title,
+                    description: item.description,
+                    link: `https://pausd.schoology.com/assignment/${item.id}`,
+                    timestamp: moment(item.due),
+                    period: selected
+                }
+                upcoming.push(assi);
+            } else {
+                // check if it's overddue
+                if(selectedCourseGrades) {
+                    let found = false;
+                    for(const period of selectedCourseGrades.period) {
+                        for(const assi of period.assignment) {
+                            if(assi.assignment_id === item.id) {
+                                found = true;
+                            } 
+                        }
+                    }
+
+                    if(!found) {
+                        overdue.push({
+                            name: item.title,
+                            description: item.description,
+                            link: `https://pausd.schoology.com/assignment/${item.id}`,
+                            timestamp: moment(item.due),
+                            period: selected
+                        });
+                    }
+                }
+            }
         }
     }
 
-    return (
-        <div className="dashboard">
-            <div className="dashboard-class-list">
-                <div onClick={() => setSelected('ALL')} className="dashboard-course" style={{ backgroundColor: "#bbbbbb" }}>All Classes</div>
-                {classesArray.map(({ name, color, period }) => {
-                    return <DashboardSidebarCourse name={name} color={color} period={period} setSelected={setSelected} userData={userData} />
-                })}
-            </div>
-            <div className="dashboard-class-info">
-                {selected === 'ALL' ?
-                    <div className="dashboard-class-header">
-                        <div className="dashboard-class-title">All Classes</div>
-                    </div>
-                    :
-                    <div className="dashboard-class-header">
-                        <div className="dashboard-class-title">{classesObj[selected].name}</div>
-                        {/* a B?? :hypereyes: */}
-                        <div className="dashboard-class-grade">{courseGrade}</div>
-                        <a href={classesObj[selected].link} target="_blank" rel="noopener noreferrer"><img style={userData.options.theme === 'dark' ? {
-                            filter: 'invert(1)'
-                        } : {}} src={linkimg} className="dashboard-class-link"/></a>
-                    </div>
-                }
+    // do the same for events
+    for (const item of selectedCourse.events) {
+        const due = moment(item.start);
+
+        if (due.isAfter(time) && !item.assignment_id) {
+            const assi: DashboardAssignment = {
+                name: item.title,
+                description: item.description,
+                link: `https://pausd.schoology.com/event/${item.id}`,
+                timestamp: moment(item.start),
+                period: selected
+            }
+            upcoming.push(assi);
+        }
+    }
+
+    upcoming.sort((a, b) => momentComparator(a.timestamp, b.timestamp));
+    overdue.sort((a, b) => momentComparator(a.timestamp, b.timestamp));
+
+    const finalGrade = selectedCourseGrades ? selectedCourseGrades.final_grade[0].grade : null;
+    
+    return {upcoming, overdue, finalGrade};
+}
+
+const Dashboard = (props: {sgyData: SgyData, selected: string}) => {
+
+    const {sgyData, selected} = props;
+    const time = useContext(CurrentTimeContext);
+
+    const [upcoming, setUpcoming] = useState < DashboardAssignment[] | null > (null);
+    const [overdue, setOverdue] = useState<DashboardAssignment[] | null> (null);
+    // const [grades, setGrades] = useState<null> (null);
+
+    const userData = useContext(UserDataContext);
+
+    useEffect(() => {
+        const info = (getUpcomingInfo(sgyData, selected, userData, time));
+
+        setUpcoming(info.upcoming);
+        setOverdue(info.overdue);
+
+    }, [selected])
+    // // Mock array
+    // const classesArray: dashboardCourse[] = [];
+    // const classesObj: {[key:string]: dashboardCourse} = {};
+    // for(const p in userData.classes) {
+
+    //     // @ts-ignore
+    //     const course:SgyPeriodData = userData.classes[p];
         
-                {warnings.length > 0
-                ? <div className="dashboard-warnings">
-                    <div className="dashboard-warnings-header">Warnings</div>
-                    <ul className="dashboard-warnings-list">
-                        {
-                            warnings.map(({ name, link }) => <li key={name + link}><a href={link} target="_blank" rel="noopener noreferrer">{name}</a></li>)
-                        }
-                    </ul>
-                </div>
-                : null}
-                <div className="dashboard-upcoming">
-                    <div className="dashboard-upcoming-header">Upcoming</div>
-                    <div className="dashboard-upcoming-container">
-                        {
-                            upcoming.map(({ day, upcoming }) => {
-                                const mDay = moment(day);
-                                const formattedDay = mDay.format('dddd, MMMM Do, YYYY') + ' • ' + (mDay.diff(time.startOf('day'), 'days') > 0 ? `In ${mDay.diff(time.startOf('day'), 'days')} Days` : `Today`);
-                                return (
-                                    <div className="dashboard-upcoming-day" key={day}>
-                                        <div className="dashboard-upcoming-day-header">{formattedDay}</div>
-                                        <ul className="dashboard-upcoming-list">
-                                            {upcoming.map(({ name, link }) => <li key={name + link}><a href={link} target="_blank" rel="noopener noreferrer">{name}</a></li>)}
-                                        </ul>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                </div>
-            </div>
+    //     if(course.s)  {
+    //         const c = {
+    //             name: course.n,
+    //             color: parsePeriodColor(p, userData),
+    //             link: `https://pausd.schoology.com/course/${course.s}/materials`,
+    //             grade: 'B+',
+    //             period: p
+    //         };
+    //         classesArray.push(c)
+    //         classesObj[p] = c;
+    //     }
+    // }
+
+    return (
+        <div className="dashboard-burrito">
+            <DashLeftSection upcoming={upcoming} />
+            <DashRightSection />
         </div>
     );
 };

@@ -5,130 +5,99 @@
     margin: 10px 0;
 }
 
-// // dashboard
-// .dashboard {
-//     display:flex;
-//     flex-direction: row;
-//     height: 80vh;
-// }
+.dashboard-burrito {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
 
-// // dashboard class list thing
-// .dashboard-class-list {
-//     display: flex;
-//     flex-direction: column;
-//     // width: 30%;
-//     padding: 5px;
-//     margin: 5px;
-//     align-items: center;
-//     overflow-y: auto;
-//     flex-basis: 30%;
-// }
+.dashboard-section {
+    // height: 100%;
+    flex: 50%;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: var(--bg-primary);
+    display: flex;
+    flex-direction: column;
+    // overflow-y: scroll;
+}
 
-// // dashbaord course
-// .dashboard-course {
-//     width: 90%;
-//     margin: 10px;
-//     padding: 10px;
-//     border-radius: 7px;
-//     font-size: 1.1em;
-//     display: flex;
-//     flex-direction: row;
-//     align-items: center;
-//     padding-right: 20px;
-//     cursor: pointer;
-// }
+.dashboard-section-left {
+    margin-right: 15px;
+}
 
-// $arrow-size: 18px;
-// $arrow-thickness: 2.5px;
+.dashboard-header {
+    font-size: 2rem;
+}
 
-// // CSS ::after hack to make arrows using borders and rotate(45deg)
-// .dashboard-course-arrow {
-//     content: "";
-//     margin-left: auto;
-//     height: $arrow-size;
-//     width: $arrow-size;
-//     transform: rotate(45deg);
-//     border-top-style: solid;
-//     border-top-width: $arrow-thickness;
-//     border-right-style: solid;
-//     border-right-width: $arrow-thickness;
-// }
+.upcoming-blurb-quick-cal {
+    margin: 10px 0px;
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    gap: 8px;
+}
 
-// // Dashboard info
-// .dashboard-class-info {
-//     padding: 10px;
-//     @include content-box($bg-color: var(--bg-primary));
-//     flex-grow: 1;
-//     margin: 5px;
-//     padding: 30px;
-//     overflow-y: scroll;
-//     flex-basis: 70%;
-// }
+.upcoming-blurb-qc-day {
+    background-color: var(--bg-secondary);
+    padding: 3px;
+    border-radius: 4px;
+    display: block;
+    text-align: center;
+}
 
-// .dashboard-class-header {
-//     display: flex;
-//     flex-direction: row;
-//     font-size: 1.3rem;
-//     align-items: center;
-//     margin-bottom: 20px;
-// }
+.upcoming-blurb-qc-dots { 
+    display: flex;
+    flex-direction: row;
+    margin: 2px 0px;
 
-// .dashboard-class-title {
-//     font-size: 1.3rem;
-//     flex-grow: 5;
-// }
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
-// .dashboard-class-grade {
-//     // margin-left: 50%;
-//     margin-left: auto;
-//     margin-right: 15px;
-// }
+.upcoming-blurb-qc-dot {
+    background-color: white;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    margin: 3px;
+}
 
-// .dashboard-class-link {
-//     width: 30px;
-//     height: 30px;
-//     margin-left: auto;
-// }
+.ub-assignment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: var(--content-primary);
+    padding: 15px;
+    border-radius: 5px;
+    margin: 15px 0px;
+}
 
-// @mixin dashboard-header($color: #ccc) {
-//     padding: 10px;
-//     border: 2px solid $color;
-//     border-radius: 5px;
-//     font-size: 1.1em;
-// }
+.ub-assignment-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    background-color:white;
+    margin-right: 15px;
+}
 
-// // Warnings
-// .dashboard-warnings {
-//     margin-bottom: 20px;
-// }
+.ub-assignment-content {
+    flex-grow: 1;
+}
+.up-assignment-title {
+    font-size: 1.2rem;
+}
+.up-assignment-due {
+    font-size: 0.9rem;
+}
 
-// .dashboard-warnings-header {
-//     @include dashboard-header($color: var(--active));
-//     margin-bottom: 20px;
-// }
-
-// .dashboard-warnings-list {
-//     list-style-type: none;
-// }
-
-// .dashboard-warnings-list li::before {
-//     content: "MISSING: "
-// }
-
-// // Upcoming
-// .dashboard-upcoming-header {
-//     @include dashboard-header();
-// }
-
-// .dashboard-upcoming-container {
-//     padding: 15px;
-// }
-
-// .dashboard-upcoming-list {
-//     list-style-type: none;
-// }
-
-// .dashboard-upcoming-day-header {
-//     margin-bottom: 5px;
-//     font-size: 1.05em;
-// }
+.ub-upcoming-redirect {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > div {
+        background-color: var(--content-primary);
+        padding: 5px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
