@@ -11,7 +11,7 @@ import { fetchSgyMaterials, findClassesList } from "../../views/Classes";
 import { getSchedule, useSchedule } from "../../hooks/useSchedule";
 import { useScreenType } from "../../hooks/useScreenType";
 
-type DashboardAssignment = {
+export type DashboardAssignment = {
     name: string;
     link: string;
     timestamp: moment.Moment;
@@ -313,7 +313,7 @@ const getAllGrades = (sgyData: SgyData, userData: UserData) => {
     return grades;
 }
 
-const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: UserData, time: moment.Moment) => {
+export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: UserData, time: moment.Moment) => {
 
     if (selected === 'A') {
         const upcoming: DashboardAssignment[] = [];

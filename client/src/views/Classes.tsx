@@ -14,6 +14,7 @@ import { useAuth, useFunctions } from "reactfire";
 import Dashboard from '../components/classes/Dashboard';
 import { parsePeriodColor } from "../components/schedule/Periods";
 import { useScreenType } from "../hooks/useScreenType";
+import { Upcoming } from "../components/classes/Upcoming";
 
 export const fetchSgyMaterials = (async (functions: Functions) => {
     const fetchMaterials = httpsCallable(functions, 'sgyfetch-fetchMaterials');
@@ -229,7 +230,8 @@ export default function Classes() {
                 <ClassesHeader selected={selected} userData={userData} />
                 <ClassesNavBar view={view} setView={setView} />
 
-                <Dashboard selected={selected} sgyData={sgyData} />
+                {view === 0 ? <Dashboard selected={selected} sgyData={sgyData} /> : null}
+                {view === 1 ? <Upcoming selected={selected} sgyData={sgyData} /> : null}
             </div>
            <ClassesSidebar userData={userData} setSelected={setSelected} />
         </div>

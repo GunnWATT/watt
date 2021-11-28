@@ -1,0 +1,91 @@
+.upcoming-burrito {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    margin: -15px;
+}
+
+.upcoming-cal {
+    width: 25%;
+    background-color: var(--bg-primary);
+    margin: 15px;
+}
+
+.upcoming {
+    flex: 1;
+    // background-color: #00000055;
+    margin: 15px;
+}
+
+.upcoming-search {
+    background-color: var(--bg-primary);
+    padding: 8px 10px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1.2rem;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 5px;
+}
+
+.upcoming-day-header {
+    margin: 10px 0px;
+    font-size: 1.1rem;
+}
+
+.upcoming-assignment{
+    background-color: var(--bg-primary);
+    padding: 15px 25px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+    .upcoming-assignment-tags {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        margin-bottom: 5px;
+
+        .upcoming-assignment-tag {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .upcoming-assignment-dot {
+                flex-shrink: none;
+                width: 10px;
+                height: 10px;
+                border-radius: 10px;
+                margin-right: 5px;
+            }
+
+            font-size: 0.7rem;
+            background-color: var(--bg-secondary);
+            padding: 2px 5px;
+            border-radius: 5px;
+        }
+    }
+
+    .upcoming-assignment-name {
+        font-size: 1.3rem;
+    }
+    
+    .upcoming-assignment-desc {
+        font-size: 0.8rem;
+        margin-top: 10px;
+    }
+    
+    .upcoming-assignment-due {
+        display: flex;
+        flex-direction: row;
+        margin-top: 10px;
+        > div {
+            padding: 2px 5px;
+            background-color: var(--bg-secondary);
+            font-size: 0.8rem;
+            border-radius: 3px;
+        }
+        
+    }
+}
