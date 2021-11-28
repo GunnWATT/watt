@@ -9,6 +9,7 @@ import { Functions, httpsCallable } from 'firebase/functions';
 import { useAuth, useFunctions } from "reactfire";
 import { fetchSgyMaterials, findClassesList } from "../../views/Classes";
 import { getSchedule, useSchedule } from "../../hooks/useSchedule";
+import { useScreenType } from "../../hooks/useScreenType";
 
 type DashboardAssignment = {
     name: string;
@@ -26,6 +27,7 @@ const UpcomingQuickCalDot = (props: {course:string}) => {
 const UpcomingQuickCalDay = (props: { day: moment.Moment, upcoming: DashboardAssignment[], selected:string}) => {
 
     const { day, upcoming, selected } = props;
+    const screenType = useScreenType();
 
     const weekdays = ['U', 'M', 'T', 'W', 'θ', 'F', 'S']
 
@@ -39,7 +41,7 @@ const UpcomingQuickCalDay = (props: { day: moment.Moment, upcoming: DashboardAss
     }
 
     return <div className={"upcoming-blurb-qc-day" + (active ? '-active' : '-inactive' )}>
-        <div className="upcoming-blurb-qc-day-num">{weekdays[day.weekday()]} • {day.date()}</div>
+        <div className="upcoming-blurb-qc-day-num"> {screenType === 'phone' ? weekdays[day.weekday()] : `${weekdays[day.weekday()]} • ${day.date()}`}</div>
         <div className="upcoming-blurb-qc-dots">
             {relevantAssigments.map((a) => <UpcomingQuickCalDot course={a.period} />)}
         </div>
@@ -104,7 +106,10 @@ const UpcomingBlurb = (props:{upcoming: DashboardAssignment[], selected:string})
 }
 
 const DashLeftSection = (props: { upcoming: DashboardAssignment[] | null, selected:string } ) => {
-    return <div className="dashboard-section dashboard-section-left">
+
+    const screenType = useScreenType();
+
+    return <div className={"dashboard-section dashboard-section-left " + screenType}>
         {props.upcoming != null ? <UpcomingBlurb upcoming={props.upcoming} selected={props.selected} /> : null}
     </div>
 }
@@ -489,7 +494,9 @@ const DashRightSection = (props: { selected: string, allGrades: { [key: string]:
 
     const {selected, allGrades} = props;
 
-    return <div className="dashboard-section dashboard-section-right">
+    const screenType = useScreenType();
+
+    return <div className={"dashboard-section dashboard-section-right " + screenType}>
         <div className="dashboard-quick-info">
             <DashboardQuickInfo selected={selected} />
         </div>
@@ -503,6 +510,7 @@ const Dashboard = (props: {sgyData: SgyData, selected: string}) => {
 
     const {sgyData, selected} = props;
     const time = useContext(CurrentTimeContext);
+    const screenType = useScreenType();
 
     const [upcoming, setUpcoming] = useState < DashboardAssignment[] | null > (null);
     const [overdue, setOverdue] = useState<DashboardAssignment[] | null> (null);
@@ -525,7 +533,7 @@ const Dashboard = (props: {sgyData: SgyData, selected: string}) => {
     }, [selected])
 
     return (
-        <div className="dashboard-burrito">
+        <div className={"dashboard-burrito " + screenType}>
             <DashLeftSection selected={selected} upcoming={upcoming} />
             <DashRightSection selected={selected} allGrades={allGrades} />
         </div>

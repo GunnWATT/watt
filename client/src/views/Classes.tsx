@@ -13,6 +13,7 @@ import { useAuth, useFunctions } from "reactfire";
 // views
 import Dashboard from '../components/classes/Dashboard';
 import { parsePeriodColor } from "../components/schedule/Periods";
+import { useScreenType } from "../hooks/useScreenType";
 
 export const fetchSgyMaterials = (async (functions: Functions) => {
     const fetchMaterials = httpsCallable(functions, 'sgyfetch-fetchMaterials');
@@ -86,9 +87,10 @@ const ClassesDataMissing = (props: { lastFetched: number | null, fetchMaterials:
 const ClassesSidebarItem = (props:{collapsed:boolean, name: string, color:string, period:string, onClick:()=>void}) => {
     const {collapsed,name,color,period,onClick} = props;
 
+    const screenType = useScreenType();
     if(collapsed) {
         return <div style={{ backgroundColor: color }} 
-            className={"classes-collapsed-sidebar-item"} 
+            className={"classes-collapsed-sidebar-item " + screenType}
             onClick={onClick}>
                 {period}
         </div>
@@ -135,7 +137,9 @@ const ClassesSidebar = (props:{userData: UserData, setSelected:(selected:string)
 
     const classes = findClassesList(userData);
 
-    return <div className={"classes-sidebar"}> 
+    const screenType = useScreenType();
+
+    return <div className={"classes-sidebar " + screenType}> 
         {classes.map(({name,color,period}) => <ClassesSidebarItem name={name} color={color} period={period} collapsed={collapsed} onClick={() => setSelected(period)} />)}
     </div>
 }
@@ -178,6 +182,7 @@ export default function Classes() {
 
     const userData = useContext(UserDataContext);
     const time = useContext(CurrentTimeContext);
+    const screenType = useScreenType();
 
     // Selected
     const [selected, setSelected] = useState<string>('A');
@@ -214,11 +219,13 @@ export default function Classes() {
 
         if (sgyData == null) return <ClassesDataMissing fetchMaterials={() => fetchSgyMaterials(functions)} lastFetched={lastFetched} />
     }
+
+    
     
     return (
-        <div className={"classes-burrito"}>
+        <div className={"classes-burrito " + screenType}>
             <RedBackground />
-            <div className={"classes-content"}>
+            <div className={"classes-content " + screenType}>
                 <ClassesHeader selected={selected} userData={userData} />
                 <ClassesNavBar view={view} setView={setView} />
 

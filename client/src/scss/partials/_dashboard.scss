@@ -9,25 +9,26 @@
     display: flex;
     flex-direction: row;
     flex-grow: 1;
+    margin: -15px;
+
+    &.phone, &.smallScreen {
+        flex-wrap: wrap;
+    }
 }
 
 .dashboard-section {
-    // height: 100%;
     flex: 50%;
     border-radius: 5px;
     padding: 15px;
     background-color: var(--bg-primary);
     display: flex;
     flex-direction: column;
-    // overflow-y: scroll;
 
     > div:not(:last-child) {
         border-bottom: 1px solid white;
     }
-}
 
-.dashboard-section-left {
-    margin-right: 15px;
+    margin: 15px;
 }
 
 .dashboard-header {
