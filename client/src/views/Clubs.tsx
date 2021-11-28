@@ -113,7 +113,7 @@ export default function Clubs() {
                     />
                 }
                 sort={([idA, clubA], [idB, clubB]) => clubA.name.localeCompare(clubB.name)}
-                pinned={userData?.clubs ?? []}
+                pinned={userData.clubs}
             />
         </Header>
     );
