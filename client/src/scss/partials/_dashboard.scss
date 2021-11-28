@@ -20,6 +20,10 @@
     display: flex;
     flex-direction: column;
     // overflow-y: scroll;
+
+    > div:not(:last-child) {
+        border-bottom: 1px solid white;
+    }
 }
 
 .dashboard-section-left {
@@ -107,7 +111,7 @@
 // Quick Info
 .dashboard-quick-info {
     padding-bottom: 15px;
-    border-bottom: 1px solid white;
+    // border-bottom: 1px solid white;
 }
 
 .dashboard-qi-main {

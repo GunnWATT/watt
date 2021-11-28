@@ -199,6 +199,46 @@ const pastClasses = (period: string): ClassQuickInfo => {
     }
 }
 
+const nextSchoolDay = () => {
+    const now = moment();
+
+    while (!getSchedule(now) && !now.isAfter(SCHOOL_END_EXCLUSIVE)) { 
+        now.add(1, 'days'); // increment day
+    }
+
+    if (now.isAfter(SCHOOL_END_EXCLUSIVE)) return null;
+
+    const p = getSchedule(now)![0];
+    if (p) {
+        const t = p[1].s;
+        const m = t % 60;
+        const h = (t - m) / 60;
+
+        now.set("hour", h);
+        now.set("minute", m);
+        now.set("second", 0);
+
+        return now;
+    }
+
+    return null;
+}
+
+const numSchoolDays = () => {
+    const current = moment(SCHOOL_START);
+
+    let days = 1;
+
+    while (current.isBefore(moment()) && !current.isAfter(SCHOOL_END_EXCLUSIVE)) {
+        current.add(1, 'days');
+
+        if(getSchedule(current)) {
+            days++;
+        }
+    }
+    return days;
+}
+
 const cardinalize = (num:number) => {
     switch(num%10) {
         case 1:
@@ -371,7 +411,8 @@ const DashboardQuickInfo = (props:{selected:string}) => {
 
     if(selected === 'A') {
         return <>
-
+            <div className={"dashboard-qi-main"}>The next school day is {nextSchoolDay()?.fromNow()}.</div>
+            <div>There have been {numSchoolDays()} school days in this school year.</div>
         </>
     }
 
