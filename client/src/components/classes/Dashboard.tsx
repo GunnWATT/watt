@@ -4,10 +4,11 @@ import linkimg from '../../assets/link.png';
 import CurrentTimeContext from "../../contexts/CurrentTimeContext";
 import UserDataContext, { SgyData, SgyPeriodData, UserData } from "../../contexts/UserDataContext";
 
-import { parsePeriodColor } from "../schedule/Periods";
+import { parsePeriodColor, SCHOOL_END_EXCLUSIVE, SCHOOL_START } from "../schedule/Periods";
 import { Functions, httpsCallable } from 'firebase/functions';
 import { useAuth, useFunctions } from "reactfire";
 import { fetchSgyMaterials, findClassesList } from "../../views/Classes";
+import { getSchedule, useSchedule } from "../../hooks/useSchedule";
 
 type DashboardAssignment = {
     name: string;
@@ -100,10 +101,125 @@ const DashLeftSection = (props: { upcoming: DashboardAssignment[] | null } ) => 
         {props.upcoming != null ? <UpcomingBlurb upcoming={props.upcoming} /> : null}
     </div>
 }
-const DashRightSection = () => {
-    return <div className="dashboard-section dashboard-section-right">
 
-    </div>
+const hasClass = (day:moment.Moment, period:string) => {
+    return getSchedule(day)?.find(([p]) => p === period) ?? null;
+}
+
+const findNextClass = (period: string) => {
+    const now = moment();
+
+    while (!hasClass(now, period) && !now.isAfter(SCHOOL_END_EXCLUSIVE)) { // while the schedule doesn't have the period and we're still in the school year
+        now.add(1,'days'); // increment day
+    }
+
+    if (now.isAfter(SCHOOL_END_EXCLUSIVE) ) return null;
+
+    const p = hasClass(now, period)!;
+    if(p) {
+        const t = p[1].s;
+        const m = t % 60;
+        const h = (t-m) / 60;
+
+        now.set("hour", h);
+        now.set("minute", m);
+        now.set("second", 0);
+
+        return now;
+    }
+
+    return null;
+}
+
+type ClassQuickInfo = {
+    next?: {
+        time: moment.Moment;
+        week: number;
+        day: number;
+    }
+    past: {
+        days: number;
+    }
+}
+
+
+const pastClasses = (period: string): ClassQuickInfo => {
+    const current = moment(SCHOOL_START);
+    while (!hasClass(current, period) && !current.isAfter(SCHOOL_END_EXCLUSIVE)) current.add(1, 'days'); // find first instance of class
+
+    let weeks = 1;
+    let day = 1;
+    let days = 1;
+
+    let prev = moment(current);
+
+    while (current.isBefore(moment()) && !current.isAfter(SCHOOL_END_EXCLUSIVE)) {
+        current.add(1, 'days');
+
+        if (hasClass(current, period)) {
+            days++;
+
+            if (!current.isSame(prev, 'week')) {// if it's not in the same week
+                // new week!
+                weeks++;
+                day = 1;
+                prev = moment(current);
+            } else {
+                day++;
+            }
+        }
+    }
+
+    let next = findNextClass(period);
+
+    if(next) {
+        if(!next.isSame(prev,'week')) {
+            weeks++;
+            day = 1;
+        } else {
+            day++;
+        }
+
+        return {
+            next: {
+                time: next!,
+                week: weeks,
+                day
+            },
+            past: {
+                days
+            }
+        }
+    }
+
+    return {
+        past: {
+            days
+        }
+    }
+}
+
+const cardinalize = (num:number) => {
+    switch(num%10) {
+        case 1:
+            return num + 'st';
+        case 2:
+            return num + 'nd';
+        case 3:
+            return num + 'rd';
+        default:
+            return num + 'th';
+    }
+}
+
+const momentComparator = (a: moment.Moment, b: moment.Moment) => {
+    if (a.isBefore(b)) {
+        return -1;
+    }
+    if (a.isAfter(b)) {
+        return 1;
+    }
+    return 0;
 }
 
 const findGrades = (sgyData: SgyData, selected: string) => {
@@ -111,14 +227,14 @@ const findGrades = (sgyData: SgyData, selected: string) => {
     // Attempt to match the id of the selected course to the id in the course grades
     let selectedCourseGrades = sgyData.grades.find(sec => sec.section_id === selectedCourse.info.id);
 
-    if(!selectedCourseGrades) {
+    if (!selectedCourseGrades) {
         // they do this quirky and uwu thing where THEY CHANGE THE ID
 
         // the way we match this is by searching through the courses and seeing if the assignments match up, which is so stupid that it works
-        for(const course in sgyData.grades) {
-            if(sgyData.grades[course].period[0].assignment.length > 0) {
+        for (const course in sgyData.grades) {
+            if (sgyData.grades[course].period[0].assignment.length > 0) {
                 const assiToFind = sgyData.grades[course].period[0].assignment.find(assignment => assignment.type === 'assignment');
-                if(assiToFind && selectedCourse.assignments.find(assi => assi.id === assiToFind.assignment_id)) {
+                if (assiToFind && selectedCourse.assignments.find(assi => assi.id === assiToFind.assignment_id)) {
                     // BANANA
                     selectedCourseGrades = sgyData.grades[course];
                     break;
@@ -131,44 +247,48 @@ const findGrades = (sgyData: SgyData, selected: string) => {
 
 }
 
-const momentComparator = (a:moment.Moment, b:moment.Moment) => {
-    if(a.isBefore(b)) {
-        return -1;
+const getAllGrades = (sgyData: SgyData, userData: UserData) => {
+    const classes = findClassesList(userData);
+    const grades: { [key: string]: number } = {};
+
+    for (const c of classes) {
+        if (c.period === "A") continue;
+
+        const selectedCourseGrades = findGrades(sgyData, c.period); // find the grades
+        if (selectedCourseGrades) grades[c.period] = selectedCourseGrades.final_grade[0].grade;
     }
-    if(a.isAfter(b)) {
-        return 1;
-    }
-    return 0;
+
+    return grades;
 }
 
-const getUpcomingInfo = (sgyData:SgyData, selected:string, userData: UserData, time:moment.Moment) => {
+const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: UserData, time: moment.Moment) => {
 
-    if(selected === 'A') {
-        const upcoming: DashboardAssignment[]  = [];
+    if (selected === 'A') {
+        const upcoming: DashboardAssignment[] = [];
         const overdue: DashboardAssignment[] = [];
-        const grades: {[key:string]:number} = {};
+        // const grades: { [key: string]: number } = {};
 
         const classes = findClassesList(userData);
 
-        for(const c of classes) {
-            if(c.period === "A") continue;
+        for (const c of classes) {
+            if (c.period === "A") continue;
             const courseStuff = getUpcomingInfo(sgyData, c.period, userData, time);
-            if(courseStuff) {
+            if (courseStuff) {
                 upcoming.push(...courseStuff.upcoming);
                 overdue.push(...courseStuff.overdue);
-                if(courseStuff.finalGrade) grades[c.period] = courseStuff.finalGrade;
+                // if (courseStuff.finalGrade) grades[c.period] = courseStuff.finalGrade;
             }
         }
 
-        upcoming.sort((a,b) => momentComparator(a.timestamp,b.timestamp));
+        upcoming.sort((a, b) => momentComparator(a.timestamp, b.timestamp));
         overdue.sort((a, b) => momentComparator(a.timestamp, b.timestamp));
-        
-        return {upcoming, overdue, grades}; 
+
+        return { upcoming, overdue };
     }
 
     // Select the course
     const selectedCourse = sgyData[selected];
-    const selectedCourseGrades = findGrades(sgyData,selected); // find the grades
+    const selectedCourseGrades = findGrades(sgyData, selected); // find the grades
 
     const upcoming: DashboardAssignment[] = [];
     const overdue: DashboardAssignment[] = [];
@@ -176,11 +296,11 @@ const getUpcomingInfo = (sgyData:SgyData, selected:string, userData: UserData, t
     // search thru assignments
     for (const item of selectedCourse.assignments) {
         // console.log(item.title, item.grade_stats);
-        if(item.due.length > 0) { // if it's actually due
+        if (item.due.length > 0) { // if it's actually due
 
             const due = moment(item.due);
 
-            if(due.isAfter(time)) { // if it's due after right now
+            if (due.isAfter(time)) { // if it's due after right now
 
                 // format the assignment
                 const assi: DashboardAssignment = {
@@ -193,17 +313,17 @@ const getUpcomingInfo = (sgyData:SgyData, selected:string, userData: UserData, t
                 upcoming.push(assi);
             } else {
                 // check if it's overddue
-                if(selectedCourseGrades) {
+                if (selectedCourseGrades) {
                     let found = false;
-                    for(const period of selectedCourseGrades.period) {
-                        for(const assi of period.assignment) {
-                            if(assi.assignment_id === item.id) {
+                    for (const period of selectedCourseGrades.period) {
+                        for (const assi of period.assignment) {
+                            if (assi.assignment_id === item.id) {
                                 found = true;
-                            } 
+                            }
                         }
                     }
 
-                    if(!found) {
+                    if (!found) {
                         overdue.push({
                             name: item.title,
                             description: item.description,
@@ -237,8 +357,98 @@ const getUpcomingInfo = (sgyData:SgyData, selected:string, userData: UserData, t
     overdue.sort((a, b) => momentComparator(a.timestamp, b.timestamp));
 
     const finalGrade = selectedCourseGrades ? selectedCourseGrades.final_grade[0].grade : null;
-    
-    return {upcoming, overdue, finalGrade};
+
+    return { upcoming, overdue };
+}
+
+const DashboardQuickInfo = (props:{selected:string}) => {
+    const {selected} = props;
+    const [info, setInfo] = useState<ClassQuickInfo | null>(null);
+
+    useEffect(() => {
+        if(selected !== 'A') setInfo(pastClasses(selected));
+    }, [selected]);
+
+    if(selected === 'A') {
+        return <>
+
+        </>
+    }
+
+    if(!info) {
+        return null;
+    }
+
+    if(!info.next) {
+        return <>
+            <div className={"dashboard-qi-main"}>There have been {info.past.days} classes in this school year.</div>
+        </>
+    }
+
+    return <>
+        <div className={"dashboard-qi-main"}>The next class is {info.next?.time.fromNow()}.</div>
+        <div className={"dashboard-qi-note"}>It will be on {info.next?.time.format('dddd, MMMM Do')}, and will be Week {info.next?.week} Day {info.next?.day}, the {cardinalize(info.past.days+1)} class of the school year. </div>
+    </>
+}
+
+const classifyGrade = (grade:number) => {
+    if(grade >= 93) return 'A';
+    if(grade >= 90) return 'A-';
+    if(grade >= 87) return 'B+';
+    if(grade >= 83) return 'B';
+    if(grade >= 80) return 'B-';
+    if(grade >= 77) return 'C+';
+    if(grade >= 73) return 'C';
+    if(grade >= 70) return 'C-';
+    if(grade >= 67) return 'D+';
+    if(grade >= 63) return 'D';
+    return 'D-';
+}
+
+const DashGrades = (props: { selected:string, allGrades: {[key:string]:number} }) => {
+    const {allGrades, selected} = props;
+    const [revealed, setRevealed] = useState(false);
+    const userData = useContext(UserDataContext);
+
+    if(selected === 'A') {
+
+        const classes = findClassesList(userData).filter(({period}) => period!=='A'); // remove all classes from the classes list
+
+        return <div>
+            <div className={"dashboard-header"}>Grades</div>
+
+            <div onClick={() => !revealed ? setRevealed(true) : null} className={"dashboard-grade" + (revealed ? '' : ' dashboard-grade-hidden')}>
+                {classes.filter(({period}) => allGrades[period]).map(({name,color,period}) => <div className="dashboard-grade-all">
+                    <div className={"dashboard-grade-all-bubble"} style={{backgroundColor: color}}>{period}</div>
+                    <div>{classifyGrade(allGrades[period])} • {allGrades[period]}% • {name}</div>
+                </div>)}
+                <div className="dashboard-grade-hide"><div onClick={() => setRevealed(false)}>Click to Hide</div></div>
+            </div>
+        </div>;
+    }
+    if(!allGrades[selected]) return null;
+
+    return <div>
+        <div className={"dashboard-header"}>Grades</div>
+        <div onClick={() => !revealed ? setRevealed(true) : null} className={"dashboard-grade" + (revealed ? '' : ' dashboard-grade-hidden')}>
+            Your grade is {classifyGrade(allGrades[selected])} • {allGrades[selected]}%.
+            <div className="dashboard-grade-hide"><div onClick={() => setRevealed(false)}>Click to Hide</div></div>
+        </div>
+    </div>
+}
+
+const DashRightSection = (props: { selected: string, allGrades: { [key: string]: number } | null } ) => {
+
+    const {selected, allGrades} = props;
+
+    return <div className="dashboard-section dashboard-section-right">
+        <div className="dashboard-quick-info">
+            <DashboardQuickInfo selected={selected} />
+        </div>
+        
+        {allGrades ? <DashGrades selected={selected} allGrades={allGrades} /> : null }
+
+    </div>
 }
 
 const Dashboard = (props: {sgyData: SgyData, selected: string}) => {
@@ -248,15 +458,21 @@ const Dashboard = (props: {sgyData: SgyData, selected: string}) => {
 
     const [upcoming, setUpcoming] = useState < DashboardAssignment[] | null > (null);
     const [overdue, setOverdue] = useState<DashboardAssignment[] | null> (null);
-    // const [grades, setGrades] = useState<null> (null);
+    const [allGrades, setAllGrades] = useState<null | {[key:string]: number}> (null);
 
     const userData = useContext(UserDataContext);
 
+    useEffect(() => {
+        setAllGrades(getAllGrades(sgyData, userData));
+    }, [sgyData])
+
+    // TODO: precompute upcoming info for all classes
     useEffect(() => {
         const info = (getUpcomingInfo(sgyData, selected, userData, time));
 
         setUpcoming(info.upcoming);
         setOverdue(info.overdue);
+
 
     }, [selected])
     // // Mock array
@@ -283,7 +499,7 @@ const Dashboard = (props: {sgyData: SgyData, selected: string}) => {
     return (
         <div className="dashboard-burrito">
             <DashLeftSection upcoming={upcoming} />
-            <DashRightSection />
+            <DashRightSection selected={selected} allGrades={allGrades} />
         </div>
     );
 };
