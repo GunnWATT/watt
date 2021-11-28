@@ -23,15 +23,22 @@ const UpcomingQuickCalDot = (props: {course:string}) => {
     return <div className="upcoming-blurb-qc-dot" style={{backgroundColor:parsePeriodColor(props.course, userData)}}></div>
 }
 
-const UpcomingQuickCalDay = (props: { day: moment.Moment, upcoming: DashboardAssignment[]}) => {
+const UpcomingQuickCalDay = (props: { day: moment.Moment, upcoming: DashboardAssignment[], selected:string}) => {
 
-    const { day, upcoming } = props;
+    const { day, upcoming, selected } = props;
 
     const weekdays = ['U', 'M', 'T', 'W', 'θ', 'F', 'S']
 
     const relevantAssigments = upcoming.filter((a) => a.timestamp.dayOfYear() === day.dayOfYear());
 
-    return <div className="upcoming-blurb-qc-day">
+    let active = false;
+    if(selected === 'A') {
+        if(getSchedule(day)) active = true;
+    } else {
+        if(hasClass(day, selected)) active = true;
+    }
+
+    return <div className={"upcoming-blurb-qc-day" + (active ? '-active' : '-inactive' )}>
         <div className="upcoming-blurb-qc-day-num">{weekdays[day.weekday()]} • {day.date()}</div>
         <div className="upcoming-blurb-qc-dots">
             {relevantAssigments.map((a) => <UpcomingQuickCalDot course={a.period} />)}
@@ -39,8 +46,8 @@ const UpcomingQuickCalDay = (props: { day: moment.Moment, upcoming: DashboardAss
     </div>
 }
 
-const UpcomingQuickCal = (props: { upcoming: DashboardAssignment[] }) => {
-    const {upcoming} = props;
+const UpcomingQuickCal = (props: { upcoming: DashboardAssignment[], selected:string }) => {
+    const {upcoming,selected} = props;
     const time = useContext(CurrentTimeContext);
     let mutableTime = moment(time);
     const days = [];
@@ -50,7 +57,7 @@ const UpcomingQuickCal = (props: { upcoming: DashboardAssignment[] }) => {
     }
 
     return <div className="upcoming-blurb-quick-cal">
-        {days.map((day) => <UpcomingQuickCalDay day={day} upcoming={upcoming} />)}
+        {days.map((day) => <UpcomingQuickCalDay selected={selected} day={day} upcoming={upcoming} />)}
     </div>
 }
 
@@ -79,9 +86,9 @@ const UBAssignments = (props: { upcoming: DashboardAssignment[] }) => {
     </div>
 }
 
-const UpcomingBlurb = (props:{upcoming: DashboardAssignment[]}) => {
+const UpcomingBlurb = (props:{upcoming: DashboardAssignment[], selected:string}) => {
 
-    const {upcoming} = props;
+    const {upcoming,selected} = props;
 
     const time = useContext(CurrentTimeContext);
     const inAWeek = moment(time).add(7, 'days');
@@ -91,14 +98,14 @@ const UpcomingBlurb = (props:{upcoming: DashboardAssignment[]}) => {
         <div className="dashboard-header">Upcoming • Blurb</div>
         <div>You have {assignmentsNextWeek.length} assignment{assignmentsNextWeek.length === 1 ? "" : "s"} due in the next week.</div>
 
-        <UpcomingQuickCal upcoming={upcoming} />
+        <UpcomingQuickCal upcoming={upcoming} selected={selected} />
         <UBAssignments upcoming={upcoming} />
     </div>
 }
 
-const DashLeftSection = (props: { upcoming: DashboardAssignment[] | null } ) => {
+const DashLeftSection = (props: { upcoming: DashboardAssignment[] | null, selected:string } ) => {
     return <div className="dashboard-section dashboard-section-left">
-        {props.upcoming != null ? <UpcomingBlurb upcoming={props.upcoming} /> : null}
+        {props.upcoming != null ? <UpcomingBlurb upcoming={props.upcoming} selected={props.selected} /> : null}
     </div>
 }
 
@@ -516,30 +523,10 @@ const Dashboard = (props: {sgyData: SgyData, selected: string}) => {
 
 
     }, [selected])
-    // // Mock array
-    // const classesArray: dashboardCourse[] = [];
-    // const classesObj: {[key:string]: dashboardCourse} = {};
-    // for(const p in userData.classes) {
-
-    //     // @ts-ignore
-    //     const course:SgyPeriodData = userData.classes[p];
-        
-    //     if(course.s)  {
-    //         const c = {
-    //             name: course.n,
-    //             color: parsePeriodColor(p, userData),
-    //             link: `https://pausd.schoology.com/course/${course.s}/materials`,
-    //             grade: 'B+',
-    //             period: p
-    //         };
-    //         classesArray.push(c)
-    //         classesObj[p] = c;
-    //     }
-    // }
 
     return (
         <div className="dashboard-burrito">
-            <DashLeftSection upcoming={upcoming} />
+            <DashLeftSection selected={selected} upcoming={upcoming} />
             <DashRightSection selected={selected} allGrades={allGrades} />
         </div>
     );

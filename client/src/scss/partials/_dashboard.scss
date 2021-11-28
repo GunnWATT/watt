@@ -41,13 +41,22 @@
     gap: 8px;
 }
 
-.upcoming-blurb-qc-day {
-    background-color: var(--bg-secondary);
+@mixin upcoming-blurb-qc-day() {
     padding: 3px;
     border-radius: 4px;
     display: block;
     text-align: center;
     min-height: 70px;
+}
+
+.upcoming-blurb-qc-day-active {
+    @include upcoming-blurb-qc-day();
+    background-color: var(--content-primary);
+}
+
+.upcoming-blurb-qc-day-inactive {
+    @include upcoming-blurb-qc-day();
+    background-color: var(--bg-secondary);
 }
 
 .upcoming-blurb-qc-dots { 
