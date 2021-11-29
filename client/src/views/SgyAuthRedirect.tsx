@@ -16,7 +16,10 @@ export default function SgyAuthRedirect() {
 
     useEffect(() => {
         if (status === 'error') console.error('Error occurred while calling sgyauth')
-        if (status === 'success') window.location.href = `${origin}?modal=sgyauth`;
+        if (status === 'success') {
+            const to = new URL(origin!); to.searchParams.append('modal', 'sgyauth');
+            window.location.href = `${to.href}`;
+        }
     }, [status])
 
     return (
