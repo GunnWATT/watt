@@ -1,4 +1,4 @@
-import {Switch, Route, useRouteMatch} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import {Nav} from 'reactstrap';
 
 // Components
@@ -11,26 +11,24 @@ import About from '../components/settings/About';
 
 
 export default function Settings() {
-    let match = useRouteMatch();
-
     return (
         <Header
             heading="Settings"
             nav={
                 <Nav fill tabs>
-                    <NavTab to={match.url} name="Appearance" exact/>
-                    <NavTab to={`${match.url}/features`} name="Features" />
-                    <NavTab to={`${match.url}/periods`} name="Periods" />
-                    <NavTab to={`${match.url}/about`} name="About" />
+                    <NavTab to="." name="Appearance" />
+                    <NavTab to="features" name="Features" />
+                    <NavTab to="periods" name="Periods" />
+                    <NavTab to="about" name="About" />
                 </Nav>
             }
         >
-            <Switch>
-                <Route exact path={match.path} component={Appearance}/>
-                <Route path={`${match.path}/features`} component={Features}/>
-                <Route path={`${match.path}/periods`} component={PeriodCustomization}/>
-                <Route path={`${match.path}/about`} component={About}/>
-            </Switch>
+            <Routes>
+                <Route path="/" element={<Appearance />}/>
+                <Route path="/features" element={<Features />}/>
+                <Route path="/periods" element={<PeriodCustomization />}/>
+                <Route path="/about" element={<About />}/>
+            </Routes>
         </Header>
     );
 }

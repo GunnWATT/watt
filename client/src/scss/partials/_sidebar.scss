@@ -92,7 +92,7 @@ $icon-width: $sidebar-collapsed-width -
     }
 
     // Active
-    &.active {
+    .active {
       color: var(--active);
     }
 

@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import PageVisibility from 'react-page-visibility';
 import moment from 'moment';
 import {GCalEvent} from './components/schedule/Event';
@@ -78,19 +78,16 @@ const App = () => {
                 <TimeProvider value={date}>
                     <FaviconHandler />
                     <Layout>
-                        <Switch>
-                            <Route exact path='/' render={() => <Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />}/>
-                            <Route path='/utilities' component={Utilities}/>
-                            <Route path='/classes' component={Classes}/>
-                            <Route path='/clubs' component={Clubs}/>
-                            <Route path='/settings' component={Settings}/>
-                            <Route path='/super-secret-testing' component={Testing}/>
-                            <Route path='/schoology/auth' component={SgyAuthRedirect}/>
-                            <Route component={PageNotFound}/>
-                            {/* gunnData && console.log(gunnData.docs.map(x => x.data())) */}
-                            {/* gunnData && gunnData.forEach(e => console.log(e.data())) */}
-                            {/* userData && console.log(userData.data()) */}
-                        </Switch>
+                        <Routes>
+                            <Route path="/" element={<Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />}/>
+                            <Route path="/classes/*" element={<Classes />}/>
+                            <Route path="/clubs" element={<Clubs />}/>
+                            <Route path="/utilities/*" element={<Utilities />}/>
+                            <Route path="/settings/*" element={<Settings />}/>
+                            <Route path="/super-secret-testing" element={<Testing />}/>
+                            <Route path="/schoology/auth" element={<SgyAuthRedirect />}/>
+                            <Route path="*" element={<PageNotFound />}/>
+                        </Routes>
                     </Layout>
                 </TimeProvider>
             </UserDataProvider>

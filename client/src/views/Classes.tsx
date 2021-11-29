@@ -1,4 +1,4 @@
-import {Switch, Route, useRouteMatch, Link} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import {Nav, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 
 // Components
@@ -8,23 +8,21 @@ import NavTab from '../components/layout/NavTab';
 
 
 export default function Classes() {
-    let match = useRouteMatch();
-
     return (
         <>
             <Header
                 heading="Grades"
                 nav={
                     <Nav fill tabs>
-                        <NavTab to={match.url} name="Dashboard" exact/>
-                        <NavTab to={`${match.url}/courses`} name="Courses" />
+                        <NavTab to="." name="Dashboard"/>
+                        <NavTab to="courses" name="Courses" />
                     </Nav>
                 }
             >
-                <Switch>
-                    <Route exact path={match.path} component={WIP} />
-                    <Route path={`${match.path}/courses`} component={WIP} />
-                </Switch>
+                <Routes>
+                    <Route path="/" element={<WIP />} />
+                    <Route path="/courses" element={<WIP />} />
+                </Routes>
             </Header>
 
             {/* Modal for not signed in users */}

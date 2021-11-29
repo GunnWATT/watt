@@ -1,5 +1,5 @@
 import {useContext, useEffect, useState, ReactNode} from 'react';
-import {useLocation, useHistory} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import {Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import {useAnalytics} from 'reactfire';
 import {logEvent} from 'firebase/analytics';
@@ -23,7 +23,7 @@ export default function Layout(props: LayoutProps) {
 
     // Search params handling
     const { search, pathname } = useLocation();
-    const { replace } = useHistory();
+    const navigate = useNavigate();
     const searchParams = new URLSearchParams(search);
 
     // Modals
@@ -32,7 +32,7 @@ export default function Layout(props: LayoutProps) {
     const toggle = () => {
         setSgyModal(false);
         searchParams.delete('modal'); // Delete modal param from url to prevent retrigger on page refresh
-        replace(`${pathname}${searchParams}`); // Replace current instance in history stack with updated search params
+        navigate(`${pathname}${searchParams}`, {replace: true}); // Replace current instance in history stack with updated search params
     }
 
     // Render layout dynamically
