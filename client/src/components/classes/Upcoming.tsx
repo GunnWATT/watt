@@ -99,7 +99,7 @@ type DateRangeProps = {
 const UpcomingDateRangePicker = (props: DateRangeProps) => {
 
     const {start,end,setStart,setEnd} = props;
-    const [showCalendar,setCalendar] = useState(true);
+    const [showCalendar,setCalendar] = useState(false);
     const endInclusive = moment(end); endInclusive.subtract(1,'days');
 
     const [selecting, setSelecting] = useState<'S'|'E'>('E');
