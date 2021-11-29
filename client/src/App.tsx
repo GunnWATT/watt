@@ -14,6 +14,7 @@ import Settings from './views/Settings';
 import Testing from './views/Testing';
 import PageNotFound from './views/404';
 import SgyAuthRedirect from './views/SgyAuthRedirect';
+import FaviconHandler from './components/schedule/FaviconHandler';
 import FirebaseUserDataProvider from './components/firebase/FirebaseUserDataProvider';
 import LocalStorageUserDataProvider from './components/firebase/LocalStorageUserDataProvider';
 
@@ -75,6 +76,7 @@ const App = () => {
             <PageVisibility onChange={() => navigator.serviceWorker.getRegistration().then(res => res?.update())} />
             <UserDataProvider>
                 <TimeProvider value={date}>
+                    <FaviconHandler />
                     <Layout>
                         <Switch>
                             <Route exact path='/' render={() => <Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />}/>
