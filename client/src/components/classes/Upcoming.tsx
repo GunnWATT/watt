@@ -234,7 +234,7 @@ const UpcomingSearchBar = (props: {
         <input type="text" placeholder="Search" defaultValue={props.query} className="upcoming-search-bar" onChange={(event) => props.setQuery(event.target.value)} />
         <div className={"upcoming-filters " + screenType}>
             {props.selected === 'A' ? <UpcomingPalette classes={props.classes} classFilter={props.classFilter} setClassFilter={props.setClassFilter} /> : null}
-            <UpcomingDateRangePicker start={props.start} setStart={props.setStart} end={props.end} setEnd={props.setEnd}  />
+            {screenType !== 'smallScreen' && screenType !== 'phone' ? null : <UpcomingDateRangePicker start={props.start} setStart={props.setStart} end={props.end} setEnd={props.setEnd}  />}
         </div>
     </div> 
 }
@@ -300,49 +300,101 @@ const UpcomingAssignments = (props:{upcoming:DashboardAssignment[]}) => {
     </div>
 }
 
-const UpcomingBody = (props:{upcoming:DashboardAssignment[]|null, selected:string}) => {
+const UpcomingCalendar = (props: DateRangeProps) => {
 
-    // console.log(new URL(window.location.href).searchParams)
-    // console.log('hi');
+    const { start, end, setStart, setEnd } = props;
+    const [showCalendar, setCalendar] = useState(false);
+    const endInclusive = moment(end); endInclusive.subtract(1, 'days');
 
-    const { search, pathname } = useLocation();
-    const searchParams = new URLSearchParams(search);
+    const [selecting, setSelecting] = useState<'S' | 'E'>('E');
 
-    const userData = useContext(UserDataContext);
-    const classes = findClassesList(userData, false);
+    const screenType = useScreenType();
 
-    const [query, setQuery] = useState(searchParams.get('search') ?? '');
-    const [classFilter, setClassFilter] = useState<boolean[]>(Array(classes.length).fill(true));
+    // generate schedule
+    const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(str => str[0]);
 
-    const startofday = moment().startOf('day');
-    const [start,setStart] = useState( startofday );
-    const [end,setEnd] = useState( SCHOOL_END_EXCLUSIVE );
+    let months = [];
 
-    const upcomingFiltered = props.upcoming?.filter((assi) => {
-        // query
-        if(query.length === 0) return true;
+    const startmonth = moment().month() + moment().year() * 12;
+    const endmonth = SCHOOL_END.month() + SCHOOL_END.year() * 12;
 
-        else {
-            return assi.name.toLowerCase().includes(query.toLowerCase()) || assi.description.toLowerCase().includes(query.toLowerCase());
-        }
-    }).filter((assi) => {
-        if( classFilter[classes.findIndex(({period}) => assi.period === period)] ) {
-            return true;
-        }
-        return false;
-    }).filter((assi) => {
-        return assi.timestamp.isAfter(start) && assi.timestamp.isBefore(end);
-    })
-    
-    return <div className="upcoming">
-        <UpcomingSearchBar start={start} setStart={setStart} end={end} setEnd={setEnd} selected={props.selected} classFilter={classFilter} setClassFilter={setClassFilter} classes={classes} setQuery={setQuery} query={query} />
-        {upcomingFiltered ? <UpcomingAssignments upcoming={upcomingFiltered} /> : null}
-    </div>
-}
+    for (let m = startmonth; m <= endmonth; m++) {
+        months.push(m);
+    }
 
-const UpcomingCalendar = () => {
-    return <div className="upcoming-cal">
+    const monthElements = months.map(m => {
+        // for each month, map to tsx days
+        const year = Math.floor(m / 12);
+        const month = m % 12
+        const startOfMonth = moment.tz(`${year}-${month + 1}`, "YYYY-MM", 'America/Los_Angeles');
 
+        const days = Array(startOfMonth.daysInMonth())
+            .fill(0).map((_, i) => i + 1)
+            .map(day => moment.tz(`${year}-${month + 1}-${day}`, "YYYY-MM-DD", 'America/Los_Angeles'))
+            .filter(day => !(day.isBefore(moment().startOf('day')) || day.isAfter(SCHOOL_END)));
+
+
+        const dayElements =
+            [
+                // extra padding
+                ...Array(days[0].weekday()).fill(0).map((_, i) => {
+                    return (
+                        <div className="calendar-day" key={"padding " + i} />
+                    )
+                }),
+
+                // actual content
+                ...days.map(day => {
+                    const noSchool = getSchedule(day) == null;
+                    return (
+                        <div
+                            className={"calendar-day" +
+                                (noSchool ? " calendar-day-no-school" : "")
+                                + (day.isSame(start) ? " calendar-day-start" : "")
+                                + (day.isSame(endInclusive) ? " calendar-day-end" : "")
+                                + (day.isAfter(start) && day.isBefore(endInclusive) ? " calendar-day-sandwich" : "")}
+
+                            onClick={() => {
+                                if (selecting === 'S') {
+                                    if (day.isBefore(end)) setStart(day);
+                                } else {
+                                    const ex = moment(day); ex.add(1, 'days');
+                                    if (ex.isAfter(start)) {
+                                        setEnd(ex);
+                                    }
+                                }
+                            }}
+                            key={day.toISOString()}
+                        >
+                            {day.date()}
+                        </div>
+                    );
+                })
+            ]
+
+        return <>
+            <div key={`month ${m} header`} className="calendar-month-header">{startOfMonth.format("MMMM YYYY")}</div>
+            <div key={`month ${m}`} className="calendar-month">
+                {dayElements}
+            </div>
+        </>
+    });
+
+    return <div className="upcoming-cal mini-calendar">
+        <div className="calendar-days-wrapper">
+            <div className="calendar-weekdays">
+                {weekdays.map(char => <div className="calendar-weekday">{char}</div>)}
+            </div>
+        </div>
+
+        <div className="calendar-wrapper">
+            {monthElements}
+        </div>
+
+        <div className="calendar-jump">
+            <div onClick={() => setSelecting('S')} className={"calendar-select-start" + (selecting === 'S' ? " date-range-selected" : '')}>Start</div>
+            <div onClick={() => setSelecting('E')} className={"calendar-select-end" + (selecting === 'E' ? " date-range-selected" : '')}>End</div>
+        </div>
     </div>
 }
 
@@ -353,9 +405,35 @@ export const Upcoming = (props: { sgyData: SgyData, selected: string }) => {
     const screenType = useScreenType();
 
     const userData = useContext(UserDataContext);
+    const classes = findClassesList(userData, false);
 
     const [upcoming, setUpcoming] = useState<DashboardAssignment[] | null>(null);
     const [overdue, setOverdue] = useState<DashboardAssignment[] | null>(null);
+
+    const { search, pathname } = useLocation();
+    const searchParams = new URLSearchParams(search);
+    const [query, setQuery] = useState(searchParams.get('search') ?? '');
+    const [classFilter, setClassFilter] = useState<boolean[]>(Array(classes.length).fill(true));
+
+    const startofday = moment().startOf('day');
+    const [start, setStart] = useState(startofday);
+    const [end, setEnd] = useState(SCHOOL_END_EXCLUSIVE);
+
+    const upcomingFiltered = upcoming?.filter((assi) => {
+        // query
+        if (query.length === 0) return true;
+
+        else {
+            return assi.name.toLowerCase().includes(query.toLowerCase()) || assi.description.toLowerCase().includes(query.toLowerCase());
+        }
+    }).filter((assi) => {
+        if (classFilter[classes.findIndex(({ period }) => assi.period === period)]) {
+            return true;
+        }
+        return false;
+    }).filter((assi) => {
+        return assi.timestamp.isAfter(start) && assi.timestamp.isBefore(end);
+    })
 
     useEffect(() => {
         const info = (getUpcomingInfo(sgyData, selected, userData, time));
@@ -366,8 +444,12 @@ export const Upcoming = (props: { sgyData: SgyData, selected: string }) => {
     }, [selected]);
 
     return <div className={"upcoming-burrito " + screenType}>
-        <UpcomingBody selected={selected} upcoming={upcoming} />
-        {screenType !== 'smallScreen' && screenType !== 'phone' ? <UpcomingCalendar /> : null}
+        {/* these props- */}
+        <div className="upcoming">
+            <UpcomingSearchBar start={start} setStart={setStart} end={end} setEnd={setEnd} selected={props.selected} classFilter={classFilter} setClassFilter={setClassFilter} classes={classes} setQuery={setQuery} query={query} />
+            {upcomingFiltered ? <UpcomingAssignments upcoming={upcomingFiltered} /> : null}
+        </div>
+        {screenType !== 'smallScreen' && screenType !== 'phone' ? <UpcomingCalendar start={start} setStart={setStart} end={end} setEnd={setEnd} /> : null}
     </div>
 
 }

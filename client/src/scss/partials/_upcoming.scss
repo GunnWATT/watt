@@ -9,6 +9,11 @@
     width: 25%;
     background-color: var(--bg-primary);
     margin: 15px;
+    position: sticky;
+    top: 5px;
+    height: 80vh;
+    border-radius: 5px;
+    overflow-y: scroll;
 }
 
 .upcoming {
