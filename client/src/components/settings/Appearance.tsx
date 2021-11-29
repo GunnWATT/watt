@@ -37,7 +37,7 @@ export default function Appearance() {
                         type="radio"
                         name="theme-pref"
                         checked={currThemePref === 'light'}
-                        onClick={() => changeTheme('light')}
+                        onChange={() => changeTheme('light')}
                     />{' '}
                     Light
                 </Label>
@@ -48,7 +48,7 @@ export default function Appearance() {
                         type="radio"
                         name="theme-pref"
                         checked={currThemePref === 'dark'}
-                        onClick={() => changeTheme('dark')}
+                        onChange={() => changeTheme('dark')}
                     />{' '}
                     Dark
                 </Label>
@@ -62,7 +62,7 @@ export default function Appearance() {
                         type="radio"
                         name="time-pref"
                         checked={currTimePref === '12'}
-                        onClick={() => changeTime('12')}
+                        onChange={() => changeTime('12')}
                     />{' '}
                     12-hour time <strong>({currTime.format('h:mm:ss A')})</strong>
                 </Label>
@@ -73,7 +73,7 @@ export default function Appearance() {
                         type="radio"
                         name="time-pref"
                         checked={currTimePref === '24'}
-                        onClick={() => changeTime('24')}
+                        onChange={() => changeTime('24')}
                     />{' '}
                     24-hour time <strong>({currTime.format('H:mm:ss')})</strong>
                 </Label>
