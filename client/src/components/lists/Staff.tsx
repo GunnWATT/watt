@@ -92,7 +92,7 @@ export default function Staff() {
                     />
                 }
                 sort={([idA, staffA], [idB, staffB]) => preferredLastName(staffA).localeCompare(preferredLastName(staffB))}
-                pinned={userData?.staff ?? []}
+                pinned={userData.staff}
             />
         </>
     );

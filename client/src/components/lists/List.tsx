@@ -2,17 +2,25 @@ import {useState, useEffect} from 'react';
 import NoResults from './NoResults';
 
 
-type ListEntriesPair = [string, any]
-type ListProps = {
-    data: ListEntriesPair[] | {[key: string]: any}, // Data can either be an Object.entries result or the raw JSON
-    filter: ([id, value]: ListEntriesPair) => boolean,
-    map: ([id, value]: ListEntriesPair) => JSX.Element,
-    sort: ([idA, valueA]: ListEntriesPair, [idB, valueB]: ListEntriesPair) => number,
+type ListEntriesPair<T> = [string, T]
+type ListProps<T> = {
+    // Data can either be an Object.entries result or the raw JSON object
+    // Perhaps this is an unideal implementation
+    data: ListEntriesPair<T>[] | {[key: string]: T},
+    filter: ([id, value]: ListEntriesPair<T>) => boolean,
+    map: ([id, value]: ListEntriesPair<T>) => JSX.Element,
+    sort: ([idA, valueA]: ListEntriesPair<T>, [idB, valueB]: ListEntriesPair<T>) => number,
     pinned: string[]
 }
 
-// Higher order List component for clubs and staff now that they are separate
-export default function List(props: ListProps) {
+// Defines a higher order list component of type T where T is the type of the JSON representation of a list value
+// (ex: Club, Staff, `{ new: true, name: "United Computations", ... }`).
+// List accepts the raw data as either the entire JSON file (`{[key: string]: T}`) or already subjected to Object.entries
+// (`[string, T][]` to be compatible with Club tab data filtering).
+// A compatible `map` callback is used to map T to JSX elements and render the component, while `filter` filters the
+// sorted T array based on user queries.
+// Pinned items (given as a string[] of IDs) are displayed in a separate category above other results.
+export default function List<T>(props: ListProps<T>) {
     // Filter and map are different for each list, so pass them in as props
     let {data, filter, map, sort, pinned} = props;
 
@@ -22,20 +30,14 @@ export default function List(props: ListProps) {
     // Renders content on mount and when data or query changes
     useEffect(() => {
         // Parses data into mappable form
-        let newContent;
-
-        if (Array.isArray(data)) {
-            // Assuming this has been subjected to Object.entries already
-            newContent = data.sort(sort);
-        } else {
-            // Creates nested array where [0] is the id and [1] is the object data
-            newContent = Object.entries(data).sort(sort);
-        }
+        const parsed = Array.isArray(data)
+            ? data.sort(sort) // If data has been subject to Object.entries already, sort it
+            : Object.entries(data).sort(sort); // Otherwise, sort the result of Object.entries on the JSON
 
         // Filter out pinned components and display separately
         // Can probably be done better
-        let pinnedData = newContent.filter(([id, value]) => pinned.includes(id));
-        let unpinnedData = newContent.filter(([id, value]) => !pinned.includes(id));
+        let pinnedData = parsed.filter(([id, value]) => pinned.includes(id));
+        let unpinnedData = parsed.filter(([id, value]) => !pinned.includes(id));
 
         // Filter each via query, map to components
         setContent(unpinnedData.filter(filter).map(map));

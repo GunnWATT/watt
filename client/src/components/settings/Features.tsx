@@ -34,7 +34,7 @@ export default function Features() {
                         type="radio"
                         name="period-0-pref"
                         checked={showPeriod0}
-                        onClick={() => changePeriod0(true)}
+                        onChange={() => changePeriod0(true)}
                     />{' '}
                     Yes
                 </Label>
@@ -45,7 +45,7 @@ export default function Features() {
                         type="radio"
                         name="period-0-pref"
                         checked={!showPeriod0}
-                        onClick={() => changePeriod0(false)}
+                        onChange={() => changePeriod0(false)}
                     />{' '}
                     No
                 </Label>
@@ -59,7 +59,7 @@ export default function Features() {
                         type="radio"
                         name="period-8-pref"
                         checked={showPeriod8}
-                        onClick={() => changePeriod8(true)}
+                        onChange={() => changePeriod8(true)}
                     />{' '}
                     Yes
                 </Label>
@@ -70,7 +70,7 @@ export default function Features() {
                         type="radio"
                         name="period-8-pref"
                         checked={!showPeriod8}
-                        onClick={() => changePeriod8(false)}
+                        onChange={() => changePeriod8(false)}
                     />{' '}
                     No
                 </Label>
@@ -84,7 +84,7 @@ export default function Features() {
                         type="radio"
                         name="clock-pref"
                         checked={showClock}
-                        onClick={() => changeClock(true)}
+                        onChange={() => changeClock(true)}
                     />{' '}
                     Yes
                 </Label>
@@ -95,7 +95,7 @@ export default function Features() {
                         type="radio"
                         name="clock-pref"
                         checked={!showClock}
-                        onClick={() => changeClock(false)}
+                        onChange={() => changeClock(false)}
                     />{' '}
                     No
                 </Label>
