@@ -101,16 +101,18 @@ const ClassesSidebarItem = (props:{collapsed:boolean, name: string, color:string
     return null;
 }
 
-export const findClassesList = (userData:UserData) => {
+export const findClassesList = (userData:UserData, includeAll?:boolean) => {
     // find classes from userData
     const classes: { name: string, color: string, period: string }[] = [];
 
     // All courses
-    classes.push({
-        name: "All Courses",
-        color: parsePeriodColor("default", userData), // lol it spits out the default color if it doesn't recognize the period name; kinda a hacky workaround
-        period: "A"
-    })
+    if(includeAll!==false) {
+            classes.push({
+            name: "All Courses",
+            color: parsePeriodColor("default", userData), // lol it spits out the default color if it doesn't recognize the period name; kinda a hacky workaround
+            period: "A"
+        });
+    }
 
     for (const p in userData.classes) {
 

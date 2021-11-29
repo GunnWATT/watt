@@ -18,6 +18,13 @@
 }
 
 .upcoming-search {
+    background-color: var(--content-primary);
+    margin: 10px -5px;
+    padding: 10px;
+    border-radius: 9px;
+}
+
+.upcoming-search-bar {
     background-color: var(--bg-primary);
     padding: 8px 10px;
     border-radius: 5px;
@@ -26,6 +33,74 @@
     position: -webkit-sticky;
     position: sticky;
     top: 5px;
+}
+
+.upcoming-filters {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+@mixin dot ($diameter) {
+    width: $diameter;
+    height: $diameter;
+    flex-shrink: 0;
+    border-radius: $diameter;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upcoming-palette {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: var(--bg-primary);
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+
+    > .upcoming-palette-dot {
+        @include dot(17px);
+
+        &:not(:first-child) {
+            margin-left: 5px;
+        }
+    }
+}
+
+.upcoming-palette-burrito {
+    position: relative;
+}
+
+.upcoming-palette-picker {
+    cursor: auto;
+    position: absolute;
+    top: calc(100% + 15px);
+    width: 300px;
+    background-color: var(--content-primary);
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 0px;
+
+    .upcoming-palette-picker-class {
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+
+        .upcoming-palette-picker-dot {
+            @include dot(30px);
+            margin-right: 10px;
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 5px;
+        }
+    }
+    
 }
 
 .upcoming-day-header {
