@@ -1,5 +1,7 @@
 import moment from "moment";
 import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { useLocation } from "react-router-dom";
 import CurrentTimeContext from "../../contexts/CurrentTimeContext";
 import UserDataContext, { SgyData } from "../../contexts/UserDataContext";
 import { useScreenType } from "../../hooks/useScreenType";
@@ -7,8 +9,8 @@ import { parsePeriodColor, parsePeriodName } from "../schedule/Periods";
 import { DashboardAssignment, getUpcomingInfo } from "./Dashboard";
 
 
-const UpcomingSearchBar = (props:{setQuery:(q:string)=>void}) => {
-    return <input type="text" placeholder="Search" className="upcoming-search" onChange={(event) => props.setQuery(event.target.value)} />
+const UpcomingSearchBar = (props:{setQuery:(q:string)=>void, query:string}) => {
+    return <input type="text" placeholder="Search" defaultValue={props.query} className="upcoming-search" onChange={(event) => props.setQuery(event.target.value)} />
 }
 
 const UpcomingAssignmentTag = (props:{label:string, color:string}) => {
@@ -74,11 +76,26 @@ const UpcomingAssignments = (props:{upcoming:DashboardAssignment[]}) => {
 
 const UpcomingBody = (props:{upcoming:DashboardAssignment[]|null}) => {
 
-    const [query, setQuery] = useState('');
+    // console.log(new URL(window.location.href).searchParams)
+    // console.log('hi');
+
+    const { search, pathname } = useLocation();
+    const searchParams = new URLSearchParams(search);
+
+    const [query, setQuery] = useState(searchParams.get('search') ?? '');
+
+    const upcomingFiltered = props.upcoming?.filter((assi) => {
+        // query
+        if(query.length === 0) return true;
+
+        else {
+            return assi.name.toLowerCase().includes(query.toLowerCase()) || assi.description.toLowerCase().includes(query.toLowerCase());
+        }
+    })
+    
     return <div className="upcoming">
-        <UpcomingSearchBar setQuery={setQuery} />
-        {query}
-        {props.upcoming ? <UpcomingAssignments upcoming={props.upcoming} /> : null}
+        <UpcomingSearchBar setQuery={setQuery} query={query} />
+        {upcomingFiltered ? <UpcomingAssignments upcoming={upcomingFiltered} /> : null}
     </div>
 }
 

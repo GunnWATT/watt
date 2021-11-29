@@ -15,6 +15,7 @@ import Dashboard from '../components/classes/Dashboard';
 import { parsePeriodColor } from "../components/schedule/Periods";
 import { useScreenType } from "../hooks/useScreenType";
 import { Upcoming } from "../components/classes/Upcoming";
+import { useLocation } from "react-router";
 
 export const fetchSgyMaterials = (async (functions: Functions) => {
     const fetchMaterials = httpsCallable(functions, 'sgyfetch-fetchMaterials');
@@ -188,12 +189,23 @@ export default function Classes() {
     // Selected
     const [selected, setSelected] = useState<string>('A');
 
+    // We use hash for stuff lol
+    const { search, pathname, hash } = useLocation();
+
+    const views = ['dashboard', 'upcoming', 'materials']
+    const defaultview = (views.includes(hash.slice(1))) ? views.indexOf(hash.slice(1)) : 0;
+
     // Selected View
     // 0 - dashboard
     // 1 - upcoming
     // 2 - materials
     // possible 3 - tasks
-    const [view, setView] = useState(0);
+    const [view, setRawView] = useState(defaultview);
+    
+    const setView = (v: number ) => {
+        setRawView(v);
+        window.location.hash = views[v];
+    }
 
     // Raw Schoology Data
     const [sgyData, setSgyData] = useState<null | SgyData>(null);
