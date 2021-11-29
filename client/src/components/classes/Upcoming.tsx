@@ -120,6 +120,8 @@ const UpcomingDateRangePicker = (props: DateRangeProps) => {
         };
     }, [ref]);
 
+    const screenType = useScreenType();
+
     // I probably shouldn't do this here
     // generate schedule
     const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(str => str[0]);
@@ -192,7 +194,7 @@ const UpcomingDateRangePicker = (props: DateRangeProps) => {
         </>
     });
 
-    return <div className="date-range-selector" ref={ref}>
+    return <div className={"date-range-selector " + screenType} ref={ref}>
         <div className="date-range-selector-box">
             <div className="date-selector-main" onClick={() => setCalendar(!showCalendar)}>
                 <div>{start.format("MMMM D, yyyy")}</div>
@@ -227,9 +229,10 @@ const UpcomingSearchBar = (props: {
 } & PaletteProps & DateRangeProps) => {
     // lol props
 
+    const screenType = useScreenType();
     return <div className="upcoming-search">
         <input type="text" placeholder="Search" defaultValue={props.query} className="upcoming-search-bar" onChange={(event) => props.setQuery(event.target.value)} />
-        <div className="upcoming-filters">
+        <div className={"upcoming-filters " + screenType}>
             {props.selected === 'A' ? <UpcomingPalette classes={props.classes} classFilter={props.classFilter} setClassFilter={props.setClassFilter} /> : null}
             <UpcomingDateRangePicker start={props.start} setStart={props.setStart} end={props.end} setEnd={props.setEnd}  />
         </div>
@@ -364,7 +367,7 @@ export const Upcoming = (props: { sgyData: SgyData, selected: string }) => {
 
     return <div className={"upcoming-burrito " + screenType}>
         <UpcomingBody selected={selected} upcoming={upcoming} />
-        <UpcomingCalendar />
+        {screenType !== 'smallScreen' && screenType !== 'phone' ? <UpcomingCalendar /> : null}
     </div>
 
 }

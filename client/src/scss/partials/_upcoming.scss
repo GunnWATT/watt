@@ -22,6 +22,9 @@
     margin: 10px -5px;
     padding: 10px;
     border-radius: 9px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 5px;
 }
 
 .upcoming-search-bar {
@@ -30,9 +33,6 @@
     border-radius: 5px;
     width: 100%;
     font-size: 1.2rem;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 5px;
 }
 
 .upcoming-filters {
@@ -41,6 +41,10 @@
     margin-top: 10px;
 
     align-items: center;
+
+    &.phone {
+        flex-wrap: wrap;
+    }
 }
 
 @mixin dot ($diameter) {
@@ -85,6 +89,7 @@
     padding: 10px;
     border-radius: 5px;
     margin-left: 0px;
+    z-index: 5;
 
     .upcoming-palette-picker-class {
 
@@ -106,7 +111,27 @@
 }
 
 .date-range-selector {
-    margin-left: auto;
+    
+
+    &.phone {
+        margin-top: 5px;
+        margin-left: auto;
+        
+        .date-range-selector-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    &:not(.phone) {
+        margin-left: auto;
+
+        .mini-calendar {
+            right: 0px;
+        }
+    }
 }
 
 .upcoming-day-header {
