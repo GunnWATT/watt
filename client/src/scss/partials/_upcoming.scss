@@ -39,6 +39,8 @@
     display: flex;
     flex-direction: row;
     margin-top: 10px;
+
+    align-items: center;
 }
 
 @mixin dot ($diameter) {
@@ -101,6 +103,10 @@
         }
     }
     
+}
+
+.date-range-selector {
+    margin-left: auto;
 }
 
 .upcoming-day-header {

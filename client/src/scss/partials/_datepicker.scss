@@ -1,24 +1,57 @@
 // The date selector
-.date-selector {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2rem;
-
-  .date-selector-box {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    background-color: var(--content-primary);
-    color: inherit;
+.date-selector, .date-range-selector {
     display: flex;
-    align-items: center;
     justify-content: center;
-    height: 35px;
-    padding: 15px 0;
-    width: 220px;
-    border-radius: 5px;
-    position: relative;
 
-    .date-selector-main-text {
-      cursor: pointer;
+    &.date-selector {
+        margin-bottom: 2rem;
+    }
+
+    .date-selector-box {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        background-color: var(--content-primary);
+        color: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 35px;
+        padding: 15px 0;
+        width: 220px;
+        border-radius: 5px;
+        position: relative;
+
+        .date-selector-main-text {
+            cursor: pointer;
+        }
+    }
+
+    .date-range-selector-box {
+        position: relative;
+
+        .date-selector-main {
+            cursor: pointer;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background-color: var(--bg-primary);
+
+            border-radius: 5px;
+            position: relative;
+            font-size: 0.8rem;
+
+            >div {
+                background-color: var(--content-primary);
+                border-radius: 5px;
+                padding: 2px 10px;
+                margin: 6px;
+            }
+        }
+    }
+
+    &.date-range-selector {
+        .mini-calendar {
+            right: 0px;
+        }
     }
 
     .mini-calendar {
@@ -83,10 +116,27 @@
               color: var(--secondary)
             }
 
-            &-selected {
+            &-selected, &-start, &-end {
               background-color: var(--active);
               color: white;
-              border-radius: 15px;
+            }
+
+            &-selected {
+                border-radius: 15px;
+            }
+
+            &-start {
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+            }
+
+            &-end {
+                border-bottom-right-radius: 15px;
+                border-top-right-radius: 15px;
+            }
+
+            &-sandwich {
+                background-color: var(--content-secondary);
             }
           }
         }
@@ -108,9 +158,25 @@
           cursor: pointer;
           margin-left: auto;
         }
+
+        .calendar-select-start {
+          cursor: pointer;
+          padding: 0px 5px;
+          border-radius: 5px;
+        }
+        .calendar-select-end {
+          cursor: pointer;
+          margin-left: auto;
+          padding: 0px 5px;
+          border-radius: 5px;
+        }
+
+        .date-range-selected {
+            background-color: var(--active);
+
+        }
       }
     }
-  }
 }
 
 // .react-datepicker-wrapper {
