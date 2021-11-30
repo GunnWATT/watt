@@ -6,7 +6,7 @@ import {useState, useEffect} from "react";
 // Auth
 import { useAuth, useFirestore, useFunctions, useUser } from 'reactfire';
 import { httpsCallable } from 'firebase/functions';
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { updateUserData } from "../../firebase/updateUserData";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Spinner, Button } from 'reactstrap';
 
@@ -49,7 +49,7 @@ export default function SgyInitResults() {
 
     // Search params handling
     const { search, pathname } = useLocation();
-    const { replace } = useHistory();
+    const navigate = useNavigate();
     const searchParams = new URLSearchParams(search);
 
     const [sgyModal, setSgyModal] = useState(searchParams.get('modal') === 'sgyauth');
@@ -71,7 +71,7 @@ export default function SgyInitResults() {
     const toggle = () => {
         setSgyModal(false);
         searchParams.delete('modal'); // Delete modal param from url to prevent retrigger on page refresh
-        replace(`${pathname}${searchParams}`); // Replace current instance in history stack with updated search params
+        navigate(`${pathname}${searchParams}`, {replace: true}); // Replace current instance in history stack with updated search params
     }
 
     const disableSchoology = async () => {
