@@ -151,6 +151,12 @@ const init = async (data, context) => {
 
     const sgyInfo = await getSgyInfo(uid)
 
+    if(sgyInfo === null) {
+        console.log('sgy init user doesnt have sgy enabled');
+        console.log({ context, data });
+        throw new functions.https.HttpsError('unauthenticated', 'Error: user has not enabled schoology.')
+    }
+
     const sgyClasses = await oauth.get(`${apiBase}/users/${sgyInfo.uid}/sections`, sgyInfo.key, sgyInfo.sec)
         .then(toJson)
         .catch(e => console.log(e))

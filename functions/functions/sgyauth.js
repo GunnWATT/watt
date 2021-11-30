@@ -53,6 +53,7 @@ const auth = async (data, context) => {
 
     const uid = context.auth.uid
     if (!uid) {
+        console.log('not signed in!')
         throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.')
     }
 
