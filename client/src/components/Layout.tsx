@@ -1,5 +1,5 @@
 import {useContext, useEffect, useState, ReactNode} from 'react';
-import {useLocation, useHistory} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import {Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import {useAnalytics} from 'reactfire';
 import {logEvent} from 'firebase/analytics';
@@ -20,6 +20,20 @@ type LayoutProps = {children: ReactNode};
 export default function Layout(props: LayoutProps) {
     // Screen type for responsive layout
     const screenType = useScreenType();
+
+    // Search params handling
+    const { search, pathname } = useLocation();
+    const navigate = useNavigate();
+    const searchParams = new URLSearchParams(search);
+
+    // Modals
+    // Consider extracting this elsewhere
+    const [sgyModal, setSgyModal] = useState(searchParams.get('modal') === 'sgyauth');
+    const toggle = () => {
+        setSgyModal(false);
+        searchParams.delete('modal'); // Delete modal param from url to prevent retrigger on page refresh
+        navigate(`${pathname}${searchParams}`, {replace: true}); // Replace current instance in history stack with updated search params
+    }
 
     // Render layout dynamically
     let content;

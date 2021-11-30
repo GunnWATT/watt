@@ -5,6 +5,8 @@ import UserDataContext, { SgyData, SgyPeriodData, UserData } from "../contexts/U
 import SgySignInBtn from "../components/firebase/SgySignInBtn";
 import Loading from "../components/layout/Loading";
 import RedBackground from '../components/layout/RedBackground';
+import {Routes, Route} from 'react-router-dom';
+import {Nav, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 
 // firebase
 import { Functions, httpsCallable } from 'firebase/functions';
@@ -249,5 +251,5 @@ export default function Classes() {
             </div>
            <ClassesSidebar userData={userData} setSelected={setSelected} />
         </div>
-    );
+    )
 }

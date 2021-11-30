@@ -1,22 +1,17 @@
 import {ReactNode} from 'react';
-import {Link, Route} from "react-router-dom";
+import {NavLink} from 'react-router-dom';
 
 
-type SidebarItemProps = {to: string, icon: ReactNode, name: string, exact?: boolean};
+type SidebarItemProps = {to: string, icon: ReactNode, name: string};
 export default function SidebarItem(props: SidebarItemProps) {
-    let {to, icon, name, exact} = props;
+    const {to, icon, name} = props;
 
     return (
-        <Route exact={exact} path={to}>
-            {({match}) => (
-                // If current path matches what the Route points towards, give it the "active" class
-                <span className={`item ${match ? "active" : ""}`}>
-                    <Link to={to}>
-                        {icon}
-                        <span>{name}</span>
-                    </Link>
-                </span>
-            )}
-        </Route>
+        <span className="item">
+            <NavLink to={to} className={({isActive}) => isActive ? "active" : ""}>
+                {icon}
+                <span>{name}</span>
+            </NavLink>
+        </span>
     )
 }

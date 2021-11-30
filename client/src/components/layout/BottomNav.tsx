@@ -24,7 +24,7 @@ export default function BottomNav() {
                 {/* Nav */}
                 <SidebarItem name="Clubs" to="/clubs" icon={<Users/>}/>
                 <SidebarItem name="Classes" to="/classes" icon={<CheckSquare/>}/>
-                <SidebarItem name="Home" to="/" icon={<Home/>} exact/>
+                <SidebarItem name="Home" to="/" icon={<Home/>}/>
                 <SidebarItem name="Utilities" to="/utilities" icon={<Tool/>}/>
 
                 {/* Dropup */}

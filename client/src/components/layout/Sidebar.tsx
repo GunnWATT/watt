@@ -60,7 +60,7 @@ export default function Sidebar(props: SidebarProps) {
                 <h1>Web App of the Titans</h1>
 
                 {/* Nav */}
-                <SidebarItem name="Home" to="/" icon={<Home/>} exact/>
+                <SidebarItem name="Home" to="/" icon={<Home/>}/>
                 <SidebarItem name="Classes" to="/classes" icon={<CheckSquare/>}/>
                 <SidebarItem name="Clubs" to="/clubs" icon={<Users/>}/>
                 <SidebarItem name="Utilities" to="/utilities" icon={<Tool/>}/>

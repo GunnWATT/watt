@@ -1,4 +1,4 @@
-import {Switch, Route, useRouteMatch} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import {Nav} from 'reactstrap';
 
 // Components
@@ -13,32 +13,30 @@ import Barcode from '../components/utilities/Barcode';
 
 
 export default function Utilities() {
-    let match = useRouteMatch();
-
     return (
         <Header
             heading="Utilities"
             nav={
                 <Nav fill tabs>
-                    <NavTab to={match.url} name="Barcode" exact/>
-                    {/* <NavTab to={`${match.url}/graphing`} name="Graphing Calculator"/> */}
-                    <NavTab to={`${match.url}/map`} name="Map" />
-                    <NavTab to={`${match.url}/support`} name="Support" />
-                    <NavTab to={`${match.url}/calculator`} name="Finals Calc." />
-                    <NavTab to={`${match.url}/staff`} name="Staff" />
-                    <NavTab to={`${match.url}/courses`} name="Courses" />
+                    <NavTab to="." name="Barcode" />
+                    {/* <NavTab to="graphing" name="Graphing Calculator"/> */}
+                    <NavTab to="map" name="Map" />
+                    <NavTab to="support" name="Support" />
+                    <NavTab to="calculator" name="Finals Calc." />
+                    <NavTab to="staff" name="Staff" />
+                    <NavTab to="courses" name="Courses" />
                 </Nav>
             }
         >
-            <Switch>
-                <Route exact path={match.path} component={Barcode} />
-                {/* <Route path={`${match.path}/graphing`} component={GraphingCalculator}/> */}
-                <Route path={`${match.path}/map`} component={Map}/>
-                <Route path={`${match.path}/support`} component={Support}/>
-                <Route path={`${match.path}/calculator`} component={Calculator}/>
-                <Route path={`${match.path}/staff`} component={Staff}/>
-                <Route path={`${match.path}/courses`} component={WIP}/> {/* WIP is temporary, will replace with courses when it's finished */}
-            </Switch>
+            <Routes>
+                <Route path="/" element={<Barcode />} />
+                {/* <Route path="graphing`} element={<GraphingCalculator />}/> */}
+                <Route path="/map" element={<Map />}/>
+                <Route path="/support" element={<Support />}/>
+                <Route path="/calculator" element={<Calculator />}/>
+                <Route path="/staff" element={<Staff />}/>
+                <Route path="/courses" element={<WIP />}/> {/* WIP is temporary, will replace with courses when it's finished */}
+            </Routes>
         </Header>
     );
 }
