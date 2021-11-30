@@ -3,7 +3,7 @@ import {deepdifferences, deepmerge} from './LocalStorageUserDataProvider';
 
 // Firestore
 import {useAuth, useFirestore, useFirestoreDoc, useFunctions} from 'reactfire';
-import {doc} from 'firebase/firestore';
+import {doc, setDoc} from 'firebase/firestore';
 import {bulkUpdateFirebaseUserData, updateFirebaseUserData} from '../../firebase/updateUserData';
 
 // Context
@@ -37,8 +37,13 @@ export default function FirebaseUserDataProvider(props: FirebaseUserDataProvider
     useEffect(() => {
         if (status !== 'success') return;
 
+        if (!firebaseDoc.exists()) {
+            console.error('[ERR] Firebase data nonexistent, cancelling merge'); // Try to prevent user data resetting
+            setDoc(doc(firestore, 'users', auth.currentUser!.uid), defaultUserData);
+            return;
+        }
+
         const data = firebaseDoc.data();
-        if (!data) return console.error('[ERR] Firebase data nonexistent, cancelling merge'); // Try to prevent user data resetting
 
         const merged = deepmerge(defaultUserData, data);
         const changes = deepdifferences(data, merged);
