@@ -64,7 +64,7 @@ export const UpcomingPalette = (props: PaletteProps) => {
     return <div className={"upcoming-palette-burrito"} ref={ref}>
         <div className="upcoming-palette" onClick={() => setPicker(!picker)}>
             {classes.map((c, index) => {
-                return <div className="upcoming-palette-dot"
+                return <div key={index} className="upcoming-palette-dot"
                     style={{
                         backgroundColor: classFilter[index] ? c.color : 'var(--content-primary)',
                         border: classFilter[index] ? '' : '2px inset var(--secondary)'

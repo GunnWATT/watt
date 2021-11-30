@@ -3,7 +3,9 @@ import { SgyData, UserData } from "../../../contexts/UserDataContext";
 import { findClassesList } from "../../../views/Classes";
 import { DashboardAssignment } from "../Dashboard";
 
+// Functions for wrangling with Schoology data
 
+// A comparator for moment objects (for sorting)
 const momentComparator = (a: moment.Moment, b: moment.Moment) => {
     if (a.isBefore(b)) {
         return -1;
@@ -14,6 +16,7 @@ const momentComparator = (a: moment.Moment, b: moment.Moment) => {
     return 0;
 }
 
+// Gets all your upcoming and overdue stuff
 export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: UserData, time: moment.Moment) => {
 
     if (selected === 'A') {
@@ -114,6 +117,7 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: Us
     return { upcoming, overdue };
 }
 
+// Find your grade objects
 export const findGrades = (sgyData: SgyData, selected: string) => {
     const selectedCourse = sgyData[selected];
     // Attempt to match the id of the selected course to the id in the course grades
@@ -139,6 +143,8 @@ export const findGrades = (sgyData: SgyData, selected: string) => {
 
 }
 
+// Get all grades, but as numbers
+// wildly inefficient lol
 export const getAllGrades = (sgyData: SgyData, userData: UserData) => {
     const classes = findClassesList(userData);
     const grades: { [key: string]: number } = {};

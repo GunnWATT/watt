@@ -1,4 +1,6 @@
+// Some useful functions here
 
+// Classifying a grade
 export const classifyGrade = (grade: number) => {
     if (grade >= 93) return 'A';
     if (grade >= 90) return 'A-';
@@ -13,6 +15,7 @@ export const classifyGrade = (grade: number) => {
     return 'D-';
 }
 
+// 1 -> 1st, 2 -> 2nd, 3 -> 3rd, 4 -> 4th english why
 export const cardinalize = (num: number) => {
     switch (num % 10) {
         case 1:

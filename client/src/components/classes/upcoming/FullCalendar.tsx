@@ -3,7 +3,9 @@ import { useState } from "react";
 import { GenericCalendar } from "../../schedule/DateSelector";
 import { DateRangeProps } from "./SearchBar";
 
-export const UpcomingCalendar = (props: DateRangeProps) => {
+// Side calendar for large screens on Upcoming
+// Doubles as a date range filter for the assignments, and for a quick visualization of due dates
+export const UpcomingFullCalendar = (props: DateRangeProps) => {
 
     const { start, end, setStart, setEnd } = props;
     const endInclusive = moment(end); endInclusive.subtract(1, 'days');

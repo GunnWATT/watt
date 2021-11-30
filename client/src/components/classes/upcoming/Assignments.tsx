@@ -4,6 +4,9 @@ import UserDataContext from "../../../contexts/UserDataContext";
 import { parsePeriodName, parsePeriodColor } from "../../schedule/Periods";
 import { DashboardAssignment } from "../Dashboard";
 
+// The assignment blocks for the Upcoming Tab
+// Pretty self explanatory
+
 const UpcomingAssignmentTag = (props: { label: string, color: string }) => {
     return <div className="upcoming-assignment-tag">
         <div style={{ backgroundColor: props.color }} className="upcoming-assignment-dot"></div>
@@ -33,7 +36,7 @@ const UpcomingAssignmentDay = (props: { day: moment.Moment, upcoming: DashboardA
     return <>
         <div className={"upcoming-day-header"}>{day.format('dddd, MMMM Do')} • In {day.diff(moment(), 'days') + 1} day{day.diff(moment(), 'days') ? 's' : ''}</div>
 
-        {upcoming.map((assigment) => <UpcomingAssignment assignment={assigment} />)}
+        {upcoming.map((assigment) => <UpcomingAssignment key={assigment.link} assignment={assigment} />)}
     </>
 }
 
@@ -42,6 +45,8 @@ const UpcomingAssignments = (props: { upcoming: DashboardAssignment[] }) => {
 
     const { upcoming } = props;
 
+    // We map days (like "11-29-2021") to all the assignments that are due on that day
+    // that way we can have all the headers and stuff
     const daysMap = new Map<string, DashboardAssignment[]>();
     for (const assignment of upcoming) {
         const day = assignment.timestamp.format('MM-DD-YYYY');
@@ -61,7 +66,7 @@ const UpcomingAssignments = (props: { upcoming: DashboardAssignment[] }) => {
     }
 
     return <div className={"upcoming-assignments"}>
-        {days.map(({ day, upcoming }) => <UpcomingAssignmentDay day={day} upcoming={upcoming} />)}
+        {days.map(({ day, upcoming }) => <UpcomingAssignmentDay key={day.format('MM-DD-YYYY')} day={day} upcoming={upcoming} />)}
     </div>
 }
 

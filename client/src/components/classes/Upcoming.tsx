@@ -10,10 +10,11 @@ import { SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE } from "../schedule/Peri
 import { getUpcomingInfo } from "./functions/SgyFunctions";
 import UpcomingSearchBar from "./upcoming/SearchBar";
 import UpcomingAssignments from "./upcoming/Assignments";
-import { UpcomingCalendar } from "./upcoming/FullCalendar";
+import { UpcomingFullCalendar } from "./upcoming/FullCalendar";
 
 export const Upcoming = (props: { sgyData: SgyData, selected: string }) => {
 
+    // An ungodly amount of preamble
     const { sgyData, selected } = props;
     const time = useContext(CurrentTimeContext);
     const screenType = useScreenType();
@@ -24,7 +25,8 @@ export const Upcoming = (props: { sgyData: SgyData, selected: string }) => {
     const [upcoming, setUpcoming] = useState<DashboardAssignment[] | null>(null);
     const [overdue, setOverdue] = useState<DashboardAssignment[] | null>(null);
 
-    const { search, pathname } = useLocation();
+    // Search query can be found in pathname params
+    const { search } = useLocation();
     const searchParams = new URLSearchParams(search);
     const [query, setQuery] = useState(searchParams.get('search') ?? '');
     const [classFilter, setClassFilter] = useState<boolean[]>(Array(classes.length).fill(true));
@@ -33,11 +35,13 @@ export const Upcoming = (props: { sgyData: SgyData, selected: string }) => {
     const [start, setStart] = useState(startofday);
     const [end, setEnd] = useState(SCHOOL_END_EXCLUSIVE);
 
+    // We filter upcoming by 1) query 2) class 3) date
     const upcomingFiltered = upcoming?.filter((assi) => {
         // query
         if (query.length === 0) return true;
 
         else {
+            // TODO: include fuzzy matching
             return assi.name.toLowerCase().includes(query.toLowerCase()) || assi.description.toLowerCase().includes(query.toLowerCase());
         }
     }).filter((assi) => {
@@ -63,7 +67,7 @@ export const Upcoming = (props: { sgyData: SgyData, selected: string }) => {
             <UpcomingSearchBar start={start} setStart={setStart} end={end} setEnd={setEnd} selected={props.selected} classFilter={classFilter} setClassFilter={setClassFilter} classes={classes} setQuery={setQuery} query={query} />
             {upcomingFiltered ? <UpcomingAssignments upcoming={upcomingFiltered} /> : null}
         </div>
-        {screenType !== 'smallScreen' && screenType !== 'phone' ? <UpcomingCalendar start={start} setStart={setStart} end={end} setEnd={setEnd} /> : null}
+        {screenType !== 'smallScreen' && screenType !== 'phone' ? <UpcomingFullCalendar start={start} setStart={setStart} end={end} setEnd={setEnd} /> : null}
     </div>
 
 }

@@ -3,10 +3,14 @@ import moment from "moment";
 import { getSchedule } from "../../../hooks/useSchedule";
 import { SCHOOL_END_EXCLUSIVE, SCHOOL_START } from "../../schedule/Periods";
 
+// Functions for dealing with periods
+
+// Tells you if a day has a class
 export const hasClass = (day: moment.Moment, period: string) => {
     return getSchedule(day)?.find(([p]) => p === period) ?? null;
 }
 
+// Finds the next period of a certain class
 export const findNextClass = (period: string) => {
     const now = moment();
 
@@ -32,6 +36,7 @@ export const findNextClass = (period: string) => {
     return null;
 }
 
+// Tells you a bunch of info about a class, like how many classes have there been, what day and what week is it, etc.
 export const pastClasses = (period: string): ClassPeriodQuickInfo => {
     const current = moment(SCHOOL_START);
     while (!hasClass(current, period) && !current.isAfter(SCHOOL_END_EXCLUSIVE)) current.add(1, 'days'); // find first instance of class
@@ -88,6 +93,7 @@ export const pastClasses = (period: string): ClassPeriodQuickInfo => {
     }
 }
 
+// self explanatory
 export const nextSchoolDay = () => {
     const now = moment();
 
@@ -113,6 +119,7 @@ export const nextSchoolDay = () => {
     return null;
 }
 
+// number of school days since the start of the year
 export const numSchoolDays = () => {
     const current = moment(SCHOOL_START);
 

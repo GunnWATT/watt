@@ -8,7 +8,9 @@ import { parsePeriodColor } from "../../schedule/Periods";
 import { DashboardAssignment } from "../Dashboard";
 import { hasClass } from "../functions/PeriodFunctions";
 
+// The week calendar for dashboard
 
+// Dots are colored by course
 const UpcomingQuickCalDot = (props: { course: string }) => {
     const userData = useContext(UserDataContext);
     return <div className="upcoming-blurb-qc-dot" style={{ backgroundColor: parsePeriodColor(props.course, userData) }}></div>
@@ -30,6 +32,7 @@ const UpcomingQuickCalDay = (props: { day: moment.Moment, upcoming: DashboardAss
         if (hasClass(day, selected)) active = true;
     }
 
+    // Lots of flexbox
     return <div className={"upcoming-blurb-qc-day" + (active ? '-active' : '-inactive')}>
         <div className="upcoming-blurb-qc-day-num"> {screenType === 'phone' ? weekdays[day.weekday()] : `${weekdays[day.weekday()]} • ${day.date()}`}</div>
         <div className="upcoming-blurb-qc-dots">
@@ -38,12 +41,12 @@ const UpcomingQuickCalDay = (props: { day: moment.Moment, upcoming: DashboardAss
     </div>
 }
 
-export const UpcomingQuickCal = (props: { upcoming: DashboardAssignment[], selected: string }) => {
+export const UpcomingQuickWeekCal = (props: { upcoming: DashboardAssignment[], selected: string }) => {
     const { upcoming, selected } = props;
     const time = useContext(CurrentTimeContext);
     let mutableTime = moment(time);
     const days = [];
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 7; i++) { // Add 1 for each day of the week
         days.push(moment(mutableTime));
         mutableTime.add(1, "days");
     }
