@@ -151,7 +151,7 @@ const init = async (data, context) => {
 
     const sgyInfo = await getSgyInfo(uid)
 
-    if(sgyInfo === null) {
+    if(sgyInfo == null) {
         console.log('sgy init user doesnt have sgy enabled');
         console.log({ context, data });
         throw new functions.https.HttpsError('unauthenticated', 'Error: user has not enabled schoology.')
