@@ -7,7 +7,7 @@ import alternates from '../../data/alternates';
 
 // Icons
 import {ChevronLeft, ChevronRight} from 'react-feather'
-import { DateRangeProps } from '../classes/Upcoming';
+import { DateRangeProps } from '../classes/upcoming/SearchBar';
 
 
 type DateSelectorProps = {setViewDate: (d: moment.Moment) => void, viewDate: Moment}
