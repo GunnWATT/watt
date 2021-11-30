@@ -1,8 +1,9 @@
 import { Spinner } from 'reactstrap';
 import {useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
-import {useCallableFunctionResponse} from 'reactfire';
+import {useAuth, useCallableFunctionResponse, useFunctions, useUser} from 'reactfire';
 import Loading from '../components/layout/Loading';
+import { httpsCallable } from '@firebase/functions';
 
 
 export default function SgyAuthRedirect() {
@@ -12,15 +13,46 @@ export default function SgyAuthRedirect() {
     const origin = searchParams.get('origin');
     const oauth_token = searchParams.get('oauth_token');
 
-    const {status, data} = useCallableFunctionResponse('sgyauth', {data: {oauth_token: oauth_token}});
+    // const {status, data} = useCallableFunctionResponse('sgyauth', {data: {oauth_token: oauth_token}});
 
+    const functions = useFunctions();
+
+    const auth = useAuth();
     useEffect(() => {
-        if (status === 'error') console.error('Error occurred while calling sgyauth')
-        if (status === 'success') {
-            const to = new URL(origin!); to.searchParams.append('modal', 'sgyauth');
-            window.location.href = `${to.href}`;
+        if(auth.currentUser) {
+
+            const sgyAuthFunction = httpsCallable(functions, "sgyauth");
+            const result = sgyAuthFunction({ oauth_token: oauth_token });
+
+            result.then((data) => {
+                console.log(data);
+
+                if(data.data === false) {
+                    // this is a problem.
+                    window.location.href = origin ?? '/';
+                    // console.log(user);
+                } else {
+                    const to = new URL(origin!); to.searchParams.append('modal', 'sgyauth');
+                    window.location.href = `${to.href}`;
+                }
+            }).catch((err) => {
+                window.location.href = origin ?? '/';
+                console.error(err)
+            })
         }
-    }, [status])
+    }, [auth.currentUser])
+
+    // useEffect(() => {
+        // if (status === 'error') {
+        //     console.error('Error occurred while calling sgyauth')
+        // }
+        // if (status === 'success') {
+        //     console.log(data);
+
+        //     const to = new URL(origin!); to.searchParams.append('modal', 'sgyauth');
+        //     // window.location.href = `${to.href}`;
+        // }
+    // }, [status])
 
     return (
         <Loading message={'Preparing to redirect you...'} />

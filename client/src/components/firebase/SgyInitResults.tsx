@@ -41,7 +41,7 @@ export default function SgyInitResults() {
     const functions = useFunctions();
     const auth = useAuth();
     const firestore = useFirestore();
-    const {status, data} = useUser();
+    // const {status, data} = useUser();
 
     const [results, setResults] = useState<any | null>(null);
     
@@ -57,7 +57,7 @@ export default function SgyInitResults() {
 
     // Set the results to the value returned by initialization to be displayed
     useEffect(() => {
-        if (status === "success" && sgyModal) {
+        if (auth.currentUser && sgyModal) {
             // console.log('hey!');
             const init = httpsCallable(functions, "sgyfetch-init");
             init().then(r => {
