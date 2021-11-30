@@ -144,7 +144,7 @@ const ClassesSidebar = (props:{userData: UserData, setSelected:(selected:string)
     const screenType = useScreenType();
 
     return <div className={"classes-sidebar " + screenType}> 
-        {classes.map(({name,color,period}) => <ClassesSidebarItem name={name} color={color} period={period} collapsed={collapsed} onClick={() => setSelected(period)} />)}
+        {classes.map(({name,color,period}) => <ClassesSidebarItem key={period} name={name} color={color} period={period} collapsed={collapsed} onClick={() => setSelected(period)} />)}
     </div>
 }
 
@@ -174,7 +174,7 @@ const ClassesNavBar = (props:{view: number, setView:(view:number)=>void}) => {
 
     return <div className={"classes-navbar"}>
         {views.map((name, index) => 
-            <ClassesNavBarItem selected={index===view} text={name} onClick={() => setView(index)} />
+            <ClassesNavBarItem key={name} selected={index===view} text={name} onClick={() => setView(index)} />
         )}
     </div>
 }

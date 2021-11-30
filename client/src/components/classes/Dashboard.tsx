@@ -43,7 +43,7 @@ const UpcomingQuickCalDay = (props: { day: moment.Moment, upcoming: DashboardAss
     return <div className={"upcoming-blurb-qc-day" + (active ? '-active' : '-inactive' )}>
         <div className="upcoming-blurb-qc-day-num"> {screenType === 'phone' ? weekdays[day.weekday()] : `${weekdays[day.weekday()]} • ${day.date()}`}</div>
         <div className="upcoming-blurb-qc-dots">
-            {relevantAssigments.map((a) => <UpcomingQuickCalDot course={a.period} />)}
+            {relevantAssigments.map((a) => <UpcomingQuickCalDot key={a.period} course={a.period} />)}
         </div>
     </div>
 }
@@ -59,7 +59,7 @@ const UpcomingQuickCal = (props: { upcoming: DashboardAssignment[], selected:str
     }
 
     return <div className="upcoming-blurb-quick-cal">
-        {days.map((day) => <UpcomingQuickCalDay selected={selected} day={day} upcoming={upcoming} />)}
+        {days.map((day) => <UpcomingQuickCalDay key={day.format('YYYY-MM-DD')} selected={selected} day={day} upcoming={upcoming} />)}
     </div>
 }
 
@@ -83,7 +83,7 @@ const UBAssignments = (props: { upcoming: DashboardAssignment[] }) => {
         {/* <UBAssignment name={"Activity Series of Metals Lab - Get your document here"} due={"Wednesday, December 1st • In 5 days"} />
         {Array(2).fill(<UBAssignment name={"e"} due={"Wednesday, December 1st • In 5 days"} />)} */}
 
-        {upcoming.map((a) => <UBAssignment name={a.name} due={`${a.timestamp.format("dddd, MMMM Do")} • ${a.timestamp.fromNow()}`} period={a.period} />)}
+        {upcoming.map((a) => <UBAssignment key={a.link} name={a.name} due={`${a.timestamp.format("dddd, MMMM Do")} • ${a.timestamp.fromNow()}`} period={a.period} />)}
         <div className="ub-upcoming-redirect"><div>See More in Upcoming</div></div>
     </div>
 }
@@ -471,7 +471,7 @@ const DashGrades = (props: { selected:string, allGrades: {[key:string]:number} }
             <div className={"dashboard-header"}>Grades</div>
 
             <div onClick={() => !revealed ? setRevealed(true) : null} className={"dashboard-grade" + (revealed ? '' : ' dashboard-grade-hidden')}>
-                {classes.filter(({period}) => allGrades[period]).map(({name,color,period}) => <div className="dashboard-grade-all">
+                {classes.filter(({period}) => allGrades[period]).map(({name,color,period}) => <div key={period} className="dashboard-grade-all">
                     <div className={"dashboard-grade-all-bubble"} style={{backgroundColor: color}}>{period}</div>
                     <div>{classifyGrade(allGrades[period])} • {allGrades[period]}% • {name}</div>
                 </div>)}

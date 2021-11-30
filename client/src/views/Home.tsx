@@ -6,7 +6,7 @@ import {GCalEvent} from '../components/schedule/Event';
 // Components
 import RedBackground from '../components/layout/RedBackground';
 import Clock from '../components/schedule/Clock';
-import DateSelector from '../components/schedule/DateSelector';
+import HomeDateSelector from '../components/schedule/DateSelector';
 import Periods from '../components/schedule/Periods';
 import DayAlert from '../components/schedule/DayAlert';
 import Events from '../components/schedule/Events';
@@ -73,9 +73,7 @@ export default function Home(props: HomeProps) {
 
                 { userData.options?.clock && <Clock time={date} viewDate={viewDate} /> }
                 <h2 className="schedule-datetime center">{date.format(format)}</h2>
-                <DateSelector
-                    incDay={incDay}
-                    decDay={decDay}
+                <HomeDateSelector
                     viewDate={viewDate}
                     setViewDate={setViewDate}
                 />

@@ -11,6 +11,7 @@ import { DashboardAssignment, getUpcomingInfo } from "./Dashboard";
 import { SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE } from "../schedule/Periods";
 import alternates from '../../data/alternates';
 import { getSchedule } from "../../hooks/useSchedule";
+import { DateRangePicker, GenericCalendar } from "../schedule/DateSelector";
 
 type PaletteProps = {
     classFilter: boolean[];
@@ -89,137 +90,15 @@ const UpcomingPalette = (props: PaletteProps) => {
     
 }
 
-type DateRangeProps = {
+export type DateRangeProps = {
     start: moment.Moment;
     setStart: (s: moment.Moment) => void;
     end: moment.Moment;
     setEnd: (e: moment.Moment) => void;
 }
 
-const UpcomingDateRangePicker = (props: DateRangeProps) => {
-
-    const {start,end,setStart,setEnd} = props;
-    const [showCalendar,setCalendar] = useState(false);
-    const endInclusive = moment(end); endInclusive.subtract(1,'days');
-
-    const [selecting, setSelecting] = useState<'S'|'E'>('E');
-
-    const ref = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        let handleClickOutside = (event: MouseEvent) => {
-            if (ref.current && event.target instanceof Node && !(ref.current.contains(event.target))) {
-                setCalendar(false);
-            }
-        }
-
-        // Bind the event listener
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            // Unbind the event listener on clean up
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [ref]);
-
-    const screenType = useScreenType();
-
-    // I probably shouldn't do this here
-    // generate schedule
-    const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(str => str[0]);
-
-    let months = [];
-
-    const startmonth = moment().month() + moment().year() * 12;
-    const endmonth = SCHOOL_END.month() + SCHOOL_END.year() * 12;
-
-    for (let m = startmonth; m <= endmonth; m++) {
-        months.push(m);
-    }
-    
-
-    const monthElements = months.map(m => {
-        // for each month, map to tsx days
-        const year = Math.floor(m / 12);
-        const month = m % 12
-        const startOfMonth = moment.tz(`${year}-${month + 1}`, "YYYY-MM", 'America/Los_Angeles');
-
-        const days = Array(startOfMonth.daysInMonth())
-            .fill(0).map((_, i) => i + 1)
-            .map(day => moment.tz(`${year}-${month + 1}-${day}`, "YYYY-MM-DD", 'America/Los_Angeles'))
-            .filter(day => !(day.isBefore(moment().startOf('day')) || day.isAfter(SCHOOL_END)));
-
-
-        const dayElements =
-            [
-                // extra padding
-                ...Array(days[0].weekday()).fill(0).map((_, i) => {
-                    return (
-                        <div className="calendar-day" key={"padding " + i} />
-                    )
-                }),
-
-                // actual content
-                ...days.map(day => {
-                    const noSchool = getSchedule(day) == null;
-                    return (
-                        <div
-                            className={"calendar-day" + 
-                                (noSchool ? " calendar-day-no-school" : "") 
-                                + (day.isSame(start) ? " calendar-day-start" : "") 
-                                + (day.isSame(endInclusive) ? " calendar-day-end" : "") 
-                                + (day.isAfter(start) && day.isBefore(endInclusive) ? " calendar-day-sandwich" : "")  }
-                            
-                            onClick={() => {
-                                if(selecting === 'S') {
-                                    if(day.isBefore(end)) setStart(day);
-                                } else {
-                                    const ex = moment(day); ex.add(1, 'days');
-                                    if(ex.isAfter(start)) {
-                                        setEnd(ex);
-                                    }
-                                }
-                            }}
-                            key={day.toISOString()}
-                        >
-                            {day.date()}
-                        </div>
-                    );
-                })
-            ]
-
-        return <>
-            <div key={`month ${m} header`} className="calendar-month-header">{startOfMonth.format("MMMM YYYY")}</div>
-            <div key={`month ${m}`} className="calendar-month">
-                {dayElements}
-            </div>
-        </>
-    });
-
-    return <div className={"date-range-selector " + screenType} ref={ref}>
-        <div className="date-range-selector-box">
-            <div className="date-selector-main" onClick={() => setCalendar(!showCalendar)}>
-                <div>{start.format("MMMM D, yyyy")}</div>
-                -
-                <div>{end.format("MMMM D, yyyy")}</div>
-            </div>
-
-            <div className="mini-calendar" hidden={!showCalendar}>
-                <div className="calendar-days-wrapper">
-                    <div className="calendar-weekdays">
-                        {weekdays.map(char => <div className="calendar-weekday">{char}</div>)}
-                    </div>
-                </div>
-
-                <div className="calendar-wrapper">
-                    {monthElements}
-                </div>
-
-                <div className="calendar-jump">
-                    <div onClick={() => setSelecting('S')} className={"calendar-select-start" + (selecting === 'S' ? " date-range-selected" : '')}>Start</div>
-                    <div onClick={() => setSelecting('E')} className={"calendar-select-end" + (selecting === 'E' ? " date-range-selected" : '')}>End</div>
-                </div>
-            </div>
-        </div>
-    </div>
+const UpcomingDateRangePicker = ({start,end,setStart,setEnd}: DateRangeProps) => {
+    return <DateRangePicker start={start} end={end} setStart={setStart} setEnd={setEnd} calStart={moment().startOf('day')} />
 }
 
 const UpcomingSearchBar = (props: {
@@ -303,99 +182,33 @@ const UpcomingAssignments = (props:{upcoming:DashboardAssignment[]}) => {
 const UpcomingCalendar = (props: DateRangeProps) => {
 
     const { start, end, setStart, setEnd } = props;
-    const [showCalendar, setCalendar] = useState(false);
     const endInclusive = moment(end); endInclusive.subtract(1, 'days');
 
     const [selecting, setSelecting] = useState<'S' | 'E'>('E');
 
-    const screenType = useScreenType();
-
-    // generate schedule
-    const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(str => str[0]);
-
-    let months = [];
-
-    const startmonth = moment().month() + moment().year() * 12;
-    const endmonth = SCHOOL_END.month() + SCHOOL_END.year() * 12;
-
-    for (let m = startmonth; m <= endmonth; m++) {
-        months.push(m);
-    }
-
-    const monthElements = months.map(m => {
-        // for each month, map to tsx days
-        const year = Math.floor(m / 12);
-        const month = m % 12
-        const startOfMonth = moment.tz(`${year}-${month + 1}`, "YYYY-MM", 'America/Los_Angeles');
-
-        const days = Array(startOfMonth.daysInMonth())
-            .fill(0).map((_, i) => i + 1)
-            .map(day => moment.tz(`${year}-${month + 1}-${day}`, "YYYY-MM-DD", 'America/Los_Angeles'))
-            .filter(day => !(day.isBefore(moment().startOf('day')) || day.isAfter(SCHOOL_END)));
-
-
-        const dayElements =
-            [
-                // extra padding
-                ...Array(days[0].weekday()).fill(0).map((_, i) => {
-                    return (
-                        <div className="calendar-day" key={"padding " + i} />
-                    )
-                }),
-
-                // actual content
-                ...days.map(day => {
-                    const noSchool = getSchedule(day) == null;
-                    return (
-                        <div
-                            className={"calendar-day" +
-                                (noSchool ? " calendar-day-no-school" : "")
-                                + (day.isSame(start) ? " calendar-day-start" : "")
-                                + (day.isSame(endInclusive) ? " calendar-day-end" : "")
-                                + (day.isAfter(start) && day.isBefore(endInclusive) ? " calendar-day-sandwich" : "")}
-
-                            onClick={() => {
-                                if (selecting === 'S') {
-                                    if (day.isBefore(end)) setStart(day);
-                                } else {
-                                    const ex = moment(day); ex.add(1, 'days');
-                                    if (ex.isAfter(start)) {
-                                        setEnd(ex);
-                                    }
-                                }
-                            }}
-                            key={day.toISOString()}
-                        >
-                            {day.date()}
-                        </div>
-                    );
-                })
-            ]
-
-        return <>
-            <div key={`month ${m} header`} className="calendar-month-header">{startOfMonth.format("MMMM YYYY")}</div>
-            <div key={`month ${m}`} className="calendar-month">
-                {dayElements}
-            </div>
-        </>
-    });
-
-    return <div className="upcoming-cal mini-calendar">
-        <div className="calendar-days-wrapper">
-            <div className="calendar-weekdays">
-                {weekdays.map(char => <div className="calendar-weekday">{char}</div>)}
-            </div>
+    return (
+        <div className="upcoming-cal mini-calendar">
+            <GenericCalendar dayClass={(day) =>
+                (day.isSame(start) ? "calendar-day-start" : "")
+                + (day.isSame(endInclusive) ? " calendar-day-end" : "")
+                + (day.isAfter(start) && day.isBefore(endInclusive) ? " calendar-day-sandwich" : "")
+            } onClickDay={(day) => {
+                if (selecting === 'S') {
+                    if (day.isBefore(end)) setStart(day);
+                } else {
+                    const ex = moment(day); ex.add(1, 'days');
+                    if (ex.isAfter(start)) {
+                        setEnd(ex);
+                    }
+                }
+            }} footer={<>
+                <div onClick={() => setSelecting('S')} className={"calendar-select-start" + (selecting === 'S' ? " date-range-selected" : '')}>Start</div>
+                <div onClick={() => setSelecting('E')} className={"calendar-select-end" + (selecting === 'E' ? " date-range-selected" : '')}>End</div>
+            </>}
+                start={moment().startOf('day')}
+            />
         </div>
-
-        <div className="calendar-wrapper">
-            {monthElements}
-        </div>
-
-        <div className="calendar-jump">
-            <div onClick={() => setSelecting('S')} className={"calendar-select-start" + (selecting === 'S' ? " date-range-selected" : '')}>Start</div>
-            <div onClick={() => setSelecting('E')} className={"calendar-select-end" + (selecting === 'E' ? " date-range-selected" : '')}>End</div>
-        </div>
-    </div>
+    );
 }
 
 export const Upcoming = (props: { sgyData: SgyData, selected: string }) => {
