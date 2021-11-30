@@ -44,8 +44,13 @@ function follow303 (err) {
 function toJson ([data]) {return JSON.parse(data)}
 
 const auth = async (data, context) => {
-    const uid = context.auth.uid
-    if (!uid) throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.')
+
+    const uid = context.auth?.uid
+    if (!uid) {
+        console.log('sgyauth user not signed in');
+        console.log({data, context});
+        throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.')
+    }
 
     const oauthToken = data.oauth_token
 
