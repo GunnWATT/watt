@@ -45,10 +45,14 @@ function toJson ([data]) {return JSON.parse(data)}
 
 const auth = async (data, context) => {
 
-    const uid = context.auth?.uid
+    if (!context.auth) {
+        console.log('sgyauth user has no context auth');
+        console.log({context,data});
+        throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.')
+    }
+
+    const uid = context.auth.uid
     if (!uid) {
-        console.log('sgyauth user not signed in');
-        console.log({data, context});
         throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.')
     }
 
