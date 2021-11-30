@@ -137,10 +137,15 @@ const getLinks = async (classID, classPeriod, accessToken) => {
 
 
 const init = async (data, context) => {
-    const uid = context.auth?.uid
+
+    if(!context.auth) {
+        console.log('sgy init user has no context auth');
+        console.log({ context, data });
+        throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.')
+    }
+
+    const uid = context.auth.uid
     if (!uid) {
-        console.log('sgyauth user not signed in');
-        console.log({ context });
         throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.')
     }
 
