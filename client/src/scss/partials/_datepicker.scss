@@ -141,6 +141,11 @@
         &-sandwich {
           background-color: var(--content-secondary);
         }
+
+        &-active {
+            background-color: var(--active);
+            color: white;
+        }
       }
     }
   }

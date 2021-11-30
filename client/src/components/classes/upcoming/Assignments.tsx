@@ -15,33 +15,43 @@ const UpcomingAssignmentTag = (props: { label: string, color: string }) => {
 }
 
 // the individual assignment
-const UpcomingAssignment = (props: { assignment: DashboardAssignment }) => {
+const UpcomingAssignment = (props: { assignment: DashboardAssignment } & ActiveDayState ) => {
 
     const userData = useContext(UserDataContext);
 
-    const { assignment } = props;
+    const { assignment, activeDay, setActiveDay } = props;
     return <div className={"upcoming-assignment"}>
         <div className="upcoming-assignment-tags">
             <UpcomingAssignmentTag label={parsePeriodName(assignment.period, userData)} color={parsePeriodColor(assignment.period, userData)} />
         </div>
         <div className={"upcoming-assignment-name"}>{assignment.name}</div>
         {assignment.description.length ? <div className={"upcoming-assignment-desc"}>{assignment.description}</div> : null}
-        <div className="upcoming-assignment-due"> <div>{assignment.timestamp.format('hh:mm a on dddd, MMM Do')}</div></div> { /* TODO: include 24 hour support */}
+        <div className="upcoming-assignment-due"
+            onMouseEnter={() => setActiveDay(moment(assignment.timestamp).startOf('day'))}
+            onMouseLeave={() => setActiveDay(null)}>
+            <div>
+                {assignment.timestamp.format('hh:mm a on dddd, MMM Do')}
+            </div>
+        </div> { /* TODO: include 24 hour support */}
     </div>
 }
 
 // grouped by each day
-const UpcomingAssignmentDay = (props: { day: moment.Moment, upcoming: DashboardAssignment[] }) => {
+const UpcomingAssignmentDay = (props: { day: moment.Moment, upcoming: DashboardAssignment[] } & ActiveDayState ) => {
     const { day, upcoming } = props;
     return <>
         <div className={"upcoming-day-header"}>{day.format('dddd, MMMM Do')} • In {day.diff(moment(), 'days') + 1} day{day.diff(moment(), 'days') ? 's' : ''}</div>
 
-        {upcoming.map((assigment) => <UpcomingAssignment key={assigment.link} assignment={assigment} />)}
+        {upcoming.map((assigment) => <UpcomingAssignment key={assigment.link} assignment={assigment} activeDay={props.activeDay} setActiveDay={props.setActiveDay}  />)}
     </>
 }
 
 // all assignments
-const UpcomingAssignments = (props: { upcoming: DashboardAssignment[] }) => {
+export type ActiveDayState = {
+    activeDay: moment.Moment | null;
+    setActiveDay: (day: moment.Moment | null) => void;
+}
+const UpcomingAssignments = (props: { upcoming: DashboardAssignment[] } & ActiveDayState) => {
 
     const { upcoming } = props;
 
@@ -66,7 +76,7 @@ const UpcomingAssignments = (props: { upcoming: DashboardAssignment[] }) => {
     }
 
     return <div className={"upcoming-assignments"}>
-        {days.map(({ day, upcoming }) => <UpcomingAssignmentDay key={day.format('MM-DD-YYYY')} day={day} upcoming={upcoming} />)}
+        {days.map(({ day, upcoming }) => <UpcomingAssignmentDay key={day.format('MM-DD-YYYY')} day={day} upcoming={upcoming} activeDay={props.activeDay} setActiveDay={props.setActiveDay} />)}
     </div>
 }
 

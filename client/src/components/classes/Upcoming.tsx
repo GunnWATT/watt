@@ -35,6 +35,9 @@ export const Upcoming = (props: { sgyData: SgyData, selected: string }) => {
     const [start, setStart] = useState(startofday);
     const [end, setEnd] = useState(SCHOOL_END_EXCLUSIVE);
 
+    // active day (if the user is hovering over any date)
+    const [ activeDay, setActiveDay ] = useState<null | moment.Moment>(null);
+
     // We filter upcoming by 1) query 2) class 3) date
     const upcomingFiltered = upcoming?.filter((assi) => {
         // query
@@ -65,9 +68,9 @@ export const Upcoming = (props: { sgyData: SgyData, selected: string }) => {
         {/* these props- */}
         <div className="upcoming">
             <UpcomingSearchBar start={start} setStart={setStart} end={end} setEnd={setEnd} selected={props.selected} classFilter={classFilter} setClassFilter={setClassFilter} classes={classes} setQuery={setQuery} query={query} />
-            {upcomingFiltered ? <UpcomingAssignments upcoming={upcomingFiltered} /> : null}
+            {upcomingFiltered ? <UpcomingAssignments upcoming={upcomingFiltered} activeDay={activeDay} setActiveDay={setActiveDay} /> : null}
         </div>
-        {screenType !== 'smallScreen' && screenType !== 'phone' ? <UpcomingFullCalendar start={start} setStart={setStart} end={end} setEnd={setEnd} /> : null}
+        {screenType !== 'smallScreen' && screenType !== 'phone' ? <UpcomingFullCalendar activeDay={activeDay} setActiveDay={setActiveDay} start={start} setStart={setStart} end={end} setEnd={setEnd} /> : null}
     </div>
 
 }
