@@ -9,7 +9,6 @@ const DashGrades = (props: { selected: string, allGrades: { [key: string]: numbe
     const userData = useContext(UserDataContext);
 
     if (selected === 'A') {
-
         const classes = findClassesList(userData).filter(({ period }) => period !== 'A'); // remove all classes from the classes list
 
         return <div>

@@ -1,17 +1,16 @@
-import { useContext, useState, useRef, useEffect, CSSProperties } from 'react';
-import moment from 'moment-timezone';
-import {Moment} from 'moment';
-import { SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE } from "./Periods";
+import { useContext, useState, useRef, useEffect, CSSProperties, ReactNode } from 'react';
+import moment, {Moment} from 'moment-timezone';
+import { SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE } from './Periods';
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 import alternates from '../../data/alternates';
 
 // Icons
 import {ChevronLeft, ChevronRight} from 'react-feather'
-import { DateRangeProps } from '../classes/upcoming/SearchBar';
 
 
-type DateSelectorProps = {setViewDate: (d: moment.Moment) => void, viewDate: Moment}
-export default function HomeDateSelector({setViewDate, viewDate}: DateSelectorProps) {
+// A single-date date selector for Schedule use
+type DateSelectorProps = {viewDate: Moment, setViewDate: (d: Moment) => void}
+export default function DateSelector({setViewDate, viewDate}: DateSelectorProps) {
 
     const incDay = () => setViewDate(viewDate.clone().add(1, 'days'));
     const decDay = () => setViewDate(viewDate.clone().subtract(1, 'days'));
@@ -39,7 +38,7 @@ export default function HomeDateSelector({setViewDate, viewDate}: DateSelectorPr
     const date = useContext(CurrentTimeContext);
     const today = date.clone().tz('America/Los_Angeles').startOf('date');
     const tmrw = today.clone().add(1, "day");
-    
+
     const footer = <> 
         <div className="calendar-jump-today" onClick={() => setViewDate(today)}>Today</div>
         <div className="calendar-jump-tmrw" onClick={() => setViewDate(tmrw)}>Tomorrow</div>
@@ -52,10 +51,16 @@ export default function HomeDateSelector({setViewDate, viewDate}: DateSelectorPr
             </button>
 
             <div ref={ref} className="date-selector-box">
-                <div className="date-selector-main-text" onClick={() => setCalendar(!showCalendar)}>{viewDate.format("MMMM D, yyyy")}</div>
+                <div className="date-selector-main-text" onClick={() => setCalendar(!showCalendar)}>
+                    {viewDate.format("MMMM D, yyyy")}
+                </div>
 
                 <div className="mini-calendar" hidden={!showCalendar}>
-                    <GenericCalendar dayClass={(day) => viewDate.isSame(day, 'day') ? 'calendar-day-selected' : ''} onClickDay={(day) => setViewDate(day)} footer={footer} />
+                    <GenericCalendar
+                        dayClass={(day) => viewDate.isSame(day, 'day') ? 'calendar-day-selected' : ''}
+                        onClickDay={(day) => setViewDate(day)}
+                        footer={footer}
+                    />
                 </div>
             </div>
 
@@ -66,9 +71,17 @@ export default function HomeDateSelector({setViewDate, viewDate}: DateSelectorPr
     );
 }
 
-
-export function DateRangePicker(props: DateRangeProps & {calStart?: moment.Moment, calEnd?:moment.Moment, center?:'C'|'L'|'R'} ) {
-    const { start, end, setStart, setEnd } = props;
+// A two-date date range selector for Classes use
+export type DateRangeProps = {
+    start: Moment, setStart: (s: Moment) => void,
+    end: Moment, setEnd: (e: Moment) => void
+}
+type CalendarProps = {
+    calStart?: Moment, calEnd?: Moment,
+    center?: 'C'|'L'|'R'
+}
+export function DateRangePicker(props: DateRangeProps & CalendarProps) {
+    const { start, end, setStart, setEnd, calStart, calEnd } = props;
     const [showCalendar, setCalendar] = useState(false);
     const endInclusive = moment(end); endInclusive.subtract(1, 'days');
 
@@ -90,48 +103,57 @@ export function DateRangePicker(props: DateRangeProps & {calStart?: moment.Momen
         };
     }, [ref]);
 
-    return <div className={"date-range-selector"} ref={ref}>
-        <div className="date-range-selector-box">
-            <div className="date-selector-main" onClick={() => setCalendar(!showCalendar)}>
-                <div>{start.format("MMMM D, yyyy")}</div>
-                -
-                <div>{end.format("MMMM D, yyyy")}</div>
-            </div>
+    return (
+        <div className="date-range-selector" ref={ref}>
+            <div className="date-range-selector-box">
+                <div className="date-selector-main" onClick={() => setCalendar(!showCalendar)}>
+                    <div>{start.format("MMMM D, yyyy")}</div>
+                    -
+                    <div>{end.format("MMMM D, yyyy")}</div>
+                </div>
 
-            <div className="mini-calendar" hidden={!showCalendar}>
-                <GenericCalendar dayClass={(day) => 
-                    (day.isSame(start) ? "calendar-day-start" : "")
-                        + (day.isSame(endInclusive) ? " calendar-day-end" : "")
-                        + (day.isAfter(start) && day.isBefore(endInclusive) ? " calendar-day-sandwich" : "")
-                } onClickDay={(day) => {
-                    if (selecting === 'S') {
-                        if (day.isBefore(end)) setStart(day);
-                    } else {
-                        const ex = moment(day); ex.add(1, 'days');
-                        if (ex.isAfter(start)) {
-                            setEnd(ex);
+                <div className="mini-calendar" hidden={!showCalendar}>
+                    <GenericCalendar
+                        dayClass={(day) =>
+                            (day.isSame(start) ? "calendar-day-start" : "")
+                                + (day.isSame(endInclusive) ? " calendar-day-end" : "")
+                                + (day.isAfter(start) && day.isBefore(endInclusive) ? " calendar-day-sandwich" : "")
                         }
-                    }
-                }} footer={<>
-                    <div onClick={() => setSelecting('S')} className={"calendar-select-start" + (selecting === 'S' ? " date-range-selected" : '')}>Start</div>
-                    <div onClick={() => setSelecting('E')} className={"calendar-select-end" + (selecting === 'E' ? " date-range-selected" : '')}>End</div>
-                </>} 
-                start={props.calStart}
-                end={props.calEnd}/>
+                        onClickDay={(day) => {
+                            if (selecting === 'S') {
+                                if (day.isBefore(end)) setStart(day);
+                            } else {
+                                const ex = moment(day); ex.add(1, 'days');
+                                if (ex.isAfter(start)) {
+                                    setEnd(ex);
+                                }
+                            }
+                        }}
+                        footer={
+                            <>
+                                <div onClick={() => setSelecting('S')} className={"calendar-select-start" + (selecting === 'S' ? " date-range-selected" : '')}>Start</div>
+                                <div onClick={() => setSelecting('E')} className={"calendar-select-end" + (selecting === 'E' ? " date-range-selected" : '')}>End</div>
+                            </>
+                        }
+                        start={calStart}
+                        end={calEnd}
+                    />
+                </div>
             </div>
         </div>
-    </div>
+    )
 }
 
+// Shared calendar component used by both single and range selectors
 type GenericCalendarProps = {
-    start?: moment.Moment;
-    end?: moment.Moment;
-    dayStyle?: (day: moment.Moment) => CSSProperties;
-    dayClass?: (day: moment.Moment) => string;
-    onClickDay?: (day: moment.Moment) => void;
-    footer?: React.ReactNode;
+    start?: Moment;
+    end?: Moment;
+    dayStyle?: (day: Moment) => CSSProperties;
+    dayClass?: (day: Moment) => string;
+    onClickDay?: (day: Moment) => void;
+    footer?: ReactNode;
 }
-export function GenericCalendar(props:GenericCalendarProps) {
+export function GenericCalendar(props: GenericCalendarProps) {
 
     // I probably shouldn't do this here
     // generate schedule
@@ -188,14 +210,11 @@ export function GenericCalendar(props:GenericCalendarProps) {
             ]
 
         return <>
-
             <div key={`month ${m} header`} className="calendar-month-header">{startOfMonth.format("MMMM YYYY")}</div>
             <div key={`month ${m}`} className="calendar-month">
                 {dayElements}
             </div>
-
         </>
-        
     });
 
     return <>
@@ -209,8 +228,8 @@ export function GenericCalendar(props:GenericCalendarProps) {
             {monthElements}
         </div>
 
-        {props.footer ? <div className="calendar-jump">
+        {props.footer && <div className="calendar-jump">
             {props.footer}
-        </div> : null}
+        </div>}
     </>
 }

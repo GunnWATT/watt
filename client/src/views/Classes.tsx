@@ -1,24 +1,26 @@
-import moment from "moment";
-import React, { useContext, useEffect, useState } from "react";
-import CurrentTimeContext from "../contexts/CurrentTimeContext";
-import UserDataContext, { SgyData, SgyPeriodData, UserData } from "../contexts/UserDataContext";
-import SgySignInBtn from "../components/firebase/SgySignInBtn";
-import Loading from "../components/layout/Loading";
-import RedBackground from '../components/layout/RedBackground';
-import {Routes, Route, Link} from 'react-router-dom';
-import {Nav, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import { useContext, useEffect, useState } from 'react';
+import {Routes, Route, Link, useMatch, useResolvedPath} from 'react-router-dom';
 
-// firebase
+// Firebase
 import { Functions, httpsCallable } from 'firebase/functions';
 import { useAuth, useFunctions } from "reactfire";
 
-// views
+// Components
 import Dashboard from '../components/classes/Dashboard';
-import { parsePeriodColor } from "../components/schedule/Periods";
-import { useScreenType } from "../hooks/useScreenType";
-import { Upcoming } from "../components/classes/Upcoming";
-import { useLocation, useMatch, useResolvedPath } from "react-router";
-import { X } from "react-feather";
+import Upcoming from '../components/classes/Upcoming';
+import SgySignInBtn from '../components/firebase/SgySignInBtn';
+import Loading from '../components/layout/Loading';
+import RedBackground from '../components/layout/RedBackground';
+import WIP from '../components/layout/WIP';
+
+// Contexts
+import CurrentTimeContext from '../contexts/CurrentTimeContext';
+import UserDataContext, { SgyData, SgyPeriodData, UserData } from '../contexts/UserDataContext';
+
+// Utilities
+import { parsePeriodColor } from '../components/schedule/Periods';
+import { useScreenType } from '../hooks/useScreenType';
+
 
 export const fetchSgyMaterials = (async (functions: Functions) => {
     const fetchMaterials = httpsCallable(functions, 'sgyfetch-fetchMaterials');
@@ -104,40 +106,10 @@ const ClassesSidebarItem = (props:{collapsed:boolean, name: string, color:string
     return null;
 }
 
-export const findClassesList = (userData:UserData, includeAll?:boolean) => {
-    // find classes from userData
-    const classes: { name: string, color: string, period: string }[] = [];
-
-    // All courses
-    if(includeAll!==false) {
-            classes.push({
-            name: "All Courses",
-            color: parsePeriodColor("default", userData), // lol it spits out the default color if it doesn't recognize the period name; kinda a hacky workaround
-            period: "A"
-        });
-    }
-
-    for (const p in userData.classes) {
-
-        // @ts-ignore
-        const course: SgyPeriodData = userData.classes[p];
-
-        if (course.s) {
-            const c = {
-                name: course.n,
-                color: parsePeriodColor(p, userData),
-                period: p
-            };
-            classes.push(c)
-        }
-    }
-
-    return classes;
-}
-
-const ClassesSidebar = (props:{userData: UserData, setSelected:(selected:string)=>void }) => {
-
-    const {userData, setSelected} = props;
+// TODO: this can 200% be put in Classes
+function ClassesSidebar(props: {setSelected: (selected:string) => void}) {
+    const {setSelected} = props;
+    const userData = useContext(UserDataContext);
 
     // collapsed?
     const [collapsed, setCollapsed] = useState<boolean>(true);
@@ -151,19 +123,22 @@ const ClassesSidebar = (props:{userData: UserData, setSelected:(selected:string)
     </div>
 }
 
-const ClassesHeader = (props:{userData:UserData, selected:string}) => {
-    const {userData, selected} = props;
+// TODO: this can definitely be put in Classes and be fine
+function ClassesHeader(props: {selected: string}) {
+    const {selected} = props;
+    const userData = useContext(UserDataContext);
     const classInfo = findClassesList(userData).find(({period}) => period === selected);
 
     const {name, color} = classInfo!; // lol this is fine
 
     return <div className="classes-header">
-        <div className="classes-header-bubble" style={{backgroundColor:color}}></div>
+        <div className="classes-header-bubble" style={{backgroundColor: color}} />
         <div className="classes-header-text">{name}</div>
     </div>
 }
 
-const ClassesNavBarItem = (props: {text: string, to: string}) => {
+// TODO: perhaps move this to another component
+function ClassesNavBarItem(props: {text: string, to: string}) {
     const {text, to} = props;
 
     const resolved = useResolvedPath(to);
@@ -189,7 +164,6 @@ const ClassesNavBar = () => {
 }
 
 export default function Classes() {
-
     const functions = useFunctions();
     const auth = useAuth();
 
@@ -215,30 +189,52 @@ export default function Classes() {
     }, [lastFetched])
 
     // we are ok to go if: 1) we're signed in 2) the user enabled schoology 3) the sgy data exists
-    const ok = auth.currentUser && userData.options.sgy && sgyData != null;
+    if (!auth.currentUser) return <ClassesNotSignedIn />
+    if (!userData.options.sgy) return <ClassesSgyNotConnected />
+    if (sgyData == null) return <ClassesDataMissing fetchMaterials={() => fetchSgyMaterials(functions)} lastFetched={lastFetched} />
 
-    // not ok :pnsv:
-    if(!ok) {
-        if (!auth.currentUser) return <ClassesNotSignedIn />
-
-        if (!userData.options.sgy) return <ClassesSgyNotConnected />
-
-        if (sgyData == null) return <ClassesDataMissing fetchMaterials={() => fetchSgyMaterials(functions)} lastFetched={lastFetched} />
-    }
-    
     return (
         <div className={"classes-burrito " + screenType}>
             <RedBackground />
             <div className={"classes-content " + screenType}>
-                <ClassesHeader selected={selected} userData={userData} />
+                <ClassesHeader selected={selected} />
                 <ClassesNavBar />
 
                 <Routes>
                     <Route path="/" element={<Dashboard selected={selected} sgyData={sgyData} />} />
                     <Route path="/upcoming" element={<Upcoming selected={selected} sgyData={sgyData} /> } />
+                    <Route path="/materials" element={<WIP />} />
                 </Routes>
             </div>
-           <ClassesSidebar userData={userData} setSelected={setSelected} />
+           <ClassesSidebar setSelected={setSelected} />
         </div>
     )
+}
+
+// Returns a parsed class array given a populated userData object.
+// If `includeAll` is true, the first class will be an "All Courses" object with default color.
+export function findClassesList(userData: UserData, includeAll: boolean = true) {
+    // find classes from userData
+    const classes: { name: string, color: string, period: string }[] = [];
+
+    // Push "All Courses" object
+    if (includeAll) {
+        classes.push({
+            name: "All Courses",
+            color: parsePeriodColor("default", userData), // lol it spits out the default color if it doesn't recognize the period name; kinda a hacky workaround
+            period: "A"
+        });
+    }
+
+    for (const [p, course] of Object.entries(userData.classes)) {
+        if (course.s) {
+            classes.push({
+                name: course.n,
+                color: parsePeriodColor(p, userData),
+                period: p
+            });
+        }
+    }
+
+    return classes;
 }

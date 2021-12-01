@@ -226,11 +226,9 @@ export type Document = {
         external_tools: {
             external_tool: { id: number; type: string; url: string; title: string }[];
         };
-
         links: {
             link: { id: number, type: string, url: string, title: string, summary: string, display_inline: number }[]
         };
-
         files: {
             file: { id: number, type: string, title: string, filename: string, filesize: number, md5_checksum: string, timestamp: number, filemime: string, download_path: string, extension: string }[]
         }

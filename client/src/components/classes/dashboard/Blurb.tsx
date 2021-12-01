@@ -7,13 +7,15 @@ import { parsePeriodColor } from "../../schedule/Periods";
 import { DashboardAssignment } from "../Dashboard";
 import { UpcomingQuickWeekCal } from "./QuickWeekCal";
 
+
 // Upcoming Blurb
 // Blurb includes cute calendar thing + 5 of the next assignments
-const BlurbAssignment = (props: { name: string, due: string, period: string }) => {
+function BlurbAssignment(props: { name: string, due: string, period: string }) {
     const { name, due, period } = props;
     const userData = useContext(UserDataContext);
+
     return <div className="ub-assignment">
-        <div className="ub-assignment-dot" style={{ backgroundColor: parsePeriodColor(period, userData) }}></div>
+        <div className="ub-assignment-dot" style={{ backgroundColor: parsePeriodColor(period, userData) }} />
         <div className="ub-assignment-content">
             <div className="up-assignment-title">{name}</div>
             <div className="up-assignment-due">{due}</div>
@@ -30,8 +32,7 @@ const BlurbAssignments = (props: { upcoming: DashboardAssignment[] }) => {
     </div>
 }
 
-const DashboardBlurb = (props: { upcoming: DashboardAssignment[], selected: string }) => {
-
+export default function DashboardBlurb(props: { upcoming: DashboardAssignment[], selected: string }) {
     const { upcoming, selected } = props;
 
     const time = useContext(CurrentTimeContext);
@@ -46,5 +47,3 @@ const DashboardBlurb = (props: { upcoming: DashboardAssignment[], selected: stri
         <BlurbAssignments upcoming={upcoming} />
     </div>
 }
-
-export default DashboardBlurb;

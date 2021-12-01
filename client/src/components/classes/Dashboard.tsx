@@ -6,7 +6,7 @@ import UserDataContext, { SgyData, SgyPeriodData, UserData } from "../../context
 import { useScreenType } from "../../hooks/useScreenType";
 import { getAllGrades, getUpcomingInfo } from "./functions/SgyFunctions";
 import DashboardBlurb from "./dashboard/Blurb";
-import DashboardQuickInfo from "./dashboard/QuickInfo";
+import DashboardQuickInfo from "./QuickInfo";
 import DashGrades from "./dashboard/Grades";
 
 // We make a quick dashboard assignment type

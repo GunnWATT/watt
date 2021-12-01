@@ -1,4 +1,4 @@
-import React from 'react';
+import {createContext} from 'react';
 import { Assignment, Document, Event, Page, Section, SectionGrade } from '../schoology/SgyTypes';
 
 // Represents a course on Schoology.
@@ -15,13 +15,21 @@ export type UserData = {
         5: SgyPeriodData, 6: SgyPeriodData, 7: SgyPeriodData, S: SgyPeriodData,
         0: SgyPeriodData, 8: SgyPeriodData
     },
-    options: {theme: string, time: string, period0: boolean, period8: boolean, clock:boolean, sgy:boolean},
+    options: {theme: string, time: string, period0: boolean, period8: boolean, clock: boolean, sgy: boolean},
     clubs: string[],
     staff: string[],
     id: string,
     barcodes: string, // stringified [string, string][] because firestore doesn't support nested arrays
     sgy?: {key: string, sec: string, uid: string}
 };
+
+export type SgyData = {grades: SectionGrade[]} & {[key:string]: {
+    info: Section
+    documents: Document[];
+    assignments: Assignment[];
+    pages: Page[];
+    events: Event[];
+}};
 
 export const defaultUserData = {
     v: 0,
@@ -51,16 +59,7 @@ export const defaultUserData = {
     id: '00000'
 };
 
-const UserDataContext = React.createContext<UserData>(defaultUserData);
+const UserDataContext = createContext<UserData>(defaultUserData);
 
 export const UserDataProvider = UserDataContext.Provider;
-
-export type SgyData = {grades: SectionGrade[]} & {[key:string]: {
-    info: Section
-    documents: Document[];
-    assignments: Assignment[];
-    pages: Page[];
-    events: Event[];
-}}
-
 export default UserDataContext;
