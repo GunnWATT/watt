@@ -26,10 +26,10 @@ const UpcomingAssignment = (props: { assignment: DashboardAssignment } & ActiveD
         </div>
         <div className={"upcoming-assignment-name"}>{assignment.name}</div>
         {assignment.description.length ? <div className={"upcoming-assignment-desc"}>{assignment.description}</div> : null}
-        <div className="upcoming-assignment-due"
-            onMouseEnter={() => setActiveDay(moment(assignment.timestamp).startOf('day'))}
-            onMouseLeave={() => setActiveDay(null)}>
-            <div>
+        <div className="upcoming-assignment-due">
+            <div
+                onMouseEnter={() => setActiveDay(moment(assignment.timestamp).startOf('day'))}
+                onMouseLeave={() => setActiveDay(null)}>
                 {assignment.timestamp.format('hh:mm a on dddd, MMM Do')}
             </div>
         </div> { /* TODO: include 24 hour support */}

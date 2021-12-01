@@ -5,7 +5,7 @@ import UserDataContext, { SgyData, SgyPeriodData, UserData } from "../contexts/U
 import SgySignInBtn from "../components/firebase/SgySignInBtn";
 import Loading from "../components/layout/Loading";
 import RedBackground from '../components/layout/RedBackground';
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, Link} from 'react-router-dom';
 import {Nav, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 
 // firebase
@@ -17,7 +17,8 @@ import Dashboard from '../components/classes/Dashboard';
 import { parsePeriodColor } from "../components/schedule/Periods";
 import { useScreenType } from "../hooks/useScreenType";
 import { Upcoming } from "../components/classes/Upcoming";
-import { useLocation } from "react-router";
+import { useLocation, useMatch, useResolvedPath } from "react-router";
+import { X } from "react-feather";
 
 export const fetchSgyMaterials = (async (functions: Functions) => {
     const fetchMaterials = httpsCallable(functions, 'sgyfetch-fetchMaterials');
@@ -162,23 +163,29 @@ const ClassesHeader = (props:{userData:UserData, selected:string}) => {
     </div>
 }
 
-const ClassesNavBarItem = (props:{selected:boolean, onClick:()=>void, text:string}) => {
-    const {selected,onClick,text} = props;
-    return <div onClick={onClick} className={selected ? "classes-navbar-item-selected" : "classes-navbar-item"}>
-        {text}
-    </div>
+const ClassesNavBarItem = (props: {text: string, to: string}) => {
+    const {text, to} = props;
+
+    const resolved = useResolvedPath(to);
+    const match = useMatch({ path: resolved.pathname, end: true });
+
+    return (
+        <div className={match ? "classes-navbar-item-selected" : "classes-navbar-item"}>
+            <Link to={to}>
+                {text}
+            </Link>
+        </div>
+    )
 }
 
-const ClassesNavBar = (props:{view: number, setView:(view:number)=>void}) => {
-
-    const {view, setView} = props;
-    const views = ["Dashboard", "Upcoming", "Materials"]
-
-    return <div className={"classes-navbar"}>
-        {views.map((name, index) => 
-            <ClassesNavBarItem key={name} selected={index===view} text={name} onClick={() => setView(index)} />
-        )}
-    </div>
+const ClassesNavBar = () => {
+    return (
+        <div className="classes-navbar">
+            <ClassesNavBarItem text="Dashboard" to="." />
+            <ClassesNavBarItem text="Upcoming" to="upcoming" />
+            <ClassesNavBarItem text="Materials" to="materials" />
+        </div>
+    )
 }
 
 export default function Classes() {
@@ -192,25 +199,7 @@ export default function Classes() {
 
     // Selected
     const [selected, setSelected] = useState<string>('A');
-
-    // We use hash for stuff lol
-    const { search, pathname, hash } = useLocation();
-
-    const views = ['dashboard', 'upcoming', 'materials']
-    const defaultview = (views.includes(hash.slice(1))) ? views.indexOf(hash.slice(1)) : 0;
-
-    // Selected View
-    // 0 - dashboard
-    // 1 - upcoming
-    // 2 - materials
-    // possible 3 - tasks
-    const [view, setRawView] = useState(defaultview);
     
-    const setView = (v: number ) => {
-        setRawView(v);
-        window.location.hash = views[v];
-    }
-
     // Raw Schoology Data
     const [sgyData, setSgyData] = useState<null | SgyData>(null);
 
@@ -236,18 +225,18 @@ export default function Classes() {
 
         if (sgyData == null) return <ClassesDataMissing fetchMaterials={() => fetchSgyMaterials(functions)} lastFetched={lastFetched} />
     }
-
-    
     
     return (
         <div className={"classes-burrito " + screenType}>
             <RedBackground />
             <div className={"classes-content " + screenType}>
                 <ClassesHeader selected={selected} userData={userData} />
-                <ClassesNavBar view={view} setView={setView} />
+                <ClassesNavBar />
 
-                {view === 0 ? <Dashboard selected={selected} sgyData={sgyData} /> : null}
-                {view === 1 ? <Upcoming selected={selected} sgyData={sgyData} /> : null}
+                <Routes>
+                    <Route path="/" element={<Dashboard selected={selected} sgyData={sgyData} />} />
+                    <Route path="/upcoming" element={<Upcoming selected={selected} sgyData={sgyData} /> } />
+                </Routes>
             </div>
            <ClassesSidebar userData={userData} setSelected={setSelected} />
         </div>
