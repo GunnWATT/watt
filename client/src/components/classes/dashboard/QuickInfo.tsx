@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import UserDataContext from "../../../contexts/UserDataContext";
 import { cardinalize } from "../functions/GeneralHelperFunctions";
 import { ClassPeriodQuickInfo, pastClasses, nextSchoolDay, numSchoolDays } from "../functions/PeriodFunctions";
 
@@ -8,6 +9,7 @@ import { ClassPeriodQuickInfo, pastClasses, nextSchoolDay, numSchoolDays } from 
 const DashboardQuickInfo = (props: { selected: string }) => {
     const { selected } = props;
     const [info, setInfo] = useState<ClassPeriodQuickInfo | null>(null);
+    const userData = useContext(UserDataContext);
 
     useEffect(() => {
         if (selected !== 'A') setInfo(pastClasses(selected));
@@ -15,7 +17,7 @@ const DashboardQuickInfo = (props: { selected: string }) => {
 
     if (selected === 'A') {
         return <>
-            <div className={"dashboard-qi-main"}>The next school day is {nextSchoolDay()?.fromNow()}.</div>
+            <div className={"dashboard-qi-main"}>The next school day is {nextSchoolDay(userData)?.fromNow()}.</div>
             <div>There have been {numSchoolDays()} school days in this school year.</div>
         </>
     }
