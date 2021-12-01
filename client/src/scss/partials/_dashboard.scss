@@ -115,6 +115,11 @@
         padding: 5px 15px;
         border-radius: 5px;
         cursor: pointer;
+
+        >a {
+            color:var(--primary);
+            text-decoration: none;
+        }
     }
 }
 

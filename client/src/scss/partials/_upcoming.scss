@@ -112,6 +112,20 @@
             margin-bottom: 5px;
         }
     }
+
+    .upcoming-palette-footer {
+        display: flex;
+        flex-direction: row;
+        margin-top: 5px;
+
+        div {
+            cursor: pointer;
+        }
+
+        div:last-child {
+            margin-left: auto;
+        }
+    }
     
 }
 

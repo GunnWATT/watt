@@ -1,5 +1,6 @@
 import moment from "moment";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import CurrentTimeContext from "../../../contexts/CurrentTimeContext";
 import UserDataContext from "../../../contexts/UserDataContext";
 import { parsePeriodColor } from "../../schedule/Periods";
@@ -25,7 +26,7 @@ const BlurbAssignments = (props: { upcoming: DashboardAssignment[] }) => {
 
     return <div>
         {upcoming.map((a) => <BlurbAssignment key={a.link} name={a.name} due={`${a.timestamp.format("dddd, MMMM Do")} • ${a.timestamp.fromNow()}`} period={a.period} />)}
-        <div className="ub-upcoming-redirect"><div>See More in Upcoming</div></div>
+        <div className="ub-upcoming-redirect"><div><Link to='upcoming'>See More in Upcoming</Link></div></div>
     </div>
 }
 

@@ -34,6 +34,11 @@ export const UpcomingPalettePicker = (props: PaletteProps & { hidden: boolean })
             </div>
 
         })}
+
+        <div className="upcoming-palette-footer"> 
+            <div onClick={() => setClassFilter(Array(classFilter.length).fill(true))} >Select All</div> 
+            <div onClick={() => setClassFilter(Array(classFilter.length).fill(false))} >Deselect All</div>
+        </div>
     </div>
 }
 
