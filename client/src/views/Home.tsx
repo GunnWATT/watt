@@ -71,7 +71,7 @@ export default function Home(props: HomeProps) {
             <div className="schedule">
                 {relDays !== 0 && <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>}
 
-                { userData.options?.clock && <Clock time={date} viewDate={viewDate} /> }
+                { userData.options?.clock && <Clock viewDate={viewDate} /> }
                 <h2 className="schedule-datetime center">{date.format(format)}</h2>
                 <DateSelector
                     incDay={incDay}
