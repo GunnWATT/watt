@@ -2,9 +2,7 @@ import {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 
 // Authentication
-import {useAuth, useFirestore, useSigninCheck} from 'reactfire';
-import {getRedirectResult} from 'firebase/auth';
-import {firestoreInit} from '../../firebase/auth';
+import {useSigninCheck} from 'reactfire';
 
 // Components
 import SidebarItem from './SidebarItem';
@@ -21,13 +19,7 @@ export default function Sidebar(props: SidebarProps) {
     const {forceCollapsed} = props;
 
     // Authentication
-    const auth = useAuth();
-    const firestore = useFirestore();
     const {status, data: signInCheckResult} = useSigninCheck();
-
-    useEffect(() => {
-        getRedirectResult(auth).then(r => r && firestoreInit(firestore, r))
-    }, []);
 
     // Collapse
     const [isOpen, setIsOpen] = useState(true);

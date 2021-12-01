@@ -1,7 +1,7 @@
 import {useContext, useEffect, useState, ReactNode} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
-import {useAnalytics} from 'reactfire';
+import {useAnalytics, useAuth, useFirestore} from 'reactfire';
 import {logEvent} from 'firebase/analytics';
 import {useScreenType} from '../hooks/useScreenType';
 
@@ -14,6 +14,8 @@ import UserDataContext from '../contexts/UserDataContext';
 
 // Schoology Auth
 import SgyInitResults from './firebase/SgyInitResults';
+import {getRedirectResult} from 'firebase/auth';
+import {firestoreInit} from '../firebase/auth';
 
 
 type LayoutProps = {children: ReactNode};
@@ -65,6 +67,13 @@ export default function Layout(props: LayoutProps) {
             </div>
         );
     }
+
+    // Create user document on first sign in
+    const auth = useAuth();
+    const firestore = useFirestore();
+    useEffect(() => {
+        getRedirectResult(auth).then(r => r && firestoreInit(firestore, r))
+    }, [])
 
     // Change theme on userData change
     const userData = useContext(UserDataContext);
