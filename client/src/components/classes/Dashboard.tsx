@@ -4,22 +4,12 @@ import CurrentTimeContext from "../../contexts/CurrentTimeContext";
 import UserDataContext, { SgyData, SgyPeriodData, UserData } from "../../contexts/UserDataContext";
 
 import { useScreenType } from "../../hooks/useScreenType";
-import { getAllGrades, getUpcomingInfo } from "./functions/SgyFunctions";
+import { AssignmentBlurb, getAllGrades, getUpcomingInfo } from "./functions/SgyFunctions";
 import DashboardBlurb from "./dashboard/Blurb";
 import DashboardQuickInfo from "./QuickInfo";
 import DashGrades from "./dashboard/Grades";
 
-// We make a quick dashboard assignment type
-// Includes everything the user would probably want to know
-export type DashboardAssignment = {
-    name: string;
-    link: string;
-    timestamp: moment.Moment;
-    description:string;
-    period: string;
-}
-
-const DashLeftSection = (props: { upcoming: DashboardAssignment[] | null, selected:string } ) => {
+const DashLeftSection = (props: { upcoming: AssignmentBlurb[] | null, selected:string } ) => {
 
     const screenType = useScreenType();
 
@@ -50,8 +40,8 @@ const Dashboard = (props: {sgyData: SgyData, selected: string}) => {
     const time = useContext(CurrentTimeContext);
     const screenType = useScreenType();
 
-    const [upcoming, setUpcoming] = useState < DashboardAssignment[] | null > (null);
-    const [overdue, setOverdue] = useState<DashboardAssignment[] | null> (null);
+    const [upcoming, setUpcoming] = useState < AssignmentBlurb[] | null > (null);
+    const [overdue, setOverdue] = useState<AssignmentBlurb[] | null> (null);
     const [allGrades, setAllGrades] = useState<null | {[key:string]: number}> (null);
 
     const userData = useContext(UserDataContext);

@@ -2,7 +2,7 @@ import moment from "moment";
 import { useContext } from "react";
 import UserDataContext from "../../../contexts/UserDataContext";
 import { parsePeriodName, parsePeriodColor } from "../../schedule/Periods";
-import { DashboardAssignment } from "../Dashboard";
+import { AssignmentBlurb } from "../functions/SgyFunctions";
 
 // The assignment blocks for the Upcoming Tab
 // Pretty self explanatory
@@ -15,7 +15,7 @@ const UpcomingAssignmentTag = (props: { label: string, color: string }) => {
 }
 
 // the individual assignment
-const UpcomingAssignment = (props: { assignment: DashboardAssignment } & ActiveDayState ) => {
+const UpcomingAssignment = (props: { assignment: AssignmentBlurb } & ActiveDayState ) => {
 
     const userData = useContext(UserDataContext);
 
@@ -30,14 +30,14 @@ const UpcomingAssignment = (props: { assignment: DashboardAssignment } & ActiveD
             <div
                 onMouseEnter={() => setActiveDay(moment(assignment.timestamp).startOf('day'))}
                 onMouseLeave={() => setActiveDay(null)}>
-                {assignment.timestamp.format('hh:mm a on dddd, MMM Do')}
+                {assignment.timestamp!.format('hh:mm a on dddd, MMM Do')}
             </div>
         </div> { /* TODO: include 24 hour support */}
     </div>
 }
 
 // grouped by each day
-const UpcomingAssignmentDay = (props: { day: moment.Moment, upcoming: DashboardAssignment[] } & ActiveDayState ) => {
+const UpcomingAssignmentDay = (props: { day: moment.Moment, upcoming: AssignmentBlurb[] } & ActiveDayState ) => {
     const { day, upcoming } = props;
     return <>
         <div className={"upcoming-day-header"}>{day.format('dddd, MMMM Do')} • In {day.diff(moment(), 'days') + 1} day{day.diff(moment(), 'days') ? 's' : ''}</div>
@@ -51,15 +51,15 @@ export type ActiveDayState = {
     activeDay: moment.Moment | null;
     setActiveDay: (day: moment.Moment | null) => void;
 }
-const UpcomingAssignments = (props: { upcoming: DashboardAssignment[] } & ActiveDayState) => {
+const UpcomingAssignments = (props: { upcoming: AssignmentBlurb[] } & ActiveDayState) => {
 
     const { upcoming } = props;
 
     // We map days (like "11-29-2021") to all the assignments that are due on that day
     // that way we can have all the headers and stuff
-    const daysMap = new Map<string, DashboardAssignment[]>();
+    const daysMap = new Map<string, AssignmentBlurb[]>();
     for (const assignment of upcoming) {
-        const day = assignment.timestamp.format('MM-DD-YYYY');
+        const day = assignment.timestamp!.format('MM-DD-YYYY');
         if (daysMap.has(day)) {
             daysMap.get(day)!.push(assignment);
         } else {

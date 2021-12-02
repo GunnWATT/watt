@@ -5,7 +5,7 @@ import UserDataContext from "../../../contexts/UserDataContext";
 import { getSchedule } from "../../../hooks/useSchedule";
 import { useScreenType } from "../../../hooks/useScreenType";
 import { parsePeriodColor } from "../../schedule/Periods";
-import { DashboardAssignment } from "../Dashboard";
+import { AssignmentBlurb } from "../functions/SgyFunctions";
 import { hasClass } from "../functions/PeriodFunctions";
 
 // The week calendar for dashboard
@@ -16,14 +16,14 @@ const UpcomingQuickCalDot = (props: { course: string }) => {
     return <div className="upcoming-blurb-qc-dot" style={{ backgroundColor: parsePeriodColor(props.course, userData) }}></div>
 }
 
-const UpcomingQuickCalDay = (props: { day: moment.Moment, upcoming: DashboardAssignment[], selected: string }) => {
+const UpcomingQuickCalDay = (props: { day: moment.Moment, upcoming: AssignmentBlurb[], selected: string }) => {
 
     const { day, upcoming, selected } = props;
     const screenType = useScreenType();
 
     const weekdays = ['U', 'M', 'T', 'W', 'θ', 'F', 'S']
 
-    const relevantAssigments = upcoming.filter((a) => a.timestamp.dayOfYear() === day.dayOfYear());
+    const relevantAssigments = upcoming.filter((a) => a.timestamp!.dayOfYear() === day.dayOfYear());
 
     let active = false;
     if (selected === 'A') {
@@ -41,7 +41,7 @@ const UpcomingQuickCalDay = (props: { day: moment.Moment, upcoming: DashboardAss
     </div>
 }
 
-export const UpcomingQuickWeekCal = (props: { upcoming: DashboardAssignment[], selected: string }) => {
+export const UpcomingQuickWeekCal = (props: { upcoming: AssignmentBlurb[], selected: string }) => {
     const { upcoming, selected } = props;
     const time = useContext(CurrentTimeContext);
     let mutableTime = moment(time);

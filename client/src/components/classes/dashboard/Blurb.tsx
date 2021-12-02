@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import CurrentTimeContext from "../../../contexts/CurrentTimeContext";
 import UserDataContext from "../../../contexts/UserDataContext";
 import { parsePeriodColor } from "../../schedule/Periods";
-import { DashboardAssignment } from "../Dashboard";
+import { AssignmentBlurb } from "../functions/SgyFunctions";
 import { UpcomingQuickWeekCal } from "./QuickWeekCal";
 
 
@@ -23,21 +23,21 @@ function BlurbAssignment(props: { name: string, due: string, period: string }) {
     </div>
 }
 
-const BlurbAssignments = (props: { upcoming: DashboardAssignment[] }) => {
+const BlurbAssignments = (props: { upcoming: AssignmentBlurb[] }) => {
     const upcoming = props.upcoming.slice(0, 5); // only display up to 5
 
     return <div>
-        {upcoming.map((a) => <BlurbAssignment key={a.link} name={a.name} due={`${a.timestamp.format("dddd, MMMM Do")} • ${a.timestamp.fromNow()}`} period={a.period} />)}
+        {upcoming.map((a) => <BlurbAssignment key={a.link} name={a.name} due={`${a.timestamp!.format("dddd, MMMM Do")} • ${a.timestamp!.fromNow()}`} period={a.period} />)}
         <div className="ub-upcoming-redirect"><div><Link to='upcoming'>See More in Upcoming</Link></div></div>
     </div>
 }
 
-export default function DashboardBlurb(props: { upcoming: DashboardAssignment[], selected: string }) {
+export default function DashboardBlurb(props: { upcoming: AssignmentBlurb[], selected: string }) {
     const { upcoming, selected } = props;
 
     const time = useContext(CurrentTimeContext);
     const inAWeek = moment(time).add(7, 'days');
-    const assignmentsNextWeek = upcoming.filter((assi) => assi.timestamp.isBefore(inAWeek));
+    const assignmentsNextWeek = upcoming.filter((assi) => assi.timestamp!.isBefore(inAWeek));
 
     return <div className="upcoming-blurb">
         <div className="dashboard-header">Upcoming • Blurb</div>

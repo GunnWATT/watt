@@ -14,7 +14,7 @@ import UserDataContext, { SgyData } from '../../contexts/UserDataContext';
 
 // Utilities
 import { findClassesList } from '../../views/Classes';
-import { DashboardAssignment } from './Dashboard';
+import { AssignmentBlurb } from './functions/SgyFunctions';
 import { SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE } from '../schedule/Periods';
 import { getUpcomingInfo } from './functions/SgyFunctions';
 
@@ -28,8 +28,8 @@ export default function Upcoming(props: UpcomingProps) {
     const userData = useContext(UserDataContext);
     const classes = findClassesList(userData, false);
 
-    const [upcoming, setUpcoming] = useState<DashboardAssignment[] | null>(null);
-    const [overdue, setOverdue] = useState<DashboardAssignment[] | null>(null);
+    const [upcoming, setUpcoming] = useState<AssignmentBlurb[] | null>(null);
+    const [overdue, setOverdue] = useState<AssignmentBlurb[] | null>(null);
 
     // Search query can be found in pathname params
     const { search } = useLocation();
@@ -53,7 +53,7 @@ export default function Upcoming(props: UpcomingProps) {
             return assi.name.toLowerCase().includes(query.toLowerCase()) || assi.description.toLowerCase().includes(query.toLowerCase());
         }})
         .filter((assi) => classFilter[classes.findIndex(({period}) => assi.period === period)])
-        .filter((assi) => assi.timestamp.isAfter(start) && assi.timestamp.isBefore(end))
+        .filter((assi) => assi.timestamp!.isAfter(start) && assi.timestamp!.isBefore(end))
 
     useEffect(() => {
         const info = (getUpcomingInfo(sgyData, selected, userData, time));

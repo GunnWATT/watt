@@ -1,0 +1,36 @@
+.materials {
+    
+    &-filters {
+        display: flex;
+        flex-direction: row;
+        margin-top: 10px;
+    }
+}
+
+@mixin dot ($diameter) {
+    width: $diameter;
+    height: $diameter;
+    flex-shrink: 0;
+    border-radius: $diameter;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.material {
+    display: flex;
+    flex-direction: row;
+    padding: 8px 12px;
+    margin-top: 5px;
+    background-color: var(--bg-primary);
+    align-items: center;
+
+    .material-name {
+        font-size: 1.1rem;
+    }
+
+    .material-class {
+        @include dot(30px);
+        margin-left: auto;
+    }
+}

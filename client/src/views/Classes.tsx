@@ -20,7 +20,7 @@ import UserDataContext, { SgyData, SgyPeriodData, UserData } from '../contexts/U
 // Utilities
 import { parsePeriodColor } from '../components/schedule/Periods';
 import { useScreenType } from '../hooks/useScreenType';
-
+import { Materials } from '../components/classes/Materials';
 
 export const fetchSgyMaterials = (async (functions: Functions) => {
     const fetchMaterials = httpsCallable(functions, 'sgyfetch-fetchMaterials');
@@ -203,7 +203,7 @@ export default function Classes() {
                 <Routes>
                     <Route path="/" element={<Dashboard selected={selected} sgyData={sgyData} />} />
                     <Route path="/upcoming" element={<Upcoming selected={selected} sgyData={sgyData} /> } />
-                    <Route path="/materials" element={<WIP />} />
+                    <Route path="/materials" element={<Materials selected={selected} sgyData={sgyData} />} />
                 </Routes>
             </div>
            <ClassesSidebar setSelected={setSelected} />

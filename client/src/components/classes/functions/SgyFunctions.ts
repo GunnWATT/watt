@@ -1,7 +1,19 @@
 import moment from "moment";
 import { SgyData, UserData } from "../../../contexts/UserDataContext";
+import { Assignment, Event, Document, Page } from "../../../schoology/SgyTypes";
 import { findClassesList } from "../../../views/Classes";
-import { DashboardAssignment } from "../Dashboard";
+
+// Includes everything the user would probably want to know
+export type AssignmentBlurb = {
+    name: string;
+    link: string;
+    timestamp: moment.Moment | null;
+    description: string;
+    period: string;
+    id: string;
+    labels: string[];
+}
+
 
 // Functions for wrangling with Schoology data
 
@@ -16,12 +28,92 @@ const momentComparator = (a: moment.Moment, b: moment.Moment) => {
     return 0;
 }
 
+const AssignmentToBlurb = (item: Assignment, period: string): AssignmentBlurb => {
+
+    const timestamp = item.due.length ? moment(item.due) : null;
+    const labels: string[] = ['Assignment'];
+    if (["managed_assessment", "assessment"].includes( item.type ) ) {
+        labels.push('Test')
+    }
+    // "managed_assessment", "assessment"
+
+    return {
+        name: item.title,
+        description: item.description,
+        link: `https://pausd.schoology.com/assignment/${item.id}`,
+        timestamp,
+        period,
+        id: item.id+'',
+        labels,
+    }
+}
+
+const EventToBlurb = (item: Event, period: string): AssignmentBlurb => {
+    return {
+        name: item.title,
+        description: item.description,
+        link: `https://pausd.schoology.com/event/${item.id}`,
+        timestamp: moment(item.start),
+        period,
+        id: item.id + '',
+        labels: ['Event']
+    }
+}
+
+const DocumentToBlurb = (item: Document, period: string): AssignmentBlurb => {
+    return {
+        name: item.title,
+        description: JSON.stringify(item.attachments),
+        link: `https://pausd.schoology.com/document/${item.id}`,
+        timestamp: null,
+        period,
+        id: item.id + '',
+        labels: ['Document']
+    }
+}
+
+const PageToBlurb = (item: Page, period: string): AssignmentBlurb => {
+    return {
+        name: item.title,
+        description: item.body,
+        link: `https://pausd.schoology.com/page/${item.id}`,
+        timestamp: null,
+        period,
+        id: item.id + '',
+        labels: ['Page']
+    }
+}
+
+export const getMaterials = (sgyData: SgyData, selected: string, userData: UserData): AssignmentBlurb[] => {
+    
+    if(selected === 'A') {
+        const materials:AssignmentBlurb[] = [];
+        const classes = findClassesList(userData, false);
+
+        for (const c of classes) {
+            materials.push( ...getMaterials(sgyData, c.period, userData) );
+        }
+
+        return materials
+    }
+
+    const selectedCourse = sgyData[selected];
+    
+    const materials:AssignmentBlurb[] = [];
+    for (const item of selectedCourse.assignments) materials.push(AssignmentToBlurb(item, selected));
+    for (const item of selectedCourse.events) materials.push(EventToBlurb(item, selected));
+    for (const item of selectedCourse.documents) materials.push(DocumentToBlurb(item, selected));
+    for (const item of selectedCourse.pages) materials.push(PageToBlurb(item, selected));
+
+    return materials;
+}
+
 // Gets all your upcoming and overdue stuff
 export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: UserData, time: moment.Moment) => {
 
     if (selected === 'A') {
-        const upcoming: DashboardAssignment[] = [];
-        const overdue: DashboardAssignment[] = [];
+        const upcoming: AssignmentBlurb[] = [];
+        const overdue: AssignmentBlurb[] = [];
         // const grades: { [key: string]: number } = {};
 
         const classes = findClassesList(userData);
@@ -36,8 +128,8 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: Us
             }
         }
 
-        upcoming.sort((a, b) => momentComparator(a.timestamp, b.timestamp));
-        overdue.sort((a, b) => momentComparator(a.timestamp, b.timestamp));
+        upcoming.sort((a, b) => momentComparator(a.timestamp!, b.timestamp!));
+        overdue.sort((a, b) => momentComparator(a.timestamp!, b.timestamp!));
 
         return { upcoming, overdue };
     }
@@ -46,8 +138,8 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: Us
     const selectedCourse = sgyData[selected];
     const selectedCourseGrades = findGrades(sgyData, selected); // find the grades
 
-    const upcoming: DashboardAssignment[] = [];
-    const overdue: DashboardAssignment[] = [];
+    const upcoming: AssignmentBlurb[] = [];
+    const overdue: AssignmentBlurb[] = [];
 
     // search thru assignments
     for (const item of selectedCourse.assignments) {
@@ -59,14 +151,7 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: Us
             if (due.isAfter(time)) { // if it's due after right now
 
                 // format the assignment
-                const assi: DashboardAssignment = {
-                    name: item.title,
-                    description: item.description,
-                    link: `https://pausd.schoology.com/assignment/${item.id}`,
-                    timestamp: moment(item.due),
-                    period: selected
-                }
-                upcoming.push(assi);
+                upcoming.push(AssignmentToBlurb(item, selected));
             } else {
                 // check if it's overddue
                 if (selectedCourseGrades) {
@@ -80,13 +165,7 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: Us
                     }
 
                     if (!found) {
-                        overdue.push({
-                            name: item.title,
-                            description: item.description,
-                            link: `https://pausd.schoology.com/assignment/${item.id}`,
-                            timestamp: moment(item.due),
-                            period: selected
-                        });
+                        overdue.push(AssignmentToBlurb(item, selected));
                     }
                 }
             }
@@ -98,19 +177,12 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: Us
         const due = moment(item.start);
 
         if (due.isAfter(time) && !item.assignment_id) {
-            const assi: DashboardAssignment = {
-                name: item.title,
-                description: item.description,
-                link: `https://pausd.schoology.com/event/${item.id}`,
-                timestamp: moment(item.start),
-                period: selected
-            }
-            upcoming.push(assi);
+            upcoming.push(EventToBlurb(item, selected));
         }
     }
 
-    upcoming.sort((a, b) => momentComparator(a.timestamp, b.timestamp));
-    overdue.sort((a, b) => momentComparator(a.timestamp, b.timestamp));
+    upcoming.sort((a, b) => momentComparator(a.timestamp!, b.timestamp!));
+    overdue.sort((a, b) => momentComparator(a.timestamp!, b.timestamp!));
 
     const finalGrade = selectedCourseGrades ? selectedCourseGrades.final_grade[0].grade : null;
 
