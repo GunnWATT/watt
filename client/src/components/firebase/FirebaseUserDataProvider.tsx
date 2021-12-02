@@ -46,7 +46,7 @@ export default function FirebaseUserDataProvider(props: FirebaseUserDataProvider
         const data = firebaseDoc.data();
 
         const merged = deepmerge(defaultUserData, data);
-        const changes = deepdifferences(data, merged);
+        const changes = deepdifferences(merged, data);
         bulkUpdateFirebaseUserData(changes, auth, firestore);
         localStorage.setItem('data', JSON.stringify(merged));
     }, [status])
