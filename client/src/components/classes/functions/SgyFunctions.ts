@@ -117,7 +117,7 @@ export const getMaterials = (sgyData: SgyData, selected: string, userData: UserD
     
     const materials:AssignmentBlurb[] = [];
     for (const item of selectedCourse.assignments) materials.push(AssignmentToBlurb(item, selected));
-    for (const item of selectedCourse.events) materials.push(EventToBlurb(item, selected));
+    for (const item of selectedCourse.events) if(!item.assignment_id) materials.push(EventToBlurb(item, selected));
     for (const item of selectedCourse.documents) materials.push(DocumentToBlurb(item, selected));
     for (const item of selectedCourse.pages) materials.push(PageToBlurb(item, selected));
 

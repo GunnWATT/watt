@@ -17,6 +17,8 @@ const Material = ({ item, sgyData }: { item: AssignmentBlurb, sgyData: SgyData }
     >
         <div className="material-name">{item.name}</div>
 
+        { item.timestamp && <div className="material-date"> {item.timestamp.format('M/D/YY')} </div> }
+
         <div className="material-labels">
             {item.labels.map(label => <div key={label} className="material-label" style={{backgroundColor: parseLabelColor(label, userData)}} />)}
         </div>

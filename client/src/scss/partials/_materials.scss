@@ -29,11 +29,19 @@
         font-size: 1.1rem;
         word-wrap: break-word;
         max-width: calc(100% - 50px);
+        margin-right: auto;
+    }
+
+    .material-date {
+        padding: 2px 7px;
+        background-color: var(--content-primary);
+        margin-right: 10px;
+        border-radius: 5px;
+        font-size: 0.75rem;
     }
 
     .material-labels {
         display: flex;
-        margin-left: auto;
         flex-direction: row;
 
         .material-label {
