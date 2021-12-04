@@ -2,7 +2,7 @@ import moment from "moment";
 import { useContext } from "react";
 import UserDataContext from "../../../contexts/UserDataContext";
 import { parsePeriodName, parsePeriodColor } from "../../schedule/Periods";
-import { AssignmentBlurb } from "../functions/SgyFunctions";
+import { AssignmentBlurb, parseLabelColor } from "../functions/SgyFunctions";
 
 // The assignment blocks for the Upcoming Tab
 // Pretty self explanatory
@@ -23,6 +23,7 @@ const UpcomingAssignment = (props: { assignment: AssignmentBlurb } & ActiveDaySt
     return <div className={"upcoming-assignment"}>
         <div className="upcoming-assignment-tags">
             <UpcomingAssignmentTag label={parsePeriodName(assignment.period, userData)} color={parsePeriodColor(assignment.period, userData)} />
+            { assignment.labels.map(label => <UpcomingAssignmentTag label={label} color={parseLabelColor(label, userData)} />) }
         </div>
         <div className={"upcoming-assignment-name"}>{assignment.name}</div>
         {assignment.description.length ? <div className={"upcoming-assignment-desc"}>{assignment.description}</div> : null}

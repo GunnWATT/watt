@@ -8,6 +8,9 @@ import { Assignment, Document, Event, Page, Section, SectionGrade } from '../sch
 // o: office hours zoom link
 // s: schoology course id
 export type SgyPeriodData = {n: string, c: string, l: string, o: string, s: string};
+
+export type CustomAssignment = { id: string, name: string, description: string, labels: string[], timestamp: moment.Moment | null, period: string, completed: boolean }
+export type CustomLabel = { id: string, name: string, color: string };
 export type UserData = {
     v: number,
     classes: {
@@ -20,7 +23,11 @@ export type UserData = {
     staff: string[],
     id: string,
     barcodes: string, // stringified [string, string][] because firestore doesn't support nested arrays
-    sgy?: {key: string, sec: string, uid: string}
+    sgy?: {key: string, sec: string, uid: string},
+    custom: {
+        assignments: CustomAssignment[],
+        labels: CustomLabel[]
+    }
 };
 
 export type SgyData = {grades: SectionGrade[]} & {[key:string]: {
@@ -31,7 +38,7 @@ export type SgyData = {grades: SectionGrade[]} & {[key:string]: {
     events: Event[];
 }};
 
-export const defaultUserData = {
+export const defaultUserData: UserData = {
     v: 0,
     clubs: [],
     staff: [],
@@ -56,7 +63,11 @@ export const defaultUserData = {
         clock: true,
         sgy: false
     },
-    id: '00000'
+    id: '00000',
+    custom: {
+        assignments: [],
+        labels: []
+    }
 };
 
 const UserDataContext = createContext<UserData>(defaultUserData);

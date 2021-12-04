@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import UserDataContext, { SgyData } from "../../contexts/UserDataContext";
 import { findClassesList } from "../../views/Classes";
 import { parsePeriodColor } from "../schedule/Periods";
-import { AssignmentBlurb, getMaterials } from "./functions/SgyFunctions";
+import { AssignmentBlurb, getMaterials, parseLabelColor } from "./functions/SgyFunctions";
 import UpcomingPalette from "./upcoming/PaletteClassFilter";
 
 const Material = ({ item, sgyData }: { item: AssignmentBlurb, sgyData: SgyData }) => {
@@ -17,7 +17,9 @@ const Material = ({ item, sgyData }: { item: AssignmentBlurb, sgyData: SgyData }
     >
         <div className="material-name">{item.name}</div>
 
-        {/* <div className="material-types" style={{ backgroundColor: parsePeriodColor(item.period, userData) }} ></div> */}
+        <div className="material-labels">
+            {item.labels.map(label => <div key={label} className="material-label" style={{backgroundColor: parseLabelColor(label, userData)}} />)}
+        </div>
         <div className="material-class" style={{backgroundColor: parsePeriodColor(item.period, userData)}} ></div>
     </div>
 }

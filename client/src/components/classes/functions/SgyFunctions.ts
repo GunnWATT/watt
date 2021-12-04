@@ -2,6 +2,7 @@ import moment from "moment";
 import { SgyData, UserData } from "../../../contexts/UserDataContext";
 import { Assignment, Event, Document, Page } from "../../../schoology/SgyTypes";
 import { findClassesList } from "../../../views/Classes";
+import { darkPerColors, periodColors } from "../../schedule/Periods";
 
 // Includes everything the user would probably want to know
 export type AssignmentBlurb = {
@@ -14,6 +15,21 @@ export type AssignmentBlurb = {
     labels: string[];
 }
 
+export const defaultLabels = ['Assignment', 'Test', 'Event', 'Document', 'Page'];
+export const parseLabelColor = (label:string, userData: UserData) => {
+    const custom = userData.custom.labels.find(({name}) => name === label);
+    if(custom) return custom.color;
+
+    const defaultIndex = defaultLabels.indexOf(label);
+    if(defaultIndex >= 0) {
+        if(userData.options.theme === 'dark') return darkPerColors[ defaultIndex ];
+        else return periodColors[ defaultIndex ];
+    }
+
+    console.error(`Label "${label}" not found.`);
+    if (userData.options.theme === 'dark') return darkPerColors[darkPerColors.length - 1]
+    return periodColors[periodColors.length - 1];
+}
 
 // Functions for wrangling with Schoology data
 

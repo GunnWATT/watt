@@ -27,10 +27,23 @@
 
     .material-name {
         font-size: 1.1rem;
+        word-wrap: break-word;
+        max-width: calc(100% - 50px);
+    }
+
+    .material-labels {
+        display: flex;
+        margin-left: auto;
+        flex-direction: row;
+
+        .material-label {
+            @include dot(22px);
+            margin-right: 10px;
+        }
     }
 
     .material-class {
         @include dot(30px);
-        margin-left: auto;
+        // margin-left: auto;
     }
 }

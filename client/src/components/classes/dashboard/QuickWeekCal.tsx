@@ -36,7 +36,7 @@ const UpcomingQuickCalDay = (props: { day: moment.Moment, upcoming: AssignmentBl
     return <div className={"upcoming-blurb-qc-day" + (active ? '-active' : '-inactive')}>
         <div className="upcoming-blurb-qc-day-num"> {screenType === 'phone' ? weekdays[day.weekday()] : `${weekdays[day.weekday()]} • ${day.date()}`}</div>
         <div className="upcoming-blurb-qc-dots">
-            {relevantAssigments.map((a) => <UpcomingQuickCalDot key={a.period} course={a.period} />)}
+            {relevantAssigments.map((a,i) => <UpcomingQuickCalDot key={a.period + i} course={a.period} />)}
         </div>
     </div>
 }
