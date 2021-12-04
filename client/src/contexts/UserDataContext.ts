@@ -9,7 +9,8 @@ import { Assignment, Document, Event, Page, Section, SectionGrade } from '../sch
 // s: schoology course id
 export type SgyPeriodData = {n: string, c: string, l: string, o: string, s: string};
 
-export type CustomAssignment = { id: string, name: string, description: string, labels: string[], timestamp: moment.Moment | null, period: string, completed: boolean }
+export type CustomAssignment = { id: string, name: string, description: string, labels: string[], timestamp: number | null, period: string, completed: boolean, priority:number }
+export type SgyAssignmentModified = { id: string, name?: string, description?: string, labels?: string[], timestamp?: number | null, period?: string, completed?: boolean, priority?:number }
 export type CustomLabel = { id: string, name: string, color: string };
 export type UserData = {
     v: number,
@@ -26,6 +27,7 @@ export type UserData = {
     sgy?: {key: string, sec: string, uid: string},
     custom: {
         assignments: CustomAssignment[],
+        modified: SgyAssignmentModified[],
         labels: CustomLabel[]
     }
 };
@@ -66,6 +68,7 @@ export const defaultUserData: UserData = {
     id: '00000',
     custom: {
         assignments: [],
+        modified: [],
         labels: []
     }
 };

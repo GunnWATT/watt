@@ -60,7 +60,7 @@ export default function Upcoming(props: UpcomingProps) {
 
         setUpcoming(info.upcoming);
         setOverdue(info.overdue);
-    }, [selected]);
+    }, [selected, userData]);
 
 
     return <div className={"upcoming-burrito " + screenType}>
