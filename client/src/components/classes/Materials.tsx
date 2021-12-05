@@ -26,7 +26,7 @@ const Material = ({ item, sgyData }: { item: AssignmentBlurb, sgyData: SgyData }
     </div>
 }
  
-export const Materials = ({sgyData, selected}: { sgyData: SgyData, selected: string }) => {
+export default function Materials({sgyData, selected}: { sgyData: SgyData, selected: string }) {
 
     // Userdata handling
     const userData = useContext(UserDataContext);

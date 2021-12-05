@@ -3,15 +3,15 @@ import {Routes, Route, Link, useMatch, useResolvedPath} from 'react-router-dom';
 
 // Firebase
 import { Functions, httpsCallable } from 'firebase/functions';
-import { useAuth, useFunctions } from "reactfire";
+import { useAuth, useFunctions } from 'reactfire';
 
 // Components
 import Dashboard from '../components/classes/Dashboard';
 import Upcoming from '../components/classes/Upcoming';
+import Materials from '../components/classes/Materials';
 import SgySignInBtn from '../components/firebase/SgySignInBtn';
 import Loading from '../components/layout/Loading';
 import RedBackground from '../components/layout/RedBackground';
-import WIP from '../components/layout/WIP';
 
 // Contexts
 import CurrentTimeContext from '../contexts/CurrentTimeContext';
@@ -20,7 +20,7 @@ import UserDataContext, { SgyData, SgyPeriodData, UserData } from '../contexts/U
 // Utilities
 import { parsePeriodColor } from '../components/schedule/Periods';
 import { useScreenType } from '../hooks/useScreenType';
-import { Materials } from '../components/classes/Materials';
+
 
 export const fetchSgyMaterials = (async (functions: Functions) => {
     const fetchMaterials = httpsCallable(functions, 'sgyfetch-fetchMaterials');
