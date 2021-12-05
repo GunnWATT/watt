@@ -5,6 +5,7 @@ import { parsePeriodName, parsePeriodColor } from "../../schedule/Periods";
 import { AssignmentBlurb, modifyAssignment, parseLabelColor, parsePriority } from "../functions/SgyFunctions";
 import link from '../../../assets/link.png';
 import { useAuth, useFirestore } from "reactfire";
+import { PriorityPicker } from "./PriorityPicker";
 
 // The assignment blocks for the Upcoming Tab
 // Pretty self explanatory
@@ -30,6 +31,15 @@ const UpcomingAssignment = (props: { assignment: AssignmentBlurb } & ActiveDaySt
             timestamp: assignment.timestamp?.valueOf() ?? null
         };
         modifyAssignment( itemCopy, userData, auth, firestore )
+    }
+
+    const setPriority = (priority: number) => {
+        let itemCopy = {
+            ...assignment,
+            priority: priority,
+            timestamp: assignment.timestamp?.valueOf() ?? null
+        };
+        modifyAssignment(itemCopy, userData, auth, firestore)
     }
 
     const { assignment, activeDay, setActiveDay } = props;
@@ -58,9 +68,7 @@ const UpcomingAssignment = (props: { assignment: AssignmentBlurb } & ActiveDaySt
             </div>
 
             <div className="upcoming-assignment-icons-bottom">
-                <svg width={30} height={40}>
-                    <polygon points='0,0 0,40 15,25 30,40 30,0' fill={parsePriority(assignment.priority, userData)} />
-                </svg>
+                <PriorityPicker priority={assignment.priority} setPriority={setPriority} />
             </div>
             
         </div>

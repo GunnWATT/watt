@@ -269,12 +269,46 @@ $anim-length: .8s;
             flex-direction: row;
             margin-top: auto;
 
-            svg {
+            .priority {
                 margin-left: auto;
-                cursor: pointer;
+                
             }
         }
 
         
     }
+}
+
+.priority { 
+    position: relative;
+    
+    svg {
+        cursor: pointer;
+    }
+    
+
+    &-picker {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0px;
+        width: 150px;
+        background-color: var(--content-primary);
+        padding: 10px;
+        z-index: 4;
+        border-radius: 5px;
+
+        &-priority {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 5px;
+            cursor: pointer;
+
+            &-dot {
+                @include dot(30px);
+                margin-right: 10px;
+            }
+        }
+    }
+
 }

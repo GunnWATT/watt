@@ -75,7 +75,7 @@ const SgyItemToBlurb = (item: Assignment | Event | Document | Page, period: stri
         id: item.id+'',
         period,
         completed: false,
-        priority: 1
+        priority: -1
     }
 }
 
