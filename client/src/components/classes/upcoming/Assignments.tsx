@@ -51,7 +51,9 @@ const UpcomingAssignment = (props: { assignment: AssignmentBlurb } & ActiveDaySt
         </div>
         <div className="upcoming-assignment-icons">
             <div className="upcoming-assignment-icons-top">
-                <img src={link} alt="link" className={"link-icon" + (userData.options.theme === 'dark' ? ' link-icon-dark' : '')} />
+                <a href={assignment.link} target="_blank" rel="noopener noreferrer">
+                    <img src={link} alt="link" className={"link-icon" + (userData.options.theme === 'dark' ? ' link-icon-dark' : '')} />
+                </a>
                 <div className="upcoming-checkbox" onClick={() => toggleCompleted()}>{assignment.completed && '✓'}</div>
             </div>
 

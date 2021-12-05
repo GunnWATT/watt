@@ -54,6 +54,7 @@ export default function Upcoming(props: UpcomingProps) {
         }})
         .filter((assi) => classFilter[classes.findIndex(({period}) => assi.period === period)])
         .filter((assi) => assi.timestamp!.isAfter(start) && assi.timestamp!.isBefore(end))
+        .filter((assi) => !assi.completed)
 
     useEffect(() => {
         const info = (getUpcomingInfo(sgyData, selected, userData, time));

@@ -188,7 +188,7 @@ export function GenericCalendar(props: GenericCalendarProps) {
                 // extra padding
                 ...Array(days[0].weekday()).fill(0).map((_, i) => {
                     return (
-                        <div className="calendar-day" key={"padding " + i} />
+                        <div key={"padding " + i} className="calendar-day" />
                     )
                 }),
 
