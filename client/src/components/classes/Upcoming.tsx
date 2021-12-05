@@ -18,6 +18,7 @@ import { findClassesList } from '../../views/Classes';
 import { AssignmentBlurb } from './functions/SgyFunctions';
 import { SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE } from '../schedule/Periods';
 import { getUpcomingInfo } from './functions/SgyFunctions';
+import { similarity } from './functions/GeneralHelperFunctions';
 
 
 type UpcomingProps = { sgyData: SgyData, selected: string };
@@ -36,11 +37,15 @@ export default function Upcoming(props: UpcomingProps) {
     const { search } = useLocation();
     const searchParams = new URLSearchParams(search);
     const [query, setQuery] = useState(searchParams.get('search') ?? '');
+
+    // filters
     const [classFilter, setClassFilter] = useState<boolean[]>(Array(classes.length).fill(true));
 
     const startofday = moment().startOf('day');
     const [start, setStart] = useState(startofday);
     const [end, setEnd] = useState(SCHOOL_END_EXCLUSIVE);
+
+    const [includeCompleted, setIncludeCompleted] = useState(false);
 
     // active day (if the user is hovering over any date)
     const [activeDay, setActiveDay] = useState<null | moment.Moment>(null);
@@ -50,12 +55,11 @@ export default function Upcoming(props: UpcomingProps) {
         // query
         if (query.length === 0) return true;
         else {
-            // TODO: include fuzzy matching
-            return assi.name.toLowerCase().includes(query.toLowerCase()) || assi.description.toLowerCase().includes(query.toLowerCase());
+            return similarity(query, assi.name) >= 0.8 || similarity(query, assi.description) >= 0.8;
         }})
         .filter((assi) => classFilter[classes.findIndex(({period}) => assi.period === period)])
         .filter((assi) => assi.timestamp!.isAfter(start) && assi.timestamp!.isBefore(end))
-        .filter((assi) => !assi.completed)
+        .filter((assi) => !assi.completed || includeCompleted)
 
     useEffect(() => {
         const info = (getUpcomingInfo(sgyData, selected, userData, time));
@@ -85,6 +89,7 @@ export default function Upcoming(props: UpcomingProps) {
                         <div className={"upcoming-filters " + screenType}>
                             {selected === 'A' && <UpcomingPalette classes={classes} classFilter={classFilter} setClassFilter={setClassFilter} />}
                             {screenType !== 'smallScreen' && screenType !== 'phone' ? null : <DateRangePicker calStart={moment().startOf('day')} start={start} setStart={setStart} end={end} setEnd={setEnd} />}
+                            <div className="upcoming-completed-filter" onClick={() => setIncludeCompleted(!includeCompleted)}>{includeCompleted ? '✓' : ''}</div>
                         </div>
                         : null
                 }

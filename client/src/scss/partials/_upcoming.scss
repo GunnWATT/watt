@@ -51,13 +51,7 @@
         }
     }
     
-    .upcoming-search-bar {
-        background-color: var(--bg-primary);
-        padding: 8px 10px;
-        border-radius: 5px;
-        width: 100%;
-        font-size: 1.2rem;
-    }
+    
 
     .upcoming-filters {
         display: flex;
@@ -74,6 +68,13 @@
     }
 }
 
+.upcoming-search-bar {
+    background-color: var(--bg-primary);
+    padding: 8px 10px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1.2rem;
+}
 
 @mixin dot ($diameter) {
     width: $diameter;
@@ -83,6 +84,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.upcoming-completed-filter {
+    width: 25px;
+    height: 25px;
+    border: 2px dashed var(--primary);
+    margin-left: auto;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
 }
 
 .upcoming-palette {
