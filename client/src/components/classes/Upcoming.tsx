@@ -4,9 +4,10 @@ import moment from 'moment';
 import { useScreenType } from '../../hooks/useScreenType';
 
 // Components
-import UpcomingSearchBar from './upcoming/SearchBar';
 import UpcomingAssignments from './upcoming/Assignments';
 import UpcomingFullCalendar from './FullCalendar';
+import UpcomingPalette from './upcoming/PaletteClassFilter';
+import { DateRangePicker } from '../schedule/DateSelector';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
@@ -63,11 +64,32 @@ export default function Upcoming(props: UpcomingProps) {
         setOverdue(info.overdue);
     }, [selected, userData]);
 
+    const [filtersOpen, setFilters] = useState(false);
 
     return <div className={"upcoming-burrito " + screenType}>
         {/* these props- */}
         <div className="upcoming">
-            <UpcomingSearchBar start={start} setStart={setStart} end={end} setEnd={setEnd} selected={props.selected} classFilter={classFilter} setClassFilter={setClassFilter} classes={classes} setQuery={setQuery} query={query} />
+
+            <div className="upcoming-search">
+                <input
+                    type="text"
+                    placeholder="Search"
+                    defaultValue={query}
+                    className="upcoming-search-bar"
+                    onChange={(event) => setQuery(event.target.value)}
+                />
+                <div className={"upcoming-filter-arrow" + (filtersOpen ? ' open' : '')} onClick={() => setFilters(!filtersOpen)}></div>
+
+                {
+                    filtersOpen ?
+                        <div className={"upcoming-filters " + screenType}>
+                            {selected === 'A' && <UpcomingPalette classes={classes} classFilter={classFilter} setClassFilter={setClassFilter} />}
+                            {screenType !== 'smallScreen' && screenType !== 'phone' ? null : <DateRangePicker calStart={moment().startOf('day')} start={start} setStart={setStart} end={end} setEnd={setEnd} />}
+                        </div>
+                        : null
+                }
+            </div>
+
             {upcomingFiltered && <UpcomingAssignments upcoming={upcomingFiltered} activeDay={activeDay} setActiveDay={setActiveDay} />}
         </div>
         {screenType !== 'smallScreen' && screenType !== 'phone' && <UpcomingFullCalendar activeDay={activeDay} setActiveDay={setActiveDay} start={start} setStart={setStart} end={end} setEnd={setEnd} />}

@@ -2,7 +2,7 @@ import { useContext, useEffect, useState, useRef } from "react"
 import UserDataContext from "../../../contexts/UserDataContext"
 import { parsePriority } from "../functions/SgyFunctions"
 
-export const PriorityPicker = ({priority, setPriority}:{priority: number, setPriority: (p: number)=>any} ) => {
+export const PriorityPicker = ({priority, setPriority, icon}:{priority: number, setPriority: (p: number)=>any, icon?:(priority:number) => React.ReactNode }) => {
 
     const userData = useContext(UserDataContext);
 
@@ -24,9 +24,15 @@ export const PriorityPicker = ({priority, setPriority}:{priority: number, setPri
     }, [ref]);
 
     return <div className="priority" ref={ref}>
-        <svg width={30} height={40} onClick={() => setPicker(!picker)}>
-            <polygon points='0,0 0,40 15,25 30,40 30,0' fill={parsePriority(priority, userData)} />
-        </svg>
+        <div>
+            {
+                icon ? icon(priority) :
+                <svg width={30} height={40} onClick={() => setPicker(!picker)}>
+                    <polygon points='0,0 0,40 15,25 30,40 30,0' fill={parsePriority(priority, userData)} />
+                </svg>
+            }
+        </div>
+        
 
         <div className="priority-picker" hidden={!picker}>
             {[0, 1, 2, 3, -1].map(p => 

@@ -31,27 +31,49 @@
     position: sticky;
     top: 5px;
     z-index: 5;
-}
 
-.upcoming-search-bar {
-    background-color: var(--bg-primary);
-    padding: 8px 10px;
-    border-radius: 5px;
-    width: 100%;
-    font-size: 1.2rem;
-}
+    .upcoming-filter-arrow {
+        width: 12px;
+        height: 12px;
+        margin-top: 10px;
+        margin-bottom:5px;
+        margin-left: 5px;
 
-.upcoming-filters {
-    display: flex;
-    flex-direction: row;
-    margin-top: 10px;
+        border-right: 2px solid var(--primary);
+        border-top: 2px solid var(--primary);
+        transform: rotate(45deg);
+        transform-origin: center;
+        cursor: pointer;
 
-    align-items: center;
+        &.open {
+            transform: rotate(135deg);
+            margin-left: 5px;
+        }
+    }
+    
+    .upcoming-search-bar {
+        background-color: var(--bg-primary);
+        padding: 8px 10px;
+        border-radius: 5px;
+        width: 100%;
+        font-size: 1.2rem;
+    }
 
-    &.phone {
+    .upcoming-filters {
+        display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
+
+        align-items: center;
+        margin: -5px;
+        margin-top: 0px;
+
+        >div {
+            margin: 5px;
+        }
     }
 }
+
 
 @mixin dot ($diameter) {
     width: $diameter;
@@ -135,7 +157,7 @@
 
     &.phone {
         margin-top: 5px;
-        margin-left: auto;
+        // margin-left: auto;
         
         .date-range-selector-box {
             display: flex;
@@ -146,7 +168,7 @@
     }
 
     &:not(.phone) {
-        margin-left: auto;
+        // margin-left: auto;
 
         .mini-calendar {
             right: 0px;
@@ -282,7 +304,7 @@ $anim-length: .8s;
 .priority { 
     position: relative;
     
-    svg {
+    div:first-child {
         cursor: pointer;
     }
     

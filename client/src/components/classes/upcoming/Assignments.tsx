@@ -34,6 +34,7 @@ const UpcomingAssignment = (props: { assignment: AssignmentBlurb } & ActiveDaySt
     }
 
     const setPriority = (priority: number) => {
+        if(priority === assignment.priority) return;
         let itemCopy = {
             ...assignment,
             priority: priority,
