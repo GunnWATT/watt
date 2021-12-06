@@ -93,7 +93,10 @@ const auth = async (data, context) => {
             "sgy.uid": me['uid'],
             "sgy.name": me['name_display'],
             "sgy.sid": me['username'],
-            "sgy.grad": me['grad_year']
+            "sgy.grad": me['grad_year'],
+            "sgy.custom.assignments": [],
+            "sgy.custom.modified": [],
+            "sgy.custom.labels": [],
         }).catch(e => console.trace(e))
 
         return true

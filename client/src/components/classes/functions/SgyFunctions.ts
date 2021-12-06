@@ -22,7 +22,8 @@ export type AssignmentBlurb = {
 
 export const defaultLabels = ['Assignment', 'Test', 'Event', 'Document', 'Page'];
 export const parseLabelColor = (label:string, userData: UserData) => {
-    const custom = userData.custom.labels.find(({name}) => name === label);
+    if (!userData.sgy) throw 'User not authenticated in schoology!';
+    const custom = userData.sgy!.custom.labels.find(({name}) => name === label);
     if(custom) return custom.color;
 
     const defaultIndex = defaultLabels.indexOf(label);
@@ -49,11 +50,12 @@ export const parsePriority = (priority: number, userData: UserData) => {
 }
 
 export const modifyAssignment = async (modifiedData: SgyAssignmentModified, userData: UserData, auth: Auth, firestore: Firestore) => {
-    const currentModified = userData.custom.modified;
+    if (!userData.sgy) throw 'User not authenticated in schoology!';
+    const currentModified = userData.sgy!.custom.modified;
     let newModified: SgyAssignmentModified[];
     newModified = currentModified.filter(modified => modified.id !== modifiedData.id);
     newModified.push(modifiedData);
-    await updateUserData("custom.modified", newModified, auth, firestore);
+    await updateUserData("sgy.custom.modified", newModified, auth, firestore);
 }
 
 // Functions for wrangling with Schoology data
@@ -153,6 +155,7 @@ export const getMaterials = (sgyData: SgyData, selected: string, userData: UserD
 
 // Gets all your upcoming and overdue stuff
 export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: UserData, time: moment.Moment) => {
+    if(!userData.sgy) throw 'User not authenticated in schoology!';
 
     if (selected === 'A') {
         const upcoming: AssignmentBlurb[] = [];
@@ -230,7 +233,7 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: Us
     }
 
     for(let i = 0; i < upcoming.length; i++) {
-        const match = userData.custom.modified.find(m => m.id === upcoming[i].id);
+        const match = userData.sgy!.custom.modified.find(m => m.id === upcoming[i].id);
         if( match ) {
             // it's been modified by the user
 

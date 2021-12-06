@@ -7,7 +7,7 @@ import {doc, setDoc} from 'firebase/firestore';
 import {bulkUpdateFirebaseUserData, updateFirebaseUserData} from '../../firebase/updateUserData';
 
 // Context
-import {UserData, UserDataProvider, defaultUserData} from '../../contexts/UserDataContext';
+import {UserData, UserDataProvider, defaultUserData, defaultSgyCustom} from '../../contexts/UserDataContext';
 import { fetchSgyMaterials } from '../../views/Classes';
 
 
@@ -49,6 +49,13 @@ export default function FirebaseUserDataProvider(props: FirebaseUserDataProvider
         const changes = deepdifferences(merged, data);
         bulkUpdateFirebaseUserData(changes, auth, firestore);
         localStorage.setItem('data', JSON.stringify(merged));
+
+        if(data.sgy) {
+            // merge sgy stuff
+            const sgymerged = deepmerge({sgy: defaultSgyCustom}, data);
+            const sgychanges = deepdifferences(sgymerged, data);
+            bulkUpdateFirebaseUserData(sgychanges, auth, firestore);
+        }
     }, [status])
 
     // preferably this would trigger every 15 minutes

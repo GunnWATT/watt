@@ -192,6 +192,7 @@ export default function Classes() {
     if (!auth.currentUser) return <ClassesNotSignedIn />
     if (!userData.options.sgy) return <ClassesSgyNotConnected />
     if (sgyData == null) return <ClassesDataMissing fetchMaterials={() => fetchSgyMaterials(functions)} lastFetched={lastFetched} />
+    if (!userData.sgy?.custom || !userData.sgy?.custom.assignments || !userData.sgy?.custom.labels || !userData.sgy?.custom.modified) return <Loading /> // make sure user has all of these things :D, if not, usually gets corrected by FirebaseUserDataProvider
 
     return (
         <div className={"classes-burrito " + screenType}>

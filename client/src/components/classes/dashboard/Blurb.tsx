@@ -38,10 +38,11 @@ export default function DashboardBlurb(props: { upcoming: AssignmentBlurb[], sel
     const time = useContext(CurrentTimeContext);
     const inAWeek = moment(time).add(7, 'days');
     const assignmentsNextWeek = upcoming.filter((assi) => assi.timestamp!.isBefore(inAWeek));
+    const assignmentsToDoNextWeek = assignmentsNextWeek.filter(assi => !assi.completed)
 
     return <div className="upcoming-blurb">
         <div className="dashboard-header">Upcoming • Blurb</div>
-        <div>You have {assignmentsNextWeek.length} assignment{assignmentsNextWeek.length === 1 ? "" : "s"} due in the next week.</div>
+        <div>You need to do {assignmentsToDoNextWeek.length} of {assignmentsNextWeek.length} assignment{assignmentsNextWeek.length === 1 ? "" : "s"} due in the next week.</div>
 
         <UpcomingQuickWeekCal upcoming={upcoming} selected={selected} />
         <BlurbAssignments upcoming={upcoming} />

@@ -11,9 +11,12 @@ import { hasClass } from "../functions/PeriodFunctions";
 // The week calendar for dashboard
 
 // Dots are colored by course
-const UpcomingQuickCalDot = (props: { course: string }) => {
+const UpcomingQuickCalDot = (props: { course: string, completed: boolean }) => {
     const userData = useContext(UserDataContext);
-    return <div className="upcoming-blurb-qc-dot" style={{ backgroundColor: parsePeriodColor(props.course, userData) }}></div>
+    return <div className="upcoming-blurb-qc-dot" style={{ 
+        backgroundColor: props.completed ? 'var(--content-primary)' : parsePeriodColor(props.course, userData),
+        border: props.completed ? '2px inset var(--secondary)' : ''
+    }}></div>
 }
 
 const UpcomingQuickCalDay = (props: { day: moment.Moment, upcoming: AssignmentBlurb[], selected: string }) => {
@@ -36,7 +39,7 @@ const UpcomingQuickCalDay = (props: { day: moment.Moment, upcoming: AssignmentBl
     return <div className={"upcoming-blurb-qc-day" + (active ? '-active' : '-inactive')}>
         <div className="upcoming-blurb-qc-day-num"> {screenType === 'phone' ? weekdays[day.weekday()] : `${weekdays[day.weekday()]} • ${day.date()}`}</div>
         <div className="upcoming-blurb-qc-dots">
-            {relevantAssigments.map((a,i) => <UpcomingQuickCalDot key={a.period + i} course={a.period} />)}
+            {relevantAssigments.map((a,i) => <UpcomingQuickCalDot key={a.period + i} course={a.period} completed={a.completed} />)}
         </div>
     </div>
 }
