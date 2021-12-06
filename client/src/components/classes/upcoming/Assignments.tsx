@@ -2,7 +2,10 @@ import moment from "moment";
 import { useContext } from "react";
 import UserDataContext from "../../../contexts/UserDataContext";
 import { parsePeriodName, parsePeriodColor } from "../../schedule/Periods";
-import { AssignmentBlurb, parseLabelColor } from "../functions/SgyFunctions";
+import { AssignmentBlurb, modifyAssignment, parseLabelColor, parsePriority } from "../functions/SgyFunctions";
+import link from '../../../assets/link.png';
+import { useAuth, useFirestore } from "reactfire";
+import { PriorityPicker } from "./PriorityPicker";
 
 // The assignment blocks for the Upcoming Tab
 // Pretty self explanatory
@@ -18,22 +21,59 @@ const UpcomingAssignmentTag = (props: { label: string, color: string }) => {
 const UpcomingAssignment = (props: { assignment: AssignmentBlurb } & ActiveDayState ) => {
 
     const userData = useContext(UserDataContext);
+    const auth = useAuth();
+    const firestore = useFirestore();
+
+    const toggleCompleted = () => {
+        let itemCopy = {
+            ...assignment,
+            completed: !assignment.completed,
+            timestamp: assignment.timestamp?.valueOf() ?? null
+        };
+        modifyAssignment( itemCopy, userData, auth, firestore )
+    }
+
+    const setPriority = (priority: number) => {
+        if(priority === assignment.priority) return;
+        let itemCopy = {
+            ...assignment,
+            priority: priority,
+            timestamp: assignment.timestamp?.valueOf() ?? null
+        };
+        modifyAssignment(itemCopy, userData, auth, firestore)
+    }
 
     const { assignment, activeDay, setActiveDay } = props;
-    return <div className={"upcoming-assignment"}>
-        <div className="upcoming-assignment-tags">
-            <UpcomingAssignmentTag label={parsePeriodName(assignment.period, userData)} color={parsePeriodColor(assignment.period, userData)} />
-            { assignment.labels.map(label => <UpcomingAssignmentTag label={label} color={parseLabelColor(label, userData)} />) }
-        </div>
-        <div className={"upcoming-assignment-name"}>{assignment.name}</div>
-        {assignment.description.length ? <div className={"upcoming-assignment-desc"}>{assignment.description}</div> : null}
-        <div className="upcoming-assignment-due">
-            <div
-                onMouseEnter={() => setActiveDay(moment(assignment.timestamp).startOf('day'))}
-                onMouseLeave={() => setActiveDay(null)}>
-                {assignment.timestamp!.format('hh:mm a on dddd, MMM Do')}
+    return <div className="upcoming-assignment">
+        <div className="upcoming-assignment-content">
+            <div className="upcoming-assignment-tags">
+                <UpcomingAssignmentTag label={parsePeriodName(assignment.period, userData)} color={parsePeriodColor(assignment.period, userData)} />
+                { assignment.labels.map(label => <UpcomingAssignmentTag label={label} color={parseLabelColor(label, userData)} />) }
             </div>
-        </div> { /* TODO: include 24 hour support */}
+            <div className={"upcoming-assignment-name"}>{assignment.name}</div>
+            {assignment.description.length ? <div className={"upcoming-assignment-desc"}>{assignment.description}</div> : null}
+            <div className="upcoming-assignment-due">
+                <div
+                    onMouseEnter={() => setActiveDay(moment(assignment.timestamp).startOf('day'))}
+                    onMouseLeave={() => setActiveDay(null)}>
+                    {assignment.timestamp!.format('hh:mm a on dddd, MMM Do')}
+                </div>
+            </div> { /* TODO: include 24 hour support */}
+        </div>
+        <div className="upcoming-assignment-icons">
+            <div className="upcoming-assignment-icons-top">
+                <a href={assignment.link} target="_blank" rel="noopener noreferrer">
+                    <img src={link} alt="link" className={"link-icon" + (userData.options.theme === 'dark' ? ' link-icon-dark' : '')} />
+                </a>
+                <div className="upcoming-checkbox" onClick={() => toggleCompleted()}>{assignment.completed && '✓'}</div>
+            </div>
+
+            <div className="upcoming-assignment-icons-bottom">
+                <PriorityPicker priority={assignment.priority} setPriority={setPriority} />
+            </div>
+            
+        </div>
+        
     </div>
 }
 

@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import UserDataContext, { SgyData } from "../../contexts/UserDataContext";
 import { findClassesList } from "../../views/Classes";
 import { parsePeriodColor } from "../schedule/Periods";
+import { similarity } from "./functions/GeneralHelperFunctions";
 import { AssignmentBlurb, getMaterials, parseLabelColor } from "./functions/SgyFunctions";
 import UpcomingPalette from "./upcoming/PaletteClassFilter";
 
@@ -48,8 +49,7 @@ export default function Materials({sgyData, selected}: { sgyData: SgyData, selec
         // query
         if (query.length === 0) return true;
         else {
-            // TODO: include fuzzy matching
-            return assi.name.toLowerCase().includes(query.toLowerCase()) || assi.description.toLowerCase().includes(query.toLowerCase());
+            return similarity(query, assi.name) >= 0.8 || similarity(query, assi.description) >= 0.8;
         }
     })
     .filter((assi) => classFilter[classes.findIndex(({ period }) => assi.period === period)])

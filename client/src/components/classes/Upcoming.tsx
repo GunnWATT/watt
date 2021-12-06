@@ -4,9 +4,10 @@ import moment from 'moment';
 import { useScreenType } from '../../hooks/useScreenType';
 
 // Components
-import UpcomingSearchBar from './upcoming/SearchBar';
 import UpcomingAssignments from './upcoming/Assignments';
 import UpcomingFullCalendar from './FullCalendar';
+import UpcomingPalette from './upcoming/PaletteClassFilter';
+import { DateRangePicker } from '../schedule/DateSelector';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
@@ -17,6 +18,7 @@ import { findClassesList } from '../../views/Classes';
 import { AssignmentBlurb } from './functions/SgyFunctions';
 import { SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE } from '../schedule/Periods';
 import { getUpcomingInfo } from './functions/SgyFunctions';
+import { similarity } from './functions/GeneralHelperFunctions';
 
 
 type UpcomingProps = { sgyData: SgyData, selected: string };
@@ -35,11 +37,15 @@ export default function Upcoming(props: UpcomingProps) {
     const { search } = useLocation();
     const searchParams = new URLSearchParams(search);
     const [query, setQuery] = useState(searchParams.get('search') ?? '');
+
+    // filters
     const [classFilter, setClassFilter] = useState<boolean[]>(Array(classes.length).fill(true));
 
     const startofday = moment().startOf('day');
     const [start, setStart] = useState(startofday);
     const [end, setEnd] = useState(SCHOOL_END_EXCLUSIVE);
+
+    const [includeCompleted, setIncludeCompleted] = useState(false);
 
     // active day (if the user is hovering over any date)
     const [activeDay, setActiveDay] = useState<null | moment.Moment>(null);
@@ -49,24 +55,46 @@ export default function Upcoming(props: UpcomingProps) {
         // query
         if (query.length === 0) return true;
         else {
-            // TODO: include fuzzy matching
-            return assi.name.toLowerCase().includes(query.toLowerCase()) || assi.description.toLowerCase().includes(query.toLowerCase());
+            return similarity(query, assi.name) >= 0.8 || similarity(query, assi.description) >= 0.8;
         }})
         .filter((assi) => classFilter[classes.findIndex(({period}) => assi.period === period)])
         .filter((assi) => assi.timestamp!.isAfter(start) && assi.timestamp!.isBefore(end))
+        .filter((assi) => !assi.completed || includeCompleted)
 
     useEffect(() => {
         const info = (getUpcomingInfo(sgyData, selected, userData, time));
 
         setUpcoming(info.upcoming);
         setOverdue(info.overdue);
-    }, [selected]);
+    }, [selected, userData]);
 
+    const [filtersOpen, setFilters] = useState(false);
 
     return <div className={"upcoming-burrito " + screenType}>
         {/* these props- */}
         <div className="upcoming">
-            <UpcomingSearchBar start={start} setStart={setStart} end={end} setEnd={setEnd} selected={props.selected} classFilter={classFilter} setClassFilter={setClassFilter} classes={classes} setQuery={setQuery} query={query} />
+
+            <div className="upcoming-search">
+                <input
+                    type="text"
+                    placeholder="Search"
+                    defaultValue={query}
+                    className="upcoming-search-bar"
+                    onChange={(event) => setQuery(event.target.value)}
+                />
+                <div className={"upcoming-filter-arrow" + (filtersOpen ? ' open' : '')} onClick={() => setFilters(!filtersOpen)}></div>
+
+                {
+                    filtersOpen ?
+                        <div className={"upcoming-filters " + screenType}>
+                            {selected === 'A' && <UpcomingPalette classes={classes} classFilter={classFilter} setClassFilter={setClassFilter} />}
+                            {screenType !== 'smallScreen' && screenType !== 'phone' ? null : <DateRangePicker calStart={moment().startOf('day')} start={start} setStart={setStart} end={end} setEnd={setEnd} />}
+                            <div className="upcoming-completed-filter" onClick={() => setIncludeCompleted(!includeCompleted)}>{includeCompleted ? '✓' : ''}</div>
+                        </div>
+                        : null
+                }
+            </div>
+
             {upcomingFiltered && <UpcomingAssignments upcoming={upcomingFiltered} activeDay={activeDay} setActiveDay={setActiveDay} />}
         </div>
         {screenType !== 'smallScreen' && screenType !== 'phone' && <UpcomingFullCalendar activeDay={activeDay} setActiveDay={setActiveDay} start={start} setStart={setStart} end={end} setEnd={setEnd} />}

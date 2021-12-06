@@ -22,7 +22,7 @@ export const UpcomingPalettePicker = (props: PaletteProps & { hidden: boolean })
 
     return <div className={"upcoming-palette-picker " + screenType} >
         {classes.map((c, index) => {
-            return <div className="upcoming-palette-picker-class" onClick={() => toggleFilter(index)}>
+            return <div key={index} className="upcoming-palette-picker-class" onClick={() => toggleFilter(index)}>
                 <div className="upcoming-palette-picker-dot"
                     style={{
                         backgroundColor: classFilter[index] ? c.color : 'var(--content-primary)',
