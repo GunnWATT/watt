@@ -86,6 +86,44 @@ import {readFileSync, writeFileSync} from 'fs';
 import fs from 'fs';
 ```
 
+### 1.5 — Prefer minimizing extra newlines from curly braces
+```tsx
+// Prefer
+if (!signedIn) return <div>You are not signed in!</div>
+// or
+if (!signedIn) 
+    return <div>You are not signed in! Sign in to WATT via the sidebar.</div>
+// to
+if (!signedIn) {
+    return <div>You are not signed in!</div>
+}
+```
+Exceptions to this rule may apply on a case by case basis.
+
+### 1.6 — Leave spaces before `if` and `for` conditions and after `:`s in object and type declarations
+```ts
+// Prefer
+if (!description) {
+    // ...
+}
+// to
+if(!description) {
+    // ...
+}
+```
+```ts
+// Prefer
+const final = {timestamp: new Date(), data: {}};
+// to
+const final = {timestamp:new Date(), data:{}};
+```
+```ts
+// Prefer
+type ContainerProps = {size: string, className: string};
+// to
+type ContainerProps = {size:string, className:string};
+```
+
 ## React
 ### 2.1 — Prefer functional components to arrow functions
 ```tsx
