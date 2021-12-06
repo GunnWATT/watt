@@ -30,6 +30,42 @@
     position: -webkit-sticky;
     position: sticky;
     top: 5px;
+    z-index: 5;
+
+    .upcoming-filter-arrow {
+        width: 12px;
+        height: 12px;
+        margin-top: 10px;
+        margin-bottom:5px;
+        margin-left: 5px;
+
+        border-right: 2px solid var(--primary);
+        border-top: 2px solid var(--primary);
+        transform: rotate(45deg);
+        transform-origin: center;
+        cursor: pointer;
+
+        &.open {
+            transform: rotate(135deg);
+            margin-left: 5px;
+        }
+    }
+    
+    
+
+    .upcoming-filters {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        align-items: center;
+        margin: -5px;
+        margin-top: 0px;
+
+        >div {
+            margin: 5px;
+        }
+    }
 }
 
 .upcoming-search-bar {
@@ -40,18 +76,6 @@
     font-size: 1.2rem;
 }
 
-.upcoming-filters {
-    display: flex;
-    flex-direction: row;
-    margin-top: 10px;
-
-    align-items: center;
-
-    &.phone {
-        flex-wrap: wrap;
-    }
-}
-
 @mixin dot ($diameter) {
     width: $diameter;
     height: $diameter;
@@ -60,6 +84,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.upcoming-completed-filter {
+    width: 25px;
+    height: 25px;
+    border: 2px dashed var(--primary);
+    margin-left: auto;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
 }
 
 .upcoming-palette {
@@ -134,7 +170,7 @@
 
     &.phone {
         margin-top: 5px;
-        margin-left: auto;
+        // margin-left: auto;
         
         .date-range-selector-box {
             display: flex;
@@ -145,7 +181,7 @@
     }
 
     &:not(.phone) {
-        margin-left: auto;
+        // margin-left: auto;
 
         .mini-calendar {
             right: 0px;
@@ -158,62 +194,156 @@
     font-size: 1.1rem;
 }
 
+
+$anim-length: .8s;
+
 .upcoming-assignment{
     background-color: var(--bg-primary);
-    padding: 15px 25px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
 
-    .upcoming-assignment-tags {
+    .upcoming-assignment-content {
+        flex-grow: 1;
+        padding: 15px 25px;
+        border-radius: 5px;
         display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        margin-bottom: 5px;
+        flex-direction: column;
 
-        .upcoming-assignment-tag {
+        .upcoming-assignment-tags {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            margin-bottom: 5px;
+
+            .upcoming-assignment-tag {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                .upcoming-assignment-dot {
+                    flex-shrink: none;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 10px;
+                    margin-right: 5px;
+                }
+
+                font-size: 0.7rem;
+                background-color: var(--bg-secondary);
+                padding: 2px 5px;
+                border-radius: 5px;
+                margin-right: 5px;
+            }
+        }
+
+        .upcoming-assignment-name {
+            font-size: 1.3rem;
+        }
+        
+        .upcoming-assignment-desc {
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+        
+        .upcoming-assignment-due {
+            display: flex;
+            flex-direction: row;
+            margin-top: 10px;
+            
+            > div {
+                padding: 2px 5px;
+                background-color: var(--bg-secondary);
+                font-size: 0.8rem;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+            
+        }
+
+    }
+    
+    .upcoming-assignment-icons {
+        width: 85px;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 15px 15px 15px 0px;
+
+        &-top {
+            display: flex;
+            flex-direction: row;
+
+            .link-icon {
+                width: 30px;
+                height: 30px;
+                cursor: pointer;
+                z-index: 1;
+                position: relative;
+
+                &-dark {
+                    filter: invert(1);
+                }
+            }
+
+            .upcoming-checkbox {
+                width: 30px;
+                height: 30px;
+                border: 2px dashed var(--primary);
+                margin-left: auto;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+            }
+        }
+        
+        &-bottom {
+            display: flex;
+            flex-direction: row;
+            margin-top: auto;
+
+            .priority {
+                margin-left: auto;
+                
+            }
+        }
+
+        
+    }
+}
+
+.priority { 
+    position: relative;
+    
+    div:first-child {
+        cursor: pointer;
+    }
+    
+
+    &-picker {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0px;
+        width: 150px;
+        background-color: var(--content-primary);
+        padding: 10px;
+        z-index: 4;
+        border-radius: 5px;
+
+        &-priority {
             display: flex;
             flex-direction: row;
             align-items: center;
-
-            .upcoming-assignment-dot {
-                flex-shrink: none;
-                width: 10px;
-                height: 10px;
-                border-radius: 10px;
-                margin-right: 5px;
-            }
-
-            font-size: 0.7rem;
-            background-color: var(--bg-secondary);
-            padding: 2px 5px;
-            border-radius: 5px;
-            margin-right: 5px;
-        }
-    }
-
-    .upcoming-assignment-name {
-        font-size: 1.3rem;
-    }
-    
-    .upcoming-assignment-desc {
-        font-size: 0.8rem;
-        margin-top: 10px;
-    }
-    
-    .upcoming-assignment-due {
-        display: flex;
-        flex-direction: row;
-        margin-top: 10px;
-        
-        > div {
-            padding: 2px 5px;
-            background-color: var(--bg-secondary);
-            font-size: 0.8rem;
-            border-radius: 3px;
+            margin-bottom: 5px;
             cursor: pointer;
+
+            &-dot {
+                @include dot(30px);
+                margin-right: 10px;
+            }
         }
-        
     }
+
 }

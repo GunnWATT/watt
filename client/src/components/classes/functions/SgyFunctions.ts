@@ -1,5 +1,8 @@
+import { Auth } from 'firebase/auth';
+import { Firestore } from 'firebase/firestore';
 import moment from "moment";
-import { SgyData, UserData } from "../../../contexts/UserDataContext";
+import { SgyAssignmentModified, SgyData, UserData } from "../../../contexts/UserDataContext";
+import { updateUserData } from "../../../firebase/updateUserData";
 import { Assignment, Event, Document, Page } from "../../../schoology/SgyTypes";
 import { findClassesList } from "../../../views/Classes";
 import { darkPerColors, periodColors } from "../../schedule/Periods";
@@ -13,6 +16,8 @@ export type AssignmentBlurb = {
     period: string;
     id: string;
     labels: string[];
+    completed: boolean;
+    priority: number;
 }
 
 export const defaultLabels = ['Assignment', 'Test', 'Event', 'Document', 'Page'];
@@ -31,6 +36,26 @@ export const parseLabelColor = (label:string, userData: UserData) => {
     return periodColors[periodColors.length - 1];
 }
 
+export const parsePriority = (priority: number, userData: UserData) => {
+    if(priority === -1) {
+        // no priority
+        if (userData.options.theme === 'dark') return darkPerColors[darkPerColors.length - 1]
+        return periodColors[periodColors.length - 1];
+    }
+
+    // TODO: colors
+    if (userData.options.theme === 'dark') return darkPerColors[priority];
+    else return periodColors[priority];
+}
+
+export const modifyAssignment = async (modifiedData: SgyAssignmentModified, userData: UserData, auth: Auth, firestore: Firestore) => {
+    const currentModified = userData.custom.modified;
+    let newModified: SgyAssignmentModified[];
+    newModified = currentModified.filter(modified => modified.id !== modifiedData.id);
+    newModified.push(modifiedData);
+    await updateUserData("custom.modified", newModified, auth, firestore);
+}
+
 // Functions for wrangling with Schoology data
 
 // A comparator for moment objects (for sorting)
@@ -44,6 +69,16 @@ const momentComparator = (a: moment.Moment, b: moment.Moment) => {
     return 0;
 }
 
+const SgyItemToBlurb = (item: Assignment | Event | Document | Page, period: string) => {
+    return {
+        name: item.title,
+        id: item.id+'',
+        period,
+        completed: false,
+        priority: -1
+    }
+}
+
 const AssignmentToBlurb = (item: Assignment, period: string): AssignmentBlurb => {
 
     const timestamp = item.due.length ? moment(item.due) : null;
@@ -54,48 +89,40 @@ const AssignmentToBlurb = (item: Assignment, period: string): AssignmentBlurb =>
     // "managed_assessment", "assessment"
 
     return {
-        name: item.title,
+        ...SgyItemToBlurb(item, period),
         description: item.description,
         link: `https://pausd.schoology.com/assignment/${item.id}`,
         timestamp,
-        period,
-        id: item.id+'',
         labels,
     }
 }
 
 const EventToBlurb = (item: Event, period: string): AssignmentBlurb => {
     return {
-        name: item.title,
+        ...SgyItemToBlurb(item, period),
         description: item.description,
         link: `https://pausd.schoology.com/event/${item.id}`,
         timestamp: moment(item.start),
-        period,
-        id: item.id + '',
         labels: ['Event']
     }
 }
 
 const DocumentToBlurb = (item: Document, period: string): AssignmentBlurb => {
     return {
-        name: item.title,
+        ...SgyItemToBlurb(item, period),
         description: JSON.stringify(item.attachments),
         link: `https://pausd.schoology.com/document/${item.id}`,
         timestamp: null,
-        period,
-        id: item.id + '',
         labels: ['Document']
     }
 }
 
 const PageToBlurb = (item: Page, period: string): AssignmentBlurb => {
     return {
-        name: item.title,
+        ...SgyItemToBlurb(item, period),
         description: item.body,
         link: `https://pausd.schoology.com/page/${item.id}`,
         timestamp: null,
-        period,
-        id: item.id + '',
         labels: ['Page']
     }
 }
@@ -144,6 +171,8 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: Us
             }
         }
 
+        // console.log(overdue);
+
         upcoming.sort((a, b) => momentComparator(a.timestamp!, b.timestamp!));
         overdue.sort((a, b) => momentComparator(a.timestamp!, b.timestamp!));
 
@@ -170,7 +199,10 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: Us
                 upcoming.push(AssignmentToBlurb(item, selected));
             } else {
                 // check if it's overddue
-                if (selectedCourseGrades) {
+                if(item.completion_status.length) {
+                    overdue.push(AssignmentToBlurb(item, selected));
+                }
+                else if (selectedCourseGrades) {
                     let found = false;
                     for (const period of selectedCourseGrades.period) {
                         for (const assi of period.assignment) {
@@ -194,6 +226,22 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: Us
 
         if (due.isAfter(time) && !item.assignment_id) {
             upcoming.push(EventToBlurb(item, selected));
+        }
+    }
+
+    for(let i = 0; i < upcoming.length; i++) {
+        const match = userData.custom.modified.find(m => m.id === upcoming[i].id);
+        if( match ) {
+            // it's been modified by the user
+
+            const matchWithMoment = {
+                ...match,
+                timestamp: match.timestamp ? moment(match.timestamp) : null
+            }
+            upcoming[i] = {
+                ...upcoming[i],
+                ...matchWithMoment
+            }
         }
     }
 
