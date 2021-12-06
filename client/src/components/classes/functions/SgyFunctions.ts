@@ -171,6 +171,8 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: Us
             }
         }
 
+        // console.log(overdue);
+
         upcoming.sort((a, b) => momentComparator(a.timestamp!, b.timestamp!));
         overdue.sort((a, b) => momentComparator(a.timestamp!, b.timestamp!));
 
@@ -197,7 +199,10 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: Us
                 upcoming.push(AssignmentToBlurb(item, selected));
             } else {
                 // check if it's overddue
-                if (selectedCourseGrades) {
+                if(item.completion_status.length) {
+                    overdue.push(AssignmentToBlurb(item, selected));
+                }
+                else if (selectedCourseGrades) {
                     let found = false;
                     for (const period of selectedCourseGrades.period) {
                         for (const assi of period.assignment) {
