@@ -1,7 +1,7 @@
 # WATT Style Guide
 
-The tentative WATT Style Guide™. These are not hard requirements and your firstborn child will not be sacrificed if you
-do not follow them strictly, but this is what I think looks good and what I will typically refactor code to look like.
+The tentative WATT Style Guide™. Guidelines contained here are not strict requirements for a PR and no punishment will be incurred
+for not following them strictly, but exist to document what I consider to look good and what I will typically refactor code to look like.
 
 In general, WATT follows language and framework conventions, with a few extra guidelines sprinkled in for taste.
 This guide will reiterate those conventions for ease of reference; relevant sections in outside style guides will be linked.
@@ -36,19 +36,14 @@ import {Routes, Route, Link, useMatch, useResolvedPath} from 'react-router-dom';
 
 // Components
 import Dashboard from '../components/classes/Dashboard';
-import Upcoming from '../components/classes/Upcoming';
-import Materials from '../components/classes/Materials';
-import SgySignInBtn from '../components/firebase/SgySignInBtn';
-import Loading from '../components/layout/Loading';
-import RedBackground from '../components/layout/RedBackground';
+// ...
 
 // Contexts
 import CurrentTimeContext from '../contexts/CurrentTimeContext';
-import UserDataContext, { SgyData, SgyPeriodData, UserData } from '../contexts/UserDataContext';
+// ...
 
 // Utilities
 import { parsePeriodColor } from '../components/schedule/Periods';
-import { useScreenType } from '../hooks/useScreenType';
 // ...
 
 // to
@@ -63,7 +58,7 @@ import RedBackground from '../components/layout/RedBackground';
 import CurrentTimeContext from '../contexts/CurrentTimeContext';
 import UserDataContext, { SgyData, SgyPeriodData, UserData } from '../contexts/UserDataContext';
 import { parsePeriodColor } from '../components/schedule/Periods';
-import { useScreenType } from '../hooks/useScreenType';
+// ...
 ```
 Even if not spacing with newlines and comments, prefer ordered and grouped imports over arbitrary patterns:
 ```ts
@@ -153,6 +148,7 @@ return <div>
     <p>...</p>
 </div>
 ```
+This allows the alignment of the outer JSX element to look more natural and akin to HTML.
 
 ### [2.4 — Wrap long prop declarations properly](https://github.com/airbnb/javascript/tree/master/react#alignment)
 ```tsx
@@ -217,7 +213,6 @@ This is a React convention and helps reinforce the idea that you should only hav
 export default function Header() {
     // ...
 }
-
 // Footer.tsx
 export default function Footer() {
     // ...
@@ -260,7 +255,7 @@ export default function ClubComponent(props: {name: string, id: string, teacher:
     // ...
 }
 ```
-Prefer not to destructure props directly in the function arguments for a similar reason:
+Prefer not to destructure props directly in the function arguments for similar reasons:
 ```tsx
 // Prefer
 export default function ClubComponent(props: ClubComponentProps) {
@@ -281,7 +276,7 @@ export default function ClubComponent({name, id, teacher, room, prez, coadvisor,
 {!signedIn ? <div>You are not signed in!</div> : null}
 ```
 React automatically [discards and doesn't render `false`](https://reactjs.org/docs/conditional-rendering.html#inline-if-with-logical—operator), 
-allowing the `&&` syntactic sugar without having to coerce it to `null`.
+allowing the `&&` syntactic sugar for conditional rendering without having to coerce the value to `null`.
 
 ### 2.9 — Do not pass context as props
 ```tsx
@@ -328,6 +323,7 @@ to the context is functionally the same (while being more readable) than passing
 // to
 <div></div>
 ```
+The self-closing tag looks cleaner and more intuitive and will compile to the same code at build time.
 
 ### 2.11 — Do not use React's default import
 ```tsx
