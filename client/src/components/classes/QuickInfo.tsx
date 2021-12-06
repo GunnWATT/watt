@@ -25,11 +25,8 @@ export default function DashboardQuickInfo(props: { selected: string }) {
 
     if (!info) return null;
 
-    if (!info.next) {
-        return <>
-            <div className="dashboard-qi-main">There have been {info.past.days} classes in this school year.</div>
-        </>
-    }
+    if (!info.next)
+        return <div className="dashboard-qi-main">There have been {info.past.days} classes in this school year.</div>
 
     return <>
         <div className="dashboard-qi-main">The next class is {info.next.time.fromNow()}.</div>

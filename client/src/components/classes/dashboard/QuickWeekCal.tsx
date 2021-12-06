@@ -1,5 +1,7 @@
-import moment from "moment";
-import { useContext } from "react";
+import { useContext } from 'react';
+import moment from 'moment';
+
+// Contexts
 import CurrentTimeContext from "../../../contexts/CurrentTimeContext";
 import UserDataContext from "../../../contexts/UserDataContext";
 import { getSchedule } from "../../../hooks/useSchedule";
@@ -19,8 +21,8 @@ const UpcomingQuickCalDot = (props: { course: string, completed: boolean }) => {
     }}></div>
 }
 
-const UpcomingQuickCalDay = (props: { day: moment.Moment, upcoming: AssignmentBlurb[], selected: string }) => {
-
+type UpcomingQuickCalDayProps = { day: moment.Moment, upcoming: AssignmentBlurb[], selected: string };
+function UpcomingQuickCalDay(props: UpcomingQuickCalDayProps) {
     const { day, upcoming, selected } = props;
     const screenType = useScreenType();
 
@@ -44,7 +46,8 @@ const UpcomingQuickCalDay = (props: { day: moment.Moment, upcoming: AssignmentBl
     </div>
 }
 
-export const UpcomingQuickWeekCal = (props: { upcoming: AssignmentBlurb[], selected: string }) => {
+type UpcomingQuickWeekCalProps = { upcoming: AssignmentBlurb[], selected: string }
+export default function UpcomingQuickWeekCal(props: UpcomingQuickWeekCalProps) {
     const { upcoming, selected } = props;
     const time = useContext(CurrentTimeContext);
     let mutableTime = moment(time);
@@ -54,7 +57,9 @@ export const UpcomingQuickWeekCal = (props: { upcoming: AssignmentBlurb[], selec
         mutableTime.add(1, "days");
     }
 
-    return <div className="upcoming-blurb-quick-cal">
-        {days.map((day) => <UpcomingQuickCalDay key={day.format('YYYY-MM-DD')} selected={selected} day={day} upcoming={upcoming} />)}
-    </div>
+    return (
+        <div className="upcoming-blurb-quick-cal">
+            {days.map((day) => <UpcomingQuickCalDay key={day.format('YYYY-MM-DD')} selected={selected} day={day} upcoming={upcoming} />)}
+        </div>
+    );
 }
