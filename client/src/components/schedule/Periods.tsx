@@ -1,4 +1,4 @@
-import {useState, useEffect, useContext} from 'react';
+import {useContext} from 'react';
 import {useSchedule} from '../../hooks/useSchedule';
 import moment, {Moment} from 'moment-timezone';
 
@@ -78,7 +78,7 @@ export default function Periods(props: PeriodsProps) {
                 <p className="schedule-end">
                     School ends at <strong>{end.format(format)}</strong> today.
                 </p>
-                {displayIndicator && <PeriodIndicator currTime={currDate} startTime={periods![0][1].s}/>}
+                {displayIndicator && <PeriodIndicator startTime={periods![0][1].s}/>}
                 {renderPeriods()}
             </>
         )

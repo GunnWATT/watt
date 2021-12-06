@@ -1,18 +1,19 @@
 import {useContext} from 'react';
 import {useNextPeriod} from '../../hooks/useNextPeriod';
 import {Progress} from 'reactstrap';
-import {Moment} from 'moment';
 
 // Context
 import UserDataContext from '../../contexts/UserDataContext';
+import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
 // Utils
 import {parsePeriodName} from './Periods';
 
 
-type PeriodIndicatorProps = {currTime: Moment, startTime: number};
+type PeriodIndicatorProps = {startTime: number};
 export default function PeriodIndicator(props: PeriodIndicatorProps) {
-    const {currTime, startTime} = props;
+    const {startTime} = props;
+    const currTime = useContext(CurrentTimeContext);
     const userData = useContext(UserDataContext);
 
     const {next, prev, startingIn, endingIn, seconds} = useNextPeriod(currTime);

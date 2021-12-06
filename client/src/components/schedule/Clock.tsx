@@ -1,15 +1,17 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useSchedule } from '../../hooks/useSchedule';
 import moment, {Moment} from 'moment-timezone';
-
 import { parsePeriodColor } from './Periods';
 
+// Contexts
 import UserDataContext from '../../contexts/UserDataContext';
+import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
 
-type ClockProps = { time: Moment, viewDate: Moment };
+type ClockProps = { viewDate: Moment };
 export default function Clock(props: ClockProps) {
-    const { time, viewDate } = props;
+    const { viewDate } = props;
+    const time = useContext(CurrentTimeContext);
     const timeZone = moment.tz.guess(true);
 
     const radius = 40;
