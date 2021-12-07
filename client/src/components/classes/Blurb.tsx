@@ -2,14 +2,16 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
+// Components
+import UpcomingQuickWeekCal from './QuickWeekCal';
+
 // Contexts
-import CurrentTimeContext from '../../../contexts/CurrentTimeContext';
-import UserDataContext from '../../../contexts/UserDataContext';
+import CurrentTimeContext from '../../contexts/CurrentTimeContext';
+import UserDataContext from '../../contexts/UserDataContext';
 
 // Utils
-import { parsePeriodColor } from '../../schedule/Periods';
-import { AssignmentBlurb } from '../functions/SgyFunctions';
-import UpcomingQuickWeekCal from './QuickWeekCal';
+import { parsePeriodColor } from '../schedule/Periods';
+import { AssignmentBlurb } from './functions/SgyFunctions';
 
 
 // Upcoming Blurb
@@ -39,21 +41,23 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
     const assignmentsNextWeek = upcoming.filter((assi) => assi.timestamp!.isBefore(inAWeek));
     const assignmentsToDoNextWeek = assignmentsNextWeek.filter(assi => !assi.completed)
 
-    return <div className="upcoming-blurb">
-        <div className="dashboard-header">Upcoming • Blurb</div>
-        <div>You need to do {assignmentsToDoNextWeek.length} of {assignmentsNextWeek.length} assignment{assignmentsNextWeek.length === 1 ? "" : "s"} due in the next week.</div>
+    return (
+        <div className="upcoming-blurb">
+            <div className="dashboard-header">Upcoming • Blurb</div>
+            <div>You need to do {assignmentsToDoNextWeek.length} of {assignmentsNextWeek.length} assignment{assignmentsNextWeek.length === 1 ? "" : "s"} due in the next week.</div>
 
-        <UpcomingQuickWeekCal upcoming={upcoming} selected={selected} />
-        <div>
-            {upcoming.slice(0, 5).map((a) =>
-                <BlurbAssignment
-                    key={a.link}
-                    name={a.name}
-                    due={`${a.timestamp!.format("dddd, MMMM Do")} • ${a.timestamp!.fromNow()}`}
-                    period={a.period}
-                />
-            )}
-            <div className="ub-upcoming-redirect"><div><Link to='upcoming'>See More in Upcoming</Link></div></div>
+            <UpcomingQuickWeekCal upcoming={upcoming} selected={selected} />
+            <div>
+                {upcoming.slice(0, 5).map((a) =>
+                    <BlurbAssignment
+                        key={a.link}
+                        name={a.name}
+                        due={`${a.timestamp!.format("dddd, MMMM Do")} • ${a.timestamp!.fromNow()}`}
+                        period={a.period}
+                    />
+                )}
+                <div className="ub-upcoming-redirect"><div><Link to='upcoming'>See More in Upcoming</Link></div></div>
+            </div>
         </div>
-    </div>
+    );
 }

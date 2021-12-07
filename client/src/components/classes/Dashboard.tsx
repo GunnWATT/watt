@@ -1,48 +1,28 @@
-import moment from "moment";
-import { useContext, useEffect, useState } from "react";
-import CurrentTimeContext from "../../contexts/CurrentTimeContext";
-import UserDataContext, { SgyData, SgyPeriodData, UserData } from "../../contexts/UserDataContext";
+import { useContext, useEffect, useState } from 'react';
 
-import { useScreenType } from "../../hooks/useScreenType";
-import { AssignmentBlurb, getAllGrades, getUpcomingInfo } from "./functions/SgyFunctions";
-import DashboardBlurb from "./dashboard/Blurb";
-import DashboardQuickInfo from "./QuickInfo";
-import DashGrades from "./dashboard/Grades";
+// Components
+import DashboardBlurb from './Blurb';
+import DashboardQuickInfo from './QuickInfo';
+import DashGrades from './DashGrades';
 
-const DashLeftSection = (props: { upcoming: AssignmentBlurb[] | null, selected:string } ) => {
+// Contexts
+import CurrentTimeContext from '../../contexts/CurrentTimeContext';
+import UserDataContext, { SgyData, SgyPeriodData, UserData } from '../../contexts/UserDataContext';
 
-    const screenType = useScreenType();
+// Utilities
+import { useScreenType } from '../../hooks/useScreenType';
+import { AssignmentBlurb, getAllGrades, getUpcomingInfo } from './functions/SgyFunctions';
 
-    return <div className={"dashboard-section dashboard-section-left " + screenType}>
-        {props.upcoming != null ? <DashboardBlurb upcoming={props.upcoming} selected={props.selected} /> : null}
-    </div>
-}
 
-const DashRightSection = (props: { selected: string, allGrades: { [key: string]: number } | null } ) => {
-
-    const {selected, allGrades} = props;
-
-    const screenType = useScreenType();
-
-    return <div className={"dashboard-section dashboard-section-right " + screenType}>
-        <div className="dashboard-quick-info">
-            <DashboardQuickInfo selected={selected} />
-        </div>
-        
-        {allGrades ? <DashGrades selected={selected} allGrades={allGrades} /> : null }
-
-    </div>
-}
-
-const Dashboard = (props: {sgyData: SgyData, selected: string}) => {
-
+type DashboardProps = {sgyData: SgyData, selected: string};
+export default function Dashboard(props: DashboardProps) {
     const {sgyData, selected} = props;
     const time = useContext(CurrentTimeContext);
     const screenType = useScreenType();
 
     const [upcoming, setUpcoming] = useState < AssignmentBlurb[] | null > (null);
     const [overdue, setOverdue] = useState<AssignmentBlurb[] | null> (null);
-    const [allGrades, setAllGrades] = useState<null | {[key:string]: number}> (null);
+    const [allGrades, setAllGrades] = useState<{[key:string]: number} | null> (null);
 
     const userData = useContext(UserDataContext);
 
@@ -56,16 +36,23 @@ const Dashboard = (props: {sgyData: SgyData, selected: string}) => {
 
         setUpcoming(info.upcoming);
         setOverdue(info.overdue);
-
-
     }, [selected])
 
     return (
         <div className={"dashboard-burrito " + screenType}>
-            <DashLeftSection selected={selected} upcoming={upcoming} />
-            <DashRightSection selected={selected} allGrades={allGrades} />
+            {/* Dashboard left section */}
+            <div className={"dashboard-section dashboard-section-left " + screenType}>
+                {upcoming != null && <DashboardBlurb upcoming={upcoming} selected={selected} />}
+            </div>
+
+            {/* Dashboard right section */}
+            <div className={"dashboard-section dashboard-section-right " + screenType}>
+                <div className="dashboard-quick-info">
+                    <DashboardQuickInfo selected={selected} />
+                </div>
+
+                {allGrades && <DashGrades selected={selected} allGrades={allGrades} />}
+            </div>
         </div>
     );
 };
-
-export default Dashboard;

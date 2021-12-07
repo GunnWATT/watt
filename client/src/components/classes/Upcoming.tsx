@@ -4,9 +4,9 @@ import moment from 'moment';
 import { useScreenType } from '../../hooks/useScreenType';
 
 // Components
-import UpcomingAssignments from './upcoming/Assignments';
-import UpcomingFullCalendar from './FullCalendar';
-import UpcomingPalette from './upcoming/PaletteClassFilter';
+import UpcomingAssignments from './UpcomingAssignments';
+import UpcomingFullCalendar from './UpcomingFullCalendar';
+import UpcomingPalette from './UpcomingPalette';
 import { DateRangePicker } from '../schedule/DateSelector';
 
 // Contexts
@@ -70,33 +70,35 @@ export default function Upcoming(props: UpcomingProps) {
 
     const [filtersOpen, setFilters] = useState(false);
 
-    return <div className={"upcoming-burrito " + screenType}>
-        {/* these props- */}
-        <div className="upcoming">
+    return (
+        <div className={"upcoming-burrito " + screenType}>
+            {/* these props- */}
+            <div className="upcoming">
+                <div className="upcoming-search">
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        defaultValue={query}
+                        className="upcoming-search-bar"
+                        onChange={(event) => setQuery(event.target.value)}
+                    />
+                    <div
+                        className={"upcoming-filter-arrow" + (filtersOpen ? ' open' : '')}
+                        onClick={() => setFilters(!filtersOpen)}
+                    />
 
-            <div className="upcoming-search">
-                <input
-                    type="text"
-                    placeholder="Search"
-                    defaultValue={query}
-                    className="upcoming-search-bar"
-                    onChange={(event) => setQuery(event.target.value)}
-                />
-                <div className={"upcoming-filter-arrow" + (filtersOpen ? ' open' : '')} onClick={() => setFilters(!filtersOpen)}></div>
-
-                {
-                    filtersOpen ?
+                    {filtersOpen && (
                         <div className={"upcoming-filters " + screenType}>
                             {selected === 'A' && <UpcomingPalette classes={classes} classFilter={classFilter} setClassFilter={setClassFilter} />}
-                            {screenType !== 'smallScreen' && screenType !== 'phone' ? null : <DateRangePicker calStart={moment().startOf('day')} start={start} setStart={setStart} end={end} setEnd={setEnd} />}
+                            {(screenType === 'smallScreen' || screenType === 'phone') && <DateRangePicker calStart={moment().startOf('day')} start={start} setStart={setStart} end={end} setEnd={setEnd} />}
                             <div className="upcoming-completed-filter" onClick={() => setIncludeCompleted(!includeCompleted)}>{includeCompleted ? '✓' : ''}</div>
                         </div>
-                        : null
-                }
-            </div>
+                    )}
+                </div>
 
-            {upcomingFiltered && <UpcomingAssignments upcoming={upcomingFiltered} activeDay={activeDay} setActiveDay={setActiveDay} />}
+                {upcomingFiltered && <UpcomingAssignments upcoming={upcomingFiltered} activeDay={activeDay} setActiveDay={setActiveDay} />}
+            </div>
+            {screenType !== 'smallScreen' && screenType !== 'phone' && <UpcomingFullCalendar activeDay={activeDay} setActiveDay={setActiveDay} start={start} setStart={setStart} end={end} setEnd={setEnd} />}
         </div>
-        {screenType !== 'smallScreen' && screenType !== 'phone' && <UpcomingFullCalendar activeDay={activeDay} setActiveDay={setActiveDay} start={start} setStart={setStart} end={end} setEnd={setEnd} />}
-    </div>
+    );
 }

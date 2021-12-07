@@ -85,6 +85,8 @@ import {readFileSync, writeFileSync} from 'fs';
 // to
 import fs from 'fs';
 ```
+This allows readers to ascertain exactly what from `fs` is used at a glance, without having to search for references of
+the `fs` object.
 
 ### 1.5 — Prefer minimizing extra newlines from curly braces
 ```tsx
@@ -382,3 +384,23 @@ type ContainerProps = {children: ReactNode};
 ```
 This is to accommodate for React 17's [new JSX transform](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) 
 which no longer requires `React` to be in scope wherever JSX is used.
+
+### 2.12 — When exporting a component by default, the file name should agree with the component's name
+```tsx
+// Prefer
+// UpcomingFullCalendar.tsx
+export default function UpcomingFullCalendar() {
+    // ...
+}
+// to
+// FullCalendar.tsx
+export default function UpcomingFullCalendar() {
+    // ...
+}
+```
+```tsx
+// Prefer
+import UpcomingFullCalendar from './UpcomingFullCalendar';
+// to
+import UpcomingFullCalendar from './FullCalendar';
+```

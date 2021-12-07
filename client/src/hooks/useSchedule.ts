@@ -53,7 +53,8 @@ export function useSchedule(date: Moment) {
     return {periods, alternate};
 }
 
-export const getSchedule = (date: moment.Moment) => {
+// TODO: since this is just a copy paste of the above hook's useEffect logic, we should have the hook use this function
+export function getSchedule(date: Moment) {
     const localizedDate = date.clone().tz('America/Los_Angeles');
     const altFormat = localizedDate.format('MM-DD');
 
