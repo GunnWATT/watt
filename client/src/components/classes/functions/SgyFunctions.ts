@@ -3,7 +3,7 @@ import { Firestore } from 'firebase/firestore';
 import moment from "moment";
 import { SgyAssignmentModified, SgyData, UserData } from "../../../contexts/UserDataContext";
 import { updateUserData } from "../../../firebase/updateUserData";
-import { Assignment, Event, Document, Page } from "../../../schoology/SgyTypes";
+import { Assignment, Event, Document, Page, SectionGrade } from "../../../schoology/SgyTypes";
 import { findClassesList } from "../../../views/Classes";
 import { darkPerColors, periodColors } from "../../schedule/Periods";
 
@@ -257,28 +257,34 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: Us
 }
 
 // Find your grade objects
-export const findGrades = (sgyData: SgyData, selected: string) => {
+export const findGrades = (sgyData: SgyData, selected: string):SectionGrade|null => {
     const selectedCourse = sgyData[selected];
     // Attempt to match the id of the selected course to the id in the course grades
-    let selectedCourseGrades = sgyData.grades.find(sec => sec.section_id === selectedCourse.info.id);
+    const matchID = sgyData.grades.find(sec => sec.section_id === selectedCourse.info.id);
+    if(matchID) return matchID;
 
-    if (!selectedCourseGrades) {
-        // they do this quirky and uwu thing where THEY CHANGE THE ID
+    // they do this quirky and uwu thing where THEY CHANGE THE ID
+    // the way we match this is by searching through the courses and seeing if the assignments match up, which is so stupid that it works
+    // here's where :sparkles: algorithms :sparkles: come in
+    // let S be the set of all IDs of the assignments of the selected course *materials*
+    // then, for all courses in the gradebook, we iterate through the assignments of that course
+    // if the assignment's ID exists in S, hallelujah, the courses line up.
 
-        // the way we match this is by searching through the courses and seeing if the assignments match up, which is so stupid that it works
-        for (const course in sgyData.grades) {
-            if (sgyData.grades[course].period[0].assignment.length > 0) {
-                const assiToFind = sgyData.grades[course].period[0].assignment.find(assignment => assignment.type === 'assignment');
-                if (assiToFind && selectedCourse.assignments.find(assi => assi.id === assiToFind.assignment_id)) {
-                    // BANANA
-                    selectedCourseGrades = sgyData.grades[course];
-                    break;
+    const IDSet = new Set<string>();
+    for(const assignment of selectedCourse.assignments) IDSet.add(assignment.id + '');
+
+    for(const course in sgyData.grades) {
+        for(const period of sgyData.grades[course].period) {
+            for(const assignment of period.assignment) {
+                if(IDSet.has(assignment.assignment_id + '')) {
+                    // hallelujah
+                    return sgyData.grades[course];
                 }
             }
         }
     }
 
-    return selectedCourseGrades || null;
+    return null;
 
 }
 
