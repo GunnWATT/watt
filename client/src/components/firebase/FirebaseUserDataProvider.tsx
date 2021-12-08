@@ -8,8 +8,6 @@ import {bulkUpdateFirebaseUserData, updateFirebaseUserData} from '../../firebase
 
 // Context
 import {UserData, UserDataProvider, defaultUserData} from '../../contexts/UserDataContext';
-import { fetchSgyMaterials } from '../../views/Classes';
-
 
 type FirebaseUserDataProviderProps = {children: ReactNode};
 export default function FirebaseUserDataProvider(props: FirebaseUserDataProviderProps) {
@@ -50,26 +48,6 @@ export default function FirebaseUserDataProvider(props: FirebaseUserDataProvider
         bulkUpdateFirebaseUserData(changes, auth, firestore);
         localStorage.setItem('data', JSON.stringify(merged));
     }, [status])
-
-    // preferably this would trigger every 15 minutes
-    useEffect(() => {
-        if (auth.currentUser && firebaseDoc?.data()?.options.sgy) {
-            // Fetching Schoology stuff
-            try {
-                const diff = Date.now() - parseInt(localStorage.getItem('sgy-last-fetched') ?? '0');
-                if (isNaN(diff)) {
-                    throw 'Strange!';
-                }
-                if (diff > 1000 * 60 * 15) // 15 minutes
-                {
-                    fetchSgyMaterials(functions);
-                }
-            } catch (err) {
-                localStorage.setItem('sgy-last-fetched', '' + Date.now());
-            }
-        }
-    }, [status]);
-    
 
     return (
         <UserDataProvider value={(firebaseDoc?.data() ?? localStorageData) as UserData}>

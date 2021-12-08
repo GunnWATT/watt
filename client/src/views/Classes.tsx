@@ -5,6 +5,9 @@ import {Routes, Route, Link, useMatch, useResolvedPath} from 'react-router-dom';
 import { Functions, httpsCallable } from 'firebase/functions';
 import { useAuth, useFunctions } from 'reactfire';
 
+// Moment
+import { Moment } from 'moment';
+
 // Components
 import Dashboard from '../components/classes/Dashboard';
 import Upcoming from '../components/classes/Upcoming';
@@ -15,29 +18,23 @@ import RedBackground from '../components/layout/RedBackground';
 
 // Contexts
 import CurrentTimeContext from '../contexts/CurrentTimeContext';
-import UserDataContext, { SgyData, SgyPeriodData, UserData } from '../contexts/UserDataContext';
+import UserDataContext, { SgyData, UserData } from '../contexts/UserDataContext';
 
 // Utilities
 import { parsePeriodColor } from '../components/schedule/Periods';
 import { useScreenType } from '../hooks/useScreenType';
+import { SgyDataProvider } from '../contexts/SgyDataContext';
+
 
 
 export const fetchSgyMaterials = (async (functions: Functions) => {
     const fetchMaterials = httpsCallable(functions, 'sgyfetch-fetchMaterials');
-    localStorage.setItem('sgy-last-fetched', '' + Date.now()); // This redundancy is important!
     const res = (await fetchMaterials());
-    // console.log(res);
     localStorage.setItem('sgy-data', JSON.stringify(res.data));
     localStorage.setItem('sgy-last-fetched', '' + Date.now());
-});
 
-export const findLastFetched = () => {
-    try {
-        return parseInt(localStorage.getItem('sgy-last-fetched') ?? '0')
-    } catch (err) {
-        return null;
-    }
-};
+    return res.data;
+});
 
 // A wrapper that centers all the error messages
 const ClassesErrorBurrito = (props: { children?: React.ReactNode}) => {
@@ -71,24 +68,10 @@ const ClassesSgyNotConnected = () => {
     )
 }
 
-const ClassesDataMissing = (props: { lastFetched: number | null, fetchMaterials: () => void }) => {
-    const { lastFetched, fetchMaterials } = props;
-    // if it's fetching probably soon (within 60 secs of last fetch)
-    if (lastFetched && Date.now() - lastFetched < 1000 * 60) {
-        return <ClassesErrorBurrito>
-            <Loading message={'Fetching materials. This can take up to a minute...'} />
-        </ClassesErrorBurrito>
-    } else {
-        return (
-            <ClassesErrorBurrito>
-                <h2>Something Went Wrong.</h2>
-                <p>Your user data is missing! Please click the button below to fetch materials. If this is a recurring problem, please submit an issue to Github.</p>
-                <div className='sgy-auth-button'>
-                    <button onClick={fetchMaterials}>Fetch Materials</button>
-                </div>
-            </ClassesErrorBurrito>
-        )
-    }
+const ClassesFetching = () => {
+    return <ClassesErrorBurrito>
+        <Loading message={'Fetching materials. This can take up to a minute...'} />
+    </ClassesErrorBurrito>
 }
 
 const ClassesSidebarItem = (props:{collapsed:boolean, name: string, color:string, period:string, onClick:()=>void}) => {
@@ -171,44 +154,88 @@ export default function Classes() {
     const time = useContext(CurrentTimeContext);
     const screenType = useScreenType();
 
-    // Selected
-    const [selected, setSelected] = useState<string>('A');
-    
+    const [fetching, setFetching] = useState(false);
+    const [lastFetched, setLastFetched] = useState<null | number>(null);
     // Raw Schoology Data
     const [sgyData, setSgyData] = useState<null | SgyData>(null);
 
-    // Every time last fetched changes, fetch Schoology Data
-    const lastFetched = findLastFetched();
-    useEffect(() => {
-        try {
-            setSgyData(JSON.parse(localStorage.getItem('sgy-data') ?? 'null'));
-        } catch (err) {
-            setSgyData(null);
-            console.log(err);
+    const updateSgy = async () => {
+
+        setFetching(true);
+
+        const sgyData = await fetchSgyMaterials(functions);
+
+        // @ts-ignore
+        setSgyData(sgyData);
+
+        setLastFetched(Date.now());
+        setFetching(false);
+    }
+
+    // read from firebase data on the first time
+    useEffect( () => {
+        const lsLastFetched = parseInt(localStorage.getItem('sgy-last-fetched') ?? '');
+        const lsSgyData = JSON.parse(localStorage.getItem('sgy-data') ?? 'null');
+
+        let needToFetch = false;
+        if(!isNaN(lsLastFetched)) {
+            setLastFetched( lsLastFetched );
+        } else {
+            needToFetch = true;
         }
-    }, [lastFetched])
+
+        if(lsSgyData == null){
+            needToFetch = true;
+        }
+
+        setSgyData(lsSgyData);
+
+        if(needToFetch) {
+            updateSgy();
+        }
+    }, []);
+
+    // preferably this would trigger every 15 minutes
+    useEffect(() => {
+        if (auth.currentUser && userData.options.sgy) {
+            // Fetching Schoology stuff
+            if(!lastFetched) return; // if lastFetched doesn't exist, it means the other useEffect hasn't run yet
+            if(fetching) return; // if fetching already, we don't need to fetch
+            const diff = Date.now() - lastFetched;
+
+            if (diff > 1000 * 60 * 15) // 15 minutes
+            {
+                updateSgy();
+            }
+        }
+    }, [auth.currentUser, time]);
+
+    // Selected
+    const [selected, setSelected] = useState<string>('A');
 
     // we are ok to go if: 1) we're signed in 2) the user enabled schoology 3) the sgy data exists
     if (!auth.currentUser) return <ClassesNotSignedIn />
     if (!userData.options.sgy) return <ClassesSgyNotConnected />
-    if (sgyData == null) return <ClassesDataMissing fetchMaterials={() => fetchSgyMaterials(functions)} lastFetched={lastFetched} />
+    if (sgyData == null) return <ClassesFetching />
     if (!userData.sgy?.custom || !userData.sgy?.custom.assignments || !userData.sgy?.custom.labels || !userData.sgy?.custom.modified) return <Loading /> // make sure user has all of these things :D, if not, usually gets corrected by FirebaseUserDataProvider
 
     return (
-        <div className={"classes-burrito " + screenType}>
-            <RedBackground />
-            <div className={"classes-content " + screenType}>
-                <ClassesHeader selected={selected} />
-                <ClassesNavBar />
+        <SgyDataProvider value={null}>
+            <div className={"classes-burrito " + screenType}>
+                <RedBackground />
+                <div className={"classes-content " + screenType}>
+                    <ClassesHeader selected={selected} />
+                    <ClassesNavBar />
 
-                <Routes>
-                    <Route path="/" element={<Dashboard selected={selected} sgyData={sgyData} />} />
-                    <Route path="/upcoming" element={<Upcoming selected={selected} sgyData={sgyData} /> } />
-                    <Route path="/materials" element={<Materials selected={selected} sgyData={sgyData} />} />
-                </Routes>
+                    <Routes>
+                        <Route path="/" element={<Dashboard selected={selected} sgyData={sgyData} />} />
+                        <Route path="/upcoming" element={<Upcoming selected={selected} sgyData={sgyData} /> } />
+                        <Route path="/materials" element={<Materials selected={selected} sgyData={sgyData} />} />
+                    </Routes>
+                </div>
+            <ClassesSidebar setSelected={setSelected} />
             </div>
-           <ClassesSidebar setSelected={setSelected} />
-        </div>
+        </SgyDataProvider>
     )
 }
 
