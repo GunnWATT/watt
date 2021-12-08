@@ -24,7 +24,7 @@ export type UserData = {
     staff: string[],
     id: string,
     barcodes: string, // stringified [string, string][] because firestore doesn't support nested arrays
-    sgy?: {
+    sgy: {
         key: string, 
         sec: string, 
         uid: string,
@@ -70,16 +70,18 @@ export const defaultUserData: UserData = {
         clock: true,
         sgy: false
     },
-    id: '00000'
-};
-
-export const defaultSgyCustom = {
-    custom: {
-        assignments: [],
-        modified: [],
-        labels: []
+    id: '00000',
+    sgy: {
+        key: '',
+        sec: '',
+        uid: '',
+        custom: {
+            assignments: [],
+            modified: [],
+            labels: []
+        }
     }
-}
+};
 
 const UserDataContext = createContext<UserData>(defaultUserData);
 
