@@ -5,9 +5,10 @@ import { useScreenType } from '../../hooks/useScreenType';
 
 // Components
 import Assignments from './Assignments';
-import SiddebarCalendar from './SidebarCalendar';
+import SidebarCalendar from './SidebarCalendar';
 import ClassFilter from './ClassFilter';
 import { DateRangePicker } from '../schedule/DateSelector';
+import { CheckSquare, ChevronsDown, ChevronsRight, Square } from 'react-feather';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
@@ -84,23 +85,28 @@ export default function Upcoming() {
                         className="upcoming-search-bar"
                         onChange={(event) => setQuery(event.target.value)}
                     />
-                    <div
-                        className={"upcoming-filter-arrow" + (filtersOpen ? ' open' : '')}
-                        onClick={() => setFilters(!filtersOpen)}
-                    />
+                    {filtersOpen ?
+                        <ChevronsDown size={30} style={{ cursor: 'pointer', marginTop: 5 }} onClick={() => setFilters(!filtersOpen)} /> :
+                        <ChevronsRight size={30} style={{ cursor: 'pointer', marginTop: 5 }} onClick={() => setFilters(!filtersOpen)} />
+                    }
 
                     {filtersOpen && (
                         <div className={"upcoming-filters " + screenType}>
                             {selected === 'A' && <ClassFilter classes={classes} classFilter={classFilter} setClassFilter={setClassFilter} />}
                             {(screenType === 'smallScreen' || screenType === 'phone') && <DateRangePicker calStart={moment().startOf('day')} start={start} setStart={setStart} end={end} setEnd={setEnd} />}
-                            <div className="upcoming-completed-filter" onClick={() => setIncludeCompleted(!includeCompleted)}>{includeCompleted ? '✓' : ''}</div>
+                            {/* <div className="upcoming-completed-filter" onClick={() => setIncludeCompleted(!includeCompleted)}>{includeCompleted ? '✓' : ''}</div> */}
+                            {
+                                !includeCompleted ?
+                                    <Square size={27} style={{ cursor: 'pointer', flexShrink: 0 }} onClick={() => setIncludeCompleted(!includeCompleted)} /> :
+                                    <CheckSquare size={27} style={{ cursor: 'pointer', flexShrink: 0 }} onClick={() => setIncludeCompleted(!includeCompleted)} />
+                            }
                         </div>
                     )}
                 </div>
 
                 {upcomingFiltered && <Assignments upcoming={upcomingFiltered} activeDay={activeDay} setActiveDay={setActiveDay} />}
             </div>
-            {screenType !== 'smallScreen' && screenType !== 'phone' && <SiddebarCalendar activeDay={activeDay} setActiveDay={setActiveDay} start={start} setStart={setStart} end={end} setEnd={setEnd} />}
+            {screenType !== 'smallScreen' && screenType !== 'phone' && <SidebarCalendar activeDay={activeDay} setActiveDay={setActiveDay} start={start} setStart={setStart} end={end} setEnd={setEnd} />}
         </div>
     );
 }

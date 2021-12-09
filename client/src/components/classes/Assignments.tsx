@@ -10,6 +10,7 @@ import UserDataContext from '../../contexts/UserDataContext';
 import { parsePeriodName, parsePeriodColor } from '../schedule/Periods';
 import { AssignmentBlurb, modifyAssignment, parseLabelColor, parsePriority } from './functions/SgyFunctions';
 import link from '../../assets/link.png';
+import { CheckSquare, Link, Square } from 'react-feather';
 
 
 // The assignment blocks for the Upcoming Tab
@@ -80,9 +81,14 @@ function Assignment(props: AssignmentProps) {
             <div className="upcoming-assignment-icons">
                 <div className="upcoming-assignment-icons-top">
                     <a href={assignment.link} target="_blank" rel="noopener noreferrer">
-                        <img src={link} alt="link" className={"link-icon" + (userData.options.theme === 'dark' ? ' link-icon-dark' : '')} />
+                        <Link size={30} color="var(--primary)" />
                     </a>
-                    <div className="upcoming-checkbox" onClick={() => toggleCompleted()}>{assignment.completed && '✓'}</div>
+                    {
+                    !assignment.completed ?
+                        <Square size={30} style={{ marginLeft: 'auto', cursor: 'pointer', flexShrink: 0 }} onClick={() => toggleCompleted()} /> :
+                        <CheckSquare size={30} style={{ marginLeft: 'auto', cursor: 'pointer', flexShrink: 0 }} onClick={() => toggleCompleted()} />
+                    }
+                    
                 </div>
 
                 <div className="upcoming-assignment-icons-bottom">

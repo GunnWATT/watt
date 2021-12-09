@@ -1,7 +1,8 @@
 import { useContext } from 'react';
 import Picker from '../layout/Picker';
 import UserDataContext from '../../contexts/UserDataContext';
-import { parsePriority } from './functions/SgyFunctions';
+import { parseLabelColor, parsePriority } from './functions/SgyFunctions';
+import { Star } from 'react-feather';
 
 
 type PriorityPickerProps = {
@@ -18,9 +19,7 @@ export default function PriorityPicker(props: PriorityPickerProps) {
                 <div>
                     {icon
                         ? icon(priority)
-                        : <svg width={30} height={40} onClick={() => setOpen(!open)}>
-                            <polygon points='0,0 0,40 15,25 30,40 30,0' fill={parsePriority(priority, userData)} />
-                        </svg>
+                        : <Star color={parsePriority(priority, userData)} size={30} onClick={() => setOpen(!open)} />
                     }
                 </div>
 

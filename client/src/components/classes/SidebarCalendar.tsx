@@ -7,7 +7,7 @@ import { DateRangeProps } from '../schedule/DateSelector';
 
 // Side calendar for large screens on Upcoming
 // Doubles as a date range filter for the assignments, and for a quick visualization of due dates
-export default function SiddebarCalendar(props: DateRangeProps & ActiveDayState) {
+export default function SidebarCalendar(props: DateRangeProps & ActiveDayState) {
     const { start, end, setStart, setEnd, activeDay } = props;
     const endInclusive = end.clone().subtract(1, 'days');
 

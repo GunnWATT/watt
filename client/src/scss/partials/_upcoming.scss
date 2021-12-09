@@ -32,27 +32,6 @@
     top: 5px;
     z-index: 5;
 
-    .upcoming-filter-arrow {
-        width: 12px;
-        height: 12px;
-        margin-top: 10px;
-        margin-bottom:5px;
-        margin-left: 5px;
-
-        border-right: 2px solid var(--primary);
-        border-top: 2px solid var(--primary);
-        transform: rotate(45deg);
-        transform-origin: center;
-        cursor: pointer;
-
-        &.open {
-            transform: rotate(135deg);
-            margin-left: 5px;
-        }
-    }
-    
-    
-
     .upcoming-filters {
         display: flex;
         flex-direction: row;
@@ -86,17 +65,17 @@
     align-items: center;
 }
 
-.upcoming-completed-filter {
-    width: 25px;
-    height: 25px;
-    border: 2px dashed var(--primary);
-    margin-left: auto;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-}
+// .upcoming-completed-filter {
+//     width: 25px;
+//     height: 25px;
+//     border: 2px dashed var(--primary);
+//     margin-left: auto;
+//     cursor: pointer;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     font-size: 1.3rem;
+// }
 
 .upcoming-palette {
     display:flex;
@@ -286,17 +265,17 @@ $anim-length: .8s;
                 }
             }
 
-            .upcoming-checkbox {
-                width: 30px;
-                height: 30px;
-                border: 2px dashed var(--primary);
-                margin-left: auto;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1.5rem;
-            }
+            // .upcoming-checkbox {
+            //     width: 30px;
+            //     height: 30px;
+            //     border: 2px dashed var(--primary);
+            //     margin-left: auto;
+            //     cursor: pointer;
+            //     display: flex;
+            //     align-items: center;
+            //     justify-content: center;
+            //     font-size: 1.5rem;
+            // }
         }
         
         &-bottom {

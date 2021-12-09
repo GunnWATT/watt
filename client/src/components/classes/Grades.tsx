@@ -7,8 +7,11 @@ import UserDataContext from '../../contexts/UserDataContext';
 import { findClassesList } from '../../views/Classes';
 import { classifyGrade } from './functions/GeneralHelperFunctions';
 
-type GradesProp = { selected: string, allGrades: { [key: string]: number } };
-export default function Grades(props: GradesProp) {
+// Icons
+import { ChevronsDown, ChevronsRight, ChevronsUp } from 'react-feather';
+
+type GradesProps = { selected: string, allGrades: { [key: string]: number } };
+export default function Grades(props: GradesProps) {
     const { allGrades, selected } = props;
 
     const [revealed, setRevealed] = useState(false);
@@ -23,15 +26,20 @@ export default function Grades(props: GradesProp) {
     if (selected === 'A') {
         const classes = findClassesList(userData).filter(({ period }) => period !== 'A'); // remove all classes from the classes list
 
-        return <div>
-            <div className={"dashboard-header"}>Grades</div>
+        return <div className="dashboard-grades">
+            <div className="dashboard-header">Grades</div>
 
-            <div onClick={() => !revealed ? setRevealed(true) : null} className={"dashboard-grade" + (revealed ? '' : ' dashboard-grade-hidden')}>
+            { revealed ?
+                <ChevronsDown size={30} style={{cursor:'pointer'}} onClick={() => setRevealed(!revealed)} /> :
+                <ChevronsRight size={30} style={{ cursor: 'pointer' }} onClick={() => setRevealed(!revealed)} />
+            }
+
+            <div hidden={!revealed} className="dashboard-grade">
                 {classes.filter(({ period }) => allGrades[period]).map(({ name, color, period }) => <div key={period} className="dashboard-grade-all">
                     <div className={"dashboard-grade-all-bubble"} style={{ backgroundColor: color }}>{period}</div>
                     <div>{classifyGrade(allGrades[period])} • {allGrades[period]}% • {name}</div>
                 </div>)}
-                <div className="dashboard-grade-hide"><div onClick={() => setRevealed(false)}>Click to Hide</div></div>
+                {/* <div className="dashboard-grade-hide"><div onClick={() => setRevealed(false)}>Click to Hide</div></div> */}
             </div>
         </div>;
     }
@@ -40,11 +48,14 @@ export default function Grades(props: GradesProp) {
     return (
         <div>
             <div className="dashboard-header">Grades</div>
-            <div onClick={() => !revealed && setRevealed(true)} className={"dashboard-grade" + (revealed ? '' : ' dashboard-grade-hidden')}>
+
+            {revealed ?
+                <ChevronsDown size={30} style={{ cursor: 'pointer' }} onClick={() => setRevealed(!revealed)} /> :
+                <ChevronsRight size={30} style={{ cursor: 'pointer' }} onClick={() => setRevealed(!revealed)} />
+            }
+
+            <div hidden={!revealed} className="dashboard-grade">
                 Your grade is {classifyGrade(allGrades[selected])} • {allGrades[selected]}%.
-                <div className="dashboard-grade-hide">
-                    <div onClick={() => setRevealed(false)}>Click to Hide</div>
-                </div>
             </div>
         </div>
     )
