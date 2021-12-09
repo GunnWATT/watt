@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useAuth, useFirestore } from 'reactfire';
 import moment from 'moment';
 import PriorityPicker from './PriorityPicker';
@@ -8,9 +8,9 @@ import UserDataContext from '../../contexts/UserDataContext';
 
 // Utilities
 import { parsePeriodName, parsePeriodColor } from '../schedule/Periods';
-import { AssignmentBlurb, modifyAssignment, parseLabelColor, parsePriority } from './functions/SgyFunctions';
-import link from '../../assets/link.png';
+import { AssignmentBlurb, updateAssignment, parseLabelColor } from './functions/SgyFunctions';
 import { CheckSquare, Link, Square } from 'react-feather';
+import AssignmentModal from './AssignmentModal';
 
 
 // The assignment blocks for the Upcoming Tab
@@ -21,12 +21,23 @@ export type ActiveDayState = {
     setActiveDay: (day: moment.Moment | null) => void;
 }
 
-type UpcomingAssignmentTagProps = { label: string, color: string };
-function UpcomingAssignmentTag(props: UpcomingAssignmentTagProps) {
+type AssignmentTagProps = { label: string, color: string };
+function AssignmentTag(props: AssignmentTagProps) {
     return (
-        <div className="upcoming-assignment-tag">
-            <div style={{backgroundColor: props.color}} className="upcoming-assignment-dot"/>
-            <div className="upcoming-assignment-label">{props.label}</div>
+        <div className="assignment-tag">
+            <div style={{backgroundColor: props.color}} className="assignment-dot"/>
+            <div className="assignment-label">{props.label}</div>
+        </div>
+    )
+}
+
+export function AssignmentTags({item}: {item: AssignmentBlurb}) {
+    const userData = useContext(UserDataContext);
+
+    return (
+        <div className="assignment-tags">
+            <AssignmentTag label={parsePeriodName(item.period, userData)} color={parsePeriodColor(item.period, userData)} />
+            {item.labels.map(label => <AssignmentTag label={label} color={parseLabelColor(label, userData)} />)}
         </div>
     )
 }
@@ -38,39 +49,27 @@ type AssignmentProps = { assignment: AssignmentBlurb } & ActiveDayState;
 function Assignment(props: AssignmentProps) {
     const { assignment, activeDay, setActiveDay } = props;
 
+    const [modal, setModal] = useState(false);
     const userData = useContext(UserDataContext);
     const auth = useAuth();
     const firestore = useFirestore();
 
     const toggleCompleted = () => {
-        let itemCopy = {
-            ...assignment,
-            completed: !assignment.completed,
-            timestamp: assignment.timestamp?.valueOf() ?? null
-        };
-        modifyAssignment( itemCopy, userData, auth, firestore )
+        updateAssignment({ ...assignment, completed: !assignment.completed }, userData, auth, firestore )
     }
 
     const setPriority = (priority: number) => {
         if(priority === assignment.priority) return;
-        let itemCopy = {
-            ...assignment,
-            priority: priority,
-            timestamp: assignment.timestamp?.valueOf() ?? null
-        };
-        modifyAssignment(itemCopy, userData, auth, firestore)
+        updateAssignment({ ...assignment, priority: priority }, userData, auth, firestore)
     }
 
     return (
-        <div className="upcoming-assignment">
-            <div className="upcoming-assignment-content">
-                <div className="upcoming-assignment-tags">
-                    <UpcomingAssignmentTag label={parsePeriodName(assignment.period, userData)} color={parsePeriodColor(assignment.period, userData)} />
-                    { assignment.labels.map(label => <UpcomingAssignmentTag label={label} color={parseLabelColor(label, userData)} />) }
-                </div>
+        <div className="upcoming-assignment" >
+            <div className="upcoming-assignment-content" onClick={() => setModal(!modal)}>
+                <AssignmentTags item={assignment} />
                 <div className={"upcoming-assignment-name"}>{assignment.name.slice(0,100)}</div>
                 {assignment.description.length ? <div className={"upcoming-assignment-desc"}>{assignment.description}</div> : null}
-                <div className="upcoming-assignment-due">
+                <div className="assignment-due">
                     <div
                         onMouseEnter={() => setActiveDay(moment(assignment.timestamp).startOf('day'))}
                         onMouseLeave={() => setActiveDay(null)}>
@@ -95,6 +94,8 @@ function Assignment(props: AssignmentProps) {
                     <PriorityPicker priority={assignment.priority} setPriority={setPriority} />
                 </div>
             </div>
+
+            <AssignmentModal item={assignment} open={modal} setOpen={setModal} />
         </div>
     )
 }

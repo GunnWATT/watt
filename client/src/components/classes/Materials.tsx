@@ -10,19 +10,18 @@ import { findClassesList } from '../../views/Classes';
 import { parsePeriodColor } from '../schedule/Periods';
 import { similarity } from './functions/GeneralHelperFunctions';
 import { AssignmentBlurb, getMaterials, parseLabelColor } from './functions/SgyFunctions';
+import AssignmentModal from './AssignmentModal';
 
 type MaterialProps = { item: AssignmentBlurb, sgyData: SgyData };
 function Material(props: MaterialProps) {
     const { item, sgyData } = props;
     const userData = useContext(UserDataContext);
+    const [modal, setModal] = useState(false);
 
     return (
         <div
             className="material"
-            onClick={() => {
-                // console.log(sgyData[item.period].assignments.find(a => a.id+'' === item.id));
-                console.log(item);
-            }}
+            onClick={() => setModal(!modal)}
         >
             <div className="material-name">{item.name}</div>
 
@@ -32,6 +31,8 @@ function Material(props: MaterialProps) {
                 {item.labels.map(label => <div key={label} className="material-label" style={{backgroundColor: parseLabelColor(label, userData)}} />)}
             </div>
             <div className="material-class" style={{backgroundColor: parsePeriodColor(item.period, userData)}} />
+
+            <AssignmentModal item={item} open={modal} setOpen={setModal} />
         </div>
     );
 }

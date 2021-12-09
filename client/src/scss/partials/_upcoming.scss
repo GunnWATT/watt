@@ -18,7 +18,6 @@
 
 .upcoming {
     flex: 1;
-    // background-color: #00000055;
     margin: 15px;
 }
 
@@ -64,18 +63,6 @@
     justify-content: center;
     align-items: center;
 }
-
-// .upcoming-completed-filter {
-//     width: 25px;
-//     height: 25px;
-//     border: 2px dashed var(--primary);
-//     margin-left: auto;
-//     cursor: pointer;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     font-size: 1.3rem;
-// }
 
 .upcoming-palette {
     display:flex;
@@ -181,40 +168,14 @@ $anim-length: .8s;
     margin-bottom: 10px;
     display: flex;
     flex-direction: row;
-
+    
     .upcoming-assignment-content {
         flex-grow: 1;
         padding: 15px 25px;
         border-radius: 5px;
         display: flex;
         flex-direction: column;
-
-        .upcoming-assignment-tags {
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: row;
-            margin-bottom: 5px;
-
-            .upcoming-assignment-tag {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-
-                .upcoming-assignment-dot {
-                    flex-shrink: none;
-                    width: 10px;
-                    height: 10px;
-                    border-radius: 10px;
-                    margin-right: 5px;
-                }
-
-                font-size: 0.7rem;
-                background-color: var(--bg-secondary);
-                padding: 2px 5px;
-                border-radius: 5px;
-                margin-right: 5px;
-            }
-        }
+        cursor: pointer;
 
         .upcoming-assignment-name {
             font-size: 1.3rem;
@@ -223,21 +184,6 @@ $anim-length: .8s;
         .upcoming-assignment-desc {
             font-size: 0.8rem;
             margin-top: 10px;
-        }
-        
-        .upcoming-assignment-due {
-            display: flex;
-            flex-direction: row;
-            margin-top: 10px;
-            
-            > div {
-                padding: 2px 5px;
-                background-color: var(--bg-secondary);
-                font-size: 0.8rem;
-                border-radius: 3px;
-                cursor: pointer;
-            }
-            
         }
 
     }
@@ -264,18 +210,6 @@ $anim-length: .8s;
                     filter: invert(1);
                 }
             }
-
-            // .upcoming-checkbox {
-            //     width: 30px;
-            //     height: 30px;
-            //     border: 2px dashed var(--primary);
-            //     margin-left: auto;
-            //     cursor: pointer;
-            //     display: flex;
-            //     align-items: center;
-            //     justify-content: center;
-            //     font-size: 1.5rem;
-            // }
         }
         
         &-bottom {
@@ -290,6 +224,48 @@ $anim-length: .8s;
         }
 
         
+    }
+}
+
+.assignment-due {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    
+    > div {
+        padding: 2px 5px;
+        background-color: var(--bg-secondary);
+        font-size: 0.8rem;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    
+}
+
+.assignment-tags {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-bottom: 5px;
+
+    .assignment-tag {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .assignment-dot {
+            flex-shrink: none;
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+            margin-right: 5px;
+        }
+
+        font-size: 0.7rem;
+        background-color: var(--bg-secondary);
+        padding: 2px 5px;
+        border-radius: 5px;
+        margin-right: 5px;
     }
 }
 
@@ -326,3 +302,21 @@ $anim-length: .8s;
     }
 
 }
+
+.item-modal .modal-content {
+    background-color: var(--bg-primary);
+
+    .item-modal-icons {
+        display: flex;
+        flex-direction: row;
+
+        .link {
+            margin-left: 5px;
+        }
+
+        .priority {
+            margin-left: auto;
+        }
+    }
+}
+
