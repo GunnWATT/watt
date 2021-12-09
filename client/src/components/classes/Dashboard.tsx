@@ -18,7 +18,7 @@ import moment from 'moment';
 export default function Dashboard() {
 
     const sgyInfo = useContext(SgyDataContext);
-    const {sgyData, selected, fetching, lastFetched} = sgyInfo;
+    const {sgyData, selected, fetching, lastFetched, updateSgy} = sgyInfo;
 
     const time = useContext(CurrentTimeContext);
     const screenType = useScreenType();
@@ -58,8 +58,9 @@ export default function Dashboard() {
 
                 {allGrades && <DashGrades selected={selected} allGrades={allGrades} />}
 
-                {/* {lastFetchedTime?.format('MM/DD/YYYY hh:mm:ss A')} <br /> */}
-                {/* {fetching ? 'fetching...' : 'nope!'} */}
+                {/* {lastFetchedTime?.format('MM/DD/YYYY hh:mm:ss A')} <br />
+                {fetching ? 'fetching...' : 'nope!'}
+                <button onClick={updateSgy}>oopdate</button> */}
             </div>
         </div>
     );

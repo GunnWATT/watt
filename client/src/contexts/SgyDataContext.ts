@@ -6,7 +6,8 @@ export type SgyContext = {
     sgyData: SgyData,
     fetching: boolean,
     lastFetched: number|null,
-    selected: SgyPeriod|'A'
+    selected: SgyPeriod|'A',
+    updateSgy: () => Promise<any>,
 };
 
 const DefaultSgyContext:SgyContext = {
@@ -15,7 +16,8 @@ const DefaultSgyContext:SgyContext = {
     },
     fetching: false,
     lastFetched: null,
-    selected: 'A'
+    selected: 'A',
+    updateSgy: async () => {},
 }
 
 const SgyDataContext = React.createContext<SgyContext>(DefaultSgyContext);

@@ -4,6 +4,7 @@ import {Routes, Route, Link, useMatch, useResolvedPath} from 'react-router-dom';
 // Firebase
 import { Functions, httpsCallable } from 'firebase/functions';
 import { useAuth, useFunctions } from 'reactfire';
+import { FirebaseError } from '@firebase/util';
 
 // Moment
 import { Moment } from 'moment';
@@ -19,11 +20,11 @@ import RedBackground from '../components/layout/RedBackground';
 // Contexts
 import CurrentTimeContext from '../contexts/CurrentTimeContext';
 import UserDataContext, { SgyPeriod, SgyData, UserData } from '../contexts/UserDataContext';
+import SgyDataContext, { SgyDataProvider } from '../contexts/SgyDataContext';
 
 // Utilities
 import { parsePeriodColor } from '../components/schedule/Periods';
 import { useScreenType } from '../hooks/useScreenType';
-import { SgyContext, SgyDataProvider } from '../contexts/SgyDataContext';
 
 
 
@@ -69,9 +70,21 @@ const ClassesSgyNotConnected = () => {
 }
 
 const ClassesFetching = () => {
-    return <ClassesErrorBurrito>
-        <Loading message={'Fetching materials. This can take up to a minute...'} />
-    </ClassesErrorBurrito>
+
+    const sgyInfo = useContext(SgyDataContext);
+    if(sgyInfo.fetching) {
+        return <ClassesErrorBurrito>
+            <Loading message={'Fetching materials. This can take up to a minute...'} />
+        </ClassesErrorBurrito>
+    } else {
+        return <ClassesErrorBurrito>
+            <h2>Something Went Wrong.</h2>
+            <p>Your user data is missing! Please click the button below to fetch materials. If this is a recurring problem, please submit an issue to Github.</p>
+            <div className='sgy-auth-button'>
+                <button onClick={sgyInfo.updateSgy}>Fetch Materials</button>
+            </div>
+        </ClassesErrorBurrito>
+    }
 }
 
 const ClassesSidebarItem = (props:{collapsed:boolean, name: string, color:string, period:string, onClick:()=>void}) => {
@@ -161,12 +174,26 @@ export default function Classes() {
 
     const updateSgy = async () => {
 
+        if(lastFetched && Date.now() - lastFetched < 6 * 1000) // if it's been less than 5 seconds since the last fetch
+        {
+            // this is a problem!!!
+            console.error('Attempted to fetch within 5 seconds of previous fetch!')
+            throw 'Cannot fetch within 5 seconds of previous fetch!!';
+        }
+
+        if(fetching) {
+            console.error('Attempted to fetch but already fetching!')
+            throw 'Already fetching!!!';
+        }
+
         setFetching(true);
 
-        const newSgyData = await fetchSgyMaterials(functions);
+        const newSgyData = await fetchSgyMaterials(functions).catch((err: FirebaseError) => {
+            console.error(err);
+        });
 
         // @ts-ignore
-        setSgyData(newSgyData);
+        setSgyData(newSgyData ? newSgyData : null);
 
         setLastFetched(Date.now());
         setFetching(false);
@@ -220,7 +247,7 @@ export default function Classes() {
     if (!userData.sgy?.custom || !userData.sgy?.custom.assignments || !userData.sgy?.custom.labels || !userData.sgy?.custom.modified) return <Loading /> // make sure user has all of these things :D, if not, usually gets corrected by FirebaseUserDataProvider
 
     return (
-        <SgyDataProvider value={{sgyData, fetching, lastFetched, selected}}>
+        <SgyDataProvider value={{sgyData, fetching, lastFetched, selected, updateSgy}}>
             <div className={"classes-burrito " + screenType}>
                 <RedBackground />
                 <div className={"classes-content " + screenType}>
