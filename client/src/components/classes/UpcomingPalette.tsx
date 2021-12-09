@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import Picker from '../layout/Picker';
 import { useScreenType } from '../../hooks/useScreenType';
 
 
@@ -8,6 +8,8 @@ export type PaletteProps = {
     classes: { name: string; color: string; period: string; }[];
 };
 
+// TODO: can we merge this with UpcomingPalette to maintain similarity with PriorityPicker?
+// We wouldn't have to spread props downwards if we do; is the merged component too complex?
 function UpcomingPalettePicker(props: PaletteProps & { hidden: boolean }) {
     const { classFilter, setClassFilter, classes, hidden } = props;
     const screenType = useScreenType();
@@ -50,46 +52,26 @@ function UpcomingPalettePicker(props: PaletteProps & { hidden: boolean }) {
 export default function UpcomingPalette(props: PaletteProps) {
     const { classFilter, setClassFilter, classes } = props;
 
-    // TODO: the following 19 lines are a duplicated code fragment from date selector
-    // Should extract into a generic `Picker` component and go from there
-    const [picker, setPicker] = useState(false);
-    const ref = useRef<HTMLDivElement>(null);
-
-    // closing the calendar on click outside
-    // https://stackoverflow.com/questions/32553158/detect-click-outside-react-component
-    useEffect(() => {
-        let handleClickOutside = (event: MouseEvent) => {
-            if (ref.current && event.target instanceof Node && !(ref.current.contains(event.target))) {
-                setPicker(false);
-            }
-        }
-
-        // Bind the event listener
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            // Unbind the event listener on clean up
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [ref]);
-
     return (
-        <div className="upcoming-palette-burrito" ref={ref}>
-            <div className="upcoming-palette" onClick={() => setPicker(!picker)}>
-                {classes.map((c, index) =>
-                    // TODO: we're rather inconsistent with which dots we extract as components and which we don't
-                    // Much of the dot code can probably be reused across sections as a generic component with props
-                    <div
-                        key={index}
-                        className="upcoming-palette-dot"
-                        style={{
-                            backgroundColor: classFilter[index] ? c.color : 'var(--content-primary)',
-                            border: classFilter[index] ? '' : '2px inset var(--secondary)'
-                        }}
-                    />
-                )}
-            </div>
+        <Picker className="upcoming-palette-burrito">
+            {(open, setOpen) => <>
+                <div className="upcoming-palette" onClick={() => setOpen(!open)}>
+                    {classes.map((c, index) =>
+                        // TODO: we're rather inconsistent with which dots we extract as components and which we don't
+                        // Much of the dot code can probably be reused across sections as a generic component with props
+                        <div
+                            key={index}
+                            className="upcoming-palette-dot"
+                            style={{
+                                backgroundColor: classFilter[index] ? c.color : 'var(--content-primary)',
+                                border: classFilter[index] ? '' : '2px inset var(--secondary)'
+                            }}
+                        />
+                    )}
+                </div>
 
-            <UpcomingPalettePicker hidden={!picker} {...props} />
-        </div>
+                <UpcomingPalettePicker hidden={!open} {...props} />
+            </>}
+        </Picker>
     );
 }
