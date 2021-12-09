@@ -1,5 +1,6 @@
-import { useContext, useState, useRef, useEffect, CSSProperties, ReactNode } from 'react';
+import { useContext, useState, CSSProperties, ReactNode } from 'react';
 import moment, {Moment} from 'moment-timezone';
+import Picker from '../layout/Picker';
 import { SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE } from './Periods';
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 import alternates from '../../data/alternates';
@@ -14,26 +15,6 @@ export default function DateSelector({setViewDate, viewDate}: DateSelectorProps)
 
     const incDay = () => setViewDate(viewDate.clone().add(1, 'days'));
     const decDay = () => setViewDate(viewDate.clone().subtract(1, 'days'));
-
-    const [showCalendar, setCalendar] = useState(false);
-    const ref = useRef<HTMLDivElement>(null);
-
-    // closing the calendar on click outside
-    // https://stackoverflow.com/questions/32553158/detect-click-outside-react-component
-    useEffect(() => {
-        let handleClickOutside = (event: MouseEvent) => {
-            if (ref.current && event.target instanceof Node && !(ref.current.contains(event.target))) {
-                setCalendar(false);
-            }
-        }
-
-        // Bind the event listener
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            // Unbind the event listener on clean up
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [ref]);
 
     const date = useContext(CurrentTimeContext);
     const today = date.clone().tz('America/Los_Angeles').startOf('date');
@@ -50,19 +31,21 @@ export default function DateSelector({setViewDate, viewDate}: DateSelectorProps)
                 <ChevronLeft/>
             </button>
 
-            <div ref={ref} className="date-selector-box">
-                <div className="date-selector-main-text" onClick={() => setCalendar(!showCalendar)}>
-                    {viewDate.format("MMMM D, yyyy")}
-                </div>
+            <Picker className="date-selector-box">
+                {(open, setOpen) => <>
+                    <div className="date-selector-main-text" onClick={() => setOpen(!open)}>
+                        {viewDate.format("MMMM D, yyyy")}
+                    </div>
 
-                <div className="mini-calendar" hidden={!showCalendar}>
-                    <GenericCalendar
-                        dayClass={(day) => viewDate.isSame(day, 'day') ? 'calendar-day-selected' : ''}
-                        onClickDay={(day) => setViewDate(day)}
-                        footer={footer}
-                    />
-                </div>
-            </div>
+                    <div className="mini-calendar" hidden={!open}>
+                        <GenericCalendar
+                            dayClass={(day) => viewDate.isSame(day, 'day') ? 'calendar-day-selected' : ''}
+                            onClickDay={(day) => setViewDate(day)}
+                            footer={footer}
+                        />
+                    </div>
+                </>}
+            </Picker>
 
             <button className="icon" onClick={incDay}>
                 <ChevronRight/>
@@ -82,65 +65,50 @@ type CalendarProps = {
 }
 export function DateRangePicker(props: DateRangeProps & CalendarProps) {
     const { start, end, setStart, setEnd, calStart, calEnd } = props;
-    const [showCalendar, setCalendar] = useState(false);
     const endInclusive = moment(end); endInclusive.subtract(1, 'days');
 
     const [selecting, setSelecting] = useState<'S' | 'E'>('E');
 
-    const ref = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        let handleClickOutside = (event: MouseEvent) => {
-            if (ref.current && event.target instanceof Node && !(ref.current.contains(event.target))) {
-                setCalendar(false);
-            }
-        }
-
-        // Bind the event listener
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            // Unbind the event listener on clean up
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [ref]);
-
     return (
-        <div className="date-range-selector" ref={ref}>
-            <div className="date-range-selector-box">
-                <div className="date-selector-main" onClick={() => setCalendar(!showCalendar)}>
-                    <div>{start.format("MMMM D, yyyy")}</div>
-                    -
-                    <div>{end.format("MMMM D, yyyy")}</div>
-                </div>
+        <Picker className="date-range-selector">
+            {(open, setOpen) => (
+                <div className="date-range-selector-box">
+                    <div className="date-selector-main" onClick={() => setOpen(!open)}>
+                        <div>{start.format("MMMM D, yyyy")}</div>
+                        -
+                        <div>{end.format("MMMM D, yyyy")}</div>
+                    </div>
 
-                <div className="mini-calendar" hidden={!showCalendar}>
-                    <GenericCalendar
-                        dayClass={(day) =>
-                            (day.isSame(start) ? "calendar-day-start" : "")
+                    <div className="mini-calendar" hidden={!open}>
+                        <GenericCalendar
+                            dayClass={(day) =>
+                                (day.isSame(start) ? "calendar-day-start" : "")
                                 + (day.isSame(endInclusive) ? " calendar-day-end" : "")
                                 + (day.isAfter(start) && day.isBefore(endInclusive) ? " calendar-day-sandwich" : "")
-                        }
-                        onClickDay={(day) => {
-                            if (selecting === 'S') {
-                                if (day.isBefore(end)) setStart(day);
-                            } else {
-                                const ex = moment(day); ex.add(1, 'days');
-                                if (ex.isAfter(start)) {
-                                    setEnd(ex);
-                                }
                             }
-                        }}
-                        footer={
-                            <>
-                                <div onClick={() => setSelecting('S')} className={"calendar-select-start" + (selecting === 'S' ? " date-range-selected" : '')}>Start</div>
-                                <div onClick={() => setSelecting('E')} className={"calendar-select-end" + (selecting === 'E' ? " date-range-selected" : '')}>End</div>
-                            </>
-                        }
-                        start={calStart}
-                        end={calEnd}
-                    />
+                            onClickDay={(day) => {
+                                if (selecting === 'S') {
+                                    if (day.isBefore(end)) setStart(day);
+                                } else {
+                                    const ex = moment(day); ex.add(1, 'days');
+                                    if (ex.isAfter(start)) {
+                                        setEnd(ex);
+                                    }
+                                }
+                            }}
+                            footer={
+                                <>
+                                    <div onClick={() => setSelecting('S')} className={"calendar-select-start" + (selecting === 'S' ? " date-range-selected" : '')}>Start</div>
+                                    <div onClick={() => setSelecting('E')} className={"calendar-select-end" + (selecting === 'E' ? " date-range-selected" : '')}>End</div>
+                                </>
+                            }
+                            start={calStart}
+                            end={calEnd}
+                        />
+                    </div>
                 </div>
-            </div>
-        </div>
+            )}
+        </Picker>
     )
 }
 
