@@ -67,7 +67,7 @@ function Assignment(props: AssignmentProps) {
                     <UpcomingAssignmentTag label={parsePeriodName(assignment.period, userData)} color={parsePeriodColor(assignment.period, userData)} />
                     { assignment.labels.map(label => <UpcomingAssignmentTag label={label} color={parseLabelColor(label, userData)} />) }
                 </div>
-                <div className={"upcoming-assignment-name"}>{assignment.name}</div>
+                <div className={"upcoming-assignment-name"}>{assignment.name.slice(0,100)}</div>
                 {assignment.description.length ? <div className={"upcoming-assignment-desc"}>{assignment.description}</div> : null}
                 <div className="upcoming-assignment-due">
                     <div

@@ -16,17 +16,17 @@ import { AssignmentBlurb } from './functions/SgyFunctions';
 
 // Upcoming Blurb
 // Blurb includes cute calendar thing + 5 of the next assignments
-type BlurbAssignmentProps = { name: string, due: string, period: string };
+type BlurbAssignmentProps = { item: AssignmentBlurb };
 function BlurbAssignment(props: BlurbAssignmentProps) {
-    const { name, due, period } = props;
+    const { item } = props;
     const userData = useContext(UserDataContext);
 
     return (
         <div className="ub-assignment">
-            <div className="ub-assignment-dot" style={{ backgroundColor: parsePeriodColor(period, userData) }} />
+            <div className="ub-assignment-dot" style={{ backgroundColor: parsePeriodColor(item.period, userData) }} />
             <div className="ub-assignment-content">
-                <div className="up-assignment-title">{name}</div>
-                <div className="up-assignment-due">{due}</div>
+                <div className="up-assignment-title">{item.name}</div>
+                <div className="up-assignment-due">{item.timestamp!.format("dddd, MMMM Do")} • {item.timestamp!.fromNow()}</div>
             </div>
         </div>
     );
@@ -48,12 +48,10 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
 
             <UpcomingQuickWeekCal upcoming={upcoming} selected={selected} />
             <div>
-                {upcoming.slice(0, 5).map((a) =>
+                {upcoming.filter(assi => !assi.completed).slice(0, 5).map((a) =>
                     <BlurbAssignment
-                        key={a.link}
-                        name={a.name}
-                        due={`${a.timestamp!.format("dddd, MMMM Do")} • ${a.timestamp!.fromNow()}`}
-                        period={a.period}
+                        key={a.id}
+                        item={a}
                     />
                 )}
                 <div className="ub-upcoming-redirect"><div><Link to='upcoming'>See More in Upcoming</Link></div></div>
