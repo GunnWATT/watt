@@ -154,135 +154,28 @@
 
 $anim-length: .8s;
 
-.upcoming-assignment {
+.upcoming-assignment{
   background-color: var(--bg-primary);
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
+  border-radius: 0.25rem;
 
   .upcoming-assignment-content {
     flex-grow: 1;
-    padding: 15px 25px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: row;
-
-    .upcoming-assignment-content {
-      flex-grow: 1;
-      padding: 15px 25px;
-      border-radius: 5px;
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-
-      .upcoming-assignment-name {
-        font-size: 1.3rem;
-      }
-
-      .upcoming-assignment-desc {
-        font-size: 0.8rem;
-        margin-top: 10px;
-      }
-
-      font-size: 0.7rem;
-      background-color: var(--bg-secondary);
-      padding: 2px 5px;
-      border-radius: 5px;
-      margin-right: 5px;
-    }
-  }
-
-  .upcoming-assignment-name {
-    font-size: 1.3rem;
-  }
-
-  .upcoming-assignment-icons {
-    width: 85px;
-    flex-shrink: 0;
+    padding: 15px 20px;
     display: flex;
     flex-direction: column;
-    padding: 15px 15px 15px 0;
+    cursor: pointer;
 
-    &-top {
-      display: flex;
-      flex-direction: row;
-
-      .link-icon {
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-        z-index: 1;
-        position: relative;
-
-        &-dark {
-          filter: invert(1);
-        }
-      }
-    }
-
-    &-bottom {
-      display: flex;
-      flex-direction: row;
-      margin-top: auto;
-
-      .priority {
-        margin-left: auto;
-      }
+    .upcoming-assignment-name {
+      font-size: 1.3rem;
     }
 
     .upcoming-assignment-desc {
       font-size: 0.8rem;
       margin-top: 10px;
     }
-
-    .assignment-due {
-      display: flex;
-      flex-direction: row;
-      margin-top: 10px;
-
-      > div {
-        padding: 2px 5px;
-        background-color: var(--bg-secondary);
-        font-size: 0.8rem;
-        border-radius: 3px;
-        cursor: pointer;
-      }
-    }
-
-    .assignment-tags {
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: row;
-      margin-bottom: 5px;
-
-      .assignment-tag {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        .assignment-dot {
-          flex-shrink: 0;
-          width: 10px;
-          height: 10px;
-          border-radius: 10px;
-          margin-right: 5px;
-        }
-
-        font-size: 0.7rem;
-        background-color: var(--bg-secondary);
-        padding: 2px 5px;
-        border-radius: 5px;
-        margin-right: 5px;
-      }
-    }
-
-    .priority {
-      position: relative;
-
-      div:first-child {
-        cursor: pointer;
-      }
-    }
   }
 
   .upcoming-assignment-icons {
@@ -307,18 +200,6 @@ $anim-length: .8s;
           filter: invert(1);
         }
       }
-
-      // .upcoming-checkbox {
-      //     width: 30px;
-      //     height: 30px;
-      //     border: 2px dashed var(--primary);
-      //     margin-left: auto;
-      //     cursor: pointer;
-      //     display: flex;
-      //     align-items: center;
-      //     justify-content: center;
-      //     font-size: 1.5rem;
-      // }
     }
 
     &-bottom {
@@ -328,11 +209,49 @@ $anim-length: .8s;
 
       .priority {
         margin-left: auto;
-
       }
     }
+  }
+}
 
+.assignment-due {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
 
+  > div {
+    padding: 2px 5px;
+    background-color: var(--bg-secondary);
+    font-size: 0.8rem;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+}
+
+.assignment-tags {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-bottom: 5px;
+
+  .assignment-tag {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .assignment-dot {
+      flex-shrink: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 10px;
+      margin-right: 5px;
+    }
+
+    font-size: 0.7rem;
+    background-color: var(--bg-secondary);
+    padding: 2px 5px;
+    border-radius: 5px;
+    margin-right: 5px;
   }
 }
 
