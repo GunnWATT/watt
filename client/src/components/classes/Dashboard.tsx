@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import DashboardBlurb from './Blurb';
 import DashboardQuickInfo from './QuickInfo';
 import DashGrades from './DashGrades';
+import FetchFooter from './FetchFooter';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
@@ -58,9 +59,7 @@ export default function Dashboard() {
 
                 {allGrades && <DashGrades selected={selected} allGrades={allGrades} />}
 
-                {/* {lastFetchedTime?.format('MM/DD/YYYY hh:mm:ss A')} <br />
-                {fetching ? 'fetching...' : 'nope!'}
-                <button onClick={updateSgy}>oopdate</button> */}
+                <FetchFooter />
             </div>
         </div>
     );

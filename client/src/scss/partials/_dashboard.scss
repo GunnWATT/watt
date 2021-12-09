@@ -190,3 +190,30 @@
     margin-right: 10px;
     flex-shrink: 0;
 }
+
+.fetch-footer {
+    display: flex;
+    flex-direction: row;
+    margin-top: auto;
+    align-items: center;
+    padding-top: 10px;
+
+    .spinner-border {
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+    }
+
+    .fetch-footer-button {
+        margin-left: auto;
+        background-color: var(--content-primary);
+        padding: 3px 10px;
+        border-radius: 5px;
+        transition: opacity 0.2s ease;
+
+        &.disabled {
+            background-color: var(--content-primary);
+            opacity: 30%;
+        }
+    }
+}
