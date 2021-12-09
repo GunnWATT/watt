@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import UpcomingPalette from './UpcomingPalette';
 
 // Contexts
-import UserDataContext, { SgyData } from '../../contexts/UserDataContext';
+import UserDataContext, { SgyPeriod, SgyData } from '../../contexts/UserDataContext';
 
 // Utilities
 import { findClassesList } from '../../views/Classes';
@@ -20,7 +20,7 @@ function Material(props: MaterialProps) {
         <div
             className="material"
             onClick={() => {
-                console.log(sgyData[item.period].assignments.find(a => a.id+'' === item.id));
+                // console.log(sgyData[item.period].assignments.find(a => a.id+'' === item.id));
                 console.log(item);
             }}
         >
@@ -36,7 +36,7 @@ function Material(props: MaterialProps) {
     );
 }
 
-type MaterialsProps = { sgyData: SgyData, selected: string };
+type MaterialsProps = { sgyData: SgyData, selected: SgyPeriod|'A' };
 export default function Materials(props: MaterialsProps) {
     const {sgyData, selected} = props;
 

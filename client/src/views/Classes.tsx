@@ -18,12 +18,12 @@ import RedBackground from '../components/layout/RedBackground';
 
 // Contexts
 import CurrentTimeContext from '../contexts/CurrentTimeContext';
-import UserDataContext, { SgyData, UserData } from '../contexts/UserDataContext';
+import UserDataContext, { SgyPeriod, SgyData, UserData } from '../contexts/UserDataContext';
 
 // Utilities
 import { parsePeriodColor } from '../components/schedule/Periods';
 import { useScreenType } from '../hooks/useScreenType';
-import { SgyDataProvider } from '../contexts/SgyDataContext';
+import { SgyContext, SgyDataProvider } from '../contexts/SgyDataContext';
 
 
 
@@ -90,7 +90,7 @@ const ClassesSidebarItem = (props:{collapsed:boolean, name: string, color:string
 }
 
 // TODO: this can 200% be put in Classes
-function ClassesSidebar(props: {setSelected: (selected:string) => void}) {
+function ClassesSidebar(props: {setSelected: (selected:SgyPeriod|'A') => void}) {
     const {setSelected} = props;
     const userData = useContext(UserDataContext);
 
@@ -211,7 +211,7 @@ export default function Classes() {
     }, [auth.currentUser, time]);
 
     // Selected
-    const [selected, setSelected] = useState<string>('A');
+    const [selected, setSelected] = useState<SgyPeriod|'A'>('A');
 
     // we are ok to go if: 1) we're signed in 2) the user enabled schoology 3) the sgy data exists
     if (!auth.currentUser) return <ClassesNotSignedIn />
@@ -220,7 +220,7 @@ export default function Classes() {
     if (!userData.sgy?.custom || !userData.sgy?.custom.assignments || !userData.sgy?.custom.labels || !userData.sgy?.custom.modified) return <Loading /> // make sure user has all of these things :D, if not, usually gets corrected by FirebaseUserDataProvider
 
     return (
-        <SgyDataProvider value={null}>
+        <SgyDataProvider value={{sgyData, fetching, lastFetched, selected}}>
             <div className={"classes-burrito " + screenType}>
                 <RedBackground />
                 <div className={"classes-content " + screenType}>
@@ -228,7 +228,7 @@ export default function Classes() {
                     <ClassesNavBar />
 
                     <Routes>
-                        <Route path="/" element={<Dashboard selected={selected} sgyData={sgyData} />} />
+                        <Route path="/" element={<Dashboard />} />
                         <Route path="/upcoming" element={<Upcoming selected={selected} sgyData={sgyData} /> } />
                         <Route path="/materials" element={<Materials selected={selected} sgyData={sgyData} />} />
                     </Routes>
@@ -243,7 +243,7 @@ export default function Classes() {
 // If `includeAll` is true, the first class will be an "All Courses" object with default color.
 export function findClassesList(userData: UserData, includeAll: boolean = true) {
     // find classes from userData
-    const classes: { name: string, color: string, period: string }[] = [];
+    const classes: { name: string, color: string, period: SgyPeriod|'A' }[] = [];
 
     // Push "All Courses" object
     if (includeAll) {
@@ -259,6 +259,8 @@ export function findClassesList(userData: UserData, includeAll: boolean = true) 
             classes.push({
                 name: course.n,
                 color: parsePeriodColor(p, userData),
+
+                // @ts-ignore lol i hate ts
                 period: p
             });
         }

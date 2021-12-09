@@ -12,11 +12,14 @@ import UserDataContext, { SgyData, SgyPeriodData, UserData } from '../../context
 // Utilities
 import { useScreenType } from '../../hooks/useScreenType';
 import { AssignmentBlurb, getAllGrades, getUpcomingInfo } from './functions/SgyFunctions';
+import SgyDataContext from '../../contexts/SgyDataContext';
 
+export default function Dashboard() {
 
-type DashboardProps = {sgyData: SgyData, selected: string};
-export default function Dashboard(props: DashboardProps) {
-    const {sgyData, selected} = props;
+    const sgyInfo = useContext(SgyDataContext);
+
+    const {sgyData, selected} = sgyInfo;
+    
     const time = useContext(CurrentTimeContext);
     const screenType = useScreenType();
 

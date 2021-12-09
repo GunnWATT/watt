@@ -1,7 +1,7 @@
 import { Auth } from 'firebase/auth';
 import { Firestore } from 'firebase/firestore';
 import moment from "moment";
-import { SgyAssignmentModified, SgyData, UserData } from "../../../contexts/UserDataContext";
+import { SgyPeriod, SgyAssignmentModified, SgyData, UserData } from "../../../contexts/UserDataContext";
 import { updateUserData } from "../../../firebase/updateUserData";
 import { Assignment, Event, Document, Page, SectionGrade } from "../../../schoology/SgyTypes";
 import { findClassesList } from "../../../views/Classes";
@@ -13,7 +13,7 @@ export type AssignmentBlurb = {
     link: string;
     timestamp: moment.Moment | null;
     description: string;
-    period: string;
+    period: SgyPeriod|'A';
     id: string;
     labels: string[];
     completed: boolean;
@@ -71,7 +71,7 @@ const momentComparator = (a: moment.Moment, b: moment.Moment) => {
     return 0;
 }
 
-const SgyItemToBlurb = (item: Assignment | Event | Document | Page, period: string) => {
+const SgyItemToBlurb = (item: Assignment | Event | Document | Page, period: SgyPeriod|'A') => {
     return {
         name: item.title,
         id: item.id+'',
@@ -81,7 +81,7 @@ const SgyItemToBlurb = (item: Assignment | Event | Document | Page, period: stri
     }
 }
 
-const AssignmentToBlurb = (item: Assignment, period: string): AssignmentBlurb => {
+const AssignmentToBlurb = (item: Assignment, period: SgyPeriod | 'A'): AssignmentBlurb => {
 
     const timestamp = item.due.length ? moment(item.due) : null;
     const labels: string[] = ['Assignment'];
@@ -99,7 +99,7 @@ const AssignmentToBlurb = (item: Assignment, period: string): AssignmentBlurb =>
     }
 }
 
-const EventToBlurb = (item: Event, period: string): AssignmentBlurb => {
+const EventToBlurb = (item: Event, period: SgyPeriod | 'A'): AssignmentBlurb => {
     return {
         ...SgyItemToBlurb(item, period),
         description: item.description,
@@ -109,7 +109,7 @@ const EventToBlurb = (item: Event, period: string): AssignmentBlurb => {
     }
 }
 
-const DocumentToBlurb = (item: Document, period: string): AssignmentBlurb => {
+const DocumentToBlurb = (item: Document, period: SgyPeriod | 'A'): AssignmentBlurb => {
     return {
         ...SgyItemToBlurb(item, period),
         description: JSON.stringify(item.attachments),
@@ -119,7 +119,7 @@ const DocumentToBlurb = (item: Document, period: string): AssignmentBlurb => {
     }
 }
 
-const PageToBlurb = (item: Page, period: string): AssignmentBlurb => {
+const PageToBlurb = (item: Page, period: SgyPeriod | 'A'): AssignmentBlurb => {
     return {
         ...SgyItemToBlurb(item, period),
         description: item.body,
@@ -129,7 +129,7 @@ const PageToBlurb = (item: Page, period: string): AssignmentBlurb => {
     }
 }
 
-export const getMaterials = (sgyData: SgyData, selected: string, userData: UserData): AssignmentBlurb[] => {
+export const getMaterials = (sgyData: SgyData, selected: SgyPeriod | 'A', userData: UserData): AssignmentBlurb[] => {
     
     if(selected === 'A') {
         const materials:AssignmentBlurb[] = [];
@@ -142,7 +142,7 @@ export const getMaterials = (sgyData: SgyData, selected: string, userData: UserD
         return materials
     }
 
-    const selectedCourse = sgyData[selected];
+    const selectedCourse = sgyData[selected]!;
     
     const materials:AssignmentBlurb[] = [];
     for (const item of selectedCourse.assignments) materials.push(AssignmentToBlurb(item, selected));
@@ -154,7 +154,7 @@ export const getMaterials = (sgyData: SgyData, selected: string, userData: UserD
 }
 
 // Gets all your upcoming and overdue stuff
-export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: UserData, time: moment.Moment) => {
+export const getUpcomingInfo = (sgyData: SgyData, selected: SgyPeriod|'A', userData: UserData, time: moment.Moment) => {
     if(!userData.sgy) throw 'User not authenticated in schoology!';
 
     if (selected === 'A') {
@@ -183,7 +183,7 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: Us
     }
 
     // Select the course
-    const selectedCourse = sgyData[selected];
+    const selectedCourse = sgyData[selected]!;
     const selectedCourseGrades = findGrades(sgyData, selected); // find the grades
 
     const upcoming: AssignmentBlurb[] = [];
@@ -257,8 +257,8 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: string, userData: Us
 }
 
 // Find your grade objects
-export const findGrades = (sgyData: SgyData, selected: string):SectionGrade|null => {
-    const selectedCourse = sgyData[selected];
+export const findGrades = (sgyData: SgyData, selected: SgyPeriod):SectionGrade|null => {
+    const selectedCourse = sgyData[selected]!;
     // Attempt to match the id of the selected course to the id in the course grades
     const matchID = sgyData.grades.find(sec => sec.section_id === selectedCourse.info.id);
     if(matchID) return matchID;
