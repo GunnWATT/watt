@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import {Routes, Route, Link, useMatch, useResolvedPath} from 'react-router-dom';
+import {Container} from 'reactstrap';
 
 // Firebase
 import { Functions, httpsCallable } from 'firebase/functions';
@@ -22,6 +23,7 @@ import SgyDataContext, { SgyDataProvider } from '../contexts/SgyDataContext';
 // Utilities
 import { parsePeriodColor } from '../components/schedule/Periods';
 import { useScreenType } from '../hooks/useScreenType';
+
 
 export const fetchSgyMaterials = (async (functions: Functions) => {
     const fetchMaterials = httpsCallable(functions, 'sgyfetch-fetchMaterials');
@@ -86,12 +88,16 @@ const ClassesSidebarItem = (props:{collapsed:boolean, name: string, color:string
     const {collapsed,name,color,period,onClick} = props;
 
     const screenType = useScreenType();
-    if(collapsed) {
-        return <div style={{ backgroundColor: color }} 
-            className={"classes-collapsed-sidebar-item " + screenType}
-            onClick={onClick}>
+    if (collapsed) {
+        return (
+            <div
+                style={{ backgroundColor: color }}
+                className={"classes-collapsed-sidebar-item " + screenType}
+                onClick={onClick}
+            >
                 {period}
-        </div>
+            </div>
+        );
     }
 
     return null;
@@ -120,10 +126,12 @@ function ClassesHeader(props: {selected: string}) {
 
     const {name, color} = classInfo!; // lol this is fine
 
-    return <div className="classes-header">
-        <div className="classes-header-bubble" style={{backgroundColor: color}} />
-        <div className="classes-header-text">{name}</div>
-    </div>
+    return (
+        <Container className="classes-header">
+            <div className="classes-header-bubble" style={{backgroundColor: color}} />
+            <h1 className="classes-header-text">{name}</h1>
+        </Container>
+    )
 }
 
 function ClassesNavBarItem(props: {text: string, to: string}) {
@@ -137,16 +145,6 @@ function ClassesNavBarItem(props: {text: string, to: string}) {
             <Link to={to}>
                 {text}
             </Link>
-        </div>
-    )
-}
-
-const ClassesNavBar = () => {
-    return (
-        <div className="classes-navbar">
-            <ClassesNavBarItem text="Dashboard" to="." />
-            <ClassesNavBarItem text="Upcoming" to="upcoming" />
-            <ClassesNavBarItem text="Materials" to="materials" />
         </div>
     )
 }
@@ -197,35 +195,34 @@ export default function Classes() {
         const lsSgyData = JSON.parse(localStorage.getItem('sgy-data') ?? 'null');
 
         let needToFetch = false;
-        if(!isNaN(lsLastFetched)) {
-            setLastFetched( lsLastFetched );
+        if (!isNaN(lsLastFetched)) {
+            setLastFetched(lsLastFetched);
         } else {
             needToFetch = true;
         }
 
-        if(lsSgyData == null){
+        if (lsSgyData == null){
             needToFetch = true;
         }
 
         setSgyData(lsSgyData);
 
-        if(needToFetch && auth.currentUser) {
+        if (needToFetch && auth.currentUser) {
             updateSgy();
         }
     }, [auth.currentUser]);
 
     // preferably this would trigger every 15 minutes
+    // TODO: can perhaps use intervals for this?
     useEffect(() => {
         if (auth.currentUser && userData.options.sgy) {
             // Fetching Schoology stuff
-            if(!lastFetched) return; // if lastFetched doesn't exist, it means the other useEffect hasn't run yet
-            if(fetching) return; // if fetching already, we don't need to fetch
-            const diff = Date.now() - lastFetched;
+            if (!lastFetched) return; // if lastFetched doesn't exist, it means the other useEffect hasn't run yet
+            if (fetching) return; // if fetching already, we don't need to fetch
 
-            if (diff > 1000 * 60 * 15) // 15 minutes
-            {
-                updateSgy();
-            }
+            // If diff > 15 minutes, update schoology
+            const diff = Date.now() - lastFetched;
+            if (diff > 1000 * 60 * 15) updateSgy();
         }
     }, [auth.currentUser, time]);
 
@@ -236,7 +233,8 @@ export default function Classes() {
     if (!auth.currentUser) return <ClassesNotSignedIn />
     if (!userData.options.sgy) return <ClassesSgyNotConnected />
     if (sgyData == null) return <ClassesFetching />
-    if (!userData.sgy?.custom || !userData.sgy?.custom.assignments || !userData.sgy?.custom.labels || !userData.sgy?.custom.modified) return <Loading /> // make sure user has all of these things :D, if not, usually gets corrected by FirebaseUserDataProvider
+    if (!userData.sgy?.custom || !userData.sgy?.custom.assignments || !userData.sgy?.custom.labels || !userData.sgy?.custom.modified)
+        return <Loading /> // make sure user has all of these things :D, if not, usually gets corrected by FirebaseUserDataProvider
 
     return (
         <SgyDataProvider value={{sgyData, fetching, lastFetched, selected, updateSgy}}>
@@ -244,13 +242,19 @@ export default function Classes() {
                 <RedBackground />
                 <div className={"classes-content " + screenType}>
                     <ClassesHeader selected={selected} />
-                    <ClassesNavBar />
+                    <Container className="classes-navbar">
+                        <ClassesNavBarItem text="Dashboard" to="." />
+                        <ClassesNavBarItem text="Upcoming" to="upcoming" />
+                        <ClassesNavBarItem text="Materials" to="materials" />
+                    </Container>
 
-                    <Routes>
-                        <Route path="/" element={<Dashboard />} />
-                        <Route path="/upcoming" element={<Upcoming /> } />
-                        <Route path="/materials" element={<Materials />} />
-                    </Routes>
+                    <Container className="classes-page">
+                        <Routes>
+                            <Route path="/" element={<Dashboard />} />
+                            <Route path="/upcoming" element={<Upcoming /> } />
+                            <Route path="/materials" element={<Materials />} />
+                        </Routes>
+                    </Container>
                 </div>
             <ClassesSidebar setSelected={setSelected} />
             </div>
