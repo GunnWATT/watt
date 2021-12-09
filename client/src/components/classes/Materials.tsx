@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import UpcomingPalette from './UpcomingPalette';
+import ClassFilter from './ClassFilter';
 
 // Contexts
 import UserDataContext, { SgyPeriod, SgyData } from '../../contexts/UserDataContext';
@@ -10,8 +10,6 @@ import { findClassesList } from '../../views/Classes';
 import { parsePeriodColor } from '../schedule/Periods';
 import { similarity } from './functions/GeneralHelperFunctions';
 import { AssignmentBlurb, getMaterials, parseLabelColor } from './functions/SgyFunctions';
-
-
 
 type MaterialProps = { item: AssignmentBlurb, sgyData: SgyData };
 function Material(props: MaterialProps) {
@@ -39,7 +37,6 @@ function Material(props: MaterialProps) {
 }
 
 export default function Materials() {
-    
     const sgyInfo = useContext(SgyDataContext);
     const { sgyData, selected } = sgyInfo;
 
@@ -67,7 +64,7 @@ export default function Materials() {
         <div className="materials">
             <input type="text" placeholder="Search" defaultValue={query} className="upcoming-search-bar" onChange={(event) => setQuery(event.target.value)} />
             <div className="materials-filters">
-                <UpcomingPalette {...{ classFilter, setClassFilter, classes }} />
+                <ClassFilter {...{ classFilter, setClassFilter, classes }} />
             </div>
             {filteredMaterials && filteredMaterials.map((item) => <Material key={item.id} item={item} sgyData={sgyData} />)}
         </div>

@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 // Components
 import DashboardBlurb from './Blurb';
 import DashboardQuickInfo from './QuickInfo';
-import DashGrades from './DashGrades';
+import Grades from './Grades';
 import FetchFooter from './FetchFooter';
 
 // Contexts
@@ -14,6 +14,8 @@ import SgyDataContext from '../../contexts/SgyDataContext';
 // Utilities
 import { useScreenType } from '../../hooks/useScreenType';
 import { AssignmentBlurb, getAllGrades, getUpcomingInfo } from './functions/SgyFunctions';
+
+// Moment
 import moment from 'moment';
 
 export default function Dashboard() {
@@ -57,7 +59,7 @@ export default function Dashboard() {
                     <DashboardQuickInfo selected={selected} />
                 </div>
 
-                {allGrades && <DashGrades selected={selected} allGrades={allGrades} />}
+                {allGrades && <Grades selected={selected} allGrades={allGrades} />}
 
                 <FetchFooter />
             </div>

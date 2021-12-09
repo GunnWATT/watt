@@ -33,8 +33,8 @@ function UpcomingAssignmentTag(props: UpcomingAssignmentTagProps) {
 // the individual assignment
 // TODO: instead of taking the assignment as `props.assignment`, would it be neater to take it spread out?
 // ie. `props.name`, `props.link`, `props.timestamp`, with assignment passed in as `{...assignment}`
-type UpcomingAssignmentProps = { assignment: AssignmentBlurb } & ActiveDayState;
-function UpcomingAssignment(props: UpcomingAssignmentProps) {
+type AssignmentProps = { assignment: AssignmentBlurb } & ActiveDayState;
+function Assignment(props: AssignmentProps) {
     const { assignment, activeDay, setActiveDay } = props;
 
     const userData = useContext(UserDataContext);
@@ -94,21 +94,21 @@ function UpcomingAssignment(props: UpcomingAssignmentProps) {
 }
 
 // grouped by each day
-type UpcomingAssignmentDayProps = { day: moment.Moment, upcoming: AssignmentBlurb[] }
-function UpcomingAssignmentDay(props: UpcomingAssignmentDayProps & ActiveDayState ) {
+type AssignmentDayProps = { day: moment.Moment, upcoming: AssignmentBlurb[] }
+function AssignmentDay(props: AssignmentDayProps & ActiveDayState ) {
     const { day, upcoming, ...activeDayState } = props;
     return <>
         <div className="upcoming-day-header">
             {day.format('dddd, MMMM Do')} • In {day.diff(moment(), 'days') + 1} day{day.diff(moment(), 'days') ? 's' : ''}
         </div>
 
-        {upcoming.map((assigment) => <UpcomingAssignment key={assigment.link} assignment={assigment} {...activeDayState} />)}
+        {upcoming.map((assigment) => <Assignment key={assigment.link} assignment={assigment} {...activeDayState} />)}
     </>
 }
 
 // all assignments
-type UpcomingAssignmentsProps = { upcoming: AssignmentBlurb[] };
-export default function UpcomingAssignments(props: UpcomingAssignmentsProps & ActiveDayState) {
+type AssignmentsProps = { upcoming: AssignmentBlurb[] };
+export default function Assignments(props: AssignmentsProps & ActiveDayState) {
     const { upcoming, ...activeDayState } = props;
 
     // We map days (like "11-29-2021") to all the assignments that are due on that day
@@ -134,7 +134,7 @@ export default function UpcomingAssignments(props: UpcomingAssignmentsProps & Ac
     return (
         <div className="upcoming-assignments">
             {days.map(assignment =>
-                <UpcomingAssignmentDay
+                <AssignmentDay
                     key={assignment.day.format('MM-DD-YYYY')}
                     {...assignment}
                     {...activeDayState}

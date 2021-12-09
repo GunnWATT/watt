@@ -4,9 +4,9 @@ import moment from 'moment';
 import { useScreenType } from '../../hooks/useScreenType';
 
 // Components
-import UpcomingAssignments from './UpcomingAssignments';
-import UpcomingFullCalendar from './UpcomingFullCalendar';
-import UpcomingPalette from './UpcomingPalette';
+import Assignments from './Assignments';
+import SiddebarCalendar from './SidebarCalendar';
+import ClassFilter from './ClassFilter';
 import { DateRangePicker } from '../schedule/DateSelector';
 
 // Contexts
@@ -91,16 +91,16 @@ export default function Upcoming() {
 
                     {filtersOpen && (
                         <div className={"upcoming-filters " + screenType}>
-                            {selected === 'A' && <UpcomingPalette classes={classes} classFilter={classFilter} setClassFilter={setClassFilter} />}
+                            {selected === 'A' && <ClassFilter classes={classes} classFilter={classFilter} setClassFilter={setClassFilter} />}
                             {(screenType === 'smallScreen' || screenType === 'phone') && <DateRangePicker calStart={moment().startOf('day')} start={start} setStart={setStart} end={end} setEnd={setEnd} />}
                             <div className="upcoming-completed-filter" onClick={() => setIncludeCompleted(!includeCompleted)}>{includeCompleted ? '✓' : ''}</div>
                         </div>
                     )}
                 </div>
 
-                {upcomingFiltered && <UpcomingAssignments upcoming={upcomingFiltered} activeDay={activeDay} setActiveDay={setActiveDay} />}
+                {upcomingFiltered && <Assignments upcoming={upcomingFiltered} activeDay={activeDay} setActiveDay={setActiveDay} />}
             </div>
-            {screenType !== 'smallScreen' && screenType !== 'phone' && <UpcomingFullCalendar activeDay={activeDay} setActiveDay={setActiveDay} start={start} setStart={setStart} end={end} setEnd={setEnd} />}
+            {screenType !== 'smallScreen' && screenType !== 'phone' && <SiddebarCalendar activeDay={activeDay} setActiveDay={setActiveDay} start={start} setStart={setStart} end={end} setEnd={setEnd} />}
         </div>
     );
 }

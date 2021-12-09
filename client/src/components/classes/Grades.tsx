@@ -1,11 +1,14 @@
 import { useState, useContext } from 'react';
+
+// Context
 import UserDataContext from '../../contexts/UserDataContext';
+
+// Utilities
 import { findClassesList } from '../../views/Classes';
 import { classifyGrade } from './functions/GeneralHelperFunctions';
 
-
-type DashGradesProps = { selected: string, allGrades: { [key: string]: number } };
-export default function DashGrades(props: DashGradesProps) {
+type GradesProp = { selected: string, allGrades: { [key: string]: number } };
+export default function Grades(props: GradesProp) {
     const { allGrades, selected } = props;
 
     const [revealed, setRevealed] = useState(false);

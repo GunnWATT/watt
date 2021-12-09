@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import moment from 'moment';
 import { GenericCalendar } from '../schedule/DateSelector';
-import { ActiveDayState } from './UpcomingAssignments';
+import { ActiveDayState } from './Assignments';
 import { DateRangeProps } from '../schedule/DateSelector';
 
 
 // Side calendar for large screens on Upcoming
 // Doubles as a date range filter for the assignments, and for a quick visualization of due dates
-export default function UpcomingFullCalendar(props: DateRangeProps & ActiveDayState) {
+export default function SiddebarCalendar(props: DateRangeProps & ActiveDayState) {
     const { start, end, setStart, setEnd, activeDay } = props;
     const endInclusive = end.clone().subtract(1, 'days');
 

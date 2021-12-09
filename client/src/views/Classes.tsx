@@ -6,9 +6,6 @@ import { Functions, httpsCallable } from 'firebase/functions';
 import { useAuth, useFunctions } from 'reactfire';
 import { FirebaseError } from '@firebase/util';
 
-// Moment
-import { Moment } from 'moment';
-
 // Components
 import Dashboard from '../components/classes/Dashboard';
 import Upcoming from '../components/classes/Upcoming';
@@ -25,8 +22,6 @@ import SgyDataContext, { SgyDataProvider } from '../contexts/SgyDataContext';
 // Utilities
 import { parsePeriodColor } from '../components/schedule/Periods';
 import { useScreenType } from '../hooks/useScreenType';
-
-
 
 export const fetchSgyMaterials = (async (functions: Functions) => {
     const fetchMaterials = httpsCallable(functions, 'sgyfetch-fetchMaterials');
@@ -102,7 +97,6 @@ const ClassesSidebarItem = (props:{collapsed:boolean, name: string, color:string
     return null;
 }
 
-// TODO: this can 200% be put in Classes
 function ClassesSidebar(props: {setSelected: (selected:SgyPeriod|'A') => void}) {
     const {setSelected} = props;
     const userData = useContext(UserDataContext);
@@ -119,7 +113,6 @@ function ClassesSidebar(props: {setSelected: (selected:SgyPeriod|'A') => void}) 
     </div>
 }
 
-// TODO: this can definitely be put in Classes and be fine
 function ClassesHeader(props: {selected: string}) {
     const {selected} = props;
     const userData = useContext(UserDataContext);
@@ -133,7 +126,6 @@ function ClassesHeader(props: {selected: string}) {
     </div>
 }
 
-// TODO: perhaps move this to another component
 function ClassesNavBarItem(props: {text: string, to: string}) {
     const {text, to} = props;
 

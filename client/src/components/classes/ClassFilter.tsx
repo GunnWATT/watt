@@ -2,7 +2,7 @@ import Picker from '../layout/Picker';
 import { useScreenType } from '../../hooks/useScreenType';
 
 
-export type PaletteProps = {
+export type ClassFilterProps = {
     classFilter: boolean[];
     setClassFilter: (filter: boolean[]) => void;
     classes: { name: string; color: string; period: string; }[];
@@ -10,7 +10,7 @@ export type PaletteProps = {
 
 // TODO: can we merge this with UpcomingPalette to maintain similarity with PriorityPicker?
 // We wouldn't have to spread props downwards if we do; is the merged component too complex?
-function UpcomingPalettePicker(props: PaletteProps & { hidden: boolean }) {
+function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
     const { classFilter, setClassFilter, classes, hidden } = props;
     const screenType = useScreenType();
 
@@ -49,7 +49,7 @@ function UpcomingPalettePicker(props: PaletteProps & { hidden: boolean }) {
     );
 }
 
-export default function UpcomingPalette(props: PaletteProps) {
+export default function ClassFilter(props: ClassFilterProps) {
     const { classFilter, setClassFilter, classes } = props;
 
     return (
@@ -70,7 +70,7 @@ export default function UpcomingPalette(props: PaletteProps) {
                     )}
                 </div>
 
-                <UpcomingPalettePicker hidden={!open} {...props} />
+                <ClassFilterPicker hidden={!open} {...props} />
             </>}
         </Picker>
     );
