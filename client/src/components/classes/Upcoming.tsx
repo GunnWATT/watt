@@ -11,7 +11,8 @@ import { DateRangePicker } from '../schedule/DateSelector';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
-import UserDataContext, { SgyPeriod, SgyData } from '../../contexts/UserDataContext';
+import UserDataContext from '../../contexts/UserDataContext';
+import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
 import { findClassesList } from '../../views/Classes';
@@ -21,9 +22,10 @@ import { getUpcomingInfo } from './functions/SgyFunctions';
 import { similarity } from './functions/GeneralHelperFunctions';
 
 
-type UpcomingProps = { sgyData: SgyData, selected: SgyPeriod|'A' };
-export default function Upcoming(props: UpcomingProps) {
-    const { sgyData, selected } = props;
+export default function Upcoming() {
+    
+    const sgyInfo = useContext(SgyDataContext);
+    const { sgyData, selected } = sgyInfo;
     const time = useContext(CurrentTimeContext);
     const screenType = useScreenType();
 

@@ -3,12 +3,14 @@ import UpcomingPalette from './UpcomingPalette';
 
 // Contexts
 import UserDataContext, { SgyPeriod, SgyData } from '../../contexts/UserDataContext';
+import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
 import { findClassesList } from '../../views/Classes';
 import { parsePeriodColor } from '../schedule/Periods';
 import { similarity } from './functions/GeneralHelperFunctions';
 import { AssignmentBlurb, getMaterials, parseLabelColor } from './functions/SgyFunctions';
+
 
 
 type MaterialProps = { item: AssignmentBlurb, sgyData: SgyData };
@@ -36,9 +38,10 @@ function Material(props: MaterialProps) {
     );
 }
 
-type MaterialsProps = { sgyData: SgyData, selected: SgyPeriod|'A' };
-export default function Materials(props: MaterialsProps) {
-    const {sgyData, selected} = props;
+export default function Materials() {
+    
+    const sgyInfo = useContext(SgyDataContext);
+    const { sgyData, selected } = sgyInfo;
 
     // Userdata handling
     const userData = useContext(UserDataContext);

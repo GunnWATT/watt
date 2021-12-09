@@ -7,19 +7,19 @@ import DashGrades from './DashGrades';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
-import UserDataContext, { SgyData, SgyPeriodData, UserData } from '../../contexts/UserDataContext';
+import UserDataContext from '../../contexts/UserDataContext';
+import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
 import { useScreenType } from '../../hooks/useScreenType';
 import { AssignmentBlurb, getAllGrades, getUpcomingInfo } from './functions/SgyFunctions';
-import SgyDataContext from '../../contexts/SgyDataContext';
+
 
 export default function Dashboard() {
 
     const sgyInfo = useContext(SgyDataContext);
-
     const {sgyData, selected} = sgyInfo;
-    
+
     const time = useContext(CurrentTimeContext);
     const screenType = useScreenType();
 

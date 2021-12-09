@@ -229,8 +229,8 @@ export default function Classes() {
 
                     <Routes>
                         <Route path="/" element={<Dashboard />} />
-                        <Route path="/upcoming" element={<Upcoming selected={selected} sgyData={sgyData} /> } />
-                        <Route path="/materials" element={<Materials selected={selected} sgyData={sgyData} />} />
+                        <Route path="/upcoming" element={<Upcoming /> } />
+                        <Route path="/materials" element={<Materials />} />
                     </Routes>
                 </div>
             <ClassesSidebar setSelected={setSelected} />
