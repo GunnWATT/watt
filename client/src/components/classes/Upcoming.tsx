@@ -94,7 +94,6 @@ export default function Upcoming() {
                         <div className={"upcoming-filters " + screenType}>
                             {selected === 'A' && <ClassFilter classes={classes} classFilter={classFilter} setClassFilter={setClassFilter} />}
                             {(screenType === 'smallScreen' || screenType === 'phone') && <DateRangePicker calStart={moment().startOf('day')} start={start} setStart={setStart} end={end} setEnd={setEnd} />}
-                            {/* <div className="upcoming-completed-filter" onClick={() => setIncludeCompleted(!includeCompleted)}>{includeCompleted ? '✓' : ''}</div> */}
                             {
                                 !includeCompleted ?
                                     <Square size={27} style={{ cursor: 'pointer', flexShrink: 0 }} onClick={() => setIncludeCompleted(!includeCompleted)} /> :

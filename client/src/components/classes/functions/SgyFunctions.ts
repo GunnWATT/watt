@@ -1,7 +1,7 @@
 import { Auth } from 'firebase/auth';
 import { Firestore } from 'firebase/firestore';
 import moment from "moment";
-import { SgyPeriod, SgyAssignmentModified, SgyData, UserData } from "../../../contexts/UserDataContext";
+import { SgyPeriod, SgyAssignmentModified, SgyData, UserData, CustomAssignment } from "../../../contexts/UserDataContext";
 import { updateUserData } from "../../../firebase/updateUserData";
 import { Assignment, Event, Document, Page, SectionGrade } from "../../../schoology/SgyTypes";
 import { findClassesList } from "../../../views/Classes";
@@ -49,12 +49,38 @@ export const parsePriority = (priority: number, userData: UserData) => {
     else return periodColors[priority];
 }
 
-export const modifyAssignment = async (modifiedData: SgyAssignmentModified, userData: UserData, auth: Auth, firestore: Firestore) => {
+export const updateAssignment = async (data: AssignmentBlurb, userData: UserData, auth: Auth, firestore: Firestore) => {
+    if(data.id.startsWith('W')) await setCustomAssignment(data, userData, auth, firestore);
+    else await modifyAssignment(data, userData, auth, firestore);
+}
+
+const setCustomAssignment = async (data: AssignmentBlurb, userData: UserData, auth: Auth, firestore: Firestore) => {
     if (!userData.sgy) throw 'User not authenticated in schoology!';
+
+    const dataTimestampNumber = {
+        ...data,
+        timestamp: data.timestamp?.valueOf() ?? null
+    }
+
+    const currentCustom = userData.sgy!.custom.assignments;
+    let newCustom: SgyAssignmentModified[];
+    newCustom = currentCustom.filter(assignment => assignment.id !== data.id);
+    newCustom.push(dataTimestampNumber);
+    await updateUserData("sgy.custom.assignments", newCustom, auth, firestore);
+}
+
+const modifyAssignment = async (modifiedData: AssignmentBlurb, userData: UserData, auth: Auth, firestore: Firestore) => {
+    if (!userData.sgy) throw 'User not authenticated in schoology!';
+
+    const dataTimestampNumber = {
+        ...modifiedData,
+        timestamp: modifiedData.timestamp?.valueOf() ?? null
+    }
+
     const currentModified = userData.sgy!.custom.modified;
     let newModified: SgyAssignmentModified[];
     newModified = currentModified.filter(modified => modified.id !== modifiedData.id);
-    newModified.push(modifiedData);
+    newModified.push(dataTimestampNumber);
     await updateUserData("sgy.custom.modified", newModified, auth, firestore);
 }
 
@@ -243,7 +269,8 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: SgyPeriod|'A', userD
             }
             upcoming[i] = {
                 ...upcoming[i],
-                ...matchWithMoment
+                ...matchWithMoment,
+                timestamp: upcoming[i].timestamp ?? matchWithMoment.timestamp ?? null
             }
         }
     }

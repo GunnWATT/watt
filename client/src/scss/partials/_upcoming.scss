@@ -20,7 +20,6 @@
 
 .upcoming {
   flex: 1;
-  // background-color: #00000055;
   margin: 15px;
 }
 
@@ -56,18 +55,6 @@
   width: 100%;
   font-size: 1.2rem;
 }
-
-// .upcoming-completed-filter {
-//     width: 25px;
-//     height: 25px;
-//     border: 2px dashed var(--primary);
-//     margin-left: auto;
-//     cursor: pointer;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     font-size: 1.3rem;
-// }
 
 .upcoming-palette {
   display: flex;
@@ -178,20 +165,102 @@ $anim-length: .8s;
     padding: 15px 25px;
     border-radius: 5px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 
-    .upcoming-assignment-tags {
+    .upcoming-assignment-content {
+      flex-grow: 1;
+      padding: 15px 25px;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+
+      .upcoming-assignment-name {
+        font-size: 1.3rem;
+      }
+
+      .upcoming-assignment-desc {
+        font-size: 0.8rem;
+        margin-top: 10px;
+      }
+
+      font-size: 0.7rem;
+      background-color: var(--bg-secondary);
+      padding: 2px 5px;
+      border-radius: 5px;
+      margin-right: 5px;
+    }
+  }
+
+  .upcoming-assignment-name {
+    font-size: 1.3rem;
+  }
+
+  .upcoming-assignment-icons {
+    width: 85px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 15px 15px 15px 0;
+
+    &-top {
+      display: flex;
+      flex-direction: row;
+
+      .link-icon {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        z-index: 1;
+        position: relative;
+
+        &-dark {
+          filter: invert(1);
+        }
+      }
+    }
+
+    &-bottom {
+      display: flex;
+      flex-direction: row;
+      margin-top: auto;
+
+      .priority {
+        margin-left: auto;
+      }
+    }
+
+    .upcoming-assignment-desc {
+      font-size: 0.8rem;
+      margin-top: 10px;
+    }
+
+    .assignment-due {
+      display: flex;
+      flex-direction: row;
+      margin-top: 10px;
+
+      > div {
+        padding: 2px 5px;
+        background-color: var(--bg-secondary);
+        font-size: 0.8rem;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+    }
+
+    .assignment-tags {
       display: flex;
       flex-wrap: wrap;
       flex-direction: row;
       margin-bottom: 5px;
 
-      .upcoming-assignment-tag {
+      .assignment-tag {
         display: flex;
         flex-direction: row;
         align-items: center;
 
-        .upcoming-assignment-dot {
+        .assignment-dot {
           flex-shrink: 0;
           width: 10px;
           height: 10px;
@@ -207,25 +276,10 @@ $anim-length: .8s;
       }
     }
 
-    .upcoming-assignment-name {
-      font-size: 1.3rem;
-    }
+    .priority {
+      position: relative;
 
-    .upcoming-assignment-desc {
-      font-size: 0.8rem;
-      margin-top: 10px;
-    }
-
-    .upcoming-assignment-due {
-      display: flex;
-      flex-direction: row;
-      margin-top: 10px;
-
-      > div {
-        padding: 2px 5px;
-        background-color: var(--bg-secondary);
-        font-size: 0.8rem;
-        border-radius: 3px;
+      div:first-child {
         cursor: pointer;
       }
     }
@@ -310,6 +364,23 @@ $anim-length: .8s;
         @include dot(30px);
         margin-right: 10px;
       }
+    }
+  }
+}
+
+.item-modal .modal-content {
+  background-color: var(--bg-primary);
+
+  .item-modal-icons {
+    display: flex;
+    flex-direction: row;
+
+    .link {
+      margin-left: 5px;
+    }
+
+    .priority {
+      margin-left: auto;
     }
   }
 }
