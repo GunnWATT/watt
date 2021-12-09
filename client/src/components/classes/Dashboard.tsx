@@ -13,15 +13,17 @@ import SgyDataContext from '../../contexts/SgyDataContext';
 // Utilities
 import { useScreenType } from '../../hooks/useScreenType';
 import { AssignmentBlurb, getAllGrades, getUpcomingInfo } from './functions/SgyFunctions';
-
+import moment from 'moment';
 
 export default function Dashboard() {
 
     const sgyInfo = useContext(SgyDataContext);
-    const {sgyData, selected} = sgyInfo;
+    const {sgyData, selected, fetching, lastFetched} = sgyInfo;
 
     const time = useContext(CurrentTimeContext);
     const screenType = useScreenType();
+
+    const lastFetchedTime = lastFetched != null ? moment(lastFetched) : null;
 
     const [upcoming, setUpcoming] = useState < AssignmentBlurb[] | null > (null);
     const [overdue, setOverdue] = useState<AssignmentBlurb[] | null> (null);
@@ -55,6 +57,9 @@ export default function Dashboard() {
                 </div>
 
                 {allGrades && <DashGrades selected={selected} allGrades={allGrades} />}
+
+                {/* {lastFetchedTime?.format('MM/DD/YYYY hh:mm:ss A')} <br /> */}
+                {/* {fetching ? 'fetching...' : 'nope!'} */}
             </div>
         </div>
     );

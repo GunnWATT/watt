@@ -1,5 +1,9 @@
 @import '../mixins/content-box';
 
+.spinner-border {
+    flex-shrink: 0;
+}
+
 .classes-error-burrito {
     width: 100%;
     height: 90vh;

@@ -163,10 +163,10 @@ export default function Classes() {
 
         setFetching(true);
 
-        const sgyData = await fetchSgyMaterials(functions);
+        const newSgyData = await fetchSgyMaterials(functions);
 
         // @ts-ignore
-        setSgyData(sgyData);
+        setSgyData(newSgyData);
 
         setLastFetched(Date.now());
         setFetching(false);
@@ -190,10 +190,10 @@ export default function Classes() {
 
         setSgyData(lsSgyData);
 
-        if(needToFetch) {
+        if(needToFetch && auth.currentUser) {
             updateSgy();
         }
-    }, []);
+    }, [auth.currentUser]);
 
     // preferably this would trigger every 15 minutes
     useEffect(() => {
