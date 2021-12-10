@@ -124,7 +124,7 @@
 }
 
 @mixin classes-navbar-item() {
-  padding: 5px 8px;
+  padding: 10px 12px;
   border-radius: 5px;
   font-size: 1.2rem;
   display: flex;
@@ -133,6 +133,7 @@
   cursor: pointer;
   margin-right: 10px;
   margin-bottom: 15px;
+  transition: all ease-in-out 100ms;
 
   a {
     color: var(--primary);
@@ -140,12 +141,17 @@
   }
 }
 
+// TODO: this pattern of using mixins and then `-selected` isn't great
+// Should do `.classes-navbar-item.selected` instead and nest styles without mixins for less build output and
+// repeated styling
 .classes-navbar-item {
   @include classes-navbar-item();
-  border: 1px solid var(--primary);
+  background-color: var(--content-secondary);
+  //border: 1px solid var(--primary);
 }
 
 .classes-navbar-item-selected {
   @include classes-navbar-item();
-  background-color: var(--bg-primary);
+  background-color: var(--content-primary);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
