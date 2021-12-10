@@ -22,6 +22,12 @@ export const updateFirebaseUserData = async (field: string, newValue: any, auth:
     }
 }
 
+export const bulkUpdateFirebaseUserData = async (fields: {[key:string]:any}, auth: Auth, firestore: Firestore) => {
+    if (auth.currentUser) {
+        await updateDoc(doc(firestore, 'users', auth.currentUser.uid), fields);
+    }
+}
+
 export const updateLocalStorageUserData = (field: string, newValue: any) => {
     // If field is '', update the entire object
     if (field === '')

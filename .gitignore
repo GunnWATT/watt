@@ -9,7 +9,7 @@ client/build
 /functions/credentials
 
 # Emulators Config
-.runtimeconfig.json
+functions/.runtimeconfig.json
 
 # misc
 *.DS_Store

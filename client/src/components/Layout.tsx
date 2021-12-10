@@ -96,15 +96,7 @@ export default function Layout(props: LayoutProps) {
             {content}
 
             {/* Schoology auth success modal */}
-            <Modal isOpen={sgyModal} toggle={toggle}>
-                <ModalHeader toggle={toggle}>You're almost set! Just one last step remaining.</ModalHeader>
-                <ModalBody>
-                    <SgyInitResults />
-                </ModalBody>
-                <ModalFooter>
-
-                </ModalFooter>
-            </Modal>
+            <SgyInitResults />
         </>
     );
 }

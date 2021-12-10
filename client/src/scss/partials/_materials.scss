@@ -1,0 +1,49 @@
+@import '../mixins/dot';
+
+.materials {
+  &-filters {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+  }
+}
+
+.material {
+  display: flex;
+  flex-direction: row;
+  padding: 8px 12px;
+  margin-top: 5px;
+  background-color: var(--bg-primary);
+  align-items: center;
+  border-radius: 0.25rem;
+
+  .material-name {
+    font-size: 1.1rem;
+    word-wrap: break-word;
+    max-width: calc(100% - 50px);
+    margin-right: auto;
+  }
+
+  .material-date {
+    padding: 2px 7px;
+    background-color: var(--content-primary);
+    margin-right: 10px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+  }
+
+  .material-labels {
+    display: flex;
+    flex-direction: row;
+
+    .material-label {
+      @include dot(22px);
+      margin-right: 10px;
+    }
+  }
+
+  .material-class {
+    @include dot(30px);
+    // margin-left: auto;
+  }
+}

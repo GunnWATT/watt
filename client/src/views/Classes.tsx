@@ -1,41 +1,293 @@
-import {Routes, Route} from 'react-router-dom';
-import {Nav, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import { useContext, useEffect, useState } from 'react';
+import {Routes, Route, Link, useMatch, useResolvedPath} from 'react-router-dom';
+import {Container} from 'reactstrap';
+
+// Firebase
+import { Functions, httpsCallable } from 'firebase/functions';
+import { useAuth, useFunctions } from 'reactfire';
+import { FirebaseError } from '@firebase/util';
 
 // Components
-import Header from '../components/layout/Header';
-import WIP from '../components/layout/WIP';
-import NavTab from '../components/layout/NavTab';
+import Dashboard from '../components/classes/Dashboard';
+import Upcoming from '../components/classes/Upcoming';
+import Materials from '../components/classes/Materials';
+import SgySignInBtn from '../components/firebase/SgySignInBtn';
+import Loading from '../components/layout/Loading';
+import RedBackground from '../components/layout/RedBackground';
 
+// Contexts
+import CurrentTimeContext from '../contexts/CurrentTimeContext';
+import UserDataContext, { SgyPeriod, SgyData, UserData } from '../contexts/UserDataContext';
+import SgyDataContext, { SgyDataProvider } from '../contexts/SgyDataContext';
+
+// Utilities
+import { parsePeriodColor } from '../components/schedule/Periods';
+import { useScreenType } from '../hooks/useScreenType';
+
+
+export const fetchSgyMaterials = (async (functions: Functions) => {
+    const fetchMaterials = httpsCallable(functions, 'sgyfetch-fetchMaterials');
+    const res = (await fetchMaterials());
+    localStorage.setItem('sgy-data', JSON.stringify(res.data));
+    localStorage.setItem('sgy-last-fetched', '' + Date.now());
+
+    return res.data;
+});
+
+// A wrapper that centers all the error messages
+const ClassesErrorBurrito = (props: { children?: React.ReactNode}) => {
+    return <> 
+        <div className="classes-error-burrito">
+            <div className="classes-error-content">
+                {props.children}
+            </div>
+        </div>
+    </>
+}
+
+const ClassesNotSignedIn = () => {
+    return (
+        <ClassesErrorBurrito>
+            <h2>You aren't signed in!</h2>
+            <p>Classes requires Schoology integration, which requires an account. Please sign in to continue.</p>
+        </ClassesErrorBurrito>
+    )
+}
+
+const ClassesSgyNotConnected = () => {
+    return (
+        <ClassesErrorBurrito>
+            <h2>Connect Schoology</h2>
+            <p>This section uses Schoology integration, which requires you to connect your Schoology account. Press the button below to continue.</p>
+            <div className='sgy-auth-button'>
+                <SgySignInBtn />
+            </div>
+        </ClassesErrorBurrito>
+    )
+}
+
+const ClassesFetching = () => {
+
+    const sgyInfo = useContext(SgyDataContext);
+    if(sgyInfo.fetching) {
+        return <ClassesErrorBurrito>
+            <Loading message={'Fetching materials. This can take up to a minute...'} />
+        </ClassesErrorBurrito>
+    } else {
+        return <ClassesErrorBurrito>
+            <h2>Something Went Wrong.</h2>
+            <p>Your user data is missing! Please click the button below to fetch materials. If this is a recurring problem, please submit an issue to Github.</p>
+            <div className='sgy-auth-button'>
+                <button onClick={sgyInfo.updateSgy}>Fetch Materials</button>
+            </div>
+        </ClassesErrorBurrito>
+    }
+}
+
+const ClassesSidebarItem = (props:{collapsed:boolean, name: string, color:string, period:string, onClick:()=>void}) => {
+    const {collapsed,name,color,period,onClick} = props;
+
+    const screenType = useScreenType();
+    if (collapsed) {
+        return (
+            <div
+                style={{ backgroundColor: color }}
+                className={"classes-collapsed-sidebar-item " + screenType}
+                onClick={onClick}
+            >
+                {period}
+            </div>
+        );
+    }
+
+    return null;
+}
+
+function ClassesSidebar(props: {setSelected: (selected:SgyPeriod|'A') => void}) {
+    const {setSelected} = props;
+    const userData = useContext(UserDataContext);
+
+    // collapsed?
+    const [collapsed, setCollapsed] = useState<boolean>(true);
+
+    const classes = findClassesList(userData);
+
+    const screenType = useScreenType();
+
+    return <div className={"classes-sidebar " + screenType}> 
+        {classes.map(({name,color,period}) => <ClassesSidebarItem key={period} name={name} color={color} period={period} collapsed={collapsed} onClick={() => setSelected(period)} />)}
+    </div>
+}
+
+function ClassesHeader(props: {selected: string}) {
+    const {selected} = props;
+    const userData = useContext(UserDataContext);
+    const classInfo = findClassesList(userData).find(({period}) => period === selected);
+
+    const {name, color} = classInfo!; // lol this is fine
+
+    return (
+        <Container className="classes-header">
+            <div className="classes-header-bubble" style={{backgroundColor: color}} />
+            <h1 className="classes-header-text">{name}</h1>
+        </Container>
+    )
+}
+
+function ClassesNavBarItem(props: {text: string, to: string}) {
+    const {text, to} = props;
+
+    const resolved = useResolvedPath(to);
+    const match = useMatch({ path: resolved.pathname, end: true });
+
+    return (
+        <div className={match ? "classes-navbar-item-selected" : "classes-navbar-item"}>
+            <Link to={to}>
+                {text}
+            </Link>
+        </div>
+    )
+}
 
 export default function Classes() {
-    return (
-        <>
-            <Header
-                heading="Grades"
-                nav={
-                    <Nav fill tabs>
-                        <NavTab to="." name="Dashboard"/>
-                        <NavTab to="courses" name="Courses" />
-                    </Nav>
-                }
-            >
-                <Routes>
-                    <Route path="/" element={<WIP />} />
-                    <Route path="/courses" element={<WIP />} />
-                </Routes>
-            </Header>
+    const functions = useFunctions();
+    const auth = useAuth();
 
-            {/* Modal for not signed in users */}
-            {/*<Modal isOpen={true} centered>
-                <ModalHeader>You're not signed in!</ModalHeader>
-                <ModalBody>
-                    WATT needs your Schoology to be linked in order to get and display your grades and assignments.{' '}
-                    To link your Schoology, go to _____.
-                </ModalBody>
-                <ModalFooter>
-                    <Link to="/">I understand, go home</Link>
-                </ModalFooter>
-            </Modal>*/}
-        </>
-    );
+    const userData = useContext(UserDataContext);
+    const time = useContext(CurrentTimeContext);
+    const screenType = useScreenType();
+
+    const [fetching, setFetching] = useState(false);
+    const [lastFetched, setLastFetched] = useState<null | number>(null);
+    // Raw Schoology Data
+    const [sgyData, setSgyData] = useState<null | SgyData>(null);
+
+    const updateSgy = async () => {
+
+        if(lastFetched && Date.now() - lastFetched < 6 * 1000) // if it's been less than 5 seconds since the last fetch
+        {
+            // this is a problem!!!
+            console.error('Attempted to fetch within 5 seconds of previous fetch!')
+            throw 'Cannot fetch within 5 seconds of previous fetch!!';
+        }
+
+        if(fetching) {
+            console.error('Attempted to fetch but already fetching!')
+            throw 'Already fetching!!!';
+        }
+
+        setFetching(true);
+
+        const newSgyData = await fetchSgyMaterials(functions).catch((err: FirebaseError) => {
+            console.error(err);
+        });
+
+        // @ts-ignore
+        setSgyData(newSgyData ? newSgyData : null);
+
+        setLastFetched(Date.now());
+        setFetching(false);
+    }
+
+    // read from firebase data on the first time
+    useEffect( () => {
+        const lsLastFetched = parseInt(localStorage.getItem('sgy-last-fetched') ?? '');
+        const lsSgyData = JSON.parse(localStorage.getItem('sgy-data') ?? 'null');
+
+        let needToFetch = false;
+        if (!isNaN(lsLastFetched)) {
+            setLastFetched(lsLastFetched);
+        } else {
+            needToFetch = true;
+        }
+
+        if (lsSgyData == null){
+            needToFetch = true;
+        }
+
+        setSgyData(lsSgyData);
+
+        if (needToFetch && auth.currentUser) {
+            updateSgy();
+        }
+    }, [auth.currentUser]);
+
+    // preferably this would trigger every 15 minutes
+    // TODO: can perhaps use intervals for this?
+    useEffect(() => {
+        if (auth.currentUser && userData.options.sgy) {
+            // Fetching Schoology stuff
+            if (!lastFetched) return; // if lastFetched doesn't exist, it means the other useEffect hasn't run yet
+            if (fetching) return; // if fetching already, we don't need to fetch
+
+            // If diff > 15 minutes, update schoology
+            const diff = Date.now() - lastFetched;
+            if (diff > 1000 * 60 * 15) updateSgy();
+        }
+    }, [auth.currentUser, time]);
+
+    // Selected
+    const [selected, setSelected] = useState<SgyPeriod|'A'>('A');
+
+    // we are ok to go if: 1) we're signed in 2) the user enabled schoology 3) the sgy data exists
+    if (!auth.currentUser) return <ClassesNotSignedIn />
+    if (!userData.options.sgy) return <ClassesSgyNotConnected />
+    if (sgyData == null) return <ClassesFetching />
+    if (!userData.sgy?.custom || !userData.sgy?.custom.assignments || !userData.sgy?.custom.labels || !userData.sgy?.custom.modified)
+        return <Loading /> // make sure user has all of these things :D, if not, usually gets corrected by FirebaseUserDataProvider
+
+    return (
+        <SgyDataProvider value={{sgyData, fetching, lastFetched, selected, updateSgy}}>
+            <div className={"classes-burrito " + screenType}>
+                <RedBackground />
+                <div className={"classes-content " + screenType}>
+                    <ClassesHeader selected={selected} />
+                    <Container className="classes-navbar">
+                        <ClassesNavBarItem text="Dashboard" to="." />
+                        <ClassesNavBarItem text="Upcoming" to="upcoming" />
+                        <ClassesNavBarItem text="Materials" to="materials" />
+                    </Container>
+
+                    <Container className="classes-page">
+                        <Routes>
+                            <Route path="/" element={<Dashboard />} />
+                            <Route path="/upcoming" element={<Upcoming /> } />
+                            <Route path="/materials" element={<Materials />} />
+                        </Routes>
+                    </Container>
+                </div>
+            <ClassesSidebar setSelected={setSelected} />
+            </div>
+        </SgyDataProvider>
+    )
+}
+
+// Returns a parsed class array given a populated userData object.
+// If `includeAll` is true, the first class will be an "All Courses" object with default color.
+export function findClassesList(userData: UserData, includeAll: boolean = true) {
+    // find classes from userData
+    const classes: { name: string, color: string, period: SgyPeriod|'A' }[] = [];
+
+    // Push "All Courses" object
+    if (includeAll) {
+        classes.push({
+            name: "All Courses",
+            color: parsePeriodColor("default", userData), // lol it spits out the default color if it doesn't recognize the period name; kinda a hacky workaround
+            period: "A"
+        });
+    }
+
+    for (const [p, course] of Object.entries(userData.classes)) {
+        if (course.s) {
+            classes.push({
+                name: course.n,
+                color: parsePeriodColor(p, userData),
+
+                // @ts-ignore lol i hate ts
+                period: p
+            });
+        }
+    }
+
+    return classes;
 }

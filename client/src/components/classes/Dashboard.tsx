@@ -1,146 +1,68 @@
-import { useState } from "react";
-import linkimg from '../../assets/link.png';
+import { useContext, useEffect, useState } from 'react';
 
-const Dashboard = (props: {}) => {
+// Components
+import DashboardBlurb from './Blurb';
+import DashboardQuickInfo from './QuickInfo';
+import Grades from './Grades';
+import FetchFooter from './FetchFooter';
 
-    // Mock array
-    const classesArray = [
-        {
-            course: "Class Name 1",
-            teacher: "McGinn",
-            color: "#f4aeafff",
-            link: "./",
-            grade: "B+"
-        }, {
-            course: "Class Name 2",
-            teacher: "Paronable",
-            color: "#aef4dcff",
-            link: "./",
-            grade: "B+"
-        }, {
-            course: "Class Name 3",
-            teacher: "Kinyanjui",
-            color: "#aedef4ff",
-            link: "./",
-            grade: "B+"
-        }, {
-            course: "Class Name 4",
-            teacher: "Paley",
-            color: "#aeaff4ff",
-            link: "./",
-            grade: "B+"
-        }, {
-            course: "Class Name 5",
-            teacher: "MATCHETT",
-            color: "#f4dcaeff",
-            link: "./",
-            grade: "B+"
-        }, {
-            course: "Class Name 6",
-            teacher: "Little",
-            color: "#aff4aeff",
-            link: "./",
-            grade: "B+"
-        }, {
-            course: "Class Name 7",
-            teacher: "GLEASON",
-            color: "#f4f3aeff",
-            link: "./",
-            grade: "B+"
-        }
-    ]
+// Contexts
+import CurrentTimeContext from '../../contexts/CurrentTimeContext';
+import UserDataContext from '../../contexts/UserDataContext';
+import SgyDataContext from '../../contexts/SgyDataContext';
 
+// Utilities
+import { useScreenType } from '../../hooks/useScreenType';
+import { AssignmentBlurb, getAllGrades, getUpcomingInfo } from './functions/SgyFunctions';
 
-    // Selected
-    const [selected, setSelected] = useState(-1);
+// Moment
+import moment from 'moment';
 
-    const warnings = [
-        {
-            name: "Assignment A",
-            link: "./"
-        },
-        {
-            name: "Assignment B",
-            link: "./"
-        }
-    ];
+export default function Dashboard() {
 
-    const upcoming = [
-        {
-            day: "Tuesday, October 6",
-            upcoming: [
-                {
-                    name: "Assignment A",
-                    link: "./"
-                },
-                {
-                    name: "Assignment B",
-                    link: "./"
-                }
-            ]
-        },
-        {
-            day: "Wednesday, October 7",
-            upcoming: [
-                {
-                    name: "Assignment A",
-                    link: "./"
-                },
-                {
-                    name: "Assignment B",
-                    link: "./"
-                }
-            ]
-        }
-    ]
+    const sgyInfo = useContext(SgyDataContext);
+    const {sgyData, selected, fetching, lastFetched, updateSgy} = sgyInfo;
+
+    const time = useContext(CurrentTimeContext);
+    const screenType = useScreenType();
+
+    const lastFetchedTime = lastFetched != null ? moment(lastFetched) : null;
+
+    const [upcoming, setUpcoming] = useState < AssignmentBlurb[] | null > (null);
+    const [overdue, setOverdue] = useState<AssignmentBlurb[] | null> (null);
+    const [allGrades, setAllGrades] = useState<{[key:string]: number} | null> (null);
+
+    const userData = useContext(UserDataContext);
+
+    useEffect(() => {
+        setAllGrades(getAllGrades(sgyData, userData));
+    }, [sgyData])
+
+    // TODO: precompute upcoming info for all classes
+    useEffect(() => {
+        const info = (getUpcomingInfo(sgyData, selected, userData, time));
+
+        setUpcoming(info.upcoming);
+        setOverdue(info.overdue);
+    }, [selected])
 
     return (
-        <div className="dashboard">
-            <div className="dashboard-class-list">
-                <div onClick={() => setSelected(-1)} className="dashboard-course" style={{ backgroundColor: "#bbbbbb" }}>All Classes</div>
-                {classesArray.map(({ course, teacher, color }, i) => {
-                    return <div key={course} onClick={() => setSelected(i)} className="dashboard-course" style={{ backgroundColor: color }}>{course}</div>;
-                })}
+        <div className={"dashboard-burrito " + screenType}>
+            {/* Dashboard left section */}
+            <div className={"dashboard-section dashboard-section-left " + screenType}>
+                {upcoming != null && <DashboardBlurb upcoming={upcoming} selected={selected} />}
             </div>
-            <div className="dashboard-class-info">
-                {selected === -1 ?
-                    <div className="dashboard-class-header">
-                        <div className="dashboard-class-title">All Classes</div>
-                    </div>
-                    :
-                    <div className="dashboard-class-header">
-                        <div className="dashboard-class-title">{classesArray[selected].course}</div>
-                        {/* a B?? :hypereyes: */}
-                        <div className="dashboard-class-grade">{classesArray[selected].grade}</div>
-                        <a href={classesArray[selected].link}><img src={linkimg} className="dashboard-class-link"/></a>
-                    </div>
-                }
-        
-                <div className="dashboard-warnings">
-                    <div className="dashboard-warnings-header">Warnings</div>
-                    <ul className="dashboard-warnings-list">
-                        {
-                            warnings.map(({ name, link }) => <li key={name + link}><a href={link}>{name}</a></li>)
-                        }
-                    </ul>
+
+            {/* Dashboard right section */}
+            <div className={"dashboard-section dashboard-section-right " + screenType}>
+                <div className="dashboard-quick-info">
+                    <DashboardQuickInfo selected={selected} />
                 </div>
-                <div className="dashboard-upcoming">
-                    <div className="dashboard-upcoming-header">Upcoming</div>
-                    <div className="dashboard-upcoming-container">
-                        {
-                            upcoming.map(({ day, upcoming }) =>
-                                <div className="dashboard-upcoming-day">
-                                    <div className="dashboard-upcoming-day-header">{day}</div>
-                                    <ul className="dashboard-upcoming-list">
-                                        {upcoming.map(({ name, link }) => <li key={name + link}><a href={link}>{name}</a></li>)}
-                                    </ul>
-                                </div>)
-                        }
-                    </div>
-                </div>
+
+                {allGrades && <Grades selected={selected} allGrades={allGrades} />}
+
+                <FetchFooter />
             </div>
         </div>
     );
 };
-
-export default Dashboard;

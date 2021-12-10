@@ -139,8 +139,6 @@ const getLinks = async (classID, classPeriod, accessToken) => {
 const init = async (data, context) => {
 
     if(!context.auth) {
-        console.log('sgy init user has no context auth');
-        console.log({ context, data });
         throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.')
     }
 
@@ -152,8 +150,6 @@ const init = async (data, context) => {
     const sgyInfo = await getSgyInfo(uid)
 
     if(sgyInfo == null) {
-        console.log('sgy init user doesnt have sgy enabled');
-        console.log({ context, data });
         throw new functions.https.HttpsError('unauthenticated', 'Error: user has not enabled schoology.')
     }
 
@@ -226,81 +222,82 @@ const upcoming = async (data, context) => {
 exports.init = functions.https.onCall(init)
 exports.upcoming = functions.https.onCall(upcoming)
 
-
-// --------------
-
-// Quarantining Roger's code down here
-
-
-// I am lazy!
 const makeReq = async (path, key, secret) => {
     return await oauth.get(`${apiBase}${path}`, key, secret)
         .then(toJson)
-        .catch(e => console.log(e))
 }
 
 // Fetches materials from all the courses
-// Hasn't been tested yet :/
-// Returns {info: CourseObj, assignments: AssignmentObj[], documents: DocumentObj[], pages: PageObj[]}
 const fetchMaterials = async (data, context) => {
     const uid = context.auth.uid
     if (!uid) throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.');
 
-    const sgyInfo = await getSgyInfo(uid)
+    const sgyInfo = await getSgyInfo(uid);
+    if (sgyInfo == null) throw new functions.https.HttpsError('unauthenticated', 'Error: user has not enabled schoology.')
 
-    // Fetch grades, cuz that takes a while
-    const grades = makeReq(`/users/${sgyInfo.uid}/grades?timestamp=1627801200`, sgyInfo.key, sgyInfo.sec); //
+    try {
 
-    // Fetch courses, then kick out yucky ones
-    let courses = (await makeReq(`/users/${sgyInfo.uid}/sections`, sgyInfo.key, sgyInfo.sec)).section.filter((sec) => periods.indexOf(sec.section_title.split(' ')[0]) >= 0);
+        // Fetch grades, cuz that takes a while
+        const grades = makeReq(`/users/${sgyInfo.uid}/grades?timestamp=1627801200`, sgyInfo.key, sgyInfo.sec); //
 
-    // Flattened promises because Promise.all unepicly
-    // They go by 4s: every 4 is documents, assignments, pages, then events for each course
-    let promises = [];
+        // Fetch courses, then kick out yucky ones
+        let courses = (await makeReq(`/users/${sgyInfo.uid}/sections`, sgyInfo.key, sgyInfo.sec)).section.filter((sec) => periods.indexOf(sec.section_title.split(' ')[0]) >= 0);
 
-    for(let i = 0; i < courses.length; i++) {
-    // for(let i = 0; i < 1; i++) {
-        const { id } = courses[i];
+        // Flattened promises because Promise.all unepicly
+        // They go by 4s: every 4 is documents, assignments, pages, then events for each course
+        let promises = [];
 
-        const documents = makeReq(`/sections/${id}/documents?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
-        const assignments = makeReq(`/sections/${id}/assignments?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
-        const pages = makeReq(`/sections/${id}/pages?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
-        const events = makeReq(`/sections/${id}/events?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
+        for (let i = 0; i < courses.length; i++) {
+            const { id } = courses[i];
 
-        promises.push(documents,assignments,pages,events);
-    }
+            const documents = makeReq(`/sections/${id}/documents?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
+            const assignments = makeReq(`/sections/${id}/assignments?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
+            const pages = makeReq(`/sections/${id}/pages?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
+            const events = makeReq(`/sections/${id}/events?limit=${1000}`, sgyInfo.key, sgyInfo.sec);
 
-    // Promise.all and I have a love hate relationship
-    // It's great and fantastic cuz its rly useful
-    // BUT WHY CANT I JUST HAVE NESTED STUFF WHY ARE YOU LIKE THIS
-    let responses = await Promise.all(promises);
-
-    let sections = {};
-
-    // Unflattening smh my head my head my head
-    for (let i = 0; i < courses.length; i++) {
-        const course = courses[i];
-
-        // Un-flatten the responses
-        const documents = responses[4 * i].document;
-        const assignments = responses[4 * i + 1].assignment;
-        const pages = responses[4 * i + 2].page;
-        const events = responses[4 * i + 3].event;
-
-        let section = {
-            info: course,
-            documents,
-            assignments,
-            pages,
-            events
+            promises.push(documents, assignments, pages, events);
         }
 
-        sections[course.section_title.split(' ')[0][0]] = (section);
+        // Rip we have to flatten promises
+        let responses = await Promise.all(promises);
+
+        let sections = {};
+
+        // Unflattening smh my head my head my head
+        for (let i = 0; i < courses.length; i++) {
+            const course = courses[i];
+
+            // Un-flatten the responses
+            const documents = responses[4 * i].document;
+            const assignments = responses[4 * i + 1].assignment;
+            const pages = responses[4 * i + 2].page;
+            const events = responses[4 * i + 3].event;
+
+            let section = {
+                info: course,
+                documents,
+                assignments,
+                pages,
+                events
+            }
+
+            sections[course.section_title.split(' ')[0][0]] = (section);
+        }
+
+        sections.grades = (await grades).section;
+
+        return sections;
+
+    } catch(err) {
+        console.log(err.statusCode);
+
+        if(err.statusCode === 429) {
+            throw new functions.https.HttpsError('resource-exhausted', 'Error: Schoology limits exceeded. Please wait at least 5 seconds before trying again.')
+        }
+
+        throw new functions.https.HttpsError('internal', 'Internal error.')
     }
-
-    sections.grades = (await grades).section;
-
-    return sections;
+    
 
 }
 

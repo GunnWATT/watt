@@ -3,7 +3,7 @@ import {Moment} from 'moment';
 import {DayObj, PeriodObj, numToWeekday, sortPeriodsByStart, SCHOOL_END_EXCLUSIVE, SCHOOL_START} from '../components/schedule/Periods';
 
 // Context
-import UserDataContext from '../contexts/UserDataContext';
+import UserDataContext, { UserData } from '../contexts/UserDataContext';
 
 // Data
 import alternates from '../data/alternates';
@@ -51,4 +51,28 @@ export function useSchedule(date: Moment) {
     }, [altFormat]);
 
     return {periods, alternate};
+}
+
+// TODO: since this is just a copy paste of the above hook's useEffect logic, we should have the hook use this function
+export function getSchedule(date: Moment) {
+    const localizedDate = date.clone().tz('America/Los_Angeles');
+    const altFormat = localizedDate.format('MM-DD');
+
+    // If the current date falls on summer break, return early
+    if (localizedDate.isBefore(SCHOOL_START) || localizedDate.isAfter(SCHOOL_END_EXCLUSIVE)) return null;
+
+    // Check for alternate schedules
+    let periods: DayObj | null;
+    if (altFormat in alternates.alternates) {
+        // If viewDate exists in alt schedules, load that schedule
+        periods = alternates.alternates[altFormat];
+    } else {
+        // Otherwise, use default schedule
+        periods = schedule[numToWeekday(Number(localizedDate.format('d')))];
+    }
+    return (periods && sortPeriodsByStart(periods).filter(([name, per]) => {
+        // if (name === '0' && !userData.options.period0) return false;
+        // if (name === '8' && !userData.options.period8) return false;
+        return true;
+    }));
 }

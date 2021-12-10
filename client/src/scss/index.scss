@@ -15,6 +15,7 @@
 @import 'partials/lists';
 @import 'partials/testing';
 @import 'partials/404';
+@import 'partials/classes';
 
 // Home
 @import 'partials/events';
@@ -34,4 +35,9 @@
 @import 'partials/no-results';
 @import 'partials/WIP';
 @import 'partials/dashboard';
+@import 'partials/upcoming';
+@import 'partials/materials';
+
+// Misc
+@import 'partials/sgyModal';
 @import 'partials/image-box';
