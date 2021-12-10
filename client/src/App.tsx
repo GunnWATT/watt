@@ -27,7 +27,7 @@ import {useAuth, useSigninCheck} from 'reactfire';
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
 
 
-const App = () => {
+export default function App() {
     // Global datetime
     const [date, setDate] = useState(moment());
 
@@ -93,5 +93,3 @@ const App = () => {
         </Router>
     );
 }
-
-export default App;
