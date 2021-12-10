@@ -22,7 +22,7 @@ import LocalStorageUserDataProvider from './components/firebase/LocalStorageUser
 import {TimeProvider} from './contexts/CurrentTimeContext';
 
 // Firestore
-import {useAuth} from 'reactfire';
+import {useAuth, useSigninCheck} from 'reactfire';
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
 
@@ -67,9 +67,8 @@ const App = () => {
     // Fetch events on mount
     useEffect(fetchEvents, [])
 
-    const auth = useAuth();
-    const UserDataProvider = auth.currentUser ? FirebaseUserDataProvider : LocalStorageUserDataProvider;
-
+    const { data: signInCheckResult } = useSigninCheck()
+    const UserDataProvider = signInCheckResult?.signedIn ? FirebaseUserDataProvider : LocalStorageUserDataProvider;
 
     return (
         <Router>
