@@ -50,14 +50,6 @@ const schoolYearEnd = new Date(2022, 5, 3)
 const altScheduleRegex = /schedule|extended|lunch/i
 const noSchoolRegex = /holiday|no\s(students|school)|break|development/i
 
-// TODO: extract this to a shared util
-const ErrorConsole = (date: string) => {
-    return `${chalk.bgRedBright.black(`Error`)} on ${chalk.red.underline(date)}`;
-}
-const WarningConsole = (date: string) => {
-    return `${chalk.yellow(`Warning`)} on ${chalk.underline(date)}`;
-}
-
 // Parse an iCal summary and description into an array of `UnparsedPeriodObj`s
 function parseAlternate(summary: string | undefined, description: string | undefined, date: string) { // extra date parameter is only for warnings
     if (!summary) return;
@@ -181,7 +173,7 @@ function parseAlternate(summary: string | undefined, description: string | undef
         // next period should start 10 minutes after lunch
         if (!(periodAfterLunch.s >= lunch.e + 10)) {
             lunch.e = periodAfterLunch.s - 10;
-            warn(`[${chalk.underline(date)}] Period "${chalk.cyan(periodAfterLunch.n)}" collides with lunch. Automatically corrected lunch's end time to 10 minutes before this period.`);
+            // warn(`[${chalk.underline(date)}] Period "${chalk.cyan(periodAfterLunch.n)}" collides with lunch. Automatically corrected lunch's end time to 10 minutes before this period.`);
         }
     }
 
@@ -202,7 +194,7 @@ function parseAlternate(summary: string | undefined, description: string | undef
         // next period should start 10 minutes after brunch
         if (!(periodAfterBrunch.s >= brunch.e + 10)) {
             brunch.e = periodAfterBrunch.s - 10;
-            warn(`[${chalk.underline(date)}] Period "${chalk.cyan(periodAfterBrunch.n)}" collides with brunch. Automatically corrected brunch's end time to 10 minutes before this period.`);
+            // warn(`[${chalk.underline(date)}] Period "${chalk.cyan(periodAfterBrunch.n)}" collides with brunch. Automatically corrected brunch's end time to 10 minutes before this period.`);
         }
     }
 
