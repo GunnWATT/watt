@@ -26,6 +26,7 @@ import { useScreenType } from '../hooks/useScreenType';
 
 
 export const fetchSgyMaterials = (async (functions: Functions) => {
+    localStorage.setItem('sgy-last-attempted-fetch', '' + Date.now());
     const fetchMaterials = httpsCallable(functions, 'sgyfetch-fetchMaterials');
     const res = (await fetchMaterials());
     localStorage.setItem('sgy-data', JSON.stringify(res.data));
@@ -159,6 +160,7 @@ export default function Classes() {
 
     const [fetching, setFetching] = useState(false);
     const [lastFetched, setLastFetched] = useState<null | number>(null);
+    const [lastAttemptedFetch, setLastAttemptedFetch] = useState<null | number>(null);
     // Raw Schoology Data
     const [sgyData, setSgyData] = useState<null | SgyData>(null);
 
@@ -177,6 +179,7 @@ export default function Classes() {
         }
 
         setFetching(true);
+        setLastAttemptedFetch(Date.now());
 
         const newSgyData = await fetchSgyMaterials(functions).catch((err: FirebaseError) => {
             console.error(err);
@@ -192,11 +195,18 @@ export default function Classes() {
     // read from firebase data on the first time
     useEffect( () => {
         const lsLastFetched = parseInt(localStorage.getItem('sgy-last-fetched') ?? '');
+        const lsLastAttemptedFetch = parseInt(localStorage.getItem('sgy-last-attempted-fetch') ?? '');
         const lsSgyData = JSON.parse(localStorage.getItem('sgy-data') ?? 'null');
 
         let needToFetch = false;
         if (!isNaN(lsLastFetched)) {
             setLastFetched(lsLastFetched);
+        } else {
+            needToFetch = true;
+        }
+
+        if (!isNaN(lsLastAttemptedFetch)) {
+            setLastAttemptedFetch(lsLastAttemptedFetch);
         } else {
             needToFetch = true;
         }
@@ -217,11 +227,11 @@ export default function Classes() {
     useEffect(() => {
         if (auth.currentUser && userData.options.sgy) {
             // Fetching Schoology stuff
-            if (!lastFetched) return; // if lastFetched doesn't exist, it means the other useEffect hasn't run yet
+            if (!lastAttemptedFetch) return; // if lastFetched doesn't exist, it means the other useEffect hasn't run yet
             if (fetching) return; // if fetching already, we don't need to fetch
 
             // If diff > 15 minutes, update schoology
-            const diff = Date.now() - lastFetched;
+            const diff = Date.now() - lastAttemptedFetch;
             if (diff > 1000 * 60 * 15) updateSgy();
         }
     }, [auth.currentUser, time]);
@@ -237,7 +247,7 @@ export default function Classes() {
         return <Loading /> // make sure user has all of these things :D, if not, usually gets corrected by FirebaseUserDataProvider
 
     return (
-        <SgyDataProvider value={{sgyData, fetching, lastFetched, selected, updateSgy}}>
+        <SgyDataProvider value={{sgyData, fetching, lastFetched, lastAttemptedFetch, selected, updateSgy}}>
             <div className={"classes-burrito " + screenType}>
                 <RedBackground />
                 <div className={"classes-content " + screenType}>

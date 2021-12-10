@@ -7,9 +7,9 @@ import SgyDataContext from '../../contexts/SgyDataContext';
 
 
 export default function FetchFooter() {
-    const { fetching, lastFetched, updateSgy } = useContext(SgyDataContext);
+    const { fetching, lastAttemptedFetch, lastFetched, updateSgy } = useContext(SgyDataContext);
 
-    const cannotFetch = (lastFetched != null && Date.now() - lastFetched < 6 * 1000) || fetching;
+    const cannotFetch = (lastAttemptedFetch != null && Date.now() - lastAttemptedFetch < 6 * 1000) || fetching;
 
     return (
         <div className="fetch-footer">
