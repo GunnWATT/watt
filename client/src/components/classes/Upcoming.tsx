@@ -105,7 +105,9 @@ export default function Upcoming() {
 
                 {upcomingFiltered && <Assignments upcoming={upcomingFiltered} activeDay={activeDay} setActiveDay={setActiveDay} />}
             </div>
-            {screenType !== 'smallScreen' && screenType !== 'phone' && <SidebarCalendar activeDay={activeDay} setActiveDay={setActiveDay} start={start} setStart={setStart} end={end} setEnd={setEnd} />}
+            {screenType !== 'smallScreen' && screenType !== 'phone' && (
+                <SidebarCalendar activeDay={activeDay} setActiveDay={setActiveDay} start={start} setStart={setStart} end={end} setEnd={setEnd} />
+            )}
         </div>
     );
 }

@@ -15,7 +15,6 @@
   top: 5px;
   height: 80vh;
   border-radius: 5px;
-  overflow-y: scroll;
 }
 
 .upcoming {
@@ -124,7 +123,6 @@
 }
 
 .date-range-selector {
-
   &.phone {
     margin-top: 5px;
     // margin-left: auto;
