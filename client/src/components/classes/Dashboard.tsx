@@ -44,7 +44,7 @@ export default function Dashboard() {
 
         setUpcoming(info.upcoming);
         setOverdue(info.overdue);
-    }, [selected])
+    }, [selected, userData])
 
     return (
         <div className={"dashboard-burrito " + screenType}>

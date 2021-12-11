@@ -54,7 +54,7 @@ export default function Materials() {
 
     useEffect(() => {
         setMaterials(getMaterials(sgyData, selected, userData));
-    }, [selected]);
+    }, [selected, userData]);
 
     // TODO: perhaps inline this in the returned JSX so that there doesn't have to be two null checks for materials
     const filteredMaterials = materials && materials

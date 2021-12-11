@@ -4,7 +4,7 @@ import {Container} from 'reactstrap';
 
 // Firebase
 import { Functions, httpsCallable } from 'firebase/functions';
-import { useAuth, useFunctions } from 'reactfire';
+import { useAuth, useFunctions, useSigninCheck } from 'reactfire';
 import { FirebaseError } from '@firebase/util';
 
 // Components
@@ -153,6 +153,8 @@ function ClassesNavBarItem(props: {text: string, to: string}) {
 export default function Classes() {
     const functions = useFunctions();
     const auth = useAuth();
+    const { data: signInCheckResult } = useSigninCheck();
+    const signedIn = signInCheckResult?.signedIn;
 
     const userData = useContext(UserDataContext);
     const time = useContext(CurrentTimeContext);
@@ -217,15 +219,15 @@ export default function Classes() {
 
         setSgyData(lsSgyData);
 
-        if (needToFetch && auth.currentUser) {
+        if (needToFetch && signedIn) {
             updateSgy();
         }
-    }, [auth.currentUser]);
+    }, [signedIn]);
 
     // preferably this would trigger every 15 minutes
     // TODO: can perhaps use intervals for this?
     useEffect(() => {
-        if (auth.currentUser && userData.options.sgy) {
+        if (signedIn && userData.options.sgy) {
             // Fetching Schoology stuff
             if (!lastAttemptedFetch) return; // if lastFetched doesn't exist, it means the other useEffect hasn't run yet
             if (fetching) return; // if fetching already, we don't need to fetch
@@ -234,13 +236,13 @@ export default function Classes() {
             const diff = Date.now() - lastAttemptedFetch;
             if (diff > 1000 * 60 * 15) updateSgy();
         }
-    }, [auth.currentUser, time]);
+    }, [signedIn, time]);
 
     // Selected
     const [selected, setSelected] = useState<SgyPeriod|'A'>('A');
 
     // we are ok to go if: 1) we're signed in 2) the user enabled schoology 3) the sgy data exists
-    if (!auth.currentUser) return <ClassesNotSignedIn />
+    if (!signedIn) return <ClassesNotSignedIn />
     if (!userData.options.sgy) return <ClassesSgyNotConnected />
     if (sgyData == null) return <ClassesFetching />
     if (!userData.sgy?.custom || !userData.sgy?.custom.assignments || !userData.sgy?.custom.labels || !userData.sgy?.custom.modified)

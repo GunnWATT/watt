@@ -176,6 +176,23 @@ export const getMaterials = (sgyData: SgyData, selected: SgyPeriod | 'A', userDa
     for (const item of selectedCourse.documents) materials.push(DocumentToBlurb(item, selected));
     for (const item of selectedCourse.pages) materials.push(PageToBlurb(item, selected));
 
+    for (let i = 0; i < materials.length; i++) {
+        const match = userData.sgy!.custom.modified.find(m => m.id === materials[i].id);
+        if (match) {
+            // it's been modified by the user
+
+            const matchWithMoment = {
+                ...match,
+                timestamp: match.timestamp ? moment(match.timestamp) : null
+            }
+            materials[i] = {
+                ...materials[i],
+                ...matchWithMoment,
+                timestamp: materials[i].timestamp ?? matchWithMoment.timestamp ?? null
+            }
+        }
+    }
+
     return materials;
 }
 
