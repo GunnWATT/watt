@@ -15,6 +15,7 @@ import { AssignmentBlurb, updateAssignment } from './functions/SgyFunctions';
 import { shortify } from './functions/GeneralHelperFunctions';
 import { CheckSquare, Square } from 'react-feather';
 import { useAuth, useFirestore } from 'reactfire';
+import AssignmentModal from './AssignmentModal';
 
 
 // Upcoming Blurb
@@ -28,16 +29,19 @@ function BlurbAssignment(props: BlurbAssignmentProps) {
     const toggleCompleted = () => {
         updateAssignment({ ...item, completed: !item.completed }, userData, auth, firestore)
     }
+    const [modal, setModal] = useState(false);
 
     const CheckBox = item.completed ? CheckSquare : Square;
 
     return (
         <div className="ub-assignment">
             <CheckBox color={parsePeriodColor(item.period, userData)} style={{ marginRight: 15 }} cursor="pointer" onClick={toggleCompleted} />
-            <div className="ub-assignment-content" style={{ textDecoration: item.completed ? 'line-through' : '' }}>
+            <div className="ub-assignment-content" style={{ textDecoration: item.completed ? 'line-through' : '' }} onClick={() => setModal(!modal)}>
                 <div className="up-assignment-title">{shortify(item.name)}</div>
                 <div className="up-assignment-due">{item.timestamp!.format("dddd, MMMM Do")} • {item.timestamp!.fromNow()}</div>
             </div>
+
+            <AssignmentModal item={item} open={modal} setOpen={setModal} />
         </div>
     );
 }
@@ -47,7 +51,7 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
     const { upcoming, selected } = props;
 
     const time = useContext(CurrentTimeContext);
-    const inAWeek = moment(time).add(7, 'days');
+    const inAWeek = moment(time).add(6, 'days');
     const assignmentsNextWeek = upcoming.filter((assi) => assi.timestamp!.isBefore(inAWeek));
     const assignmentsToDoNextWeek = assignmentsNextWeek.filter(assi => !assi.completed)
 

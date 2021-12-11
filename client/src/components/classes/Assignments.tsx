@@ -11,7 +11,7 @@ import { parsePeriodName, parsePeriodColor } from '../schedule/Periods';
 import { AssignmentBlurb, updateAssignment, parseLabelColor } from './functions/SgyFunctions';
 import { CheckSquare, Link, Square } from 'react-feather';
 import AssignmentModal from './AssignmentModal';
-
+import { shortify } from './functions/GeneralHelperFunctions';
 
 // The assignment blocks for the Upcoming Tab
 // Pretty self explanatory
@@ -67,8 +67,8 @@ function Assignment(props: AssignmentProps) {
         <div className="upcoming-assignment" >
             <div className="upcoming-assignment-content" onClick={() => setModal(!modal)}>
                 <AssignmentTags item={assignment} />
-                <div className={"upcoming-assignment-name"}>{assignment.name.slice(0,100)}</div>
-                {assignment.description.length ? <div className={"upcoming-assignment-desc"}>{assignment.description}</div> : null}
+                <div className={"upcoming-assignment-name"}>{shortify(assignment.name, 150)}</div>
+                {assignment.description.length ? <div className={"upcoming-assignment-desc"}>{shortify(assignment.description,200)}</div> : null}
                 <div className="assignment-due">
                     <div
                         onMouseEnter={() => setActiveDay(moment(assignment.timestamp).startOf('day'))}
