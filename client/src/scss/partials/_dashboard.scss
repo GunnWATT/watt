@@ -1,4 +1,5 @@
 @import '../mixins/content-box';
+@import '../mixins/dot';
 
 .sgy-auth-button {
     @include content-box($bg-color: var(--bg-secondary));
@@ -87,14 +88,10 @@
     margin: 15px 0px;
 }
 
-.ub-assignment-dot {
-    width: 15px;
-    height: 15px;
-    border-radius: 15px;
-    background-color:white;
-    margin-right: 15px;
-    flex-shrink: 0;
-}
+// .ub-assignment-dot {
+//     @include dot(15px);
+//     margin-right: 15px;
+// }
 
 .ub-assignment-content {
     flex-grow: 1;

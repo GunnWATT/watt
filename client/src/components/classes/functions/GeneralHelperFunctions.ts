@@ -32,6 +32,11 @@ export const cardinalize = (num: number) => {
     }
 }
 
+export const shortify = (str: string, limit: number = 50) => {
+    if(str.length <= limit) return str;
+    return str.slice(0, limit-3) + '...';
+}
+
 // Function to calculate Ratcliff-Obershelp string similarity
 // https://en.wikipedia.org/wiki/Gestalt_Pattern_Matching
 

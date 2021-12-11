@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
@@ -11,7 +11,10 @@ import UserDataContext from '../../contexts/UserDataContext';
 
 // Utils
 import { parsePeriodColor } from '../schedule/Periods';
-import { AssignmentBlurb } from './functions/SgyFunctions';
+import { AssignmentBlurb, updateAssignment } from './functions/SgyFunctions';
+import { shortify } from './functions/GeneralHelperFunctions';
+import { CheckSquare, Square } from 'react-feather';
+import { useAuth, useFirestore } from 'reactfire';
 
 
 // Upcoming Blurb
@@ -20,12 +23,19 @@ type BlurbAssignmentProps = { item: AssignmentBlurb };
 function BlurbAssignment(props: BlurbAssignmentProps) {
     const { item } = props;
     const userData = useContext(UserDataContext);
+    const auth = useAuth();
+    const firestore = useFirestore();
+    const toggleCompleted = () => {
+        updateAssignment({ ...item, completed: !item.completed }, userData, auth, firestore)
+    }
+
+    const CheckBox = item.completed ? CheckSquare : Square;
 
     return (
         <div className="ub-assignment">
-            <div className="ub-assignment-dot" style={{ backgroundColor: parsePeriodColor(item.period, userData) }} />
-            <div className="ub-assignment-content">
-                <div className="up-assignment-title">{item.name}</div>
+            <CheckBox color={parsePeriodColor(item.period, userData)} style={{ marginRight: 15 }} cursor="pointer" onClick={toggleCompleted} />
+            <div className="ub-assignment-content" style={{ textDecoration: item.completed ? 'line-through' : '' }}>
+                <div className="up-assignment-title">{shortify(item.name)}</div>
                 <div className="up-assignment-due">{item.timestamp!.format("dddd, MMMM Do")} • {item.timestamp!.fromNow()}</div>
             </div>
         </div>
@@ -41,6 +51,8 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
     const assignmentsNextWeek = upcoming.filter((assi) => assi.timestamp!.isBefore(inAWeek));
     const assignmentsToDoNextWeek = assignmentsNextWeek.filter(assi => !assi.completed)
 
+    const [includeCompleted, setIncludeCompleted] = useState(false);
+
     return (
         <div className="upcoming-blurb">
             <div className="dashboard-header">Upcoming • Blurb</div>
@@ -48,13 +60,20 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
 
             <UpcomingQuickWeekCal upcoming={upcoming} selected={selected} />
             <div>
-                {upcoming.filter(assi => !assi.completed).slice(0, 5).map((a) =>
+                {upcoming.filter(assi => !assi.completed || includeCompleted).slice(0, 5).map((a) =>
                     <BlurbAssignment
                         key={a.id}
                         item={a}
                     />
                 )}
-                <div className="ub-upcoming-redirect"><div><Link to='upcoming'>See More in Upcoming</Link></div></div>
+                <div className="ub-upcoming-redirect">
+                    {
+                        !includeCompleted ?
+                            <Square size={27} style={{ cursor: 'pointer', flexShrink: 0, marginRight: 15 }} onClick={() => setIncludeCompleted(!includeCompleted)} /> :
+                            <CheckSquare size={27} style={{ cursor: 'pointer', flexShrink: 0, marginRight: 15 }} onClick={() => setIncludeCompleted(!includeCompleted)} />
+                    }
+                    <div><Link to='upcoming'>See More in Upcoming</Link></div>
+                </div>
             </div>
         </div>
     );
