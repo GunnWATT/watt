@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import Picker from '../layout/Picker';
 import UserDataContext from '../../contexts/UserDataContext';
 import { parseLabelColor, parsePriority } from './functions/SgyFunctions';
-import { Star } from 'react-feather';
+import { Bookmark } from 'react-feather';
 
 
 type PriorityPickerProps = {
@@ -19,7 +19,7 @@ export default function PriorityPicker(props: PriorityPickerProps) {
                 <div>
                     {icon
                         ? icon(priority)
-                        : <Star color={parsePriority(priority, userData)} size={30} onClick={() => setOpen(!open)} />
+                        : <Bookmark color={parsePriority(priority, userData)} size={24} onClick={() => setOpen(!open)} />
                     }
                 </div>
 

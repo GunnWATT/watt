@@ -21,12 +21,14 @@ export type ActiveDayState = {
     setActiveDay: (day: moment.Moment | null) => void;
 }
 
-type AssignmentTagProps = { label: string, color: string };
+type AssignmentTagProps = { label: string, color?: string };
 function AssignmentTag(props: AssignmentTagProps) {
+    const {label, color} = props;
+
     return (
         <div className="assignment-tag">
-            <div style={{backgroundColor: props.color}} className="assignment-dot"/>
-            <div className="assignment-label">{props.label}</div>
+            {color && <div style={{backgroundColor: color}} className="assignment-dot"/>}
+            <div className="assignment-label">{label}</div>
         </div>
     )
 }
@@ -37,7 +39,7 @@ export function AssignmentTags({item}: {item: AssignmentBlurb}) {
     return (
         <div className="assignment-tags">
             <AssignmentTag label={parsePeriodName(item.period, userData)} color={parsePeriodColor(item.period, userData)} />
-            {item.labels.map(label => <AssignmentTag label={label} color={parseLabelColor(label, userData)} />)}
+            {item.labels.map(label => <AssignmentTag label={label} />)}
         </div>
     )
 }

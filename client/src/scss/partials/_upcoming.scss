@@ -212,17 +212,22 @@ $anim-length: .8s;
   }
 }
 
-.assignment-due {
+.assignment-title {
   display: flex;
-  flex-direction: row;
-  margin-top: 10px;
+  align-items: center;
 
-  > div {
-    padding: 2px 5px;
-    background-color: var(--bg-secondary);
-    font-size: 0.8rem;
-    border-radius: 3px;
-    cursor: pointer;
+  // Title link
+  a {
+    color: var(--primary);
+
+    &:hover {
+      color: inherit;
+    }
+  }
+
+  // Checkmark icon
+  svg {
+    margin-right: 0.5rem;
   }
 }
 
@@ -291,13 +296,20 @@ $anim-length: .8s;
   .item-modal-icons {
     display: flex;
     flex-direction: row;
+    align-items: center;
 
-    .link {
-      margin-left: 5px;
-    }
+    .assignment-due {
+      display: flex;
+      flex-direction: row;
+      margin-left: 0.5rem;
 
-    .priority {
-      margin-left: auto;
+      > div {
+        padding: 2px 5px;
+        background-color: var(--bg-secondary);
+        font-size: 0.8rem;
+        border-radius: 3px;
+        //cursor: pointer;
+      }
     }
   }
 }

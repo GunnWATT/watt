@@ -1,14 +1,22 @@
-import { useContext } from "react";
-import { Modal, ModalBody, ModalHeader } from "reactstrap";
-import UserDataContext from "../../contexts/UserDataContext";
-import { AssignmentTags } from "./Assignments";
-import { AssignmentBlurb, updateAssignment } from "./functions/SgyFunctions";
+import { useContext } from 'react';
+import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 import { useAuth, useFirestore } from 'reactfire';
-import { Square, CheckSquare, Link } from "react-feather";
+import { Square, CheckSquare, Link } from 'react-feather';
+
+// Components
+import { AssignmentTags } from './Assignments';
 import PriorityPicker from "./PriorityPicker";
 
+// Context
+import UserDataContext from '../../contexts/UserDataContext';
+
+// Utilities
+import { AssignmentBlurb, updateAssignment } from './functions/SgyFunctions';
+
+
 type AssignmentModalProps = {item: AssignmentBlurb, open: boolean, setOpen: (open: boolean) => any};
-export default function AssignmentModal({item, open, setOpen}: AssignmentModalProps) {
+export default function AssignmentModal(props: AssignmentModalProps) {
+    const {item, open, setOpen} = props;
 
     const toggle = () => setOpen(!open);
     const userData = useContext(UserDataContext);
@@ -24,34 +32,34 @@ export default function AssignmentModal({item, open, setOpen}: AssignmentModalPr
         updateAssignment({ ...item, priority: priority }, userData, auth, firestore)
     }
 
-    return <Modal isOpen={open} toggle={toggle} size="lg" fade={false} className="item-modal">
-        <ModalHeader toggle={toggle}><AssignmentTags item={item} />{item.name}</ModalHeader>
-        <ModalBody>
-            <div className="item-modal-icons">
-                {
-                    !item.timestamp ? null :
-                    !item.completed ?
-                        <Square size={30} style={{ cursor: 'pointer', flexShrink: 0 }} onClick={() => toggleCompleted()} /> :
-                        <CheckSquare size={30} style={{ cursor: 'pointer', flexShrink: 0 }} onClick={() => toggleCompleted()} />
-                }
-                <a className="link" href={item.link} target="_blank" rel="noopener noreferrer">
-                    <Link size={30} color="var(--primary)" />
-                </a>
-                {
-                    !item.timestamp ? null :
-                        <PriorityPicker priority={item.priority} setPriority={setPriority} />
-                }
-            </div>
-            <div style={{marginTop: 7}}>{item.description}</div>
+    const CompletedIcon = !item.completed ? Square : CheckSquare;
 
-            { item.timestamp ?
-                <div className="assignment-due">
-                    <div>
-                        {item.timestamp.format('hh:mm a on dddd, MMM Do')}
+    return (
+        <Modal isOpen={open} toggle={toggle} size="lg" className="item-modal">
+            <ModalHeader toggle={toggle}>
+                <AssignmentTags item={item} />
+                <span className="assignment-title">
+                    {item.timestamp && (
+                        <CompletedIcon size={20} style={{ cursor: 'pointer', flexShrink: 0 }} onClick={() => toggleCompleted()} />
+                    )}
+                    <a href={item.link} target="_blank" rel="noopener noreferrer">{item.name}</a>
+                </span>
+            </ModalHeader>
+            <ModalBody>
+                {item.description && <p>{item.description}</p>}
+
+                {item.timestamp && (
+                    <div className="item-modal-icons">
+                        <PriorityPicker priority={item.priority} setPriority={setPriority} />
+
+                        <div className="assignment-due">
+                            <div>
+                                {item.timestamp.format('hh:mm a on dddd, MMM Do')}
+                            </div>
+                        </div>
                     </div>
-                </div>
-                : null
-            }
-        </ModalBody>
-    </Modal>
+                )}
+            </ModalBody>
+        </Modal>
+    )
 }
