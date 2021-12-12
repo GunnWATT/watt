@@ -27,7 +27,7 @@
 
   .material-date {
     padding: 2px 7px;
-    background-color: var(--content-primary);
+    background-color: var(--bg-secondary);
     margin-right: 10px;
     border-radius: 5px;
     font-size: 0.75rem;
@@ -36,15 +36,20 @@
   .material-labels {
     display: flex;
     flex-direction: row;
+    align-items: center;
 
     .material-label {
       @include dot(22px);
       margin-right: 10px;
     }
+    
+    .assignment-tags {
+        margin: 0px;
+    }
   }
 
   .material-class {
     @include dot(30px);
-    // margin-left: auto;
+    margin-left: 10px;
   }
 }

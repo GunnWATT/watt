@@ -40,7 +40,7 @@ export default function AssignmentModal(props: AssignmentModalProps) {
                 <AssignmentTags item={item} />
                 <span className="assignment-title">
                     {item.timestamp && (
-                        <CompletedIcon size={20} style={{ cursor: 'pointer', flexShrink: 0 }} onClick={() => toggleCompleted()} />
+                        <CompletedIcon size={24} style={{ cursor: 'pointer', flexShrink: 0 }} onClick={() => toggleCompleted()} />
                     )}
                     <a href={item.link} target="_blank" rel="noopener noreferrer">{item.name}</a>
                 </span>

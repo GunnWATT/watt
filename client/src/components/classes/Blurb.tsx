@@ -34,8 +34,8 @@ function BlurbAssignment(props: BlurbAssignmentProps) {
     const CheckBox = item.completed ? CheckSquare : Square;
 
     return (
-        <div className="ub-assignment">
-            <CheckBox color={parsePeriodColor(item.period, userData)} style={{ marginRight: 15 }} cursor="pointer" onClick={toggleCompleted} />
+        <div className="ub-assignment" style={{ borderLeft: `4px solid ${parsePeriodColor(item.period, userData)}`}}>
+            <CheckBox style={{ marginRight: 15 }} cursor="pointer" onClick={toggleCompleted} />
             <div className="ub-assignment-content" style={{ textDecoration: item.completed ? 'line-through' : '' }} onClick={() => setModal(!modal)}>
                 <div className="up-assignment-title">{shortify(item.name)}</div>
                 <div className="up-assignment-due">{item.timestamp!.format("dddd, MMMM Do")} • {item.timestamp!.fromNow()}</div>

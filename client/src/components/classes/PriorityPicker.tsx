@@ -19,7 +19,7 @@ export default function PriorityPicker(props: PriorityPickerProps) {
                 <div>
                     {icon
                         ? icon(priority)
-                        : <Bookmark color={parsePriority(priority, userData)} size={24} onClick={() => setOpen(!open)} />
+                        : <Bookmark color={parsePriority(priority, userData)} size={30} onClick={() => setOpen(!open)} />
                     }
                 </div>
 

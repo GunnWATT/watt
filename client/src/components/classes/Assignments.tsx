@@ -33,13 +33,13 @@ function AssignmentTag(props: AssignmentTagProps) {
     )
 }
 
-export function AssignmentTags({item}: {item: AssignmentBlurb}) {
+export function AssignmentTags({item, period}: {item: AssignmentBlurb, period?:boolean}) {
     const userData = useContext(UserDataContext);
 
     return (
         <div className="assignment-tags">
-            <AssignmentTag label={parsePeriodName(item.period, userData)} color={parsePeriodColor(item.period, userData)} />
-            {item.labels.map(label => <AssignmentTag label={label} />)}
+            {period !== false ? <AssignmentTag label={parsePeriodName(item.period, userData)} color={parsePeriodColor(item.period, userData)} /> : null}
+            {item.labels.map(label => <AssignmentTag label={label} color={parseLabelColor(label, userData)} />)}
         </div>
     )
 }

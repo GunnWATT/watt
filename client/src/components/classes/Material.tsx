@@ -3,6 +3,7 @@ import AssignmentModal from './AssignmentModal';
 import UserDataContext, {SgyData} from '../../contexts/UserDataContext';
 import {parsePeriodColor} from '../schedule/Periods';
 import {AssignmentBlurb, parseLabelColor} from './functions/SgyFunctions';
+import { AssignmentTags } from './Assignments';
 
 
 type MaterialProps = { item: AssignmentBlurb, sgyData: SgyData };
@@ -19,7 +20,8 @@ export default function Material(props: MaterialProps) {
             {item.timestamp && <div className="material-date">{item.timestamp.format('M/D/YY')}</div> }
 
             <div className="material-labels">
-                {item.labels.map(label => <div key={label} className="material-date">{label}</div>)}
+                {/* {item.labels.map(label => <div key={label} className="material-date">{label}</div>)} */}
+                <AssignmentTags item={item} period={false} />
             </div>
             <div className="material-class" style={{backgroundColor: parsePeriodColor(item.period, userData)}} />
 

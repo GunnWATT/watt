@@ -26,7 +26,7 @@
     flex-direction: column;
 
     > div:not(:first-child) {
-        border-top: 1px solid white;
+        border-top: 1px solid var(--primary);
     }
 
     margin: 15px;

@@ -174,6 +174,10 @@ $anim-length: .8s;
       font-size: 0.8rem;
       margin-top: 10px;
     }
+
+    .assignment-due {
+      margin-top: 10px;
+    }
   }
 
   .upcoming-assignment-icons {
@@ -186,18 +190,6 @@ $anim-length: .8s;
     &-top {
       display: flex;
       flex-direction: row;
-
-      .link-icon {
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-        z-index: 1;
-        position: relative;
-
-        &-dark {
-          filter: invert(1);
-        }
-      }
     }
 
     &-bottom {
@@ -290,6 +282,19 @@ $anim-length: .8s;
   }
 }
 
+.assignment-due {
+  display: flex;
+  flex-direction: row;
+
+  > div {
+    padding: 2px 5px;
+    background-color: var(--bg-secondary);
+    font-size: 0.8rem;
+    border-radius: 3px;
+    //cursor: pointer;
+  }
+}
+
 .item-modal .modal-content {
   background-color: var(--bg-primary);
 
@@ -299,17 +304,7 @@ $anim-length: .8s;
     align-items: center;
 
     .assignment-due {
-      display: flex;
-      flex-direction: row;
       margin-left: 0.5rem;
-
-      > div {
-        padding: 2px 5px;
-        background-color: var(--bg-secondary);
-        font-size: 0.8rem;
-        border-radius: 3px;
-        //cursor: pointer;
-      }
     }
   }
 }
