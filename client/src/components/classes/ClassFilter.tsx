@@ -1,25 +1,76 @@
-import Picker from '../layout/Picker';
+import {useContext} from 'react';
 import { useScreenType } from '../../hooks/useScreenType';
+import {Plus} from 'react-feather';
 
+// Components
+import Picker from '../layout/Picker';
+import {AssignmentTag} from './Assignments';
+
+// Context
+import UserDataContext from '../../contexts/UserDataContext';
+
+// Utilities
+import {defaultLabels, parseLabelColor} from './functions/SgyFunctions';
+
+
+// A search / tag filtering component for Materials and Upcoming.
+// Returns the user's current filter as a `QueryObj` containing their search, selected classes, and selected labels.
+
+export type QueryObj = {
+    query: string,
+    labels: string[],
+    classes: boolean[] // TODO: a boolean[] is maybe not the most eloquent way of expressing this
+}
 
 export type ClassFilterProps = {
-    classFilter: boolean[];
-    setClassFilter: (filter: boolean[]) => void;
-    classes: { name: string; color: string; period: string; }[];
+    filter: QueryObj,
+    setFilter: (query: QueryObj) => void,
+    classes: { name: string, color: string, period: string }[];
 };
+export default function ClassFilter(props: ClassFilterProps) {
+    const { filter, setFilter, classes } = props;
+    const userData = useContext(UserDataContext);
+
+    return (
+        <div className="class-filter">
+            <input
+                type="text"
+                placeholder="Search"
+                defaultValue={filter.query}
+                className="upcoming-search-bar"
+                onChange={(event) => setFilter({...filter, query: event.target.value})}
+            />
+            <div className="assignment-tags">
+                {filter.classes.map((c, i) => c && (
+                    <AssignmentTag label={classes[i].name} color={classes[i].color} />
+                ))}
+                {filter.labels.map(label => (
+                    <AssignmentTag label={label} color={parseLabelColor(label, userData)} />
+                ))}
+
+                <Picker className="tag-plus">
+                    {(open, setOpen) => <>
+                        <Plus className="tag-plus" onClick={() => setOpen(!open)} />
+                        <ClassFilterPicker hidden={!open} {...props} />
+                    </>}
+                </Picker>
+            </div>
+        </div>
+    );
+}
 
 // TODO: can we merge this with UpcomingPalette to maintain similarity with PriorityPicker?
 // We wouldn't have to spread props downwards if we do; is the merged component too complex?
 function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
-    const { classFilter, setClassFilter, classes, hidden } = props;
+    const { filter, setFilter, classes, hidden } = props;
     const screenType = useScreenType();
 
     if (hidden) return null;
 
     const toggleFilter = (index: number) => {
-        const newFilter = classFilter.map(a => a);
-        newFilter[index] = !newFilter[index];
-        setClassFilter(newFilter);
+        const newFilter = {...filter};
+        newFilter.classes[index] = !newFilter.classes[index];
+        setFilter(newFilter);
     }
 
     return (
@@ -30,8 +81,8 @@ function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
                         // TODO: see comment below about dot component extraction
                         className="upcoming-palette-picker-dot"
                         style={{
-                            backgroundColor: classFilter[index] ? c.color : 'var(--content-primary)',
-                            border: classFilter[index] ? '' : '2px inset var(--secondary)'
+                            backgroundColor: filter.classes[index] ? c.color : 'var(--content-primary)',
+                            border: filter.classes[index] ? '' : '2px inset var(--secondary)'
                         }}
                     >
                         {c.period}
@@ -42,36 +93,8 @@ function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
             )}
 
             <div className="upcoming-palette-footer">
-                <div onClick={() => setClassFilter(Array(classFilter.length).fill(true))}>Select All</div>
-                <div onClick={() => setClassFilter(Array(classFilter.length).fill(false))}>Deselect All</div>
+
             </div>
         </div>
-    );
-}
-
-export default function ClassFilter(props: ClassFilterProps) {
-    const { classFilter, setClassFilter, classes } = props;
-
-    return (
-        <Picker className="upcoming-palette-burrito">
-            {(open, setOpen) => <>
-                <div className="upcoming-palette" onClick={() => setOpen(!open)}>
-                    {classes.map((c, index) =>
-                        // TODO: we're rather inconsistent with which dots we extract as components and which we don't
-                        // Much of the dot code can probably be reused across sections as a generic component with props
-                        <div
-                            key={index}
-                            className="upcoming-palette-dot"
-                            style={{
-                                backgroundColor: classFilter[index] ? c.color : 'var(--content-primary)',
-                                border: classFilter[index] ? '' : '2px inset var(--secondary)'
-                            }}
-                        />
-                    )}
-                </div>
-
-                <ClassFilterPicker hidden={!open} {...props} />
-            </>}
-        </Picker>
     );
 }

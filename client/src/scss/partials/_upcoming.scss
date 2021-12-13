@@ -82,6 +82,7 @@
   cursor: auto;
   position: absolute;
   top: calc(100% + 15px);
+  right: 0;
   width: 300px;
   background-color: var(--content-primary);
   padding: 10px;
@@ -90,7 +91,6 @@
   z-index: 5;
 
   .upcoming-palette-picker-class {
-
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -119,7 +119,6 @@
       margin-left: auto;
     }
   }
-
 }
 
 .date-range-selector {
@@ -228,6 +227,7 @@ $anim-length: .8s;
   flex-wrap: wrap;
   flex-direction: row;
   margin-bottom: 5px;
+  gap: 5px;
 
   .assignment-tag {
     display: flex;
@@ -246,7 +246,18 @@ $anim-length: .8s;
     background-color: var(--bg-secondary);
     padding: 2px 5px;
     border-radius: 5px;
-    margin-right: 5px;
+  }
+
+  .tag-plus {
+    position: relative;
+    cursor: pointer;
+    margin-left: auto;
+
+    svg {
+      background-color: var(--bg-secondary);
+      border-radius: 50%;
+      padding: 5px;
+    }
   }
 }
 

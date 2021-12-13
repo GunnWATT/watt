@@ -13,6 +13,7 @@ import { CheckSquare, Link, Square } from 'react-feather';
 import AssignmentModal from './AssignmentModal';
 import { shortify } from './functions/GeneralHelperFunctions';
 
+
 // The assignment blocks for the Upcoming Tab
 // Pretty self explanatory
 
@@ -22,7 +23,7 @@ export type ActiveDayState = {
 }
 
 type AssignmentTagProps = { label: string, color?: string };
-function AssignmentTag(props: AssignmentTagProps) {
+export function AssignmentTag(props: AssignmentTagProps) {
     const {label, color} = props;
 
     return (
@@ -33,13 +34,20 @@ function AssignmentTag(props: AssignmentTagProps) {
     )
 }
 
-export function AssignmentTags({item, period}: {item: AssignmentBlurb, period?:boolean}) {
+export function AssignmentTags({item, period}: {item: AssignmentBlurb, period?: boolean}) {
     const userData = useContext(UserDataContext);
 
     return (
         <div className="assignment-tags">
-            {period !== false ? <AssignmentTag label={parsePeriodName(item.period, userData)} color={parsePeriodColor(item.period, userData)} /> : null}
-            {item.labels.map(label => <AssignmentTag label={label} color={parseLabelColor(label, userData)} />)}
+            {period && (
+                <AssignmentTag
+                    label={parsePeriodName(item.period, userData)}
+                    color={parsePeriodColor(item.period, userData)}
+                />
+            )}
+            {item.labels.map(label => (
+                <AssignmentTag key={label} label={label} color={parseLabelColor(label, userData)} />
+            ))}
         </div>
     )
 }

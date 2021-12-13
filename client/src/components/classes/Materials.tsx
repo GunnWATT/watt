@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from 'react';
 
 // Components
 import Material from './Material';
-import ClassFilter from './ClassFilter';
+import ClassFilter, {QueryObj} from './ClassFilter';
+import NoResults from '../lists/NoResults';
 
 // Contexts
 import UserDataContext, { SgyPeriod, SgyData } from '../../contexts/UserDataContext';
@@ -11,7 +12,7 @@ import SgyDataContext from '../../contexts/SgyDataContext';
 // Utilities
 import { findClassesList } from '../../views/Classes';
 import { similarity } from './functions/GeneralHelperFunctions';
-import { AssignmentBlurb, getMaterials, parseLabelColor } from './functions/SgyFunctions';
+import {AssignmentBlurb, defaultLabels, getMaterials, parseLabelColor} from './functions/SgyFunctions';
 
 
 export default function Materials() {
@@ -22,9 +23,10 @@ export default function Materials() {
     const userData = useContext(UserDataContext);
     const classes = findClassesList(userData, false);
 
-    // Filters
-    const [classFilter, setClassFilter] = useState<boolean[]>(Array(classes.length).fill(true));
-    const [query, setQuery] = useState('');
+    // Filter
+    const [filter, setFilter] = useState<QueryObj>({
+        query: '', labels: defaultLabels, classes: Array(classes.length).fill(true)
+    });
 
     // Materials
     const [materials, setMaterials] = useState<AssignmentBlurb[] | null> (null);
@@ -34,17 +36,17 @@ export default function Materials() {
     }, [selected, userData]);
 
     const content = materials && materials
-        .filter((assi) => query.length === 0 || similarity(query, assi.name) >= 0.8 || similarity(query, assi.description) >= 0.8)
-        .filter((assi) => classFilter[classes.findIndex(({ period }) => assi.period === period)])
+        .filter((assi) => filter.query.length === 0
+            || similarity(filter.query, assi.name) >= 0.8
+            || similarity(filter.query, assi.description) >= 0.8)
+        .filter((assi) => filter.classes[classes.findIndex(({ period }) => assi.period === period)])
+        .filter((assi) => assi.labels.some(label => filter.labels.includes(label)))
         .map((item) => <Material key={item.id} item={item} sgyData={sgyData} />)
 
     return (
         <div className="materials">
-            <input type="text" placeholder="Search" defaultValue={query} className="upcoming-search-bar" onChange={(event) => setQuery(event.target.value)} />
-            <div className="materials-filters">
-                <ClassFilter {...{ classFilter, setClassFilter, classes }} />
-            </div>
-            {content}
+            <ClassFilter filter={filter} setFilter={setFilter} classes={classes} />
+            {content && content.length ? content : <NoResults />}
         </div>
     );
 }
