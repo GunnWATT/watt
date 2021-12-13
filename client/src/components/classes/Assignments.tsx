@@ -39,12 +39,12 @@ export function AssignmentTags({item, period}: {item: AssignmentBlurb, period?: 
 
     return (
         <div className="assignment-tags">
-            {period && (
+            {period !== false ? ( // period && doesn't work here I think
                 <AssignmentTag
                     label={parsePeriodName(item.period, userData)}
                     color={parsePeriodColor(item.period, userData)}
                 />
-            )}
+            ) : null}
             {item.labels.map(label => (
                 <AssignmentTag key={label} label={label} color={parseLabelColor(label, userData)} />
             ))}
@@ -77,7 +77,7 @@ function Assignment(props: AssignmentProps) {
         <div className="upcoming-assignment" >
             <div className="upcoming-assignment-content" onClick={() => setModal(!modal)}>
                 <AssignmentTags item={assignment} />
-                <div className={"upcoming-assignment-name"}>{shortify(assignment.name, 150)}</div>
+                <div className={"assignment-title"}>{shortify(assignment.name, 150)}</div>
                 {assignment.description.length ? <div className={"upcoming-assignment-desc"}>{shortify(assignment.description,200)}</div> : null}
                 <div className="assignment-due">
                     <div

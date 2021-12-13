@@ -38,7 +38,7 @@ export default function AssignmentModal(props: AssignmentModalProps) {
         <Modal isOpen={open} toggle={toggle} size="lg" className="item-modal">
             <ModalHeader toggle={toggle}>
                 <AssignmentTags item={item} />
-                <span className="assignment-title">
+                <span className="modal-assignment-title">
                     {item.timestamp && (
                         <CompletedIcon size={24} style={{ cursor: 'pointer', flexShrink: 0 }} onClick={() => toggleCompleted()} />
                     )}

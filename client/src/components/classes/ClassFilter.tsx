@@ -37,7 +37,7 @@ export default function ClassFilter(props: ClassFilterProps) {
                 type="text"
                 placeholder="Search"
                 defaultValue={filter.query}
-                className="upcoming-search-bar"
+                className="class-filter-search-bar"
                 onChange={(event) => setFilter({...filter, query: event.target.value})}
             />
             <div className="assignment-tags">
@@ -74,12 +74,12 @@ function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
     }
 
     return (
-        <div className={"upcoming-palette-picker " + screenType}>
+        <div className={"class-palette-picker " + screenType}>
             {classes.map((c, index) =>
-                <div key={index} className="upcoming-palette-picker-class" onClick={() => toggleFilter(index)}>
+                <div key={index} className="class-palette-picker-class" onClick={() => toggleFilter(index)}>
                     <div
                         // TODO: see comment below about dot component extraction
-                        className="upcoming-palette-picker-dot"
+                        className="class-palette-picker-dot"
                         style={{
                             backgroundColor: filter.classes[index] ? c.color : 'var(--content-primary)',
                             border: filter.classes[index] ? '' : '2px inset var(--secondary)'
@@ -92,7 +92,7 @@ function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
                 </div>
             )}
 
-            <div className="upcoming-palette-footer">
+            <div className="class-palette-footer">
 
             </div>
         </div>

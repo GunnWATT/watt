@@ -1,0 +1,27 @@
+@import '../../mixins/dot';
+
+.upcoming-burrito {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  margin: -15px;
+}
+
+.upcoming-cal {
+  width: 25%;
+  margin: 15px;
+  position: sticky;
+  top: 5px;
+  height: 80vh;
+  border-radius: 5px;
+}
+
+.upcoming {
+  flex: 1;
+  margin: 15px;
+}
+
+.upcoming-day-header {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}

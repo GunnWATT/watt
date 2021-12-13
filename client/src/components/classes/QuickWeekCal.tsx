@@ -20,7 +20,7 @@ function UpcomingQuickCalDot(props: UpcomingQuickCalDotProps) {
     const userData = useContext(UserDataContext);
     return (
         <div
-            className="upcoming-blurb-qc-dot"
+            className="quick-calendar-dot"
             style={{
                 backgroundColor: props.completed ? 'var(--content-primary)' : parsePeriodColor(props.course, userData),
                 border: props.completed ? '2px inset var(--secondary)' : ''
@@ -41,9 +41,9 @@ function UpcomingQuickCalDay(props: UpcomingQuickCalDayProps) {
 
     // Lots of flexbox
     return (
-        <div className={"upcoming-blurb-qc-day" + (active ? '-active' : '-inactive')}>
-            <div className="upcoming-blurb-qc-day-num"> {screenType === 'phone' ? weekdays[day.weekday()] : `${weekdays[day.weekday()]} • ${day.date()}`}</div>
-            <div className="upcoming-blurb-qc-dots">
+        <div className={"quick-calendar-day" + (active ? '-active' : '-inactive')}>
+            <div className="quick-calendar-day-num"> {screenType === 'phone' ? weekdays[day.weekday()] : `${weekdays[day.weekday()]} • ${day.date()}`}</div>
+            <div className="quick-calendar-dots">
                 {relevantAssigments.map((a,i) => <UpcomingQuickCalDot key={a.period + i} course={a.period} completed={a.completed} />)}
             </div>
         </div>
@@ -53,16 +53,21 @@ function UpcomingQuickCalDay(props: UpcomingQuickCalDayProps) {
 type UpcomingQuickWeekCalProps = { upcoming: AssignmentBlurb[], selected: string }
 export default function UpcomingQuickWeekCal(props: UpcomingQuickWeekCalProps) {
     const { upcoming, selected } = props;
+    const screenType = useScreenType();
     const time = useContext(CurrentTimeContext);
+    
     let mutableTime = moment(time);
+
+    const numDaysShown = screenType === 'phone' ? 8 : 7;
+    
     const days = [];
-    for (let i = 0; i < 7; i++) { // Add 1 for each day of the week
+    for (let i = 0; i < numDaysShown; i++) { // Add 1 for each day of the week
         days.push(moment(mutableTime));
         mutableTime.add(1, "days");
     }
 
     return (
-        <div className="upcoming-blurb-quick-cal">
+        <div className={"quick-calendar " + screenType}>
             {days.map((day) => <UpcomingQuickCalDay key={day.format('YYYY-MM-DD')} selected={selected} day={day} upcoming={upcoming} />)}
         </div>
     );

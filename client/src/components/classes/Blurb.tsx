@@ -34,11 +34,11 @@ function BlurbAssignment(props: BlurbAssignmentProps) {
     const CheckBox = item.completed ? CheckSquare : Square;
 
     return (
-        <div className="ub-assignment" style={{ borderLeft: `4px solid ${parsePeriodColor(item.period, userData)}`}}>
+        <div className="blurb-assignment" style={{ borderLeft: `4px solid ${parsePeriodColor(item.period, userData)}`}}>
             <CheckBox style={{ marginRight: 15 }} cursor="pointer" onClick={toggleCompleted} />
-            <div className="ub-assignment-content" style={{ textDecoration: item.completed ? 'line-through' : '' }} onClick={() => setModal(!modal)}>
-                <div className="up-assignment-title">{shortify(item.name)}</div>
-                <div className="up-assignment-due">{item.timestamp!.format("dddd, MMMM Do")} • {item.timestamp!.fromNow()}</div>
+            <div className="blurb-assignment-content" style={{ textDecoration: item.completed ? 'line-through' : '' }} onClick={() => setModal(!modal)}>
+                <div className="assignment-title">{shortify(item.name)}</div>
+                <div className="assignment-due"><div>{item.timestamp!.format("dddd, MMMM Do")} • {item.timestamp!.fromNow()}</div></div>
             </div>
 
             <AssignmentModal item={item} open={modal} setOpen={setModal} />
@@ -70,7 +70,7 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
                         item={a}
                     />
                 )}
-                <div className="ub-upcoming-redirect">
+                <div className="blurb-upcoming-redirect">
                     {
                         !includeCompleted ?
                             <Square size={27} style={{ cursor: 'pointer', flexShrink: 0, marginRight: 15 }} onClick={() => setIncludeCompleted(!includeCompleted)} /> :

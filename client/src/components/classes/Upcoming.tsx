@@ -71,8 +71,6 @@ export default function Upcoming() {
         setOverdue(info.overdue);
     }, [selected, userData]);
 
-    const [filtersOpen, setFilters] = useState(false);
-
     return (
         <div className={"upcoming-burrito " + screenType}>
             {/* these props- */}
