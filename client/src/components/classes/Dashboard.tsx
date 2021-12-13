@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import moment from 'moment';
 
 // Components
 import DashboardBlurb from './Blurb';
@@ -15,8 +16,6 @@ import SgyDataContext from '../../contexts/SgyDataContext';
 import { useScreenType } from '../../hooks/useScreenType';
 import { AssignmentBlurb, getAllGrades, getUpcomingInfo } from './functions/SgyFunctions';
 
-// Moment
-import moment from 'moment';
 
 export default function Dashboard() {
 
@@ -26,7 +25,7 @@ export default function Dashboard() {
     const time = useContext(CurrentTimeContext);
     const screenType = useScreenType();
 
-    const lastFetchedTime = lastFetched != null ? moment(lastFetched) : null;
+    const lastFetchedTime = lastFetched && moment(lastFetched);
 
     const [upcoming, setUpcoming] = useState < AssignmentBlurb[] | null > (null);
     const [overdue, setOverdue] = useState<AssignmentBlurb[] | null> (null);
@@ -50,7 +49,7 @@ export default function Dashboard() {
         <div className={"dashboard-burrito " + screenType}>
             {/* Dashboard left section */}
             <div className={"dashboard-section dashboard-section-left " + screenType}>
-                {upcoming != null && <DashboardBlurb upcoming={upcoming} selected={selected} />}
+                {upcoming && <DashboardBlurb upcoming={upcoming} selected={selected} />}
             </div>
 
             {/* Dashboard right section */}

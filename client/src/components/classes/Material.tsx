@@ -21,7 +21,7 @@ export default function Material(props: MaterialProps) {
 
             <div className="material-labels">
                 {/* {item.labels.map(label => <div key={label} className="material-date">{label}</div>)} */}
-                <AssignmentTags item={item} period={false} />
+                <AssignmentTags item={item} />
             </div>
             <div className="material-class" style={{backgroundColor: parsePeriodColor(item.period, userData)}} />
 

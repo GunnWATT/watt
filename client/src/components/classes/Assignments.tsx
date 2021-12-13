@@ -39,12 +39,12 @@ export function AssignmentTags({item, period}: {item: AssignmentBlurb, period?: 
 
     return (
         <div className="assignment-tags">
-            {period !== false ? ( // period && doesn't work here I think
+            {period && (
                 <AssignmentTag
                     label={parsePeriodName(item.period, userData)}
                     color={parsePeriodColor(item.period, userData)}
                 />
-            ) : null}
+            )}
             {item.labels.map(label => (
                 <AssignmentTag key={label} label={label} color={parseLabelColor(label, userData)} />
             ))}
@@ -73,10 +73,12 @@ function Assignment(props: AssignmentProps) {
         updateAssignment({ ...assignment, priority: priority }, userData, auth, firestore)
     }
 
+    const CompletedIcon = !assignment.completed ? Square : CheckSquare;
+
     return (
         <div className="upcoming-assignment" >
             <div className="upcoming-assignment-content" onClick={() => setModal(!modal)}>
-                <AssignmentTags item={assignment} />
+                <AssignmentTags item={assignment} period />
                 <div className={"assignment-title"}>{shortify(assignment.name, 150)}</div>
                 {assignment.description.length ? <div className={"upcoming-assignment-desc"}>{shortify(assignment.description,200)}</div> : null}
                 <div className="assignment-due">
@@ -90,14 +92,13 @@ function Assignment(props: AssignmentProps) {
             <div className="upcoming-assignment-icons">
                 <div className="upcoming-assignment-icons-top">
                     <a href={assignment.link} target="_blank" rel="noopener noreferrer">
-                        <Link size={30} color="var(--primary)" />
+                        <Link size={28} color="var(--primary)" />
                     </a>
-                    {
-                    !assignment.completed ?
-                        <Square size={30} style={{ marginLeft: 'auto', cursor: 'pointer', flexShrink: 0 }} onClick={() => toggleCompleted()} /> :
-                        <CheckSquare size={30} style={{ marginLeft: 'auto', cursor: 'pointer', flexShrink: 0 }} onClick={() => toggleCompleted()} />
-                    }
-                    
+                    <CompletedIcon
+                        size={28}
+                        style={{ marginLeft: 'auto', cursor: 'pointer', flexShrink: 0 }}
+                        onClick={() => toggleCompleted()}
+                    />
                 </div>
 
                 <div className="upcoming-assignment-icons-bottom">

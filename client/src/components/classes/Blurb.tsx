@@ -26,6 +26,7 @@ function BlurbAssignment(props: BlurbAssignmentProps) {
     const userData = useContext(UserDataContext);
     const auth = useAuth();
     const firestore = useFirestore();
+
     const toggleCompleted = () => {
         updateAssignment({ ...item, completed: !item.completed }, userData, auth, firestore)
     }
@@ -71,12 +72,10 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
                     />
                 )}
                 <div className="blurb-upcoming-redirect">
-                    {
-                        !includeCompleted ?
-                            <Square size={27} style={{ cursor: 'pointer', flexShrink: 0, marginRight: 15 }} onClick={() => setIncludeCompleted(!includeCompleted)} /> :
-                            <CheckSquare size={27} style={{ cursor: 'pointer', flexShrink: 0, marginRight: 15 }} onClick={() => setIncludeCompleted(!includeCompleted)} />
-                    }
-                    <div><Link to='upcoming'>See More in Upcoming</Link></div>
+                    <button className="toggle-completed" onClick={() => setIncludeCompleted(!includeCompleted)}>
+                        {includeCompleted ? 'Hide completed assignments' : 'Show completed assignments'}
+                    </button>
+                    <div className="see-more"><Link to='upcoming'>See More in Upcoming</Link></div>
                 </div>
             </div>
         </div>

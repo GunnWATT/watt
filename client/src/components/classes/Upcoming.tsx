@@ -78,6 +78,9 @@ export default function Upcoming() {
             {/* these props- */}
             <div className="upcoming">
                 <ClassFilter classes={classes} filter={filter} setFilter={setFilter} />
+                <button className="toggle-completed" onClick={() => setIncludeCompleted(!includeCompleted)}>
+                    {includeCompleted ? 'Hide completed assignments' : 'Show completed assignments'}
+                </button>
 
                 {upcomingFiltered && <Assignments upcoming={upcomingFiltered} activeDay={activeDay} setActiveDay={setActiveDay} />}
             </div>
