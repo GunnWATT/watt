@@ -25,7 +25,7 @@ export default function Materials() {
 
     // Filter
     const [filter, setFilter] = useState<QueryObj>({
-        query: '', labels: defaultLabels, classes: Array(classes.length).fill(true)
+        query: '', labels: [], classes: Array(classes.length).fill(false)
     });
 
     // Materials
@@ -39,8 +39,10 @@ export default function Materials() {
         .filter((assi) => filter.query.length === 0
             || similarity(filter.query, assi.name) >= 0.8
             || similarity(filter.query, assi.description) >= 0.8)
-        .filter((assi) => filter.classes[classes.findIndex(({ period }) => assi.period === period)])
-        .filter((assi) => assi.labels.some(label => filter.labels.includes(label)))
+        .filter((assi) => filter.classes.every(c => !c) ||
+            filter.classes[classes.findIndex(({ period }) => assi.period === period)])
+        .filter((assi) => !filter.labels.length ||
+            assi.labels.some(label => filter.labels.includes(label)))
         .map((item) => <Material key={item.id} item={item} sgyData={sgyData} />)
 
     return (

@@ -42,7 +42,7 @@ export default function Upcoming() {
 
     // Filter
     const [filter, setFilter] = useState<QueryObj>({
-        query: searchParams.get('search') ?? '', labels: defaultLabels, classes: Array(classes.length).fill(true)
+        query: searchParams.get('search') ?? '', labels: [], classes: Array(classes.length).fill(false)
     });
 
     const startofday = moment().startOf('day');
@@ -59,10 +59,12 @@ export default function Upcoming() {
         ?.filter((assi) => filter.query.length === 0
             || similarity(filter.query, assi.name) >= 0.8
             || similarity(filter.query, assi.description) >= 0.8)
-        .filter((assi) => filter.classes[classes.findIndex(({period}) => assi.period === period)])
+        .filter((assi) => filter.classes.every(c => !c) ||
+            filter.classes[classes.findIndex(({period}) => assi.period === period)])
         .filter((assi) => assi.timestamp!.isAfter(start) && assi.timestamp!.isBefore(end))
         .filter((assi) => !assi.completed || includeCompleted)
-        .filter((assi) => assi.labels.some(label => filter.labels.includes(label)))
+        .filter((assi) => !filter.labels.length ||
+            assi.labels.some(label => filter.labels.includes(label)))
 
     useEffect(() => {
         const info = (getUpcomingInfo(sgyData, selected, userData, time));

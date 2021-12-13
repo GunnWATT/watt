@@ -50,7 +50,7 @@ export default function ClassFilter(props: ClassFilterProps) {
 
                 <Picker className="tag-plus">
                     {(open, setOpen) => <>
-                        <Plus className="tag-plus" onClick={() => setOpen(!open)} />
+                        <Plus onClick={() => setOpen(!open)} />
                         <ClassFilterPicker hidden={!open} {...props} />
                     </>}
                 </Picker>
@@ -63,7 +63,7 @@ function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
     const { filter, setFilter, classes, hidden } = props;
     const screenType = useScreenType();
     const userData = useContext(UserDataContext);
-    const [selecting, setSelecting] = useState<"classes"|"labels">("classes");
+    const [selecting, setSelecting] = useState<'classes' | 'labels'>('classes');
 
     if (hidden) return null;
 
@@ -75,33 +75,22 @@ function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
 
     const toggleLabel = (labelID: string) => {
         const newFilter = { ...filter };
-        if(newFilter.labels.includes(labelID)) newFilter.labels = newFilter.labels.filter(l => l !== labelID);
-        else newFilter.labels = [...newFilter.labels, labelID];
+        newFilter.labels = newFilter.labels.includes(labelID)
+            ? newFilter.labels.filter(l => l !== labelID)
+            : [...newFilter.labels, labelID];
         setFilter(newFilter);
     }
 
     const deselectAll = () => {
-
-        if(selecting === "classes") setFilter({
-            ...filter,
-            classes: filter.classes.map(() => false)
-        })
-        else setFilter({
-            ...filter,
-            labels: [],
-        })
-        
+        setFilter(selecting === 'classes'
+            ? {...filter, classes: filter.classes.map(() => false)}
+            : {...filter, labels: []});
     }
 
     const selectAll = () => {
-        if(selecting === "classes") setFilter({
-            ...filter,
-            classes: filter.classes.map(() => true)
-        })
-        else setFilter({
-            ...filter,
-            labels: allLabels(userData),
-        })
+        setFilter(selecting === 'classes'
+            ? {...filter, classes: filter.classes.map(() => true)}
+            : {...filter, labels: allLabels(userData)});
     }
 
     return (
@@ -114,7 +103,7 @@ function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
             </div>
 
             <div className="class-picker-tags">
-                {selecting === "classes" && classes.map((c, index) =>
+                {selecting === "classes" && classes.map((c, index) => (
                     <div key={index} className="class-picker-class" onClick={() => toggleFilter(index)}>
                         <div
                             // TODO: see comment below about dot component extraction
@@ -129,9 +118,9 @@ function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
 
                         <div>{c.name}</div>
                     </div>
-                )}
+                ))}
 
-                {selecting === "labels" && allLabels(userData).map((labelID, index) =>
+                {selecting === "labels" && allLabels(userData).map((labelID, index) => (
                     <div key={labelID} className="class-picker-class" onClick={() => toggleLabel(labelID)}>
                         <div
                             // TODO: see comment below about dot component extraction
@@ -144,7 +133,7 @@ function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
 
                         <div>{parseLabelName(labelID, userData)}</div>
                     </div>
-                )}
+                ))}
             </div>
 
             <div className="class-picker-footer">
