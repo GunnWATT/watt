@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import {useContext, useState} from 'react';
 import { useScreenType } from '../../hooks/useScreenType';
 import {CheckCircle, Plus, XCircle} from 'react-feather';
 
@@ -63,6 +63,7 @@ function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
     const { filter, setFilter, classes, hidden } = props;
     const screenType = useScreenType();
     const userData = useContext(UserDataContext);
+    const [selecting, setSelecting] = useState<"classes"|"labels">("classes");
 
     if (hidden) return null;
 
@@ -80,18 +81,26 @@ function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
     }
 
     const deselectAll = () => {
-        setFilter({
+
+        if(selecting === "classes") setFilter({
             ...filter,
-            labels: [],
             classes: filter.classes.map(() => false)
         })
+        else setFilter({
+            ...filter,
+            labels: [],
+        })
+        
     }
 
     const selectAll = () => {
-        setFilter({
+        if(selecting === "classes") setFilter({
+            ...filter,
+            classes: filter.classes.map(() => true)
+        })
+        else setFilter({
             ...filter,
             labels: allLabels(userData),
-            classes: filter.classes.map(() => true)
         })
     }
 
@@ -99,8 +108,13 @@ function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
         <div className={"class-picker " + screenType}>
             <input type="text" placeholder="Search" className="class-picker-search" />
             
+            <div className="class-picker-switch">
+                <div className={selecting === "classes" ? "active" : ''} onClick={() => setSelecting("classes")}>Classes</div>
+                <div className={selecting === "labels" ? "active" : ''} onClick={() => setSelecting("labels")}>Labels</div>
+            </div>
+
             <div className="class-picker-tags">
-                {classes.map((c, index) =>
+                {selecting === "classes" && classes.map((c, index) =>
                     <div key={index} className="class-picker-class" onClick={() => toggleFilter(index)}>
                         <div
                             // TODO: see comment below about dot component extraction
@@ -117,7 +131,7 @@ function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
                     </div>
                 )}
 
-                {allLabels(userData).map((labelID, index) =>
+                {selecting === "labels" && allLabels(userData).map((labelID, index) =>
                     <div key={labelID} className="class-picker-class" onClick={() => toggleLabel(labelID)}>
                         <div
                             // TODO: see comment below about dot component extraction

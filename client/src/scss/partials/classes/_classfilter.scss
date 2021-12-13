@@ -52,16 +52,35 @@
     font-size: 1rem;
   }
 
+  .class-picker-switch {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+		margin-top: 5px;
+		column-gap: 5px;
+
+		>div {
+			text-align: center;
+			background-color: var(--bg-secondary);
+			border-radius: 5px;
+			padding: 2px 0px;
+			cursor: pointer;
+
+			&.active {
+				background-color: var(--active);
+			}
+		}
+  }
+
   .class-picker-tags {
-		margin-top: 15px;
-		height: 300px;
-		overflow-y: scroll;
-		display: flex;
-		flex-direction: column;
-		gap: 5px;
-		border-top: 1px solid var(--tertiary);
-		border-bottom: 1px solid var(--tertiary);
-		padding: 5px 0px;
+    margin-top: 10px;
+    height: 250px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-top: 1px solid var(--tertiary);
+    border-bottom: 1px solid var(--tertiary);
+    padding: 5px 0px;
 
     .class-picker-class {
       display: flex;
@@ -74,19 +93,18 @@
         margin-right: 10px;
       }
     }
-
   }
 
-	.class-picker-footer {
-		display: flex;
-		flex-direction: row;
-		margin-top: 5px;
-		gap: 5px;
+  .class-picker-footer {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+    gap: 5px;
 
-		svg {
-			cursor: pointer;
-		}
-	}
+    svg {
+      cursor: pointer;
+    }
+  }
 }
 
 .date-range-selector {
