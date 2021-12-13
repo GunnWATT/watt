@@ -28,11 +28,11 @@
   }
 }
 
-.class-palette-burrito {
+.class-burrito {
   position: relative;
 }
 
-.class-palette-picker {
+.class-picker {
   cursor: auto;
   position: absolute;
   top: calc(100% + 15px);
@@ -44,35 +44,49 @@
   margin-left: 0;
   z-index: 5;
 
-  .class-palette-picker-class {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    cursor: pointer;
-
-    .class-palette-picker-dot {
-      @include dot(30px);
-      margin-right: 10px;
-    }
-
-    &:not(:last-child) {
-      margin-bottom: 5px;
-    }
+  .class-picker-search {
+    background-color: var(--bg-primary);
+    padding: 6px 10px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1rem;
   }
 
-  .class-palette-footer {
-    display: flex;
-    flex-direction: row;
-    margin-top: 5px;
+  .class-picker-tags {
+		margin-top: 15px;
+		height: 300px;
+		overflow-y: scroll;
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+		border-top: 1px solid var(--tertiary);
+		border-bottom: 1px solid var(--tertiary);
+		padding: 5px 0px;
 
-    div {
+    .class-picker-class {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
       cursor: pointer;
+
+      .class-picker-dot {
+        @include dot(30px);
+        margin-right: 10px;
+      }
     }
 
-    div:last-child {
-      margin-left: auto;
-    }
   }
+
+	.class-picker-footer {
+		display: flex;
+		flex-direction: row;
+		margin-top: 5px;
+		gap: 5px;
+
+		svg {
+			cursor: pointer;
+		}
+	}
 }
 
 .date-range-selector {

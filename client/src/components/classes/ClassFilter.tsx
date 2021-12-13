@@ -1,6 +1,6 @@
 import {useContext} from 'react';
 import { useScreenType } from '../../hooks/useScreenType';
-import {Plus} from 'react-feather';
+import {CheckCircle, Plus, XCircle} from 'react-feather';
 
 // Components
 import Picker from '../layout/Picker';
@@ -10,7 +10,7 @@ import {AssignmentTag} from './Assignments';
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Utilities
-import {defaultLabels, parseLabelColor} from './functions/SgyFunctions';
+import {allLabels, defaultLabels, parseLabelColor, parseLabelName} from './functions/SgyFunctions';
 
 
 // A search / tag filtering component for Materials and Upcoming.
@@ -45,7 +45,7 @@ export default function ClassFilter(props: ClassFilterProps) {
                     <AssignmentTag label={classes[i].name} color={classes[i].color} />
                 ))}
                 {filter.labels.map(label => (
-                    <AssignmentTag label={label} color={parseLabelColor(label, userData)} />
+                    <AssignmentTag label={parseLabelName(label, userData)} color={parseLabelColor(label, userData)} />
                 ))}
 
                 <Picker className="tag-plus">
@@ -59,11 +59,10 @@ export default function ClassFilter(props: ClassFilterProps) {
     );
 }
 
-// TODO: can we merge this with UpcomingPalette to maintain similarity with PriorityPicker?
-// We wouldn't have to spread props downwards if we do; is the merged component too complex?
 function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
     const { filter, setFilter, classes, hidden } = props;
     const screenType = useScreenType();
+    const userData = useContext(UserDataContext);
 
     if (hidden) return null;
 
@@ -73,27 +72,70 @@ function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
         setFilter(newFilter);
     }
 
+    const toggleLabel = (labelID: string) => {
+        const newFilter = { ...filter };
+        if(newFilter.labels.includes(labelID)) newFilter.labels = newFilter.labels.filter(l => l !== labelID);
+        else newFilter.labels = [...newFilter.labels, labelID];
+        setFilter(newFilter);
+    }
+
+    const deselectAll = () => {
+        setFilter({
+            ...filter,
+            labels: [],
+            classes: filter.classes.map(() => false)
+        })
+    }
+
+    const selectAll = () => {
+        setFilter({
+            ...filter,
+            labels: allLabels(userData),
+            classes: filter.classes.map(() => true)
+        })
+    }
+
     return (
-        <div className={"class-palette-picker " + screenType}>
-            {classes.map((c, index) =>
-                <div key={index} className="class-palette-picker-class" onClick={() => toggleFilter(index)}>
-                    <div
-                        // TODO: see comment below about dot component extraction
-                        className="class-palette-picker-dot"
-                        style={{
-                            backgroundColor: filter.classes[index] ? c.color : 'var(--content-primary)',
-                            border: filter.classes[index] ? '' : '2px inset var(--secondary)'
-                        }}
-                    >
-                        {c.period}
+        <div className={"class-picker " + screenType}>
+            <input type="text" placeholder="Search" className="class-picker-search" />
+            
+            <div className="class-picker-tags">
+                {classes.map((c, index) =>
+                    <div key={index} className="class-picker-class" onClick={() => toggleFilter(index)}>
+                        <div
+                            // TODO: see comment below about dot component extraction
+                            className="class-picker-dot"
+                            style={{
+                                backgroundColor: filter.classes[index] ? c.color : 'var(--content-primary)',
+                                border: filter.classes[index] ? '' : '2px inset var(--secondary)'
+                            }}
+                        >
+                            {c.period}
+                        </div>
+
+                        <div>{c.name}</div>
                     </div>
+                )}
 
-                    <div>{c.name}</div>
-                </div>
-            )}
+                {allLabels(userData).map((labelID, index) =>
+                    <div key={labelID} className="class-picker-class" onClick={() => toggleLabel(labelID)}>
+                        <div
+                            // TODO: see comment below about dot component extraction
+                            className="class-picker-dot"
+                            style={{
+                                backgroundColor: filter.labels.includes(labelID) ? parseLabelColor(labelID, userData) : 'var(--content-primary)',
+                                border: filter.labels.includes(labelID) ? '' : '2px inset var(--secondary)'
+                            }}
+                        />
 
-            <div className="class-palette-footer">
+                        <div>{parseLabelName(labelID, userData)}</div>
+                    </div>
+                )}
+            </div>
 
+            <div className="class-picker-footer">
+                <XCircle className="deselect-all" onClick={deselectAll}/>
+                <CheckCircle className="select-all" onClick={selectAll} />
             </div>
         </div>
     );

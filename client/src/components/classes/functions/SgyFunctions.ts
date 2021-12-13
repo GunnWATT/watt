@@ -25,7 +25,7 @@ export const defaultLabels = ['Assignment', 'Test', 'Event', 'Document', 'Page']
 const darkLabelColors = ["#fc6471", "#a882dd", "#70ae6e", "#beee62", "#f4743b", "#373739"];
 export const parseLabelColor = (label:string, userData: UserData) => {
     if (!userData.sgy) throw 'User not authenticated in schoology!';
-    const custom = userData.sgy!.custom.labels.find(({name}) => name === label);
+    const custom = userData.sgy!.custom.labels.find(({id}) => id === label);
     if(custom) return custom.color;
 
     const defaultIndex = defaultLabels.indexOf(label);
@@ -37,6 +37,17 @@ export const parseLabelColor = (label:string, userData: UserData) => {
     console.error(`Label "${label}" not found.`);
     if (userData.options.theme === 'dark') return darkLabelColors[darkLabelColors.length - 1]
     return periodColors[periodColors.length - 1];
+}
+
+export const parseLabelName = (label:string, userData: UserData) => {
+    if (!userData.sgy) throw 'User not authenticated in schoology!';
+    const custom = userData.sgy!.custom.labels.find(({ id }) => id === label);
+    if(custom) return custom.name;
+    else return label;
+}
+
+export const allLabels = (userData: UserData) => {
+    return [...defaultLabels, ...userData.sgy.custom.labels.map(label => label.id)];
 }
 
 export const parsePriority = (priority: number, userData: UserData) => {
