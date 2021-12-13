@@ -60,7 +60,7 @@
   display: flex;
   flex-direction: row;
   max-width: 100vw;
-  height: 100vh;
+  height: 100%;
 
   &.phone {
     height: calc(100vh - 64px);
@@ -121,6 +121,7 @@
 .classes-page {
   padding-right: 0;
   padding-left: 0;
+  height: 100%;
 }
 
 @mixin classes-navbar-item() {
