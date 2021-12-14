@@ -1,6 +1,6 @@
 
 .quick-calendar {
-  margin: 10px 0px;
+  margin: 10px 0;
   display: grid;
   gap: 8px;
   grid-template-columns: repeat(7, 1fr);
@@ -20,18 +20,18 @@
 
 .quick-calendar-day-active {
   @include quick-calendar-day();
-  background-color: var(--content-primary);
+  background-color: var(--contrast);
 }
 
 .quick-calendar-day-inactive {
   @include quick-calendar-day();
-  background-color: var(--bg-secondary);
+  background-color: var(--content-tertiary);
 }
 
 .quick-calendar-dots {
   display: flex;
   flex-direction: row;
-  margin: 2px 0px;
+  margin: 2px 0;
 
   flex-wrap: wrap;
   justify-content: center;

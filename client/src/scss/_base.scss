@@ -6,13 +6,14 @@ body {
 
   --primary: rgba(0, 0, 0, 0.87);   // Primary text color
   --secondary: rgba(0, 0, 0, 0.54); // Secondary text color
-  --tertiary: rgba(0, 0, 0, 0.1);   // Tertiary text color, used for <hr>s
-  --bg-primary: white;              // Primary background, used for sidebar color
-  --bg-secondary: #f7f8fdff;        // Secondary background, used for background and sidebar hover color
-  --content-primary: white;         // Primary content box color
-  --content-secondary: #e9ecef;     // Secondary content box color, used for inactive nav-tabs
-  --theme-light: #fcebebff;         // Light theme color, used for header backdrop
-  --active: #a51618;                // Active color, used for active sidebar components
+  --tertiary: rgba(0, 0, 0, 0.1);   // Tertiary text color
+  --bg-primary: white;              // Primary background (sidebar) -- equal to content-primary on light mode
+  --bg-secondary: #f7f8fd;          // Secondary background (page background, sidebar hover)
+  --content-primary: white;         // Primary content color (main page section)
+  --content-secondary: #e9ecef;     // Secondary content color (inactive tabs)
+  --content-tertiary: #e9ecef;      // Tertiary content (darker sections) -- equal to content-secondary on light mode, bg-secondary on dark
+  --contrast: #f7f8fd;              // Contrast color for classes -- equal to bg-secondary on light mode, content-primary on dark
+  --active: #a51618;                // Theme color (links, sidebar components, header box colors)
 
   &.dark {
     //color-scheme: dark;
@@ -23,7 +24,8 @@ body {
     --bg-secondary: rgb(35, 35, 37);
     --content-primary: rgb(55, 55, 57);
     --content-secondary: rgb(42, 42, 44);
-    --theme-light: rgba(255, 89, 76, 0.15);
+    --content-tertiary: rgb(35, 35, 37);
+    --contrast: rgb(55, 55, 57);
     --active: #ff594c;
   }
 

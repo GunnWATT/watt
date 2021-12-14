@@ -140,26 +140,6 @@
   }
 }
 
-// Dashboard Assignments
-.blurb-assignment {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: var(--content-primary);
-  padding: 15px;
-  border-radius: 5px;
-  margin: 15px 0px;
-
-  .blurb-assignment-content {
-    flex-grow: 1;
-    cursor: pointer;
-
-    // .blurb-assignment-due {
-    // 	font-size: 0.9rem;
-    // }
-  }
-}
-
 // Modal for assignments
 .item-modal .modal-content {
   background-color: var(--bg-primary);
