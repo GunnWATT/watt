@@ -1,10 +1,8 @@
 @import '../../mixins/dot';
 
 .materials {
-  &-filters {
-    display: flex;
-    flex-direction: row;
-    margin-top: 10px;
+  .class-filter {
+    margin-bottom: 1rem;
   }
 }
 

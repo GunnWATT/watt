@@ -7,8 +7,8 @@ import { useScreenType } from '../../hooks/useScreenType';
 import Assignments from './Assignments';
 import SidebarCalendar from './SidebarCalendar';
 import ClassFilter, {QueryObj} from './ClassFilter';
-import { DateRangePicker } from '../schedule/DateSelector';
-import { CheckSquare, ChevronsDown, ChevronsRight, Square } from 'react-feather';
+import CreateModal from './CreateModal';
+import { CheckSquare, ChevronsDown, ChevronsRight, FilePlus, Plus, Square } from 'react-feather';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
@@ -73,14 +73,22 @@ export default function Upcoming() {
         setOverdue(info.overdue);
     }, [selected, userData]);
 
+    // if user is making a new assignment
+    const [creating, setCreating] = useState(false);
+
     return (
         <div className={"upcoming-burrito " + screenType}>
             {/* these props- */}
             <div className="upcoming">
                 <ClassFilter classes={classes} filter={filter} setFilter={setFilter} />
-                <button className="toggle-completed" onClick={() => setIncludeCompleted(!includeCompleted)}>
-                    {includeCompleted ? 'Hide completed assignments' : 'Show completed assignments'}
-                </button>
+                <div className="upcoming-icons">
+                    <div className="add-assignment" onClick={() => setCreating(!creating)}><FilePlus size={20} /></div>
+                    <CreateModal open={creating} setOpen={setCreating} />
+
+                    <button className="toggle-completed" onClick={() => setIncludeCompleted(!includeCompleted)}>
+                        {includeCompleted ? 'Hide completed' : 'Show completed'}
+                    </button>
+                </div>
 
                 {upcomingFiltered && <Assignments upcoming={upcomingFiltered} activeDay={activeDay} setActiveDay={setActiveDay} />}
             </div>

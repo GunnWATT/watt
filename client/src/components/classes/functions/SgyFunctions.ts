@@ -20,9 +20,9 @@ export type AssignmentBlurb = {
     priority: number;
 }
 
-export const defaultLabels = ['Assignment', 'Test', 'Event', 'Document', 'Page'];
+export const defaultLabels = ['Assignment','Document', 'Event', 'Note', 'Test', 'Page'];
 
-const darkLabelColors = ["#fc6471", "#a882dd", "#70ae6e", "#beee62", "#f4743b", "#373739"];
+const darkLabelColors = ["#fc6471", "#a882dd", "#70ae6e", "#beee62", "#f4743b", "#70A9A1", "#373739"];
 export const parseLabelColor = (label:string, userData: UserData) => {
     if (!userData.sgy) throw 'User not authenticated in schoology!';
     const custom = userData.sgy!.custom.labels.find(({id}) => id === label);
@@ -65,6 +65,13 @@ export const parsePriority = (priority: number, userData: UserData) => {
 export const updateAssignment = async (data: AssignmentBlurb, userData: UserData, auth: Auth, firestore: Firestore) => {
     if(data.id.startsWith('W')) await setCustomAssignment(data, userData, auth, firestore);
     else await modifyAssignment(data, userData, auth, firestore);
+}
+
+const createCustomID = () => {
+    return 'W' + Array(16).fill(0).map(()=>Math.floor(Math.random()*10)).join('');
+}
+export const createAssignment = async (data: Omit<AssignmentBlurb, 'id'>, userData: UserData, auth: Auth, firestore: Firestore) => {
+    return await setCustomAssignment({...data, id: createCustomID()}, userData, auth, firestore);
 }
 
 const setCustomAssignment = async (data: AssignmentBlurb, userData: UserData, auth: Auth, firestore: Firestore) => {
@@ -229,7 +236,16 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: SgyPeriod|'A', userD
                 // if (courseStuff.finalGrade) grades[c.period] = courseStuff.finalGrade;
             }
         }
-
+        for(const item of userData.sgy!.custom.assignments) {
+            const timestamp = moment(item.timestamp);
+            if(item.period === selected && timestamp.isAfter(moment())) {
+                upcoming.push({
+                    ...item,
+                    link: '',
+                    timestamp
+                })
+            }
+        }
         // console.log(overdue);
 
         upcoming.sort((a, b) => momentComparator(a.timestamp!, b.timestamp!));
@@ -302,6 +318,17 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: SgyPeriod|'A', userD
                 ...matchWithMoment,
                 timestamp: upcoming[i].timestamp ?? matchWithMoment.timestamp ?? null
             }
+        }
+    }
+    
+    for(const item of userData.sgy!.custom.assignments) {
+        const timestamp = moment(item.timestamp);
+        if(item.period === selected && timestamp.isAfter(moment())) {
+            upcoming.push({
+                ...item,
+                link: '',
+                timestamp
+            })
         }
     }
 

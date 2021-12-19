@@ -1,6 +1,12 @@
 // For the Class Filter component
 // i.e. the search bar + friends in Upcoming / Materials
 
+.class-filter {
+  .assignment-tags {
+    margin: 0.5rem 0 0.5rem;
+  }
+}
+
 .class-filter-search-bar {
   background-color: var(--bg-primary);
   padding: 8px 10px;
@@ -45,7 +51,7 @@
   z-index: 5;
 
   .class-picker-search {
-    background-color: var(--bg-primary);
+    background-color: var(--content-secondary);
     padding: 6px 10px;
     border-radius: 5px;
     width: 100%;
@@ -55,7 +61,7 @@
   .class-picker-switch {
     display: grid;
     grid-template-columns: 1fr 1fr;
-		margin-top: 5px;
+		margin-top: 10px;
 		column-gap: 5px;
 
 		>div {
@@ -67,6 +73,7 @@
 
 			&.active {
 				background-color: var(--active);
+        color: white;
 			}
 		}
   }

@@ -73,7 +73,7 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
                 )}
                 <div className="blurb-upcoming-redirect">
                     <button className="toggle-completed" onClick={() => setIncludeCompleted(!includeCompleted)}>
-                        {includeCompleted ? 'Hide completed assignments' : 'Show completed assignments'}
+                        {includeCompleted ? 'Hide completed' : 'Show completed'}
                     </button>
                     <div className="see-more"><Link to='upcoming'>See More in Upcoming</Link></div>
                 </div>

@@ -1,0 +1,55 @@
+.create-modal {
+
+  .modal-content {
+    background-color: var(--bg-primary);
+  }
+  
+  h5.modal-title {
+    width: 100%;
+
+    .create-name {
+      width: 100%;
+      background-color: var(--contrast);
+      padding: 3px 5px;
+      border-radius: 3px;
+
+      &.incomplete {
+        outline: 1px dashed var(--active);
+      }
+    }
+  }
+
+  .create-desc {
+    width: 100%;
+    outline: none;
+    resize: none;
+    height: 150px;
+    background-color: var(--bg-secondary);
+    color: var(--primary);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .create-foot {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .assignment-due {
+      margin-left: 0.5rem;
+      cursor: pointer;
+    }
+
+    .create-cal {
+      position: fixed;
+      border-radius: 5px;
+      width: 300px;
+      height: 60vh;
+
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+  }
+}

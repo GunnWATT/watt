@@ -32,6 +32,8 @@ export default function AssignmentModal(props: AssignmentModalProps) {
         updateAssignment({ ...item, priority: priority }, userData, auth, firestore)
     }
 
+    const isCustomAssignment = item.id.startsWith('W');
+
     const CompletedIcon = !item.completed ? Square : CheckSquare;
 
     return (
@@ -42,7 +44,7 @@ export default function AssignmentModal(props: AssignmentModalProps) {
                     {item.timestamp && (
                         <CompletedIcon size={24} style={{ cursor: 'pointer', flexShrink: 0 }} onClick={() => toggleCompleted()} />
                     )}
-                    <a href={item.link} target="_blank" rel="noopener noreferrer">{item.name}</a>
+                    {isCustomAssignment ? item.name : <a href={item.link} target="_blank" rel="noopener noreferrer">{item.name}</a>}
                 </span>
             </ModalHeader>
             <ModalBody>

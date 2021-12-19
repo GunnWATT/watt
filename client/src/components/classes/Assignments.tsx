@@ -73,6 +73,8 @@ function Assignment(props: AssignmentProps) {
         updateAssignment({ ...assignment, priority: priority }, userData, auth, firestore)
     }
 
+    const isCustomAssignment = assignment.id.startsWith('W');
+
     const CompletedIcon = !assignment.completed ? Square : CheckSquare;
 
     return (
@@ -91,9 +93,9 @@ function Assignment(props: AssignmentProps) {
             </div>
             <div className="upcoming-assignment-icons">
                 <div className="upcoming-assignment-icons-top">
-                    <a href={assignment.link} target="_blank" rel="noopener noreferrer">
+                    {!isCustomAssignment && <a href={assignment.link} target="_blank" rel="noopener noreferrer">
                         <Link size={28} color="var(--primary)" />
-                    </a>
+                    </a>}
                     <CompletedIcon
                         size={28}
                         style={{ marginLeft: 'auto', cursor: 'pointer', flexShrink: 0 }}

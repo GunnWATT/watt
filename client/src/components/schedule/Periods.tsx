@@ -183,6 +183,8 @@ export const periodNameDefault = (name: string) => {
             return 'Office Hours';
         case 'B':
             return 'Brunch';
+        case 'A':
+            return 'No Class'; // for assignments that are not associated with a class
         default:
             return name;
     }
