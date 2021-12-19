@@ -122,7 +122,7 @@ function AssignmentDay(props: AssignmentDayProps & ActiveDayState ) {
             {day.format('dddd, MMMM Do')} • In {day.diff(moment(), 'days') + 1} day{day.diff(moment(), 'days') ? 's' : ''}
         </div>
 
-        {upcoming.map((assigment) => <Assignment key={assigment.link} assignment={assigment} {...activeDayState} />)}
+        {upcoming.map((assignment) => <Assignment key={assignment.id} assignment={assignment} {...activeDayState} />)}
     </>
 }
 
