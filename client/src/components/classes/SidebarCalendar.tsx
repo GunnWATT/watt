@@ -48,7 +48,7 @@ export default function SidebarCalendar(props: ActiveItemState & {upcoming: Assi
         const diffDays = moment(to.timestamp!).startOf('day').diff(moment(from.timestamp!).startOf('day'), 'days');
 
         if (diffDays > 5) {
-            const diff = 120;
+            const diff = 200 + Math.sqrt(diffDays) * 10;
             return [diff, 'large-diff'];
         }
 
@@ -138,47 +138,46 @@ export default function SidebarCalendar(props: ActiveItemState & {upcoming: Assi
                     const avg = (line.sy + line.ey)/2;
                     const tick = 10;
                     const ticks = line.type === "same-day" ? [] : line.type === "diff-day" ? [-8,8] : [-16,0,16] ;
-                    return <>
+                    return <g key={line.sy}>
                         <line 
                             x1={timelineX} y1={line.sy}
                             x2={timelineX} y2={line.ey} 
-                            stroke={'var(--content-primary)'}
+                            stroke={'var(--contrast)'}
                             strokeWidth={strokeWeight} 
                         />
 
                         {ticks.map(t => 
                             <line 
-                                key={t} 
+                                key={line.sy + " " + t} 
                                 x1={timelineX - tick} y1={avg + tick + t}
                                 x2={timelineX + tick} y2={avg - tick + t}
-                                stroke={'var(--content-primary)'}
+                                stroke={'var(--contrast)'}
                                 strokeWidth={strokeWeight} 
                             />)
                         }
-                    </>
+                    </g>
                 })}
 
                 {circles.map(circle => 
-                    <g>
-                        <circle
-                            cx={timelineX} cy={circle.cy}
-                            r={circle.radius}
-                            cursor="pointer"
-                            stroke={parsePeriodColor(circle.item.period, userData)}
-                            strokeWidth={strokeWeight}
-                            fill={'#ffffff00'}
-                            filter={activeItem && circle.item.id === activeItem.id ? 'url(#glow)' : ''}
+                    <circle
+                        key={circle.item.id}
+                        cx={timelineX} cy={circle.cy}
+                        r={circle.radius}
+                        cursor="pointer"
+                        stroke={parsePeriodColor(circle.item.period, userData)}
+                        strokeWidth={strokeWeight}
+                        fill={'#ffffff00'}
+                        filter={activeItem && circle.item.id === activeItem.id ? 'url(#glow)' : ''}
 
-                            onMouseEnter={() => setActiveItem(circle.item)}
-                            onMouseLeave={() => setActiveItem(null)}
-                        />
-                    </g>
+                        onMouseEnter={() => setActiveItem(circle.item)}
+                        onMouseLeave={() => setActiveItem(null)}
+                    />
                 )}
 
-                {[...days].map(([day, { sy, ey }]) => <>
+                {[...days].map(([day, { sy, ey }]) => <g key={day}>
                     <text 
                         x={weekdayX} y={(sy + ey) / 2} 
-                        dominant-baseline="central" // center vertically
+                        dominantBaseline="central" // center vertically
                         style={{ 
                             fontSize: 50, 
                             fill: 'var(--primary)', 
@@ -190,7 +189,7 @@ export default function SidebarCalendar(props: ActiveItemState & {upcoming: Assi
 
                     <text
                         x={dayX} y={(sy + ey) / 2 - 10}
-                        dominant-baseline="central" // center vertically
+                        dominantBaseline="central" // center vertically
                         style={{
                             fontSize: 15,
                             fill: 'var(--primary)'
@@ -200,7 +199,7 @@ export default function SidebarCalendar(props: ActiveItemState & {upcoming: Assi
                     </text>
                     <text
                         x={dayX} y={(sy + ey) / 2 + 10}
-                        dominant-baseline="central" // center vertically
+                        dominantBaseline="central" // center vertically
                         style={{
                             fontSize: 15,
                             fill: 'var(--primary)'
@@ -208,7 +207,7 @@ export default function SidebarCalendar(props: ActiveItemState & {upcoming: Assi
                     >
                         In {pluralize(moment(day).diff(moment(), 'days'), 'day')}
                     </text>
-                </>)} 
+                </g>)} 
             </svg>
         </div>
     );
