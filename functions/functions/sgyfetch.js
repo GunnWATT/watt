@@ -201,6 +201,7 @@ const init = async (data, context) => {
     return teachers
 }
 
+// this function is deprecated and is never used - rog
 const upcoming = async (data, context) => {
     const uid = context.auth.uid
     if (!uid) throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.')
@@ -295,6 +296,11 @@ const fetchMaterials = async (data, context) => {
             throw new functions.https.HttpsError('resource-exhausted', 'Error: Schoology limits exceeded. Please wait at least 5 seconds before trying again.')
         }
 
+        if(err.statusCode === 401) {
+            // 401 means unauthorized sgy request
+            // this means creds are expired / don't work for some reason, so we turn off sgy for the user 
+            await firestore.collection('users').doc(uid).update({ "options.sgy": false }).catch(e => console.log(e))
+        }
         throw new functions.https.HttpsError('internal', 'Internal error.')
     }
     

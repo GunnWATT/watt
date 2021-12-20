@@ -59,7 +59,8 @@ const ClassesSgyNotConnected = () => {
     return (
         <ClassesErrorBurrito>
             <h2>Connect Schoology</h2>
-            <p>This section uses Schoology integration, which requires you to connect your Schoology account. Press the button below to continue.</p>
+            <p>This section uses Schoology integration, which requires you to connect your Schoology account. Press the button below to continue.<br/>
+            <i style={{fontSize: '0.8rem'}}>(You may have to reconnect once in a while.)</i></p>
             <div className='sgy-auth-button'>
                 <SgySignInBtn />
             </div>
