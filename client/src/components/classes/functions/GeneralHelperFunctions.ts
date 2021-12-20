@@ -37,6 +37,11 @@ export const shortify = (str: string, limit: number = 50) => {
     return str.slice(0, limit-3) + '...';
 }
 
+export const pluralize = (num: number, unit: string) => {
+    if(num === 1) return `${num} ${unit}`;
+    return `${num} ${unit}s`;
+}
+
 // Function to calculate Ratcliff-Obershelp string similarity
 // https://en.wikipedia.org/wiki/Gestalt_Pattern_Matching
 

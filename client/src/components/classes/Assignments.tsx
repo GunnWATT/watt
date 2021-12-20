@@ -17,9 +17,9 @@ import { shortify } from './functions/GeneralHelperFunctions';
 // The assignment blocks for the Upcoming Tab
 // Pretty self explanatory
 
-export type ActiveDayState = {
-    activeDay: moment.Moment | null;
-    setActiveDay: (day: moment.Moment | null) => void;
+export type ActiveItemState = {
+    activeItem: AssignmentBlurb | null;
+    setActiveItem: (item: AssignmentBlurb | null) => void;
 }
 
 type AssignmentTagProps = { label: string, color?: string };
@@ -55,9 +55,9 @@ export function AssignmentTags({item, period}: {item: AssignmentBlurb, period?: 
 // the individual assignment
 // TODO: instead of taking the assignment as `props.assignment`, would it be neater to take it spread out?
 // ie. `props.name`, `props.link`, `props.timestamp`, with assignment passed in as `{...assignment}`
-type AssignmentProps = { assignment: AssignmentBlurb } & ActiveDayState;
+type AssignmentProps = { assignment: AssignmentBlurb } & ActiveItemState;
 function Assignment(props: AssignmentProps) {
-    const { assignment, activeDay, setActiveDay } = props;
+    const { assignment, setActiveItem } = props;
 
     const [modal, setModal] = useState(false);
     const userData = useContext(UserDataContext);
@@ -78,15 +78,17 @@ function Assignment(props: AssignmentProps) {
     const CompletedIcon = !assignment.completed ? Square : CheckSquare;
 
     return (
-        <div className="upcoming-assignment" >
+        <div 
+            className="upcoming-assignment"
+            onMouseEnter={() => setActiveItem(assignment)}
+            onMouseLeave={() => setActiveItem(null)}
+        >
             <div className="upcoming-assignment-content" onClick={() => setModal(!modal)}>
                 <AssignmentTags item={assignment} period />
                 <div className={"assignment-title"}>{shortify(assignment.name, 150)}</div>
                 {assignment.description.length ? <div className={"upcoming-assignment-desc"}>{shortify(assignment.description,200)}</div> : null}
                 <div className="assignment-due">
-                    <div
-                        onMouseEnter={() => setActiveDay(moment(assignment.timestamp).startOf('day'))}
-                        onMouseLeave={() => setActiveDay(null)}>
+                    <div>
                         {assignment.timestamp!.format('hh:mm a on dddd, MMM Do')}
                     </div>
                 </div> {/* TODO: include 24 hour support */}
@@ -115,7 +117,7 @@ function Assignment(props: AssignmentProps) {
 
 // grouped by each day
 type AssignmentDayProps = { day: moment.Moment, upcoming: AssignmentBlurb[] }
-function AssignmentDay(props: AssignmentDayProps & ActiveDayState ) {
+function AssignmentDay(props: AssignmentDayProps & ActiveItemState ) {
     const { day, upcoming, ...activeDayState } = props;
     return <>
         <div className="upcoming-day-header">
@@ -128,7 +130,7 @@ function AssignmentDay(props: AssignmentDayProps & ActiveDayState ) {
 
 // all assignments
 type AssignmentsProps = { upcoming: AssignmentBlurb[] };
-export default function Assignments(props: AssignmentsProps & ActiveDayState) {
+export default function Assignments(props: AssignmentsProps & ActiveItemState) {
     const { upcoming, ...activeDayState } = props;
 
     // We map days (like "11-29-2021") to all the assignments that are due on that day

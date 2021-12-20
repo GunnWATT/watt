@@ -107,13 +107,24 @@ const modifyAssignment = async (modifiedData: AssignmentBlurb, userData: UserDat
 // Functions for wrangling with Schoology data
 
 // A comparator for moment objects (for sorting)
-const momentComparator = (a: moment.Moment, b: moment.Moment) => {
-    if (a.isBefore(b)) {
-        return -1;
+const assignmentComparator = (a: AssignmentBlurb, b: AssignmentBlurb) => {
+    if(a.timestamp && b.timestamp) {
+        if (a.timestamp.isBefore(b.timestamp)) {
+            return -1;
+        }
+        if (a.timestamp.isAfter(b.timestamp)) {
+            return 1;
+        }
     }
-    if (a.isAfter(b)) {
-        return 1;
-    }
+    else if(a.timestamp) return -1;
+    else if(b.timestamp) return 1;
+
+    if(a.period < b.period) return -1;
+    if(a.period > b.period) return 1;
+
+    if(a.name < b.name) return -1;
+    if(a.name > b.name) return 1;
+    
     return 0;
 }
 
@@ -184,7 +195,7 @@ export const getMaterials = (sgyData: SgyData, selected: SgyPeriod | 'A', userDa
         for (const c of classes) {
             materials.push( ...getMaterials(sgyData, c.period, userData) );
         }
-
+        materials.sort(assignmentComparator);
         return materials
     }
 
@@ -212,6 +223,8 @@ export const getMaterials = (sgyData: SgyData, selected: SgyPeriod | 'A', userDa
             }
         }
     }
+
+    materials.sort(assignmentComparator);
 
     return materials;
 }
@@ -248,8 +261,8 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: SgyPeriod|'A', userD
         }
         // console.log(overdue);
 
-        upcoming.sort((a, b) => momentComparator(a.timestamp!, b.timestamp!));
-        overdue.sort((a, b) => momentComparator(a.timestamp!, b.timestamp!));
+        upcoming.sort(assignmentComparator);
+        overdue.sort(assignmentComparator);
 
         return { upcoming, overdue };
     }
@@ -332,8 +345,8 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: SgyPeriod|'A', userD
         }
     }
 
-    upcoming.sort((a, b) => momentComparator(a.timestamp!, b.timestamp!));
-    overdue.sort((a, b) => momentComparator(a.timestamp!, b.timestamp!));
+    upcoming.sort(assignmentComparator);
+    overdue.sort(assignmentComparator);
 
     const finalGrade = selectedCourseGrades ? selectedCourseGrades.final_grade[0].grade : null;
 

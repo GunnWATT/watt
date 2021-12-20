@@ -52,7 +52,7 @@ export default function Upcoming() {
     const [includeCompleted, setIncludeCompleted] = useState(false);
 
     // active day (if the user is hovering over any date)
-    const [activeDay, setActiveDay] = useState<null | moment.Moment>(null);
+    const [activeItem, setActiveItem] = useState<null | AssignmentBlurb>(null);
 
     // We filter upcoming by 1) query 2) class 3) date
     const upcomingFiltered = upcoming
@@ -71,7 +71,7 @@ export default function Upcoming() {
 
         setUpcoming(info.upcoming);
         setOverdue(info.overdue);
-    }, [selected, userData]);
+    }, [selected, userData, sgyData]);
 
     // if user is making a new assignment
     const [creating, setCreating] = useState(false);
@@ -90,10 +90,10 @@ export default function Upcoming() {
                     </button>
                 </div>
 
-                {upcomingFiltered && <Assignments upcoming={upcomingFiltered} activeDay={activeDay} setActiveDay={setActiveDay} />}
+                {upcomingFiltered && <Assignments upcoming={upcomingFiltered} activeItem={activeItem} setActiveItem={setActiveItem} />}
             </div>
             {screenType !== 'smallScreen' && screenType !== 'phone' && (
-                <SidebarCalendar activeDay={activeDay} setActiveDay={setActiveDay} start={start} setStart={setStart} end={end} setEnd={setEnd} />
+                <SidebarCalendar upcoming={upcoming} activeItem={activeItem} setActiveItem={setActiveItem} />
             )}
         </div>
     );

@@ -1,0 +1,11 @@
+
+.upcoming-cal {
+  width: 300px;
+  margin: 15px;
+  position: sticky;
+  top: 5px;
+  height: 80vh;
+  border-radius: 5px;
+  background-color: var(--bg-primary);
+  overflow-y: scroll;
+}
