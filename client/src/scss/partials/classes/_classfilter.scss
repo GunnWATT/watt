@@ -1,6 +1,8 @@
 // For the Class Filter component
 // i.e. the search bar + friends in Upcoming / Materials
 
+@import '../../mixins/dot';
+
 .class-filter {
   .assignment-tags {
     margin: 0.5rem 0 0.5rem;
@@ -50,6 +52,15 @@
   margin-left: 0;
   z-index: 5;
 
+  h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+  }
+
+  hr {
+    margin: 0;
+  }
+
   .class-picker-search {
     background-color: var(--content-secondary);
     padding: 6px 10px;
@@ -58,46 +69,44 @@
     font-size: 1rem;
   }
 
-  .class-picker-switch {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-		margin-top: 10px;
-		column-gap: 5px;
-
-		>div {
-			text-align: center;
-			background-color: var(--bg-secondary);
-			border-radius: 5px;
-			padding: 2px 0px;
-			cursor: pointer;
-
-			&.active {
-				background-color: var(--active);
-        color: white;
-			}
-		}
-  }
-
   .class-picker-tags {
     margin-top: 10px;
-    height: 250px;
+    height: 350px;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 1rem;
     border-top: 1px solid var(--tertiary);
     border-bottom: 1px solid var(--tertiary);
-    padding: 5px 0px;
+    padding: 5px;
 
-    .class-picker-class {
+    > section {
       display: flex;
-      flex-direction: row;
-      align-items: center;
-      cursor: pointer;
+      flex-direction: column;
+      gap: 0.25rem;
 
-      .class-picker-dot {
-        @include dot(30px);
-        margin-right: 10px;
+      .heading {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+
+        button {
+          font-size: 0.7rem;
+          background-color: var(--content-secondary);
+          border-radius: 0.25rem;
+        }
+      }
+
+      .class-picker-class {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+
+        .class-picker-dot {
+          @include dot(1.75rem);
+          margin-right: 0.75rem;
+        }
       }
     }
   }

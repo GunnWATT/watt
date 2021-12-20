@@ -1,27 +1,36 @@
-import moment from "moment";
-import { useContext, useState } from "react";
-import { Plus, PlusCircle } from "react-feather";
-import { useAuth, useFirestore } from "reactfire";
-import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
-import UserDataContext from "../../contexts/UserDataContext";
-import { useScreenType } from "../../hooks/useScreenType";
-import { findClassesList } from "../../views/Classes";
-import Picker from "../layout/Picker";
-import { GenericCalendar } from "../schedule/DateSelector";
-import { AssignmentTag } from "./Assignments";
-import { allLabels, createAssignment, parseLabelColor, parseLabelName } from "./functions/SgyFunctions";
-import PriorityPicker from "./PriorityPicker";
+import { useContext, useState } from 'react';
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
+import { useAuth, useFirestore } from 'reactfire';
+import { Plus, PlusCircle } from 'react-feather';
+import moment from 'moment';
 
-export default function CreateModal({open, setOpen}: { open: boolean, setOpen: (open: boolean) => any}) {
+// Components
+import Picker from '../layout/Picker';
+import PriorityPicker from './PriorityPicker';
+
+// Contexts
+import UserDataContext from '../../contexts/UserDataContext';
+
+// Utilities
+import { useScreenType } from '../../hooks/useScreenType';
+import { findClassesList } from '../../views/Classes';
+import { GenericCalendar } from '../schedule/DateSelector';
+import { AssignmentTag } from './Assignments';
+import { allLabels, createAssignment, parseLabelColor, parseLabelName } from './functions/SgyFunctions';
+
+
+type CreateAssignmentModalProps = { open: boolean, setOpen: (open: boolean) => any};
+export default function CreateAssignmentModal(props: CreateAssignmentModalProps) {
+    const {open, setOpen} = props;
 
     const userData = useContext(UserDataContext);
     const auth = useAuth();
     const firestore = useFirestore();
     const screenType = useScreenType();
-    
+
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [priority, setPriority] = useState<number>(-1);
+    const [priority, setPriority] = useState(-1);
     const [timestamp, setTimestamp] = useState(moment().add(1, 'days').startOf('day').add(8, 'hours')); // TODO: TIME SELECTOR
     const [labels, setLabels] = useState<string[]>(['Note']);
 
@@ -37,10 +46,16 @@ export default function CreateModal({open, setOpen}: { open: boolean, setOpen: (
         setPriority(-1);
         setTimestamp(moment().add(1, 'days').startOf('day').add(8, 'hours'));
         setLabels(['Note']);
-    };
+    }
 
-    const toggle = () => {setOpen(!open); resetState();};
-    const close = () => {setOpen(false); resetState();};
+    const toggle = () => {
+        setOpen(!open);
+        resetState();
+    }
+    const close = () => {
+        setOpen(false);
+        resetState();
+    }
 
     const ready = name.length;
     const create = () => {
@@ -72,21 +87,22 @@ export default function CreateModal({open, setOpen}: { open: boolean, setOpen: (
                                 <input type="text" placeholder="Search" className="class-picker-search" />
 
                                 <div className="class-picker-tags">
+                                    <section>
+                                        {allLabels(userData).map((labelID, index) => (
+                                            <div key={labelID} className="class-picker-class" onClick={() => toggleLabel(labelID)}>
+                                                <div
+                                                    // TODO: see comment below about dot component extraction
+                                                    className="class-picker-dot"
+                                                    style={{
+                                                        backgroundColor: labels.includes(labelID) ? parseLabelColor(labelID, userData) : 'var(--content-primary)',
+                                                        border: labels.includes(labelID) ? '' : '2px inset var(--secondary)'
+                                                    }}
+                                                />
 
-                                    {allLabels(userData).map((labelID, index) => (
-                                        <div key={labelID} className="class-picker-class" onClick={() => toggleLabel(labelID)}>
-                                            <div
-                                                // TODO: see comment below about dot component extraction
-                                                className="class-picker-dot"
-                                                style={{
-                                                    backgroundColor: labels.includes(labelID) ? parseLabelColor(labelID, userData) : 'var(--content-primary)',
-                                                    border: labels.includes(labelID) ? '' : '2px inset var(--secondary)'
-                                                }}
-                                            />
-
-                                            <div>{parseLabelName(labelID, userData)}</div>
-                                        </div>
-                                    ))}
+                                                <div>{parseLabelName(labelID, userData)}</div>
+                                            </div>
+                                        ))}
+                                    </section>
                                 </div>
 
                                 <div className="class-picker-footer">
@@ -130,5 +146,4 @@ export default function CreateModal({open, setOpen}: { open: boolean, setOpen: (
             </ModalFooter>
         </Modal>
     )
-
 }

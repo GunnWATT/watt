@@ -7,8 +7,8 @@ import { useScreenType } from '../../hooks/useScreenType';
 import Assignments from './Assignments';
 import SidebarCalendar from './SidebarCalendar';
 import ClassFilter, {QueryObj} from './ClassFilter';
-import CreateModal from './CreateModal';
-import { CheckSquare, ChevronsDown, ChevronsRight, FilePlus, Plus, Square } from 'react-feather';
+import CreateAssignmentModal from './CreateAssignmentModal';
+import { FilePlus } from 'react-feather';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
@@ -17,8 +17,8 @@ import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
 import { findClassesList } from '../../views/Classes';
-import {AssignmentBlurb, defaultLabels} from './functions/SgyFunctions';
-import { SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE } from '../schedule/Periods';
+import {AssignmentBlurb} from './functions/SgyFunctions';
+import { SCHOOL_END_EXCLUSIVE } from '../schedule/Periods';
 import { getUpcomingInfo } from './functions/SgyFunctions';
 import { similarity } from './functions/GeneralHelperFunctions';
 
@@ -83,7 +83,7 @@ export default function Upcoming() {
                 <ClassFilter classes={classes} filter={filter} setFilter={setFilter} />
                 <div className="upcoming-icons">
                     <div className="add-assignment" onClick={() => setCreating(!creating)}><FilePlus size={20} /></div>
-                    <CreateModal open={creating} setOpen={setCreating} />
+                    <CreateAssignmentModal open={creating} setOpen={setCreating} />
 
                     <button className="toggle-completed" onClick={() => setIncludeCompleted(!includeCompleted)}>
                         {includeCompleted ? 'Hide completed' : 'Show completed'}

@@ -63,11 +63,10 @@ function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
     const { filter, setFilter, classes, hidden } = props;
     const screenType = useScreenType();
     const userData = useContext(UserDataContext);
-    const [selecting, setSelecting] = useState<'classes' | 'labels'>('classes');
 
     if (hidden) return null;
 
-    const toggleFilter = (index: number) => {
+    const toggleClass = (index: number) => {
         const newFilter = {...filter};
         newFilter.classes[index] = !newFilter.classes[index];
         setFilter(newFilter);
@@ -81,64 +80,74 @@ function ClassFilterPicker(props: ClassFilterProps & { hidden: boolean }) {
         setFilter(newFilter);
     }
 
-    const deselectAll = () => {
-        setFilter(selecting === 'classes'
-            ? {...filter, classes: filter.classes.map(() => false)}
-            : {...filter, labels: []});
-    }
+    const setAllClasses = (value: boolean) =>
+        setFilter({...filter, classes: filter.classes.map(() => value)});
+    const selectAllClasses = () => setAllClasses(true);
+    const deselectAllClasses = () => setAllClasses(false);
 
-    const selectAll = () => {
-        setFilter(selecting === 'classes'
-            ? {...filter, classes: filter.classes.map(() => true)}
-            : {...filter, labels: allLabels(userData)});
-    }
+    const selectAllLabels = () =>
+        setFilter({...filter, labels: allLabels(userData)});
+    const deselectAllLabels = () =>
+        setFilter({...filter, labels: []});
 
     return (
         <div className={"class-picker " + screenType}>
             <input type="text" placeholder="Search" className="class-picker-search" />
-            
-            <div className="class-picker-switch">
-                <div className={selecting === "classes" ? "active" : ''} onClick={() => setSelecting("classes")}>Classes</div>
-                <div className={selecting === "labels" ? "active" : ''} onClick={() => setSelecting("labels")}>Labels</div>
-            </div>
 
             <div className="class-picker-tags">
-                {selecting === "classes" && classes.map((c, index) => (
-                    <div key={index} className="class-picker-class" onClick={() => toggleFilter(index)}>
-                        <div
-                            // TODO: see comment below about dot component extraction
-                            className="class-picker-dot"
-                            style={{
-                                backgroundColor: filter.classes[index] ? c.color : 'var(--content-primary)',
-                                border: filter.classes[index] ? '' : '2px inset var(--secondary)'
-                            }}
-                        >
-                            {c.period}
+                <section className="class-tags">
+                    <span className="heading">
+                        <h4>Classes</h4>
+                        {filter.classes.every((c) => !c) ? (
+                            <button onClick={selectAllClasses}>Select all</button>
+                        ) : (
+                            <button onClick={deselectAllClasses}>Deselect all</button>
+                        )}
+                    </span>
+                    <hr />
+                    {classes.map((c, index) => (
+                        <div key={index} className="class-picker-class" onClick={() => toggleClass(index)}>
+                            <div
+                                // TODO: see comment below about dot component extraction
+                                className="class-picker-dot"
+                                style={{
+                                    backgroundColor: filter.classes[index] ? c.color : 'var(--content-primary)',
+                                    border: filter.classes[index] ? '' : '2px inset var(--secondary)'
+                                }}
+                            >
+                                {c.period}
+                            </div>
+
+                            <div>{c.name}</div>
                         </div>
+                    ))}
+                </section>
 
-                        <div>{c.name}</div>
-                    </div>
-                ))}
+                <section className="label-tags">
+                    <span className="heading">
+                        <h4>Labels</h4>
+                        {!filter.labels.length ? (
+                            <button onClick={selectAllLabels}>Select all</button>
+                        ) : (
+                            <button onClick={deselectAllLabels}>Deselect all</button>
+                        )}
+                    </span>
+                    <hr />
+                    {allLabels(userData).map((labelID, index) => (
+                        <div key={labelID} className="class-picker-class" onClick={() => toggleLabel(labelID)}>
+                            <div
+                                // TODO: see comment below about dot component extraction
+                                className="class-picker-dot"
+                                style={{
+                                    backgroundColor: filter.labels.includes(labelID) ? parseLabelColor(labelID, userData) : 'var(--content-primary)',
+                                    border: filter.labels.includes(labelID) ? '' : '2px inset var(--secondary)'
+                                }}
+                            />
 
-                {selecting === "labels" && allLabels(userData).map((labelID, index) => (
-                    <div key={labelID} className="class-picker-class" onClick={() => toggleLabel(labelID)}>
-                        <div
-                            // TODO: see comment below about dot component extraction
-                            className="class-picker-dot"
-                            style={{
-                                backgroundColor: filter.labels.includes(labelID) ? parseLabelColor(labelID, userData) : 'var(--content-primary)',
-                                border: filter.labels.includes(labelID) ? '' : '2px inset var(--secondary)'
-                            }}
-                        />
-
-                        <div>{parseLabelName(labelID, userData)}</div>
-                    </div>
-                ))}
-            </div>
-
-            <div className="class-picker-footer">
-                <XCircle className="deselect-all" onClick={deselectAll}/>
-                <CheckCircle className="select-all" onClick={selectAll} />
+                            <div>{parseLabelName(labelID, userData)}</div>
+                        </div>
+                    ))}
+                </section>
             </div>
         </div>
     );
