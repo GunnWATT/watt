@@ -1,3 +1,5 @@
+@import '../../mixins/dot';
+
 .create-modal {
   .modal-content {
     background-color: var(--bg-primary);
@@ -15,6 +17,43 @@
       &.incomplete {
         outline: 1px dashed var(--active);
       }
+    }
+
+    .period-picker {
+      position: relative;
+
+      &-text {
+        margin-top: 10px;
+        display: flex;
+
+        div {
+          cursor: pointer;
+          background-color: var(--content-primary);
+          padding: 0px 5px;
+          border-radius: 5px;
+          font-size: 1rem;
+        }
+      }
+
+      .class-picker {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        left: 0px;
+        
+        .period-picker-period {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          cursor: pointer;
+
+          & .dot {
+            @include dot(1.75rem);
+            margin-right: 0.75rem;
+          }
+        }
+      }
+      
     }
   }
 

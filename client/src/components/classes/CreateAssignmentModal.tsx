@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { useAuth, useFirestore } from 'reactfire';
 import { Plus, PlusCircle } from 'react-feather';
@@ -9,7 +9,7 @@ import Picker from '../layout/Picker';
 import PriorityPicker from './PriorityPicker';
 
 // Contexts
-import UserDataContext from '../../contexts/UserDataContext';
+import UserDataContext, { SgyPeriod } from '../../contexts/UserDataContext';
 
 // Utilities
 import { useScreenType } from '../../hooks/useScreenType';
@@ -17,6 +17,7 @@ import { findClassesList } from '../../views/Classes';
 import { GenericCalendar } from '../schedule/DateSelector';
 import { AssignmentTag } from './Assignments';
 import { allLabels, createAssignment, parseLabelColor, parseLabelName } from './functions/SgyFunctions';
+import { parsePeriodColor, parsePeriodName } from '../schedule/Periods';
 
 
 type CreateAssignmentModalProps = { open: boolean, setOpen: (open: boolean) => any};
@@ -33,6 +34,8 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps)
     const [priority, setPriority] = useState(-1);
     const [timestamp, setTimestamp] = useState(moment().add(1, 'days').startOf('day').add(8, 'hours')); // TODO: TIME SELECTOR
     const [labels, setLabels] = useState<string[]>(['Note']);
+
+    const [period, setPeriod] = useState<'A'|SgyPeriod>('A');
 
     const toggleLabel = (label: string) => {
         if(!labels.includes(label)) setLabels([...labels, label]);
@@ -64,7 +67,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps)
             link: '',
             timestamp,
             description,
-            period: 'A',
+            period,
             labels,
             completed: false,
             priority
@@ -75,6 +78,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps)
     return (
         <Modal isOpen={open} size="lg" className="create-modal">
             <ModalHeader toggle={toggle}>
+                {/* Tags */}
                 <div className="assignment-tags" style={{marginBottom: 5}}>
                     {labels.map(label => (
                         <AssignmentTag key={label} label={parseLabelName(label, userData)} color={parseLabelColor(label, userData)} />
@@ -104,17 +108,35 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps)
                                         ))}
                                     </section>
                                 </div>
-
-                                <div className="class-picker-footer">
-                                    {/* <XCircle className="deselect-all" onClick={deselectAll} />
-                                    <CheckCircle className="select-all" onClick={selectAll} /> */}
-                                </div>
                             </div>
                         </>}
                     </Picker>
                 </div>
 
+                {/* Name */}
                 <input placeholder="Assignment Name" autoFocus className={"create-name" + (name.length ? '' : ' incomplete')} onChange={e => setName(e.target.value)}/>
+
+                {/* Period */}
+                <Picker className="period-picker">
+                    {(open, setOpen) => <>
+                        <div onClick={() => setOpen(!open)} className="period-picker-text"><div>{parsePeriodName(period, userData)}</div></div>
+                        <div hidden={!open} className={"class-picker " + screenType} style={{ fontWeight: 'normal', fontSize: '1rem' }}> {/* reusing styles from class-picker b/c im lazy */}
+                            {classes.map((c, index) => (
+                                <div key={c.name} className="period-picker-period" onClick={() => setPeriod(c.period)}>
+                                    <div
+                                        className="dot"
+                                        style={{
+                                            backgroundColor: period === c.period ? parsePeriodColor(c.period, userData) : 'var(--content-primary)',
+                                            border: period === c.period ? '' : '2px inset var(--secondary)'
+                                        }}
+                                    />
+
+                                    <div>{parsePeriodName(c.period, userData)}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </>}
+                </Picker>
             </ModalHeader>
             <ModalBody>
                 <textarea className="create-desc" placeholder="Assignment Description [Optional]" onChange={e => setDescription(e.target.value)}/>
