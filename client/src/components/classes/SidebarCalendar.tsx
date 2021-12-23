@@ -1,9 +1,9 @@
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import moment from 'moment';
 
 // Types
 import { ActiveItemState } from './Assignments';
-import { AssignmentBlurb } from './functions/SgyFunctions';
+import { AssignmentBlurb, parseLabelColor } from './functions/SgyFunctions';
 
 // Components
 import Spinner from 'reactstrap/es/Spinner';
@@ -158,20 +158,44 @@ export default function SidebarCalendar(props: ActiveItemState & {upcoming: Assi
                     </g>
                 })}
 
-                {circles.map(circle => 
-                    <circle
+                {circles.map(circle =>
+                    <a href={`#assignment-${circle.item.id}`}>
+                    <g
                         key={circle.item.id}
-                        cx={timelineX} cy={circle.cy}
-                        r={circle.radius}
-                        cursor="pointer"
-                        stroke={parsePeriodColor(circle.item.period, userData)}
-                        strokeWidth={strokeWeight}
-                        fill={'#ffffff00'}
                         filter={activeItem && circle.item.id === activeItem.id ? 'url(#glow)' : ''}
+                        cursor="pointer"
 
                         onMouseEnter={() => setActiveItem(circle.item)}
                         onMouseLeave={() => setActiveItem(null)}
-                    />
+                    >
+                        <circle
+                            cx={timelineX} cy={circle.cy}
+                            r={circle.radius}
+                            stroke={parsePeriodColor(circle.item.period, userData)}
+                            strokeWidth={strokeWeight}
+                            fill={'#ffffff00'}
+                        />
+                        {/* ugly label center circle */}
+                        {/* { circle.item.labels.map((label,i) => {
+                            const n = circle.item.labels.length;
+                            const s = i / n * 2 * Math.PI;
+                            const e = (i+1) / n * 2 * Math.PI - 0.001;
+                            const r = circle.radius - strokeWeight * 2;
+                            const x = timelineX;
+                            const y = circle.cy;
+                            const lr = e-s > Math.PI;
+                            return <path
+                                // cx={timelineX} cy={circle.cy}
+                                // r={circle.radius - strokeWeight * 2}
+                                d={`M ${x + r * Math.cos(e)} ${y + r * Math.sin(e)} \nA ${r} ${r} 0 ${lr ? 1 : 0} 0 ${x + r * Math.cos(s)} ${y + r * Math.sin(s)}`}
+
+                                stroke={parseLabelColor(label, userData)}
+                                strokeWidth={strokeWeight}
+                                fill={'#ffffff00'}
+                            />
+                        })} */}
+                    </g>
+                    </a>
                 )}
 
                 {[...days].map(([day, { sy, ey }]) => <g key={day}>

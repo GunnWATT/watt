@@ -107,6 +107,16 @@ const modifyAssignment = async (modifiedData: AssignmentBlurb, userData: UserDat
 // Functions for wrangling with Schoology data
 
 // A comparator for moment objects (for sorting)
+const priorityComparator = (a: number, b:number) => {
+    if(a === -1 && b === -1) return 0;
+    if(a === -1) return -1;
+    if(b === -1) return 1;
+
+    if(a < b) return 1;
+    if(b > a) return -1;
+    return 0;
+}
+
 const assignmentComparator = (a: AssignmentBlurb, b: AssignmentBlurb) => {
     if(a.timestamp && b.timestamp) {
         if (a.timestamp.isBefore(b.timestamp)) {
@@ -119,12 +129,19 @@ const assignmentComparator = (a: AssignmentBlurb, b: AssignmentBlurb) => {
     else if(a.timestamp) return -1;
     else if(b.timestamp) return 1;
 
+    const p = priorityComparator(a.priority, b.priority);
+    if(p < 0) return 1; // sort dec by priority
+    if(p > 0) return -1;
+
     if(a.period < b.period) return -1;
     if(a.period > b.period) return 1;
 
     if(a.name < b.name) return -1;
     if(a.name > b.name) return 1;
     
+    if(a.id > b.id) return 1;
+    if(a.id < b.id) return -1;
+
     return 0;
 }
 

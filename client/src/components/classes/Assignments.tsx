@@ -57,7 +57,7 @@ export function AssignmentTags({item, period}: {item: AssignmentBlurb, period?: 
 // ie. `props.name`, `props.link`, `props.timestamp`, with assignment passed in as `{...assignment}`
 type AssignmentProps = { assignment: AssignmentBlurb } & ActiveItemState;
 function Assignment(props: AssignmentProps) {
-    const { assignment, setActiveItem } = props;
+    const { assignment, activeItem, setActiveItem } = props;
 
     const [modal, setModal] = useState(false);
     const userData = useContext(UserDataContext);
@@ -79,7 +79,8 @@ function Assignment(props: AssignmentProps) {
 
     return (
         <div 
-            className="upcoming-assignment"
+            className={"upcoming-assignment" + (!activeItem || activeItem.id !== assignment.id ? '' : " active")}
+            id={`assignment-${assignment.id}`}
             onMouseEnter={() => setActiveItem(assignment)}
             onMouseLeave={() => setActiveItem(null)}
         >
