@@ -9,3 +9,10 @@
   background-color: var(--bg-primary);
   overflow-y: scroll;
 }
+
+.upcoming-cal-tooltip {
+  position: absolute;
+  transform: translate(0%,-50%);
+  background-color: var(--content-primary);
+  padding: 2px 5px;
+}

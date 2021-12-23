@@ -3,7 +3,7 @@ import moment from 'moment';
 
 // Types
 import { ActiveItemState } from './Assignments';
-import { AssignmentBlurb, parseLabelColor } from './functions/SgyFunctions';
+import { AssignmentBlurb, parseLabelColor, parsePriority } from './functions/SgyFunctions';
 
 // Components
 import Spinner from 'reactstrap/es/Spinner';
@@ -11,10 +11,32 @@ import { parsePeriodColor } from '../schedule/Periods';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
-import { pluralize } from './functions/GeneralHelperFunctions';
+import { pluralize, shortify } from './functions/GeneralHelperFunctions';
 
 // type of a transition
 type LineType = "same-day" | "diff-day" | "large-diff";
+
+const SidebarTooltip = (props: { 
+    circle: {
+        item: AssignmentBlurb;
+        radius: number;
+        cy: number
+    },
+    left: number
+}) => {
+    const {circle,left} = props;
+    const item = circle.item;
+
+    return <div
+        className="upcoming-cal-tooltip"
+        style={{
+            top: circle.cy,
+            left,
+        }}
+    >
+        {shortify(item.name, 20)}
+    </div>
+}
 
 // Side calendar for large screens on Upcoming
 // Doubles as a date range filter for the assignments, and for a quick visualization of due dates
@@ -111,6 +133,7 @@ export default function SidebarCalendar(props: ActiveItemState & {upcoming: Assi
     const weekdayX = 140;
     const dayX = 180;
     const strokeWeight = 6;
+    const tooltipItem = activeItem && circles.find(a => a.item.id === activeItem.id);
 
     // 
     return (
@@ -175,25 +198,6 @@ export default function SidebarCalendar(props: ActiveItemState & {upcoming: Assi
                             strokeWidth={strokeWeight}
                             fill={'#ffffff00'}
                         />
-                        {/* ugly label center circle */}
-                        {/* { circle.item.labels.map((label,i) => {
-                            const n = circle.item.labels.length;
-                            const s = i / n * 2 * Math.PI;
-                            const e = (i+1) / n * 2 * Math.PI - 0.001;
-                            const r = circle.radius - strokeWeight * 2;
-                            const x = timelineX;
-                            const y = circle.cy;
-                            const lr = e-s > Math.PI;
-                            return <path
-                                // cx={timelineX} cy={circle.cy}
-                                // r={circle.radius - strokeWeight * 2}
-                                d={`M ${x + r * Math.cos(e)} ${y + r * Math.sin(e)} \nA ${r} ${r} 0 ${lr ? 1 : 0} 0 ${x + r * Math.cos(s)} ${y + r * Math.sin(s)}`}
-
-                                stroke={parseLabelColor(label, userData)}
-                                strokeWidth={strokeWeight}
-                                fill={'#ffffff00'}
-                            />
-                        })} */}
                     </g>
                     </a>
                 )}
@@ -233,6 +237,10 @@ export default function SidebarCalendar(props: ActiveItemState & {upcoming: Assi
                     </text>
                 </g>)} 
             </svg>
+            
+            {/* Tooltip */}
+            {tooltipItem && <SidebarTooltip left={timelineX + tooltipItem.radius + 2 * strokeWeight} circle={tooltipItem}/>}
+            
         </div>
     );
 }
