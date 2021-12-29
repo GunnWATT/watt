@@ -7,10 +7,11 @@ import { Bookmark } from 'react-feather';
 
 type PriorityPickerProps = {
     priority: number, setPriority: (p: number) => any,
-    icon?: (priority: number) => JSX.Element
+    icon?: (priority: number) => JSX.Element,
+    align?: 'right' | 'left'
 };
 export default function PriorityPicker(props: PriorityPickerProps) {
-    const {priority, setPriority, icon} = props;
+    const {priority, setPriority, icon, align} = props;
     const userData = useContext(UserDataContext);
 
     return (
@@ -23,7 +24,7 @@ export default function PriorityPicker(props: PriorityPickerProps) {
                     }
                 </div>
 
-                <div className="priority-picker" hidden={!open}>
+                <div className={"priority-picker" + (align === "right" ? ' right' : ' left')} hidden={!open}>
                     {[0, 1, 2, 3, -1].map(p =>
                         <div className="priority-picker-priority" key={p} onClick={() => setPriority(p)}>
                             <div

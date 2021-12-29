@@ -76,6 +76,12 @@
 
     .assignment-due {
       margin-left: 0.5rem;
+
+      > div {
+        background-color: var(--active);
+        color: white;
+      }
+      
       cursor: pointer;
     }
 

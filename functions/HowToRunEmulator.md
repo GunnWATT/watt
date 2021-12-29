@@ -29,5 +29,5 @@ Here's an example
 
 ## Step 4: Run Backend
 
-Try running `firebase emulators:start --import ./functions/presets` and see if it works. If it does, visit <http://localhost:4001/> and it should be working. 
+Try running `firebase emulators:start --import ./functions/presets` and see if it works. If it does, visit <http://localhost:4001/> and it should be working.
 If something went wrong, go spam ping someone idk.

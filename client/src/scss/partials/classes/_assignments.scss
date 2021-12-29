@@ -53,6 +53,11 @@
     position: absolute;
     top: calc(100% + 10px);
     right: 0;
+
+    &.right {
+      left: 0;
+    }
+
     width: 150px;
     background-color: var(--content-primary);
     padding: 10px;
