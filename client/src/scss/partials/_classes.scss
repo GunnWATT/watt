@@ -1,0 +1,159 @@
+@import '../mixins/content-box';
+
+.spinner-border {
+  flex-shrink: 0;
+}
+
+.classes-error-burrito {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.classes-error-content {
+  width: 50%;
+  background-color: var(--bg-primary);
+  padding: 30px;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.classes-sidebar {
+  width: 70px;
+  background-color: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  align-items: center;
+
+  height: 100vh;
+
+  &.phone {
+    height: calc(100vh - 64px);
+    width: 55px;
+  }
+}
+
+.classes-collapsed-sidebar-item {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin: 5px;
+  cursor: pointer;
+
+  &.phone {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.classes-burrito {
+  display: flex;
+  flex-direction: row;
+  max-width: 100vw;
+  height: 100%;
+
+  &.phone {
+    height: calc(100vh - 64px);
+  }
+}
+
+.classes-content {
+  flex-grow: 1;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+
+  height: 100vh;
+
+  &.phone {
+    height: calc(100vh - 64px);
+  }
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+// Header
+
+.classes-header {
+  @include content-box($padding: 12px 20px, $bg-color: var(--active));
+  color: white;
+
+  // padding: 15px;
+  margin-bottom: 15px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.classes-header-bubble {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  flex-shrink: 0;
+  border: 2px solid var(--secondary);
+}
+
+.classes-header-text {
+  margin-left: 15px;
+  margin-bottom: 0;
+}
+
+// Nav Bar
+.classes-navbar {
+  display: flex;
+  flex-direction: row;
+  // margin-bottom: 15px;
+  flex-wrap: wrap;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.classes-page {
+  padding-right: 0;
+  padding-left: 0;
+  height: 100%;
+}
+
+@mixin classes-navbar-item() {
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  transition: all ease-in-out 100ms;
+
+  a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+}
+
+// TODO: this pattern of using mixins and then `-selected` isn't great
+// Should do `.classes-navbar-item.selected` instead and nest styles without mixins for less build output and
+// repeated styling
+.classes-navbar-item {
+  @include classes-navbar-item();
+  background-color: var(--content-secondary);
+  //border: 1px solid var(--primary);
+}
+
+.classes-navbar-item-selected {
+  @include classes-navbar-item();
+  background-color: var(--content-primary);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}

@@ -15,6 +15,7 @@
 @import 'partials/lists';
 @import 'partials/testing';
 @import 'partials/404';
+@import 'partials/classes';
 
 // Home
 @import 'partials/events';
@@ -33,5 +34,17 @@
 @import 'partials/loading';
 @import 'partials/no-results';
 @import 'partials/WIP';
-@import 'partials/dashboard';
+
+// Classes
+@import 'partials/classes/dashboard';
+@import 'partials/classes/upcoming';
+@import 'partials/classes/materials';
+@import 'partials/classes/classfilter';
+@import 'partials/classes/assignments';
+@import 'partials/classes/quickcalendar';
+@import 'partials/classes/create-modal';
+@import 'partials/classes/sidebar-calendar';
+
+// Misc
+@import 'partials/sgyModal';
 @import 'partials/image-box';

@@ -38,7 +38,7 @@
 
 // <Jumbotron>
 .jumbotron {
-  background-color: var(--bg-secondary);
+  background-color: var(--content-tertiary);
 }
 
 // <Table>
@@ -61,14 +61,18 @@
 
 // <Input>
 input.form-control {
-  color: var(--primary);
-  background-color: var(--content-secondary);
-  border-color: var(--tertiary);
+  $color: var(--primary);
+  $background-color: var(--content-secondary);
+  $border-color: var(--tertiary);
+
+  color: $color;
+  background-color: $background-color;
+  border-color: $border-color;
 
   &:focus {
-    color: var(--primary);
-    background-color: var(--content-secondary);
-    border-color: var(--tertiary);
+    color: $color;
+    background-color: $background-color;
+    border-color: $border-color;
   }
 }
 

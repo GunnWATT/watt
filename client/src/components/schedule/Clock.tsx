@@ -95,6 +95,7 @@ export default function Clock(props: ClockProps) {
                     // TODO: consider whether SELF and PRIME should be displayed?
                     if (isNaN(parseInt(name))) return null;
                     return <path
+                        key={name}
                         d={`M ${size / 2 + radius * Math.cos(end)} ${size / 2 + radius * Math.sin(end)} \nA ${radius} ${radius} 0 0 0 ${size / 2 + radius * Math.cos(start)} ${size / 2 + radius * Math.sin(start)}`}
                         stroke={parsePeriodColor(name, userData)}
                         strokeWidth={6}

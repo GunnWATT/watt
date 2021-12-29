@@ -51,8 +51,8 @@ export default function Periods(props: PeriodsProps) {
                 color={parsePeriodColor(name, userData)}
                 key={name}
                 now={currDate}
-                start={viewDate.clone().add(value.s, 'minutes').tz(timeZone)} // Convert PST times back to local timezone
-                end={viewDate.clone().add(value.e, 'minutes').tz(timeZone)}
+                start={viewDate.clone().startOf('day').add(value.s, 'minutes').tz(timeZone)} // Convert PST times back to local timezone
+                end={viewDate.clone().startOf('day').add(value.e, 'minutes').tz(timeZone)}
                 format={format}
                 zoom={classes[name]?.l}
             />
@@ -66,7 +66,7 @@ export default function Periods(props: PeriodsProps) {
         let endIndex = periods!.length - 1;
         if (periods![endIndex][0] === 'O') endIndex--;
         if (!userData.options.period8 && periods![endIndex][0] === '8') endIndex--;
-        const end = viewDate.clone().add(periods![endIndex][1].e, 'minutes').tz(timeZone);
+        const end = viewDate.clone().startOf('day').add(periods![endIndex][1].e, 'minutes').tz(timeZone);
 
         // Display the period indicator if there are periods that day and if time is within 20 minutes of the first period
         // and before the last period
@@ -183,6 +183,8 @@ export const periodNameDefault = (name: string) => {
             return 'Office Hours';
         case 'B':
             return 'Brunch';
+        case 'A':
+            return 'No Class'; // for assignments that are not associated with a class
         default:
             return name;
     }
