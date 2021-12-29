@@ -6,24 +6,19 @@ import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 import alternates from '../../data/alternates';
 
 // Icons
-import {ChevronLeft, ChevronRight} from 'react-feather'
+import {ChevronDown, ChevronLeft, ChevronRight, ChevronUp} from 'react-feather'
 
 
 // A single-date date selector for Schedule use
-type DateSelectorProps = {viewDate: Moment, setViewDate: (d: Moment) => void}
-export default function DateSelector({setViewDate, viewDate}: DateSelectorProps) {
+type DateSelectorProps = { viewDate: Moment, setViewDate: (d: Moment) => void, start?: Moment, end?: Moment }
+export default function DateSelector({setViewDate, viewDate, start, end}: DateSelectorProps) {
 
-    const incDay = () => setViewDate(viewDate.clone().add(1, 'days'));
-    const decDay = () => setViewDate(viewDate.clone().subtract(1, 'days'));
+    const setDay = (day: Moment) => {
+        setViewDate(moment(viewDate).set('date', day.date()).set('month', day.month()).set('year', day.year()));
+    }
 
-    const date = useContext(CurrentTimeContext);
-    const today = date.clone().tz('America/Los_Angeles').startOf('date');
-    const tmrw = today.clone().add(1, "day");
-
-    const footer = <> 
-        <div className="calendar-jump-today" onClick={() => setViewDate(today)}>Today</div>
-        <div className="calendar-jump-tmrw" onClick={() => setViewDate(tmrw)}>Tomorrow</div>
-    </>;
+    const incDay = () => setDay(viewDate.clone().add(1, 'days'));
+    const decDay = () => setDay(viewDate.clone().subtract(1, 'days'));
 
     return (
         <div className='date-selector'>
@@ -36,14 +31,7 @@ export default function DateSelector({setViewDate, viewDate}: DateSelectorProps)
                     <div className="date-selector-main-text" onClick={() => setOpen(!open)}>
                         {viewDate.format("MMMM D, yyyy")}
                     </div>
-
-                    <div className="mini-calendar" hidden={!open}>
-                        <GenericCalendar
-                            dayClass={(day) => viewDate.isSame(day, 'day') ? 'calendar-day-selected' : ''}
-                            onClickDay={(day) => setViewDate(day)}
-                            footer={footer}
-                        />
-                    </div>
+                    <Calendar currTime={viewDate} setTime={setViewDate} start={start} end={end} hidden={!open} />
                 </>}
             </Picker>
 
@@ -53,75 +41,23 @@ export default function DateSelector({setViewDate, viewDate}: DateSelectorProps)
         </div>
     );
 }
-
-// A two-date date range selector for Classes use
-export type DateRangeProps = {
-    start: Moment, setStart: (s: Moment) => void,
-    end: Moment, setEnd: (e: Moment) => void
-}
 type CalendarProps = {
-    calStart?: Moment, calEnd?: Moment,
-    center?: 'C'|'L'|'R'
+    start?: Moment, end?: Moment,
+    currTime: Moment, setTime: (day: Moment) => any,
+
+    hidden?: boolean, style?: React.CSSProperties,
+    picker?: boolean // assumed to be true
+
+    time?: boolean // do you choose time as well?
 }
-export function DateRangePicker(props: DateRangeProps & CalendarProps) {
-    const { start, end, setStart, setEnd, calStart, calEnd } = props;
-    const endInclusive = moment(end); endInclusive.subtract(1, 'days');
+export const Calendar = ({start, end, currTime, setTime, hidden, style, picker, time}: CalendarProps) => {
+    const date = useContext(CurrentTimeContext);
+    const today = date.clone().tz('America/Los_Angeles').startOf('date');
+    const tmrw = today.clone().add(1, "day");
 
-    const [selecting, setSelecting] = useState<'S' | 'E'>('E');
-
-    return (
-        <Picker className="date-range-selector">
-            {(open, setOpen) => (
-                <div className="date-range-selector-box">
-                    <div className="date-selector-main" onClick={() => setOpen(!open)}>
-                        <div>{start.format("MMMM D, yyyy")}</div>
-                        -
-                        <div>{end.format("MMMM D, yyyy")}</div>
-                    </div>
-
-                    <div className="mini-calendar" hidden={!open}>
-                        <GenericCalendar
-                            dayClass={(day) =>
-                                (day.isSame(start) ? "calendar-day-start" : "")
-                                + (day.isSame(endInclusive) ? " calendar-day-end" : "")
-                                + (day.isAfter(start) && day.isBefore(endInclusive) ? " calendar-day-sandwich" : "")
-                            }
-                            onClickDay={(day) => {
-                                if (selecting === 'S') {
-                                    if (day.isBefore(end)) setStart(day);
-                                } else {
-                                    const ex = moment(day); ex.add(1, 'days');
-                                    if (ex.isAfter(start)) {
-                                        setEnd(ex);
-                                    }
-                                }
-                            }}
-                            footer={
-                                <>
-                                    <div onClick={() => setSelecting('S')} className={"calendar-select-start" + (selecting === 'S' ? " date-range-selected" : '')}>Start</div>
-                                    <div onClick={() => setSelecting('E')} className={"calendar-select-end" + (selecting === 'E' ? " date-range-selected" : '')}>End</div>
-                                </>
-                            }
-                            start={calStart}
-                            end={calEnd}
-                        />
-                    </div>
-                </div>
-            )}
-        </Picker>
-    )
-}
-
-// Shared calendar component used by both single and range selectors
-type GenericCalendarProps = {
-    start?: Moment;
-    end?: Moment;
-    dayStyle?: (day: Moment) => CSSProperties;
-    dayClass?: (day: Moment) => string;
-    onClickDay?: (day: Moment) => void;
-    footer?: ReactNode;
-}
-export function GenericCalendar(props: GenericCalendarProps) {
+    const setDay = (day: Moment) => {
+        setTime(moment(currTime).set('date', day.date()).set('month', day.month()).set('year', day.year()));
+    }
 
     // I probably shouldn't do this here
     // generate schedule
@@ -129,8 +65,8 @@ export function GenericCalendar(props: GenericCalendarProps) {
 
     let months = [];
 
-    const START = props.start ?? SCHOOL_START;
-    const END = props.end ?? SCHOOL_END;
+    const START = start ?? SCHOOL_START;
+    const END = end ?? SCHOOL_END;
 
     const startmonth = START.month() + START.year() * 12;
     const endmonth = END.month() + END.year() * 12;
@@ -166,9 +102,8 @@ export function GenericCalendar(props: GenericCalendarProps) {
                         || (day.format("MM-DD") in alternates.alternates && alternates.alternates[day.format("MM-DD")] == null);
                     return (
                         <div
-                            className={"calendar-day" + (noSchool ? " calendar-day-no-school" : "") + (props.dayClass ? ' ' + props.dayClass(day) : '')}
-                            onClick={() => (props.onClickDay ? props.onClickDay(day) : null)}
-                            style={ props.dayStyle ? props.dayStyle(day) : {} }
+                            className={"calendar-day" + (noSchool ? " calendar-day-no-school" : "") + (currTime.isSame(day, 'day') ? ' calendar-day-selected' : '')}
+                            onClick={() => setDay(day)}
                             key={day.toISOString()}
                         >
                             {day.date()}
@@ -185,19 +120,97 @@ export function GenericCalendar(props: GenericCalendarProps) {
         </>
     });
 
-    return <>
-        <div className="calendar-days-wrapper">
-            <div className="calendar-weekdays">
-                {weekdays.map((char, i) => <div className="calendar-weekday" key={char + i}>{char}</div>)}
-            </div>
-        </div>
 
-        <div className="calendar-wrapper">
-            {monthElements}
-        </div>
+    const setTimeValue = (h: string, prop: 'hour'|'minute') => {
+        if(!h.split('').every(char => '1234567890'.includes(char))) return;
+        let num = parseInt(h);
+        if(isNaN(num)) return;
 
-        {props.footer && <div className="calendar-jump">
-            {props.footer}
-        </div>}
-    </>
+        // if it's less than 0 idk whhat happened 
+        if (num < 0) return;
+
+        const max = prop === 'hour' ? 12 : 60;
+
+        // if it's larger than 12 we take the rightmost two digits
+        while(num > max) {
+            h = h.slice(1);
+            num = parseInt(h);
+        }
+
+        if(prop === 'hour') {
+            num %= 12;
+            if(currTime.hour() >= 12) {
+                num += 12;
+            }
+        }
+        setTime(moment(currTime).set(prop, num));
+    }
+
+    const incTimeValue = (inc: 'inc'|'dec', prop: 'hour'|'minute') => {
+        let newval = -1;
+        if(prop === 'hour') {
+            newval = (currTime.hour() + 12 + (inc === 'inc' ? 1 : -1)) % 12;
+            if (currTime.hour() >= 12) {
+                newval += 12;
+            }
+        } else {
+            // let f = currTime
+            if(inc === 'inc') {
+                newval = (5 * Math.floor(currTime.minute() / 5) + 5) % 60;
+            } else {
+                newval = (5 * Math.ceil(currTime.minute() / 5) + 55) % 60;
+            }
+        }
+
+        setTime(moment(currTime).set(prop, newval));
+    }
+
+    const toggleAM = () => {
+        let h = currTime.hour();
+        if(h >= 12) {
+            h -= 12;
+        } else {
+            h += 12;
+        }
+        setTime(moment(currTime).set('hour', h));
+    }
+
+    if (hidden) return null;
+
+    return (
+        <div className={"mini-calendar" + (picker !== false ? ' picker' : '')} style={style} >
+            <>
+                {time && <div className='time'>
+                    <div>
+                        <ChevronUp size={40} onClick={() => incTimeValue('inc', 'hour')} />
+                        <input className='time-input' type="text" value={currTime.format('hh')} onChange={(e) => setTimeValue(e.target.value, 'hour')} />
+                        <ChevronDown size={40} onClick={() => incTimeValue('dec', 'hour')} />
+                    </div>
+                    <div>
+                        <ChevronUp size={40} onClick={() => incTimeValue('inc', 'minute')} />
+                        <input className='time-input' type="text" value={currTime.format('mm')} onChange={(e) => setTimeValue(e.target.value, 'minute')} />
+                        <ChevronDown size={40} onClick={() => incTimeValue('dec', 'minute')}/>
+                    </div>
+                    <div>
+                        <div className='time-input am' onClick={toggleAM}>{currTime.format('A')}</div>
+                    </div>
+                </div>}
+
+                <div className="calendar-days-wrapper">
+                    <div className="calendar-weekdays">
+                        {weekdays.map((char, i) => <div className="calendar-weekday" key={char + i}>{char}</div>)}
+                    </div>
+                </div>
+
+                <div className="calendar-wrapper">
+                    {monthElements}
+                </div>
+
+                <div className="calendar-jump">
+                    <div className="calendar-jump-today" onClick={() => setDay(today)}>Today</div>
+                    <div className="calendar-jump-tmrw" onClick={() => setDay(tmrw)}>Tomorrow</div>
+                </div>
+            </>
+        </div>
+    )
 }

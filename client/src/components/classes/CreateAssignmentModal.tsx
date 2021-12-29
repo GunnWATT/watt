@@ -7,6 +7,7 @@ import moment from 'moment';
 // Components
 import Picker from '../layout/Picker';
 import PriorityPicker from './PriorityPicker';
+import { Calendar } from '../schedule/DateSelector';
 
 // Contexts
 import UserDataContext, { SgyPeriod } from '../../contexts/UserDataContext';
@@ -14,7 +15,6 @@ import UserDataContext, { SgyPeriod } from '../../contexts/UserDataContext';
 // Utilities
 import { useScreenType } from '../../hooks/useScreenType';
 import { findClassesList } from '../../views/Classes';
-import { GenericCalendar } from '../schedule/DateSelector';
 import { AssignmentTag } from './Assignments';
 import { allLabels, createAssignment, parseLabelColor, parseLabelName } from './functions/SgyFunctions';
 import { parsePeriodColor, parsePeriodName } from '../schedule/Periods';
@@ -67,7 +67,7 @@ const TagPicker = (props: {labels: string[], toggleLabel: (label: string) => any
 const PeriodPicker = (props: { period: 'A'|SgyPeriod, setPeriod: (c: 'A'|SgyPeriod) => any }) => {
     const { period, setPeriod } = props;
 
-    // TODO: This component DEFINITELy can be abstracted with ClassFilter.tsx
+    // TODO: This component DEFINITELY can be abstracted with ClassFilter.tsx
     // however, because of how ClassFilter works this is tricky and I'll leave it for future cleanup
 
     const userData = useContext(UserDataContext);
@@ -176,12 +176,19 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps)
                                     {timestamp.format('hh:mm a on dddd, MMM Do YYYY')}
                                 </div>
                             </div>
-                            <div hidden={!open} className="mini-calendar create-cal">
-                                <GenericCalendar 
-                                    dayClass={(day) => timestamp.isSame(day, 'day') ? 'calendar-day-selected' : ''}
-                                    onClickDay={(day) => setTimestamp(moment(timestamp).set('date', day.date()).set('month', day.month()).set('year', day.year()))}
-                                    start={moment().startOf('day')}/> 
-                            </div>
+                            <Calendar 
+                                currTime={timestamp} 
+                                setTime={setTimestamp} 
+                                time={true} 
+                                hidden={!open} 
+                                start={moment().startOf('day')} 
+                                style={{
+                                    position: 'fixed',
+                                    left: '50%',
+                                    top: '50%',
+                                    transform: 'translate(-50%,-50%)'
+                                }} 
+                            />
                         </>}
                     </Picker>
                     
