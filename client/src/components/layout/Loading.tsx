@@ -1,13 +1,12 @@
 import {Spinner} from 'reactstrap';
 
 
-export default function Loading(props?: { message?: string }) {
-    const message = props && props.message ? props.message : `Loading content...`
+export default function Loading(props: { children?: string }) {
     return (
         <div className="loading">
             <span>
-                <Spinner/>
-                <h2>{message}</h2>
+                <Spinner />
+                <h2>{props.children || 'Loading content...'}</h2>
             </span>
         </div>
     )

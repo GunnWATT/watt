@@ -1,9 +1,12 @@
-import { Spinner } from 'reactstrap';
 import {useEffect} from 'react';
 import {useLocation} from 'react-router-dom';
-import {useAuth, useCallableFunctionResponse, useFunctions, useUser} from 'reactfire';
-import Loading from '../components/layout/Loading';
+
+// Firebase
 import { httpsCallable } from '@firebase/functions';
+import {useAuth, useCallableFunctionResponse, useFunctions, useUser} from 'reactfire';
+
+// Components
+import Loading from '../components/layout/Loading';
 
 
 export default function SgyAuthRedirect() {
@@ -16,8 +19,8 @@ export default function SgyAuthRedirect() {
     // const {status, data} = useCallableFunctionResponse('sgyauth', {data: {oauth_token: oauth_token}});
 
     const functions = useFunctions();
-
     const auth = useAuth();
+
     useEffect(() => {
         if(auth.currentUser) {
 
@@ -54,7 +57,5 @@ export default function SgyAuthRedirect() {
         // }
     // }, [status])
 
-    return (
-        <Loading message={'Preparing to redirect you...'} />
-    )
+    return <Loading>Preparing to redirect you...</Loading>
 }

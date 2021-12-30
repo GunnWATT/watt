@@ -110,7 +110,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
     const [description, setDescription] = useState(item ? item.description : '');
     const [priority, setPriority] = useState(item ? item.priority : -1);
     const [timestamp, setTimestamp] = useState(item?.timestamp ? item.timestamp : moment().add(1, 'days').startOf('day').add(8, 'hours')); // TODO: TIME SELECTOR
-    const [labels, setLabels] = useState<string[]>(item ? item.labels : ['Note']);
+    const [labels, setLabels] = useState(item ? item.labels : ['Note']);
 
     const [period, setPeriod] = useState<'A'|SgyPeriod>(item ? item.period : 'A');
 

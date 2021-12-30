@@ -1,7 +1,10 @@
 import { useContext, useState } from 'react';
 import { useAuth, useFirestore } from 'reactfire';
 import moment from 'moment';
+
+// Components
 import PriorityPicker from './PriorityPicker';
+import AssignmentModal from './AssignmentModal';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
@@ -10,7 +13,6 @@ import UserDataContext from '../../contexts/UserDataContext';
 import { parsePeriodName, parsePeriodColor } from '../schedule/Periods';
 import { AssignmentBlurb, updateAssignment, parseLabelColor } from './functions/SgyFunctions';
 import { CheckSquare, Link, Square } from 'react-feather';
-import AssignmentModal from './AssignmentModal';
 import { shortify } from './functions/GeneralHelperFunctions';
 
 

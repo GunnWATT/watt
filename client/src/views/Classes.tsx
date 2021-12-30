@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import {ReactNode, useContext, useEffect, useState} from 'react';
 import {Routes, Route, Link, useMatch, useResolvedPath} from 'react-router-dom';
 import {Container} from 'reactstrap';
 
@@ -29,18 +29,21 @@ import { shortify } from '../components/classes/functions/GeneralHelperFunctions
 import { cleanupExpired } from '../components/classes/functions/SgyFunctions';
 
 
-export const fetchSgyMaterials = (async (functions: Functions) => {
+export async function fetchSgyMaterials(functions: Functions) {
     localStorage.setItem('sgy-last-attempted-fetch', '' + Date.now());
-    const fetchMaterials = httpsCallable(functions, 'sgyfetch-fetchMaterials');
-    const res = (await fetchMaterials());
+
+    // HttpsCallable<T, K> where T is the type of the arguments to the callable and K is the return type
+    const fetchMaterials = httpsCallable<undefined, SgyData>(functions, 'sgyfetch-fetchMaterials');
+    const res = await fetchMaterials();
+
     localStorage.setItem('sgy-data', JSON.stringify(res.data));
     localStorage.setItem('sgy-last-fetched', '' + Date.now());
 
     return res.data;
-});
+}
 
 // A wrapper that centers all the error messages
-const ClassesErrorBurrito = (props: { children?: React.ReactNode}) => {
+function ClassesErrorBurrito(props: { children?: ReactNode}) {
     return <> 
         <div className="classes-error-burrito">
             <div className="classes-error-content">
@@ -50,7 +53,7 @@ const ClassesErrorBurrito = (props: { children?: React.ReactNode}) => {
     </>
 }
 
-const ClassesNotSignedIn = () => {
+function ClassesNotSignedIn() {
     return (
         <ClassesErrorBurrito>
             <h2>You aren't signed in!</h2>
@@ -59,12 +62,14 @@ const ClassesNotSignedIn = () => {
     )
 }
 
-const ClassesSgyNotConnected = () => {
+function ClassesSgyNotConnected() {
     return (
         <ClassesErrorBurrito>
             <h2>Connect Schoology</h2>
-            <p>This section uses Schoology integration, which requires you to connect your Schoology account. Press the button below to continue.<br/>
-            <i style={{fontSize: '0.8rem'}}>(You may have to reconnect once in a while.)</i></p>
+            <p>
+                This section uses Schoology integration, which requires you to connect your Schoology account.
+                Press the button below to continue.
+            </p>
             <div className='sgy-auth-button'>
                 <SgySignInBtn />
             </div>
@@ -72,26 +77,37 @@ const ClassesSgyNotConnected = () => {
     )
 }
 
-const ClassesFetching = () => {
-
+function ClassesFetching() {
     const sgyInfo = useContext(SgyDataContext);
-    if(sgyInfo.fetching) {
-        return <ClassesErrorBurrito>
-            <Loading message={'Fetching materials. This can take up to a minute...'} />
+
+    return (
+        <ClassesErrorBurrito>
+            {sgyInfo.fetching ? (
+                <Loading>Fetching materials. This can take up to a minute...</Loading>
+            ) : (<>
+                <h2>Something Went Wrong.</h2>
+                <p>
+                    Your user data is missing! Please click the button below to fetch materials.
+                    If this is a recurring problem, please submit an issue to Github.
+                </p>
+                <div className='sgy-auth-button'>
+                    <button onClick={sgyInfo.updateSgy}>Fetch Materials</button>
+                </div>
+            </>)}
         </ClassesErrorBurrito>
-    } else {
-        return <ClassesErrorBurrito>
-            <h2>Something Went Wrong.</h2>
-            <p>Your user data is missing! Please click the button below to fetch materials. If this is a recurring problem, please submit an issue to Github.</p>
-            <div className='sgy-auth-button'>
-                <button onClick={sgyInfo.updateSgy}>Fetch Materials</button>
-            </div>
-        </ClassesErrorBurrito>
-    }
+    )
 }
 
-const ClassesSidebarItem = (props:{collapsed:boolean, name: string, color:string, period:string, onClick:()=>void, active: boolean}) => {
-    const {collapsed,name,color,period,onClick,active} = props;
+// TODO: we can probably do this in a similar way to <Sidebar>, where the items themselves don't care whether
+// they are collapsed or not and the `hidden` is just set in CSS.
+// Maybe this is a better pattern though, unsure; at the very least we could extract into a separate file for
+// organizational purposes.
+type ClassesSidebarItemProps = {
+    collapsed: boolean, name: string, color: string, period: string,
+    onClick: () => void, active: boolean
+}
+function ClassesSidebarItem(props: ClassesSidebarItemProps) {
+    const {collapsed, name, color, period, onClick, active} = props;
 
     const screenType = useScreenType();
     if (collapsed) {
@@ -131,24 +147,32 @@ function ClassesSidebar(props: { selected: SgyPeriod | 'A', setSelected: (select
     const userData = useContext(UserDataContext);
 
     // collapsed?
-    const [collapsed, setCollapsed] = useState<boolean>(true);
+    const [collapsed, setCollapsed] = useState(true);
 
     const classes = findClassesList(userData);
-
     const screenType = useScreenType();
 
-    return <div className={"classes-sidebar " + screenType + " " + (collapsed ? 'collapsed' : 'expanded')}> 
-        {classes.map(({name,color,period}) => <ClassesSidebarItem key={period} name={name} color={color} period={period} collapsed={collapsed} active={selected === period} onClick={() => setSelected(period)} />)}
-        <Menu size={40} style={{marginTop: 'auto', cursor:'pointer'}} onClick={() => setCollapsed(!collapsed)} />
-    </div>
+    return (
+        <div className={"classes-sidebar " + screenType + " " + (collapsed ? 'collapsed' : 'expanded')}>
+            {classes.map((c) => (
+                <ClassesSidebarItem
+                    key={c.period}
+                    {...c}
+                    collapsed={collapsed}
+                    active={selected === c.period}
+                    onClick={() => setSelected(c.period)}
+                />
+            ))}
+            <Menu size={40} style={{marginTop: 'auto', cursor:'pointer'}} onClick={() => setCollapsed(!collapsed)} />
+        </div>
+    )
 }
 
-function ClassesHeader(props: {selected: string}) {
-    const {selected} = props;
+// This can probably be merged into Classes
+function ClassesHeader() {
+    const {selected} = useContext(SgyDataContext);
     const userData = useContext(UserDataContext);
-    const classInfo = findClassesList(userData).find(({period}) => period === selected);
-
-    const {name, color} = classInfo!; // lol this is fine
+    const {name, color} = findClassesList(userData).find(({period}) => period === selected)!;
 
     return (
         <Container className="classes-header">
@@ -165,6 +189,8 @@ function ClassesNavBarItem(props: {text: string, to: string}) {
     const match = useMatch({ path: resolved.pathname, end: true });
 
     return (
+        // TODO: 'classes-navbar-item selected' is a better pattern than 'classes-navbar-item-selected' for CSS reuse.
+        // Currently this forces a mixin with duplicated styles.
         <div className={match ? "classes-navbar-item-selected" : "classes-navbar-item"}>
             <Link to={to}>
                 {text}
@@ -207,12 +233,10 @@ export default function Classes() {
         setFetching(true);
         setLastAttemptedFetch(Date.now());
 
-        const newSgyData = await fetchSgyMaterials(functions).catch((err: FirebaseError) => {
-            console.error(err);
-        });
+        const newSgyData = await fetchSgyMaterials(functions)
+            .catch((err: FirebaseError) => console.error(err));
 
-        // @ts-ignore
-        setSgyData(newSgyData ? newSgyData : null);
+        setSgyData(newSgyData || null);
 
         setLastFetched(Date.now());
         setFetching(false);
@@ -281,8 +305,10 @@ export default function Classes() {
         <SgyDataProvider value={{sgyData, fetching, lastFetched, lastAttemptedFetch, selected, updateSgy}}>
             <div className={"classes-burrito " + screenType}>
                 <RedBackground />
+
                 <div className={"classes-content " + screenType}>
-                    <ClassesHeader selected={selected} />
+                    <ClassesHeader />
+
                     <Container className="classes-navbar">
                         <ClassesNavBarItem text="Dashboard" to="." />
                         <ClassesNavBarItem text="Upcoming" to="upcoming" />
@@ -297,7 +323,8 @@ export default function Classes() {
                         </Routes>
                     </Container>
                 </div>
-            <ClassesSidebar selected={selected} setSelected={setSelected} />
+
+                <ClassesSidebar selected={selected} setSelected={setSelected} />
             </div>
         </SgyDataProvider>
     )
@@ -307,7 +334,7 @@ export default function Classes() {
 // If `includeAll` is true, the first class will be an "All Courses" object with default color.
 export function findClassesList(userData: UserData, includeAll: boolean = true) {
     // find classes from userData
-    const classes: { name: string, color: string, period: SgyPeriod|'A' }[] = [];
+    const classes: { name: string, color: string, period: SgyPeriod | 'A' }[] = [];
 
     // Push "All Courses" object
     if (includeAll) {
@@ -323,9 +350,7 @@ export function findClassesList(userData: UserData, includeAll: boolean = true) 
             classes.push({
                 name: course.n,
                 color: parsePeriodColor(p, userData),
-
-                // @ts-ignore lol i hate ts
-                period: p
+                period: p as SgyPeriod
             });
         }
     }
