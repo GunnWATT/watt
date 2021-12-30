@@ -1,4 +1,5 @@
 @import '../mixins/content-box';
+@import '../mixins/dot';
 
 .spinner-border {
   flex-shrink: 0;
@@ -10,11 +11,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 5px;
 }
 
 .classes-error-content {
-  width: 50%;
   background-color: var(--bg-primary);
+  max-width: 1000px;
   padding: 30px;
   border-radius: 5px;
   text-align: center;
@@ -25,34 +27,52 @@
 
 .classes-sidebar {
   width: 70px;
-  background-color: var(--bg-primary);
+  padding: 15px 10px;
+  &.phone {
+    width: 55px;
+    padding: 15px 5px;
+  }
+
   display: flex;
   flex-direction: column;
-  padding: 15px;
-  align-items: center;
+  align-items: flex-end;
+  gap: 10px;
+
+  &.expanded { 
+    width: min(275px, 80vw);
+  }
+
+  background-color: var(--bg-primary);
 
   height: 100vh;
 
   &.phone {
     height: calc(100vh - 64px);
-    width: 55px;
   }
+
+  position: fixed;
+  right: 0px;
 }
 
-.classes-collapsed-sidebar-item {
-  width: 50px;
-  height: 50px;
-  display: flex;
-  border-radius: 50px;
-  align-items: center;
-  justify-content: center;
+.classes-sidebar-bubble {
+  @include dot(50px);
   font-size: 1.5rem;
-  margin: 5px;
   cursor: pointer;
 
   &.phone {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
+  }
+}
+
+.classes-sidebar-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.2rem;
+
+  .classes-sidebar-text {
+    margin-right: 15px;
   }
 }
 
@@ -68,8 +88,13 @@
 }
 
 .classes-content {
+
+  padding: 10px calc(10px + 70px) 10px 10px;
+  &.phone {
+    padding: 10px calc(10px + 55px) 10px 10px;
+  }
+
   flex-grow: 1;
-  padding: 15px;
   display: flex;
   flex-direction: column;
   scroll-behavior: smooth;

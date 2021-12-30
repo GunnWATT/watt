@@ -23,6 +23,9 @@ import SgyDataContext, { SgyDataProvider } from '../contexts/SgyDataContext';
 // Utilities
 import { parsePeriodColor } from '../components/schedule/Periods';
 import { useScreenType } from '../hooks/useScreenType';
+import { bgColor } from '../components/schedule/progressBarColor';
+import { Menu } from 'react-feather';
+import { shortify } from '../components/classes/functions/GeneralHelperFunctions';
 
 
 export const fetchSgyMaterials = (async (functions: Functions) => {
@@ -86,18 +89,37 @@ const ClassesFetching = () => {
     }
 }
 
-const ClassesSidebarItem = (props:{collapsed:boolean, name: string, color:string, period:string, onClick:()=>void}) => {
-    const {collapsed,name,color,period,onClick} = props;
+const ClassesSidebarItem = (props:{collapsed:boolean, name: string, color:string, period:string, onClick:()=>void, active: boolean}) => {
+    const {collapsed,name,color,period,onClick,active} = props;
 
     const screenType = useScreenType();
     if (collapsed) {
         return (
             <div
-                style={{ backgroundColor: color }}
-                className={"classes-collapsed-sidebar-item " + screenType}
+                style={{ 
+                    backgroundColor: color,
+                    border: active ? `3px solid ${bgColor(color)}` : ''
+                }}
+                className={"classes-sidebar-bubble " + screenType}
                 onClick={onClick}
             >
                 {period}
+            </div>
+        );
+    } else {
+        return (
+            <div className='classes-sidebar-item'>
+                <div className='classes-sidebar-text'>{shortify(name, 20)}</div>
+                <div
+                    style={{
+                        backgroundColor: color,
+                        border: active ? `3px solid ${bgColor(color)}` : ''
+                    }}
+                    className={"classes-sidebar-bubble " + screenType}
+                    onClick={onClick}
+                >
+                    {period}
+                </div>
             </div>
         );
     }
@@ -105,8 +127,8 @@ const ClassesSidebarItem = (props:{collapsed:boolean, name: string, color:string
     return null;
 }
 
-function ClassesSidebar(props: {setSelected: (selected:SgyPeriod|'A') => void}) {
-    const {setSelected} = props;
+function ClassesSidebar(props: { selected: SgyPeriod | 'A', setSelected: (selected:SgyPeriod|'A') => void}) {
+    const { selected, setSelected } = props;
     const userData = useContext(UserDataContext);
 
     // collapsed?
@@ -116,8 +138,9 @@ function ClassesSidebar(props: {setSelected: (selected:SgyPeriod|'A') => void}) 
 
     const screenType = useScreenType();
 
-    return <div className={"classes-sidebar " + screenType}> 
-        {classes.map(({name,color,period}) => <ClassesSidebarItem key={period} name={name} color={color} period={period} collapsed={collapsed} onClick={() => setSelected(period)} />)}
+    return <div className={"classes-sidebar " + screenType + " " + (collapsed ? 'collapsed' : 'expanded')}> 
+        {classes.map(({name,color,period}) => <ClassesSidebarItem key={period} name={name} color={color} period={period} collapsed={collapsed} active={selected === period} onClick={() => setSelected(period)} />)}
+        <Menu size={40} style={{marginTop: 'auto', cursor:'pointer'}} onClick={() => setCollapsed(!collapsed)} />
     </div>
 }
 
@@ -269,7 +292,7 @@ export default function Classes() {
                         </Routes>
                     </Container>
                 </div>
-            <ClassesSidebar setSelected={setSelected} />
+            <ClassesSidebar selected={selected} setSelected={setSelected} />
             </div>
         </SgyDataProvider>
     )
