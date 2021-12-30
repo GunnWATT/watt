@@ -418,5 +418,37 @@ export const getAllGrades = (sgyData: SgyData, userData: UserData) => {
     return grades;
 }
 
+export const cleanupExpired = async (userData: UserData, auth: Auth, firestore: Firestore) => {
+    const customOutOfDate = ( custom: CustomAssignment ) => {
+        const time = moment(custom.timestamp);
+        if(moment().diff(time, 'days') >= 31) {
+            // it's been expired for over 31 days; get rid of it!
+            return true;
+        }
+        return false;
+    }
 
+    const modifiedOutOfDate = (modified: SgyAssignmentModified) => {
+        if(!modified.timestamp) return false; // we don't kill the modified materials ig
+        const time = moment(modified.timestamp);
+        if (moment().diff(time, 'days') >= 31) {
+            // it's been expired for over 31 days; get rid of it!
+            return true;
+        }
+        return false;
+    }
+
+    const assiExpired = userData.sgy.custom.assignments.some(customOutOfDate);
+    const modExpired = userData.sgy.custom.modified.some(modifiedOutOfDate);
+
+    if(assiExpired) {
+        const assis = userData.sgy.custom.assignments.filter(a => !customOutOfDate(a));
+        await updateUserData("sgy.custom.assignments", assis, auth, firestore);
+    }
+
+    if (modExpired) {
+        const mods = userData.sgy.custom.modified.filter(a => !modifiedOutOfDate(a));
+        await updateUserData("sgy.custom.modified", mods, auth, firestore);
+    }
+}
 

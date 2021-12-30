@@ -4,7 +4,7 @@ import {Container} from 'reactstrap';
 
 // Firebase
 import { Functions, httpsCallable } from 'firebase/functions';
-import { useAuth, useFunctions, useSigninCheck } from 'reactfire';
+import { useAuth, useFirestore, useFunctions, useSigninCheck } from 'reactfire';
 import { FirebaseError } from '@firebase/util';
 
 // Components
@@ -26,6 +26,7 @@ import { useScreenType } from '../hooks/useScreenType';
 import { bgColor } from '../components/schedule/progressBarColor';
 import { Menu } from 'react-feather';
 import { shortify } from '../components/classes/functions/GeneralHelperFunctions';
+import { cleanupExpired } from '../components/classes/functions/SgyFunctions';
 
 
 export const fetchSgyMaterials = (async (functions: Functions) => {
@@ -123,8 +124,6 @@ const ClassesSidebarItem = (props:{collapsed:boolean, name: string, color:string
             </div>
         );
     }
-
-    return null;
 }
 
 function ClassesSidebar(props: { selected: SgyPeriod | 'A', setSelected: (selected:SgyPeriod|'A') => void}) {
@@ -177,6 +176,7 @@ function ClassesNavBarItem(props: {text: string, to: string}) {
 export default function Classes() {
     const functions = useFunctions();
     const auth = useAuth();
+    const firestore = useFirestore();
     const { data: signInCheckResult } = useSigninCheck();
     const signedIn = signInCheckResult?.signedIn;
 
@@ -218,7 +218,7 @@ export default function Classes() {
         setFetching(false);
     }
 
-    // read from firebase data on the first time
+    // read from localstorage data on the first time
     useEffect( () => {
         const lsLastFetched = parseInt(localStorage.getItem('sgy-last-fetched') ?? '');
         const lsLastAttemptedFetch = parseInt(localStorage.getItem('sgy-last-attempted-fetch') ?? '');
@@ -247,6 +247,11 @@ export default function Classes() {
             updateSgy();
         }
     }, [signedIn]);
+
+    // cleanup of old items in data
+    useEffect( () => {
+        cleanupExpired(userData, auth, firestore);
+    }, [])
 
     // preferably this would trigger every 15 minutes
     // TODO: can perhaps use intervals for this?

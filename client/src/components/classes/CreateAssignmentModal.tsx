@@ -146,7 +146,6 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
     const create = () => {
 
         if(item) {
-            console.log(timestamp.valueOf());
             updateAssignment({
                 ...item,
                 name,
