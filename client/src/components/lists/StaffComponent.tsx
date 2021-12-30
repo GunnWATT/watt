@@ -104,7 +104,7 @@ export default function StaffComponent(props: Staff & {id: string}) {
         <li onClick={toggle}>
             <span className="primary">{name}</span>
             {(title || dept) && <span className="secondary">{title === "Teacher" && dept ? `${title}, ${dept}` : title ? title : dept ? dept : ``}</span>}
-            {email ? <span className="secondary">{email}</span> : null}
+            {email && <span className="secondary">{email}</span>}
 
             <Modal isOpen={modal} toggle={toggle} scrollable>
                 <ModalHeader toggle={toggle}>{name}</ModalHeader>
@@ -112,7 +112,7 @@ export default function StaffComponent(props: Staff & {id: string}) {
                     {title && <p><strong>Title:</strong> {title}</p>}
                     {dept && <p><strong>Department:</strong> {dept}</p>}
                     {room && <p><strong>Room:</strong> {room}</p>}
-                    {email ? <p><strong>Email:</strong> {email}</p> : null}
+                    {email && <p><strong>Email:</strong> {email}</p>}
                     {phone && <p><strong>Phone:</strong> {phone}</p>}
                     {periods && <p>
                         <strong>Schedule:

@@ -5,9 +5,6 @@
 client/coverage
 client/build
 
-# SGY credentials
-/functions/credentials
-
 # Emulators Config
 functions/.runtimeconfig.json
 
@@ -17,9 +14,6 @@ functions/.runtimeconfig.json
 
 # IDE
 /.idea
-
-# temp stuff
-/temp
 
 # Logs
 logs
