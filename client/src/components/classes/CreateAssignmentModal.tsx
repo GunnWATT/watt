@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { useAuth, useFirestore } from 'reactfire';
-import { Plus, PlusCircle } from 'react-feather';
+import { Edit, Plus, PlusCircle } from 'react-feather';
 import moment from 'moment';
 
 // Components
@@ -16,7 +16,7 @@ import UserDataContext, { SgyPeriod } from '../../contexts/UserDataContext';
 import { useScreenType } from '../../hooks/useScreenType';
 import { findClassesList } from '../../views/Classes';
 import { AssignmentTag } from './Assignments';
-import { allLabels, createAssignment, parseLabelColor, parseLabelName } from './functions/SgyFunctions';
+import { allLabels, AssignmentBlurb, createAssignment, parseLabelColor, parseLabelName, updateAssignment } from './functions/SgyFunctions';
 import { parsePeriodColor, parsePeriodName } from '../schedule/Periods';
 
 const TagPicker = (props: {labels: string[], toggleLabel: (label: string) => any}) => {
@@ -97,22 +97,22 @@ const PeriodPicker = (props: { period: 'A'|SgyPeriod, setPeriod: (c: 'A'|SgyPeri
     </Picker>
 }
 
-type CreateAssignmentModalProps = { open: boolean, setOpen: (open: boolean) => any};
-export default function CreateAssignmentModal(props: CreateAssignmentModalProps) {
-    const {open, setOpen} = props;
+type CreateAssignmentModalProps = { open: boolean, setOpen: (open: boolean) => any, item?: AssignmentBlurb};
+export default function CreateAssignmentModal(props: CreateAssignmentModalProps ) {
+    const {open, setOpen, item} = props;
 
     const userData = useContext(UserDataContext);
     const auth = useAuth();
     const firestore = useFirestore();
     const screenType = useScreenType();
 
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-    const [priority, setPriority] = useState(-1);
-    const [timestamp, setTimestamp] = useState(moment().add(1, 'days').startOf('day').add(8, 'hours')); // TODO: TIME SELECTOR
-    const [labels, setLabels] = useState<string[]>(['Note']);
+    const [name, setName] = useState(item ? item.name : '');
+    const [description, setDescription] = useState(item ? item.description : '');
+    const [priority, setPriority] = useState(item ? item.priority : -1);
+    const [timestamp, setTimestamp] = useState(item?.timestamp ? item.timestamp : moment().add(1, 'days').startOf('day').add(8, 'hours')); // TODO: TIME SELECTOR
+    const [labels, setLabels] = useState<string[]>(item ? item.labels : ['Note']);
 
-    const [period, setPeriod] = useState<'A'|SgyPeriod>('A');
+    const [period, setPeriod] = useState<'A'|SgyPeriod>(item ? item.period : 'A');
 
     const toggleLabel = (label: string) => {
         if(!labels.includes(label)) setLabels([...labels, label]);
@@ -120,10 +120,17 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps)
     }
 
     const resetState = () => {
-        setName('');
-        setPriority(-1);
-        setTimestamp(moment().add(1, 'days').startOf('day').add(8, 'hours'));
-        setLabels(['Note']);
+        if(item) {
+            setName(item.name);
+            setPriority(item.priority);
+            setTimestamp(item.timestamp || moment().add(1, 'days').startOf('day').add(8, 'hours'));
+            setLabels(item.labels);
+        } else {
+            setName('');
+            setPriority(-1);
+            setTimestamp(moment().add(1, 'days').startOf('day').add(8, 'hours'));
+            setLabels(['Note']);
+        }
     }
 
     const toggle = () => {
@@ -137,16 +144,31 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps)
 
     const ready = name.length;
     const create = () => {
-        createAssignment( {
-            name,
-            link: '',
-            timestamp,
-            description,
-            period,
-            labels,
-            completed: false,
-            priority
-        }, userData, auth, firestore)
+
+        if(item) {
+            console.log(timestamp.valueOf());
+            updateAssignment({
+                ...item,
+                name,
+                timestamp,
+                description,
+                period,
+                labels,
+                priority
+            }, userData, auth, firestore);
+        } else {
+            createAssignment({
+                name,
+                link: '',
+                timestamp,
+                description,
+                period,
+                labels,
+                completed: false,
+                priority
+            }, userData, auth, firestore)
+        }
+        
         close();
     }
 
@@ -157,14 +179,14 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps)
                 <TagPicker labels={labels} toggleLabel={toggleLabel} />
 
                 {/* Name */}
-                <input placeholder="Assignment Name" autoFocus className={"create-name" + (name.length ? '' : ' incomplete')} onChange={e => setName(e.target.value)}/>
+                <input placeholder="Assignment Name" autoFocus className={"create-name" + (name.length ? '' : ' incomplete')} value={name} onChange={e => setName(e.target.value)}/>
 
                 {/* Period */}
                 <PeriodPicker period={period} setPeriod={setPeriod} />
                 
             </ModalHeader>
             <ModalBody>
-                <textarea className="create-desc" placeholder="Assignment Description [Optional]" onChange={e => setDescription(e.target.value)}/>
+                <textarea className="create-desc" placeholder="Assignment Description [Optional]" value={description} onChange={e => setDescription(e.target.value)}/>
 
                 <div className="create-foot">
                     <PriorityPicker priority={priority} setPriority={setPriority} align='right' />
@@ -196,7 +218,12 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps)
             </ModalBody>
             <ModalFooter>
                 <Button outline onClick={toggle}>Cancel</Button>
-                <Button outline color="success" disabled={!ready} onClick={create}><div style={{display: "flex", flexDirection: "row", alignItems:"center"}}><PlusCircle style={{marginRight:5}} /> Create</div></Button>
+                <Button outline color="success" disabled={!ready} onClick={create}>
+                    {item ? 
+                        <div style={{display: "flex", flexDirection: "row", alignItems:"center"}}><Edit style={{marginRight:5}} /> Edit</div> :
+                        <div style={{display: "flex", flexDirection: "row", alignItems:"center"}}><PlusCircle style={{marginRight:5}} /> Create</div>
+                    }
+                </Button>
             </ModalFooter>
         </Modal>
     )

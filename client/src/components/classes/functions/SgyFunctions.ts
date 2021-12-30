@@ -236,7 +236,7 @@ export const getMaterials = (sgyData: SgyData, selected: SgyPeriod | 'A', userDa
             materials[i] = {
                 ...materials[i],
                 ...matchWithMoment,
-                timestamp: materials[i].timestamp ?? matchWithMoment.timestamp ?? null
+                timestamp: matchWithMoment.timestamp ?? materials[i].timestamp  ?? null
             }
         }
     }
@@ -346,7 +346,7 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: SgyPeriod|'A', userD
             upcoming[i] = {
                 ...upcoming[i],
                 ...matchWithMoment,
-                timestamp: upcoming[i].timestamp ?? matchWithMoment.timestamp ?? null
+                timestamp: matchWithMoment.timestamp ?? upcoming[i].timestamp ?? null
             }
         }
     }
