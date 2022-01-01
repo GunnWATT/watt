@@ -44,7 +44,7 @@ export const init = functions.https.onCall(async (data, context) => {
 
     const classes: {[key: string]: SgyPeriodData} = {};
     for (const p in periods) {
-        classes[p[0]] = { n: "", c: "", l: "", o: "", s: "" };
+        classes[p[0]] = { n: '', c: '', l: '', o: '', s: '' };
     }
 
     const teachers: {[key: string]: [string, string]} = {};
@@ -54,8 +54,8 @@ export const init = functions.https.onCall(async (data, context) => {
             if (pName === 'SELF') pName = 'S'
             if (pName === 'PRIME') pName = 'P'
             classes[pName] = {
-                n: `${element['course_title']} · ${pTeacher}`,
-                c: sgyInfo.classes[pName]["c"],
+                n: `${element.course_title} · ${pTeacher}`,
+                c: sgyInfo.classes[pName].c,
                 l: '',
                 o: '',
                 s: element.id
@@ -76,7 +76,7 @@ export const init = functions.https.onCall(async (data, context) => {
             //     classes[pName].o = periodLinks.o
             // }
 
-            teachers[pName] = [element['course_title'], pTeacher]
+            teachers[pName] = [element.course_title, pTeacher]
         }
     }
 
