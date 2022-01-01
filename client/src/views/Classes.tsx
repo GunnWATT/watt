@@ -203,7 +203,7 @@ export default function Classes() {
     const auth = useAuth();
     const firestore = useFirestore();
     const { data: signInCheckResult } = useSigninCheck();
-    const signedIn = signInCheckResult?.signedIn;
+    const signedIn = signInCheckResult?.signedIn && auth.currentUser!!;
 
     const userData = useContext(UserDataContext);
     const time = useContext(CurrentTimeContext);
@@ -217,7 +217,7 @@ export default function Classes() {
 
     const updateSgy = async () => {
 
-        if(lastFetched && Date.now() - lastFetched < 6 * 1000) // if it's been less than 5 seconds since the last fetch
+        if (lastFetched && Date.now() - lastFetched < 6 * 1000) // if it's been less than 5 seconds since the last attempted fetch
         {
             // this is a problem!!!
             console.error('Attempted to fetch within 5 seconds of previous fetch!')
@@ -269,7 +269,12 @@ export default function Classes() {
         if (needToFetch && signedIn) {
             updateSgy();
         }
-    }, [signedIn]);
+    }, []);
+    // this was originally going to trigger on sign in
+    // however, there is a period of time between being signed in and changing to firebase data from localstorage
+    // this change remounts everything, and if this effect triggered on sign in, it would actually trigger twice;
+    // once between this short time between sign in and userData provider change, and once afterwards (since all state is forgotten on remount)
+    // to fix this, I do not allow this useEffect to trigger on sign in. Instead, it will trigger after the remount.
 
     // cleanup of old items in data
     useEffect( () => {
@@ -286,7 +291,9 @@ export default function Classes() {
 
             // If diff > 15 minutes, update schoology
             const diff = Date.now() - lastAttemptedFetch;
-            if (diff > 1000 * 60 * 15) updateSgy();
+            if (diff > 1000 * 60 * 15) {
+                updateSgy();
+            }
         }
     }, [signedIn, time]);
 
