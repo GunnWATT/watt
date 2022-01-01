@@ -1,12 +1,16 @@
-# dependencies
+# Dependencies
 *node_modules/
 
-# react
+# React
 client/coverage
 client/build
 
 # Emulators Config
 functions/.runtimeconfig.json
+
+# Compiled JavaScript functions files
+functions/lib/**/*.js
+functions/lib/**/*.js.map
 
 # misc
 *.DS_Store
@@ -26,13 +30,6 @@ firebase-debug.*.log*
 
 # Firebase cache
 .firebase/
-
-# Firebase config
-
-# Uncomment this if you'd like others to create their own Firebase project.
-# For a team working on the same Firebase project(s), it is recommended to leave
-# it commented so all members can deploy to the same project(s) in .firebaserc.
-# .firebaserc
 
 # Runtime data
 pids
