@@ -4,8 +4,6 @@ import {get} from './util/sgyOAuth';
 
 
 const firestore = admin.firestore();
-
-const apiBase = 'https://api.schoology.com/v1';
 const periods = ['1', '2', '3', '4', '5', '6', '7', '8', 'SELF'];
 
 
@@ -38,7 +36,7 @@ export const init = functions.https.onCall(async (data, context) => {
     if (!sgyInfo)
         throw new functions.https.HttpsError('unauthenticated', 'Error: user has not enabled schoology.');
 
-    const sgyClasses = await get(`${apiBase}/users/${sgyInfo.uid}/sections`, sgyInfo.key, sgyInfo.sec)
+    const sgyClasses = await get(`users/${sgyInfo.uid}/sections`, sgyInfo.key, sgyInfo.sec)
         .catch(e => console.log(e))
         .then(cList => cList.section);
 
@@ -101,7 +99,7 @@ export const upcoming = functions.https.onCall(async (data, context) => {
     const currentDate = new Date();
     const startDate = `${currentDate.getFullYear()}${currentDate.getMonth()+1}${currentDate.getDate()}`
 
-    const events = await get(`${apiBase}/users/${sgyInfo.uid}/events?start_date=${startDate}`, sgyInfo.key, sgyInfo.sec)
+    const events = await get(`users/${sgyInfo.uid}/events?start_date=${startDate}`, sgyInfo.key, sgyInfo.sec)
         .catch(e => console.log(e));
 
     return true;
@@ -110,7 +108,7 @@ export const upcoming = functions.https.onCall(async (data, context) => {
 // sgyfetch-fetchMaterials
 // Fetches materials from all the courses
 export const fetchMaterials = functions.https.onCall(async (data, context) => {
-    const uid = context.auth?.uid
+    const uid = context.auth?.uid;
     if (!uid)
         throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.');
 
@@ -120,11 +118,11 @@ export const fetchMaterials = functions.https.onCall(async (data, context) => {
 
     try {
         // Fetch grades, cuz that takes a while
-        const grades = get(`${apiBase}/users/${sgyInfo.uid}/grades?timestamp=1627801200`, sgyInfo.key, sgyInfo.sec); //
+        const grades = get(`users/${sgyInfo.uid}/grades?timestamp=1627801200`, sgyInfo.key, sgyInfo.sec);
 
         // Fetch courses, then kick out yucky ones
         // TODO: type this better
-        let courses = (await get(`${apiBase}/users/${sgyInfo.uid}/sections`, sgyInfo.key, sgyInfo.sec)).section
+        let courses = (await get(`users/${sgyInfo.uid}/sections`, sgyInfo.key, sgyInfo.sec)).section
             .filter((sec: {section_title: string}) => periods.indexOf(sec.section_title.split(' ')[0]) >= 0);
 
         // Flattened promises because Promise.all unepicly
@@ -135,10 +133,10 @@ export const fetchMaterials = functions.https.onCall(async (data, context) => {
             const { id } = courses[i];
             const limit = 1000;
 
-            const documents = get(`${apiBase}/sections/${id}/documents?limit=${limit}`, sgyInfo.key, sgyInfo.sec);
-            const assignments = get(`${apiBase}/sections/${id}/assignments?limit=${limit}`, sgyInfo.key, sgyInfo.sec);
-            const pages = get(`${apiBase}/sections/${id}/pages?limit=${limit}`, sgyInfo.key, sgyInfo.sec);
-            const events = get(`${apiBase}/sections/${id}/events?limit=${limit}`, sgyInfo.key, sgyInfo.sec);
+            const documents = get(`sections/${id}/documents?limit=${limit}`, sgyInfo.key, sgyInfo.sec);
+            const assignments = get(`sections/${id}/assignments?limit=${limit}`, sgyInfo.key, sgyInfo.sec);
+            const pages = get(`sections/${id}/pages?limit=${limit}`, sgyInfo.key, sgyInfo.sec);
+            const events = get(`sections/${id}/events?limit=${limit}`, sgyInfo.key, sgyInfo.sec);
 
             promises.push(documents, assignments, pages, events);
         }
@@ -183,7 +181,7 @@ export const fetchMaterials = functions.https.onCall(async (data, context) => {
             // 401 means unauthorized sgy request
             // this means creds are expired / don't work for some reason, so we turn off sgy for the user 
             await firestore.collection('users').doc(uid)
-                .update({ "options.sgy": false })
+                .update({ 'options.sgy': false })
                 .catch(e => console.log(e))
         }
         throw new functions.https.HttpsError('internal', 'Internal error.')
