@@ -22,10 +22,10 @@ export default function BottomNav() {
         <footer className="bottom-nav">
             <Container className="nav-container">
                 {/* Nav */}
-                <SidebarItem name="Clubs" to="/clubs" icon={<Users/>}/>
-                <SidebarItem name="Classes" to="/classes" icon={<CheckSquare/>}/>
-                <SidebarItem name="Home" to="/" icon={<Home/>}/>
-                <SidebarItem name="Utilities" to="/utilities" icon={<Tool/>}/>
+                <SidebarItem to="/clubs" icon={<Users/>} />
+                <SidebarItem to="/classes" icon={<CheckSquare/>} />
+                <SidebarItem to="/" icon={<Home/>} />
+                <SidebarItem to="/utilities" icon={<Tool/>} />
 
                 {/* Dropup */}
                 <div className="item dropup-wrapper">
@@ -34,18 +34,14 @@ export default function BottomNav() {
                     </a>
 
                     <div className="bottom-nav-dropup" hidden={!showDropUp}>
+                        <SidebarItem to="/settings" icon={<Settings />} />
 
-                        {/* Settings */}
-                        <SidebarItem name="Settings" to="/settings" icon={<Settings />} />
-                        
                         {/* Sign In / Out */}
                         {signInCheckResult?.signedIn
                             ? <GoogleSignOutBtn />
                             : <GoogleSignInBtn />}
                     </div>
                 </div>
-
-                {/* <SidebarItem name="Settings" to="/settings" icon={showDropUp ? <ChevronDown /> : <ChevronUp/>}/> */}
             </Container>
         </footer>
     );

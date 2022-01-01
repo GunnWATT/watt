@@ -2,15 +2,15 @@ import {ReactNode} from 'react';
 import {NavLink} from 'react-router-dom';
 
 
-type SidebarItemProps = {to: string, icon: ReactNode, name: string};
+type SidebarItemProps = {to: string, icon: JSX.Element, children?: ReactNode};
 export default function SidebarItem(props: SidebarItemProps) {
-    const {to, icon, name} = props;
+    const {to, icon, children} = props;
 
     return (
         <span className="item">
             <NavLink to={to} className={({isActive}) => isActive ? "active" : ""}>
                 {icon}
-                <span>{name}</span>
+                {children && <span>{children}</span>}
             </NavLink>
         </span>
     )

@@ -44,7 +44,8 @@ export async function fetchSgyMaterials(functions: Functions) {
 
 // A wrapper that centers all the error messages
 function ClassesErrorBurrito(props: { children?: ReactNode}) {
-    return <> 
+    return <>
+        <RedBackground />
         <div className="classes-error-burrito">
             <div className="classes-error-content">
                 {props.children}

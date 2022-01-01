@@ -66,7 +66,7 @@ $icon-width: $sidebar-collapsed-width -
     //align-self: center;
   }
 
-  // SidebarItems
+  // <SidebarItem>
   .item {
     @extend %text-truncate;
     width: 100%;
@@ -75,28 +75,7 @@ $icon-width: $sidebar-collapsed-width -
     display: block;
     border-radius: 5px;
 
-    // Text
-    span {
-      //transition: width $sidebar-collapse-time ease;
-      margin-left: 1rem;
-    }
-
-    // Icon
-    svg {
-      display: inline-block;
-      font-size: inherit;
-      height: 1em;
-      overflow: visible;
-      vertical-align: -0.125em;
-      width: $icon-width;
-    }
-
-    // Active
-    .active {
-      color: var(--active);
-    }
-
-    // The <Link> components
+    // <Link>
     a,
     button {
       transition: background-color 200ms ease;
@@ -109,6 +88,27 @@ $icon-width: $sidebar-collapsed-width -
       &:hover {
         text-decoration: none;
         background-color: var(--bg-secondary);
+      }
+
+      // Text
+      > span {
+        //transition: width $sidebar-collapse-time ease;
+        margin-left: 1rem;
+      }
+
+      // Icon
+      > svg {
+        display: inline-block;
+        font-size: inherit;
+        height: 1em;
+        overflow: visible;
+        vertical-align: -0.125em;
+        width: $icon-width;
+      }
+
+      // Active
+      &.active {
+        color: var(--active);
       }
     }
   }

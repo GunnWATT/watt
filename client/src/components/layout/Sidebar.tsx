@@ -12,6 +12,7 @@ import GoogleSignOutBtn from '../firebase/GoogleSignOutBtn';
 // Icons
 import logo from '../../assets/watt.png';
 import {Home, CheckSquare, Users, Settings, Tool, ChevronRight, ChevronLeft} from 'react-feather';
+import {Badge} from "reactstrap";
 
 
 type SidebarProps = {forceCollapsed?: boolean};
@@ -52,11 +53,13 @@ export default function Sidebar(props: SidebarProps) {
                 <h1>Web App of the Titans</h1>
 
                 {/* Nav */}
-                <SidebarItem name="Home" to="/" icon={<Home/>}/>
-                <SidebarItem name="Classes" to="/classes" icon={<CheckSquare/>}/>
-                <SidebarItem name="Clubs" to="/clubs" icon={<Users/>}/>
-                <SidebarItem name="Utilities" to="/utilities" icon={<Tool/>}/>
-                <SidebarItem name="Settings" to="/settings" icon={<Settings/>}/>
+                <SidebarItem to="/" icon={<Home/>}>Home</SidebarItem>
+                <SidebarItem to="/classes" icon={<CheckSquare/>}>
+                    Classes <Badge color="danger" className="beta">Beta</Badge>
+                </SidebarItem>
+                <SidebarItem to="/clubs" icon={<Users/>}>Clubs</SidebarItem>
+                <SidebarItem to="/utilities" icon={<Tool/>}>Utilities</SidebarItem>
+                <SidebarItem to="/settings" icon={<Settings/>}>Settings</SidebarItem>
 
                 {/* Bottom Account Status Button */}
                 <span className="bottom">

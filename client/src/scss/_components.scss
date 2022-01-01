@@ -58,13 +58,20 @@ input {
   }
 }
 
-iframe {border: none;}
+iframe {
+  border: none;
+}
 
 hr {
   margin: 1rem 0;
   border-top: 2px solid var(--tertiary);
 }
 
+span.badge.beta {
+  background-color: var(--active);
+  border-radius: 9999px;
+  margin-left: 0.5rem;
+}
 
 // Utility classes
 // Alignment
