@@ -189,9 +189,7 @@ function ClassesNavBarItem(props: {text: string, to: string}) {
     const match = useMatch({ path: resolved.pathname, end: true });
 
     return (
-        // TODO: 'classes-navbar-item selected' is a better pattern than 'classes-navbar-item-selected' for CSS reuse.
-        // Currently this forces a mixin with duplicated styles.
-        <div className={match ? "classes-navbar-item-selected" : "classes-navbar-item"}>
+        <div className={'classes-navbar-item' + (match ? ' selected' : '')}>
             <Link to={to}>
                 {text}
             </Link>
@@ -324,7 +322,9 @@ export default function Classes() {
                     </Container>
                 </div>
 
-                <ClassesSidebar selected={selected} setSelected={setSelected} />
+                {/* Kill the sidebar on phone; this is a temporary solution */}
+                {/* TODO: think about how to implement class switching on mobile without it looking ugly */}
+                {screenType !== 'phone' && <ClassesSidebar selected={selected} setSelected={setSelected}/>}
             </div>
         </SgyDataProvider>
     )

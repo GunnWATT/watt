@@ -91,7 +91,7 @@
 
   padding: 10px calc(10px + 70px) 10px 10px;
   &.phone {
-    padding: 10px calc(10px + 55px) 10px 10px;
+    padding: 10px calc(10px /* + 55px */) 10px 10px;
   }
 
   flex-grow: 1;
@@ -110,7 +110,6 @@
 }
 
 // Header
-
 .classes-header {
   @include content-box($padding: 12px 20px, $bg-color: var(--active));
   color: white;
@@ -138,47 +137,38 @@
 .classes-navbar {
   display: flex;
   flex-direction: row;
-  // margin-bottom: 15px;
   flex-wrap: wrap;
   padding-right: 0;
   padding-left: 0;
+  margin-bottom: 15px;
+  gap: 0.5rem;
+
+  &-item {
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all ease-in-out 100ms;
+    background-color: var(--content-secondary);
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    // Selected nav items
+    &.selected {
+      background-color: var(--content-primary);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+  }
 }
 
 .classes-page {
   padding-right: 0;
   padding-left: 0;
   height: 100%;
-}
-
-@mixin classes-navbar-item() {
-  padding: 8px 12px;
-  border-radius: 5px;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  margin-right: 10px;
-  margin-bottom: 15px;
-  transition: all ease-in-out 100ms;
-
-  a {
-    color: var(--primary);
-    text-decoration: none;
-  }
-}
-
-// TODO: this pattern of using mixins and then `-selected` isn't great
-// Should do `.classes-navbar-item.selected` instead and nest styles without mixins for less build output and
-// repeated styling
-.classes-navbar-item {
-  @include classes-navbar-item();
-  background-color: var(--content-secondary);
-  //border: 1px solid var(--primary);
-}
-
-.classes-navbar-item-selected {
-  @include classes-navbar-item();
-  background-color: var(--content-primary);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }

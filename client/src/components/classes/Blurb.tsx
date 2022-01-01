@@ -36,7 +36,7 @@ function BlurbAssignment(props: BlurbAssignmentProps) {
 
     return (
         <div className="blurb-assignment" style={{ borderLeft: `4px solid ${parsePeriodColor(item.period, userData)}`}}>
-            <CheckBox style={{ marginRight: 15 }} cursor="pointer" onClick={toggleCompleted} />
+            <CheckBox style={{ marginRight: 15, flex: 'none' }} cursor="pointer" onClick={toggleCompleted} />
             <div className="blurb-assignment-content" style={{ textDecoration: item.completed ? 'line-through' : '' }} onClick={() => setModal(!modal)}>
                 <div className="assignment-title">{shortify(item.name)}</div>
                 <div className="assignment-due"><div>{item.timestamp!.format("dddd, MMMM Do")} • {item.timestamp!.fromNow()}</div></div>
@@ -60,7 +60,7 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
 
     return (
         <div className="upcoming-blurb">
-            <div className="dashboard-header">Upcoming • Blurb</div>
+            <h1 className="dashboard-header">Dashboard</h1>
             <div>You need to do {assignmentsToDoNextWeek.length} of {assignmentsNextWeek.length} assignment{assignmentsNextWeek.length === 1 ? "" : "s"} due in the next week.</div>
 
             <UpcomingQuickWeekCal upcoming={upcoming} selected={selected} />

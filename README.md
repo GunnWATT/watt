@@ -36,7 +36,7 @@ When running locally, WATT uses Firebase's [Emulator Suite](https://firebase.goo
 production databases for testing. To run emulators, first set up the [Firebase CLI](https://firebase.google.com/docs/cli).
 
 To replace the private credentials WATT uses in production, visit <https://pausd.schoology.com/api> and obtain your own API keys
-(Make sure to keep them secret). In `/functions`, create a `.runtimeconfig.json` populated with the key and secret like so:
+(make sure to keep them secret). In `/functions`, create a `.runtimeconfig.json` populated with the key and secret like so:
 ```json
 {
     "schoology": {

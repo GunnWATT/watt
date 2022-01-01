@@ -30,7 +30,7 @@
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 
   > div:not(:first-child) {
-    border-top: 1px solid var(--primary);
+    border-top: 1px solid var(--tertiary);
   }
 
   /*
@@ -47,6 +47,10 @@
 
 .dashboard-header {
   font-size: 2rem;
+
+  &.grades-header {
+    margin-top: 0.75rem;
+  }
 }
 
 // Dashboard Assignments
@@ -96,6 +100,7 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 50ms;
+    text-align: center;
 
     &:hover {
       background-color: var(--content-secondary);
