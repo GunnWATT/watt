@@ -48,10 +48,11 @@ To replace the private credentials WATT uses in production, visit <https://pausd
 
 Navigate to the functions directory with `cd functions` and install the necessary dependencies with `npm install`.
 Before starting the emulators (and after changing any code), compile the TypeScript source files with `npm run build`.
+**If you change the functions code, you will have to run build again.**
 
 From the root directory (`cd ..`), running `firebase emulators:start --import ./functions/presets`
 in a new terminal window should start the emulator suite UI on `localhost:4001` as well as the Firestore, Functions, and Auth
-emulators on other localhost ports. 
+emulators on other localhost ports.
 
 ![image](https://user-images.githubusercontent.com/60120929/147841829-b5d0d43c-2fc7-4a92-bdbc-29d8c3360687.png)
 

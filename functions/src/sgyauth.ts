@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 import admin from './util/adminInit';
 import {get, getOAuthAccessToken, getOAuthRequestToken} from './util/sgyOAuth';
 
-
+const apiBase = 'https://api.schoology.com/v1';
 const firestore = admin.firestore();
 
 // Set a request token using the `sgyauth` firestore document
@@ -77,7 +77,7 @@ export const sgyauth = functions.https.onCall(async (data: AuthData, context: fu
 
         await setAccessToken(requestToken.uid, { key, sec: secret }, requestToken.key)
 
-        const me = await get('https://api.schoology.com/v1/users/me', key, secret)
+        const me = await get(apiBase+'/users/me', key, secret)
             .catch(err => {
                 // Schoology redirects /users/me with a 303 status
                 if (err.statusCode === 303) {

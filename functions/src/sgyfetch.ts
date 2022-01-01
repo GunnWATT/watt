@@ -120,11 +120,11 @@ export const fetchMaterials = functions.https.onCall(async (data, context) => {
 
     try {
         // Fetch grades, cuz that takes a while
-        const grades = get(`/users/${sgyInfo.uid}/grades?timestamp=1627801200`, sgyInfo.key, sgyInfo.sec); //
+        const grades = get(`${apiBase}/users/${sgyInfo.uid}/grades?timestamp=1627801200`, sgyInfo.key, sgyInfo.sec); //
 
         // Fetch courses, then kick out yucky ones
         // TODO: type this better
-        let courses = (await get(`/users/${sgyInfo.uid}/sections`, sgyInfo.key, sgyInfo.sec)).section
+        let courses = (await get(`${apiBase}/users/${sgyInfo.uid}/sections`, sgyInfo.key, sgyInfo.sec)).section
             .filter((sec: {section_title: string}) => periods.indexOf(sec.section_title.split(' ')[0]) >= 0);
 
         // Flattened promises because Promise.all unepicly
@@ -135,10 +135,10 @@ export const fetchMaterials = functions.https.onCall(async (data, context) => {
             const { id } = courses[i];
             const limit = 1000;
 
-            const documents = get(`/sections/${id}/documents?limit=${limit}`, sgyInfo.key, sgyInfo.sec);
-            const assignments = get(`/sections/${id}/assignments?limit=${limit}`, sgyInfo.key, sgyInfo.sec);
-            const pages = get(`/sections/${id}/pages?limit=${limit}`, sgyInfo.key, sgyInfo.sec);
-            const events = get(`/sections/${id}/events?limit=${limit}`, sgyInfo.key, sgyInfo.sec);
+            const documents = get(`${apiBase}/sections/${id}/documents?limit=${limit}`, sgyInfo.key, sgyInfo.sec);
+            const assignments = get(`${apiBase}/sections/${id}/assignments?limit=${limit}`, sgyInfo.key, sgyInfo.sec);
+            const pages = get(`${apiBase}/sections/${id}/pages?limit=${limit}`, sgyInfo.key, sgyInfo.sec);
+            const events = get(`${apiBase}/sections/${id}/events?limit=${limit}`, sgyInfo.key, sgyInfo.sec);
 
             promises.push(documents, assignments, pages, events);
         }

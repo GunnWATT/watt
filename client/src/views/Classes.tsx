@@ -78,12 +78,12 @@ function ClassesSgyNotConnected() {
     )
 }
 
-function ClassesFetching() {
-    const sgyInfo = useContext(SgyDataContext);
+function ClassesFetching(props: {fetching: boolean, updateSgy: () => Promise<any>}) {
+    const {fetching, updateSgy} = props;
 
     return (
         <ClassesErrorBurrito>
-            {sgyInfo.fetching ? (
+            {fetching ? (
                 <Loading>Fetching materials. This can take up to a minute...</Loading>
             ) : (<>
                 <h2>Something Went Wrong.</h2>
@@ -92,7 +92,7 @@ function ClassesFetching() {
                     If this is a recurring problem, please submit an issue to Github.
                 </p>
                 <div className='sgy-auth-button'>
-                    <button onClick={sgyInfo.updateSgy}>Fetch Materials</button>
+                        <button onClick={updateSgy}>Fetch Materials</button>
                 </div>
             </>)}
         </ClassesErrorBurrito>
@@ -296,7 +296,7 @@ export default function Classes() {
     // we are ok to go if: 1) we're signed in 2) the user enabled schoology 3) the sgy data exists
     if (!signedIn) return <ClassesNotSignedIn />
     if (!userData.options.sgy) return <ClassesSgyNotConnected />
-    if (sgyData == null) return <ClassesFetching />
+    if (sgyData == null) return <ClassesFetching fetching={fetching} updateSgy={updateSgy} />
     if (!userData.sgy?.custom || !userData.sgy?.custom.assignments || !userData.sgy?.custom.labels || !userData.sgy?.custom.modified)
         return <Loading /> // make sure user has all of these things :D, if not, usually gets corrected by FirebaseUserDataProvider
 
