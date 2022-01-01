@@ -89,7 +89,9 @@ function Assignment(props: AssignmentProps) {
             <div className="upcoming-assignment-content" onClick={() => setModal(!modal)}>
                 <AssignmentTags item={assignment} period />
                 <div className={"assignment-title"}>{shortify(assignment.name, 150)}</div>
-                {assignment.description.length ? <div className={"upcoming-assignment-desc"}>{shortify(assignment.description,200)}</div> : null}
+                {!!assignment.description.length && (
+                    <div className={"upcoming-assignment-desc"}>{shortify(assignment.description,200)}</div>
+                )}
                 <div className="assignment-due">
                     <div>
                         {assignment.timestamp!.format('hh:mm a on dddd, MMM Do')}
@@ -98,9 +100,11 @@ function Assignment(props: AssignmentProps) {
             </div>
             <div className="upcoming-assignment-icons">
                 <div className="upcoming-assignment-icons-top">
-                    {!isCustomAssignment && <a href={assignment.link} target="_blank" rel="noopener noreferrer">
-                        <Link size={28} color="var(--primary)" />
-                    </a>}
+                    {!isCustomAssignment && (
+                        <a href={assignment.link} target="_blank" rel="noopener noreferrer">
+                            <Link size={28} color="var(--primary)" />
+                        </a>
+                    )}
                     <CompletedIcon
                         size={28}
                         style={{ marginLeft: 'auto', cursor: 'pointer', flexShrink: 0 }}
@@ -140,7 +144,7 @@ export default function Assignments(props: AssignmentsProps & ActiveItemState) {
     // that way we can have all the headers and stuff
     const daysMap = new Map<string, AssignmentBlurb[]>();
     for (const assignment of upcoming) {
-        const day = assignment.timestamp!.format('MM-DD-YYYY');
+        const day = assignment.timestamp!.clone().startOf('day').toISOString();
         if (daysMap.has(day)) {
             daysMap.get(day)!.push(assignment);
         } else {
