@@ -1,7 +1,7 @@
 import {Club} from '../components/lists/ClubComponent';
 
 const data: {timestamp: string, data: {[key: string]: Club}} = {
-    "timestamp": "2021-11-23T19:04:30.649Z",
+    "timestamp": "2022-01-01T01:12:05.241Z",
     "data": {
         "10880": {
             "new": true,
@@ -1200,7 +1200,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "Gender and Sexuality Alliance",
             "tier": 2,
             "desc": "A safe space for LGBTQ+ Gunn students and their allies to hang out. We talk about LGBTQ+ history, participate in events to raise awareness, and work to build a welcoming community at Gunn for LGBTQ+ students.",
-            "day": "Wednesday",
+            "day": "Thursday",
             "time": "Lunch",
             "room": "N-213",
             "prez": "Dante Morse",
