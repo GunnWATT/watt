@@ -3,11 +3,11 @@ import { OAuth } from 'oauth';
 
 
 const { key, secret } = functions.config().schoology;
-const apiBase = 'https://api.schoology.com/v1';
+const apiBase = 'https://api.schoology.com/v1/';
 
 const oauth = new OAuth(
-    `${apiBase}/oauth/request_token`,
-    `${apiBase}/oauth/access_token`,
+    `${apiBase}oauth/request_token`,
+    `${apiBase}oauth/access_token`,
     key,
     secret,
     '1.0',
@@ -40,7 +40,7 @@ export function getOAuthRequestToken() {
 
 export function get(url: string, token: string, tokenSecret: string) {
     return new Promise<any>((res, rej) => {
-        oauth.get(url, token, tokenSecret, (err, result, response) => {
+        oauth.get(new URL(url, apiBase).toString(), token, tokenSecret, (err, result, response) => {
             if (err) rej({...err, response});
             else res(JSON.parse(result!.toString()));
         })
