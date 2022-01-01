@@ -61,7 +61,7 @@ export default function SgyInitResults() {
             // console.log('hey!');
             const init = httpsCallable(functions, "sgyfetch-init");
             init().then(r => {
-                console.log(r);
+                // console.log(r);
                 setResults(r);
             });
         }

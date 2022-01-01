@@ -266,10 +266,10 @@ export default function Classes() {
 
         setSgyData(lsSgyData);
 
-        if (needToFetch && signedIn) {
+        if (needToFetch && signedIn && userData.options.sgy) {
             updateSgy();
         }
-    }, []);
+    }, [userData.options.sgy]);
     // this was originally going to trigger on sign in
     // however, there is a period of time between being signed in and changing to firebase data from localstorage
     // this change remounts everything, and if this effect triggered on sign in, it would actually trigger twice;
