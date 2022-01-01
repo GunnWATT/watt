@@ -105,6 +105,21 @@ const modifyAssignment = async (modifiedData: AssignmentBlurb, userData: UserDat
     await updateUserData("sgy.custom.modified", newModified, auth, firestore);
 }
 
+export const deleteCustomAssignment = async (id: string, userData: UserData, auth: Auth, firestore: Firestore) => {
+    const custom = userData.sgy!.custom.assignments;
+    if(!custom.some(a => a.id === id)) return;
+    let newCustom = custom.filter(assignment => assignment.id !== id);
+    await updateUserData("sgy.custom.assignments", newCustom, auth, firestore);
+}
+
+export const deleteModifiedAssignment = async (id: string, userData: UserData, auth: Auth, firestore: Firestore) => {
+    const custom = userData.sgy!.custom.modified;
+    if (!custom.some(m => m.id === id)) return;
+    let newCustom = custom.filter(m => m.id !== id);
+    await updateUserData("sgy.custom.modified", newCustom, auth, firestore);
+}
+
+
 // Functions for wrangling with Schoology data
 
 // A comparator for moment objects (for sorting)

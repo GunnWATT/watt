@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 import { useAuth, useFirestore } from 'reactfire';
-import { Square, CheckSquare, Link, Edit } from 'react-feather';
+import { Square, CheckSquare, Link, Edit, Trash2, SkipBack } from 'react-feather';
 
 // Components
 import { AssignmentTags } from './Assignments';
@@ -11,7 +11,7 @@ import PriorityPicker from "./PriorityPicker";
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Utilities
-import { AssignmentBlurb, updateAssignment } from './functions/SgyFunctions';
+import { AssignmentBlurb, deleteCustomAssignment, deleteModifiedAssignment, updateAssignment } from './functions/SgyFunctions';
 import CreateAssignmentModal from './CreateAssignmentModal';
 
 
@@ -25,6 +25,13 @@ export default function AssignmentModal(props: AssignmentModalProps) {
     const firestore = useFirestore();
 
     const [editing, setEditing] = useState(false);
+    const deleteCustom = () => {
+        deleteCustomAssignment(item.id, userData, auth, firestore);
+        toggle();
+    }
+    const reset = () => {
+        deleteModifiedAssignment(item.id, userData, auth, firestore);
+    }
 
     const toggleCompleted = () => {
         updateAssignment({ ...item, completed: !item.completed }, userData, auth, firestore)
@@ -36,6 +43,7 @@ export default function AssignmentModal(props: AssignmentModalProps) {
     }
 
     const isCustomAssignment = item.id.startsWith('W');
+    const modified = !isCustomAssignment && userData.sgy.custom.modified.some(a => a.id === item.id);
 
     const CompletedIcon = !item.completed ? Square : CheckSquare;
 
@@ -65,6 +73,8 @@ export default function AssignmentModal(props: AssignmentModalProps) {
                         </div>
 
                         <Edit cursor="pointer" color="var(--active)" style={{marginLeft: 'auto'}} onClick={() => setEditing(true)} />
+                        {isCustomAssignment && <Trash2 cursor="pointer" color="var(--active)" style={{marginLeft: 10}} onClick={deleteCustom} />}
+                        {modified && <SkipBack cursor="pointer" color="var(--active)" style={{ marginLeft: 10 }} onClick={reset} />}
                         <CreateAssignmentModal open={editing} setOpen={setEditing} item={item} />
                     </div>
                 )}
