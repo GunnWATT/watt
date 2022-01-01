@@ -67,10 +67,10 @@ export default function Upcoming() {
             assi.labels.some(label => filter.labels.includes(label)))
 
     useEffect(() => {
-        const info = (getUpcomingInfo(sgyData, selected, userData, time));
+        const {upcoming, overdue} = getUpcomingInfo(sgyData, selected, userData, time);
 
-        setUpcoming(info.upcoming);
-        setOverdue(info.overdue);
+        setUpcoming(upcoming);
+        setOverdue(overdue);
     }, [selected, userData, sgyData]);
 
     // if user is making a new assignment

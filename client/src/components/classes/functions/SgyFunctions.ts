@@ -7,6 +7,7 @@ import { Assignment, Event, Document, Page, SectionGrade } from "../../../school
 import { findClassesList } from "../../../views/Classes";
 import { darkPerColors, periodColors } from "../../schedule/Periods";
 
+
 // Includes everything the user would probably want to know
 export type AssignmentBlurb = {
     name: string;
@@ -108,17 +109,15 @@ const modifyAssignment = async (modifiedData: AssignmentBlurb, userData: UserDat
 
 // A comparator for moment objects (for sorting)
 const priorityComparator = (a: number, b:number) => {
-    if(a === -1 && b === -1) return 0;
-    if(a === -1) return -1;
-    if(b === -1) return 1;
+    if (a === -1 && b === -1) return 0;
+    if (a === -1) return -1;
+    if (b === -1) return 1;
 
-    if(a < b) return 1;
-    if(b > a) return -1;
-    return 0;
+    return b - a;
 }
 
 const assignmentComparator = (a: AssignmentBlurb, b: AssignmentBlurb) => {
-    if(a.timestamp && b.timestamp) {
+    if (a.timestamp && b.timestamp) {
         if (a.timestamp.isBefore(b.timestamp)) {
             return -1;
         }
@@ -126,26 +125,25 @@ const assignmentComparator = (a: AssignmentBlurb, b: AssignmentBlurb) => {
             return 1;
         }
     }
-    else if(a.timestamp) return -1;
-    else if(b.timestamp) return 1;
+    else if (a.timestamp) return -1;
+    else if (b.timestamp) return 1;
 
     const p = priorityComparator(a.priority, b.priority);
-    if(p < 0) return 1; // sort dec by priority
-    if(p > 0) return -1;
+    if (p !== 0) return -p; // sort dec by priority
 
-    if(a.period < b.period) return -1;
-    if(a.period > b.period) return 1;
+    if (a.period < b.period) return -1;
+    if (a.period > b.period) return 1;
 
-    if(a.name < b.name) return -1;
-    if(a.name > b.name) return 1;
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
     
-    if(a.id > b.id) return 1;
-    if(a.id < b.id) return -1;
+    if (a.id > b.id) return 1;
+    if (a.id < b.id) return -1;
 
     return 0;
 }
 
-const SgyItemToBlurb = (item: Assignment | Event | Document | Page, period: SgyPeriod|'A') => {
+function SgyItemToBlurb(item: Assignment | Event | Document | Page, period: SgyPeriod | 'A') {
     return {
         name: item.title,
         id: item.id+'',
@@ -155,11 +153,11 @@ const SgyItemToBlurb = (item: Assignment | Event | Document | Page, period: SgyP
     }
 }
 
-const AssignmentToBlurb = (item: Assignment, period: SgyPeriod | 'A'): AssignmentBlurb => {
-
+function AssignmentToBlurb(item: Assignment, period: SgyPeriod | 'A'): AssignmentBlurb {
+    // TODO: moment constructor
     const timestamp = item.due.length ? moment(item.due) : null;
-    const labels: string[] = ['Assignment'];
-    if (["managed_assessment", "assessment"].includes( item.type ) ) {
+    const labels = ['Assignment'];
+    if (["managed_assessment", "assessment"].includes(item.type)) {
         labels.push('Test')
     }
     // "managed_assessment", "assessment"
@@ -173,7 +171,7 @@ const AssignmentToBlurb = (item: Assignment, period: SgyPeriod | 'A'): Assignmen
     }
 }
 
-const EventToBlurb = (item: Event, period: SgyPeriod | 'A'): AssignmentBlurb => {
+function EventToBlurb(item: Event, period: SgyPeriod | 'A'): AssignmentBlurb {
     return {
         ...SgyItemToBlurb(item, period),
         description: item.description,
@@ -183,7 +181,7 @@ const EventToBlurb = (item: Event, period: SgyPeriod | 'A'): AssignmentBlurb => 
     }
 }
 
-const DocumentToBlurb = (item: Document, period: SgyPeriod | 'A'): AssignmentBlurb => {
+function DocumentToBlurb(item: Document, period: SgyPeriod | 'A'): AssignmentBlurb {
     return {
         ...SgyItemToBlurb(item, period),
         description: JSON.stringify(item.attachments),
@@ -193,7 +191,7 @@ const DocumentToBlurb = (item: Document, period: SgyPeriod | 'A'): AssignmentBlu
     }
 }
 
-const PageToBlurb = (item: Page, period: SgyPeriod | 'A'): AssignmentBlurb => {
+function PageToBlurb(item: Page, period: SgyPeriod | 'A'): AssignmentBlurb {
     return {
         ...SgyItemToBlurb(item, period),
         description: item.body,
@@ -203,26 +201,29 @@ const PageToBlurb = (item: Page, period: SgyPeriod | 'A'): AssignmentBlurb => {
     }
 }
 
-export const getMaterials = (sgyData: SgyData, selected: SgyPeriod | 'A', userData: UserData): AssignmentBlurb[] => {
-    
-    if(selected === 'A') {
-        const materials:AssignmentBlurb[] = [];
+export function getMaterials(sgyData: SgyData, selected: SgyPeriod | 'A', userData: UserData): AssignmentBlurb[] {
+    const materials: AssignmentBlurb[] = [];
+
+    if (selected === 'A') {
         const classes = findClassesList(userData, false);
 
         for (const c of classes) {
-            materials.push( ...getMaterials(sgyData, c.period, userData) );
+            materials.push(...getMaterials(sgyData, c.period, userData));
         }
         materials.sort(assignmentComparator);
-        return materials
+        return materials;
     }
 
     const selectedCourse = sgyData[selected]!;
-    
-    const materials:AssignmentBlurb[] = [];
-    for (const item of selectedCourse.assignments) materials.push(AssignmentToBlurb(item, selected));
-    for (const item of selectedCourse.events) if(!item.assignment_id) materials.push(EventToBlurb(item, selected));
-    for (const item of selectedCourse.documents) materials.push(DocumentToBlurb(item, selected));
-    for (const item of selectedCourse.pages) materials.push(PageToBlurb(item, selected));
+
+    for (const item of selectedCourse.assignments)
+        materials.push(AssignmentToBlurb(item, selected));
+    for (const item of selectedCourse.events)
+        if (!item.assignment_id) materials.push(EventToBlurb(item, selected));
+    for (const item of selectedCourse.documents)
+        materials.push(DocumentToBlurb(item, selected));
+    for (const item of selectedCourse.pages)
+        materials.push(PageToBlurb(item, selected));
 
     for (let i = 0; i < materials.length; i++) {
         const match = userData.sgy!.custom.modified.find(m => m.id === materials[i].id);
@@ -247,8 +248,8 @@ export const getMaterials = (sgyData: SgyData, selected: SgyPeriod | 'A', userDa
 }
 
 // Gets all your upcoming and overdue stuff
-export const getUpcomingInfo = (sgyData: SgyData, selected: SgyPeriod|'A', userData: UserData, time: moment.Moment) => {
-    if(!userData.sgy) throw 'User not authenticated in schoology!';
+export function getUpcomingInfo(sgyData: SgyData, selected: SgyPeriod | 'A', userData: UserData, time: moment.Moment) {
+    if (!userData.sgy) throw 'User not authenticated in schoology!';
 
     if (selected === 'A') {
         const upcoming: AssignmentBlurb[] = [];
@@ -266,9 +267,9 @@ export const getUpcomingInfo = (sgyData: SgyData, selected: SgyPeriod|'A', userD
                 // if (courseStuff.finalGrade) grades[c.period] = courseStuff.finalGrade;
             }
         }
-        for(const item of userData.sgy!.custom.assignments) {
+        for (const item of userData.sgy!.custom.assignments) {
             const timestamp = moment(item.timestamp);
-            if(item.period === selected && timestamp.isAfter(moment())) {
+            if (item.period === selected && timestamp.isAfter(moment())) {
                 upcoming.push({
                     ...item,
                     link: '',
