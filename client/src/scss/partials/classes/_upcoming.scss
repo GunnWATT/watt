@@ -17,6 +17,17 @@
   font-size: 1.1rem;
 }
 
+.upcoming-overdue-header {
+  margin: 10px 0;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  a { 
+    color:var(--primary);
+  }
+}
+
 .upcoming-icons {
   display: flex;
   flex-direction: row;

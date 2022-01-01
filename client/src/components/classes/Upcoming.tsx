@@ -18,7 +18,6 @@ import SgyDataContext from '../../contexts/SgyDataContext';
 // Utilities
 import { findClassesList } from '../../views/Classes';
 import {AssignmentBlurb} from './functions/SgyFunctions';
-import { SCHOOL_END_EXCLUSIVE } from '../schedule/Periods';
 import { getUpcomingInfo } from './functions/SgyFunctions';
 import { similarity } from './functions/GeneralHelperFunctions';
 
@@ -45,26 +44,28 @@ export default function Upcoming() {
         query: searchParams.get('search') ?? '', labels: [], classes: Array(classes.length).fill(false)
     });
 
-    const startofday = moment().startOf('day');
-    const [start, setStart] = useState(startofday);
-    const [end, setEnd] = useState(SCHOOL_END_EXCLUSIVE);
-
     const [includeCompleted, setIncludeCompleted] = useState(false);
 
     // active day (if the user is hovering over any date)
     const [activeItem, setActiveItem] = useState<null | AssignmentBlurb>(null);
 
     // We filter upcoming by 1) query 2) class 3) date
-    const upcomingFiltered = upcoming
-        ?.filter((assi) => filter.query.length === 0
-            || similarity(filter.query, assi.name) >= 0.8
-            || similarity(filter.query, assi.description) >= 0.8)
-        .filter((assi) => filter.classes.every(c => !c) ||
-            filter.classes[classes.findIndex(({period}) => assi.period === period)])
-        .filter((assi) => assi.timestamp!.isAfter(start) && assi.timestamp!.isBefore(end))
-        .filter((assi) => !assi.completed || includeCompleted)
-        .filter((assi) => !filter.labels.length ||
-            assi.labels.some(label => filter.labels.includes(label)))
+    const filterItems = (items: AssignmentBlurb[] | null) => {
+        if(!items) return null;
+        return items
+            .filter((assi) => filter.query.length === 0
+                || similarity(filter.query, assi.name) >= 0.8
+                || similarity(filter.query, assi.description) >= 0.8)
+            .filter((assi) => filter.classes.every(c => !c) ||
+                filter.classes[classes.findIndex(({period}) => assi.period === period)])
+            // .filter((assi) => assi.timestamp!.isAfter(start) && assi.timestamp!.isBefore(end))
+            .filter((assi) => !assi.completed || includeCompleted)
+            .filter((assi) => !filter.labels.length ||
+                assi.labels.some(label => filter.labels.includes(label)));
+    }
+
+    const upcomingFiltered = filterItems(upcoming);
+    const overdueFiltered = filterItems(overdue);
 
     useEffect(() => {
         const {upcoming, overdue} = getUpcomingInfo(sgyData, selected, userData, time);
@@ -90,7 +91,8 @@ export default function Upcoming() {
                     </button>
                 </div>
 
-                {upcomingFiltered && <Assignments upcoming={upcomingFiltered} activeItem={activeItem} setActiveItem={setActiveItem} />}
+                {upcomingFiltered && overdueFiltered && 
+                    <Assignments upcoming={upcomingFiltered} overdue={overdueFiltered} activeItem={activeItem} setActiveItem={setActiveItem} />}
             </div>
             {screenType !== 'smallScreen' && screenType !== 'phone' && (
                 <SidebarCalendar upcoming={upcoming} activeItem={activeItem} setActiveItem={setActiveItem} />

@@ -202,6 +202,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
                                 setTime={setTimestamp} 
                                 time={true} 
                                 hidden={!open} 
+                                // start={moment().subtract(6, 'days').startOf('day')} 
                                 start={moment().startOf('day')} 
                                 style={{
                                     position: 'fixed',

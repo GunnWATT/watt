@@ -290,7 +290,13 @@ export function getUpcomingInfo(sgyData: SgyData, selected: SgyPeriod | 'A', use
                     link: '',
                     timestamp
                 })
-            }
+            } else if(item.period === selected && !item.completed) {
+                overdue.push({
+                    ...item,
+                    link: '',
+                    timestamp
+                })
+            } 
         }
         // console.log(overdue);
 
@@ -315,15 +321,11 @@ export function getUpcomingInfo(sgyData: SgyData, selected: SgyPeriod | 'A', use
             const due = moment(item.due);
 
             if (due.isAfter(time)) { // if it's due after right now
-
                 // format the assignment
                 upcoming.push(AssignmentToBlurb(item, selected));
             } else {
-                // check if it's overddue
-                if(item.completion_status.length) {
-                    overdue.push(AssignmentToBlurb(item, selected));
-                }
-                else if (selectedCourseGrades) {
+                // check if it's overdue
+                if (selectedCourseGrades) {
                     let found = false;
                     for (const period of selectedCourseGrades.period) {
                         for (const assi of period.assignment) {
@@ -374,8 +376,14 @@ export function getUpcomingInfo(sgyData: SgyData, selected: SgyPeriod | 'A', use
                 ...item,
                 link: '',
                 timestamp
+            }) 
+        } else if (item.period === selected && !item.completed) {
+            overdue.push({
+                ...item,
+                link: '',
+                timestamp
             })
-        }
+        } 
     }
 
     upcoming.sort(assignmentComparator);

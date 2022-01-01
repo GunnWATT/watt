@@ -12,7 +12,7 @@ import UserDataContext from '../../contexts/UserDataContext';
 // Utilities
 import { parsePeriodName, parsePeriodColor } from '../schedule/Periods';
 import { AssignmentBlurb, updateAssignment, parseLabelColor } from './functions/SgyFunctions';
-import { CheckSquare, Link, Square } from 'react-feather';
+import { AlertCircle, CheckSquare, Link, Square } from 'react-feather';
 import { shortify } from './functions/GeneralHelperFunctions';
 
 
@@ -77,6 +77,8 @@ function Assignment(props: AssignmentProps) {
 
     const isCustomAssignment = assignment.id.startsWith('W');
 
+    const overdue = assignment.timestamp?.isBefore(moment());
+
     const CompletedIcon = !assignment.completed ? Square : CheckSquare;
 
     return (
@@ -95,6 +97,7 @@ function Assignment(props: AssignmentProps) {
                 <div className="assignment-due">
                     <div>
                         {assignment.timestamp!.format('hh:mm a on dddd, MMM Do')}
+                        {overdue && <span> • <span style={{color: "var(--active)"}}>{assignment.timestamp?.fromNow()}</span></span>}
                     </div>
                 </div> {/* TODO: include 24 hour support */}
             </div>
@@ -135,10 +138,27 @@ function AssignmentDay(props: AssignmentDayProps & ActiveItemState ) {
     </>
 }
 
+function Overdue(props: { overdue: AssignmentBlurb[] } & ActiveItemState ) {
+    const { overdue, ...activeDayState } = props;
+
+    if(!overdue.length) {
+        return <div className="upcoming-overdue-header">
+            <a href="https://pausd.schoology.com/home" target="_blank" rel="noopener noreferrer">Check Schoology For Overdue Assignments</a>
+        </div>
+    }
+    
+    return <>
+        <div className="upcoming-overdue-header">
+            <AlertCircle /> <span>Overdue <a href="https://pausd.schoology.com/home" target="_blank" rel="noopener noreferrer">(More On Schoology)</a></span>
+        </div>
+        {overdue.map((assignment) => <Assignment key={assignment.id} assignment={assignment} {...activeDayState} />)}
+    </>
+}
+
 // all assignments
-type AssignmentsProps = { upcoming: AssignmentBlurb[] };
+type AssignmentsProps = { upcoming: AssignmentBlurb[], overdue: AssignmentBlurb[] };
 export default function Assignments(props: AssignmentsProps & ActiveItemState) {
-    const { upcoming, ...activeDayState } = props;
+    const { upcoming, overdue, ...activeDayState } = props;
 
     // We map days (like "11-29-2021") to all the assignments that are due on that day
     // that way we can have all the headers and stuff
