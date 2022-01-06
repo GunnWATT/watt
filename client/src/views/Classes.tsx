@@ -27,6 +27,7 @@ import { bgColor } from '../components/schedule/progressBarColor';
 import { Menu } from 'react-feather';
 import { shortify } from '../components/classes/functions/GeneralHelperFunctions';
 import { cleanupExpired } from '../components/classes/functions/SgyFunctions';
+import { updateUserData } from '../firebase/updateUserData';
 
 
 export async function fetchSgyMaterials(functions: Functions) {
@@ -149,8 +150,9 @@ function ClassesSidebar(props: { selected: SgyPeriod | 'A', setSelected: (select
 
     // collapsed?
     const [collapsed, setCollapsed] = useState(true);
+    const { sgyData } = useContext(SgyDataContext);
 
-    const classes = findClassesList(userData);
+    const classes = findClassesList(sgyData, userData);
     const screenType = useScreenType();
 
     return (
@@ -173,7 +175,9 @@ function ClassesSidebar(props: { selected: SgyPeriod | 'A', setSelected: (select
 function ClassesHeader() {
     const {selected} = useContext(SgyDataContext);
     const userData = useContext(UserDataContext);
-    const {name, color} = findClassesList(userData).find(({period}) => period === selected)!;
+    const { sgyData } = useContext(SgyDataContext);
+
+    const {name, color} = findClassesList(sgyData, userData).find(({period}) => period === selected)!;
 
     return (
         <Container className="classes-header">
@@ -236,6 +240,45 @@ export default function Classes() {
             .catch((err: FirebaseError) => console.error(err));
 
         setSgyData(newSgyData || null);
+
+        // update classes!
+        if(newSgyData) {
+
+            let needToReset = false;
+            let classes: {[key:string]: any} = {};
+
+            const periods: SgyPeriod[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', 'S'];
+            for (const p of periods) {
+                const course = userData.classes[p];
+
+                classes[p] = { ...userData.classes[p] };
+
+                if(newSgyData[p]) {
+                    // exists! if the ID is wrong, reset the name and ID
+                    const sgycourse = newSgyData[p]!;
+                    if(course.s !== sgycourse.info.id) {
+                        // reset
+                        classes[p] = {
+                            ...userData.classes[p], 
+                            n: `${sgycourse.info.course_title} · ${sgycourse.info.section_title.split(' ')[1]}`,
+                            s: sgycourse.info.id
+                        };
+                        needToReset = true;
+                    }
+                } else {
+                    // doesn't exist
+                    if(course.s) {
+                        // if it still has an id, we have smthg wrong...
+                        classes[p] = { ...userData.classes[p], s: '' };
+                        needToReset = true;
+                    }
+                }
+            }
+
+            if(needToReset) {
+                updateUserData('classes', classes, auth, firestore);
+            }
+        }
 
         setLastFetched(Date.now());
         setFetching(false);
@@ -340,7 +383,7 @@ export default function Classes() {
 
 // Returns a parsed class array given a populated userData object.
 // If `includeAll` is true, the first class will be an "All Courses" object with default color.
-export function findClassesList(userData: UserData, includeAll: boolean = true) {
+export function findClassesList(sgyData: SgyData, userData: UserData, includeAll: boolean = true) {
     // find classes from userData
     const classes: { name: string, color: string, period: SgyPeriod | 'A' }[] = [];
 
@@ -354,7 +397,7 @@ export function findClassesList(userData: UserData, includeAll: boolean = true) 
     }
 
     for (const [p, course] of Object.entries(userData.classes)) {
-        if (course.s) {
+        if (course.s && p in sgyData) {
             classes.push({
                 name: course.n,
                 color: parsePeriodColor(p, userData),

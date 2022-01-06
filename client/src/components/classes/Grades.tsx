@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 
 // Context
 import UserDataContext from '../../contexts/UserDataContext';
+import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
 import { findClassesList } from '../../views/Classes';
@@ -17,6 +18,7 @@ export default function Grades(props: GradesProps) {
 
     const [revealed, setRevealed] = useState(false);
     const userData = useContext(UserDataContext);
+    const { sgyData } = useContext(SgyDataContext);
 
     if (selected !== 'A' && !allGrades[selected]) return null;
 
@@ -30,7 +32,7 @@ export default function Grades(props: GradesProps) {
             </h1>
 
             <div hidden={!revealed} className="dashboard-grade">
-                {selected === 'A' ? findClassesList(userData)
+                {selected === 'A' ? findClassesList(sgyData, userData)
                     .filter(({ period }) => period !== 'A' && allGrades[period])
                     .map(({ name, color, period }) => (
 

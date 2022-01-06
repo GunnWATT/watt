@@ -30,7 +30,7 @@ export default function Upcoming() {
     const screenType = useScreenType();
 
     const userData = useContext(UserDataContext);
-    const classes = findClassesList(userData, false);
+    const classes = findClassesList(sgyData, userData, false);
 
     const [upcoming, setUpcoming] = useState<AssignmentBlurb[] | null>(null);
     const [overdue, setOverdue] = useState<AssignmentBlurb[] | null>(null);

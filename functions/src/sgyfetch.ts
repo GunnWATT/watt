@@ -133,7 +133,11 @@ export const fetchMaterials = functions.https.onCall(async (data, context) => {
         // Fetch courses, then kick out yucky ones
         // TODO: type this better
         let courses = (await get(`users/${sgyInfo.uid}/sections`, sgyInfo.key, sgyInfo.sec)).section
-            .filter((sec: {section_title: string}) => periods.indexOf(sec.section_title.split(' ')[0]) >= 0);
+            .filter((sec: {section_title: string}) => {
+                const {pName, term} = getClassInfo(sec.section_title);
+                if (term === `S${3 - SEMESTER}`) return false; // 3 - SEMESTER will rule out S1 courses if SEMESTER is 2, and S2 courses if SEMESTER is 1
+                return periods.includes(pName);
+            });
 
         // Flattened promises because Promise.all unepicly
         // They go by 4s: every 4 is documents, assignments, pages, then events for each course

@@ -21,7 +21,7 @@ export default function Materials() {
 
     // Userdata handling
     const userData = useContext(UserDataContext);
-    const classes = findClassesList(userData, false);
+    const classes = findClassesList(sgyData, userData, false);
 
     // Filter
     const [filter, setFilter] = useState<QueryObj>({

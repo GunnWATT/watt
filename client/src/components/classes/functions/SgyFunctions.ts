@@ -220,7 +220,7 @@ export function getMaterials(sgyData: SgyData, selected: SgyPeriod | 'A', userDa
     const materials: AssignmentBlurb[] = [];
 
     if (selected === 'A') {
-        const classes = findClassesList(userData, false);
+        const classes = findClassesList(sgyData, userData, false);
 
         for (const c of classes) {
             materials.push(...getMaterials(sgyData, c.period, userData));
@@ -271,7 +271,7 @@ export function getUpcomingInfo(sgyData: SgyData, selected: SgyPeriod | 'A', use
         const overdue: AssignmentBlurb[] = [];
         // const grades: { [key: string]: number } = {};
 
-        const classes = findClassesList(userData);
+        const classes = findClassesList(sgyData, userData);
 
         for (const c of classes) {
             if (c.period === "A") continue;
@@ -429,7 +429,7 @@ export const findGrades = (sgyData: SgyData, selected: SgyPeriod):SectionGrade|n
 // Get all grades, but as numbers
 // wildly inefficient lol
 export const getAllGrades = (sgyData: SgyData, userData: UserData) => {
-    const classes = findClassesList(userData);
+    const classes = findClassesList(sgyData, userData);
     const grades: { [key: string]: number } = {};
 
     for (const c of classes) {

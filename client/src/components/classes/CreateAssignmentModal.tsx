@@ -11,6 +11,7 @@ import { Calendar } from '../schedule/DateSelector';
 
 // Contexts
 import UserDataContext, { SgyPeriod } from '../../contexts/UserDataContext';
+import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
 import { useScreenType } from '../../hooks/useScreenType';
@@ -72,8 +73,9 @@ const PeriodPicker = (props: { period: 'A'|SgyPeriod, setPeriod: (c: 'A'|SgyPeri
 
     const userData = useContext(UserDataContext);
     const screenType = useScreenType();
+    const { sgyData } = useContext(SgyDataContext);
 
-    const classes = findClassesList(userData);
+    const classes = findClassesList(sgyData, userData);
 
     return <Picker className="period-picker">
         {(open, setOpen) => <>
