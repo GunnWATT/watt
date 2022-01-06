@@ -2,6 +2,7 @@ import * as functions from 'firebase-functions';
 import admin from './util/adminInit';
 import {get} from './util/sgyOAuth';
 
+const SEMESTER = 2; // We are in semester 2
 
 const firestore = admin.firestore();
 const periods = ['1', '2', '3', '4', '5', '6', '7', '8', 'SELF'];
@@ -18,7 +19,15 @@ async function getSgyInfo(uid: string) {
 
 function getClassInfo(info: string) {
     const words = info.split(' ');
-    return {pName: words[0], pTeacher: words[1]};
+    const pRegex = info.match(/\((.+)\)/); 
+    let term = null;
+    if(pRegex) {
+        const parenblock = pRegex[1]; // 2696 1 FY
+        const items = parenblock.split(' '); // [2696, 1, FY]
+        term = items[items.length - 1]; // FY
+    }
+    
+    return { pName: words[0], pTeacher: words[1], term };
 }
 
 type SgyPeriodData = {n: string, c: string, l: string, o: string, s: string};
@@ -47,7 +56,8 @@ export const init = functions.https.onCall(async (data, context) => {
 
     const teachers: {[key: string]: [string, string]} = {};
     for (const element of sgyClasses) {
-        let {pName, pTeacher} = getClassInfo(element['section_title']);
+        let {pName, pTeacher, term} = getClassInfo(element['section_title']);
+        if (term === `S${3-SEMESTER}`) continue; // 3 - SEMESTER will rule out S1 courses if SEMESTER is 2, and S2 courses if SEMESTER is 1
         if (periods.includes(pName)) {
             if (pName === 'SELF') pName = 'S'
             if (pName === 'PRIME') pName = 'P'

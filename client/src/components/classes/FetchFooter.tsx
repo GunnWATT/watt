@@ -2,6 +2,10 @@ import { useContext } from 'react';
 import { Spinner } from 'reactstrap';
 import moment from 'moment';
 
+// Firebase
+import { sgyAuth } from '../firebase/SgySignInBtn';
+import { useAuth, useFunctions } from 'reactfire';
+
 // Context
 import SgyDataContext from '../../contexts/SgyDataContext';
 
@@ -11,7 +15,15 @@ export default function FetchFooter() {
 
     const cannotFetch = (lastAttemptedFetch != null && Date.now() - lastAttemptedFetch < 6 * 1000) || fetching;
 
-    return (
+    const auth = useAuth();
+    const functions = useFunctions();
+
+    return <>
+        <div className="reauth-footer">
+            If your classes are wrong, reset Schoology.
+            <button onClick={() => sgyAuth(auth, functions)}>Reset</button>
+        </div>
+        
         <div className="fetch-footer">
             {fetching
                 ? (
@@ -25,5 +37,5 @@ export default function FetchFooter() {
             }
             <button onClick={updateSgy} disabled={cannotFetch} className={"fetch-footer-button" + (cannotFetch ? " disabled" : '')}>Fetch</button>
         </div>
-    );
+    </>;
 }

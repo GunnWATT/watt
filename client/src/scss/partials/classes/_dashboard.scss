@@ -143,10 +143,27 @@
   }
 }
 
-.fetch-footer {
+.reauth-footer {
+
   display: flex;
   flex-direction: row;
   margin-top: auto;
+  align-items: center;
+  padding: 10px 0px;
+  
+  button {
+    margin-left: auto;
+    background-color: var(--active);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 5px;
+    transition: opacity 0.2s ease;
+  }
+}
+
+.fetch-footer {
+  display: flex;
+  flex-direction: row;
   align-items: center;
   padding-top: 10px;
 
