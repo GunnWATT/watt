@@ -4,8 +4,10 @@ import {Eye, X} from 'react-feather';
 
 
 type BarcodeRowProps = {
-    name: string, code: string, readOnly?: boolean,
-    removeBarcode?: () => void, updateBarcodeName?: (v: string) => void, updateBarcodeValue?: (v: string) => void,
+    name: string, code: string, readOnly?: boolean, className?: string,
+    removeBarcode?: () => void,
+    updateBarcodeName?: (v: string) => void,
+    updateBarcodeValue?: (v: string) => void,
     updateBarcodes?: () => void
 };
 export default function BarcodeRow(props: BarcodeRowProps) {
@@ -68,7 +70,7 @@ export default function BarcodeRow(props: BarcodeRowProps) {
                         onBlur={() => updateBarcodes && updateBarcodes()}
                     />
                     <input
-                        className="barcode-input"
+                        className={`barcode-input ${props.className || ''}`}
                         value={code}
                         readOnly={readOnly}
                         onChange={e => {

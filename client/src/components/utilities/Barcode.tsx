@@ -60,7 +60,7 @@ export default function Barcode() {
             <h1>Barcode</h1>
             <hr />
 
-            <BarcodeRow name="You" code={youCode} readOnly />
+            <BarcodeRow name="You" className="you" code={youCode} readOnly />
 
             {barcodes.map(([name, code], index) =>
                 <BarcodeRow name={name} code={code}
