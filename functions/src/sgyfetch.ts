@@ -5,7 +5,7 @@ import {get} from './util/sgyOAuth';
 const SEMESTER = 2; // We are in semester 2
 
 const firestore = admin.firestore();
-const periods = ['0','1', '2', '3', '4', '5', '6', '7', '8', 'SELF'];
+const periods = ['0', '1', '2', '3', '4', '5', '6', '7', '8', 'SELF'];
 
 
 // Get a user's stored firestore sgy info
