@@ -1,11 +1,11 @@
 import { Auth } from 'firebase/auth';
 import { Firestore } from 'firebase/firestore';
 import moment from "moment";
-import { SgyPeriod, SgyAssignmentModified, SgyData, UserData, CustomAssignment } from "../../../contexts/UserDataContext";
-import { updateUserData } from "../../../firebase/updateUserData";
-import { Assignment, Event, Document, Page, SectionGrade } from "../../../schoology/SgyTypes";
-import { findClassesList } from "../../../views/Classes";
-import { darkPerColors, periodColors } from "../../schedule/Periods";
+import { SgyPeriod, SgyAssignmentModified, SgyData, UserData, CustomAssignment } from "../contexts/UserDataContext";
+import { updateUserData } from "../firebase/updateUserData";
+import { Assignment, Event, Document, Page, SectionGrade } from "./sgyTypes";
+import { findClassesList } from "../pages/Classes";
+import { darkPerColors, periodColors } from "../components/schedule/Periods";
 
 
 // Includes everything the user would probably want to know

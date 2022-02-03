@@ -14,8 +14,39 @@ const num = 100;
 // to
 const num = 100
 ```
+This helps with ASI ambiguity and makes clearer the intentions for where a line ends.
 
-### 1.2 — Leave 2 newlines between imports and code
+### 1.2 — Use 4-space tabs
+```ts
+// Prefer
+for (const club of clubs) {
+    console.log(club.name);
+}
+// to
+for (const club of clubs) {
+  console.log(club.name);
+}
+// or
+for (const club of clubs) {
+	console.log(club.name);
+}
+```
+Most modern IDEs automatically convert tab key presses to spaces, and using spaces instead of tab characters lets _you_ control
+how wide your tabs are (avoiding, for example, GitHub's massive 8-space tab characters).
+
+### 1.3 — Prefer using `const` over `let` for immutable variables
+```ts
+// Prefer
+const data = JSON.parse(localStorage.getItem('data'));
+console.log(data.timestamp);
+// to
+let data = JSON.parse(localStorage.getItem('data'));
+console.log(data.timestamp);
+```
+This better enforces mutability and makes it easier to tell what is a mutable field and what is an immutable value.
+This rule is often violated by old code written when I was in the habit of using `let` for everything.
+
+### 1.4 — Leave 2 newlines between imports and code
 ```ts
 // Prefer
 import fetch from 'node-fetch';
@@ -28,7 +59,7 @@ writeFileSync('./output/clubs.json', JSON.stringify(prev, null, 4));
 // ...
 ```
 
-### 1.3 — Group imports if importing many things at once
+### 1.5 — Group imports if importing many things at once
 ```ts
 // Prefer
 import { useContext, useEffect, useState } from 'react';
@@ -78,7 +109,7 @@ import Loading from '../components/layout/Loading';
 // ...
 ```
 
-### 1.4 — Prefer importing functions directly instead of using default imports where possible
+### 1.6 — Prefer importing functions directly instead of using default imports where possible
 ```ts
 // Prefer
 import {readFileSync, writeFileSync} from 'fs';
@@ -88,7 +119,7 @@ import fs from 'fs';
 This allows readers to ascertain exactly what from `fs` is used at a glance, without having to search for references of
 the `fs` object.
 
-### 1.5 — Prefer minimizing extra newlines from curly braces
+### 1.7 — Prefer minimizing extra newlines from curly braces
 ```tsx
 // Prefer
 if (!signedIn) return <div>You are not signed in!</div>
@@ -102,7 +133,7 @@ if (!signedIn) {
 ```
 Exceptions to this rule may apply on a case by case basis.
 
-### 1.6 — Leave spaces before `if` and `for` conditions and after `:`s in object and type declarations
+### 1.8 — Leave spaces before `if` and `for` conditions and after `:`s in object and type declarations
 ```ts
 // Prefer
 if (!description) {

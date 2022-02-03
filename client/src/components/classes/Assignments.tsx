@@ -11,9 +11,9 @@ import UserDataContext from '../../contexts/UserDataContext';
 
 // Utilities
 import { parsePeriodName, parsePeriodColor } from '../schedule/Periods';
-import { AssignmentBlurb, updateAssignment, parseLabelColor } from './functions/SgyFunctions';
+import { AssignmentBlurb, updateAssignment, parseLabelColor } from '../../util/sgyFunctions';
 import { AlertCircle, CheckSquare, Link, Square } from 'react-feather';
-import { shortify } from './functions/GeneralHelperFunctions';
+import { shortify } from '../../util/sgyHelpers';
 
 
 // The assignment blocks for the Upcoming Tab

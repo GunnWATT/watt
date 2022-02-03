@@ -3,7 +3,7 @@ import moment from 'moment';
 
 // Types
 import { ActiveItemState } from './Assignments';
-import { AssignmentBlurb, parseLabelColor, parsePriority } from './functions/SgyFunctions';
+import { AssignmentBlurb, parseLabelColor, parsePriority } from '../../util/sgyFunctions';
 
 // Components
 import Spinner from 'reactstrap/es/Spinner';
@@ -11,7 +11,7 @@ import { parsePeriodColor } from '../schedule/Periods';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
-import { pluralize, shortify } from './functions/GeneralHelperFunctions';
+import { pluralize, shortify } from '../../util/sgyHelpers';
 
 // type of a transition
 type LineType = "same-day" | "diff-day" | "large-diff";

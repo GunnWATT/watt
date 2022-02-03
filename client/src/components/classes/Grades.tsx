@@ -5,8 +5,8 @@ import UserDataContext from '../../contexts/UserDataContext';
 import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
-import { findClassesList } from '../../views/Classes';
-import { classifyGrade } from './functions/GeneralHelperFunctions';
+import { findClassesList } from '../../pages/Classes';
+import { classifyGrade } from '../../util/sgyHelpers';
 
 // Icons
 import { ChevronDown, ChevronRight, ChevronUp } from 'react-feather';

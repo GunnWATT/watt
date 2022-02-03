@@ -14,7 +14,7 @@ import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
 import { useScreenType } from '../../hooks/useScreenType';
-import { AssignmentBlurb, getAllGrades, getUpcomingInfo } from './functions/SgyFunctions';
+import { AssignmentBlurb, getAllGrades, getUpcomingInfo } from '../../util/sgyFunctions';
 
 
 export default function Dashboard() {

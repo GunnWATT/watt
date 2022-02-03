@@ -16,10 +16,10 @@ import UserDataContext from '../../contexts/UserDataContext';
 import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
-import { findClassesList } from '../../views/Classes';
-import {AssignmentBlurb} from './functions/SgyFunctions';
-import { getUpcomingInfo } from './functions/SgyFunctions';
-import { similarity } from './functions/GeneralHelperFunctions';
+import { findClassesList } from '../../pages/Classes';
+import {AssignmentBlurb} from '../../util/sgyFunctions';
+import { getUpcomingInfo } from '../../util/sgyFunctions';
+import { similarity } from '../../util/sgyHelpers';
 
 
 export default function Upcoming() {

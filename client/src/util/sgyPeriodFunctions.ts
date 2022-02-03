@@ -1,8 +1,7 @@
-
-import moment from "moment";
-import { UserData } from "../../../contexts/UserDataContext";
-import { getSchedule } from "../../../hooks/useSchedule";
-import { SCHOOL_END_EXCLUSIVE, SCHOOL_START } from "../../schedule/Periods";
+import moment from 'moment';
+import { UserData } from '../contexts/UserDataContext';
+import { getSchedule } from '../hooks/useSchedule';
+import { SCHOOL_END_EXCLUSIVE, SCHOOL_START } from '../components/schedule/Periods';
 
 // Functions for dealing with periods
 

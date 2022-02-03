@@ -11,8 +11,8 @@ import UserDataContext from '../../contexts/UserDataContext';
 
 // Utils
 import { parsePeriodColor } from '../schedule/Periods';
-import { AssignmentBlurb, updateAssignment } from './functions/SgyFunctions';
-import { shortify } from './functions/GeneralHelperFunctions';
+import { AssignmentBlurb, updateAssignment } from '../../util/sgyFunctions';
+import { shortify } from '../../util/sgyHelpers';
 import { CheckSquare, Square } from 'react-feather';
 import { useAuth, useFirestore } from 'reactfire';
 import AssignmentModal from './AssignmentModal';

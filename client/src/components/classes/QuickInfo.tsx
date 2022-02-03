@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import UserDataContext from '../../contexts/UserDataContext';
-import { cardinalize } from './functions/GeneralHelperFunctions';
-import { ClassPeriodQuickInfo, pastClasses, nextSchoolDay, numSchoolDays } from './functions/PeriodFunctions';
+import { cardinalize } from '../../util/sgyHelpers';
+import { ClassPeriodQuickInfo, pastClasses, nextSchoolDay, numSchoolDays } from '../../util/sgyPeriodFunctions';
 
 
 // Quick Info includes when's the next day that has a given period

@@ -10,7 +10,7 @@ import {AssignmentTag} from './Assignments';
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Utilities
-import {allLabels, parseLabelColor, parseLabelName} from './functions/SgyFunctions';
+import {allLabels, parseLabelColor, parseLabelName} from '../../util/sgyFunctions';
 
 
 // A label selecting component for Materials / Upcoming filtering and custom assignment creation.

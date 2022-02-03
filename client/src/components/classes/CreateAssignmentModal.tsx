@@ -15,9 +15,9 @@ import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
 import { useScreenType } from '../../hooks/useScreenType';
-import { findClassesList } from '../../views/Classes';
+import { findClassesList } from '../../pages/Classes';
 import { AssignmentTag } from './Assignments';
-import { allLabels, AssignmentBlurb, createAssignment, parseLabelColor, parseLabelName, updateAssignment } from './functions/SgyFunctions';
+import { allLabels, AssignmentBlurb, createAssignment, parseLabelColor, parseLabelName, updateAssignment } from '../../util/sgyFunctions';
 import { parsePeriodColor, parsePeriodName } from '../schedule/Periods';
 
 const TagPicker = (props: {labels: string[], toggleLabel: (label: string) => any}) => {

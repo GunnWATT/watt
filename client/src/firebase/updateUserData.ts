@@ -33,8 +33,8 @@ export const updateLocalStorageUserData = (field: string, newValue: any) => {
     if (field === '')
         return localStorage.setItem("data", JSON.stringify(newValue));
 
-    let data = JSON.parse(localStorage.getItem("data") ?? "{}");
-    let path = field.split('.');
+    const data = JSON.parse(localStorage.getItem("data") ?? "{}");
+    const path = field.split('.');
 
     let curr: { [key: string]: any } = data;
     for (let i = 0; i < path.length - 1; i++) {

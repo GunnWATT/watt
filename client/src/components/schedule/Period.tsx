@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, CardBody, CardTitle, CardSubtitle, CardText, Progress, CardLink} from 'reactstrap';
 import {Moment} from 'moment';
 import 'twix';
-import {bgColor, barColor, hexToRgb} from './progressBarColor';
+import {bgColor, barColor, hexToRgb} from '../../util/progressBarColor';
 import {Link} from 'react-feather';
 
 

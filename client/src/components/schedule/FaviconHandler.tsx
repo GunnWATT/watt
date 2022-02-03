@@ -1,7 +1,7 @@
 import {useContext, useEffect, useRef} from 'react';
 import {useNextPeriod} from '../../hooks/useNextPeriod';
 import {parsePeriodColor, parsePeriodName} from './Periods';
-import {hexToRgb} from './progressBarColor';
+import {hexToRgb} from '../../util/progressBarColor';
 
 // Context
 import UserDataContext from '../../contexts/UserDataContext';

@@ -23,10 +23,10 @@ import SgyDataContext, { SgyDataProvider } from '../contexts/SgyDataContext';
 // Utilities
 import { parsePeriodColor } from '../components/schedule/Periods';
 import { useScreenType } from '../hooks/useScreenType';
-import { bgColor } from '../components/schedule/progressBarColor';
+import { bgColor } from '../util/progressBarColor';
 import { Menu } from 'react-feather';
-import { shortify } from '../components/classes/functions/GeneralHelperFunctions';
-import { cleanupExpired } from '../components/classes/functions/SgyFunctions';
+import { shortify } from '../util/sgyHelpers';
+import { cleanupExpired } from '../util/sgyFunctions';
 import { updateUserData } from '../firebase/updateUserData';
 
 

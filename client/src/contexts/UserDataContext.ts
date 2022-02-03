@@ -1,5 +1,5 @@
 import {createContext} from 'react';
-import { Assignment, Document, Event, Page, Section, SectionGrade } from '../schoology/SgyTypes';
+import { Assignment, Document, Event, Page, Section, SectionGrade } from '../util/sgyTypes';
 
 // Represents a course on Schoology.
 // n: class name

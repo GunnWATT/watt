@@ -11,7 +11,7 @@ import PriorityPicker from "./PriorityPicker";
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Utilities
-import { AssignmentBlurb, deleteCustomAssignment, deleteModifiedAssignment, updateAssignment } from './functions/SgyFunctions';
+import { AssignmentBlurb, deleteCustomAssignment, deleteModifiedAssignment, updateAssignment } from '../../util/sgyFunctions';
 import CreateAssignmentModal from './CreateAssignmentModal';
 
 
