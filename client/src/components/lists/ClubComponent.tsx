@@ -5,7 +5,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Badge } from 'react
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Firestore
-import {useAuth, useFirestore} from 'reactfire';
+import {useAuth, useFirestore, useUser} from 'reactfire';
 import { updateUserData } from '../../firebase/updateUserData';
 
 
@@ -24,6 +24,8 @@ export default function ClubComponent(props: Club & {id: string}) {
     // Firestore
     const auth = useAuth();
     const firestore = useFirestore();
+    const { status, data } = useUser();
+
     const userData = useContext(UserDataContext);
     const pinned = userData.clubs.includes(id);
 
@@ -34,6 +36,9 @@ export default function ClubComponent(props: Club & {id: string}) {
     const removeFromPinned = async () =>
         await updateUserData('clubs', userData.clubs.filter(clubID => clubID !== id), auth, firestore);
 
+    // Prefill the form link from club and user name, if it exists
+    const prefilledLink = `https://docs.google.com/forms/d/e/1FAIpQLSfFaDat-272V6ZGE1iocJHWoNi8vxDxMETeWWn4rbGOqPXOFQ/viewform?entry.272185165=${name}`
+        + (data ? `&entry.1448575177=${data.displayName}` : '')
 
     return (
         <li onClick={toggle}>
@@ -56,10 +61,14 @@ export default function ClubComponent(props: Club & {id: string}) {
                     <p><strong>Teacher Email(s):</strong> {email}{coemail && ', ' + coemail}</p>
                 </ModalBody>
                 <ModalFooter>
-                    {pinned
-                        ? <Button outline className="remove-from-list" onClick={removeFromPinned}>Remove from my list</Button> // If pinned give option to remove from pinned
-                        : <Button outline className="add-to-list" onClick={addToPinned}>Add to my list</Button> // Otherwise give option to add to list
-                    }
+                    {pinned ? (
+                        <Button outline className="remove-from-list" onClick={removeFromPinned}>Remove from my list</Button>
+                    ) : (
+                        <Button outline className="add-to-list" onClick={addToPinned}>Add to my list</Button>
+                    )}
+                    <a href={prefilledLink} target="_blank" rel="noopener noreferrer">
+                        <Button outline>Check In</Button>
+                    </a>
                     <Button outline color="danger" onClick={toggle}>Close</Button>
                 </ModalFooter>
             </Modal>
