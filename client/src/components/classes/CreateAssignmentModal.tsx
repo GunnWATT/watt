@@ -146,8 +146,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
 
     const ready = name.length;
     const create = () => {
-
-        if(item) {
+        if (item) {
             updateAssignment({
                 ...item,
                 name,
@@ -202,7 +201,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
                             <Calendar 
                                 currTime={timestamp} 
                                 setTime={setTimestamp} 
-                                time={true} 
+                                time
                                 hidden={!open} 
                                 // start={moment().subtract(6, 'days').startOf('day')} 
                                 start={moment().startOf('day')} 
@@ -215,16 +214,20 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
                             />
                         </>}
                     </Picker>
-                    
                 </div>
             </ModalBody>
             <ModalFooter>
                 <Button outline onClick={toggle}>Cancel</Button>
                 <Button outline color="success" disabled={!ready} onClick={create}>
-                    {item ? 
-                        <div style={{display: "flex", flexDirection: "row", alignItems:"center"}}><Edit style={{marginRight:5}} /> Edit</div> :
-                        <div style={{display: "flex", flexDirection: "row", alignItems:"center"}}><PlusCircle style={{marginRight:5}} /> Create</div>
-                    }
+                    {item ? (
+                        <div style={{display: "flex", flexDirection: "row", alignItems:"center"}}>
+                            <Edit style={{marginRight:5}} /> Edit
+                        </div>
+                    ) : (
+                        <div style={{display: "flex", flexDirection: "row", alignItems:"center"}}>
+                            <PlusCircle style={{marginRight:5}} /> Create
+                        </div>
+                    )}
                 </Button>
             </ModalFooter>
         </Modal>
