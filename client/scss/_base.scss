@@ -48,7 +48,7 @@ body {
   display: flex;
   position: relative;
 
-  &.vertical {
+  @media (max-width: 800px) {
     flex-direction: column;
 
     #content {

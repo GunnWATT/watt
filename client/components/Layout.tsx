@@ -5,8 +5,7 @@ import {logEvent} from 'firebase/analytics';
 import {useScreenType} from '../hooks/useScreenType';
 
 // Components
-import Sidebar from './layout/Sidebar';
-import BottomNav from './layout/BottomNav';
+import NavBar from './layout/NavBar';
 
 // Context
 import UserDataContext from '../contexts/UserDataContext';
@@ -49,12 +48,11 @@ export default function Layout(props: {children: ReactNode}) {
 
     return (
         <>
-            <div id="app" className={screenType === 'phone' ? 'vertical' : ''}>
-                {screenType !== 'phone' && <Sidebar forceCollapsed={screenType === 'smallScreen'} />}
+            <div id="app">
+                <NavBar forceCollapsed={screenType === 'smallScreen'} />
                 <div id="content">
                     {props.children}
                 </div>
-                {screenType === 'phone' && <BottomNav />}
             </div>
             <SgyInitResults />
         </>

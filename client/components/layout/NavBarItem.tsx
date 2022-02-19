@@ -3,8 +3,8 @@ import Link from 'next/link';
 import {useRouter} from 'next/router';
 
 
-type SidebarItemProps = {to: string, icon: JSX.Element, children?: ReactNode};
-export default function SidebarItem(props: SidebarItemProps) {
+type NavBarItemProps = {to: string, icon: JSX.Element, children?: ReactNode};
+export default function NavBarItem(props: NavBarItemProps) {
     const {to, icon, children} = props;
     const router = useRouter();
 

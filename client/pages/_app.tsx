@@ -55,7 +55,7 @@ export default function App({ Component, pageProps }: AppProps) {
     }
 
     // Fetch events on mount
-    useEffect(fetchEvents, [])
+    useEffect(fetchEvents, []);
 
     return (
         <FirebaseAppProvider firebaseConfig={fbconfig}>
@@ -70,6 +70,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
                     <PageVisibility onChange={() => navigator.serviceWorker.getRegistration().then(res => res?.update())} />
                     <FaviconHandler />
+
                     <Layout>
                         <Component {...pageProps} />
                     </Layout>
