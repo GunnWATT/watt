@@ -10,10 +10,10 @@ import NavBar from './layout/NavBar';
 // Context
 import UserDataContext from '../contexts/UserDataContext';
 
-// Schoology Auth
+// Auth
 import SgyInitResults from './firebase/SgyInitResults';
 import {getRedirectResult} from 'firebase/auth';
-import {firestoreInit} from '../firebase/auth';
+import {firestoreInit} from '../util/firestore';
 
 
 export default function Layout(props: {children: ReactNode}) {

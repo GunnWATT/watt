@@ -8,8 +8,7 @@ import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
 // Firestore
 import {useAuth, useFirestore} from 'reactfire';
-// import {updateFirestoreField} from '../../firebase/Firestore';
-import { updateUserData } from '../../firebase/updateUserData';
+import { updateUserData } from '../../util/firestore';
 
 
 export default function Appearance() {

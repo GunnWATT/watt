@@ -4,7 +4,7 @@ import {deepdifferences, deepmerge} from './LocalStorageUserDataProvider';
 // Firestore
 import {useAuth, useFirestore, useFirestoreDoc} from 'reactfire';
 import {doc, setDoc} from 'firebase/firestore';
-import {bulkUpdateFirebaseUserData, updateFirebaseUserData} from '../../firebase/updateUserData';
+import {bulkUpdateFirebaseUserData, updateFirebaseUserData} from '../../util/firestore';
 
 // Context
 import {UserData, UserDataProvider, defaultUserData} from '../../contexts/UserDataContext';

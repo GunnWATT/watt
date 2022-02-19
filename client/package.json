@@ -15,7 +15,7 @@
     "react-feather": "^2.0.9",
     "react-hotkeys-hook": "^3.3.1",
     "react-page-visibility": "^6.4.0",
-    "react-responsive": "^8.2.0",
+    "react-responsive": "^9.0.0-beta.6",
     "react-transition-group": "^4.4.1",
     "reactfire": "^4.2.1",
     "reactstrap": "^8.9.0",

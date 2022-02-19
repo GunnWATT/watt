@@ -11,7 +11,6 @@ import FaviconHandler from '../components/schedule/FaviconHandler';
 // Firebase
 import {FirebaseAppProvider} from 'reactfire';
 import FirebaseProviders from '../components/firebase/FirebaseProviders';
-import {fbconfig} from '../firebase/config';
 
 // Contexts
 import CombinedUserDataProvider from '../components/firebase/CombinedUserDataProvider';
@@ -21,18 +20,25 @@ import {EventsProvider, GCalEvent} from '../contexts/EventsContext';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../scss/index.scss';
 
-const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
 
+const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
+const firebaseConfig = {
+    apiKey: 'AIzaSyAjmAlzXLNelfL4Ak7dMPXWg8-3wLcCwpY',
+    authDomain: 'gunnwatt.firebaseapp.com',
+    databaseURL: 'https://gunnwatt.firebaseio.com',
+    projectId: 'gunnwatt',
+    storageBucket: 'gunnwatt.appspot.com',
+    messagingSenderId: '108805079121',
+    appId: '1:108805079121:web:b08582f4c5c13763fb7870',
+    measurementId: 'G-8EVM6G2Z8X'
+}
 
 export default function App({ Component, pageProps }: AppProps) {
     // Global datetime
     const [date, setDate] = useState(moment());
 
     useEffect(() => {
-        const update = () => setDate(moment());
-        const timerID = setInterval(update, 1000);
-
-        // Clear interval on unmount
+        const timerID = setInterval(() => setDate(moment()), 1000);
         return () => clearInterval(timerID);
     }, []);
 
@@ -58,7 +64,7 @@ export default function App({ Component, pageProps }: AppProps) {
     useEffect(fetchEvents, []);
 
     return (
-        <FirebaseAppProvider firebaseConfig={fbconfig}>
+        <FirebaseAppProvider firebaseConfig={firebaseConfig}>
             <FirebaseProviders>
                 <CombinedUserDataProvider>
                 <TimeProvider value={date}>
