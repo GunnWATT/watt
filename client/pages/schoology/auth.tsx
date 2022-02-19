@@ -1,20 +1,18 @@
 import {useEffect} from 'react';
-import {useLocation} from 'react-router-dom';
+import {useRouter} from 'next/router';
 
 // Firebase
-import { httpsCallable } from '@firebase/functions';
 import {useAuth, useCallableFunctionResponse, useFunctions, useUser} from 'reactfire';
+import { httpsCallable } from 'firebase/functions';
 
 // Components
-import Loading from '../components/layout/Loading';
+import Loading from '../../components/layout/Loading';
 
 
 export default function SgyAuthRedirect() {
     // Search params handling
-    const { search } = useLocation();
-    const searchParams = new URLSearchParams(search);
-    const origin = searchParams.get('origin');
-    const oauth_token = searchParams.get('oauth_token');
+    const router = useRouter();
+    const {origin, oauth_token} = router.query;
 
     // const {status, data} = useCallableFunctionResponse('sgyauth', {data: {oauth_token: oauth_token}});
 
@@ -22,28 +20,34 @@ export default function SgyAuthRedirect() {
     const auth = useAuth();
 
     useEffect(() => {
-        if(auth.currentUser) {
+        // TODO: should we display a message when `origin` or `oauth_token` are missing or invalid?
+        if (origin && typeof origin !== 'string') return;
+        if (auth.currentUser) {
 
             const sgyAuthFunction = httpsCallable(functions, "sgyauth");
-            const result = sgyAuthFunction({ oauth_token: oauth_token });
+            const result = sgyAuthFunction({ oauth_token });
 
             result.then((data) => {
                 console.log(data);
 
-                if(data.data === false) {
+                if (data.data === false) {
                     // this is a problem.
-                    window.location.href = origin ?? '/';
                     // console.log(user);
+                    router.push(origin ?? '/');
                 } else {
-                    const to = new URL(origin!); to.searchParams.append('modal', 'sgyauth');
-                    window.location.href = `${to.href}`;
+                    const to = new URL(origin!);
+                    to.searchParams.append('modal', 'sgyauth');
+                    router.push(to);
                 }
             }).catch((err) => {
-                window.location.href = origin ?? '/';
-                console.error(err)
+                // TODO: there is a lot of `?? '/'` in this code, is origin allowed to be null?
+                // If not, we should probably add that to the return condition on line 24.
+                // If so, why is it asserted as non-null on line 37?
+                console.error(err);
+                router.push(origin ?? '/');
             })
         }
-    }, [auth.currentUser])
+    }, [auth.currentUser]);
 
     // useEffect(() => {
         // if (status === 'error') {
