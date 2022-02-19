@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import UtilitiesPage from '../../components/utilities/UtilitiesPage';
 
 
 export default function Calculator() {
@@ -11,21 +12,23 @@ export default function Calculator() {
         if (Number(finalsWorth) === 0) return <p>The final cannot be worth 0%.</p>;
         if (Number(finalsWorth) > 100) return <p>The final cannot be worth more than 100% of your grade.</p>
 
-        let percentCurrGrade = Number(currGrade) / 100;
-        let percentFinalsWorth = Number(finalsWorth) / 100;
-        let percentMinGrade = Number(minGrade) / 100;
-        let result = Math.round(((percentMinGrade - percentCurrGrade * (1 - percentFinalsWorth)) / percentFinalsWorth) * 10000) / 100;
+        const percentCurrGrade = Number(currGrade) / 100;
+        const percentFinalsWorth = Number(finalsWorth) / 100;
+        const percentMinGrade = Number(minGrade) / 100;
+        const result = Math.round(((percentMinGrade - percentCurrGrade * (1 - percentFinalsWorth)) / percentFinalsWorth) * 10000) / 100;
 
-        if (result <= 0) return <p>You <strong>don't need to study</strong>; even if you score 0%, you'll be above your
-            threshold.</p>;
-        return <p>
-            You will need to score at least <strong>{result}%</strong> to keep your parents happy.
-            {result > 100 ? ' If there\'s no extra credit, you\'re screwed.' : null}
-        </p>
+        return result <= 0 ? (
+            <p>You <strong>don't need to study</strong>; even if you score 0%, you'll be above your threshold.</p>
+        ) : (
+            <p>
+                You will need to score at least <strong>{result}%</strong> to keep your parents happy.
+                {result > 100 && ' If there\'s no extra credit, you\'re screwed.'}
+            </p>
+        )
     }
 
     return (
-        <>
+        <UtilitiesPage>
             <h1>Minimum finals score calculator</h1>
             <hr/>
             <p>
@@ -71,6 +74,6 @@ export default function Calculator() {
                 </span>
             </p>
             {calculateFinalsGrade()}
-        </>
+        </UtilitiesPage>
     );
 }

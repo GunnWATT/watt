@@ -1,9 +1,10 @@
 import {CardGroup, Card, CardBody, CardTitle, CardSubtitle, CardText} from 'reactstrap';
+import UtilitiesPage from '../../components/utilities/UtilitiesPage';
 
 
 export default function Support() {
     return (
-        <>
+        <UtilitiesPage>
             <h1>Student resources</h1>
             <CardGroup>
                 <Card>
@@ -52,6 +53,6 @@ export default function Support() {
                     </CardBody>
                 </Card>
             </CardGroup>
-        </>
+        </UtilitiesPage>
     );
 }

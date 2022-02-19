@@ -1,11 +1,11 @@
 import {useContext, useState} from 'react';
 import moment from 'moment';
-import {Container} from 'reactstrap';
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Components
-import List from './List';
-import StaffComponent, {ClassObj, SemesterClassObj, Staff as StaffComponentProps} from './StaffComponent';
+import UtilitiesPage from '../../components/utilities/UtilitiesPage';
+import List from '../../components/lists/List';
+import StaffComponent, {ClassObj, SemesterClassObj, Staff as StaffComponentProps} from '../../components/lists/StaffComponent';
 
 // Data
 import staff from '../../data/staff';
@@ -59,7 +59,7 @@ export default function Staff() {
     }
 
     return (
-        <>
+        <UtilitiesPage>
             <span className="heading">
                 <h1>Staff</h1>
                 <input
@@ -94,6 +94,6 @@ export default function Staff() {
                 sort={([idA, staffA], [idB, staffB]) => preferredLastName(staffA).localeCompare(preferredLastName(staffB))}
                 pinned={userData.staff}
             />
-        </>
+        </UtilitiesPage>
     );
 }

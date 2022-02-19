@@ -1,6 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
 import UserDataContext from '../../contexts/UserDataContext';
-import BarcodeRow from './BarcodeRow';
+
+// Components
+import UtilitiesPage from '../../components/utilities/UtilitiesPage';
+import BarcodeRow from '../../components/utilities/BarcodeRow';
 
 // Firestore
 import {useAuth, useFirestore} from 'reactfire';
@@ -49,20 +52,20 @@ export default function Barcode() {
     //    setBarcodes(JSON.parse(userData.barcodes));
     //}, [userData.barcodes])
 
-    // The barcode of the logged in user or DEFAULT_BARCODE if the user or email is null
+    // The barcode of the logged in user, or DEFAULT_BARCODE if the user or email is null
     const youCode = auth.currentUser?.email
         ? '950' + auth.currentUser.email.slice(2, 7)
         : DEFAULT_BARCODE;
 
 
     return (
-        <div>
+        <UtilitiesPage>
             <h1>Barcode</h1>
             <hr />
 
             <BarcodeRow name="You" className="you" code={youCode} readOnly />
 
-            {barcodes.map(([name, code], index) =>
+            {barcodes.map(([name, code], index) => (
                 <BarcodeRow name={name} code={code}
                     // Providing a key causes the BarcodeRows to lose focus on state change for some reason
                     //key={`${name}${code}${index}`}
@@ -71,9 +74,9 @@ export default function Barcode() {
                     updateBarcodeValue={updateBarcodeValue.bind(null, index)}
                     updateBarcodes={updateBarcodes}
                 />
-            )}
+            ))}
 
             <button className="barcode-add-button" onClick={addBarcode}>ADD BARCODE</button>
-        </div>
+        </UtilitiesPage>
     );
 }

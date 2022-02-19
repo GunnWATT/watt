@@ -16,10 +16,12 @@ export default function NavTab(props: NavTabProps) {
 
     return (
         // If the current URL matches the `to` prop, make the tab active
-        <NavItem>
-            <NavLink active={active} tag={Link} to={to}>
-                {name}
-            </NavLink>
-        </NavItem>
+        <Link href={to}>
+            <NavItem>
+                <NavLink active={active}>
+                    {name}
+                </NavLink>
+            </NavItem>
+        </Link>
     )
 }

@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from 'react';
+import {ReactPortal, useEffect, useRef, useState} from 'react';
 import ReactDOM from 'react-dom';
 import {Eye, X} from 'react-feather';
 
@@ -13,10 +13,26 @@ type BarcodeRowProps = {
 export default function BarcodeRow(props: BarcodeRowProps) {
     const {name, code, readOnly, removeBarcode, updateBarcodeName, updateBarcodeValue, updateBarcodes} = props;
 
+    // TODO: see todo in `map.tsx`
+    const [portal, setPortal] = useState<ReactPortal | null>(null);
     const [barcodeOverlay, setOverlay] = useState(false);
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const overlayCanvasRef = useRef<HTMLCanvasElement>(null);
+
+    // Create barcode overlay using portals
+    // Call this in useEffect to ensure this only runs client-side and after the DOM has fully loaded
+    useEffect(() => {
+        setPortal(ReactDOM.createPortal((
+            <div className="barcode-overlay" hidden={!barcodeOverlay} onClick={() => setOverlay(false)}>
+                <div className="barcode-overlay-warning">Click/tap anywhere to close.</div>
+
+                <div className="barcode-overlay-bar">
+                    <canvas ref={overlayCanvasRef} style={{imageRendering: 'pixelated'}} />
+                </div>
+            </div>
+        ), document.body));
+    }, []);
 
     const drawCodeOnCanvas = (canvas: HTMLCanvasElement) => {
         const c = canvas.getContext('2d')!;
@@ -81,8 +97,7 @@ export default function BarcodeRow(props: BarcodeRowProps) {
                             updateBarcodeValue && updateBarcodeValue(
                                 e.target.value
                                     .split('')
-                                    .filter(char =>
-                                        code39Values.hasOwnProperty(char.toUpperCase()))
+                                    .filter(char => code39Values.hasOwnProperty(char.toUpperCase()))
                                     .join('')
                             )
                         }}
@@ -96,16 +111,7 @@ export default function BarcodeRow(props: BarcodeRowProps) {
                 </div>
             </div>
 
-            {/* Overlay using PORTALS */}
-            {ReactDOM.createPortal((
-                <div className="barcode-overlay" hidden={!barcodeOverlay} onClick={() => setOverlay(false)}>
-                    <div className="barcode-overlay-warning">Click/tap anywhere to close.</div>
-
-                    <div className="barcode-overlay-bar">
-                        <canvas ref={overlayCanvasRef} style={{imageRendering: 'pixelated'}} />
-                    </div>
-                </div>
-            ), document.body)}
+            {portal}
         </>
     )
 }

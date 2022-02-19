@@ -3,8 +3,6 @@ import {Button} from 'reactstrap';
 import {useHotkeys} from 'react-hotkeys-hook';
 
 import RedBackground from '../layout/RedBackground';
-
-import GunnMapImage from '../../assets/gunnmap.png';
 import UserDataContext from '../../contexts/UserDataContext';
 
 
@@ -165,7 +163,7 @@ export default function ImageMap(props : ImageMapProps) {
                 }}
             >
                 <img
-                    src={GunnMapImage}
+                    src="/gunnmap.png"
                     ref={mapRef}
                     draggable={false}
                     alt="Gunn map"
