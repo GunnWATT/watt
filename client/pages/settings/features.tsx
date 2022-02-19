@@ -1,5 +1,6 @@
 import {useContext} from 'react';
 import {FormGroup, Label, Input} from 'reactstrap';
+import SettingsPage from '../../components/settings/SettingsPage';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
@@ -23,7 +24,7 @@ export default function Features() {
 
 
     return (
-        <>
+        <SettingsPage>
             <h1>Features</h1>
             <hr/>
 
@@ -100,6 +101,6 @@ export default function Features() {
                     No
                 </Label>
             </FormGroup>
-        </>
+        </SettingsPage>
     );
 }

@@ -1,5 +1,6 @@
 import {useContext} from 'react';
 import {FormGroup, Input, Label} from 'reactstrap';
+import SettingsPage from '../../components/settings/SettingsPage';
 
 // Context
 import UserDataContext from '../../contexts/UserDataContext';
@@ -26,7 +27,7 @@ export default function Appearance() {
 
 
     return (
-        <>
+        <SettingsPage>
             <h1>Appearance</h1>
             <hr/>
 
@@ -78,6 +79,6 @@ export default function Appearance() {
                     24-hour time <strong>({currTime.format('H:mm:ss')})</strong>
                 </Label>
             </FormGroup>
-        </>
+        </SettingsPage>
     );
 }

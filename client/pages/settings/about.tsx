@@ -1,9 +1,10 @@
 import {Jumbotron} from 'reactstrap';
+import SettingsPage from '../../components/settings/SettingsPage';
 
 
 export default function About() {
     return (
-        <>
+        <SettingsPage>
             <h1>About</h1>
             {/* <hr/> */}
             <Jumbotron>
@@ -30,6 +31,6 @@ export default function About() {
                 This app would not have been possible without its predecessor, <a href="https://github.com/Orbiit/gunn-web-app" target="_blank" rel="noopener noreferrer">UGWA</a>.{' '}
                 A large thank you to <a href="https://github.com/SheepTester" target="_blank" rel="noopener noreferrer">Sean</a>, for not just UGWA but also for the Schoology integration WATT relies on.
             </p>
-        </>
+        </SettingsPage>
     );
 }
