@@ -5,6 +5,10 @@
 client/coverage
 client/build
 
+# next.js
+client/.next/
+client/out/
+
 # Emulators Config
 functions/.runtimeconfig.json
 
