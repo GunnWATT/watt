@@ -21,14 +21,14 @@ export default function DateSelector(props: DateSelectorProps) {
     const decDay = () => setViewDate(viewDate.clone().subtract(1, 'days'));
 
     return (
-        <div className='date-selector'>
+        <div className="date-selector mb-8 flex justify-center gap-3">
             <button className='icon' onClick={decDay}>
                 <ChevronLeft/>
             </button>
 
-            <Picker className="date-selector-box">
+            <Picker className="date-selector-box flex justify-center relative shadow-lg rounded">
                 {(open, setOpen) => <>
-                    <div className="date-selector-main-text" onClick={() => setOpen(!open)}>
+                    <div className="w-full flex items-center justify-center cursor-pointer" onClick={() => setOpen(!open)}>
                         {viewDate.format("MMMM D, yyyy")}
                     </div>
                     <Calendar currTime={viewDate} setTime={setViewDate} start={start} end={end} hidden={!open} />

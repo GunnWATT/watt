@@ -27,13 +27,7 @@ export default function Clock(props: ClockProps) {
 
 
     return (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center'
-            }}
-        >
+        <div className="flex flex-col items-center">
             <svg width={size} height={size}>
                 <circle cx={size / 2} cy={size / 2} r={radius} fill="var(--bg-primary)" />
 
@@ -94,13 +88,15 @@ export default function Clock(props: ClockProps) {
                     // Ignore non number periods (brunch, lunch)
                     // TODO: consider whether SELF and PRIME should be displayed?
                     if (isNaN(parseInt(name))) return null;
-                    return <path
-                        key={name}
-                        d={`M ${size / 2 + radius * Math.cos(end)} ${size / 2 + radius * Math.sin(end)} \nA ${radius} ${radius} 0 0 0 ${size / 2 + radius * Math.cos(start)} ${size / 2 + radius * Math.sin(start)}`}
-                        stroke={parsePeriodColor(name, userData)}
-                        strokeWidth={6}
-                        fill={'transparent'}
-                    />
+                    return (
+                        <path
+                            key={name}
+                            d={`M ${size / 2 + radius * Math.cos(end)} ${size / 2 + radius * Math.sin(end)} \nA ${radius} ${radius} 0 0 0 ${size / 2 + radius * Math.cos(start)} ${size / 2 + radius * Math.sin(start)}`}
+                            stroke={parsePeriodColor(name, userData)}
+                            strokeWidth={6}
+                            fill={'transparent'}
+                        />
+                    )
                 })}
             </svg>
         </div>

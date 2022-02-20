@@ -1,32 +1,7 @@
-// The date selector
-.date-selector {
-  margin-bottom: 2rem;
-  display: flex;
-  justify-content: center;
-
-  .date-selector-box {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-      0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    background-color: var(--content-primary);
-    color: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 35px;
-    width: 220px;
-    border-radius: 5px;
-    position: relative;
-
-    // Clickable text area to toggle picker
-    .date-selector-main-text {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-  }
+.date-selector-box {
+  background-color: var(--content-primary);
+  height: 35px;
+  width: 220px;
 }
 
 .mini-calendar {
