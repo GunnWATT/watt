@@ -1,8 +1,5 @@
-import {useState, useEffect, useContext} from 'react';
+import {useState, useEffect} from 'react';
 import {Moment} from 'moment';
-
-// Contexts
-import UserDataContext from '../../contexts/UserDataContext';
 
 // Images
 import noschool1 from '../../assets/electronhw.png';
@@ -70,7 +67,6 @@ function randomImage(millis: number): string {
 type NoSchoolImageProps = {viewDate: Moment};
 export default function NoSchoolImage(props: NoSchoolImageProps) {
     const {viewDate} = props;
-    const userData = useContext(UserDataContext);
     const [image, setImage] = useState<string | undefined>(undefined);
 
     useEffect(() => {
@@ -78,12 +74,13 @@ export default function NoSchoolImage(props: NoSchoolImageProps) {
         setImage(img);
     }, [viewDate])
 
-    return <img
-        src={image}
-        alt="Electron doodle"
-        style={{
-            maxHeight: "min(350px, 35vh)", maxWidth: "min(600px, 100%)",
-            filter: userData?.options.theme === 'dark' ? 'invert(1) hue-rotate(180deg)' : ''
-        }}
-    />
+    // TODO: think about a better way to do responsive resizing than the hacky max-h-[] and max-w-[] limiting
+    // Perhaps we can make use of tailwind's responsive classname prefixes?
+    return (
+        <img
+            src={image}
+            alt="Electron doodle"
+            className="mx-auto dark:invert dark:hue-rotate-180 max-h-[min(350px,_35vh)] max-w-[min(600px,_100%)]"
+        />
+    )
 }
