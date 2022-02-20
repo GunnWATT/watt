@@ -6,6 +6,7 @@ import {Container} from 'reactstrap';
 import { Functions, httpsCallable } from 'firebase/functions';
 import { useAuth, useFirestore, useFunctions, useSigninCheck } from 'reactfire';
 import { FirebaseError } from '@firebase/util';
+import { updateUserData } from '../util/firestore';
 
 // Components
 import Dashboard from '../components/classes/Dashboard';
@@ -27,7 +28,6 @@ import { bgColor } from '../util/progressBarColor';
 import { Menu } from 'react-feather';
 import { shortify } from '../util/sgyHelpers';
 import { cleanupExpired } from '../util/sgyFunctions';
-import { updateUserData } from '../firebase/updateUserData';
 
 
 export async function fetchSgyMaterials(functions: Functions) {

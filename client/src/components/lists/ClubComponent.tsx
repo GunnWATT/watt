@@ -6,7 +6,7 @@ import UserDataContext from '../../contexts/UserDataContext';
 
 // Firestore
 import {useAuth, useFirestore, useUser} from 'reactfire';
-import { updateUserData } from '../../firebase/updateUserData';
+import { updateUserData } from '../../util/firestore';
 
 
 export type Club = {

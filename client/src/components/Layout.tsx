@@ -1,6 +1,5 @@
 import {useContext, useEffect, useState, ReactNode} from 'react';
-import {useLocation, useNavigate} from 'react-router-dom';
-import {Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import {useLocation} from 'react-router-dom';
 import {useAnalytics, useAuth, useFirestore} from 'reactfire';
 import {logEvent} from 'firebase/analytics';
 import {useScreenType} from '../hooks/useScreenType';
@@ -12,30 +11,15 @@ import BottomNav from './layout/BottomNav';
 // Context
 import UserDataContext from '../contexts/UserDataContext';
 
-// Schoology Auth
+// Auth
 import SgyInitResults from './firebase/SgyInitResults';
 import {getRedirectResult} from 'firebase/auth';
-import {firestoreInit} from '../firebase/auth';
+import {firestoreInit} from '../util/firestore';
 
 
-type LayoutProps = {children: ReactNode};
-export default function Layout(props: LayoutProps) {
+export default function Layout(props: {children: ReactNode}) {
     // Screen type for responsive layout
     const screenType = useScreenType();
-
-    // Search params handling
-    const { search, pathname } = useLocation();
-    const navigate = useNavigate();
-    const searchParams = new URLSearchParams(search);
-
-    // Modals
-    // Consider extracting this elsewhere
-    const [sgyModal, setSgyModal] = useState(searchParams.get('modal') === 'sgyauth');
-    const toggle = () => {
-        setSgyModal(false);
-        searchParams.delete('modal'); // Delete modal param from url to prevent retrigger on page refresh
-        navigate(`${pathname}${searchParams}`, {replace: true}); // Replace current instance in history stack with updated search params
-    }
 
     // Render layout dynamically
     let content;
@@ -89,7 +73,7 @@ export default function Layout(props: LayoutProps) {
             firebase_screen: location.pathname,
             firebase_screen_class: location.pathname
         });
-    }, [location])
+    }, [location]);
 
     return (
         <>

@@ -1,34 +1,38 @@
-import {useEffect, ReactNode} from 'react';
+import {useEffect, ReactNode, useState} from 'react';
 import {deepdifferences, deepmerge} from './LocalStorageUserDataProvider';
 
 // Firestore
-import {useAuth, useFirestore, useFirestoreDoc, useFunctions} from 'reactfire';
+import {useAuth, useFirestore, useFirestoreDoc} from 'reactfire';
 import {doc, setDoc} from 'firebase/firestore';
-import {bulkUpdateFirebaseUserData, updateFirebaseUserData} from '../../firebase/updateUserData';
+import {bulkUpdateFirebaseUserData, updateFirebaseUserData} from '../../util/firestore';
 
 // Context
 import {UserData, UserDataProvider, defaultUserData} from '../../contexts/UserDataContext';
 
-type FirebaseUserDataProviderProps = {children: ReactNode};
-export default function FirebaseUserDataProvider(props: FirebaseUserDataProviderProps) {
+
+export default function FirebaseUserDataProvider(props: {children: ReactNode}) {
     const auth = useAuth();
-    const functions = useFunctions();
     const firestore = useFirestore();
     const { status, data: firebaseDoc } = useFirestoreDoc(doc(firestore, 'users', auth.currentUser!.uid));
 
-    let localStorageRawData = {};
-    try {
-        localStorageRawData = JSON.parse(localStorage.getItem("data") ?? '{}')
-    } catch (err) {
-        // something happened
-        localStorage.removeItem('data');
-    }
+    const [data, setData] = useState(defaultUserData);
+    const localStorageRaw = localStorage.getItem('data');
 
-    // should be changed later; not all things are stored in localStorage
-    const localStorageData = deepmerge(
-        defaultUserData,
-        localStorageRawData
-    )
+    // Parse locally stored data from localStorage
+    useEffect(() => {
+        const localStorageRaw = localStorage.getItem('data');
+        if (!localStorageRaw)
+            return localStorage.setItem('data', JSON.stringify(defaultUserData));
+
+        try {
+            const localStorageData = JSON.parse(localStorageRaw);
+            const merged = deepmerge(defaultUserData, localStorageData);
+            setData(merged as UserData)
+        } catch (err) {
+            // If localStorage data is unparseable, set it back to defaults
+            localStorage.setItem('data', JSON.stringify(defaultUserData));
+        }
+    }, [localStorageRaw]);
 
     // Update firebase and local data to be up to date with defaultUserData using deepmerge
     // TODO: support merges
@@ -37,20 +41,19 @@ export default function FirebaseUserDataProvider(props: FirebaseUserDataProvider
 
         if (!firebaseDoc.exists()) {
             console.error('[ERR] Firebase data nonexistent, cancelling merge'); // Try to prevent user data resetting
-            setDoc(doc(firestore, 'users', auth.currentUser!.uid), defaultUserData);
-            return;
+            return void setDoc(doc(firestore, 'users', auth.currentUser!.uid), defaultUserData);
         }
-
         const data = firebaseDoc.data();
-
         const merged = deepmerge(defaultUserData, data);
         const changes = deepdifferences(merged, data);
+
         bulkUpdateFirebaseUserData(changes, auth, firestore);
         localStorage.setItem('data', JSON.stringify(merged));
+        setData(merged as UserData);
     }, [status])
 
     return (
-        <UserDataProvider value={(firebaseDoc?.data() ?? localStorageData) as UserData}>
+        <UserDataProvider value={data}>
             {props.children}
         </UserDataProvider>
     )

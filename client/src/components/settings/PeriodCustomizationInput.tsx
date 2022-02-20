@@ -1,13 +1,13 @@
+import { useContext, useEffect, useRef, useState } from 'react';
 import {Col, FormGroup, Input, Label, Row} from 'reactstrap';
+import { ColorResult, SketchPicker } from 'react-color';
 
 import UserDataContext, {SgyPeriodData} from '../../contexts/UserDataContext';
 import {darkPerColors, parsePeriodColor, periodColors, periodNameDefault} from '../schedule/Periods';
 
 // Firestore
 import {useAuth, useFirestore} from 'reactfire';
-import {updateUserData} from '../../firebase/updateUserData'
-import { ColorResult, SketchPicker } from 'react-color';
-import { useContext, useEffect, useRef, useState } from 'react';
+import {updateUserData} from '../../util/firestore';
 
 
 type PeriodProps = {id: string, data: SgyPeriodData};

@@ -1,27 +1,29 @@
-import {useEffect, ReactNode} from 'react';
-
-// Context
+import {useEffect, ReactNode, useState} from 'react';
 import {UserData, UserDataProvider, defaultUserData} from '../../contexts/UserDataContext';
 
 
-type LocalStorageUserDataProviderProps = {children: ReactNode};
-export default function LocalStorageUserDataProvider(props: LocalStorageUserDataProviderProps) {
-    let localStorageRawData = {};
-    try {
-        localStorageRawData = JSON.parse(localStorage.getItem("data") ?? '{}')
-    } catch (err) {
-        // something happened
-        localStorage.removeItem('data');
-    }
+export default function LocalStorageUserDataProvider(props: {children: ReactNode}) {
+    // TODO: consider extracting this with a custom hook
+    const [data, setData] = useState(defaultUserData);
+    const localStorageRaw = localStorage.getItem('data');
 
-    // should be changed later; not all things are stored in localStorage
-    const localStorageData = deepmerge(
-        defaultUserData,
-        localStorageRawData
-    )
+    // Parse locally stored data from localStorage
+    useEffect(() => {
+        if (!localStorageRaw)
+            return localStorage.setItem('data', JSON.stringify(defaultUserData));
+
+        try {
+            const localStorageData = JSON.parse(localStorageRaw);
+            const merged = deepmerge(defaultUserData, localStorageData);
+            setData(merged as UserData)
+        } catch (err) {
+            // If localStorage data is unparseable, set it back to defaults
+            localStorage.setItem('data', JSON.stringify(defaultUserData));
+        }
+    }, [localStorageRaw]);
 
     return (
-        <UserDataProvider value={localStorageData as UserData}>
+        <UserDataProvider value={data}>
             {props.children}
         </UserDataProvider>
     )

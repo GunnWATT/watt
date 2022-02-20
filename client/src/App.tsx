@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {useAuth, useSigninCheck} from 'reactfire';
 import PageVisibility from 'react-page-visibility';
 import moment from 'moment';
 import {GCalEvent} from './components/schedule/Event';
@@ -21,8 +22,6 @@ import LocalStorageUserDataProvider from './components/firebase/LocalStorageUser
 // Context
 import {TimeProvider} from './contexts/CurrentTimeContext';
 
-// Firestore
-import {useAuth, useSigninCheck} from 'reactfire';
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
 
