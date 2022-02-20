@@ -22,7 +22,7 @@ type ListProps<T> = {
 // Pinned items (given as a string[] of IDs) are displayed in a separate category above other results.
 export default function List<T>(props: ListProps<T>) {
     // Filter and map are different for each list, so pass them in as props
-    let {data, filter, map, sort, pinned} = props;
+    const {data, filter, map, sort, pinned} = props;
 
     const [content, setContent] = useState<JSX.Element[]>([]);
     const [pinnedContent, setPinnedContent] = useState<JSX.Element[]>([])
@@ -36,8 +36,8 @@ export default function List<T>(props: ListProps<T>) {
 
         // Filter out pinned components and display separately
         // Can probably be done better
-        let pinnedData = parsed.filter(([id, value]) => pinned.includes(id));
-        let unpinnedData = parsed.filter(([id, value]) => !pinned.includes(id));
+        const pinnedData = parsed.filter(([id, value]) => pinned.includes(id));
+        const unpinnedData = parsed.filter(([id, value]) => !pinned.includes(id));
 
         // Filter each via query, map to components
         setContent(unpinnedData.filter(filter).map(map));
@@ -45,21 +45,19 @@ export default function List<T>(props: ListProps<T>) {
     }, [data, filter])
 
 
-    return (
-        content.length || pinnedContent.length
-            ? <>
-                {pinnedContent.length
-                    ? <ul className="material-list">
-                        {pinnedContent}
-                      </ul>
-                    : null}
-                {content.length && pinnedContent.length ? <hr/> : null}
-                {content.length
-                    ? <ul className="material-list">
-                        {content}
-                      </ul>
-                    : null}
-              </>
-            : <NoResults/>
+    return content.length || pinnedContent.length ? (<>
+        {pinnedContent.length > 0 && (
+            <ul className="material-list">
+                {pinnedContent}
+            </ul>
+        )}
+        {content.length > 0 && pinnedContent.length > 0 && <hr/>}
+        {content.length > 0 && (
+            <ul className="material-list">
+                {content}
+            </ul>
+        )}
+    </>) : (
+        <NoResults/>
     );
 }

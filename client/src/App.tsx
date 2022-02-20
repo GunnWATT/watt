@@ -25,25 +25,14 @@ import {TimeProvider} from './contexts/CurrentTimeContext';
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
 
-
 export default function App() {
     // Global datetime
     const [date, setDate] = useState(moment());
 
-    // Set interval on mount to update datetime every second
     useEffect(() => {
-        const update = () => setDate(moment());
-        const timerID = setInterval(
-            () => update(),
-            1000
-        );
-
-        // Clear interval on unmount
-        return function cleanup() {
-            clearInterval(timerID);
-        }
-    }, [])
-
+        const timerID = setInterval(() => setDate(moment()), 1000);
+        return () => clearInterval(timerID);
+    }, []);
 
     // Events data for schedule
     const [events, setEvents] = useState<GCalEvent[] | null>(null);
@@ -64,7 +53,7 @@ export default function App() {
     }
 
     // Fetch events on mount
-    useEffect(fetchEvents, [])
+    useEffect(fetchEvents, []);
 
     const { data: signInCheckResult } = useSigninCheck()
     const UserDataProvider = signInCheckResult?.signedIn ? FirebaseUserDataProvider : LocalStorageUserDataProvider;

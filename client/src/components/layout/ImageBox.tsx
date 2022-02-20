@@ -13,7 +13,7 @@ export default function ImageBox(props: ImageBoxProps) {
         <div className="image-box" onClick={onClick}>
             <h2>{header}</h2>
             {caption && <p>{caption}</p>}
-            <img src={src} />
+            <img src={src} alt={header} />
         </div>
     )
 }
