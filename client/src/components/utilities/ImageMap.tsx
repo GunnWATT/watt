@@ -59,12 +59,12 @@ export default function ImageMap(props : ImageMapProps) {
     }
 
     return (
-        <div className="map-overlay">
+        <div className="map-overlay fixed w-full h-full left-0 touch-none z-20">
             <RedBackground />
-            <Button close className="map-toggle" onClick={close} />
+            <Button close className="absolute top-8 right-8" onClick={close} />
 
             <div
-                className="map-wrapper"
+                className="flex w-full h-full overflow-hidden"
                 ref={wrapperRef}
                 onPointerDown={(e) => {
                     if (pointer) {
@@ -169,11 +169,8 @@ export default function ImageMap(props : ImageMapProps) {
                     ref={mapRef}
                     draggable={false}
                     alt="Gunn map"
-                    className="map-image"
-                    style={{
-                        transform: toCss(transformation),
-                        filter: userData.options.theme === "dark" ? 'invert(1)' : ''
-                    }}
+                    className="map-image m-auto shadow-lg dark:invert dark:shadow-white max-h-[90vh] max-w-[90%]"
+                    style={{ transform: toCss(transformation) }}
                 />
             </div>
         </div>

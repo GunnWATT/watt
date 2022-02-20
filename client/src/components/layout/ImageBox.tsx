@@ -10,10 +10,10 @@ export default function ImageBox(props: ImageBoxProps) {
     const {src, header, caption, onClick} = props;
 
     return (
-        <div className="image-box" onClick={onClick}>
-            <h2>{header}</h2>
-            {caption && <p>{caption}</p>}
-            <img src={src} alt={header} />
+        <div className="image-box rounded-xl cursor-pointer overflow-hidden" onClick={onClick}>
+            <h2 className="font-medium mx-4 mt-4 mb-2">{header}</h2>
+            {caption && <p className="mx-4 mb-4">{caption}</p>}
+            <img className="w-full" src={src} alt={header} />
         </div>
     )
 }

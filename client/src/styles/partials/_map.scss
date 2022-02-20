@@ -1,35 +1,3 @@
-.map {
-  position: fixed;
-  height: 100vh;
-}
-
 .map-overlay {
-  position: fixed;
-  left: 0;
-  width: 100%;
-  height: 100%;
   background-color: var(--bg-secondary);
-  z-index: 20;
-  touch-action: none;
-
-  .map-toggle {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-  }
-
-  .map-wrapper {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-
-    .map-image {
-      margin: auto;
-      max-height: 90vh;
-      max-width: 90%;
-      //object-fit: contain;
-      box-shadow: 0 10px 15px -3px var(--tertiary), 0 4px 6px -2px var(--tertiary);
-    }
-  }
 }

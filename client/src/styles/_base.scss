@@ -13,7 +13,7 @@ body {
   --contrast: #f7f8fd;              // Contrast color for classes -- equal to bg-secondary on light mode, content-primary on dark
   --active: #a51618;                // Theme color (links, sidebar components, header box colors)
 
-  &.dark {
+  .dark & {
     //color-scheme: dark;
     --primary: white;
     --secondary: rgba(255, 255, 255, 0.54);
