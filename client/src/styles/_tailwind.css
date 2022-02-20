@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    a {
+        @apply text-[#a51618] dark:text-[#ff594c]
+    }
+    body, .text-primary {
+        @apply text-[rgba(0,_0,_0,_0.87)] dark:text-white;
+    }
+    .secondary, .text-secondary {
+        @apply text-[rgba(0,_0,_0,_0.54)] dark:text-[rgba(255,_255,_255,_0.54)]
+    }
+}

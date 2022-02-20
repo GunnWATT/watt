@@ -1,25 +1,6 @@
 @import 'mixins/circle';
 
 // Components
-a {
-  color: var(--active);
-  text-decoration: none;
-
-  &:hover {
-    color: var(--active);
-    text-decoration: underline;
-  }
-}
-
-button {
-  border: none;
-  background: none;
-  color: inherit;
-
-  &:focus {
-    outline: none;
-  }
-}
 
 input {
   background-color: var(--content-primary);
@@ -58,10 +39,6 @@ input {
   }
 }
 
-iframe {
-  border: none;
-}
-
 hr {
   margin: 1rem 0;
   border-top: 2px solid var(--tertiary);
@@ -78,9 +55,4 @@ span.badge.beta {
 .center {text-align: center;}
 .right {text-align: right;}
 
-// Color
-.secondary {color: var(--secondary);}
-
-
-// Utility inheritables
 .clickable {cursor: pointer;}

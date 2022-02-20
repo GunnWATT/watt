@@ -9,7 +9,8 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 import 'bootstrap/dist/css/bootstrap.css'
-import './scss/index.scss';
+import './styles/index.scss';
+import './styles/_tailwind.css';
 
 
 const firebaseConfig = {
