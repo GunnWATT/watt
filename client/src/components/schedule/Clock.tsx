@@ -27,7 +27,7 @@ export default function Clock(props: ClockProps) {
 
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex justify-center">
             <svg width={size} height={size}>
                 <circle cx={size / 2} cy={size / 2} r={radius} fill="var(--bg-primary)" />
 

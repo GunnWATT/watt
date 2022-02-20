@@ -35,22 +35,17 @@ export default function Sidebar(props: SidebarProps) {
     return (
         <div className={`sidebar ${!isOpen ? 'collapsed' : ''}`}>
             {/* The outer <div> only exists to occupy space to squish #content; the inner <div> has position: fixed; */}
-            <div className='sidebar-content'>
+            <div className="sidebar-content fixed top-0 bottom-0 flex flex-col overflow-hidden">
                 {/* Toggler */}
-                <span
-                    className="toggler"
-                    onClick={toggle}
-                >
-                    {isOpen
-                        ? <ChevronLeft/>
-                        : <ChevronRight/>}
+                <span className="ml-auto mb-4 p-2 cursor-pointer" onClick={toggle}>
+                    {isOpen ? <ChevronLeft/> : <ChevronRight/>}
                 </span>
 
                 {/* Heading */}
                 <Link to="/" className="logo">
                     <img src={logo} className="logo" alt="WATT Logo"/>
                 </Link>
-                <h1>Web App of the Titans</h1>
+                <h1 className="text-sm mt-4 mx-auto mb-8">Web App of the Titans</h1>
 
                 {/* Nav */}
                 <SidebarItem to="/" icon={<Home/>}>Home</SidebarItem>
@@ -62,7 +57,7 @@ export default function Sidebar(props: SidebarProps) {
                 <SidebarItem to="/settings" icon={<Settings/>}>Settings</SidebarItem>
 
                 {/* Bottom Account Status Button */}
-                <span className="bottom">
+                <span className="bottom mt-auto">
                     {signInCheckResult?.signedIn
                         ? <GoogleSignOutBtn/>
                         : <GoogleSignInBtn/>}

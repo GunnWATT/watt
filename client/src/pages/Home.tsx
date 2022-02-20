@@ -71,14 +71,14 @@ export default function Home(props: HomeProps) {
             <div className="schedule">
                 {relDays !== 0 && <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>}
 
-                { userData.options?.clock && <Clock viewDate={viewDate} /> }
-                <h2 className="schedule-datetime center">{date.format(format)}</h2>
+                {userData.options?.clock && <Clock viewDate={viewDate} />}
+                <h2 className="schedule-datetime text-3xl text-center mb-3">{date.format(format)}</h2>
                 <HomeDateSelector
                     viewDate={viewDate}
                     setViewDate={setViewDate}
                 />
-                <h1 className="schedule-dayname">{viewDate.format('dddd')}</h1>
-                <h2 className="schedule-date">{viewDate.format('MMMM Do, YYYY')}</h2>
+                <h1 className="text-7xl text-center">{viewDate.format('dddd')}</h1>
+                <h2 className="text-3xl schedule-date text-center mb-2">{viewDate.format('MMMM Do, YYYY')}</h2>
 
                 {/* <CSSTransition> */}
                 <div className="schedule-wrapper">

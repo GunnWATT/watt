@@ -75,7 +75,7 @@ export default function Periods(props: PeriodsProps) {
 
         return (
             <>
-                <p className="schedule-end">
+                <p className="mb-4">
                     School ends at <strong>{end.format(format)}</strong> today.
                 </p>
                 {displayIndicator && <PeriodIndicator startTime={periods![0][1].s}/>}
@@ -88,11 +88,9 @@ export default function Periods(props: PeriodsProps) {
     const noSchool = () => {
         return (
             <>
-                <h2 className="no-school">No school today!</h2>
-                <p className="center">Enjoy your weekend!</p>
-                <p className="center">
-                    <NoSchoolImage viewDate={viewDate}/>
-                </p>
+                <h2 className="mt-10 text-2xl font-medium text-center">No school today!</h2>
+                <p className="text-center mb-4">Enjoy your weekend!</p>
+                <NoSchoolImage viewDate={viewDate}/>
             </>
         )
     };
@@ -101,7 +99,7 @@ export default function Periods(props: PeriodsProps) {
     // Much of how the code will handle breaks is still unknown, so work in progress
     const winterBreak = () => (
         <div>
-            <h1 className="center">Enjoy winter break!</h1>
+            <h1 className="text-center">Enjoy winter break!</h1>
             <img src="../../images/mountain.svg" alt="Mountain" />
         </div>
     )
@@ -109,15 +107,13 @@ export default function Periods(props: PeriodsProps) {
     // HTML for summer break
     // Same concern as for winterBreak
     const summerBreak = () => (
-        <h1 className="center">Have a great summer!</h1>
+        <h1 className="text-center">Have a great summer!</h1>
     )
 
     return (
         <div>
-            {alternate && <p className="center">This is an alternate schedule.</p>}
-            {periods
-                ? schoolDay()
-                : noSchool()}
+            {alternate && <p className="text-center">This is an alternate schedule.</p>}
+            {periods ? schoolDay() : noSchool()}
         </div>
     )
 }

@@ -10,9 +10,6 @@
 
   // The day name ("Saturday")
   &-dayname {
-    @extend .center;
-    font-size: 72px;
-
     @at-root .home.narrow .schedule-dayname {
       font-size: 55px;
     }
@@ -20,8 +17,6 @@
 
   // The date ("October 10th, 2020")
   &-date {
-    @extend .center;
-
     @at-root .home.narrow .schedule-date {
       font-size: 24px;
     }
@@ -86,11 +81,5 @@
       background: none;
       border: none
     }
-  }
-
-  // The heading for when there's no school
-  .no-school {
-    @extend .center;
-    margin-top: 3rem;
   }
 }

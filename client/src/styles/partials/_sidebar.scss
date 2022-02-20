@@ -37,13 +37,7 @@ $icon-width: $sidebar-collapsed-width -
 }
 
 .sidebar-content {
-  position: fixed;
-  top: 0;
-  bottom: 0;
   padding: $sidebar-padding;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
   background-color: var(--bg-primary);
   //background-color: #23232e;
   //color: #efefef;
@@ -61,9 +55,6 @@ $icon-width: $sidebar-collapsed-width -
   // Header
   h1 {
     @extend %text-truncate;
-    margin: 1rem auto 2rem;
-    font-size: 0.9rem;
-    //align-self: center;
   }
 
   // <SidebarItem>
@@ -115,14 +106,5 @@ $icon-width: $sidebar-collapsed-width -
 
   .bottom {
     @extend %text-truncate;
-    margin-top: auto;
-  }
-
-  // Navbar Toggler
-  .toggler {
-    @extend .clickable;
-    padding: 0.5rem;
-    margin-left: auto;
-    margin-bottom: 1rem;
   }
 }
