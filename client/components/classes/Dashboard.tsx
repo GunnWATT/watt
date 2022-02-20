@@ -18,7 +18,6 @@ import { AssignmentBlurb, getAllGrades, getUpcomingInfo } from '../../util/sgyFu
 
 
 export default function Dashboard() {
-
     const sgyInfo = useContext(SgyDataContext);
     const {sgyData, selected, fetching, lastFetched, updateSgy} = sgyInfo;
 

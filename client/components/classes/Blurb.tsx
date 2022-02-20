@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import moment from 'moment';
 
 // Components
@@ -75,7 +75,7 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
                     <button className="toggle-completed" onClick={() => setIncludeCompleted(!includeCompleted)}>
                         {includeCompleted ? 'Hide completed' : 'Show completed'}
                     </button>
-                    <div className="see-more"><Link to='upcoming'>See More in Upcoming</Link></div>
+                    <div className="see-more"><Link href='/classes/upcoming'><a>See More in Upcoming</a></Link></div>
                 </div>
             </div>
         </div>

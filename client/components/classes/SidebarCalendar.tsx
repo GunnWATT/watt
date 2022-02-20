@@ -1,52 +1,52 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
+import { Spinner } from 'reactstrap';
 import moment from 'moment';
-
-// Types
-import { ActiveItemState } from './Assignments';
-import { AssignmentBlurb, parseLabelColor, parsePriority } from '../../util/sgyFunctions';
-
-// Components
-import Spinner from 'reactstrap/es/Spinner';
-import { parsePeriodColor } from '../schedule/Periods';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
+
+// Util
+import { ActiveItemState } from './Assignments';
+import { AssignmentBlurb, parseLabelColor, parsePriority } from '../../util/sgyFunctions';
 import { pluralize, shortify } from '../../util/sgyHelpers';
+import { parsePeriodColor } from '../schedule/Periods';
+
 
 // type of a transition
 type LineType = "same-day" | "diff-day" | "large-diff";
 
-const SidebarTooltip = (props: { 
+type SidebarTooltipProps = {
     circle: {
         item: AssignmentBlurb;
         radius: number;
         cy: number
     },
     left: number
-}) => {
-    const {circle,left} = props;
-    const item = circle.item;
+}
+function SidebarTooltip(props: SidebarTooltipProps) {
+    const {circle: {item, cy}, left} = props;
 
-    return <div
-        className="upcoming-cal-tooltip"
-        style={{
-            top: circle.cy,
-            left,
-        }}
-    >
-        {shortify(item.name, 20)}
-    </div>
+    return (
+        <div
+            className="upcoming-cal-tooltip"
+            style={{top: cy, left}}
+        >
+            {shortify(item.name, 20)}
+        </div>
+    )
 }
 
 // Side calendar for large screens on Upcoming
 // Doubles as a date range filter for the assignments, and for a quick visualization of due dates
-export default function SidebarCalendar(props: ActiveItemState & {upcoming: AssignmentBlurb[]|null}) {
+export default function SidebarCalendar(props: ActiveItemState & {upcoming: AssignmentBlurb[] | null}) {
     const { upcoming: raw, activeItem, setActiveItem } = props;
     const userData = useContext(UserDataContext);
 
-    if (!raw) return <div className="upcoming-cal" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-        <Spinner />
-    </div>
+    if (!raw) return (
+        <div className="upcoming-cal" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <Spinner />
+        </div>
+    )
 
     const upcoming = raw.filter(a => !a.completed);
 
@@ -55,8 +55,8 @@ export default function SidebarCalendar(props: ActiveItemState & {upcoming: Assi
         if(p === -1) return b;
         return (4-p)*5 + b;
     }
-    const parseDistance = (from: AssignmentBlurb, to: AssignmentBlurb): [number, LineType] => { // the distance between two circles, and also the *type* of that transition
 
+    const parseDistance = (from: AssignmentBlurb, to: AssignmentBlurb): [number, LineType] => { // the distance between two circles, and also the *type* of that transition
         const minDist = 15; // we don't want the distance to be 0
         // console.log(from.timestamp?.format('YYYY MMMM Do'))
         if (moment(from.timestamp!).isSame(to.timestamp!, 'day')) {
@@ -119,11 +119,7 @@ export default function SidebarCalendar(props: ActiveItemState & {upcoming: Assi
 
         svgheight = ey + 50;
         const day = moment(upcoming[i].timestamp!).startOf('day').format('YYYY-MM-DD');
-        if(days.has(day)) {
-            days.set(day, {...days.get(day)!, ey});
-        } else {
-            days.set(day, {sy, ey});
-        }
+        days.set(day, days.has(day) ? {...days.get(day)!, ey} : {sy, ey});
     }
 
     const weekdays = ['U', 'M', 'T', 'W', 'θ', 'F', 'S'];
@@ -135,10 +131,9 @@ export default function SidebarCalendar(props: ActiveItemState & {upcoming: Assi
     const strokeWeight = 6;
     const tooltipItem = activeItem && circles.find(a => a.item.id === activeItem.id);
 
-    // 
     return (
         <div className="upcoming-cal">
-            <svg width={width} height={svgheight} >
+            <svg width={width} height={svgheight}>
                 <defs>
                     {/* https://tympanus.net/codrops/2019/01/15/svg-filters-101/ < super helpful info on svg filters */}
                     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
@@ -158,89 +153,91 @@ export default function SidebarCalendar(props: ActiveItemState & {upcoming: Assi
                 </defs>
 
                 {lines.map(line => {
-                    const avg = (line.sy + line.ey)/2;
+                    const avg = (line.sy + line.ey) / 2;
                     const tick = 10;
-                    const ticks = line.type === "same-day" ? [] : line.type === "diff-day" ? [-8,8] : [-16,0,16] ;
-                    return <g key={line.sy}>
-                        <line 
-                            x1={timelineX} y1={line.sy}
-                            x2={timelineX} y2={line.ey} 
-                            stroke={'var(--contrast)'}
-                            strokeWidth={strokeWeight} 
-                        />
-
-                        {ticks.map(t => 
-                            <line 
-                                key={line.sy + " " + t} 
-                                x1={timelineX - tick} y1={avg + tick + t}
-                                x2={timelineX + tick} y2={avg - tick + t}
+                    const ticks = line.type === "same-day" ? [] : line.type === "diff-day" ? [-8,8] : [-16,0,16];
+                    return (
+                        <g key={line.sy}>
+                            <line
+                                x1={timelineX} y1={line.sy}
+                                x2={timelineX} y2={line.ey}
                                 stroke={'var(--contrast)'}
-                                strokeWidth={strokeWeight} 
-                            />)
-                        }
-                    </g>
+                                strokeWidth={strokeWeight}
+                            />
+
+                            {ticks.map(t => (
+                                <line
+                                    key={line.sy + " " + t}
+                                    x1={timelineX - tick} y1={avg + tick + t}
+                                    x2={timelineX + tick} y2={avg - tick + t}
+                                    stroke={'var(--contrast)'}
+                                    strokeWidth={strokeWeight}
+                                />
+                            ))}
+                        </g>
+                    )
                 })}
 
-                {circles.map(circle =>
+                {circles.map(circle => (
                     <a href={`#assignment-${circle.item.id}`}>
-                    <g
-                        key={circle.item.id}
-                        filter={activeItem && circle.item.id === activeItem.id ? 'url(#glow)' : ''}
-                        cursor="pointer"
-
-                        onMouseEnter={() => setActiveItem(circle.item)}
-                        onMouseLeave={() => setActiveItem(null)}
-                    >
-                        <circle
-                            cx={timelineX} cy={circle.cy}
-                            r={circle.radius}
-                            stroke={parsePeriodColor(circle.item.period, userData)}
-                            strokeWidth={strokeWeight}
-                            fill={'#ffffff00'}
-                        />
-                    </g>
+                        <g
+                            key={circle.item.id}
+                            filter={activeItem && circle.item.id === activeItem.id ? 'url(#glow)' : ''}
+                            cursor="pointer"
+                            onMouseEnter={() => setActiveItem(circle.item)}
+                            onMouseLeave={() => setActiveItem(null)}
+                        >
+                            <circle
+                                cx={timelineX} cy={circle.cy}
+                                r={circle.radius}
+                                stroke={parsePeriodColor(circle.item.period, userData)}
+                                strokeWidth={strokeWeight}
+                                fill={'#ffffff00'}
+                            />
+                        </g>
                     </a>
-                )}
+                ))}
 
-                {[...days].map(([day, { sy, ey }]) => <g key={day}>
-                    <text 
-                        x={weekdayX} y={(sy + ey) / 2} 
-                        dominantBaseline="central" // center vertically
-                        style={{ 
-                            fontSize: 50, 
-                            fill: 'var(--primary)', 
-                            fontFamily: 'var(--font-family-monospace)' 
-                        }}
-                    >
-                        {weekdays[moment(day).day()]}
-                    </text>
+                {[...days].map(([day, { sy, ey }]) => (
+                    <g key={day}>
+                        <text
+                            x={weekdayX} y={(sy + ey) / 2}
+                            dominantBaseline="central" // center vertically
+                            style={{
+                                fontSize: 50,
+                                fill: 'var(--primary)',
+                                fontFamily: 'var(--font-family-monospace)'
+                            }}
+                        >
+                            {weekdays[moment(day).day()]}
+                        </text>
 
-                    <text
-                        x={dayX} y={(sy + ey) / 2 - 10}
-                        dominantBaseline="central" // center vertically
-                        style={{
-                            fontSize: 15,
-                            fill: 'var(--primary)'
-                        }}
-                    >
-                        {moment(day).format('MM/DD')}
-                    </text>
-                    <text
-                        x={dayX} y={(sy + ey) / 2 + 10}
-                        dominantBaseline="central" // center vertically
-                        style={{
-                            fontSize: 15,
-                            fill: 'var(--primary)'
-                        }}
-                    >
-                        In {pluralize(moment(day).diff(moment(), 'days'), 'day')}
-                    </text>
-                </g>)} 
+                        <text
+                            x={dayX} y={(sy + ey) / 2 - 10}
+                            dominantBaseline="central" // center vertically
+                            style={{
+                                fontSize: 15,
+                                fill: 'var(--primary)'
+                            }}
+                        >
+                            {moment(day).format('MM/DD')}
+                        </text>
+                        <text
+                            x={dayX} y={(sy + ey) / 2 + 10}
+                            dominantBaseline="central" // center vertically
+                            style={{
+                                fontSize: 15,
+                                fill: 'var(--primary)'
+                            }}
+                        >
+                            In {pluralize(moment(day).diff(moment(), 'days'), 'day')}
+                        </text>
+                    </g>
+                ))}
             </svg>
-            
+
             {/* Tooltip */}
             {tooltipItem && <SidebarTooltip left={timelineX + tooltipItem.radius + 2 * strokeWeight} circle={tooltipItem}/>}
-            
         </div>
     );
 }

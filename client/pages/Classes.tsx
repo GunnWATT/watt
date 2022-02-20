@@ -1,6 +1,7 @@
 import {ReactNode, useContext, useEffect, useState} from 'react';
 import {Routes, Route, Link, useMatch, useResolvedPath} from 'react-router-dom';
 import {Container} from 'reactstrap';
+import { Menu } from 'react-feather';
 
 // Firebase
 import { Functions, httpsCallable } from 'firebase/functions';
@@ -24,10 +25,9 @@ import SgyDataContext, { SgyDataProvider } from '../contexts/SgyDataContext';
 import { parsePeriodColor } from '../components/schedule/Periods';
 import { useScreenType } from '../hooks/useScreenType';
 import { bgColor } from '../util/progressBarColor';
-import { Menu } from 'react-feather';
 import { shortify } from '../util/sgyHelpers';
 import { cleanupExpired } from '../util/sgyFunctions';
-import { updateUserData } from '../firebase/updateUserData';
+import { updateUserData } from '../util/firestore';
 
 
 export async function fetchSgyMaterials(functions: Functions) {
