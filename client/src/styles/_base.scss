@@ -63,15 +63,6 @@ body {
   }
 }
 
-#red-bg {
-  // Hacky fix for phones
-  width: max(800px, 100%);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-
 .firebase-emulator-warning {
     display: none;
 }

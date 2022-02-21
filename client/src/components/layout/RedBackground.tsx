@@ -3,8 +3,7 @@ export default function RedBackground() {
     const rightColor = 'eb144c';
 
     return (
-        <svg width="100%" id="red-bg" viewBox="0 0 1440 700" xmlns="http://www.w3.org/2000/svg"
-             className="transition duration-300 ease-in-out delay-150">
+        <svg className="fixed top-0 left-0 -z-10 w-[max(800px,_100%)]" viewBox="0 0 1440 700" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="low">
                     <stop offset="5%" stopColor={`#${rightColor}44`}/>

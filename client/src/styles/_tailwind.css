@@ -4,19 +4,19 @@
 
 @layer base {
     a {
-        @apply text-[#a51618] dark:text-[#ff594c]
+        @apply text-theme dark:text-theme-dark;
     }
     h1 {
         @apply text-4xl font-semibold mb-2;
     }
     hr {
-        @apply my-4 border-t-2;
+        @apply my-4 border-t-2 border-tertiary dark:border-tertiary-dark;
     }
-    body, .text-primary {
-        @apply text-[rgba(0,_0,_0,_0.87)] dark:text-white;
+    body, .text-theme-primary {
+        @apply text-primary dark:text-primary-dark
     }
-    .secondary, .text-secondary {
-        @apply text-[rgba(0,_0,_0,_0.54)] dark:text-[rgba(255,_255,_255,_0.54)]
+    .secondary, .text-theme-secondary {
+        @apply text-secondary dark:text-secondary-dark;
     }
     .bg-secondary {
         /* TODO: convert this to tailwind classes using arbitrary values */
