@@ -7,7 +7,10 @@
         @apply text-[#a51618] dark:text-[#ff594c]
     }
     h1 {
-        @apply text-4xl font-medium mb-2;
+        @apply text-4xl font-semibold mb-2;
+    }
+    hr {
+        @apply my-4 border-t-2;
     }
     body, .text-primary {
         @apply text-[rgba(0,_0,_0,_0.87)] dark:text-white;

@@ -92,7 +92,7 @@ export default function Clubs() {
                 </Nav>
             }
         >
-            <p>
+            <p className="mb-4">
                 Please note that club information was taken from{' '}
                 <a href="https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vQ-UXugiZ8GznB367cO8JptTO9BLm5OE4D3WO8oZvYk_365lY25Q6eAFNSEIC5DGXGWOXwK_wauoTFT/pubhtml" target="_blank" rel="noopener noreferrer">the 2021-2022 chartered clubs spreadsheet</a>{' '}
                 as of {moment(timestamp).format('MMMM Do, YYYY')}. Attribute inaccuracies to them.
@@ -100,18 +100,18 @@ export default function Clubs() {
             <List
                 data={dataFromTab()}
                 filter={([id, club]) =>
-                    query === '' ||
-                    club.name.toLowerCase().includes(query.toLowerCase())
+                    query === ''
+                    || club.name.toLowerCase().includes(query.toLowerCase())
                     || club.room.toLowerCase().includes(query.toLowerCase())
                     || club.day.toLowerCase().includes(query.toLowerCase())
                 }
-                map={([id, club]) =>
+                map={([id, club]) => (
                     <ClubComponent
                         key={id}
                         id={id}
                         {...club}
                     />
-                }
+                )}
                 sort={([idA, clubA], [idB, clubB]) => clubA.name.localeCompare(clubB.name)}
                 pinned={userData.clubs}
             />
