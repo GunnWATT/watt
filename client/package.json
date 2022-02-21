@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@headlessui/react": "^1.5.0",
     "firebase": "^9.6.7",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.32",

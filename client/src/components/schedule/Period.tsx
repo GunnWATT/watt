@@ -1,5 +1,4 @@
-import React from 'react';
-import {Card, CardBody, CardTitle, CardSubtitle, CardText, Progress, CardLink} from 'reactstrap';
+import {Progress} from 'reactstrap';
 import {Moment} from 'moment';
 import 'twix';
 import {bgColor, barColor, hexToRgb} from '../../util/progressBarColor';
@@ -11,9 +10,8 @@ type PeriodProps = {
     name: string, color: string, format: string, zoom?: string
 };
 const Period = (props: PeriodProps) => {
-
-    let {now, start, end, name, color, format, zoom} = props;
-    let t = start.twix(end); // Twix duration representing the period
+    const {now, start, end, name, color, format, zoom} = props;
+    const t = start.twix(end); // Twix duration representing the period
 
     // Determines what text to display regarding how long before/after the period was
     const parseStartEnd = () => {
@@ -23,32 +21,19 @@ const Period = (props: PeriodProps) => {
     }
 
     return (
-        <Card style={{backgroundColor: color, border: "none"}}>
-            <CardBody>
-                {zoom && <CardLink href={zoom} rel="noopener noreferrer" target="_blank"><Link/></CardLink>}
-                <CardTitle>{name}</CardTitle>
-                <CardSubtitle className="secondary">{t.simpleFormat(format)}</CardSubtitle>
-                {/* em dash */}
-                <CardText className="secondary">{parseStartEnd()} — {t.countInner('minutes')} minutes long</CardText>
-                {t.isCurrent()
-                    && <Progress
-                        value={(now.valueOf() - start.valueOf()) / (end.valueOf() - start.valueOf()) * 100}
-                        style={{backgroundColor: bgColor(color)}}
-                        barStyle={{backgroundColor: barColor(color)}}
-                      />
-                }
-            </CardBody>
-        </Card>
-        /*
-        <div className="schedule-period">
-            <span className="schedule-periodname">{props.name}</span>
-            <span>{props.start} - {props.end}</span>
-            {parseStartEnd()}
-            {(now.isBetween(start, end))
-                ? <Progress animated value={(now.valueOf() - start.valueOf()) / (end.valueOf() - start.valueOf()) * 100}/>
-                : null}
+        <div className="border-none rounded-md shadow-lg mb-4 p-5 relative" style={{backgroundColor: color}}>
+            {zoom && <a className="absolute secondary top-6 right-6" href={zoom} rel="noopener noreferrer" target="_blank"><Link/></a>}
+            <h2 className="text-xl mb-2">{name}</h2>
+            <h3 className="secondary">{t.simpleFormat(format)}</h3>
+            <p className="secondary">{parseStartEnd()} — {t.countInner('minutes')} minutes long</p>
+            {t.isCurrent() && (
+                <Progress
+                    value={(now.valueOf() - start.valueOf()) / (end.valueOf() - start.valueOf()) * 100}
+                    style={{backgroundColor: bgColor(color)}}
+                    barStyle={{backgroundColor: barColor(color)}}
+                />
+            )}
         </div>
-        */
     );
 }
 

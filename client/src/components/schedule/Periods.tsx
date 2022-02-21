@@ -44,19 +44,18 @@ export default function Periods(props: PeriodsProps) {
     
 
     // Maps periods array to <Period> components
-    const renderPeriods = () =>
-        periods!.map(([name, value]) =>
-            <Period
-                name={parsePeriodName(name, userData)}
-                color={parsePeriodColor(name, userData)}
-                key={name}
-                now={currDate}
-                start={viewDate.clone().startOf('day').add(value.s, 'minutes').tz(timeZone)} // Convert PST times back to local timezone
-                end={viewDate.clone().startOf('day').add(value.e, 'minutes').tz(timeZone)}
-                format={format}
-                zoom={classes[name]?.l}
-            />
-        )
+    const renderPeriods = () => periods!.map(([name, value]) => (
+        <Period
+            name={parsePeriodName(name, userData)}
+            color={parsePeriodColor(name, userData)}
+            key={name}
+            now={currDate}
+            start={viewDate.clone().startOf('day').add(value.s, 'minutes').tz(timeZone)} // Convert PST times back to local timezone
+            end={viewDate.clone().startOf('day').add(value.e, 'minutes').tz(timeZone)}
+            format={format}
+            zoom={classes[name]?.l}
+        />
+    ))
 
 
     // HTML for a school day, assumes periods is populated
@@ -133,27 +132,26 @@ export const darkPerColors =
 // Turns day of the week into schedule object key; Thursday is R, Saturday is A
 export const numToWeekday = (num: number) => ['S', 'M', 'T', 'W', 'R', 'F', 'A'][num];
 
-// Sorts periods object by start times so it is not mismatched when rendering
-export const sortPeriodsByStart = (obj: DayObj) => {
+// Transforms a `DayObj` into a `[string, PeriodObj][]`, sorting by start time so periods are not out of order when
+// rendering.
+export function sortPeriodsByStart(obj: DayObj) {
     return Object.entries(obj)
         .filter((a): a is [string, PeriodObj] => a[1] !== undefined)
         .sort(([nameA, valA], [nameB, valB]) => valA.s - valB.s);
 }
 
 // Turns object key into human readable period name
-export const parsePeriodName = (name: string, userData?: UserData) => {
+export function parsePeriodName(name: string, userData?: UserData) {
     const classes = userData?.classes as {[key: string]: SgyPeriodData} | undefined;
-
-    // Note: ?? will not work here, as the concern is with empty strings rendering empty period names
-    return classes?.[name]?.n ? classes[name].n : periodNameDefault(name);
+    return classes?.[name]?.n || periodNameDefault(name);
 }
 
 // Turns object key into period color
-export const parsePeriodColor = (name: string | number | null, userData?: UserData) => {
+export function parsePeriodColor(name: string | number | null, userData?: UserData) {
     const classes = userData?.classes as {[key: string]: SgyPeriodData} | undefined;
     if (name && classes?.[name]?.c) return classes[name].c;
 
-    let num = Number(name);
+    const num = Number(name);
     // Map number periods to their default colors
     if (num) {
         if (userData?.options.theme === 'dark') return darkPerColors[num - 1];
@@ -165,7 +163,7 @@ export const parsePeriodColor = (name: string | number | null, userData?: UserDa
 }
 
 // Gets the default period name for the given key
-export const periodNameDefault = (name: string) => {
+export function periodNameDefault(name: string) {
     if (!isNaN(parseInt(name))) return `Period ${name}`;
 
     switch (name) {

@@ -68,7 +68,7 @@ export default function Home(props: HomeProps) {
             <RedBackground />
 
             {/* Schedule */}
-            <div className="schedule">
+            <main className="schedule">
                 {relDays !== 0 && <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>}
 
                 {userData.options?.clock && <Clock viewDate={viewDate} />}
@@ -81,13 +81,13 @@ export default function Home(props: HomeProps) {
                 <h2 className="text-3xl font-semibold text-center mb-2">{viewDate.format('MMMM Do, YYYY')}</h2>
 
                 {/* <CSSTransition> */}
-                <div className="schedule-wrapper">
+                <div className="mx-auto max-w-3xl">
                     <Periods viewDate={viewDate} />
                 </div>
                 {/* </CSSTransition> */}
 
                 <div id="weekwrapper"></div>
-            </div>
+            </main>
 
             {/* Events */}
             <Events events={events} viewDate={viewDate} eventsError={eventsError} fetchEvents={fetchEvents} />

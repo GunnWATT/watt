@@ -34,52 +34,14 @@
     }
   }
 
-  // Periods container
-  &-wrapper {
-    max-width: 800px;
-    margin: 0 auto 0 auto;
-
-    // Individual period boxes
-    .card {
-      //box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      //border: none;
-      margin-bottom: 1rem;
-      border-radius: 0.375rem;
-
-      .card-title {
-        font-size: 22px;
-      }
-
-      .card-link {
-        position: absolute;
-        top: 24px;
-        right: 24px;
-        color: var(--secondary);
-      }
-    }
-  }
-
   // The Alert for when you are viewing a different day's schedule
   .day-alert {
-    border: none;
     color: var(--primary);
     background-color: var(--bg-primary);
-    display: flex;
-    align-items: center;
     max-width: 1000px;
-    margin: 0 auto 1rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    //box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    //position: sticky;
-    //top: 1rem;
-    //z-index: 10;
 
     button {
       color: inherit;
-      margin-left: auto;
-      background: none;
-      border: none
     }
   }
 }

@@ -4,37 +4,31 @@ import { Alert, Button } from 'reactstrap';
 
 type DayAlertProps = {daysRelToCur: number, jumpToPres: () => void};
 export default function DayAlert(props: DayAlertProps) {
-    const {daysRelToCur, jumpToPres} = props;
+    const {daysRelToCur: days, jumpToPres} = props;
 
     const [visible, setVisible] = useState(true);
     const onDismiss = () => setVisible(false);
 
-    let days = daysRelToCur;
-    let absDays = Math.abs(days);
     const makeDateString = () => {
-        let newer = days > 0;
-        let singular = absDays === 1;
-        if (singular) {
-            if (newer) return 'You are viewing tomorrow\'s schedule.';
-            return 'You are viewing yesterday\'s schedule.';
-        }
-        if (newer) return `You are viewing a schedule for ${absDays} days from now.`; // Credit: Saumya for phrasing
-        return `You are viewing a schedule from ${absDays} days ago.`;
+        const absDays = Math.abs(days);
+        const newer = days > 0;
+
+        if (absDays === 1) return newer
+            ? 'You are viewing tomorrow\'s schedule.'
+            : 'You are viewing yesterday\'s schedule.';
+        return newer
+            ? `You are viewing a schedule for ${absDays} days from now.`
+            : `You are viewing a schedule from ${absDays} days ago.`;
     }
 
     return (
         <Alert
-            className="day-alert"
+            className="day-alert absolute left-0 right-0 flex items-center mb-4 mx-auto shadow-lg border-none rounded px-5 py-3"
             isOpen={visible}
             toggle={onDismiss}
-            style={{
-                position: 'absolute',
-                left: 0,
-                right: 0
-            }}
         >
             {makeDateString()}{' '}
-            <button onClick={jumpToPres}>JUMP TO PRESENT</button>
+            <button className="ml-auto" onClick={jumpToPres}>JUMP TO PRESENT</button>
         </Alert>
     );
 }

@@ -8,30 +8,12 @@ ul.material-list {
   min-height: 88px;
 
   li {
-    display: inline-block;
     padding: 20px 16px;
-    box-sizing: border-box;
     overflow: hidden;
-    position: relative;
     font-size: 14px;
-    @extend .clickable;
 
     span {
       display: block;
-    }
-  }
-}
-
-// [New] badge
-.modal-content {
-  .modal-header .badge {
-    background-color: var(--active);
-    margin-left: 0.5rem;
-  }
-
-  .btn {
-    &.close-modal {
-      //background-color: $theme;
     }
   }
 }
