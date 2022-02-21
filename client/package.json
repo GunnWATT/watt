@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.5.3",
     "firebase": "^9.6.7",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.32",

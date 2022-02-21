@@ -8,7 +8,6 @@ import {FirebaseAppProvider} from 'reactfire';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
-import 'bootstrap/dist/css/bootstrap.css'
 import './styles/index.scss';
 import './styles/_tailwind.css';
 

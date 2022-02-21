@@ -10,37 +10,17 @@
     padding: 15px;
   }
 
-  // Red box that displays the heading
-  .header {
-    @include content-box($padding: 12px 20px, $bg-color: var(--active));
-    color: white;
-  }
-
-  .heading {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    //border-bottom: 2px solid;
-
-    h1 {
-      margin-right: 1rem;
-    }
-
-    // Search box in lists
-    input {
-      //margin-left: 1rem;
-      border: 2px solid rgba(0, 0, 0, 0.1);
-    }
+  header input {
+    //margin-left: 1rem;
+    border: 2px solid rgba(0, 0, 0, 0.1);
   }
 
   // Nav div which contains the nav tabs
   .page-nav {
     margin-top: 1.5rem;
-    padding: 0;
 
+    // TODO: replicate these in the homemade <Tab> components
     ul {
-      padding: 0;
-
       .nav-item {
         box-shadow: 0 0 3px -3px rgba(0, 0, 0, 0.1);
 

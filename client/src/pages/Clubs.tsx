@@ -1,11 +1,10 @@
 import {useContext, useState} from 'react';
-import {Nav} from 'reactstrap';
 import moment from 'moment';
 import {useScreenType} from '../hooks/useScreenType';
 
 // Components
+import HeaderPage from '../components/layout/HeaderPage';
 import List from '../components/lists/List';
-import Header from '../components/layout/Header';
 import StateTab from '../components/layout/StateTab';
 import ClubComponent from '../components/lists/ClubComponent';
 
@@ -72,7 +71,7 @@ export default function Clubs() {
 
 
     return (
-        <Header
+        <HeaderPage
             heading="Clubs"
             other={
                 <input
@@ -81,16 +80,14 @@ export default function Clubs() {
                     onChange={e => setQuery(e.target.value)}
                 />
             }
-            nav={
-                <Nav className="nav-fill" tabs>
-                    <StateTab value="1" name={dayFromTabNum('1', shorten)} state={activeTab} setState={toggle} />
-                    <StateTab value="2" name={dayFromTabNum('2', shorten)} state={activeTab} setState={toggle} />
-                    <StateTab value="3" name={dayFromTabNum('3', shorten)} state={activeTab} setState={toggle} />
-                    <StateTab value="4" name={dayFromTabNum('4', shorten)} state={activeTab} setState={toggle} />
-                    <StateTab value="5" name={dayFromTabNum('5', shorten)} state={activeTab} setState={toggle} />
-                    <StateTab value="6" name={dayFromTabNum('6', shorten)} state={activeTab} setState={toggle} />
-                </Nav>
-            }
+            nav={<>
+                <StateTab value="1" name={dayFromTabNum('1', shorten)} state={activeTab} setState={toggle} />
+                <StateTab value="2" name={dayFromTabNum('2', shorten)} state={activeTab} setState={toggle} />
+                <StateTab value="3" name={dayFromTabNum('3', shorten)} state={activeTab} setState={toggle} />
+                <StateTab value="4" name={dayFromTabNum('4', shorten)} state={activeTab} setState={toggle} />
+                <StateTab value="5" name={dayFromTabNum('5', shorten)} state={activeTab} setState={toggle} />
+                <StateTab value="6" name={dayFromTabNum('6', shorten)} state={activeTab} setState={toggle} />
+            </>}
         >
             <p className="mb-4">
                 Please note that club information was taken from{' '}
@@ -115,6 +112,6 @@ export default function Clubs() {
                 sort={([idA, clubA], [idB, clubB]) => clubA.name.localeCompare(clubB.name)}
                 pinned={userData.clubs}
             />
-        </Header>
+        </HeaderPage>
     );
 }

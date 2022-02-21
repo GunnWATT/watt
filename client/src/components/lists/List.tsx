@@ -13,7 +13,7 @@ type ListProps<T> = {
     pinned: string[]
 }
 
-// Defines a higher order list component of type T where T is the type of the JSON representation of a list value
+// A higher order list component of type T where T is the type of the JSON representation of a list value
 // (ex: Club, Staff, `{ new: true, name: "United Computations", ... }`).
 // List accepts the raw data as either the entire JSON file (`{[key: string]: T}`) or already subjected to Object.entries
 // (`[string, T][]` to be compatible with Club tab data filtering).

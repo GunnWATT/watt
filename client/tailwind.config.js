@@ -17,6 +17,9 @@ module.exports = {
         'tertiary-dark': 'rgba(255, 255, 255, 0.1)',
       }
     },
+    container: {
+      center: true
+    }
   },
   plugins: [],
 }
