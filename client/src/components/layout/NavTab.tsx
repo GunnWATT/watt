@@ -12,8 +12,8 @@ export default function NavTab(props: NavTabProps) {
 
     return (
         // If the current URL matches the `to` prop, make the tab active
-        <Tab active={match != null}>
-            <Link to={to} className="text-inherit dark:text-inherit">{name}</Link>
-        </Tab>
+        <Link to={to} className="flex flex-grow">
+            <Tab active={match != null}>{name}</Tab>
+        </Link>
     )
 }

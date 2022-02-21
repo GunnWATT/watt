@@ -1,19 +1,15 @@
-import {Jumbotron} from 'reactstrap';
-
-
 export default function About() {
     return (
         <>
             <h1>About</h1>
-            {/* <hr/> */}
-            <Jumbotron>
-                <p className='lead'>
+            <section className="bg-[color:var(--content-tertiary)] rounded-md mb-6 px-8 py-16">
+                <p className="text-xl font-light mb-4">
                     If I have seen further, it is by standing on the shoulders of giants.
                 </p>
-                <p>-Isaac Newton</p>
-            </Jumbotron>
+                <em className="secondary">―Isaac Newton</em>
+            </section>
 
-            <p>
+            <p className="mb-4">
                 <strong>Gunn WATT</strong> is a Gunn App and UGWA successor that uses a React.js frontend and Firebase backend.
                 Unlike our competitors, we are open to contribution from everyone.
                 Check out our source code on GitHub <a href="https://github.com/GunnWATT/watt" target="_blank" rel="noopener noreferrer">here</a>!{' '}

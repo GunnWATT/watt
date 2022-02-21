@@ -73,7 +73,7 @@ export default function ClubComponent(props: Club & {id: string}) {
                         {zoom && <p><strong>Zoom Link:</strong> <a href={zoom} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{zoom}</a></p>}
                     </section>
 
-                    <div className="flex gap-4 justify-end">
+                    <div className="flex gap-3 flex-wrap justify-end">
                         {pinned ? (
                             <button className="secondary border border-secondary dark:border-secondary-dark hover:bg-secondary/50 dark:hover:bg-secondary-dark/50 rounded px-3 py-2" onClick={removeFromPinned}>
                                 Remove from my list

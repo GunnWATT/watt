@@ -8,11 +8,11 @@ import {useSigninCheck} from 'reactfire';
 import SidebarItem from './SidebarItem';
 import GoogleSignInBtn from '../firebase/GoogleSignInBtn';
 import GoogleSignOutBtn from '../firebase/GoogleSignOutBtn';
+import Badge from './Badge';
 
 // Icons
 import logo from '../../assets/watt.png';
 import {Home, CheckSquare, Users, Settings, Tool, ChevronRight, ChevronLeft} from 'react-feather';
-import {Badge} from "reactstrap";
 
 
 type SidebarProps = {forceCollapsed?: boolean};
@@ -33,7 +33,7 @@ export default function Sidebar(props: SidebarProps) {
 
 
     return (
-        <div className={`sidebar ${!isOpen ? 'collapsed' : ''}`}>
+        <div className={`sidebar z-10 flex-none relative ${!isOpen ? 'collapsed' : ''}`}>
             {/* The outer <div> only exists to occupy space to squish #content; the inner <div> has position: fixed; */}
             <div className="sidebar-content fixed top-0 bottom-0 flex flex-col overflow-hidden">
                 {/* Toggler */}
@@ -42,15 +42,15 @@ export default function Sidebar(props: SidebarProps) {
                 </span>
 
                 {/* Heading */}
-                <Link to="/" className="logo">
-                    <img src={logo} className="logo" alt="WATT Logo"/>
+                <Link to="/" className="w-16 h-16 self-center">
+                    <img src={logo} alt="WATT Logo"/>
                 </Link>
                 <h1 className="text-sm mt-4 mx-auto mb-8">Web App of the Titans</h1>
 
                 {/* Nav */}
                 <SidebarItem to="/" icon={<Home/>}>Home</SidebarItem>
                 <SidebarItem to="/classes" icon={<CheckSquare/>}>
-                    Classes <Badge color="danger" className="beta">Beta</Badge>
+                    Classes <Badge>Beta</Badge>
                 </SidebarItem>
                 <SidebarItem to="/clubs" icon={<Users/>}>Clubs</SidebarItem>
                 <SidebarItem to="/utilities" icon={<Tool/>}>Utilities</SidebarItem>

@@ -7,7 +7,7 @@ export default function SidebarItem(props: SidebarItemProps) {
     const {to, icon, children} = props;
 
     return (
-        <span className="item">
+        <span className="item rounded">
             <NavLink to={to} className={({isActive}) => isActive ? "active" : ""}>
                 {icon}
                 {children && <span>{children}</span>}

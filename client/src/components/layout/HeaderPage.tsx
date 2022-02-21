@@ -18,7 +18,7 @@ export default function HeaderPage(props: HeaderPageProps) {
                     <h1 className="mb-0">{heading}</h1>
                     {other}
                 </header>
-                <nav className="page-nav flex">
+                <nav className="page-nav flex flex-wrap">
                     {nav}
                 </nav>
                 <main className="page">
