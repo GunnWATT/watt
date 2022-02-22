@@ -1,5 +1,8 @@
-import { useState, useContext, Fragment } from 'react';
-import {Dialog, Transition} from '@headlessui/react';
+import { useState, useContext } from 'react';
+import {Dialog} from '@headlessui/react';
+
+// Components
+import CenteredModal from './CenteredModal';
 import Badge from '../layout/Badge';
 
 // Context
@@ -40,80 +43,56 @@ export default function ClubComponent(props: Club & {id: string}) {
         + (data ? `&entry.1448575177=${data.displayName}` : '')
 
     return (
-        <li className="cursor-pointer" onClick={() => setModal(true)}>
-            <span>{name}</span>
-            <span className="secondary">{room}</span>
-            <span className="secondary">{day}</span>
+        <li className="text-sm cursor-pointer px-4 py-5" onClick={() => setModal(true)}>
+            <p>{name}</p>
+            <p className="secondary">{room}</p>
+            <p className="secondary">{day}</p>
 
-            <Transition appear show={modal} as={Fragment}>
-                <Dialog open={modal} onClose={() => setModal(false)} className="fixed z-10 inset-0 flex items-center justify-center">
-                    <Transition.Child
-                        as={Fragment}
-                        enter="ease-out duration-300"
-                        enterFrom="opacity-0"
-                        enterTo="opacity-100"
-                        leave="ease-in duration-200"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                    >
-                        <Dialog.Overlay className="fixed inset-0 bg-black/40" />
-                    </Transition.Child>
-
-                    <Transition.Child
-                        as={Fragment}
-                        enter="ease-out duration-300"
-                        enterFrom="opacity-0 scale-95"
-                        enterTo="opacity-100 scale-100"
-                        leave="ease-in duration-200"
-                        leaveFrom="opacity-100 scale-100"
-                        leaveTo="opacity-0 scale-95"
-                    >
-                        <div className="relative bg-[color:var(--content-primary)] rounded-md max-w-md p-6 shadow-xl">
-                            <Dialog.Title className="text-xl font-semibold mb-3 pr-6 flex gap-2 items-center">
-                                {name}{props.new && <Badge>New</Badge>}
-                            </Dialog.Title>
-                            <section className="flex justify-between">
-                                <div className="basis-1/3">
-                                    <p><strong className="secondary font-medium">Day:</strong> {day}</p>
-                                    <p><strong className="secondary font-medium">Time:</strong> {time}</p>
-                                    <p><strong className="secondary font-medium">Location:</strong> {room}</p>
-                                </div>
-                                <div className="text-right">
-                                    <p><strong className="secondary font-medium">President(s):</strong> {prez}</p>
-                                    <p><strong className="secondary font-medium">Advisor(s):</strong> {advisor}{coadvisor && ', ' + coadvisor}</p>
-                                    <p><strong className="secondary font-medium">Email(s):</strong> {email}{coemail && ', ' + coemail}</p>
-                                </div>
-                            </section>
-                            <hr />
-
-                            <section className="mb-6">
-                                <Dialog.Description>{desc}</Dialog.Description>
-                                {video && <p><strong>Club Video:</strong> <a href={video} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{video}</a></p>}
-                                {signup && <p><strong>Signup Form:</strong> <a href={signup} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{signup}</a></p>}
-                                {zoom && <p><strong>Zoom Link:</strong> <a href={zoom} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{zoom}</a></p>}
-                            </section>
-
-                            <div className="flex gap-3 flex-wrap justify-end">
-                                {pinned ? (
-                                    <button className="secondary border border-secondary dark:border-secondary-dark hover:bg-secondary/50 dark:hover:bg-secondary-dark/50 rounded px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50 dark:focus-visible:ring-secondary-dark/50" onClick={removeFromPinned}>
-                                        Remove from my list
-                                    </button>
-                                ) : (
-                                    <button className="secondary border border-secondary dark:border-secondary-dark hover:bg-secondary/50 dark:hover:bg-secondary-dark/50 rounded px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50 dark:focus-visible:ring-secondary-dark/50" onClick={addToPinned}>
-                                        Add to my list
-                                    </button>
-                                )}
-                                <a href={prefilledLink} tabIndex={-1} target="_blank" rel="noopener noreferrer">
-                                    <button className="secondary border border-secondary dark:border-secondary-dark hover:bg-secondary/50 dark:hover:bg-secondary-dark/50 rounded px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50 dark:focus-visible:ring-secondary-dark/50">Check In</button>
-                                </a>
-                                <button className="text-theme dark:text-theme-dark border border-theme dark:border-theme-dark hover:bg-theme/50 dark:hover:bg-theme-dark/50 px-3 py-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-theme/50 dark:focus-visible:ring-theme-dark/50" onClick={() => setModal(false)}>
-                                    Close
-                                </button>
-                            </div>
+            <CenteredModal isOpen={modal} setIsOpen={setModal}>
+                <div className="relative bg-[color:var(--content-primary)] rounded-md max-w-md p-6 shadow-xl">
+                    <Dialog.Title className="text-xl font-semibold mb-3 pr-6 flex gap-2 items-center">
+                        {name}{props.new && <Badge>New</Badge>}
+                    </Dialog.Title>
+                    <section className="flex gap-6 justify-between">
+                        <div className="basis-1/3">
+                            <p><strong className="secondary font-medium">Day:</strong> {day}</p>
+                            <p><strong className="secondary font-medium">Time:</strong> {time}</p>
+                            <p><strong className="secondary font-medium">Location:</strong> {room}</p>
                         </div>
-                    </Transition.Child>
-                </Dialog>
-            </Transition>
+                        <div className="text-right">
+                            <p><strong className="secondary font-medium">President(s):</strong> {prez}</p>
+                            <p><strong className="secondary font-medium">Advisor(s):</strong> {advisor}{coadvisor && ', ' + coadvisor}</p>
+                            <p><strong className="secondary font-medium">Email(s):</strong> {email}{coemail && ', ' + coemail}</p>
+                        </div>
+                    </section>
+                    <hr />
+
+                    <section className="mb-6">
+                        <Dialog.Description>{desc}</Dialog.Description>
+                        {video && <p><strong>Club Video:</strong> <a href={video} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{video}</a></p>}
+                        {signup && <p><strong>Signup Form:</strong> <a href={signup} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{signup}</a></p>}
+                        {zoom && <p><strong>Zoom Link:</strong> <a href={zoom} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{zoom}</a></p>}
+                    </section>
+
+                    <section className="flex gap-3 flex-wrap justify-end">
+                        {pinned ? (
+                            <button className="secondary border border-secondary dark:border-secondary-dark hover:bg-secondary/50 dark:hover:bg-secondary-dark/50 rounded px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50 dark:focus-visible:ring-secondary-dark/50" onClick={removeFromPinned}>
+                                Remove from my list
+                            </button>
+                        ) : (
+                            <button className="secondary border border-secondary dark:border-secondary-dark hover:bg-secondary/50 dark:hover:bg-secondary-dark/50 rounded px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50 dark:focus-visible:ring-secondary-dark/50" onClick={addToPinned}>
+                                Add to my list
+                            </button>
+                        )}
+                        <a href={prefilledLink} tabIndex={-1} target="_blank" rel="noopener noreferrer">
+                            <button className="secondary border border-secondary dark:border-secondary-dark hover:bg-secondary/50 dark:hover:bg-secondary-dark/50 rounded px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50 dark:focus-visible:ring-secondary-dark/50">Check In</button>
+                        </a>
+                        <button className="text-theme dark:text-theme-dark border border-theme dark:border-theme-dark hover:bg-theme/50 dark:hover:bg-theme-dark/50 px-3 py-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-theme/50 dark:focus-visible:ring-theme-dark/50" onClick={() => setModal(false)}>
+                            Close
+                        </button>
+                    </section>
+                </div>
+            </CenteredModal>
         </li>
     );
 }

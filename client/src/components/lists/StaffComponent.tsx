@@ -1,5 +1,7 @@
 import { useState, useContext } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'reactstrap';
+import {Dialog} from '@headlessui/react';
+import { Table } from 'reactstrap';
+import CenteredModal from './CenteredModal';
 
 // Context
 import UserDataContext from '../../contexts/UserDataContext';
@@ -29,9 +31,7 @@ export type Staff = {
 
 export default function StaffComponent(props: Staff & {id: string}) {
     const {name, id, title, email, room, dept, phone, periods, other} = props;
-
     const [modal, setModal] = useState(false);
-    const toggle = () => setModal(!modal);
 
     // Firestore
     const auth = useAuth();
@@ -46,28 +46,24 @@ export default function StaffComponent(props: Staff & {id: string}) {
     const removeFromPinned = async () =>
         updateUserData('staff', userData.staff.filter(staffID => staffID !== id), auth, firestore);
 
-
     const [semester, setSemester] = useState<'1' | '2'>('1'); // Consider dynamically setting semester later
 
     const renderSchedule = (periods: {[key: string]: PeriodObj}) => {
         const parseNested = (name: string, semester: '1' | '2') => {
-
             let course;
             let room;
-
-            let period = periods[name];
+            const period = periods[name];
 
             // If the teacher teaches during this period
             if (period) {
                 let sem = period[semester];
 
-                // If the period is an array (single class)
                 if (Array.isArray(sem)) {
+                    // If the period is an array (single class)
                     course = sem[0];
                     room = sem[1];
-
-                // If the period is an object (multiple classes)
                 } else if (sem !== 'none') {
+                    // If the period is an object (multiple classes)
                     course = `${sem[1][0]}, ${sem[2][0]}`;
                     room = `${sem[1][1]}, ${sem[2][1]}`;
                 }
@@ -101,36 +97,58 @@ export default function StaffComponent(props: Staff & {id: string}) {
     }
 
     return (
-        <li onClick={toggle}>
-            <span className="primary">{name}</span>
-            {(title || dept) && <span className="secondary">{title === "Teacher" && dept ? `${title}, ${dept}` : title ? title : dept ? dept : ``}</span>}
-            {email && <span className="secondary">{email}</span>}
+        <li className="text-sm cursor-pointer px-4 py-5" onClick={() => setModal(true)}>
+            <p>{name}</p>
+            {(title || dept) && (
+                <p className="secondary">{title === "Teacher" && dept ? `${title}, ${dept}` : title ? title : dept ? dept : ``}</p>
+            )}
+            {email && <p className="secondary">{email}</p>}
 
-            <Modal isOpen={modal} toggle={toggle} scrollable>
-                <ModalHeader toggle={toggle}>{name}</ModalHeader>
-                <ModalBody>
-                    {title && <p><strong>Title:</strong> {title}</p>}
-                    {dept && <p><strong>Department:</strong> {dept}</p>}
-                    {room && <p><strong>Room:</strong> {room}</p>}
-                    {email && <p><strong>Email:</strong> {email}</p>}
-                    {phone && <p><strong>Phone:</strong> {phone}</p>}
-                    {periods && <p>
-                        <strong>Schedule:
-                            <button onClick={() => setSemester('1')}>1</button>
-                            <button onClick={() => setSemester('2')}>2</button>
-                        </strong>
-                    </p>}
-                    {/* other && <p>{other}</p> */}
-                    {periods && renderSchedule(periods)}
-                </ModalBody>
-                <ModalFooter>
-                    {pinned
-                        ? <Button outline className="remove-from-list" onClick={removeFromPinned}>Remove from my list</Button> // If I'm pinned give option to remove from pinned
-                        : <Button outline className="add-to-list" onClick={addToPinned}>Add to my list</Button> // Otherwise give option to add to list
-                    }
-                    <Button outline color="danger" onClick={toggle}>Close</Button>
-                </ModalFooter>
-            </Modal>
+            <CenteredModal isOpen={modal} setIsOpen={setModal}>
+                <div className="relative bg-[color:var(--content-primary)] rounded-md max-w-md p-6 shadow-xl">
+                    <Dialog.Title className="text-xl font-semibold mb-3 pr-6">{name}</Dialog.Title>
+                    <section className="flex gap-6 justify-between">
+                        <div>
+                            {title && <p><strong className="secondary font-medium">Title:</strong> {title}</p>}
+                            {dept && <p><strong className="secondary font-medium">Department:</strong> {dept}</p>}
+                            {room && <p><strong className="secondary font-medium">Room:</strong> {room}</p>}
+                        </div>
+                        <div className="text-right">
+                            {email && <p><strong className="secondary font-medium">Email:</strong> {email}</p>}
+                            {phone && <p><strong className="secondary font-medium">Phone:</strong> {phone}</p>}
+                        </div>
+                    </section>
+
+                    {/* TODO: think about rendering schedules */}
+                    {/* Especially since ParentSquare is no longer giving them out, is this worth it? */}
+                    {/* Could also wait for the data structure restructuring + staff regen to do so */}
+                    {periods && (<>
+                        <hr/>
+                        <p>
+                            <strong>Schedule:
+                                <button onClick={() => setSemester('1')}>1</button>
+                                <button onClick={() => setSemester('2')}>2</button>
+                            </strong>
+                        </p>
+                        {renderSchedule(periods)}
+                    </>)}
+
+                    <section className="flex gap-3 flex-wrap justify-end mt-6">
+                        {pinned ? (
+                            <button className="secondary border border-secondary dark:border-secondary-dark hover:bg-secondary/50 dark:hover:bg-secondary-dark/50 rounded px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50 dark:focus-visible:ring-secondary-dark/50" onClick={removeFromPinned}>
+                                Remove from my list
+                            </button>
+                        ) : (
+                            <button className="secondary border border-secondary dark:border-secondary-dark hover:bg-secondary/50 dark:hover:bg-secondary-dark/50 rounded px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50 dark:focus-visible:ring-secondary-dark/50" onClick={addToPinned}>
+                                Add to my list
+                            </button>
+                        )}
+                        <button className="text-theme dark:text-theme-dark border border-theme dark:border-theme-dark hover:bg-theme/50 dark:hover:bg-theme-dark/50 px-3 py-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-theme/50 dark:focus-visible:ring-theme-dark/50" onClick={() => setModal(false)}>
+                            Close
+                        </button>
+                    </section>
+                </div>
+            </CenteredModal>
         </li>
     );
 }

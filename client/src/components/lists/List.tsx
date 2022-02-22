@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, ReactNode} from 'react';
 import NoResults from './NoResults';
 
 
@@ -47,17 +47,25 @@ export default function List<T>(props: ListProps<T>) {
 
     return content.length || pinnedContent.length ? (<>
         {pinnedContent.length > 0 && (
-            <ul className="material-list">
+            <MaterialList>
                 {pinnedContent}
-            </ul>
+            </MaterialList>
         )}
         {content.length > 0 && pinnedContent.length > 0 && <hr/>}
         {content.length > 0 && (
-            <ul className="material-list">
+            <MaterialList>
                 {content}
-            </ul>
+            </MaterialList>
         )}
     </>) : (
         <NoResults/>
     );
+}
+
+function MaterialList(props: {children: ReactNode}) {
+    return (
+        <ul className="material-list grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] list-none">
+            {props.children}
+        </ul>
+    )
 }
