@@ -40,11 +40,14 @@ export default function StaffComponent(props: Staff & {id: string}) {
     const pinned = userData.staff.includes(id);
 
     // Functions to update pins
-    const addToPinned = async () =>
-        updateUserData('staff', [...userData.staff, id], auth, firestore);
-
-    const removeFromPinned = async () =>
-        updateUserData('staff', userData.staff.filter(staffID => staffID !== id), auth, firestore);
+    const addToPinned = async () => {
+        setModal(false);
+        await updateUserData('staff', [...userData.staff, id], auth, firestore);
+    }
+    const removeFromPinned = async () => {
+        setModal(false);
+        await updateUserData('staff', userData.staff.filter(staffID => staffID !== id), auth, firestore);
+    }
 
     const [semester, setSemester] = useState<'1' | '2'>('1'); // Consider dynamically setting semester later
 
@@ -125,7 +128,8 @@ export default function StaffComponent(props: Staff & {id: string}) {
                     {periods && (<>
                         <hr/>
                         <p>
-                            <strong>Schedule:
+                            <strong>
+                                Schedule:
                                 <button onClick={() => setSemester('1')}>1</button>
                                 <button onClick={() => setSemester('2')}>2</button>
                             </strong>

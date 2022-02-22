@@ -32,11 +32,14 @@ export default function ClubComponent(props: Club & {id: string}) {
     const pinned = userData.clubs.includes(id);
 
     // Functions to update pins
-    const addToPinned = async () =>
+    const addToPinned = async () => {
+        setModal(false);
         await updateUserData('clubs', [...userData.clubs, id], auth, firestore);
-
-    const removeFromPinned = async () =>
+    }
+    const removeFromPinned = async () => {
+        setModal(false);
         await updateUserData('clubs', userData.clubs.filter(clubID => clubID !== id), auth, firestore);
+    }
 
     // Prefill the form link from club and user name, if it exists
     const prefilledLink = `https://docs.google.com/forms/d/e/1FAIpQLSfFaDat-272V6ZGE1iocJHWoNi8vxDxMETeWWn4rbGOqPXOFQ/viewform?entry.272185165=${name}`
