@@ -26,10 +26,10 @@ export default function Event(props: GCalEvent) {
     }
 
     return (
-        <li className="event" key={summary}>
+        <li className="mb-4" key={summary}>
             <strong>{summary}</strong>
-            <p className="secondary">{formatDateTime(start, end)}</p>
-            {location && <p className="secondary">@ {location}</p>}
+            <p className="secondary mb-2">{formatDateTime(start, end)}</p>
+            {location && <p className="secondary mb-2">@ {location}</p>}
             <p className="secondary">{description}</p>
         </li>
     );

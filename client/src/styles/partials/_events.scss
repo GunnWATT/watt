@@ -7,17 +7,12 @@
   }
   padding: 15px;
   margin: 0 10px;
-  list-style: none;
-  word-break: break-word;
 
   // Style for large screens
   .two-col & {
-    height: calc(100vh - 48px); // 100vh - 48px doesn't work but calc(100vh - 48px) does
+    height: calc(100vh - 48px);
     overflow: auto;
     @include content-box();
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing:    border-box;
-    box-sizing:         border-box;
     position: sticky;
     top: 24px;
 
@@ -26,19 +21,6 @@
       position: sticky;
       top: 0;
       background-color: inherit;
-    }
-  }
-
-  // The div content pane for the events sidebar
-  &-content {
-    //height: 100%;
-    //overflow: scroll;
-
-    .event {
-      p {
-        margin-bottom: 0.5rem;
-      }
-      margin-bottom: 1rem;
     }
   }
 }

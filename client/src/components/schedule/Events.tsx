@@ -1,8 +1,12 @@
 import {useEffect, useState} from 'react';
 import moment, {Moment} from 'moment-timezone';
+
+// Components
 import Event, {GCalEvent} from './Event';
+import CenteredMessage from '../layout/CenteredMessage';
+
+// Icons
 import {RefreshCw} from 'react-feather';
-import CenteredMessage from "../layout/CenteredMessage";
 
 
 type EventsProps = {events: GCalEvent[] | null, eventsError: Error | null, fetchEvents: () => void, viewDate: Moment};
@@ -29,7 +33,7 @@ export default function Events(props: EventsProps) {
 
 
     return (
-        <div className="events pt-0">
+        <div className="events list-none break-words pt-0">
             <div className="events-heading pt-3">
                 <h2 className="text-3xl font-medium">Events</h2>
                 <hr/>
@@ -40,9 +44,9 @@ export default function Events(props: EventsProps) {
                     <RefreshCw onClick={fetchEvents} className="cursor-pointer" />
                 </CenteredMessage>
             )}
-            {!eventsError && !events && <div className="WIP"><span>Loading events...</span></div>}
+            {!eventsError && !events && <CenteredMessage>Loading events...</CenteredMessage>}
             {!eventsError && events && (content ? (
-                <div className="events-content">{content}</div>
+                <ul>{content}</ul>
             ) : (
                 <CenteredMessage>Nothing to show for today.</CenteredMessage>
             ))}

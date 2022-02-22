@@ -21,8 +21,6 @@ import UserDataContext from '../contexts/UserDataContext';
 
 type HomeProps = {events: GCalEvent[] | null, eventsError: Error | null, fetchEvents: () => void};
 export default function Home(props: HomeProps) {
-    const { events, eventsError, fetchEvents } = props;
-
     // Date variables
     // Here, date is the current time of the user (passed in from outer scope), used for things that should not be
     // normalized to PST (like the clock), while viewDate is the current day but converted to PST for things that should be normalized;
@@ -68,11 +66,11 @@ export default function Home(props: HomeProps) {
             <RedBackground />
 
             {/* Schedule */}
-            <main className="schedule">
+            <main className="schedule relative">
                 {relDays !== 0 && <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>}
 
                 {userData.options?.clock && <Clock viewDate={viewDate} />}
-                <h2 className="schedule-datetime text-3xl text-center mb-3">{date.format(format)}</h2>
+                <h2 className="text-3xl text-center mb-3">{date.format(format)}</h2>
                 <HomeDateSelector
                     viewDate={viewDate}
                     setViewDate={setViewDate}
@@ -86,11 +84,12 @@ export default function Home(props: HomeProps) {
                 </div>
                 {/* </CSSTransition> */}
 
-                <div id="weekwrapper"></div>
+                {/* TODO: implement weekwrapper */}
+                {/* <div id="weekwrapper"></div> */}
             </main>
 
             {/* Events */}
-            <Events events={events} viewDate={viewDate} eventsError={eventsError} fetchEvents={fetchEvents} />
+            <Events {...props} viewDate={viewDate} />
         </div>
     );
 }
