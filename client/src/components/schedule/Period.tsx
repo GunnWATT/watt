@@ -1,4 +1,3 @@
-import {Progress} from 'reactstrap';
 import {Moment} from 'moment';
 import 'twix';
 import {bgColor, barColor, hexToRgb} from '../../util/progressBarColor';
@@ -9,7 +8,7 @@ type PeriodProps = {
     now: Moment, start: Moment, end: Moment,
     name: string, color: string, format: string, zoom?: string
 };
-const Period = (props: PeriodProps) => {
+export default function Period(props: PeriodProps) {
     const {now, start, end, name, color, format, zoom} = props;
     const t = start.twix(end); // Twix duration representing the period
 
@@ -27,14 +26,14 @@ const Period = (props: PeriodProps) => {
             <h3 className="secondary">{t.simpleFormat(format)}</h3>
             <p className="secondary">{parseStartEnd()} — {t.countInner('minutes')} minutes long</p>
             {t.isCurrent() && (
-                <Progress
-                    value={(now.valueOf() - start.valueOf()) / (end.valueOf() - start.valueOf()) * 100}
-                    style={{backgroundColor: bgColor(color)}}
-                    barStyle={{backgroundColor: barColor(color)}}
-                />
+                // TODO: should this be abstracted with PeriodIndicator? They share some logic but differ in other ways
+                <div className="mt-2 flex overflow-hidden h-3 rounded" style={{backgroundColor: bgColor(color)}}>
+                    <div
+                        className="transition-all duration-700"
+                        style={{backgroundColor: barColor(color), width: `${(now.valueOf() - start.valueOf()) / (end.valueOf() - start.valueOf()) * 100}%`}}
+                    />
+                </div>
             )}
         </div>
     );
 }
-
-export default Period;
