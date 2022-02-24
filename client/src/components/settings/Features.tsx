@@ -29,14 +29,14 @@ export default function Features() {
 
             <section className="flex flex-col gap-4">
                 <RadioToggle checked={showPeriod0} setChecked={changePeriod0} label="Show Period 0">
-                    <p className="secondary">Displays <code>Period 0</code> on the schedule.</p>
+                    <p className="secondary font-light">Displays <code>Period 0</code> on the schedule.</p>
                 </RadioToggle>
                 <RadioToggle checked={showPeriod8} setChecked={changePeriod8} label="Show Period 8">
-                    <p className="secondary">Displays <code>Period 8</code> on the schedule.</p>
+                    <p className="secondary font-light">Displays <code>Period 8</code> on the schedule.</p>
                 </RadioToggle>
                 {/* TODO: maybe clock would benefit from a radio group with images better than a switch */}
                 <RadioToggle checked={showClock} setChecked={changeClock} label="Show Clock">
-                    <p className="secondary">Displays the clock on the home page.</p>
+                    <p className="secondary font-light">Displays the clock on the home page.</p>
                 </RadioToggle>
             </section>
         </>

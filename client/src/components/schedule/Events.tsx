@@ -33,8 +33,8 @@ export default function Events(props: EventsProps) {
 
 
     return (
-        <div className="events list-none break-words pt-0">
-            <div className="events-heading pt-3">
+        <div className="events list-none break-words">
+            <div className="events-heading">
                 <h2 className="text-3xl font-medium">Events</h2>
                 <hr/>
             </div>
@@ -46,7 +46,7 @@ export default function Events(props: EventsProps) {
             )}
             {!eventsError && !events && <CenteredMessage>Loading events...</CenteredMessage>}
             {!eventsError && events && (content ? (
-                <ul>{content}</ul>
+                <ul className="flex flex-col gap-4 overflow-scroll">{content}</ul>
             ) : (
                 <CenteredMessage>Nothing to show for today.</CenteredMessage>
             ))}

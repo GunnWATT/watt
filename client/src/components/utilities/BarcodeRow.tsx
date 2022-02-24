@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import {Eye, X} from 'react-feather';
 
 
+// TODO: instead of taking `readOnly` and `className`, directly take a boolean "you" specifically for the you barcode
+// so that the abstraction moves down to this layer. I don't foresee us having to create other readOnly or custom behavior
+// barcodes in the future.
 type BarcodeRowProps = {
     name: string, code: string, readOnly?: boolean, className?: string,
     removeBarcode?: () => void,
@@ -60,17 +63,17 @@ export default function BarcodeRow(props: BarcodeRowProps) {
 
     return (
         <>
-            <div className="barcode-row">
-                <div className="canvas-wrapper">
+            <div className="barcode-row flex items-center">
+                <div className="canvas-wrapper flex-auto">
                     <input
-                        className="barcode-label"
+                        className="w-full text-center"
                         value={name}
                         readOnly={readOnly}
                         onChange={e => updateBarcodeName && updateBarcodeName(e.target.value)}
                         onBlur={() => updateBarcodes && updateBarcodes()}
                     />
                     <input
-                        className={`barcode-input ${props.className || ''}`}
+                        className={`barcode-input relative bg-white/75 text-[2.5rem] text-black font-mono w-full text-center z-10 ${props.className || ''}`}
                         value={code}
                         readOnly={readOnly}
                         onChange={e => {
@@ -88,15 +91,16 @@ export default function BarcodeRow(props: BarcodeRowProps) {
                         }}
                         onBlur={() => updateBarcodes && updateBarcodes()}
                     />
-                    <canvas ref={canvasRef} style={{imageRendering: 'pixelated'}} />
+                    <canvas ref={canvasRef} className="absolute bottom-0 left-0 w-full bg-white" style={{imageRendering: 'pixelated'}} />
                 </div>
-                <div className="buttons-wrapper">
-                    {!readOnly && <X className="clickable" onClick={() => removeBarcode && removeBarcode()}/>}
-                    <Eye className="clickable" onClick={() => setOverlay(true)}/>
+                <div className="flex flex-col gap-4 p-4">
+                    {!readOnly && <X className="cursor-pointer" onClick={() => removeBarcode && removeBarcode()}/>}
+                    <Eye className="cursor-pointer" onClick={() => setOverlay(true)}/>
                 </div>
             </div>
 
             {/* Overlay using PORTALS */}
+            {/* TODO: use fancy headless-ui modals for this */}
             {ReactDOM.createPortal((
                 <div className="barcode-overlay" hidden={!barcodeOverlay} onClick={() => setOverlay(false)}>
                     <div className="barcode-overlay-warning">Click/tap anywhere to close.</div>

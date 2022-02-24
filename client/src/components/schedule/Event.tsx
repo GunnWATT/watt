@@ -1,6 +1,8 @@
 import {useContext} from 'react';
+import {Disclosure} from '@headlessui/react';
 import moment from 'moment';
 import UserDataContext from '../../contexts/UserDataContext';
+import {ChevronUp, ChevronDown} from 'react-feather';
 
 
 type EventStartEndTime = {date?: string, dateTime?: string};
@@ -26,11 +28,18 @@ export default function Event(props: GCalEvent) {
     }
 
     return (
-        <li className="mb-4" key={summary}>
-            <strong>{summary}</strong>
-            <p className="secondary mb-2">{formatDateTime(start, end)}</p>
-            {location && <p className="secondary mb-2">@ {location}</p>}
-            <p className="secondary">{description}</p>
-        </li>
+        <Disclosure as={'li'}>
+            {({open}) => (<>
+                <Disclosure.Button className="flex items-center justify-between w-full text-left px-4 py-2 rounded bg-[color:var(--content-secondary)] text-sm bg-opacity-50" key={summary}>
+                    <div>
+                        <strong>{summary}</strong>
+                        <p className="secondary">{formatDateTime(start, end)}</p>
+                        {location && <p className="secondary">@ {location}</p>}
+                    </div>
+                    {open ? <ChevronUp/> : <ChevronDown/>}
+                </Disclosure.Button>
+                <Disclosure.Panel className="secondary text-sm mt-2">{description}</Disclosure.Panel>
+            </>)}
+        </Disclosure>
     );
 }

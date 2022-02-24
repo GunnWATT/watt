@@ -2,7 +2,7 @@
 
 // The events portion of the home page
 .events {
-  &::-webkit-scrollbar {
+  ul::-webkit-scrollbar {
     display: none;
   }
   padding: 15px;
