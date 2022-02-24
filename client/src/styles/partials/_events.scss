@@ -5,22 +5,13 @@
   ul::-webkit-scrollbar {
     display: none;
   }
-  padding: 15px;
   margin: 0 10px;
 
   // Style for large screens
   .two-col & {
     height: calc(100vh - 48px);
-    overflow: auto;
     @include content-box();
     position: sticky;
     top: 24px;
-
-    // The heading for the events sidebar
-    &-heading {
-      position: sticky;
-      top: 0;
-      background-color: inherit;
-    }
   }
 }

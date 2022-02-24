@@ -30,13 +30,15 @@ export default function Event(props: GCalEvent) {
     return (
         <Disclosure as={'li'}>
             {({open}) => (<>
-                <Disclosure.Button className="flex items-center justify-between w-full text-left px-4 py-2 rounded bg-[color:var(--content-secondary)] text-sm bg-opacity-50" key={summary}>
+                <Disclosure.Button className="flex items-center justify-between gap-2 w-full text-left px-4 py-2 rounded bg-[color:var(--content-secondary)] text-sm bg-opacity-50" key={summary}>
                     <div>
                         <strong>{summary}</strong>
                         <p className="secondary">{formatDateTime(start, end)}</p>
                         {location && <p className="secondary">@ {location}</p>}
                     </div>
-                    {open ? <ChevronUp/> : <ChevronDown/>}
+                    <div className="flex-none">
+                        {open ? <ChevronUp/> : <ChevronDown/>}
+                    </div>
                 </Disclosure.Button>
                 <Disclosure.Panel className="secondary text-sm mt-2">{description}</Disclosure.Panel>
             </>)}

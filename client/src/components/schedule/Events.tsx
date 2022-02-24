@@ -33,7 +33,7 @@ export default function Events(props: EventsProps) {
 
 
     return (
-        <div className="events list-none break-words">
+        <div className="events list-none break-words p-3">
             <div className="events-heading">
                 <h2 className="text-3xl font-medium">Events</h2>
                 <hr/>
