@@ -1,10 +1,12 @@
 import { useContext, CSSProperties } from 'react';
+import {Popover, Transition} from '@headlessui/react';
 import moment, {Moment} from 'moment-timezone';
-import Picker from '../layout/Picker';
-import CurrentTimeContext from '../../contexts/CurrentTimeContext';
-
 import {ChevronDown, ChevronLeft, ChevronRight, ChevronUp} from 'react-feather'
 
+// Contexts
+import CurrentTimeContext from '../../contexts/CurrentTimeContext';
+
+// Data
 import { SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE } from './Periods';
 import alternates from '../../data/alternates';
 
@@ -26,14 +28,26 @@ export default function DateSelector(props: DateSelectorProps) {
                 <ChevronLeft/>
             </button>
 
-            <Picker className="date-selector-box flex justify-center relative shadow-lg rounded">
-                {(open, setOpen) => <>
-                    <div className="w-full flex items-center justify-center cursor-pointer" onClick={() => setOpen(!open)}>
-                        {viewDate.format("MMMM D, yyyy")}
-                    </div>
-                    <Calendar currTime={viewDate} setTime={setViewDate} start={start} end={end} hidden={!open} />
-                </>}
-            </Picker>
+            <Popover className="date-selector-box flex flex-col relative shadow-lg rounded">
+                <Popover.Button className="w-full h-full flex items-center justify-center cursor-pointer">
+                    {viewDate.format("MMMM D, yyyy")}
+                </Popover.Button>
+                <Transition
+                    enter="transition duration-150 ease-out z-20"
+                    enterFrom="transform scale-95 opacity-0"
+                    enterTo="transform scale-100 opacity-100"
+                    leave="transition duration-100 ease-out z-20"
+                    leaveFrom="transform scale-100 opacity-100"
+                    leaveTo="transform scale-95 opacity-0"
+                >
+                    <Popover.Panel className="flex justify-center">
+                        {/* TODO: Ideally the calendar could just be the popover panel and remove this hacky flex */}
+                        {/* centering behavior; perhaps looking into the other uses of `Calendar` and changing */}
+                        {/* them could prove beneficial. */}
+                        <Calendar currTime={viewDate} setTime={setViewDate} start={start} end={end} />
+                    </Popover.Panel>
+                </Transition>
+            </Popover>
 
             <button className="icon" onClick={incDay}>
                 <ChevronRight/>
@@ -62,17 +76,14 @@ export function Calendar(props: CalendarProps) {
     // generate schedule
     const weekdays = ['U', 'M', 'T', 'W', 'θ', 'F', 'S'];
 
-    let months = [];
-
     const START = start ?? SCHOOL_START;
     const END = end ?? SCHOOL_END;
 
-    const startmonth = START.month() + START.year() * 12;
-    const endmonth = END.month() + END.year() * 12;
+    const startMonth = START.month() + START.year() * 12;
+    const endMonth = END.month() + END.year() * 12;
 
-    for (let m = startmonth; m <= endmonth; m++) {
-        months.push(m);
-    }
+    // Equivalent to `for (let m = startMonth; m <= endMonth; m++) months.push(m);`
+    const months = Array(endMonth - startMonth + 1).fill(0).map((_, i) => startMonth + i);
 
     // Map months to rendered HTML
     const monthElements = months.map(m => {
@@ -175,7 +186,7 @@ export function Calendar(props: CalendarProps) {
     if (hidden) return null;
 
     return (
-        <div className={"mini-calendar" + (picker !== false ? ' picker' : '')} style={style}>
+        <div className={"mini-calendar z-20 rounded flex flex-col shadow-2xl" + (picker !== false ? ' picker' : '')} style={style}>
             {time && (
                 <div className="time">
                     <div>
