@@ -4,45 +4,7 @@
 
 input {
   background-color: var(--content-primary);
-  color: inherit;
-  border: none;
   outline: none;
-
-  // UGWA material radio
-  &[type="radio"] {
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    @include circle(16px);
-    border: 2px solid var(--secondary);
-
-    &::after, &::before {
-      content: '';
-      display: block;
-      @include circle(8px);
-      position: absolute;
-      transform: scale(0);
-      background: var(--active);
-      top: 2px;
-      left: 2px;
-      transition: all .2s;
-      pointer-events: none;
-    }
-
-    &:checked {
-      border-color: var(--active);
-
-      &::after {
-        transform: scale(1);
-      }
-    }
-  }
-}
-
-span.badge.beta {
-  background-color: var(--active);
-  border-radius: 9999px;
-  margin-left: 0.5rem;
 }
 
 // Utility classes

@@ -2,38 +2,7 @@
 
 
 .header-background {
-  padding: 24px;
   z-index: 2;
-
-  // Lower padding on small screens
-  .vertical & {
-    padding: 15px;
-  }
-
-  header input {
-    //margin-left: 1rem;
-    border: 2px solid rgba(0, 0, 0, 0.1);
-  }
-
-  // Nav div which contains the nav tabs
-  .page-nav {
-    margin-top: 1.5rem;
-
-    // TODO: replicate these in the homemade <Tab> components
-    ul {
-      .nav-item {
-        box-shadow: 0 0 3px -3px rgba(0, 0, 0, 0.1);
-
-        // First and last get left and right shadows respectively
-        &:first-child {
-          box-shadow: -5px 0 5px -3px rgba(0, 0, 0, 0.1);
-        }
-        &:last-child {
-          box-shadow: 5px 0 5px -3px rgba(0, 0, 0, 0.1);
-        }
-      }
-    }
-  }
 
   // White box that displays the tab content
   .page {

@@ -76,6 +76,7 @@ export default function Clubs() {
             other={
                 <input
                     type="search"
+                    className="h-max border-2 border-tertiary"
                     placeholder="Search clubs"
                     onChange={e => setQuery(e.target.value)}
                 />

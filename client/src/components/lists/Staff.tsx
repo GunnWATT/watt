@@ -59,10 +59,11 @@ export default function Staff() {
 
     return (
         <>
-            <span className="heading">
+            <span className="flex gap-4 items-center">
                 <h1>Staff</h1>
                 <input
                     type="search"
+                    className="h-max border-2 border-tertiary"
                     placeholder="Search Staff"
                     onChange={e => setQuery(e.target.value)}
                 />
