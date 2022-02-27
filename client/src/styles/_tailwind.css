@@ -27,3 +27,9 @@
         background-color: var(--bg-secondary);
     }
 }
+
+@layer utilities {
+    .scrollbar-none::-webkit-scrollbar {
+        display: none;
+    }
+}

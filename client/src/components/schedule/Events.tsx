@@ -46,7 +46,7 @@ export default function Events(props: EventsProps) {
             )}
             {!eventsError && !events && <CenteredMessage>Loading events...</CenteredMessage>}
             {!eventsError && events && (content ? (
-                <ul className="flex flex-col gap-4 overflow-scroll">{content}</ul>
+                <ul className="flex flex-col gap-4 overflow-scroll scrollbar-none">{content}</ul>
             ) : (
                 <CenteredMessage>Nothing to show for today.</CenteredMessage>
             ))}

@@ -52,7 +52,7 @@ export default function ClubComponent(props: Club & {id: string}) {
             <p className="secondary">{day}</p>
 
             <CenteredModal isOpen={modal} setIsOpen={setModal}>
-                <div className="relative bg-[color:var(--content-primary)] rounded-md max-w-md p-6 shadow-xl">
+                <div className="relative flex flex-col bg-[color:var(--content-primary)] rounded-md max-w-md max-h-[90%] mx-3 p-6 shadow-xl">
                     <Dialog.Title className="text-xl font-semibold mb-3 pr-6 flex gap-2 items-center">
                         {name}{props.new && <Badge>New</Badge>}
                     </Dialog.Title>
@@ -70,7 +70,7 @@ export default function ClubComponent(props: Club & {id: string}) {
                     </section>
                     <hr />
 
-                    <section className="mb-6">
+                    <section className="mb-4 overflow-scroll scroll-smooth scrollbar-none">
                         <Dialog.Description>{desc}</Dialog.Description>
                         {video && <p><strong>Club Video:</strong> <a href={video} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{video}</a></p>}
                         {signup && <p><strong>Signup Form:</strong> <a href={signup} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{signup}</a></p>}
