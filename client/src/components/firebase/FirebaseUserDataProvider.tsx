@@ -20,7 +20,6 @@ export default function FirebaseUserDataProvider(props: {children: ReactNode}) {
 
     // Parse locally stored data from localStorage
     useEffect(() => {
-        const localStorageRaw = localStorage.getItem('data');
         if (!localStorageRaw)
             return localStorage.setItem('data', JSON.stringify(defaultUserData));
 
@@ -49,8 +48,8 @@ export default function FirebaseUserDataProvider(props: {children: ReactNode}) {
 
         bulkUpdateFirebaseUserData(changes, auth, firestore);
         localStorage.setItem('data', JSON.stringify(merged));
-        setData(merged as UserData);
-    }, [status, firebaseDoc])
+        setData(merged as UserData); // TODO: will this cause a doubled `setData` call from localStorage parsing?
+    }, [status, firebaseDoc]);
 
     return (
         <UserDataProvider value={data}>

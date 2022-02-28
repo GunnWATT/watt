@@ -10,7 +10,7 @@ export default function HeaderPage(props: HeaderPageProps) {
         <>
             <RedBackground />
 
-            <div className="header-background py-4 md:py-6 container">
+            <div className="py-4 md:py-6 container">
                 <header className="px-5 py-3 flex items-center gap-4 text-white bg-theme dark:bg-theme-dark rounded-lg shadow-lg">
                     <h1 className="mb-0">{heading}</h1>
                     {other}
@@ -18,7 +18,7 @@ export default function HeaderPage(props: HeaderPageProps) {
                 <nav className="mt-6 flex flex-wrap">
                     {nav}
                 </nav>
-                <main className="page">
+                <main className="flex flex-col p-5 bg-[color:var(--content-primary)] rounded-b-lg shadow-lg">
                     {children}
                 </main>
             </div>

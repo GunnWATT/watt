@@ -1,7 +1,6 @@
 @import '../mixins/content-box';
 
 .testing {
-  @extend .header-background;
   padding: 24px;
 
   > div {
