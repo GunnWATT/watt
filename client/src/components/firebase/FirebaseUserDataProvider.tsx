@@ -1,5 +1,5 @@
-import {useEffect, ReactNode, useState} from 'react';
-import {deepdifferences, deepmerge} from './LocalStorageUserDataProvider';
+import {useEffect, ReactNode} from 'react';
+import {useLocalStorageData, deepmerge, deepdifferences} from '../../hooks/useLocalStorageData';
 
 // Firestore
 import {useAuth, useFirestore, useFirestoreDoc} from 'reactfire';
@@ -7,34 +7,18 @@ import {doc, setDoc} from 'firebase/firestore';
 import {bulkUpdateFirebaseUserData, updateFirebaseUserData} from '../../util/firestore';
 
 // Context
-import {UserData, UserDataProvider, defaultUserData} from '../../contexts/UserDataContext';
+import {UserDataProvider, defaultUserData} from '../../contexts/UserDataContext';
 
 
 export default function FirebaseUserDataProvider(props: {children: ReactNode}) {
+    const data = useLocalStorageData();
+
     const auth = useAuth();
     const firestore = useFirestore();
     const { status, data: firebaseDoc } = useFirestoreDoc(doc(firestore, 'users', auth.currentUser!.uid));
 
-    const [data, setData] = useState(defaultUserData);
-    const localStorageRaw = localStorage.getItem('data');
-
-    // Parse locally stored data from localStorage
-    useEffect(() => {
-        if (!localStorageRaw)
-            return localStorage.setItem('data', JSON.stringify(defaultUserData));
-
-        try {
-            const localStorageData = JSON.parse(localStorageRaw);
-            const merged = deepmerge(defaultUserData, localStorageData);
-            setData(merged as UserData)
-        } catch (err) {
-            // If localStorage data is unparseable, set it back to defaults
-            localStorage.setItem('data', JSON.stringify(defaultUserData));
-        }
-    }, [localStorageRaw]);
-
-    // Update firebase and local data to be up to date with defaultUserData using deepmerge
-    // TODO: support merges
+    // Update localStorage to be up to date with firestore changes
+    // TODO: currently, this always replaces localStorage with firebase data; we may want to support merges
     useEffect(() => {
         if (status !== 'success') return;
 
@@ -48,7 +32,6 @@ export default function FirebaseUserDataProvider(props: {children: ReactNode}) {
 
         bulkUpdateFirebaseUserData(changes, auth, firestore);
         localStorage.setItem('data', JSON.stringify(merged));
-        setData(merged as UserData); // TODO: will this cause a doubled `setData` call from localStorage parsing?
     }, [status, firebaseDoc]);
 
     return (
