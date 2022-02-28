@@ -1,27 +1,23 @@
-import {useEffect, useRef, useState} from 'react';
-import ReactDOM from 'react-dom';
+import {useState} from 'react';
+import {Dialog} from '@headlessui/react';
 import {Eye, X} from 'react-feather';
 
 
-// TODO: instead of taking `readOnly` and `className`, directly take a boolean "you" specifically for the you barcode
-// so that the abstraction moves down to this layer. I don't foresee us having to create other readOnly or custom behavior
-// barcodes in the future.
 type BarcodeRowProps = {
-    name: string, code: string, readOnly?: boolean, className?: string,
+    name: string, code: string, you?: boolean,
     removeBarcode?: () => void,
     updateBarcodeName?: (v: string) => void,
     updateBarcodeValue?: (v: string) => void,
     updateBarcodes?: () => void
 };
 export default function BarcodeRow(props: BarcodeRowProps) {
-    const {name, code, readOnly, removeBarcode, updateBarcodeName, updateBarcodeValue, updateBarcodes} = props;
-
+    const {name, code, you, removeBarcode, updateBarcodeName, updateBarcodeValue, updateBarcodes} = props;
     const [barcodeOverlay, setOverlay] = useState(false);
 
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const overlayCanvasRef = useRef<HTMLCanvasElement>(null);
-
-    const drawCodeOnCanvas = (canvas: HTMLCanvasElement) => {
+    // Draws the barcode on a canvas element.
+    // Call this using a ref callback to initialize `<canvas>` elements with the barcode.
+    const drawCodeOnCanvas = (canvas: HTMLCanvasElement | null) => {
+        if (!canvas) return;
         const c = canvas.getContext('2d')!;
 
         const chars = ['*', ...code.toUpperCase().split('').filter(char => code39Values.hasOwnProperty(char)), '*'];
@@ -51,36 +47,25 @@ export default function BarcodeRow(props: BarcodeRowProps) {
         }
     }
 
-    useEffect( () => {
-        const canvas = canvasRef.current;
-        if (canvas) drawCodeOnCanvas(canvas);
-    }, [code, canvasRef])
-
-    useEffect(() => {
-        const canvas = overlayCanvasRef.current;
-        if (canvas) drawCodeOnCanvas(canvas);
-    }, [code, overlayCanvasRef]);
-
     return (
         <>
-            <div className="barcode-row flex items-center">
-                <div className="canvas-wrapper flex-auto">
+            <div className="mb-4 flex items-center">
+                <div className="relative flex-auto">
                     <input
-                        className="w-full text-center"
+                        className={'w-full text-center' + (you ? ' cursor-default' : '')}
                         value={name}
-                        readOnly={readOnly}
+                        readOnly={you}
                         onChange={e => updateBarcodeName && updateBarcodeName(e.target.value)}
                         onBlur={() => updateBarcodes && updateBarcodes()}
                     />
                     <input
-                        className={`barcode-input relative bg-white/75 text-[2.5rem] text-black font-mono w-full text-center z-10 ${props.className || ''}`}
+                        className={'relative p-1 w-full h-[102px] bg-white/75 text-[2.5rem] text-black font-mono text-center z-10' + (you ? ' cursor-default' : '')}
                         value={code}
-                        readOnly={readOnly}
+                        readOnly={you}
                         onChange={e => {
                             // Filter illegal characters out from the barcode.
-                            // Note: Lowercase letters are capitalised when
-                            // rendering the barcode (so the cursor position
-                            // doesn't reset when typing lowercase letters).
+                            // Note that Lowercase letters are capitalised when rendering the barcode so the cursor
+                            // position doesn't reset when typing lowercase letters.
                             updateBarcodeValue && updateBarcodeValue(
                                 e.target.value
                                     .split('')
@@ -91,25 +76,40 @@ export default function BarcodeRow(props: BarcodeRowProps) {
                         }}
                         onBlur={() => updateBarcodes && updateBarcodes()}
                     />
-                    <canvas ref={canvasRef} className="absolute bottom-0 left-0 w-full bg-white" style={{imageRendering: 'pixelated'}} />
+                    <canvas
+                        ref={drawCodeOnCanvas}
+                        className="absolute bottom-0 left-0 p-5 w-full h-[102px] bg-white"
+                        style={{imageRendering: 'pixelated'}}
+                    />
                 </div>
                 <div className="flex flex-col gap-4 p-4">
-                    {!readOnly && <X className="cursor-pointer" onClick={() => removeBarcode && removeBarcode()}/>}
+                    {!you && <X className="cursor-pointer" onClick={() => removeBarcode && removeBarcode()}/>}
                     <Eye className="cursor-pointer" onClick={() => setOverlay(true)}/>
                 </div>
             </div>
 
-            {/* Overlay using PORTALS */}
-            {/* TODO: use fancy headless-ui modals for this */}
-            {ReactDOM.createPortal((
-                <div className="barcode-overlay" hidden={!barcodeOverlay} onClick={() => setOverlay(false)}>
-                    <div className="barcode-overlay-warning">Click/tap anywhere to close.</div>
+            {/* TODO: is there a better way of making sure `flex` doesn't override `[hidden]`? */}
+            {/* TODO: consider adding transitions */}
+            <Dialog
+                static
+                open={barcodeOverlay}
+                hidden={!barcodeOverlay}
+                onClose={() => setOverlay(false)}
+                className={barcodeOverlay ? 'fixed z-10 inset-0 flex items-center justify-center' : ''}
+            >
+                <Dialog.Overlay className="fixed inset-0 bg-black/80" />
 
-                    <div className="barcode-overlay-bar">
-                        <canvas ref={overlayCanvasRef} style={{imageRendering: 'pixelated'}} />
-                    </div>
+                <div className="relative w-full h-[200px] p-6 flex items-center justify-center bg-white">
+                    <Dialog.Description className="secondary absolute -bottom-8">
+                        Click/tap anywhere to close.
+                    </Dialog.Description>
+                    <canvas
+                        ref={drawCodeOnCanvas}
+                        className="h-full w-80"
+                        style={{imageRendering: 'pixelated'}}
+                    />
                 </div>
-            ), document.body)}
+            </Dialog>
         </>
     )
 }

@@ -6,7 +6,7 @@ export default function Calculator() {
     const [finalsWorth, setFinalsWorth] = useState('15.00');
     const [minGrade, setMinGrade] = useState('90.00');
 
-    // Takes in variables and calculates minimum finals score
+    // Returns the message corresponding to the current grade values
     const calculateFinalsGrade = () => {
         if (Number(finalsWorth) === 0) return <p>The final cannot be worth 0%.</p>;
         if (Number(finalsWorth) > 100) return <p>The final cannot be worth more than 100% of your grade.</p>
@@ -33,9 +33,21 @@ export default function Calculator() {
         <>
             <h1>Minimum finals score calculator</h1>
             <hr/>
-            <CalculatorInput label="Current grade:" value={currGrade} setValue={setCurrGrade} />
-            <CalculatorInput label="Portion of grade the final determines:" value={finalsWorth} setValue={setFinalsWorth} />
-            <CalculatorInput label="Minimum acceptable grade:" value={minGrade} setValue={setMinGrade} />
+            <CalculatorInput
+                label="Current grade:"
+                value={currGrade}
+                setValue={setCurrGrade}
+            />
+            <CalculatorInput
+                label="Portion of grade the final determines:"
+                value={finalsWorth}
+                setValue={setFinalsWorth}
+            />
+            <CalculatorInput
+                label="Minimum acceptable grade:"
+                value={minGrade}
+                setValue={setMinGrade}
+            />
             {calculateFinalsGrade()}
         </>
     );

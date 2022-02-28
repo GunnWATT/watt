@@ -20,7 +20,7 @@ export default function Barcode() {
     function addBarcode() {
         const newBarcodes: [string, string][] = [...barcodes, [`Barcode ${barcodes.length + 1}`, DEFAULT_BARCODE]];
         setBarcodes(newBarcodes);
-        updateBarcodes();
+        updateBarcodes(newBarcodes);
     }
     // Remove a barcode at an index
     function removeBarcode(i: number) {
@@ -38,16 +38,15 @@ export default function Barcode() {
         barcodes[i][1] = value;
         setBarcodes([...barcodes]);
     }
-    // Update user data with changed barcodes
-    // Call this function in onBlur instead of onChange to prevent excessive writes
-    const updateBarcodes = () => updateUserData('barcodes', JSON.stringify(barcodes), auth, firestore);
+    // Update user data with changed barcodes, optionally taking in a new barcodes object if the state has not been
+    // updated yet. Call this function in onBlur instead of onChange to prevent excessive writes.
+    const updateBarcodes = (newBarcodes?: [string, string][]) =>
+        updateUserData('barcodes', JSON.stringify(newBarcodes ?? barcodes), auth, firestore);
 
-    // TODO: refresh the barcodes when userData changes
-    // This needs some thought put into it, as refreshing on every userData update will cause overrides
-    // see https://discord.com/channels/795043639214604370/796516703638781992/877008940687302677
-    //useEffect(() => {
-    //    setBarcodes(JSON.parse(userData.barcodes));
-    //}, [userData.barcodes])
+    // Refresh barcodes when userData changes
+    useEffect(() => {
+        setBarcodes(JSON.parse(userData.barcodes));
+    }, [userData.barcodes])
 
     // The barcode of the logged in user or DEFAULT_BARCODE if the user or email is null
     const youCode = auth.currentUser?.email
@@ -56,13 +55,13 @@ export default function Barcode() {
 
 
     return (
-        <div>
+        <>
             <h1>Barcode</h1>
             <hr />
 
-            <BarcodeRow name="You" className="you" code={youCode} readOnly />
+            <BarcodeRow you name="You" code={youCode} />
 
-            {barcodes.map(([name, code], index) =>
+            {barcodes.map(([name, code], index) => (
                 <BarcodeRow name={name} code={code}
                     // Providing a key causes the BarcodeRows to lose focus on state change for some reason
                     //key={`${name}${code}${index}`}
@@ -71,9 +70,9 @@ export default function Barcode() {
                     updateBarcodeValue={updateBarcodeValue.bind(null, index)}
                     updateBarcodes={updateBarcodes}
                 />
-            )}
+            ))}
 
-            <button className="barcode-add-button" onClick={addBarcode}>ADD BARCODE</button>
-        </div>
+            <button className="mt-2 font-semibold" onClick={addBarcode}>ADD BARCODE</button>
+        </>
     );
 }
