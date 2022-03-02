@@ -22,10 +22,10 @@ export default function BottomNav() {
         <footer className="bottom-nav">
             <Container className="nav-container">
                 {/* Nav */}
-                <SidebarItem to="/clubs" icon={<Users/>} />
-                <SidebarItem to="/classes" icon={<CheckSquare/>} />
-                <SidebarItem to="/" icon={<Home/>} />
-                <SidebarItem to="/utilities" icon={<Tool/>} />
+                <SidebarItem to="/clubs" icon={Users} />
+                <SidebarItem to="/classes" icon={CheckSquare} />
+                <SidebarItem to="/" icon={Home} />
+                <SidebarItem to="/utilities" icon={Tool} />
 
                 {/* Dropup */}
                 <div className="item dropup-wrapper">
@@ -34,7 +34,7 @@ export default function BottomNav() {
                     </a>
 
                     <div className="bottom-nav-dropup" hidden={!showDropUp}>
-                        <SidebarItem to="/settings" icon={<Settings />} />
+                        <SidebarItem to="/settings" icon={Settings} />
 
                         {/* Sign In / Out */}
                         {signInCheckResult?.signedIn

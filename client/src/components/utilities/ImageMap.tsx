@@ -59,7 +59,7 @@ export default function ImageMap(props : ImageMapProps) {
     }
 
     return (
-        <div className="map-overlay fixed w-full h-full left-0 touch-none z-20">
+        <div className="bg-background dark:bg-background-dark fixed w-full h-full left-0 touch-none z-20">
             <RedBackground />
             <Button close className="absolute top-8 right-8" onClick={close} />
 
@@ -169,7 +169,7 @@ export default function ImageMap(props : ImageMapProps) {
                     ref={mapRef}
                     draggable={false}
                     alt="Gunn map"
-                    className="map-image m-auto shadow-lg dark:invert dark:shadow-white max-h-[90vh] max-w-[90%]"
+                    className="m-auto shadow-lg dark:invert dark:shadow-white max-h-[90vh] max-w-[90%]"
                     style={{ transform: toCss(transformation) }}
                 />
             </div>
@@ -204,15 +204,12 @@ const dilate = (scaleFactor: number): Matrix => [
 const toCss = ([[a, c, x], [b, d, y]]: Matrix) => `matrix(${a}, ${b}, ${c}, ${d}, ${x}, ${y})`;
 
 function multiply(matrix1: Matrix, ...matrices: Matrix[]): Matrix {
-    if (matrices.length === 0) {
-        return matrix1;
-    }
+    if (matrices.length === 0) return matrix1;
+
     const matrix2 = multiply(matrices[0], ...matrices.slice(1));
-    if (matrix1[0].length !== matrix2.length) {
-        throw new Error(
-            `Left operand's row count (${matrix1[0].length}) is not equal to the right operand's column count (${matrix2.length}).`
-        )
-    }
+    if (matrix1[0].length !== matrix2.length)
+        throw new Error(`Left operand's row count (${matrix1[0].length}) is not equal to the right operand's column count (${matrix2.length}).`)
+
     const product = Array.from(
         { length: matrix1.length },
         () => new Array(matrix2[0].length)

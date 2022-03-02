@@ -28,10 +28,7 @@ export function useLocalStorageData() {
 
 // Merges two objects, prioritizing b over a
 export function deepmerge(a: { [key: string]: any }, b: { [key: string]: any }) {
-    let newObj: { [key: string]: any } = {};
-    for (const key in a) {
-        newObj[key] = a[key];
-    }
+    const newObj: { [key: string]: any } = {...a}
 
     for (const key in b) {
         newObj[key] = b[key];

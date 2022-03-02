@@ -18,11 +18,9 @@ export default function GoogleSignInBtn() {
     }
 
     return (
-        <span className="item">
-            <button onClick={googleSignIn}>
-                <LogIn/>
-                <span>Sign In</span>
-            </button>
-        </span>
+        <button className="item mt-auto flex items-center gap-4 p-2 w-full rounded overflow-hidden hover:bg-background dark:hover:bg-background-dark" onClick={googleSignIn}>
+            <LogIn className="flex-none w-8" />
+            <span>Sign In</span>
+        </button>
     )
 }

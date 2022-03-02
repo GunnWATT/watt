@@ -10,12 +10,6 @@ $link-padding: 0.5rem;
 $icon-width: $sidebar-collapsed-width -
   ($sidebar-padding * 2 + $link-padding * 2);
 
-%text-truncate {
-  overflow: hidden;
-  //text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 .sidebar {
   width: $sidebar-width;
   transition: width $sidebar-collapse-time ease;
@@ -26,74 +20,24 @@ $icon-width: $sidebar-collapsed-width -
     .sidebar-content {
       width: $sidebar-collapsed-width;
     }
-
-    h1 {
-      opacity: 0;
-    }
   }
 }
 
 .sidebar-content {
   padding: $sidebar-padding;
-  background-color: var(--bg-primary);
   //background-color: #23232e;
   //color: #efefef;
   font-size: 18px;
   transition: width $sidebar-collapse-time ease;
   width: $sidebar-width;
 
-  // Header
-  h1 {
-    @extend %text-truncate;
-  }
-
   // <SidebarItem>
   .item {
-    @extend %text-truncate;
-    width: 100%;
-    margin: 12px 0 0 0;
-    color: inherit;
-    display: block;
+    transition: background-color 200ms ease;
 
-    // <Link>
-    a,
-    button {
-      transition: background-color 200ms ease;
-      padding: $link-padding;
-      display: block;
-      color: inherit;
-      width: 100%;
-      text-align: left;
-
-      &:hover {
-        text-decoration: none;
-        background-color: var(--bg-secondary);
-      }
-
-      // Text
-      > span {
-        //transition: width $sidebar-collapse-time ease;
-        margin-left: 1rem;
-      }
-
-      // Icon
-      > svg {
-        display: inline-block;
-        font-size: inherit;
-        height: 1em;
-        overflow: visible;
-        vertical-align: -0.125em;
-        width: $icon-width;
-      }
-
-      // Active
-      &.active {
-        color: var(--active);
-      }
+    // Icon
+    > svg {
+      height: 1em;
     }
-  }
-
-  .bottom {
-    @extend %text-truncate;
   }
 }
