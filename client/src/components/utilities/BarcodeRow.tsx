@@ -52,7 +52,7 @@ export default function BarcodeRow(props: BarcodeRowProps) {
             <div className="mb-4 flex items-center">
                 <div className="relative flex-auto">
                     <input
-                        className={'w-full text-center' + (you ? ' cursor-default' : '')}
+                        className={'w-full text-center bg-transparent' + (you ? ' cursor-default' : '')}
                         value={name}
                         readOnly={you}
                         onChange={e => updateBarcodeName && updateBarcodeName(e.target.value)}

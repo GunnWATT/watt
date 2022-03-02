@@ -28,7 +28,7 @@ export default function DateSelector(props: DateSelectorProps) {
                 <ChevronLeft/>
             </button>
 
-            <Popover className="date-selector-box flex flex-col relative shadow-lg rounded">
+            <Popover className="date-selector-box bg-content dark:bg-content-dark flex flex-col relative shadow-lg rounded">
                 <Popover.Button className="w-full h-full flex items-center justify-center cursor-pointer">
                     {viewDate.format("MMMM D, yyyy")}
                 </Popover.Button>
@@ -186,7 +186,7 @@ export function Calendar(props: CalendarProps) {
     if (hidden) return null;
 
     return (
-        <div className={"mini-calendar z-20 rounded flex flex-col shadow-2xl" + (picker !== false ? ' picker' : '')} style={style}>
+        <div className={"mini-calendar bg-content dark:bg-content-dark z-20 rounded flex flex-col shadow-2xl" + (picker !== false ? ' picker' : '')} style={style}>
             {time && (
                 <div className="time">
                     <div>

@@ -9,7 +9,7 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 import './styles/index.scss';
-import './styles/_tailwind.css';
+import './styles/_tailwind.scss';
 
 
 const firebaseConfig = {

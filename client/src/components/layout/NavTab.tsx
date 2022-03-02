@@ -12,7 +12,7 @@ export default function NavTab(props: NavTabProps) {
 
     return (
         // If the current URL matches the `to` prop, make the tab active
-        <Link to={to} className="flex flex-grow">
+        <Link to={to} className="flex flex-grow hover:no-underline">
             <Tab active={match != null}>{name}</Tab>
         </Link>
     )

@@ -64,7 +64,7 @@ export default function List<T>(props: ListProps<T>) {
 
 function MaterialList(props: {children: ReactNode}) {
     return (
-        <ul className="material-list grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] list-none">
+        <ul className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] list-none">
             {props.children}
         </ul>
     )

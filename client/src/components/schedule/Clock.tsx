@@ -29,19 +29,16 @@ export default function Clock(props: ClockProps) {
     return (
         <div className="flex justify-center">
             <svg width={size} height={size}>
-                <circle cx={size / 2} cy={size / 2} r={radius} fill="var(--bg-primary)" />
+                <circle cx={size / 2} cy={size / 2} r={radius} className="fill-sidebar dark:fill-sidebar-dark" />
 
                 {/* Minute Hand */}
                 <line
                     x1={size / 2} y1={size / 2}
                     x2={size / 2} y2={size / 2 - radius * 0.7}
+                    className="stroke-primary dark:stroke-primary-dark stroke-2 origin-center transition-transform duration-100"
                     style={{
-                        stroke: 'var(--primary)',
-                        strokeWidth: 2,
                         strokeLinecap: 'round',
                         transform: `rotate(${minuteDegs}deg)`,
-                        transformOrigin: `center`,
-                        transition: 'transform 0.1s'
                     }}
                 />
 
@@ -49,13 +46,10 @@ export default function Clock(props: ClockProps) {
                 <line
                     x1={size / 2} y1={size / 2}
                     x2={size / 2} y2={size / 2 - radius * 0.8}
+                    className="stroke-secondary dark:stroke-secondary-dark stroke-[1.5] origin-center transition-transform duration-100"
                     style={{
-                        stroke: 'var(--secondary)',
-                        strokeWidth: 1.5,
                         strokeLinecap: 'round',
                         transform: `rotate(${secondDegs}deg)`,
-                        transformOrigin: `center`,
-                        transition: 'transform 0.1s'
                     }}
                 />
 
@@ -63,13 +57,10 @@ export default function Clock(props: ClockProps) {
                 <line
                     x1={size / 2} y1={size / 2}
                     x2={size / 2} y2={size / 2 - radius * 0.5}
+                    className="stroke-theme dark:stroke-theme-dark stroke-2 origin-center transition-transform duration-100"
                     style={{
-                        stroke: 'var(--active)',
-                        strokeWidth: 2,
                         strokeLinecap: 'round',
                         transform: `rotate(${hourDegs}deg)`,
-                        transformOrigin: `center`,
-                        transition: 'transform 0.1s'
                     }}
                 />
 
