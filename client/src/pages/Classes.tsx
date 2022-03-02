@@ -1,6 +1,5 @@
 import {ReactNode, useContext, useEffect, useState} from 'react';
 import {Routes, Route, Link, useMatch, useResolvedPath} from 'react-router-dom';
-import {Container} from 'reactstrap';
 
 // Firebase
 import { Functions, httpsCallable } from 'firebase/functions';
@@ -41,63 +40,6 @@ export async function fetchSgyMaterials(functions: Functions) {
     localStorage.setItem('sgy-last-fetched', '' + Date.now());
 
     return res.data;
-}
-
-// A wrapper that centers all the error messages
-function ClassesErrorBurrito(props: { children?: ReactNode}) {
-    return <>
-        <RedBackground />
-        <div className="classes-error-burrito">
-            <div className="classes-error-content">
-                {props.children}
-            </div>
-        </div>
-    </>
-}
-
-function ClassesNotSignedIn() {
-    return (
-        <ClassesErrorBurrito>
-            <h2>You aren't signed in!</h2>
-            <p>Classes requires Schoology integration, which requires an account. Please sign in to continue.</p>
-        </ClassesErrorBurrito>
-    )
-}
-
-function ClassesSgyNotConnected() {
-    return (
-        <ClassesErrorBurrito>
-            <h2>Connect Schoology</h2>
-            <p>
-                This section uses Schoology integration, which requires you to connect your Schoology account.
-                Press the button below to continue.
-            </p>
-            <div className='sgy-auth-button'>
-                <SgySignInBtn />
-            </div>
-        </ClassesErrorBurrito>
-    )
-}
-
-function ClassesFetching(props: {fetching: boolean, updateSgy: () => Promise<any>}) {
-    const {fetching, updateSgy} = props;
-
-    return (
-        <ClassesErrorBurrito>
-            {fetching ? (
-                <Loading>Fetching materials. This can take up to a minute...</Loading>
-            ) : (<>
-                <h2>Something Went Wrong.</h2>
-                <p>
-                    Your user data is missing! Please click the button below to fetch materials.
-                    If this is a recurring problem, please submit an issue to Github.
-                </p>
-                <div className='sgy-auth-button'>
-                        <button onClick={updateSgy}>Fetch Materials</button>
-                </div>
-            </>)}
-        </ClassesErrorBurrito>
-    )
 }
 
 // TODO: we can probably do this in a similar way to <Sidebar>, where the items themselves don't care whether
@@ -180,10 +122,10 @@ function ClassesHeader() {
     const {name, color} = findClassesList(sgyData, userData).find(({period}) => period === selected)!;
 
     return (
-        <Container className="classes-header">
+        <header className="classes-header">
             <div className="classes-header-bubble" style={{backgroundColor: color}} />
             <h1 className="classes-header-text">{name}</h1>
-        </Container>
+        </header>
     )
 }
 
@@ -207,7 +149,7 @@ export default function Classes() {
     const auth = useAuth();
     const firestore = useFirestore();
     const { data: signInCheckResult } = useSigninCheck();
-    const signedIn = signInCheckResult?.signedIn && auth.currentUser!!;
+    const signedIn = signInCheckResult?.signedIn && auth.currentUser;
 
     const userData = useContext(UserDataContext);
     const time = useContext(CurrentTimeContext);
@@ -216,6 +158,7 @@ export default function Classes() {
     const [fetching, setFetching] = useState(false);
     const [lastFetched, setLastFetched] = useState<null | number>(null);
     const [lastAttemptedFetch, setLastAttemptedFetch] = useState<null | number>(null);
+
     // Raw Schoology Data
     const [sgyData, setSgyData] = useState<null | SgyData>(null);
 
@@ -344,9 +287,42 @@ export default function Classes() {
     const [selected, setSelected] = useState<SgyPeriod|'A'>('A');
 
     // we are ok to go if: 1) we're signed in 2) the user enabled schoology 3) the sgy data exists
-    if (!signedIn) return <ClassesNotSignedIn />
-    if (!userData.options.sgy) return <ClassesSgyNotConnected />
-    if (sgyData == null) return <ClassesFetching fetching={fetching} updateSgy={updateSgy} />
+    if (!signedIn) return (
+        <ClassesErrorBurrito>
+            <h2 className="text-2xl font-semibold mb-3">You aren't signed in!</h2>
+            <p className="secondary">
+                Classes requires Schoology integration, which requires an account. Please sign in to continue.
+            </p>
+        </ClassesErrorBurrito>
+    )
+    if (!userData.options.sgy) return (
+        <ClassesErrorBurrito>
+            <h2 className="text-2xl font-semibold mb-3">Connect Schoology</h2>
+            <p className="secondary mb-3">
+                This section uses Schoology integration, which requires you to connect your Schoology account.
+                Press the button below to continue.
+            </p>
+            <div className="sgy-auth-button">
+                <SgySignInBtn />
+            </div>
+        </ClassesErrorBurrito>
+    )
+    if (!sgyData) return (
+        <ClassesErrorBurrito>
+            {fetching ? (
+                <Loading>Fetching materials. This can take up to a minute...</Loading>
+            ) : (<>
+                <h2 className="text-2xl font-semibold mb-3">Something Went Wrong.</h2>
+                <p className="secondary">
+                    Your user data is missing! Please click the button below to fetch materials.
+                    If this is a recurring problem, please submit an issue to Github.
+                </p>
+                <div className="sgy-auth-button">
+                    <button onClick={updateSgy}>Fetch Materials</button>
+                </div>
+            </>)}
+        </ClassesErrorBurrito>
+    )
     if (!userData.sgy?.custom || !userData.sgy?.custom.assignments || !userData.sgy?.custom.labels || !userData.sgy?.custom.modified)
         return <Loading /> // make sure user has all of these things :D, if not, usually gets corrected by FirebaseUserDataProvider
 
@@ -358,19 +334,19 @@ export default function Classes() {
                 <div className={"classes-content " + screenType}>
                     <ClassesHeader />
 
-                    <Container className="classes-navbar">
+                    <div className="classes-navbar">
                         <ClassesNavBarItem text="Dashboard" to="." />
                         <ClassesNavBarItem text="Upcoming" to="upcoming" />
                         <ClassesNavBarItem text="Materials" to="materials" />
-                    </Container>
+                    </div>
 
-                    <Container className="classes-page">
+                    <div className="classes-page">
                         <Routes>
                             <Route path="/" element={<Dashboard />} />
-                            <Route path="/upcoming" element={<Upcoming /> } />
+                            <Route path="/upcoming" element={<Upcoming />} />
                             <Route path="/materials" element={<Materials />} />
                         </Routes>
-                    </Container>
+                    </div>
                 </div>
 
                 {/* Kill the sidebar on phone; this is a temporary solution */}
@@ -379,6 +355,18 @@ export default function Classes() {
             </div>
         </SgyDataProvider>
     )
+}
+
+// A wrapper that centers all the error messages
+function ClassesErrorBurrito(props: { children?: ReactNode}) {
+    return <>
+        <RedBackground />
+        <div className="w-full h-screen flex items-center justify-center">
+            <div className="classes-error-content rounded p-6 text-center bg-sidebar dark:bg-sidebar-dark">
+                {props.children}
+            </div>
+        </div>
+    </>
 }
 
 // Returns a parsed class array given a populated userData object.

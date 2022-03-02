@@ -1,8 +1,10 @@
 import {useState, useEffect} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Modal, ModalHeader, ModalBody, ModalFooter, Spinner, Button } from 'reactstrap';
+import {Dialog} from '@headlessui/react';
+import { Spinner } from 'reactstrap';
 
 // Components
+import CenteredModal from '../lists/CenteredModal';
 //import Loading from '../misc/Loading'; // Doesn't mesh well with the modal
 
 // Auth
@@ -10,26 +12,6 @@ import { useAuth, useFirestore, useFunctions, useUser } from 'reactfire';
 import { httpsCallable } from 'firebase/functions';
 import { updateUserData } from '../../util/firestore';
 
-
-function InlineLoading() {
-    return (
-        <div className="sgy-loading">
-            <Spinner />
-            <span style={{marginLeft: '15px'}}>Fetching courses...</span>
-        </div>
-    )
-}
-
-function DisplayResults(props: { data: { [key: string]: [string, string] } }) {
-    const {data} = props;
-    return <>
-        {Object.entries(data).map(([period, value]) => (
-            <div key={period} className="sgy-period-burrito">
-                <div className="sgy-period-number">{period}</div> {value[0]} · {value[1]}
-            </div>
-        ))}
-    </>;
-}
 
 export default function SgyInitResults() {
     const functions = useFunctions();
@@ -46,7 +28,6 @@ export default function SgyInitResults() {
     const searchParams = new URLSearchParams(search);
 
     const [sgyModal, setSgyModal] = useState(searchParams.get('modal') === 'sgyauth');
-    // console.log(sgyModal);
 
     // Set the results to the value returned by initialization to be displayed
     useEffect(() => {
@@ -61,7 +42,7 @@ export default function SgyInitResults() {
         // return (() => {console.log('I am unmounted!!!!!')});
     }, [])
 
-    const toggle = () => {
+    const closeDialog = () => {
         setSgyModal(false);
         searchParams.delete('modal'); // Delete modal param from url to prevent retrigger on page refresh
         navigate(`${pathname}${searchParams}`, {replace: true}); // Replace current instance in history stack with updated search params
@@ -69,48 +50,74 @@ export default function SgyInitResults() {
 
     const disableSchoology = async () => {
         await updateUserData('options.sgy', false, auth, firestore);
-        toggle();
+        closeDialog();
     }
 
     const enableSchoology = async () => {
         await updateUserData('options.sgy', true, auth, firestore);
-        toggle();
+        closeDialog();
     }
 
     return (
-        <Modal isOpen={sgyModal} fade={false}>
-            <ModalHeader>You're almost set! Just one last step remaining.</ModalHeader>
-            <ModalBody>
-                <span>
+        <CenteredModal isOpen={sgyModal} setIsOpen={setSgyModal}>
+            <div className="relative bg-content dark:bg-content-dark rounded-md max-w-md p-6">
+                <Dialog.Title className="text-xl font-semibold mb-3">
+                    {confirmDisable ? (
+                        'Are you sure you want to disable Schoology Integration?'
+                    ) : (
+                        'You\'re almost set! Just one last step remaining.'
+                    )}
+                </Dialog.Title>
+                <Dialog.Description as="section" className="mb-3">
                     {!results ? (
                         <InlineLoading />
                     ) : confirmDisable ? (
-                        <>
-                            Are you sure you want to disable Schoology Integration?
-                            <br />
-                            <em>If there was a problem, please submit an issue on Github.</em>
+                        <em className="secondary mb-3">
+                            If there was a problem, please submit an issue on Github.
+                        </em>
+                    ) : (<>
+                        <p>Your fetched periods:</p>
+                        <div className="flex flex-col gap-1.5 my-2">
+                            {/* TODO: better way to type assert this than `as {[key: string]: [string, string]}`? */}
+                            {Object.entries((results.data as {[key: string]: [string, string]})).map(([period, value]) => (
+                                <div key={period} className="flex items-center gap-2">
+                                    <span className="w-[30px] h-[30px] flex items-center justify-center bg-background dark:bg-background-dark rounded-full">{period}</span>
+                                    {value[0]} · {value[1]}
+                                </div>
+                            ))}
+                        </div>
+                        <em className="secondary">
+                            If this does not look right, disable Schoology integration and submit an issue on Github.
+                        </em>
+                    </>)}
+                </Dialog.Description>
+                <section className="flex gap-3">
+                    {results && (confirmDisable ? (<>
+                        <button className="text-theme dark:text-theme-dark border border-theme dark:border-theme-dark hover:bg-theme/50 dark:hover:bg-theme-dark/50 px-3 py-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-theme/50 dark:focus-visible:ring-theme-dark/50" onClick={() => disableSchoology()}>
+                            Yes, Disable Schoology
+                        </button>
+                        <button className="secondary border border-secondary dark:border-secondary-dark hover:bg-secondary/50 dark:hover:bg-secondary-dark/50 rounded px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50 dark:focus-visible:ring-secondary-dark/50" onClick={() => setConfirm(false)}>
+                            Take Me Back!
+                        </button>
+                    </>) : (<>
+                        <button className="text-theme dark:text-theme-dark border border-theme dark:border-theme-dark hover:bg-theme/50 dark:hover:bg-theme-dark/50 px-3 py-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-theme/50 dark:focus-visible:ring-theme-dark/50" onClick={() => setConfirm(true)}>
+                            Disable Schoology
+                        </button>
+                        <button className="text-lime-600 border border-lime-600 hover:bg-lime-600/50 px-3 py-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-600/50" onClick={() => enableSchoology()}>
+                            Looks Good!
+                        </button>
+                    </>))}
+                </section>
+            </div>
+        </CenteredModal>
+    )
+}
 
-                            <br />
-                            <br />
-                            <Button outline color="danger" onClick={() => disableSchoology()}>Yes, Disable Schoology</Button>
-                        </>
-                    ) : (
-                        <>
-                            Your periods:
-                            <DisplayResults data={results.data} />
-                            <em>If this does not look right, disable Schoology integration and submit an issue on Github.</em>
-                        </>
-                    )}
-                </span>
-            </ModalBody>
-            <ModalFooter>
-                {results && (confirmDisable ? (
-                    <Button outline onClick={() => setConfirm(false)}>Take Me Back!</Button>
-                ) : (<>
-                    <Button outline color="danger" onClick={() => setConfirm(true)}>Disable Schoology</Button>
-                    <Button outline color="success" onClick={() => enableSchoology()}>Looks Good!</Button>
-                </>))}
-            </ModalFooter>
-        </Modal>
+function InlineLoading() {
+    return (
+        <div className="flex items-center gap-4">
+            <Spinner />
+            <span>Fetching courses...</span>
+        </div>
     )
 }

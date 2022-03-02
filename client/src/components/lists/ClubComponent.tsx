@@ -52,7 +52,7 @@ export default function ClubComponent(props: Club & {id: string}) {
             <p className="secondary">{day}</p>
 
             <CenteredModal isOpen={modal} setIsOpen={setModal}>
-                <div className="relative flex flex-col bg-[color:var(--content-primary)] rounded-md max-w-md max-h-[90%] mx-3 p-6 shadow-xl">
+                <div className="relative flex flex-col bg-content dark:bg-content-dark rounded-md max-w-md max-h-[90%] mx-3 p-6 shadow-xl">
                     <Dialog.Title className="text-xl font-semibold mb-3 pr-6 flex gap-2 items-center">
                         {name}{props.new && <Badge>New</Badge>}
                     </Dialog.Title>
