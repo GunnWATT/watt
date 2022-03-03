@@ -12,23 +12,23 @@ import SgySignInBtn from '../components/firebase/SgySignInBtn';
 import Dashboard from '../components/classes/Dashboard';
 
 // Images
-import noschool1 from '../assets/electronhw.png';
-import noschool2 from '../assets/electronmitosis.png';
-import noschool3 from '../assets/electroncoffee.png';
-import noschool4 from '../assets/electronvsepr.png';
-import noschool5 from '../assets/electronconfig.png';
-import noschool6 from '../assets/electronphasechange.png';
-import noschool7 from '../assets/electrondipole.png';
-import noschool8 from '../assets/electrongaslaws.png';
-import noschool9 from '../assets/electronactivationenergy.png';
-import noschool10 from '../assets/electronboxandpointer.png';
-import noschool11 from '../assets/electrontrumpet.png';
-import noschool12 from '../assets/electronbst.png';
-import noschool13 from '../assets/electronblochsphere.png';
-import noschool14 from '../assets/electroncell.png';
-import noschool15 from '../assets/electronhybridization.png';
-import noschool16 from '../assets/electronpedigree.png';
-import noschool17 from '../assets/electronviolin.png';
+import noschool1 from '../assets/electron_hw.png';
+import noschool2 from '../assets/electron_mitosis.png';
+import noschool3 from '../assets/electron_coffee.png';
+import noschool4 from '../assets/electron_vsepr.png';
+import noschool5 from '../assets/electron_config.png';
+import noschool6 from '../assets/electron_phase_change.png';
+import noschool7 from '../assets/electron_dipole.png';
+import noschool8 from '../assets/electron_gas_laws.png';
+import noschool9 from '../assets/electron_activation_energy.png';
+import noschool10 from '../assets/electron_box_and_pointer.png';
+import noschool11 from '../assets/electron_trumpet.png';
+import noschool12 from '../assets/electron_bst.png';
+import noschool13 from '../assets/electron_bloch_sphere.png';
+import noschool14 from '../assets/electron_cell.png';
+import noschool15 from '../assets/electron_hybridization.png';
+import noschool16 from '../assets/electron_pedigree.png';
+import noschool17 from '../assets/electron_violin.png';
 
 
 // Big electron image object for carousel
