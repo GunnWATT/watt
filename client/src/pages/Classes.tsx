@@ -8,6 +8,8 @@ import { FirebaseError } from '@firebase/util';
 import { updateUserData } from '../util/firestore';
 
 // Components
+import {Header} from '../components/layout/HeaderPage';
+import ClassesSidebar from '../components/classes/ClassesSidebar';
 import Dashboard from '../components/classes/Dashboard';
 import Upcoming from '../components/classes/Upcoming';
 import Materials from '../components/classes/Materials';
@@ -23,9 +25,6 @@ import SgyDataContext, { SgyDataProvider } from '../contexts/SgyDataContext';
 // Utilities
 import { parsePeriodColor } from '../components/schedule/Periods';
 import { useScreenType } from '../hooks/useScreenType';
-import { bgColor } from '../util/progressBarColor';
-import { Menu } from 'react-feather';
-import { shortify } from '../util/sgyHelpers';
 import { cleanupExpired } from '../util/sgyFunctions';
 
 
@@ -42,93 +41,6 @@ export async function fetchSgyMaterials(functions: Functions) {
     return res.data;
 }
 
-// TODO: we can probably do this in a similar way to <Sidebar>, where the items themselves don't care whether
-// they are collapsed or not and the `hidden` is just set in CSS.
-// Maybe this is a better pattern though, unsure; at the very least we could extract into a separate file for
-// organizational purposes.
-type ClassesSidebarItemProps = {
-    collapsed: boolean, name: string, color: string, period: string,
-    onClick: () => void, active: boolean
-}
-function ClassesSidebarItem(props: ClassesSidebarItemProps) {
-    const {collapsed, name, color, period, onClick, active} = props;
-
-    const screenType = useScreenType();
-    if (collapsed) {
-        return (
-            <div
-                style={{ 
-                    backgroundColor: color,
-                    border: active ? `3px solid ${bgColor(color)}` : ''
-                }}
-                className={"classes-sidebar-bubble " + screenType}
-                onClick={onClick}
-            >
-                {period}
-            </div>
-        );
-    } else {
-        return (
-            <div className='classes-sidebar-item'>
-                <div className='classes-sidebar-text'>{shortify(name, 20)}</div>
-                <div
-                    style={{
-                        backgroundColor: color,
-                        border: active ? `3px solid ${bgColor(color)}` : ''
-                    }}
-                    className={"classes-sidebar-bubble " + screenType}
-                    onClick={onClick}
-                >
-                    {period}
-                </div>
-            </div>
-        );
-    }
-}
-
-function ClassesSidebar(props: { selected: SgyPeriod | 'A', setSelected: (selected:SgyPeriod|'A') => void}) {
-    const { selected, setSelected } = props;
-    const userData = useContext(UserDataContext);
-
-    // collapsed?
-    const [collapsed, setCollapsed] = useState(true);
-    const { sgyData } = useContext(SgyDataContext);
-
-    const classes = findClassesList(sgyData, userData);
-    const screenType = useScreenType();
-
-    return (
-        <div className={"classes-sidebar " + screenType + " " + (collapsed ? 'collapsed' : 'expanded')}>
-            {classes.map((c) => (
-                <ClassesSidebarItem
-                    key={c.period}
-                    {...c}
-                    collapsed={collapsed}
-                    active={selected === c.period}
-                    onClick={() => setSelected(c.period)}
-                />
-            ))}
-            <Menu size={40} style={{marginTop: 'auto', cursor:'pointer'}} onClick={() => setCollapsed(!collapsed)} />
-        </div>
-    )
-}
-
-// This can probably be merged into Classes
-function ClassesHeader() {
-    const {selected} = useContext(SgyDataContext);
-    const userData = useContext(UserDataContext);
-    const { sgyData } = useContext(SgyDataContext);
-
-    const {name, color} = findClassesList(sgyData, userData).find(({period}) => period === selected)!;
-
-    return (
-        <header className="classes-header">
-            <div className="classes-header-bubble" style={{backgroundColor: color}} />
-            <h1 className="classes-header-text">{name}</h1>
-        </header>
-    )
-}
-
 function ClassesNavBarItem(props: {text: string, to: string}) {
     const {text, to} = props;
 
@@ -136,11 +48,9 @@ function ClassesNavBarItem(props: {text: string, to: string}) {
     const match = useMatch({ path: resolved.pathname, end: true });
 
     return (
-        <div className={'classes-navbar-item' + (match ? ' selected' : '')}>
-            <Link to={to}>
-                {text}
-            </Link>
-        </div>
+        <Link to={to} className={'classes-navbar-item hover:no-underline ' + (match ? 'text-primary dark:text-primary-dark bg-content dark:bg-content-dark shadow-lg' : 'secondary bg-content-secondary dark:bg-content-secondary-dark')}>
+            {text}
+        </Link>
     )
 }
 
@@ -284,7 +194,7 @@ export default function Classes() {
     }, [signedIn, time]);
 
     // Selected
-    const [selected, setSelected] = useState<SgyPeriod|'A'>('A');
+    const [selected, setSelected] = useState<SgyPeriod | 'A'>('A');
 
     // we are ok to go if: 1) we're signed in 2) the user enabled schoology 3) the sgy data exists
     if (!signedIn) return (
@@ -326,27 +236,36 @@ export default function Classes() {
     if (!userData.sgy?.custom || !userData.sgy?.custom.assignments || !userData.sgy?.custom.labels || !userData.sgy?.custom.modified)
         return <Loading /> // make sure user has all of these things :D, if not, usually gets corrected by FirebaseUserDataProvider
 
+    // Currently selected period name and color for classes header
+    const {name, color} = findClassesList(sgyData, userData).find(({period}) => period === selected)!;
+
     return (
         <SgyDataProvider value={{sgyData, fetching, lastFetched, lastAttemptedFetch, selected, updateSgy}}>
-            <div className={"classes-burrito " + screenType}>
+            <div className={"flex h-screen overflow-y-scroll scroll-smooth mr-20 " + screenType}>
                 <RedBackground />
 
-                <div className={"classes-content " + screenType}>
-                    <ClassesHeader />
+                <div className="container py-4 md:py-6 ">
+                    <Header>
+                        <div
+                            className="classes-header-bubble border-2 border-secondary dark:border-secondary-dark rounded-full flex-shrink-0"
+                            style={{backgroundColor: color}}
+                        />
+                        <h1 className="mb-0">{name}</h1>
+                    </Header>
 
-                    <div className="classes-navbar">
+                    <nav className="classes-navbar mt-6 flex flex-wrap gap-2 mb-4">
                         <ClassesNavBarItem text="Dashboard" to="." />
                         <ClassesNavBarItem text="Upcoming" to="upcoming" />
                         <ClassesNavBarItem text="Materials" to="materials" />
-                    </div>
+                    </nav>
 
-                    <div className="classes-page">
+                    <main>
                         <Routes>
                             <Route path="/" element={<Dashboard />} />
                             <Route path="/upcoming" element={<Upcoming />} />
                             <Route path="/materials" element={<Materials />} />
                         </Routes>
-                    </div>
+                    </main>
                 </div>
 
                 {/* Kill the sidebar on phone; this is a temporary solution */}

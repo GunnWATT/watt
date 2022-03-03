@@ -10,11 +10,11 @@ export default function HeaderPage(props: HeaderPageProps) {
         <>
             <RedBackground />
 
-            <div className="py-4 md:py-6 container">
-                <header className="px-5 py-3 flex items-center gap-4 text-white bg-theme dark:bg-theme-dark rounded-lg shadow-lg">
+            <div className="container py-4 md:py-6">
+                <Header>
                     <h1 className="mb-0">{heading}</h1>
                     {other}
-                </header>
+                </Header>
                 <nav className="mt-6 flex flex-wrap">
                     {nav}
                 </nav>
@@ -24,4 +24,12 @@ export default function HeaderPage(props: HeaderPageProps) {
             </div>
         </>
     );
+}
+
+export function Header(props: {children: ReactNode}) {
+    return (
+        <header className="px-5 py-3 flex items-center gap-4 text-white bg-theme dark:bg-theme-dark rounded-lg shadow-lg">
+            {props.children}
+        </header>
+    )
 }
