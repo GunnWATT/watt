@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import {Dialog} from '@headlessui/react';
 import { Table } from 'reactstrap';
-import CenteredModal from './CenteredModal';
+import CenteredModal from '../layout/CenteredModal';
 
 // Context
 import UserDataContext from '../../contexts/UserDataContext';

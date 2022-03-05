@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import {Dialog} from '@headlessui/react';
 
 // Components
-import CenteredModal from './CenteredModal';
+import CenteredModal from '../layout/CenteredModal';
 import Badge from '../layout/Badge';
 
 // Context

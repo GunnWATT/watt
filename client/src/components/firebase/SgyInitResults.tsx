@@ -4,7 +4,7 @@ import {Dialog} from '@headlessui/react';
 import { Spinner } from 'reactstrap';
 
 // Components
-import CenteredModal from '../lists/CenteredModal';
+import CenteredModal from '../layout/CenteredModal';
 //import Loading from '../misc/Loading'; // Doesn't mesh well with the modal
 
 // Auth

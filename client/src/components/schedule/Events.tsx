@@ -27,14 +27,16 @@ export default function Events(props: EventsProps) {
 
     // Render events on mount and viewDate change
     useEffect(() => {
-        const currEvents = events?.filter(eventFilter).map((event, i) => <Event key={i} {...event} />);
+        const currEvents = events?.filter(eventFilter).map((event, i) => (
+            <Event key={event.summary + event.description + i} {...event} />
+        ));
         setContent((currEvents && currEvents.length) ? currEvents : null);
     }, [viewDate, events])
 
 
     return (
         <div className="events list-none break-words p-3">
-            <div className="events-heading">
+            <div>
                 <h2 className="text-3xl font-medium">Events</h2>
                 <hr/>
             </div>

@@ -59,7 +59,7 @@ export default function ImageMap(props : ImageMapProps) {
     }
 
     return (
-        <div className="bg-background dark:bg-background-dark fixed w-full h-full left-0 touch-none z-20">
+        <div className="bg-background dark:bg-background-dark fixed w-full h-full top-0 left-0 touch-none z-20">
             <RedBackground />
             <Button close className="absolute top-8 right-8" onClick={close} />
 

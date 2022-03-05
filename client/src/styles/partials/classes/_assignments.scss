@@ -152,37 +152,3 @@
     }
   }
 }
-
-// Modal for assignments
-.item-modal .modal-content {
-  background-color: var(--bg-primary);
-
-  .modal-assignment-title {
-    display: flex;
-    align-items: center;
-
-    // Title link
-    a {
-      color: var(--primary);
-
-      &:hover {
-        color: inherit;
-      }
-    }
-
-    // Checkmark icon
-    svg {
-      margin-right: 0.5rem;
-    }
-  }
-
-  .item-modal-icons {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    .assignment-due {
-      margin-left: 0.5rem;
-    }
-  }
-}
