@@ -7,56 +7,16 @@
 }
 
 .dashboard-burrito {
-  display: flex;
-  flex-direction: row;
   flex-grow: 1;
-  margin: -15px;
-  //height: 100%;
-
-  &.phone,
-  &.smallScreen {
-    flex-wrap: wrap;
-  }
 }
 
-// Perhaps this should `@include content-box(...)` so that certain styles don't need to be repeated
 .dashboard-section {
   flex: 50%;
-  border-radius: 5px;
-  padding: 15px;
-  background-color: var(--bg-primary);
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-
-  > div:not(:first-child) {
-    border-top: 1px solid var(--tertiary);
-  }
-
-  /*
-  &-left {
-    height: max-content;
-  }
-  &-right {
-    height: 100%;
-  }
-  */
-
-  margin: 15px;
-}
-
-.dashboard-header {
-  font-size: 2rem;
-
-  &.grades-header {
-    margin: 0.75rem 0;
-  }
 }
 
 // Dashboard Assignments
 .blurb-assignment {
   display: flex;
-  flex-direction: row;
   align-items: center;
   background-color: var(--contrast);
   padding: 15px;
@@ -113,12 +73,6 @@
   }
 }
 
-// Quick Info
-.dashboard-quick-info {
-  padding-bottom: 15px;
-  // border-bottom: 1px solid white;
-}
-
 .dashboard-qi-main {
   font-size: 1.3rem;
 }
@@ -128,25 +82,15 @@
 }
 
 .dashboard-grade {
-  padding-bottom: 0.75rem;
-
   &-all {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 5px;
-
     &-bubble {
       @include dot(30px);
-      margin-right: 10px;
     }
   }
 }
 
 .reauth-footer {
-
   display: flex;
-  flex-direction: row;
   margin-top: auto;
   align-items: center;
   padding: 10px 0px;
@@ -163,7 +107,6 @@
 
 .fetch-footer {
   display: flex;
-  flex-direction: row;
   align-items: center;
   padding-top: 10px;
 

@@ -244,7 +244,7 @@ export default function Classes() {
             <div className={"flex h-screen overflow-y-scroll scroll-smooth mr-20 " + screenType}>
                 <RedBackground />
 
-                <div className="container py-4 md:py-6 ">
+                <div className="container h-max py-4 md:py-6 ">
                     <Header>
                         <div
                             className="classes-header-bubble border-2 border-secondary dark:border-secondary-dark rounded-full flex-shrink-0"
