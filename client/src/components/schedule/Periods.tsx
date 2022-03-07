@@ -24,8 +24,10 @@ export type PeriodObj = {s: number, e: number};
 // G and O represent the now deprecated Gunn Together and Office Hours periods.
 export type DayObj = {
     0?: PeriodObj, 1?: PeriodObj, 2?: PeriodObj, 3?: PeriodObj, 4?: PeriodObj, 5?: PeriodObj, 6?: PeriodObj, 7?: PeriodObj, 8?: PeriodObj,
-    B?: PeriodObj, L?: PeriodObj, S?: PeriodObj, P?:PeriodObj
-    // G?: PeriodObj, O?: PeriodObj
+    B?: PeriodObj, L?: PeriodObj, S?: PeriodObj, P?: PeriodObj, // G?: PeriodObj, O?: PeriodObj
+    // Catch all unknown keys like "Math CAT" under an index type
+    // TODO: this kills known-key type safety; is there a better way to do this?
+    [key: string]: PeriodObj | undefined
 }
 
 type PeriodsProps = {viewDate: Moment};
