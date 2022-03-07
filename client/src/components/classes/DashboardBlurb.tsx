@@ -1,8 +1,11 @@
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth, useFirestore } from 'reactfire';
+import { CheckSquare, Square } from 'react-feather';
 import moment from 'moment';
 
 // Components
+import AssignmentModal from './AssignmentModal';
 import UpcomingQuickWeekCal from './QuickWeekCal';
 
 // Contexts
@@ -13,9 +16,6 @@ import UserDataContext from '../../contexts/UserDataContext';
 import { parsePeriodColor } from '../schedule/Periods';
 import { AssignmentBlurb, updateAssignment } from '../../util/sgyFunctions';
 import { shortify } from '../../util/sgyHelpers';
-import { CheckSquare, Square } from 'react-feather';
-import { useAuth, useFirestore } from 'reactfire';
-import AssignmentModal from './AssignmentModal';
 
 
 // Upcoming Blurb
@@ -27,18 +27,21 @@ function BlurbAssignment(props: BlurbAssignmentProps) {
     const auth = useAuth();
     const firestore = useFirestore();
 
-    const toggleCompleted = () => {
+    const toggleCompleted = () =>
         updateAssignment({ ...item, completed: !item.completed }, userData, auth, firestore)
-    }
+
     const [modal, setModal] = useState(false);
 
     const CheckBox = item.completed ? CheckSquare : Square;
 
     return (
-        <div className="blurb-assignment" style={{ borderLeft: `4px solid ${parsePeriodColor(item.period, userData)}`}}>
-            <CheckBox style={{ marginRight: 15, flex: 'none' }} cursor="pointer" onClick={toggleCompleted} />
-            <div className="blurb-assignment-content" style={{ textDecoration: item.completed ? 'line-through' : '' }} onClick={() => setModal(!modal)}>
-                <div className="assignment-title">{shortify(item.name)}</div>
+        <div
+            className="blurb-assignment flex items-center rounded p-4 gap-3"
+            style={{ borderLeft: `4px solid ${parsePeriodColor(item.period, userData)}`}}
+        >
+            <CheckBox className="cursor-pointer flex-none" onClick={toggleCompleted} />
+            <div className="blurb-assignment-content cursor-pointer" style={{ textDecoration: item.completed ? 'line-through' : '' }} onClick={() => setModal(!modal)}>
+                <div className="text-lg">{shortify(item.name)}</div>
                 <div className="assignment-due"><div>{item.timestamp!.format("dddd, MMMM Do")} • {item.timestamp!.fromNow()}</div></div>
             </div>
 
@@ -75,7 +78,7 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
                     <button className="toggle-completed" onClick={() => setIncludeCompleted(!includeCompleted)}>
                         {includeCompleted ? 'Hide completed' : 'Show completed'}
                     </button>
-                    <div className="see-more"><Link to='upcoming'>See More in Upcoming</Link></div>
+                    <div className="see-more"><Link to="upcoming">See More in Upcoming</Link></div>
                 </div>
             </div>
         </div>

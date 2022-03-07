@@ -18,14 +18,6 @@
     hr {
         @apply my-4 border-t-2 border-tertiary dark:border-tertiary-dark;
     }
-    .bg-secondary {
-        // TODO: convert this to tailwind classes using arbitrary values */
-        // TODO: do we still want to have CSS based around 6 or 7 "theme" colors? I think it makes sense for text colors, but */
-        // a major pain point in original WATT CSS was the restrictions resulting from "bg-secondary" and "content-primary"; */
-        // keeping them as utilities allows easy colors that "work" on both light and dark themes */
-        // but perhaps forcing the manual application of "bg-primary dark:bg-dark-secondary" is less limiting in the long run */
-        background-color: var(--bg-secondary);
-    }
 }
 
 @layer utilities {

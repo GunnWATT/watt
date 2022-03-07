@@ -43,8 +43,7 @@ console.log(data.timestamp);
 let data = JSON.parse(localStorage.getItem('data'));
 console.log(data.timestamp);
 ```
-This better enforces mutability and makes it easier to tell what is a mutable field and what is an immutable value.
-This rule is often violated by old code written when I was in the habit of using `let` for everything.
+This better enforces mutability and makes it easier to tell what is a reassignable field and what is immutable data.
 
 ### 1.4 — Leave 2 newlines between imports and code
 ```ts
@@ -60,6 +59,7 @@ writeFileSync('./output/clubs.json', JSON.stringify(prev, null, 4));
 ```
 
 ### 1.5 — Group imports if importing many things at once
+<!-- TODO: these examples are super lengthy; we should shorten if possible -->
 ```ts
 // Prefer
 import { useContext, useEffect, useState } from 'react';
@@ -113,8 +113,10 @@ import Loading from '../components/layout/Loading';
 ```ts
 // Prefer
 import {readFileSync, writeFileSync} from 'fs';
+const raw = readFileSync('data.json').toString();
 // to
 import fs from 'fs';
+const raw = fs.readFileSync('data.json').toString();
 ```
 This allows readers to ascertain exactly what from `fs` is used at a glance, without having to search for references of
 the `fs` object.
@@ -133,28 +135,50 @@ if (!signedIn) {
 ```
 Exceptions to this rule may apply on a case by case basis.
 
-### 1.8 — Leave spaces before `if` and `for` conditions and after `:`s in object and type declarations
+### 1.8 — Leave spaces around `if` and `for` conditions and operators and after `:`s in object and type declarations
+<!-- This is sorta just common style convention; should this section be removed? -->
 ```ts
 // Prefer
 if (!description) {
     // ...
 }
+for (let i = 0; i < arr.length; i++) {
+    // ...
+}
 // to
-if(!description) {
+if(!description){
+    // ...
+}
+for(let i = 0; i < arr.length; i++){
     // ...
 }
 ```
 ```ts
 // Prefer
 const final = {timestamp: new Date(), data: {}};
+const ratio = 12 / 36;
+const reason = parsed.reason ?? 'No reason given';
+sum += 1;
 // to
-const final = {timestamp:new Date(), data:{}};
+const final={timestamp:new Date(),data:{}};
+const ratio=12/36;
+const reason=parsed.reason??'No reason given';
+sum+=1;
 ```
 ```ts
 // Prefer
 type ContainerProps = {size: string, className: string};
 // to
-type ContainerProps = {size:string, className:string};
+type ContainerProps={size:string,className:string};
+```
+Conversely, do not leave a space when invoking a function or before or after an explicit generic type argument.
+```ts
+// Prefer
+const [state, setState] = useState<string | null>(null);
+console.log(state);
+// to
+const [state, setState] = useState <string | null> (null);
+console.log (state);
 ```
 
 ## React
@@ -164,11 +188,11 @@ type ContainerProps = {size:string, className:string};
 export default function Sidebar(props: ...) {
     // ...
 }
+
 // to
 const Sidebar = (props: ...) => {
     // ...
 }
-
 export default Sidebar;
 ```
 This disallows use of `React.FC<T>` but use of that is [inadvised](https://gist.github.com/ky28059/c74ad68be64510af55bba9c6828b2942#props-with-manual-typing) anyhow.

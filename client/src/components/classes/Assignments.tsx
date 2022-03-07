@@ -90,9 +90,9 @@ function Assignment(props: AssignmentProps) {
         >
             <div className="upcoming-assignment-content" onClick={() => setModal(!modal)}>
                 <AssignmentTags item={assignment} period />
-                <div className={"assignment-title"}>{shortify(assignment.name, 150)}</div>
+                <div className="text-lg">{shortify(assignment.name, 150)}</div>
                 {!!assignment.description.length && (
-                    <div className={"upcoming-assignment-desc"}>{shortify(assignment.description,200)}</div>
+                    <div className="upcoming-assignment-desc">{shortify(assignment.description,200)}</div>
                 )}
                 <div className="assignment-due">
                     <div>

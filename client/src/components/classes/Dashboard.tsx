@@ -2,7 +2,7 @@ import {ReactNode, useContext, useEffect, useState} from 'react';
 import moment from 'moment';
 
 // Components
-import DashboardBlurb from './Blurb';
+import DashboardBlurb from './DashboardBlurb';
 import DashboardQuickInfo from './DashboardQuickInfo';
 import Grades from './Grades';
 import FetchFooter from './FetchFooter';
