@@ -52,14 +52,15 @@ export default function BarcodeRow(props: BarcodeRowProps) {
             <div className="mb-4 flex items-center">
                 <div className="relative flex-auto">
                     <input
-                        className={'w-full text-center bg-transparent' + (you ? ' cursor-default' : '')}
+                        className={'w-full text-center bg-transparent focus:outline-none' + (you ? ' cursor-default' : '')}
                         value={name}
                         readOnly={you}
                         onChange={e => updateBarcodeName && updateBarcodeName(e.target.value)}
                         onBlur={() => updateBarcodes && updateBarcodes()}
                     />
+                    {/* TODO: we may want to add a focus ring to this */}
                     <input
-                        className={'relative p-1 w-full h-[102px] bg-white/75 text-[2.5rem] text-black font-mono text-center z-10' + (you ? ' cursor-default' : '')}
+                        className={'relative p-1 w-full h-[102px] bg-white/75 text-[2.5rem] text-black font-mono text-center z-10 focus:outline-none' + (you ? ' cursor-default' : '')}
                         value={code}
                         readOnly={you}
                         onChange={e => {

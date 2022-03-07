@@ -57,6 +57,10 @@ export default function Barcode() {
     return (
         <>
             <h1>Barcode</h1>
+            <p className="secondary">
+                The <strong>You</strong> barcode will be autofilled with your student ID when logged in.
+                If you need to add another barcode, click <strong>ADD BARCODE</strong> below.
+            </p>
             <hr />
 
             <BarcodeRow you name="You" code={youCode} />
