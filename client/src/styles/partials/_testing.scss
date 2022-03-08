@@ -1,11 +1,8 @@
 @import '../mixins/content-box';
 
 .testing {
-  padding: 24px;
-
-  > div {
+  main > section {
     @include content-box();
-    margin: 10px 0;
   }
 
   .electron-images {

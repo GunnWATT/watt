@@ -1,6 +1,5 @@
 import { useState, useContext } from 'react';
 import {Dialog} from '@headlessui/react';
-import { Table } from 'reactstrap';
 import CenteredModal from '../layout/CenteredModal';
 
 // Context
@@ -36,6 +35,7 @@ export default function StaffComponent(props: Staff & {id: string}) {
     // Firestore
     const auth = useAuth();
     const firestore = useFirestore();
+
     const userData = useContext(UserDataContext);
     const pinned = userData.staff.includes(id);
 
@@ -47,56 +47,6 @@ export default function StaffComponent(props: Staff & {id: string}) {
     const removeFromPinned = async () => {
         setModal(false);
         await updateUserData('staff', userData.staff.filter(staffID => staffID !== id), auth, firestore);
-    }
-
-    const [semester, setSemester] = useState<'1' | '2'>('1'); // Consider dynamically setting semester later
-
-    const renderSchedule = (periods: {[key: string]: PeriodObj}) => {
-        const parseNested = (name: string, semester: '1' | '2') => {
-            let course;
-            let room;
-            const period = periods[name];
-
-            // If the teacher teaches during this period
-            if (period) {
-                let sem = period[semester];
-
-                if (Array.isArray(sem)) {
-                    // If the period is an array (single class)
-                    course = sem[0];
-                    room = sem[1];
-                } else if (sem !== 'none') {
-                    // If the period is an object (multiple classes)
-                    course = `${sem[1][0]}, ${sem[2][0]}`;
-                    room = `${sem[1][1]}, ${sem[2][1]}`;
-                }
-            }
-
-            return (
-                <tr key={name}>
-                    <th scope="row">{name}</th>
-                    <td>{course}</td>
-                    {/* <td>{room}</td> */}
-                </tr>
-            )
-        }
-
-        return (
-            <Table hover>
-                <thead>
-                <tr>
-                    <th>Period</th>
-                    <th>Class</th>
-                    {/* <th>Room</th> */}
-                </tr>
-                </thead>
-                <tbody>
-                    {Object.keys(periods).map(period =>
-                        parseNested(period, semester)
-                    )}
-                </tbody>
-            </Table>
-        )
     }
 
     return (
@@ -121,21 +71,6 @@ export default function StaffComponent(props: Staff & {id: string}) {
                             {phone && <p><strong className="secondary font-medium">Phone:</strong> {phone}</p>}
                         </div>
                     </section>
-
-                    {/* TODO: think about rendering schedules */}
-                    {/* Especially since ParentSquare is no longer giving them out, is this worth it? */}
-                    {/* Could also wait for the data structure restructuring + staff regen to do so */}
-                    {periods && (<>
-                        <hr/>
-                        <p>
-                            <strong>
-                                Schedule:
-                                <button onClick={() => setSemester('1')}>1</button>
-                                <button onClick={() => setSemester('2')}>2</button>
-                            </strong>
-                        </p>
-                        {renderSchedule(periods)}
-                    </>)}
 
                     <section className="flex gap-3 flex-wrap justify-end mt-6">
                         {pinned ? (

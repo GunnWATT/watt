@@ -150,8 +150,8 @@ export function parsePeriodName(name: string, userData?: UserData) {
 
 // Turns object key into period color
 export function parsePeriodColor(name: string | number | null, userData?: UserData) {
-    const classes = userData?.classes as {[key: string]: SgyPeriodData} | undefined;
-    if (name && classes?.[name]?.c) return classes[name].c;
+    const classes = userData?.classes as {[key: string]: SgyPeriodData | undefined} | undefined;
+    if (name && classes?.[name]?.c) return classes[name]!.c;
 
     const num = Number(name);
     // Map number periods to their default colors
