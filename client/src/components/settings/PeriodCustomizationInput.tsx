@@ -59,7 +59,7 @@ export default function PeriodCustomizationInput(props: PeriodCustomizationInput
                         type="text"
                         name="name"
                         id="class-name"
-                        className="rounded px-3 py-1.5 bg-content-secondary dark:bg-content-secondary-dark placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light border border-tertiary dark:border-tertiary-dark"
+                        className="rounded px-3 py-1.5 bg-gray-50 dark:bg-content-secondary-dark placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light border border-tertiary dark:border-tertiary-dark"
                         placeholder={name}
                         defaultValue={n}
                         onBlur={e => updatePeriodData(e.target.value, 'n')}
@@ -72,7 +72,7 @@ export default function PeriodCustomizationInput(props: PeriodCustomizationInput
                         type="text"
                         name="link"
                         id="link"
-                        className="rounded px-3 py-1.5 bg-content-secondary dark:bg-content-secondary-dark placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light border border-tertiary dark:border-tertiary-dark"
+                        className="rounded px-3 py-1.5 bg-gray-50 dark:bg-content-secondary-dark placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light border border-tertiary dark:border-tertiary-dark"
                         placeholder={`${name} Link`}
                         defaultValue={l}
                         onBlur={e => updatePeriodData(e.target.value, 'l')}
