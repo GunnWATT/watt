@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react';
+import {ReactNode, useContext, useState} from 'react';
 import moment from 'moment';
 
 // Components
@@ -61,7 +61,7 @@ export default function Testing() {
     const userData = useContext(UserDataContext);
 
     return (
-        <div className="testing py-6 container">
+        <div className="container py-6">
             <h1>Super Secret Testing Facility</h1>
             <p>
                 Congratulations! You found the super secret testing area for Gunn WATT!{' '}
@@ -89,25 +89,25 @@ export default function Testing() {
                 </div>
                 */}
 
-                <section className="auth-test">
+                <ContentBox>
                     <SgySignInBtn />
-                </section>
+                </ContentBox>
 
-                <section className="loading-test">
+                <ContentBox>
                     <CenteredMessage>
                         <Loading />
                     </CenteredMessage>
-                </section>
+                </ContentBox>
 
-                <section className="work-test">
+                <ContentBox>
                     <WIP />
-                </section>
+                </ContentBox>
 
-                <section className="query-test">
+                <ContentBox>
                     <NoResults />
-                </section>
+                </ContentBox>
 
-                <section className="periods-test">
+                <ContentBox>
                     <div className="mx-auto max-w-3xl">
                         <Period
                             name="1 · Not yet started"
@@ -167,8 +167,16 @@ export default function Testing() {
                             zoom="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                         />
                     </div>
-                </section>
+                </ContentBox>
             </main>
         </div>
+    )
+}
+
+function ContentBox(props: {children: ReactNode}) {
+    return (
+        <section className="p-5 rounded-lg bg-content dark:bg-content-dark shadow-lg">
+            {props.children}
+        </section>
     )
 }
