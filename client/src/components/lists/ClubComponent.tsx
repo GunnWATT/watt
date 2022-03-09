@@ -3,6 +3,7 @@ import {Dialog} from '@headlessui/react';
 
 // Components
 import CenteredModal from '../layout/CenteredModal';
+import OutlineButton, {DangerOutlineButton} from '../layout/OutlineButton';
 import Badge from '../layout/Badge';
 
 // Context
@@ -79,20 +80,20 @@ export default function ClubComponent(props: Club & {id: string}) {
 
                     <section className="flex gap-3 flex-wrap justify-end">
                         {pinned ? (
-                            <button className="secondary border border-secondary dark:border-secondary-dark hover:bg-secondary/50 dark:hover:bg-secondary-dark/50 rounded px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50 dark:focus-visible:ring-secondary-dark/50" onClick={removeFromPinned}>
+                            <OutlineButton onClick={removeFromPinned}>
                                 Remove from my list
-                            </button>
+                            </OutlineButton>
                         ) : (
-                            <button className="secondary border border-secondary dark:border-secondary-dark hover:bg-secondary/50 dark:hover:bg-secondary-dark/50 rounded px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50 dark:focus-visible:ring-secondary-dark/50" onClick={addToPinned}>
+                            <OutlineButton onClick={addToPinned}>
                                 Add to my list
-                            </button>
+                            </OutlineButton>
                         )}
                         <a href={prefilledLink} tabIndex={-1} target="_blank" rel="noopener noreferrer">
-                            <button className="secondary border border-secondary dark:border-secondary-dark hover:bg-secondary/50 dark:hover:bg-secondary-dark/50 rounded px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50 dark:focus-visible:ring-secondary-dark/50">Check In</button>
+                            <OutlineButton>Check In</OutlineButton>
                         </a>
-                        <button className="text-theme dark:text-theme-dark border border-theme dark:border-theme-dark hover:bg-theme/50 dark:hover:bg-theme-dark/50 px-3 py-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-theme/50 dark:focus-visible:ring-theme-dark/50" onClick={() => setModal(false)}>
+                        <DangerOutlineButton onClick={() => setModal(false)}>
                             Close
-                        </button>
+                        </DangerOutlineButton>
                     </section>
                 </div>
             </CenteredModal>

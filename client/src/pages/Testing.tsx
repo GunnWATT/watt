@@ -2,6 +2,7 @@ import {useContext, useState} from 'react';
 import moment from 'moment';
 
 // Components
+import CenteredMessage from '../components/layout/CenteredMessage';
 import Period from '../components/schedule/Period';
 import Loading from '../components/layout/Loading';
 import WIP from '../components/layout/WIP';
@@ -89,19 +90,21 @@ export default function Testing() {
                 */}
 
                 <section className="auth-test">
-                    <SgySignInBtn/>
+                    <SgySignInBtn />
                 </section>
 
                 <section className="loading-test">
-                    <Loading/>
+                    <CenteredMessage>
+                        <Loading />
+                    </CenteredMessage>
                 </section>
 
                 <section className="work-test">
-                    <WIP/>
+                    <WIP />
                 </section>
 
                 <section className="query-test">
-                    <NoResults/>
+                    <NoResults />
                 </section>
 
                 <section className="periods-test">

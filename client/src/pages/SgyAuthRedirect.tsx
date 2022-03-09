@@ -6,6 +6,7 @@ import { httpsCallable } from 'firebase/functions';
 import {useAuth, useCallableFunctionResponse, useFunctions, useUser} from 'reactfire';
 
 // Components
+import CenteredMessage from '../components/layout/CenteredMessage';
 import Loading from '../components/layout/Loading';
 
 
@@ -59,5 +60,9 @@ export default function SgyAuthRedirect() {
         // }
     // }, [status])
 
-    return <Loading>Preparing to redirect you...</Loading>
+    return (
+        <CenteredMessage>
+            <Loading>Preparing to redirect you...</Loading>
+        </CenteredMessage>
+    );
 }

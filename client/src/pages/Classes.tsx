@@ -212,9 +212,7 @@ export default function Classes() {
                 This section uses Schoology integration, which requires you to connect your Schoology account.
                 Press the button below to continue.
             </p>
-            <div className="sgy-auth-button">
-                <SgySignInBtn />
-            </div>
+            <SgySignInBtn />
         </ClassesErrorBurrito>
     )
     if (!sgyData) return (
@@ -227,9 +225,9 @@ export default function Classes() {
                     Your user data is missing! Please click the button below to fetch materials.
                     If this is a recurring problem, please submit an issue to Github.
                 </p>
-                <div className="sgy-auth-button">
-                    <button onClick={updateSgy}>Fetch Materials</button>
-                </div>
+                <button className="rounded w-full p-5 bg-background dark:bg-background-dark shadow-lg" onClick={updateSgy}>
+                    Fetch Materials
+                </button>
             </>)}
         </ClassesErrorBurrito>
     )

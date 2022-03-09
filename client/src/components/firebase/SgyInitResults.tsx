@@ -1,11 +1,11 @@
 import {useState, useEffect} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {Dialog} from '@headlessui/react';
-import { Spinner } from 'reactstrap';
 
 // Components
 import CenteredModal from '../layout/CenteredModal';
-//import Loading from '../misc/Loading'; // Doesn't mesh well with the modal
+import OutlineButton, {DangerOutlineButton, SuccessOutlineButton} from '../layout/OutlineButton';
+import Loading from '../layout/Loading';
 
 // Auth
 import { useAuth, useFirestore, useFunctions, useUser } from 'reactfire';
@@ -70,7 +70,7 @@ export default function SgyInitResults() {
                 </Dialog.Title>
                 <Dialog.Description as="section" className="mb-3">
                     {!results ? (
-                        <InlineLoading />
+                        <Loading>Fetching courses...</Loading>
                     ) : confirmDisable ? (
                         <em className="secondary mb-3">
                             If there was a problem, please submit an issue on Github.
@@ -93,31 +93,22 @@ export default function SgyInitResults() {
                 </Dialog.Description>
                 <section className="flex gap-3">
                     {results && (confirmDisable ? (<>
-                        <button className="text-theme dark:text-theme-dark border border-theme dark:border-theme-dark hover:bg-theme/50 dark:hover:bg-theme-dark/50 px-3 py-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-theme/50 dark:focus-visible:ring-theme-dark/50" onClick={() => disableSchoology()}>
+                        <DangerOutlineButton onClick={disableSchoology}>
                             Yes, Disable Schoology
-                        </button>
-                        <button className="secondary border border-secondary dark:border-secondary-dark hover:bg-secondary/50 dark:hover:bg-secondary-dark/50 rounded px-3 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50 dark:focus-visible:ring-secondary-dark/50" onClick={() => setConfirm(false)}>
+                        </DangerOutlineButton>
+                        <OutlineButton onClick={() => setConfirm(false)}>
                             Take Me Back!
-                        </button>
+                        </OutlineButton>
                     </>) : (<>
-                        <button className="text-theme dark:text-theme-dark border border-theme dark:border-theme-dark hover:bg-theme/50 dark:hover:bg-theme-dark/50 px-3 py-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-theme/50 dark:focus-visible:ring-theme-dark/50" onClick={() => setConfirm(true)}>
+                        <DangerOutlineButton onClick={() => setConfirm(true)}>
                             Disable Schoology
-                        </button>
-                        <button className="text-lime-600 border border-lime-600 hover:bg-lime-600/50 px-3 py-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-600/50" onClick={() => enableSchoology()}>
+                        </DangerOutlineButton>
+                        <SuccessOutlineButton onClick={enableSchoology}>
                             Looks Good!
-                        </button>
+                        </SuccessOutlineButton>
                     </>))}
                 </section>
             </div>
         </CenteredModal>
-    )
-}
-
-function InlineLoading() {
-    return (
-        <div className="flex items-center gap-4">
-            <Spinner />
-            <span>Fetching courses...</span>
-        </div>
     )
 }

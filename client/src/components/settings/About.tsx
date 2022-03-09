@@ -1,9 +1,9 @@
 export default function About() {
     return (
         <>
-            <h1>About</h1>
-            <section className="bg-[color:var(--content-tertiary)] rounded-md mb-6 px-8 py-16">
-                <p className="text-xl font-light mb-4">
+            <h1 className="mb-4">About</h1>
+            <section className="bg-content-secondary dark:bg-background-dark font-light rounded-md mb-4 px-8 py-16">
+                <p className="text-xl mb-4">
                     If I have seen further, it is by standing on the shoulders of giants.
                 </p>
                 <em className="secondary">―Isaac Newton</em>
