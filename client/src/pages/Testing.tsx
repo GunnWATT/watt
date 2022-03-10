@@ -64,10 +64,10 @@ export default function Testing() {
         <div className="container py-6">
             <h1>Super Secret Testing Facility</h1>
             <p>
-                Congratulations! You found the super secret testing area for Gunn WATT!{' '}
-                Experiments and other potential features will live here until they are accepted or rejected,{' '}
-                and components that only trigger conditionally (like loading screens for fetched content or period components in a specific state){' '}
-                will stay here permanently for convenience in testing.
+                Congratulations! You found the super secret testing area for Gunn WATT!
+                Experiments and other potential features will live here until they are accepted or rejected,
+                and components that only trigger conditionally (like loading screens for fetched content or period
+                components in a specific state) will stay here permanently for convenience in testing.
             </p>
             <hr/>
 

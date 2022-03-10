@@ -63,7 +63,7 @@ export default function Staff() {
                 <h1>Staff</h1>
                 <input
                     type="search"
-                    className="h-max border-2 border-tertiary"
+                    className="py-1 px-2.5 rounded-full border-2 border-tertiary"
                     placeholder="Search Staff"
                     onChange={e => setQuery(e.target.value)}
                 />

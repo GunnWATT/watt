@@ -1,8 +1,9 @@
 import {useContext, useEffect, useRef, useState, PointerEvent} from 'react';
-import {Button} from 'reactstrap';
 import {useHotkeys} from 'react-hotkeys-hook';
 
+// Components
 import RedBackground from '../layout/RedBackground';
+import CloseButton from '../layout/CloseButton';
 
 import GunnMapImage from '../../assets/gunnmap.png';
 import UserDataContext from '../../contexts/UserDataContext';
@@ -61,7 +62,7 @@ export default function ImageMap(props : ImageMapProps) {
     return (
         <div className="bg-background dark:bg-background-dark fixed w-full h-full top-0 left-0 touch-none z-20">
             <RedBackground />
-            <Button close className="absolute top-8 right-8" onClick={close} />
+            <CloseButton className="absolute top-8 right-8" onClick={close} />
 
             <div
                 className="flex w-full h-full overflow-hidden"

@@ -53,7 +53,7 @@ export default function Sidebar(props: SidebarProps) {
                 <nav className="flex flex-col gap-3 mt-3 h-full">
                     <SidebarItem to="/" icon={Home}>Home</SidebarItem>
                     <SidebarItem to="/classes" icon={CheckSquare}>
-                        Classes <Badge>Beta</Badge>
+                        Classes<Badge>Beta</Badge>
                     </SidebarItem>
                     <SidebarItem to="/clubs" icon={Users}>Clubs</SidebarItem>
                     <SidebarItem to="/utilities" icon={Tool}>Utilities</SidebarItem>
