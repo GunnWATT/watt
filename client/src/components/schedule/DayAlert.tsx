@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import {Transition} from '@headlessui/react';
 import CloseButton from '../layout/CloseButton';
 
 
@@ -20,14 +21,22 @@ export default function DayAlert(props: DayAlertProps) {
             : `You are viewing a schedule from ${absDays} days ago.`;
     }
 
-    if (!visible) return null;
-
-    // TODO: use <Transition> instead of `return null` and add fancy animations
     return (
-        <div className="day-alert absolute left-0 right-0 flex items-center mx-auto shadow-lg border-none bg-sidebar dark:bg-sidebar-dark rounded px-5 py-3 pr-16">
-            {makeDateString()}
-            <button className="ml-auto" onClick={jumpToPres}>JUMP TO PRESENT</button>
-            <CloseButton className="absolute right-4" onClick={() => setVisible(false)} />
-        </div>
+        <Transition
+            appear
+            show={visible}
+            enter="transition-opacity duration-100"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="transition-opacity duration-150"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+        >
+            <div className="day-alert absolute left-0 right-0 flex items-center mx-auto shadow-lg border-none bg-sidebar dark:bg-sidebar-dark rounded px-5 py-3 pr-16">
+                {makeDateString()}
+                <button className="ml-auto" onClick={jumpToPres}>JUMP TO PRESENT</button>
+                <CloseButton className="absolute right-4" onClick={() => setVisible(false)} />
+            </div>
+        </Transition>
     );
 }
