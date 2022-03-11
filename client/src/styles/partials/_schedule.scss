@@ -18,12 +18,6 @@
 
   // The Alert for when you are viewing a different day's schedule
   .day-alert {
-    color: var(--primary);
-    background-color: var(--bg-primary);
     max-width: 1000px;
-
-    button {
-      color: inherit;
-    }
   }
 }

@@ -24,7 +24,7 @@ export default function DateSelector(props: DateSelectorProps) {
 
     return (
         <div className="date-selector mb-8 flex justify-center gap-3">
-            <button className='icon' onClick={decDay}>
+            <button className="icon" onClick={decDay}>
                 <ChevronLeft/>
             </button>
 
@@ -59,9 +59,7 @@ export default function DateSelector(props: DateSelectorProps) {
 type CalendarProps = {
     start?: Moment, end?: Moment,
     currTime: Moment, setTime: (day: Moment) => any,
-
     hidden?: boolean, style?: CSSProperties,
-
     picker?: boolean // assumed to be true
     time?: boolean // do you choose time as well?
 }

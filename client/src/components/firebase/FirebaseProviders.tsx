@@ -28,6 +28,8 @@ export default function FirebaseProviders(props: {children: ReactNode}) {
     //if (status === 'loading') return null;
 
     // Set up emulators on dev build
+    // TODO: should this go into a useEffect? this seems to spam the emulator connections quite a bit
+    // though maybe that's ok
     if (process.env.NODE_ENV !== 'production') {
         connectAuthEmulator(auth, 'http://localhost:9099');
         connectFunctionsEmulator(functions, 'localhost', 5001);

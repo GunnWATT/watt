@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Alert, Button } from 'reactstrap';
+import CloseButton from '../layout/CloseButton';
 
 
 type DayAlertProps = {daysRelToCur: number, jumpToPres: () => void};
@@ -7,7 +7,6 @@ export default function DayAlert(props: DayAlertProps) {
     const {daysRelToCur: days, jumpToPres} = props;
 
     const [visible, setVisible] = useState(true);
-    const onDismiss = () => setVisible(false);
 
     const makeDateString = () => {
         const absDays = Math.abs(days);
@@ -21,14 +20,14 @@ export default function DayAlert(props: DayAlertProps) {
             : `You are viewing a schedule from ${absDays} days ago.`;
     }
 
+    if (!visible) return null;
+
+    // TODO: use <Transition> instead of `return null` and add fancy animations
     return (
-        <Alert
-            className="day-alert absolute left-0 right-0 flex items-center mb-4 mx-auto shadow-lg border-none rounded px-5 py-3"
-            isOpen={visible}
-            toggle={onDismiss}
-        >
-            {makeDateString()}{' '}
+        <div className="day-alert absolute left-0 right-0 flex items-center mx-auto shadow-lg border-none bg-sidebar dark:bg-sidebar-dark rounded px-5 py-3 pr-16">
+            {makeDateString()}
             <button className="ml-auto" onClick={jumpToPres}>JUMP TO PRESENT</button>
-        </Alert>
+            <CloseButton className="absolute right-4" onClick={() => setVisible(false)} />
+        </div>
     );
 }
