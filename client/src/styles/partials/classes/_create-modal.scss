@@ -4,56 +4,50 @@
   .modal-content {
     background-color: var(--bg-primary);
   }
-  
-  h5.modal-title {
-    width: 100%;
 
-    .create-name {
-      width: 100%;
-      background-color: var(--contrast);
-      padding: 3px 5px;
-      border-radius: 3px;
+  .create-name {
+    background-color: var(--contrast);
+    padding: 3px 5px;
+    border-radius: 3px;
 
-      &.incomplete {
-        outline: 1px dashed var(--active);
+    &.incomplete {
+      outline: 1px dashed var(--active);
+    }
+  }
+
+  .period-picker {
+    position: relative;
+
+    &-text {
+      margin-top: 10px;
+      display: flex;
+
+      div {
+        cursor: pointer;
+        background-color: var(--content-primary);
+        padding: 0px 5px;
+        border-radius: 5px;
+        font-size: 1rem;
       }
     }
 
-    .period-picker {
-      position: relative;
+    .class-picker {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      left: 0px;
 
-      &-text {
-        margin-top: 10px;
+      .period-picker-period {
         display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
 
-        div {
-          cursor: pointer;
-          background-color: var(--content-primary);
-          padding: 0px 5px;
-          border-radius: 5px;
-          font-size: 1rem;
+        & .dot {
+          @include dot(1.75rem);
+          margin-right: 0.75rem;
         }
       }
-
-      .class-picker {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        left: 0px;
-        
-        .period-picker-period {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          cursor: pointer;
-
-          & .dot {
-            @include dot(1.75rem);
-            margin-right: 0.75rem;
-          }
-        }
-      }
-      
     }
   }
 

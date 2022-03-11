@@ -113,7 +113,7 @@ export default function Periods(props: PeriodsProps) {
 
     return (
         <div>
-            {alternate && <p className="text-center">This is an alternate schedule.</p>}
+            {alternate && <p className="text-center mb-4">This is an alternate schedule.</p>}
             {periods ? schoolDay() : noSchool()}
         </div>
     )

@@ -61,7 +61,7 @@ export default function StaffComponent(props: Staff & {id: string}) {
             {email && <p className="secondary">{email}</p>}
 
             <CenteredModal isOpen={modal} setIsOpen={setModal}>
-                <div className="relative bg-content dark:bg-content-dark rounded-md max-w-md mx-3 p-6 shadow-xl">
+                <div className="relative bg-content dark:bg-content-dark rounded-md max-w-md mx-2 p-6 shadow-xl">
                     <Dialog.Title className="text-xl font-semibold mb-3 pr-6">{name}</Dialog.Title>
                     <section className="flex gap-6 justify-between">
                         <div>

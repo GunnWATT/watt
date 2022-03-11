@@ -172,7 +172,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
 
     return (
         <CenteredModal isOpen={open} setIsOpen={setOpen}>
-            <div>
+            <div className="create-modal relative flex flex-col gap-4 bg-sidebar dark:bg-sidebar-dark rounded-md w-[32rem] max-w-full max-h-[90%] p-6 mx-2">
                 <section>
                     {/* Tags */}
                     <TagPicker labels={labels} toggleLabel={toggleLabel} />
@@ -181,7 +181,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
                     <input
                         placeholder="Assignment Name"
                         autoFocus
-                        className={"create-name" + (name.length ? '' : ' incomplete')}
+                        className={"create-name w-full" + (name.length ? '' : ' incomplete')}
                         value={name}
                         onChange={e => setName(e.target.value)}
                     />
@@ -191,7 +191,12 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
                 </section>
 
                 <section>
-                    <textarea className="create-desc" placeholder="Assignment Description [Optional]" value={description} onChange={e => setDescription(e.target.value)}/>
+                    <textarea
+                        className="create-desc placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light"
+                        placeholder="Assignment Description [Optional]"
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
+                    />
 
                     <div className="create-foot">
                         <PriorityPicker priority={priority} setPriority={setPriority} align='right' />
@@ -222,7 +227,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
                     </div>
                 </section>
 
-                <section>
+                <section className="flex flex-wrap gap-3 items-center justify-end">
                     <OutlineButton onClick={() => setOpen(false)}>Cancel</OutlineButton>
                     <SuccessOutlineButton disabled={!ready} onClick={create}>
                         {item ? (

@@ -48,7 +48,7 @@ export default function AssignmentModal(props: AssignmentModalProps) {
 
     return (
         <CenteredModal isOpen={open} setIsOpen={setOpen}>
-            <div className="item-modal relative flex flex-col gap-4 bg-sidebar dark:bg-sidebar-dark rounded-md max-w-lg p-6">
+            <div className="item-modal relative flex flex-col gap-4 bg-sidebar dark:bg-sidebar-dark rounded-md max-w-lg max-h-[90%] p-6 mx-2">
                 <section>
                     <AssignmentTags item={item} period />
                     <span className="flex items-center gap-2">
@@ -69,7 +69,11 @@ export default function AssignmentModal(props: AssignmentModalProps) {
                     </span>
                 </section>
 
-                {item.description && <Dialog.Description>{item.description}</Dialog.Description>}
+                {item.description && (
+                    <section className="overflow-scroll scroll-smooth scrollbar-none">
+                        <Dialog.Description>{item.description}</Dialog.Description>
+                    </section>
+                )}
 
                 {item.timestamp && (
                     <section className="flex gap-3 items-center">

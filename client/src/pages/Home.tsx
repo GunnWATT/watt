@@ -75,7 +75,7 @@ export default function Home(props: HomeProps) {
                     viewDate={viewDate}
                     setViewDate={setViewDate}
                 />
-                <h1 className="text-7xl text-center mb-5">{viewDate.format('dddd')}</h1>
+                <h1 className="text-6xl md:text-7xl text-center mb-5">{viewDate.format('dddd')}</h1>
                 <h2 className="text-3xl font-semibold text-center mb-2">{viewDate.format('MMMM Do, YYYY')}</h2>
 
                 {/* <CSSTransition> */}
