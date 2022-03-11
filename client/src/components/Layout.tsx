@@ -62,7 +62,7 @@ export default function Layout(props: {children: ReactNode}) {
     // Change theme on userData change
     const userData = useContext(UserDataContext);
     useEffect(() => {
-        document.body.className = userData.options.theme;
+        document.documentElement.className = userData.options.theme;
     }, [userData.options.theme])
 
     // Analytics

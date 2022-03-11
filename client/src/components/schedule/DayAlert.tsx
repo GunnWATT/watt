@@ -1,40 +1,42 @@
 import { useState } from 'react';
-import { Alert, Button } from 'reactstrap';
+import {Transition} from '@headlessui/react';
+import CloseButton from '../layout/CloseButton';
 
 
 type DayAlertProps = {daysRelToCur: number, jumpToPres: () => void};
 export default function DayAlert(props: DayAlertProps) {
-    const {daysRelToCur, jumpToPres} = props;
+    const {daysRelToCur: days, jumpToPres} = props;
 
     const [visible, setVisible] = useState(true);
-    const onDismiss = () => setVisible(false);
 
-    let days = daysRelToCur;
-    let absDays = Math.abs(days);
     const makeDateString = () => {
-        let newer = days > 0;
-        let singular = absDays === 1;
-        if (singular) {
-            if (newer) return 'You are viewing tomorrow\'s schedule.';
-            return 'You are viewing yesterday\'s schedule.';
-        }
-        if (newer) return `You are viewing a schedule for ${absDays} days from now.`; // Credit: Saumya for phrasing
-        return `You are viewing a schedule from ${absDays} days ago.`;
+        const absDays = Math.abs(days);
+        const newer = days > 0;
+
+        if (absDays === 1) return newer
+            ? 'You are viewing tomorrow\'s schedule.'
+            : 'You are viewing yesterday\'s schedule.';
+        return newer
+            ? `You are viewing a schedule for ${absDays} days from now.`
+            : `You are viewing a schedule from ${absDays} days ago.`;
     }
 
     return (
-        <Alert
-            className="day-alert"
-            isOpen={visible}
-            toggle={onDismiss}
-            style={{
-                position: 'absolute',
-                left: 0,
-                right: 0
-            }}
+        <Transition
+            appear
+            show={visible}
+            enter="transition-opacity duration-100"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="transition-opacity duration-150"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
         >
-            {makeDateString()}{' '}
-            <button onClick={jumpToPres}>JUMP TO PRESENT</button>
-        </Alert>
+            <div className="day-alert absolute left-0 right-0 flex items-center mx-auto shadow-lg border-none bg-sidebar dark:bg-sidebar-dark rounded px-5 py-3 pr-16">
+                {makeDateString()}
+                <button className="ml-auto" onClick={jumpToPres}>JUMP TO PRESENT</button>
+                <CloseButton className="absolute right-4" onClick={() => setVisible(false)} />
+            </div>
+        </Transition>
     );
 }

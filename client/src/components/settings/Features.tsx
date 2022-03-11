@@ -1,5 +1,5 @@
-import {useContext} from 'react';
-import {FormGroup, Label, Input} from 'reactstrap';
+import {ReactNode, useContext} from 'react';
+import {Switch} from '@headlessui/react';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
@@ -27,79 +27,45 @@ export default function Features() {
             <h1>Features</h1>
             <hr/>
 
-            <h4>Show Period 0</h4>
-            <FormGroup check>
-                <Label check>
-                    <Input
-                        type="radio"
-                        name="period-0-pref"
-                        checked={showPeriod0}
-                        onChange={() => changePeriod0(true)}
-                    />{' '}
-                    Yes
-                </Label>
-            </FormGroup>
-            <FormGroup check>
-                <Label check>
-                    <Input
-                        type="radio"
-                        name="period-0-pref"
-                        checked={!showPeriod0}
-                        onChange={() => changePeriod0(false)}
-                    />{' '}
-                    No
-                </Label>
-            </FormGroup>
-            <br/>
-
-            <h4>Show Period 8</h4>
-            <FormGroup check>
-                <Label check>
-                    <Input
-                        type="radio"
-                        name="period-8-pref"
-                        checked={showPeriod8}
-                        onChange={() => changePeriod8(true)}
-                    />{' '}
-                    Yes
-                </Label>
-            </FormGroup>
-            <FormGroup check>
-                <Label check>
-                    <Input
-                        type="radio"
-                        name="period-8-pref"
-                        checked={!showPeriod8}
-                        onChange={() => changePeriod8(false)}
-                    />{' '}
-                    No
-                </Label>
-            </FormGroup>
-            <br />
-
-            <h4>Show Clock</h4>
-            <FormGroup check>
-                <Label check>
-                    <Input
-                        type="radio"
-                        name="clock-pref"
-                        checked={showClock}
-                        onChange={() => changeClock(true)}
-                    />{' '}
-                    Yes
-                </Label>
-            </FormGroup>
-            <FormGroup check>
-                <Label check>
-                    <Input
-                        type="radio"
-                        name="clock-pref"
-                        checked={!showClock}
-                        onChange={() => changeClock(false)}
-                    />{' '}
-                    No
-                </Label>
-            </FormGroup>
+            <section className="flex flex-col gap-4">
+                <RadioToggle checked={showPeriod0} setChecked={changePeriod0} label="Show Period 0">
+                    <p className="secondary font-light">Displays <code>Period 0</code> on the schedule.</p>
+                </RadioToggle>
+                <RadioToggle checked={showPeriod8} setChecked={changePeriod8} label="Show Period 8">
+                    <p className="secondary font-light">Displays <code>Period 8</code> on the schedule.</p>
+                </RadioToggle>
+                {/* TODO: maybe clock would benefit from a radio group with images better than a switch */}
+                <RadioToggle checked={showClock} setChecked={changeClock} label="Show Clock">
+                    <p className="secondary font-light">Displays the clock on the home page.</p>
+                </RadioToggle>
+            </section>
         </>
     );
+}
+
+// TODO: maybe extract this? Other components are not using it (yet), but it would make sense as a layout component
+type RadioToggleProps = {
+    checked: boolean, setChecked: (checked: boolean) => void,
+    label: string, children?: ReactNode
+};
+function RadioToggle(props: RadioToggleProps) {
+    const {checked, setChecked, label, children} = props;
+
+    return (
+        <Switch.Group>
+            <div className="flex items-center gap-4">
+                <Switch
+                    checked={checked}
+                    onChange={setChecked}
+                    className={`${checked ? 'bg-theme dark:bg-theme-dark/80' : 'bg-[color:var(--content-secondary)]'} relative inline-flex items-center h-6 rounded-full w-11 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary/10 dark:focus:ring-secondary-dark/10 focus:ring-offset-transparent`}
+                >
+                    <span className={`${checked ? 'translate-x-6' : 'translate-x-1'} inline-block w-4 h-4 transform bg-white rounded-full transition-transform`}/>
+                </Switch>
+                <div>
+                    <Switch.Label passive className="text-lg font-medium">{label}</Switch.Label>
+                    {children}
+                </div>
+            </div>
+        </Switch.Group>
+    )
 }

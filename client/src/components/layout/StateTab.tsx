@@ -1,22 +1,17 @@
-import {NavItem, NavLink} from 'reactstrap';
+import Tab from './Tab';
 
 
-// A state based nav tab, as opposed to the link based NavTab.
+// A state based nav tab, for when a page's subpages are on the same URL as the root and conditionally rendered using
+// state rather than URLs (/clubs).
 // `value` is the state value of this tab, which determines whether this tab is active as well as
 // what value to set the state to when this tab is clicked.
-
 type StateTabProps = {value: string, name: string, state: string, setState: (state: string) => void};
 export default function StateTab(props: StateTabProps) {
-    let {value, name, state, setState} = props;
+    const {value, name, state, setState} = props;
 
     return (
-        <NavItem>
-            <NavLink
-                className={state === value ? "active" : ""}
-                onClick={() => setState(value)}
-            >
-                {name}
-            </NavLink>
-        </NavItem>
+        <Tab active={value === state} onClick={setState.bind(null, value)}>
+            {name}
+        </Tab>
     )
 }

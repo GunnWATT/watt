@@ -1,0 +1,23 @@
+// The schedule portion of the home page
+.schedule {
+  padding: 15px;
+
+  // The day name ("Saturday")
+  &-dayname {
+    @at-root .home.narrow .schedule-dayname {
+      font-size: 55px;
+    }
+  }
+
+  // The date ("October 10th, 2020")
+  &-date {
+    @at-root .home.narrow .schedule-date {
+      font-size: 24px;
+    }
+  }
+
+  // The Alert for when you are viewing a different day's schedule
+  .day-alert {
+    max-width: 1000px;
+  }
+}

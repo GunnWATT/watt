@@ -1,0 +1,57 @@
+@import '../mixins/content-box';
+@import '../mixins/dot';
+
+.spinner-border {
+  flex-shrink: 0;
+}
+
+.classes-error-content {
+  max-width: 1000px;
+}
+
+.classes-sidebar {
+  padding: 15px 10px;
+  &.expanded { 
+    width: min(275px, 80vw);
+  }
+  height: 100vh;
+
+  &.phone {
+    height: calc(100vh - 64px);
+  }
+}
+
+.classes-sidebar-bubble {
+  @include dot(50px);
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  &.phone {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+.classes-sidebar-item {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+
+  .classes-sidebar-text {
+    margin-right: 15px;
+  }
+}
+
+.classes-header-bubble {
+  width: 40px;
+  height: 40px;
+}
+
+// Nav Bar
+.classes-navbar {
+  &-item {
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: all ease-in-out 100ms;
+  }
+}

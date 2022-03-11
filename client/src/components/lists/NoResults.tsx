@@ -1,7 +1,6 @@
+import CenteredMessage from '../layout/CenteredMessage';
+
+
 export default function NoResults() {
-    return (
-        <div className="no-results">
-            <span>No results match your search.</span>
-        </div>
-    )
+    return <CenteredMessage>No results match your search.</CenteredMessage>;
 }

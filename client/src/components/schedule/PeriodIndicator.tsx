@@ -1,6 +1,5 @@
 import {useContext} from 'react';
 import {useNextPeriod} from '../../hooks/useNextPeriod';
-import {Progress} from 'reactstrap';
 
 // Context
 import UserDataContext from '../../contexts/UserDataContext';
@@ -23,32 +22,32 @@ export default function PeriodIndicator(props: PeriodIndicatorProps) {
     if (startingIn > 0) {
         const end = prev?.[1].e ?? startTime - 20;
         return (
-            <div className="period-indicator">
-                <p>
+            <div className="mb-4">
+                <p className="mb-1">
                     <strong>{parsePeriodName(next[0], userData)}</strong>{' '}
                     starting in {startingIn} minute{startingIn !== 1 ? 's' : ''}.
                 </p>
-                <Progress
-                    value={(seconds / 60 - end) / (next[1].s - end) * 100}
-                    style={{backgroundColor: 'var(--tertiary)'}}
-                    barStyle={{backgroundColor: 'var(--primary)'}}
-                />
+                <ProgressBar value={(seconds / 60 - end) / (next[1].s - end) * 100} />
             </div>
         )
     }
 
     return (
-        <div className="period-indicator">
-            <p>
+        <div className="mb-4">
+            <p className="mb-1">
                 <strong>{parsePeriodName(next[0], userData)}</strong>{' '}
                 ending in {endingIn} minute{endingIn !== 1 ? 's' : ''},{' '}
                 started {-startingIn} minute{startingIn !== -1 ? 's' : ''} ago.
             </p>
-            <Progress
-                value={(seconds / 60 - next[1].s) / (next[1].e - next[1].s) * 100}
-                style={{backgroundColor: 'var(--tertiary)'}}
-                barStyle={{backgroundColor: 'var(--primary)'}}
-            />
+            <ProgressBar value={(seconds / 60 - next[1].s) / (next[1].e - next[1].s) * 100} />
+        </div>
+    )
+}
+
+function ProgressBar(props: {value: number}) {
+    return (
+        <div className="flex overflow-hidden bg-tertiary dark:bg-tertiary-dark h-2 rounded">
+            <div className="bg-primary dark:bg-primary-dark transition-all duration-700" style={{width: `${props.value}%`}} />
         </div>
     )
 }

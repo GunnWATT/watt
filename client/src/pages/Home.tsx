@@ -4,7 +4,7 @@ import moment from 'moment';
 import {GCalEvent} from '../components/schedule/Event';
 
 // Components
-import RedBackground from '../components/layout/RedBackground';
+import Wave from '../components/layout/Wave';
 import Clock from '../components/schedule/Clock';
 import HomeDateSelector from '../components/schedule/DateSelector';
 import Periods from '../components/schedule/Periods';
@@ -21,8 +21,6 @@ import UserDataContext from '../contexts/UserDataContext';
 
 type HomeProps = {events: GCalEvent[] | null, eventsError: Error | null, fetchEvents: () => void};
 export default function Home(props: HomeProps) {
-    const { events, eventsError, fetchEvents } = props;
-
     // Date variables
     // Here, date is the current time of the user (passed in from outer scope), used for things that should not be
     // normalized to PST (like the clock), while viewDate is the current day but converted to PST for things that should be normalized;
@@ -65,32 +63,33 @@ export default function Home(props: HomeProps) {
 
     return (
         <div className={`home ${displayFromScreenType()}`}>
-            <RedBackground />
+            <Wave />
 
             {/* Schedule */}
-            <div className="schedule">
+            <main className="schedule relative">
                 {relDays !== 0 && <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>}
 
-                { userData.options?.clock && <Clock viewDate={viewDate} /> }
-                <h2 className="schedule-datetime center">{date.format(format)}</h2>
+                {userData.options?.clock && <Clock viewDate={viewDate} />}
+                <h2 className="text-3xl text-center mb-3">{date.format(format)}</h2>
                 <HomeDateSelector
                     viewDate={viewDate}
                     setViewDate={setViewDate}
                 />
-                <h1 className="schedule-dayname">{viewDate.format('dddd')}</h1>
-                <h2 className="schedule-date">{viewDate.format('MMMM Do, YYYY')}</h2>
+                <h1 className="text-6xl md:text-7xl text-center mb-5">{viewDate.format('dddd')}</h1>
+                <h2 className="text-3xl font-semibold text-center mb-2">{viewDate.format('MMMM Do, YYYY')}</h2>
 
                 {/* <CSSTransition> */}
-                <div className="schedule-wrapper">
+                <div className="mx-auto max-w-3xl">
                     <Periods viewDate={viewDate} />
                 </div>
                 {/* </CSSTransition> */}
 
-                <div id="weekwrapper"></div>
-            </div>
+                {/* TODO: implement weekwrapper */}
+                {/* <div id="weekwrapper"></div> */}
+            </main>
 
             {/* Events */}
-            <Events events={events} viewDate={viewDate} eventsError={eventsError} fetchEvents={fetchEvents} />
+            <Events {...props} viewDate={viewDate} />
         </div>
     );
 }

@@ -1,0 +1,31 @@
+// Main
+@import 'base';
+
+// Layout
+@import 'partials/sidebar';
+@import 'partials/bottom-nav';
+
+// Pages
+@import 'partials/home';
+@import 'partials/classes';
+
+// Home
+@import 'partials/events';
+@import 'partials/schedule';
+@import 'partials/datepicker';
+
+// Settings
+@import 'partials/period-customization';
+
+// Components
+@import 'partials/search';
+
+// Classes
+@import 'partials/classes/dashboard';
+@import 'partials/classes/upcoming';
+@import 'partials/classes/materials';
+@import 'partials/classes/classfilter';
+@import 'partials/classes/assignments';
+@import 'partials/classes/quickcalendar';
+@import 'partials/classes/create-modal';
+@import 'partials/classes/sidebar-calendar';

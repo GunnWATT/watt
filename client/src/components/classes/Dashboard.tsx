@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
+import {ReactNode, useContext, useEffect, useState} from 'react';
 import moment from 'moment';
 
 // Components
-import DashboardBlurb from './Blurb';
-import DashboardQuickInfo from './QuickInfo';
+import DashboardBlurb from './DashboardBlurb';
+import DashboardQuickInfo from './DashboardQuickInfo';
 import Grades from './Grades';
 import FetchFooter from './FetchFooter';
 
@@ -13,25 +13,21 @@ import UserDataContext from '../../contexts/UserDataContext';
 import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
-import { useScreenType } from '../../hooks/useScreenType';
 import { AssignmentBlurb, getAllGrades, getUpcomingInfo } from '../../util/sgyFunctions';
 
 
 export default function Dashboard() {
+    const {sgyData, selected, fetching, lastFetched, updateSgy} = useContext(SgyDataContext);
 
-    const sgyInfo = useContext(SgyDataContext);
-    const {sgyData, selected, fetching, lastFetched, updateSgy} = sgyInfo;
-
+    const userData = useContext(UserDataContext);
     const time = useContext(CurrentTimeContext);
-    const screenType = useScreenType();
 
     const lastFetchedTime = lastFetched && moment(lastFetched);
 
-    const [upcoming, setUpcoming] = useState < AssignmentBlurb[] | null > (null);
-    const [overdue, setOverdue] = useState<AssignmentBlurb[] | null> (null);
-    const [allGrades, setAllGrades] = useState<{[key:string]: number} | null> (null);
+    const [upcoming, setUpcoming] = useState<AssignmentBlurb[] | null>(null);
+    const [overdue, setOverdue] = useState<AssignmentBlurb[] | null>(null);
+    const [allGrades, setAllGrades] = useState<{[key:string]: number} | null>(null);
 
-    const userData = useContext(UserDataContext);
 
     useEffect(() => {
         setAllGrades(getAllGrades(sgyData, userData));
@@ -46,22 +42,28 @@ export default function Dashboard() {
     }, [selected, userData])
 
     return (
-        <div className={"dashboard-burrito " + screenType}>
+        <div className="dashboard-burrito flex gap-6 flex-wrap xl:flex-nowrap">
             {/* Dashboard left section */}
-            <div className={"dashboard-section dashboard-section-left " + screenType}>
+            <DashboardSection>
                 {upcoming && <DashboardBlurb upcoming={upcoming} selected={selected} />}
-            </div>
+            </DashboardSection>
 
             {/* Dashboard right section */}
-            <div className={"dashboard-section dashboard-section-right " + screenType}>
-                <div className="dashboard-quick-info">
-                    <DashboardQuickInfo selected={selected} />
-                </div>
+            <DashboardSection>
+                <DashboardQuickInfo selected={selected} />
 
                 {allGrades && <Grades selected={selected} allGrades={allGrades} />}
 
                 <FetchFooter />
-            </div>
+            </DashboardSection>
         </div>
     );
 };
+
+function DashboardSection(props: {children: ReactNode}) {
+    return (
+        <section className="dashboard-section p-4 rounded-md flex flex-col bg-sidebar dark:bg-sidebar-dark shadow-lg">
+            {props.children}
+        </section>
+    )
+}

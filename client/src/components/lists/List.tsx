@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, ReactNode} from 'react';
 import NoResults from './NoResults';
 
 
@@ -13,7 +13,7 @@ type ListProps<T> = {
     pinned: string[]
 }
 
-// Defines a higher order list component of type T where T is the type of the JSON representation of a list value
+// A higher order list component of type T where T is the type of the JSON representation of a list value
 // (ex: Club, Staff, `{ new: true, name: "United Computations", ... }`).
 // List accepts the raw data as either the entire JSON file (`{[key: string]: T}`) or already subjected to Object.entries
 // (`[string, T][]` to be compatible with Club tab data filtering).
@@ -47,17 +47,25 @@ export default function List<T>(props: ListProps<T>) {
 
     return content.length || pinnedContent.length ? (<>
         {pinnedContent.length > 0 && (
-            <ul className="material-list">
+            <MaterialList>
                 {pinnedContent}
-            </ul>
+            </MaterialList>
         )}
         {content.length > 0 && pinnedContent.length > 0 && <hr/>}
         {content.length > 0 && (
-            <ul className="material-list">
+            <MaterialList>
                 {content}
-            </ul>
+            </MaterialList>
         )}
     </>) : (
         <NoResults/>
     );
+}
+
+function MaterialList(props: {children: ReactNode}) {
+    return (
+        <ul className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] list-none">
+            {props.children}
+        </ul>
+    )
 }

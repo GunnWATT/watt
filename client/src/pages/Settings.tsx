@@ -1,8 +1,7 @@
 import {Routes, Route} from 'react-router-dom';
-import {Nav} from 'reactstrap';
 
 // Components
-import Header from '../components/layout/Header';
+import HeaderPage from '../components/layout/HeaderPage';
 import NavTab from '../components/layout/NavTab';
 import Appearance from '../components/settings/Appearance';
 import PeriodCustomization from '../components/settings/PeriodCustomization';
@@ -12,16 +11,14 @@ import About from '../components/settings/About';
 
 export default function Settings() {
     return (
-        <Header
+        <HeaderPage
             heading="Settings"
-            nav={
-                <Nav fill tabs>
-                    <NavTab to="." name="Appearance" />
-                    <NavTab to="features" name="Features" />
-                    <NavTab to="periods" name="Periods" />
-                    <NavTab to="about" name="About" />
-                </Nav>
-            }
+            nav={<>
+                <NavTab to="." name="Appearance" />
+                <NavTab to="features" name="Features" />
+                <NavTab to="periods" name="Periods" />
+                <NavTab to="about" name="About" />
+            </>}
         >
             <Routes>
                 <Route path="/" element={<Appearance />}/>
@@ -29,6 +26,6 @@ export default function Settings() {
                 <Route path="/periods" element={<PeriodCustomization />}/>
                 <Route path="/about" element={<About />}/>
             </Routes>
-        </Header>
+        </HeaderPage>
     );
 }

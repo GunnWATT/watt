@@ -1,11 +1,10 @@
 import {useContext, useState} from 'react';
-import {Nav} from 'reactstrap';
 import moment from 'moment';
 import {useScreenType} from '../hooks/useScreenType';
 
 // Components
+import HeaderPage from '../components/layout/HeaderPage';
 import List from '../components/lists/List';
-import Header from '../components/layout/Header';
 import StateTab from '../components/layout/StateTab';
 import ClubComponent from '../components/lists/ClubComponent';
 
@@ -72,27 +71,26 @@ export default function Clubs() {
 
 
     return (
-        <Header
+        <HeaderPage
             heading="Clubs"
             other={
                 <input
                     type="search"
+                    className="py-1 px-2.5 rounded-full border-2 border-tertiary"
                     placeholder="Search clubs"
                     onChange={e => setQuery(e.target.value)}
                 />
             }
-            nav={
-                <Nav className="nav-fill" tabs>
-                    <StateTab value="1" name={dayFromTabNum('1', shorten)} state={activeTab} setState={toggle} />
-                    <StateTab value="2" name={dayFromTabNum('2', shorten)} state={activeTab} setState={toggle} />
-                    <StateTab value="3" name={dayFromTabNum('3', shorten)} state={activeTab} setState={toggle} />
-                    <StateTab value="4" name={dayFromTabNum('4', shorten)} state={activeTab} setState={toggle} />
-                    <StateTab value="5" name={dayFromTabNum('5', shorten)} state={activeTab} setState={toggle} />
-                    <StateTab value="6" name={dayFromTabNum('6', shorten)} state={activeTab} setState={toggle} />
-                </Nav>
-            }
+            nav={<>
+                <StateTab value="1" name={dayFromTabNum('1', shorten)} state={activeTab} setState={toggle} />
+                <StateTab value="2" name={dayFromTabNum('2', shorten)} state={activeTab} setState={toggle} />
+                <StateTab value="3" name={dayFromTabNum('3', shorten)} state={activeTab} setState={toggle} />
+                <StateTab value="4" name={dayFromTabNum('4', shorten)} state={activeTab} setState={toggle} />
+                <StateTab value="5" name={dayFromTabNum('5', shorten)} state={activeTab} setState={toggle} />
+                <StateTab value="6" name={dayFromTabNum('6', shorten)} state={activeTab} setState={toggle} />
+            </>}
         >
-            <p>
+            <p className="mb-4">
                 Please note that club information was taken from{' '}
                 <a href="https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vQ-UXugiZ8GznB367cO8JptTO9BLm5OE4D3WO8oZvYk_365lY25Q6eAFNSEIC5DGXGWOXwK_wauoTFT/pubhtml" target="_blank" rel="noopener noreferrer">the 2021-2022 chartered clubs spreadsheet</a>{' '}
                 as of {moment(timestamp).format('MMMM Do, YYYY')}. Attribute inaccuracies to them.
@@ -100,21 +98,21 @@ export default function Clubs() {
             <List
                 data={dataFromTab()}
                 filter={([id, club]) =>
-                    query === '' ||
-                    club.name.toLowerCase().includes(query.toLowerCase())
+                    query === ''
+                    || club.name.toLowerCase().includes(query.toLowerCase())
                     || club.room.toLowerCase().includes(query.toLowerCase())
                     || club.day.toLowerCase().includes(query.toLowerCase())
                 }
-                map={([id, club]) =>
+                map={([id, club]) => (
                     <ClubComponent
                         key={id}
                         id={id}
                         {...club}
                     />
-                }
+                )}
                 sort={([idA, clubA], [idB, clubB]) => clubA.name.localeCompare(clubB.name)}
                 pinned={userData.clubs}
             />
-        </Header>
+        </HeaderPage>
     );
 }

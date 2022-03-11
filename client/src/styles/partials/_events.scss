@@ -1,0 +1,14 @@
+@import '../mixins/content-box';
+
+// The events portion of the home page
+.events {
+  margin: 0 10px;
+
+  // Style for large screens
+  .two-col & {
+    height: calc(100vh - 48px);
+    @include content-box();
+    position: sticky;
+    top: 24px;
+  }
+}

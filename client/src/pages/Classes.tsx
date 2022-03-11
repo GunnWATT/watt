@@ -1,6 +1,15 @@
 import {ReactNode, useContext, useEffect, useState} from 'react';
 import {Routes, Route, Link, useMatch, useResolvedPath} from 'react-router-dom';
-import {Container} from 'reactstrap';
+
+// Components
+import {Header} from '../components/layout/HeaderPage';
+import ClassesSidebar from '../components/classes/ClassesSidebar';
+import Dashboard from '../components/classes/Dashboard';
+import Upcoming from '../components/classes/Upcoming';
+import Materials from '../components/classes/Materials';
+import SgySignInBtn from '../components/firebase/SgySignInBtn';
+import Loading from '../components/layout/Loading';
+import Wave from '../components/layout/Wave';
 
 // Firebase
 import { Functions, httpsCallable } from 'firebase/functions';
@@ -8,25 +17,14 @@ import { useAuth, useFirestore, useFunctions, useSigninCheck } from 'reactfire';
 import { FirebaseError } from '@firebase/util';
 import { updateUserData } from '../util/firestore';
 
-// Components
-import Dashboard from '../components/classes/Dashboard';
-import Upcoming from '../components/classes/Upcoming';
-import Materials from '../components/classes/Materials';
-import SgySignInBtn from '../components/firebase/SgySignInBtn';
-import Loading from '../components/layout/Loading';
-import RedBackground from '../components/layout/RedBackground';
-
 // Contexts
 import CurrentTimeContext from '../contexts/CurrentTimeContext';
 import UserDataContext, { SgyPeriod, SgyData, UserData } from '../contexts/UserDataContext';
-import SgyDataContext, { SgyDataProvider } from '../contexts/SgyDataContext';
+import { SgyDataProvider } from '../contexts/SgyDataContext';
 
 // Utilities
 import { parsePeriodColor } from '../components/schedule/Periods';
 import { useScreenType } from '../hooks/useScreenType';
-import { bgColor } from '../util/progressBarColor';
-import { Menu } from 'react-feather';
-import { shortify } from '../util/sgyHelpers';
 import { cleanupExpired } from '../util/sgyFunctions';
 
 
@@ -43,171 +41,12 @@ export async function fetchSgyMaterials(functions: Functions) {
     return res.data;
 }
 
-// A wrapper that centers all the error messages
-function ClassesErrorBurrito(props: { children?: ReactNode}) {
-    return <>
-        <RedBackground />
-        <div className="classes-error-burrito">
-            <div className="classes-error-content">
-                {props.children}
-            </div>
-        </div>
-    </>
-}
-
-function ClassesNotSignedIn() {
-    return (
-        <ClassesErrorBurrito>
-            <h2>You aren't signed in!</h2>
-            <p>Classes requires Schoology integration, which requires an account. Please sign in to continue.</p>
-        </ClassesErrorBurrito>
-    )
-}
-
-function ClassesSgyNotConnected() {
-    return (
-        <ClassesErrorBurrito>
-            <h2>Connect Schoology</h2>
-            <p>
-                This section uses Schoology integration, which requires you to connect your Schoology account.
-                Press the button below to continue.
-            </p>
-            <div className='sgy-auth-button'>
-                <SgySignInBtn />
-            </div>
-        </ClassesErrorBurrito>
-    )
-}
-
-function ClassesFetching(props: {fetching: boolean, updateSgy: () => Promise<any>}) {
-    const {fetching, updateSgy} = props;
-
-    return (
-        <ClassesErrorBurrito>
-            {fetching ? (
-                <Loading>Fetching materials. This can take up to a minute...</Loading>
-            ) : (<>
-                <h2>Something Went Wrong.</h2>
-                <p>
-                    Your user data is missing! Please click the button below to fetch materials.
-                    If this is a recurring problem, please submit an issue to Github.
-                </p>
-                <div className='sgy-auth-button'>
-                        <button onClick={updateSgy}>Fetch Materials</button>
-                </div>
-            </>)}
-        </ClassesErrorBurrito>
-    )
-}
-
-// TODO: we can probably do this in a similar way to <Sidebar>, where the items themselves don't care whether
-// they are collapsed or not and the `hidden` is just set in CSS.
-// Maybe this is a better pattern though, unsure; at the very least we could extract into a separate file for
-// organizational purposes.
-type ClassesSidebarItemProps = {
-    collapsed: boolean, name: string, color: string, period: string,
-    onClick: () => void, active: boolean
-}
-function ClassesSidebarItem(props: ClassesSidebarItemProps) {
-    const {collapsed, name, color, period, onClick, active} = props;
-
-    const screenType = useScreenType();
-    if (collapsed) {
-        return (
-            <div
-                style={{ 
-                    backgroundColor: color,
-                    border: active ? `3px solid ${bgColor(color)}` : ''
-                }}
-                className={"classes-sidebar-bubble " + screenType}
-                onClick={onClick}
-            >
-                {period}
-            </div>
-        );
-    } else {
-        return (
-            <div className='classes-sidebar-item'>
-                <div className='classes-sidebar-text'>{shortify(name, 20)}</div>
-                <div
-                    style={{
-                        backgroundColor: color,
-                        border: active ? `3px solid ${bgColor(color)}` : ''
-                    }}
-                    className={"classes-sidebar-bubble " + screenType}
-                    onClick={onClick}
-                >
-                    {period}
-                </div>
-            </div>
-        );
-    }
-}
-
-function ClassesSidebar(props: { selected: SgyPeriod | 'A', setSelected: (selected:SgyPeriod|'A') => void}) {
-    const { selected, setSelected } = props;
-    const userData = useContext(UserDataContext);
-
-    // collapsed?
-    const [collapsed, setCollapsed] = useState(true);
-    const { sgyData } = useContext(SgyDataContext);
-
-    const classes = findClassesList(sgyData, userData);
-    const screenType = useScreenType();
-
-    return (
-        <div className={"classes-sidebar " + screenType + " " + (collapsed ? 'collapsed' : 'expanded')}>
-            {classes.map((c) => (
-                <ClassesSidebarItem
-                    key={c.period}
-                    {...c}
-                    collapsed={collapsed}
-                    active={selected === c.period}
-                    onClick={() => setSelected(c.period)}
-                />
-            ))}
-            <Menu size={40} style={{marginTop: 'auto', cursor:'pointer'}} onClick={() => setCollapsed(!collapsed)} />
-        </div>
-    )
-}
-
-// This can probably be merged into Classes
-function ClassesHeader() {
-    const {selected} = useContext(SgyDataContext);
-    const userData = useContext(UserDataContext);
-    const { sgyData } = useContext(SgyDataContext);
-
-    const {name, color} = findClassesList(sgyData, userData).find(({period}) => period === selected)!;
-
-    return (
-        <Container className="classes-header">
-            <div className="classes-header-bubble" style={{backgroundColor: color}} />
-            <h1 className="classes-header-text">{name}</h1>
-        </Container>
-    )
-}
-
-function ClassesNavBarItem(props: {text: string, to: string}) {
-    const {text, to} = props;
-
-    const resolved = useResolvedPath(to);
-    const match = useMatch({ path: resolved.pathname, end: true });
-
-    return (
-        <div className={'classes-navbar-item' + (match ? ' selected' : '')}>
-            <Link to={to}>
-                {text}
-            </Link>
-        </div>
-    )
-}
-
 export default function Classes() {
     const functions = useFunctions();
     const auth = useAuth();
     const firestore = useFirestore();
     const { data: signInCheckResult } = useSigninCheck();
-    const signedIn = signInCheckResult?.signedIn && auth.currentUser!!;
+    const signedIn = signInCheckResult?.signedIn && auth.currentUser;
 
     const userData = useContext(UserDataContext);
     const time = useContext(CurrentTimeContext);
@@ -216,6 +55,7 @@ export default function Classes() {
     const [fetching, setFetching] = useState(false);
     const [lastFetched, setLastFetched] = useState<null | number>(null);
     const [lastAttemptedFetch, setLastAttemptedFetch] = useState<null | number>(null);
+
     // Raw Schoology Data
     const [sgyData, setSgyData] = useState<null | SgyData>(null);
 
@@ -341,36 +181,76 @@ export default function Classes() {
     }, [signedIn, time]);
 
     // Selected
-    const [selected, setSelected] = useState<SgyPeriod|'A'>('A');
+    const [selected, setSelected] = useState<SgyPeriod | 'A'>('A');
 
     // we are ok to go if: 1) we're signed in 2) the user enabled schoology 3) the sgy data exists
-    if (!signedIn) return <ClassesNotSignedIn />
-    if (!userData.options.sgy) return <ClassesSgyNotConnected />
-    if (sgyData == null) return <ClassesFetching fetching={fetching} updateSgy={updateSgy} />
+    if (!signedIn) return (
+        <ClassesErrorBurrito>
+            <h2 className="text-2xl font-semibold mb-3">You aren't signed in!</h2>
+            <p className="secondary">
+                Classes requires Schoology integration, which requires an account. Please sign in to continue.
+            </p>
+        </ClassesErrorBurrito>
+    )
+    if (!userData.options.sgy) return (
+        <ClassesErrorBurrito>
+            <h2 className="text-2xl font-semibold mb-3">Connect Schoology</h2>
+            <p className="secondary mb-3">
+                This section uses Schoology integration, which requires you to connect your Schoology account.
+                Press the button below to continue.
+            </p>
+            <SgySignInBtn />
+        </ClassesErrorBurrito>
+    )
+    if (!sgyData) return (
+        <ClassesErrorBurrito>
+            {fetching ? (
+                <Loading>Fetching materials. This can take up to a minute...</Loading>
+            ) : (<>
+                <h2 className="text-2xl font-semibold mb-3">Something Went Wrong.</h2>
+                <p className="secondary">
+                    Your user data is missing! Please click the button below to fetch materials.
+                    If this is a recurring problem, please submit an issue to Github.
+                </p>
+                <button className="rounded w-full p-5 bg-background dark:bg-background-dark shadow-lg" onClick={updateSgy}>
+                    Fetch Materials
+                </button>
+            </>)}
+        </ClassesErrorBurrito>
+    )
     if (!userData.sgy?.custom || !userData.sgy?.custom.assignments || !userData.sgy?.custom.labels || !userData.sgy?.custom.modified)
         return <Loading /> // make sure user has all of these things :D, if not, usually gets corrected by FirebaseUserDataProvider
 
+    // Currently selected period name and color for classes header
+    const {name, color} = findClassesList(sgyData, userData).find(({period}) => period === selected)!;
+
     return (
         <SgyDataProvider value={{sgyData, fetching, lastFetched, lastAttemptedFetch, selected, updateSgy}}>
-            <div className={"classes-burrito " + screenType}>
-                <RedBackground />
+            <div className={"flex h-screen overflow-y-scroll scroll-smooth pb-16 -mb-16 md:pb-0 md:mb-0 md:mr-20 " + screenType}>
+                <Wave />
 
-                <div className={"classes-content " + screenType}>
-                    <ClassesHeader />
+                <div className="container h-max py-4 md:py-6 ">
+                    <Header>
+                        <div
+                            className="classes-header-bubble border-2 border-secondary dark:border-secondary-dark rounded-full flex-shrink-0"
+                            style={{backgroundColor: color}}
+                        />
+                        <h1 className="mb-0">{name}</h1>
+                    </Header>
 
-                    <Container className="classes-navbar">
+                    <nav className="classes-navbar mt-6 flex flex-wrap gap-2 mb-4 text-lg">
                         <ClassesNavBarItem text="Dashboard" to="." />
                         <ClassesNavBarItem text="Upcoming" to="upcoming" />
                         <ClassesNavBarItem text="Materials" to="materials" />
-                    </Container>
+                    </nav>
 
-                    <Container className="classes-page">
+                    <main>
                         <Routes>
                             <Route path="/" element={<Dashboard />} />
-                            <Route path="/upcoming" element={<Upcoming /> } />
+                            <Route path="/upcoming" element={<Upcoming />} />
                             <Route path="/materials" element={<Materials />} />
                         </Routes>
-                    </Container>
+                    </main>
                 </div>
 
                 {/* Kill the sidebar on phone; this is a temporary solution */}
@@ -379,6 +259,31 @@ export default function Classes() {
             </div>
         </SgyDataProvider>
     )
+}
+
+function ClassesNavBarItem(props: {text: string, to: string}) {
+    const {text, to} = props;
+
+    const resolved = useResolvedPath(to);
+    const match = useMatch({ path: resolved.pathname, end: true });
+
+    return (
+        <Link to={to} className={'classes-navbar-item hover:no-underline ' + (match ? 'text-primary dark:text-primary-dark bg-content dark:bg-content-dark shadow-lg' : 'secondary bg-content-secondary dark:bg-content-secondary-dark')}>
+            {text}
+        </Link>
+    )
+}
+
+// A wrapper that centers all the error messages
+function ClassesErrorBurrito(props: {children?: ReactNode}) {
+    return <>
+        <Wave />
+        <div className="w-full h-screen flex items-center justify-center">
+            <div className="classes-error-content rounded p-6 mx-4 text-center bg-sidebar dark:bg-sidebar-dark">
+                {props.children}
+            </div>
+        </div>
+    </>
 }
 
 // Returns a parsed class array given a populated userData object.
