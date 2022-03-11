@@ -1,4 +1,4 @@
-export default function RedBackground() {
+export default function Wave() {
     const leftColor = 'ff594c';
     const rightColor = 'eb144c';
 

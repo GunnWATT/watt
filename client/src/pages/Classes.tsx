@@ -1,12 +1,6 @@
 import {ReactNode, useContext, useEffect, useState} from 'react';
 import {Routes, Route, Link, useMatch, useResolvedPath} from 'react-router-dom';
 
-// Firebase
-import { Functions, httpsCallable } from 'firebase/functions';
-import { useAuth, useFirestore, useFunctions, useSigninCheck } from 'reactfire';
-import { FirebaseError } from '@firebase/util';
-import { updateUserData } from '../util/firestore';
-
 // Components
 import {Header} from '../components/layout/HeaderPage';
 import ClassesSidebar from '../components/classes/ClassesSidebar';
@@ -15,12 +9,18 @@ import Upcoming from '../components/classes/Upcoming';
 import Materials from '../components/classes/Materials';
 import SgySignInBtn from '../components/firebase/SgySignInBtn';
 import Loading from '../components/layout/Loading';
-import RedBackground from '../components/layout/RedBackground';
+import Wave from '../components/layout/Wave';
+
+// Firebase
+import { Functions, httpsCallable } from 'firebase/functions';
+import { useAuth, useFirestore, useFunctions, useSigninCheck } from 'reactfire';
+import { FirebaseError } from '@firebase/util';
+import { updateUserData } from '../util/firestore';
 
 // Contexts
 import CurrentTimeContext from '../contexts/CurrentTimeContext';
 import UserDataContext, { SgyPeriod, SgyData, UserData } from '../contexts/UserDataContext';
-import SgyDataContext, { SgyDataProvider } from '../contexts/SgyDataContext';
+import { SgyDataProvider } from '../contexts/SgyDataContext';
 
 // Utilities
 import { parsePeriodColor } from '../components/schedule/Periods';
@@ -39,19 +39,6 @@ export async function fetchSgyMaterials(functions: Functions) {
     localStorage.setItem('sgy-last-fetched', '' + Date.now());
 
     return res.data;
-}
-
-function ClassesNavBarItem(props: {text: string, to: string}) {
-    const {text, to} = props;
-
-    const resolved = useResolvedPath(to);
-    const match = useMatch({ path: resolved.pathname, end: true });
-
-    return (
-        <Link to={to} className={'classes-navbar-item hover:no-underline ' + (match ? 'text-primary dark:text-primary-dark bg-content dark:bg-content-dark shadow-lg' : 'secondary bg-content-secondary dark:bg-content-secondary-dark')}>
-            {text}
-        </Link>
-    )
 }
 
 export default function Classes() {
@@ -239,8 +226,8 @@ export default function Classes() {
 
     return (
         <SgyDataProvider value={{sgyData, fetching, lastFetched, lastAttemptedFetch, selected, updateSgy}}>
-            <div className={"flex h-screen overflow-y-scroll scroll-smooth mr-20 " + screenType}>
-                <RedBackground />
+            <div className={"flex h-screen overflow-y-scroll scroll-smooth md:mr-20 " + screenType}>
+                <Wave />
 
                 <div className="container h-max py-4 md:py-6 ">
                     <Header>
@@ -274,12 +261,25 @@ export default function Classes() {
     )
 }
 
+function ClassesNavBarItem(props: {text: string, to: string}) {
+    const {text, to} = props;
+
+    const resolved = useResolvedPath(to);
+    const match = useMatch({ path: resolved.pathname, end: true });
+
+    return (
+        <Link to={to} className={'classes-navbar-item hover:no-underline ' + (match ? 'text-primary dark:text-primary-dark bg-content dark:bg-content-dark shadow-lg' : 'secondary bg-content-secondary dark:bg-content-secondary-dark')}>
+            {text}
+        </Link>
+    )
+}
+
 // A wrapper that centers all the error messages
-function ClassesErrorBurrito(props: { children?: ReactNode}) {
+function ClassesErrorBurrito(props: {children?: ReactNode}) {
     return <>
-        <RedBackground />
+        <Wave />
         <div className="w-full h-screen flex items-center justify-center">
-            <div className="classes-error-content rounded p-6 text-center bg-sidebar dark:bg-sidebar-dark">
+            <div className="classes-error-content rounded p-6 mx-4 text-center bg-sidebar dark:bg-sidebar-dark">
                 {props.children}
             </div>
         </div>

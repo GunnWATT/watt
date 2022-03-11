@@ -4,7 +4,7 @@ import moment from 'moment';
 import {GCalEvent} from '../components/schedule/Event';
 
 // Components
-import RedBackground from '../components/layout/RedBackground';
+import Wave from '../components/layout/Wave';
 import Clock from '../components/schedule/Clock';
 import HomeDateSelector from '../components/schedule/DateSelector';
 import Periods from '../components/schedule/Periods';
@@ -63,7 +63,7 @@ export default function Home(props: HomeProps) {
 
     return (
         <div className={`home ${displayFromScreenType()}`}>
-            <RedBackground />
+            <Wave />
 
             {/* Schedule */}
             <main className="schedule relative">

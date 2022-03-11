@@ -32,8 +32,8 @@ export default function Map() {
 
     return (
         <>
-            <h1>Map</h1>
-            <br />
+            <h1 className="mb-5">Map</h1>
+
             <ImageBox
                 src={imageMap}
                 onClick={() => setShowMap(true)}
@@ -41,6 +41,7 @@ export default function Map() {
                 caption="Use the mouse to pan and scroll to zoom."
             />
 
+            {/* TODO: use <Dialog> for this to trap focus and generally be more screen-reader friendly */}
             {showMap && ReactDOM.createPortal(
                 <ImageMap close={() => setShowMap(false)} />,
                 document.getElementById('content')!

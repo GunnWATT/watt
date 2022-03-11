@@ -1,6 +1,5 @@
 import {useContext, useState} from 'react';
 import moment from 'moment';
-import {Container} from 'reactstrap';
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Components

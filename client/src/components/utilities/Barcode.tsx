@@ -76,7 +76,9 @@ export default function Barcode() {
                 />
             ))}
 
-            <button className="mt-2 font-semibold" onClick={addBarcode}>ADD BARCODE</button>
+            <section className="w-full flex">
+                <button className="px-3 py-1 mx-auto font-semibold" onClick={addBarcode}>ADD BARCODE</button>
+            </section>
         </>
     );
 }

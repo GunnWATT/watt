@@ -1,5 +1,5 @@
 import {ReactNode} from 'react';
-import RedBackground from '../layout/RedBackground';
+import Wave from './Wave';
 
 
 type HeaderPageProps = {heading: string, nav: ReactNode, children: ReactNode, other?: ReactNode};
@@ -8,7 +8,7 @@ export default function HeaderPage(props: HeaderPageProps) {
 
     return (
         <>
-            <RedBackground />
+            <Wave />
 
             <div className="container py-4 md:py-6">
                 <Header>
@@ -18,7 +18,7 @@ export default function HeaderPage(props: HeaderPageProps) {
                 <nav className="mt-6 flex flex-wrap">
                     {nav}
                 </nav>
-                <main className="flex flex-col p-5 bg-[color:var(--content-primary)] rounded-b-lg shadow-lg">
+                <main className="p-5 bg-content dark:bg-content-dark rounded-b-lg shadow-lg">
                     {children}
                 </main>
             </div>
