@@ -42,7 +42,7 @@ export default function Dashboard() {
     }, [selected, userData])
 
     return (
-        <div className="dashboard-burrito flex gap-6 flex-wrap xl:flex-nowrap">
+        <div className="dashboard-burrito flex gap-4 flex-wrap xl:flex-nowrap">
             {/* Dashboard left section */}
             <DashboardSection>
                 {upcoming && <DashboardBlurb upcoming={upcoming} selected={selected} />}
@@ -51,9 +51,7 @@ export default function Dashboard() {
             {/* Dashboard right section */}
             <DashboardSection>
                 <DashboardQuickInfo selected={selected} />
-
                 {allGrades && <Grades selected={selected} allGrades={allGrades} />}
-
                 <FetchFooter />
             </DashboardSection>
         </div>

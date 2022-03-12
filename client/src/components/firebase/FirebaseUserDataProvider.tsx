@@ -22,15 +22,18 @@ export default function FirebaseUserDataProvider(props: {children: ReactNode}) {
     useEffect(() => {
         if (status !== 'success') return;
 
+        // If the user doesn't have a firestore doc, create one for them
         if (!firebaseDoc.exists()) {
-            console.error('[ERR] Firebase data nonexistent, cancelling merge'); // Try to prevent user data resetting
-            return void setDoc(doc(firestore, 'users', auth.currentUser!.uid), defaultUserData);
+            console.error('[ERR] Firebase data nonexistent, cancelling merge');
+            return void setDoc(doc(firestore, 'users', auth.currentUser!.uid), data);
         }
-        const data = firebaseDoc.data();
-        const merged = deepmerge(defaultUserData, data);
-        const changes = deepdifferences(merged, data);
+        const firebaseData = firebaseDoc.data();
+        const merged = deepmerge(defaultUserData, firebaseData);
+        const changes = deepdifferences(merged, firebaseData);
 
-        bulkUpdateFirebaseUserData(changes, auth, firestore);
+        // Only update firestore if changes exist
+        if (Object.entries(changes).length)
+            bulkUpdateFirebaseUserData(changes, auth, firestore);
         localStorage.setItem('data', JSON.stringify(merged));
     }, [status, firebaseDoc]);
 

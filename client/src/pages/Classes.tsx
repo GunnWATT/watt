@@ -268,7 +268,7 @@ function ClassesNavBarItem(props: {text: string, to: string}) {
     const match = useMatch({ path: resolved.pathname, end: true });
 
     return (
-        <Link to={to} className={'classes-navbar-item hover:no-underline ' + (match ? 'text-primary dark:text-primary-dark bg-content dark:bg-content-dark shadow-lg' : 'secondary bg-content-secondary dark:bg-content-secondary-dark')}>
+        <Link to={to} className={'classes-navbar-item flex-grow text-center hover:no-underline ' + (match ? 'text-primary dark:text-primary-dark bg-content dark:bg-content-dark shadow-lg' : 'secondary bg-content-secondary dark:bg-content-secondary-dark')}>
             {text}
         </Link>
     )
