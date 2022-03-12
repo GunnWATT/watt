@@ -58,16 +58,16 @@ function CalculatorInput(props: CalculatorInputProps) {
     const {label, value, setValue} = props;
 
     return (
-        <p className="mb-4 flex gap-2">
+        <p className="mb-4 flex flex-wrap gap-2">
             {label}
-            <span>
+            <span className="relative">
                 <input
                     type="text"
-                    className="rounded w-48 bg-content-secondary dark:bg-content-secondary-dark px-2 py-1"
+                    className="rounded w-48 bg-content-secondary dark:bg-content-secondary-dark px-2 py-1 pr-7"
                     value={value}
                     onChange={(e) => !isNaN(Number(e.target.value)) && setValue(e.target.value)}
                 />
-                %
+                <span className="secondary absolute top-1 right-2">%</span>
             </span>
         </p>
     )
