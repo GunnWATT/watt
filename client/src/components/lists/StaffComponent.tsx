@@ -1,12 +1,16 @@
 import { useState, useContext } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'reactstrap';
+import {Dialog} from '@headlessui/react';
+
+// Components
+import CenteredModal from '../layout/CenteredModal';
+import OutlineButton, {DangerOutlineButton} from '../layout/OutlineButton';
 
 // Context
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Firestore
 import {useAuth, useFirestore} from 'reactfire';
-import { updateUserData } from '../../firebase/updateUserData';
+import { updateUserData } from '../../util/firestore';
 
 
 /*
@@ -29,108 +33,64 @@ export type Staff = {
 
 export default function StaffComponent(props: Staff & {id: string}) {
     const {name, id, title, email, room, dept, phone, periods, other} = props;
-
     const [modal, setModal] = useState(false);
-    const toggle = () => setModal(!modal);
 
     // Firestore
     const auth = useAuth();
     const firestore = useFirestore();
+
     const userData = useContext(UserDataContext);
     const pinned = userData.staff.includes(id);
 
     // Functions to update pins
-    const addToPinned = async () =>
-        updateUserData('staff', [...userData.staff, id], auth, firestore);
-
-    const removeFromPinned = async () =>
-        updateUserData('staff', userData.staff.filter(staffID => staffID !== id), auth, firestore);
-
-
-    const [semester, setSemester] = useState<'1' | '2'>('1'); // Consider dynamically setting semester later
-
-    const renderSchedule = (periods: {[key: string]: PeriodObj}) => {
-        const parseNested = (name: string, semester: '1' | '2') => {
-
-            let course;
-            let room;
-
-            let period = periods[name];
-
-            // If the teacher teaches during this period
-            if (period) {
-                let sem = period[semester];
-
-                // If the period is an array (single class)
-                if (Array.isArray(sem)) {
-                    course = sem[0];
-                    room = sem[1];
-
-                // If the period is an object (multiple classes)
-                } else if (sem !== 'none') {
-                    course = `${sem[1][0]}, ${sem[2][0]}`;
-                    room = `${sem[1][1]}, ${sem[2][1]}`;
-                }
-            }
-
-            return (
-                <tr key={name}>
-                    <th scope="row">{name}</th>
-                    <td>{course}</td>
-                    {/* <td>{room}</td> */}
-                </tr>
-            )
-        }
-
-        return (
-            <Table hover>
-                <thead>
-                <tr>
-                    <th>Period</th>
-                    <th>Class</th>
-                    {/* <th>Room</th> */}
-                </tr>
-                </thead>
-                <tbody>
-                    {Object.keys(periods).map(period =>
-                        parseNested(period, semester)
-                    )}
-                </tbody>
-            </Table>
-        )
+    const addToPinned = async () => {
+        setModal(false);
+        await updateUserData('staff', [...userData.staff, id], auth, firestore);
+    }
+    const removeFromPinned = async () => {
+        setModal(false);
+        await updateUserData('staff', userData.staff.filter(staffID => staffID !== id), auth, firestore);
     }
 
     return (
-        <li onClick={toggle}>
-            <span className="primary">{name}</span>
-            {(title || dept) && <span className="secondary">{title === "Teacher" && dept ? `${title}, ${dept}` : title ? title : dept ? dept : ``}</span>}
-            {email && <span className="secondary">{email}</span>}
+        <li className="text-sm cursor-pointer px-4 py-5" onClick={() => setModal(true)}>
+            <p>{name}</p>
+            {(title || dept) && (
+                <p className="secondary">{title === "Teacher" && dept ? `${title}, ${dept}` : title ? title : dept ? dept : ``}</p>
+            )}
+            {email && <p className="secondary">{email}</p>}
 
-            <Modal isOpen={modal} toggle={toggle} scrollable>
-                <ModalHeader toggle={toggle}>{name}</ModalHeader>
-                <ModalBody>
-                    {title && <p><strong>Title:</strong> {title}</p>}
-                    {dept && <p><strong>Department:</strong> {dept}</p>}
-                    {room && <p><strong>Room:</strong> {room}</p>}
-                    {email && <p><strong>Email:</strong> {email}</p>}
-                    {phone && <p><strong>Phone:</strong> {phone}</p>}
-                    {periods && <p>
-                        <strong>Schedule:
-                            <button onClick={() => setSemester('1')}>1</button>
-                            <button onClick={() => setSemester('2')}>2</button>
-                        </strong>
-                    </p>}
-                    {/* other && <p>{other}</p> */}
-                    {periods && renderSchedule(periods)}
-                </ModalBody>
-                <ModalFooter>
-                    {pinned
-                        ? <Button outline className="remove-from-list" onClick={removeFromPinned}>Remove from my list</Button> // If I'm pinned give option to remove from pinned
-                        : <Button outline className="add-to-list" onClick={addToPinned}>Add to my list</Button> // Otherwise give option to add to list
-                    }
-                    <Button outline color="danger" onClick={toggle}>Close</Button>
-                </ModalFooter>
-            </Modal>
+            <CenteredModal isOpen={modal} setIsOpen={setModal}>
+                <div className="relative bg-content dark:bg-content-dark rounded-md max-w-md mx-2 p-6 shadow-xl">
+                    <Dialog.Title className="text-xl font-semibold mb-3 pr-6">{name}</Dialog.Title>
+                    <section className="flex gap-6 justify-between">
+                        <div>
+                            {title && <p><strong className="secondary font-medium">Title:</strong> {title}</p>}
+                            {dept && <p><strong className="secondary font-medium">Department:</strong> {dept}</p>}
+                            {room && <p><strong className="secondary font-medium">Room:</strong> {room}</p>}
+                        </div>
+                        <div className="text-right">
+                            {email && <p><strong className="secondary font-medium">Email:</strong> {email}</p>}
+                            {phone && <p><strong className="secondary font-medium">Phone:</strong> {phone}</p>}
+                        </div>
+                    </section>
+
+                    <section className="flex gap-3 flex-wrap justify-end mt-6">
+                        {pinned ? (
+                            <OutlineButton onClick={removeFromPinned}>
+                                Remove from my list
+                            </OutlineButton>
+                        ) : (
+                            <OutlineButton onClick={addToPinned}>
+                                Add to my list
+                            </OutlineButton>
+                        )}
+                        <DangerOutlineButton onClick={() => setModal(false)}>
+                            Close
+                        </DangerOutlineButton>
+                    </section>
+                </div>
+            </CenteredModal>
         </li>
     );
 }

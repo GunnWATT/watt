@@ -1,14 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import moment from 'moment';
 import { useScreenType } from '../../hooks/useScreenType';
+import { FilePlus } from 'react-feather';
 
 // Components
 import Assignments from './Assignments';
-import SidebarCalendar from './SidebarCalendar';
+import UpcomingTimeline from './UpcomingTimeline';
 import ClassFilter, {QueryObj} from './ClassFilter';
 import CreateAssignmentModal from './CreateAssignmentModal';
-import { FilePlus } from 'react-feather';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
@@ -16,21 +15,19 @@ import UserDataContext from '../../contexts/UserDataContext';
 import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
-import { findClassesList } from '../../views/Classes';
-import {AssignmentBlurb} from './functions/SgyFunctions';
-import { getUpcomingInfo } from './functions/SgyFunctions';
-import { similarity } from './functions/GeneralHelperFunctions';
+import { findClassesList } from '../../pages/Classes';
+import {AssignmentBlurb} from '../../util/sgyFunctions';
+import { getUpcomingInfo } from '../../util/sgyFunctions';
+import { similarity } from '../../util/sgyHelpers';
 
 
 export default function Upcoming() {
-    
-    const sgyInfo = useContext(SgyDataContext);
-    const { sgyData, selected } = sgyInfo;
+    const { sgyData, selected } = useContext(SgyDataContext);
     const time = useContext(CurrentTimeContext);
     const screenType = useScreenType();
 
     const userData = useContext(UserDataContext);
-    const classes = findClassesList(sgyData, userData, false);
+    const classes = findClassesList(sgyData, userData);
 
     const [upcoming, setUpcoming] = useState<AssignmentBlurb[] | null>(null);
     const [overdue, setOverdue] = useState<AssignmentBlurb[] | null>(null);
@@ -51,7 +48,7 @@ export default function Upcoming() {
 
     // We filter upcoming by 1) query 2) class 3) date
     const filterItems = (items: AssignmentBlurb[] | null) => {
-        if(!items) return null;
+        if (!items) return null;
         return items
             .filter((assi) => filter.query.length === 0
                 || similarity(filter.query, assi.name) >= 0.8
@@ -91,11 +88,12 @@ export default function Upcoming() {
                     </button>
                 </div>
 
-                {upcomingFiltered && overdueFiltered && 
-                    <Assignments upcoming={upcomingFiltered} overdue={overdueFiltered} activeItem={activeItem} setActiveItem={setActiveItem} />}
+                {upcomingFiltered && overdueFiltered && (
+                    <Assignments upcoming={upcomingFiltered} overdue={overdueFiltered} activeItem={activeItem} setActiveItem={setActiveItem} />
+                )}
             </div>
             {screenType !== 'smallScreen' && screenType !== 'phone' && (
-                <SidebarCalendar upcoming={upcoming} activeItem={activeItem} setActiveItem={setActiveItem} />
+                <UpcomingTimeline upcoming={upcoming} activeItem={activeItem} setActiveItem={setActiveItem} />
             )}
         </div>
     );

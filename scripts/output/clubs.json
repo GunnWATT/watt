@@ -1,6 +1,18 @@
 {
-    "timestamp": "2022-01-01T01:12:05.241Z",
+    "timestamp": "2022-02-03T08:11:26.626Z",
     "data": {
+        "10496": {
+            "new": false,
+            "name": "Chamber Music Club",
+            "tier": 1,
+            "desc": "We meet every other Monday at lunch for various chamber music themed presentations, games, and more! All members will be aided in forming a group within the club and selecting repertoire by their choice. Anyone of any skill level from complete beginner to expert is welcome!",
+            "day": "Monday",
+            "time": "Lunch",
+            "room": "N-104",
+            "prez": "Mahina Yasutake",
+            "advisor": "Marjorie Paronable",
+            "email": "mparonable@pausd.org"
+        },
         "10880": {
             "new": true,
             "name": "The Gunn Improv Farce (T.G.I.F)",
@@ -25,18 +37,6 @@
             "advisor": "Chris Johnson",
             "email": "cjohnson@pausd.org"
         },
-        "12244": {
-            "new": false,
-            "name": "Environmental Technology",
-            "tier": 1,
-            "desc": "This club is focused on increasing awareness of environmental issues and discussing the application of technology to curb our carbon footprint. We will brainstorm solutions to solve climate change through technology and implement our ideas to make the school cleaner. If you are interested in learning and helping the Earth through computer science, this club is for you!",
-            "day": "Thursday",
-            "time": "Lunch",
-            "room": "N-102",
-            "prez": "Pariya Sarin",
-            "advisor": "Virginia Moyer",
-            "email": "vmoyer@pausd.org"
-        },
         "12683": {
             "new": true,
             "name": "Pool Maintaince Club",
@@ -48,6 +48,18 @@
             "prez": "Evan Gold",
             "advisor": "Harvey Newland",
             "email": "hnewland@pausd.org"
+        },
+        "12693": {
+            "new": true,
+            "name": "Equestrian Club",
+            "tier": 1,
+            "desc": "Our equestrian club will be focusing on riding and horses. As a club we would like to introduce riding to people who are interested and the basic safety rules that come with riding. We will also like to teach new people who are interested to learn more about horses on how to approach horses and be safe. Adding on, we would like to explain different disciplines and what each discipline does. May briefly cover the difference between owning, and leasing a horse if anyone is interested in that.",
+            "day": "Tuesday",
+            "time": "Lunch",
+            "room": "J-01",
+            "prez": "Yu-Tong Liu",
+            "advisor": "Tessa Huynh",
+            "email": "thuynh@pausd.org"
         },
         "14734": {
             "new": false,
@@ -109,6 +121,18 @@
             "advisor": "Jeff Patrick",
             "email": "jpatrick@pausd.org"
         },
+        "15523": {
+            "new": true,
+            "name": "Anime club",
+            "tier": 1,
+            "desc": "We will be watching anime and doing anime-related activities at lunch.",
+            "day": "Wednesday",
+            "time": "Lunch",
+            "room": "K-4",
+            "prez": "Yonatan Smolyar",
+            "advisor": "Naomi Asrir",
+            "email": "nasrir@pausd.org"
+        },
         "17377": {
             "new": true,
             "name": "Care to Craft",
@@ -136,6 +160,20 @@
             "email": "cpeters@pausd.org",
             "coadvisor": "Elizabeth Matchett",
             "coemail": "lmatchett@pausd.org"
+        },
+        "18145": {
+            "new": true,
+            "name": "The Buena Vista Club",
+            "tier": 3,
+            "desc": "The Buena Vista Club will provide members with information about the Buena Vista Mobile Home Park. Our meetings will discuss history, background info, current problems, youth struggles, and more. In addition, we will tell members about service opportunities such as youth mentorship, rebuilding, and more.",
+            "day": "Monday",
+            "time": "Lunch",
+            "room": "K-8",
+            "prez": "Nico Ross",
+            "advisor": "Tarn Wilson",
+            "email": "twilson@pausd.org",
+            "coadvisor": "Angela Dellaporta",
+            "coemail": "adellaporta@pausd.org"
         },
         "19856": {
             "new": true,
@@ -196,18 +234,6 @@
             "prez": "Toby Grant-Valdez",
             "advisor": "Matt Hall",
             "email": "mhall@pausd.org"
-        },
-        "23095": {
-            "new": false,
-            "name": "Applications of Computer Science",
-            "tier": 1,
-            "desc": "Applications of Computer Science is a place for students who are passionate about real-life applications of Computer Science—like app development, website development, and more. Our purpose is to collaborate, discuss ideas, explore the world of real-life applications of Computer Science, learn to implement our ideas, and appreciate the abundance of places that Computer Science can take us. An example of an activity we will enjoy is talking with professionals (like software engineers, existing app programmers, professors, etc) and having them help us advance our skills and knowledge of what we are able to do.",
-            "day": "Thursday",
-            "time": "Lunch",
-            "room": "G-4",
-            "prez": "Julia Novick",
-            "advisor": "Gabriela Garger",
-            "email": "ggarger@pausd.org"
         },
         "23388": {
             "new": false,
@@ -283,18 +309,6 @@
             "coadvisor": "Mr. Bautista",
             "coemail": "mbautista@pausd.org"
         },
-        "27850": {
-            "new": false,
-            "name": "Data Science Club",
-            "tier": 1,
-            "desc": "Data science club will be dedicated to learning about machine learning and data mining. Through publications and projects, we will explore the use of machine learning and its applications in the real world.",
-            "day": "Thursday",
-            "time": "Lunch",
-            "room": "N-201",
-            "prez": "Justin Lin",
-            "advisor": "Rachel Congress",
-            "email": "rcongress@pausd.org"
-        },
         "28933": {
             "new": false,
             "name": "Red Cross Club",
@@ -331,17 +345,17 @@
             "advisor": "Warren Collier",
             "email": "wcollier@pausd.org"
         },
-        "30789": {
+        "30178": {
             "new": true,
-            "name": "Political Theory Club",
+            "name": "Vegan Sustainability Club",
             "tier": 1,
-            "desc": "The goal of the Political Theory Club is to promote critical thinking and complex analysis in political discussions. We do this through analysis and discussions of important works of political theory and applying these theories to immediate and relevant current events. The Political Theory Club aims to increase student civic and intellectual engagement in the school and community. We hope to help students engage in political organization by encouraging them to attend and organizing protests and other forms of civic assembly. The club is open to networking opportunities for student-organized protests.",
-            "day": "Monday",
+            "desc": "The focus of this club is on sustainability and health. We will introduce Gunn students to sustainable lifestyles and healthy eating habits.",
+            "day": "Friday",
             "time": "Lunch",
-            "room": "V1",
-            "prez": "Qingyang Chen",
-            "advisor": "Rachel Kaci",
-            "email": "rkaci@pausd.org"
+            "room": "V6",
+            "prez": "Jordan Affeld",
+            "advisor": "Arshdeep Shinh",
+            "email": "Ashinh@pausd.org"
         },
         "30849": {
             "new": false,
@@ -366,6 +380,18 @@
             "prez": "Clair Koo",
             "advisor": "Julie Munger",
             "email": "jmunger@pausd.org"
+        },
+        "31653": {
+            "new": true,
+            "name": "Skating On Ice",
+            "tier": 1,
+            "desc": "We will watch figure skating competitions and the Olympics. We might watch some hockey too! We will also watch some ice skating related movies and do some ice skating related exercises.",
+            "day": "Monday",
+            "time": "Lunch",
+            "room": "N-213",
+            "prez": "Jennifer Yang",
+            "advisor": "Daisy Renazco",
+            "email": "drenazco@pausd.org"
         },
         "32787": {
             "new": false,
@@ -441,6 +467,18 @@
             "advisor": "Laurie Pennington",
             "email": "lpennington@pausd.org"
         },
+        "35351": {
+            "new": false,
+            "name": "Rubik's Cube Club",
+            "tier": 1,
+            "desc": "Gunn Rubik’s Cube Club is a relaxing environment for socializing with friends, making new friends, and improving your cubing skills. We will cover all sorts of puzzles, whether they are WCA approved or not. All skill levels are welcome.",
+            "day": "Wednesday",
+            "time": "Lunch",
+            "room": "Room N-110",
+            "prez": "Joseph Xu",
+            "advisor": "Kate Zavack",
+            "email": "kzavack@pausd.org"
+        },
         "35846": {
             "new": true,
             "name": "Statistics & Operation Research Club",
@@ -491,18 +529,6 @@
             "advisor": "Daljeet Gill",
             "email": "dgill@pausd.org"
         },
-        "39418": {
-            "new": true,
-            "name": "Exploration Club",
-            "tier": 1,
-            "desc": "This club will focus on the idea of an four week project, our main purpose is to help students explore different careers by various projects. Every eight weeks we will focus on a new subject to help students get an idea of what they would like to pursue in the future. We provide a safe and welcoming space for all students. We plan to explore animation production, engineering, health care, law, business, music, stock investment, game development, and more.",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "g-01",
-            "prez": "Liliana Gomez",
-            "advisor": "Teresa Nino Oliva",
-            "email": "tninooliva@pausd.org"
-        },
         "39666": {
             "new": false,
             "name": "American Cancer Society",
@@ -550,6 +576,18 @@
             "prez": "Lucia Acosta",
             "advisor": "Liz Matchett",
             "email": "lmatchett@pausd.org"
+        },
+        "42934": {
+            "new": true,
+            "name": "Marvel vs. DC Club",
+            "tier": 1,
+            "desc": "Interested in immersing yourself into the Marvel cinematic universe and debating whether the Avengers or DC comics iconic heroes (i.e., Batman, Superman, the Flash) is better? This club dives into these answers by showing thrilling movies and tv shows like The Avengers, Agents of Shield, Shang-Chi and the Legend of the Ten Rings, the Flash, and others. Enjoy kahoots, meet other fans, have snacks, and relax!",
+            "day": "Monday",
+            "time": "Lunch",
+            "room": "N108",
+            "prez": "Sanjana Rao",
+            "advisor": "Terence Kitada",
+            "email": "tkitada@pausd.org"
         },
         "43418": {
             "new": false,
@@ -709,6 +747,20 @@
             "advisor": "Amy Andersson",
             "email": "amanderson@pausd.org"
         },
+        "52355": {
+            "new": true,
+            "name": "Gunn Unplugged",
+            "tier": 2,
+            "desc": "A club where musicians and students with interest in music (especially performance) will have opportunities to explore their musical interests. We will be having creative sessions within the L-7 classroom, hosting performances at lunch, and providing a space for students to make and record music, collaborate with others, and have a fun, safe community to express their creative and artistic voices.",
+            "day": "Friday",
+            "time": "Lunch",
+            "room": "L-7 (Video/Music Production room)",
+            "prez": "Amar Srivastava",
+            "advisor": "Edward Corpuz",
+            "email": "ecorpuz@pausd.org",
+            "coadvisor": "Marie Durquet",
+            "coemail": "mdurquet@pausd.org"
+        },
         "53483": {
             "new": true,
             "name": "Photography Club",
@@ -722,18 +774,6 @@
             "email": "ecorpuz@pausd.org",
             "coadvisor": "Marie-Jose Durquet",
             "coemail": "mdurquet@pausd.org"
-        },
-        "53611": {
-            "new": false,
-            "name": "K-Pop Dance Club",
-            "tier": 1,
-            "desc": "Welcome to the K-Pop Dance Club! Every K-Pop song has a specific dance that goes with it. We don't have official dance experience; we're all beginners! We accept all skill levels (even if you haven't danced before in your life.) We will learn K-Pop dances, starting with easier ones, and gradually learning the harder ones as the year goes on. Again, we are all beginners and will work together to learn the dances!",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "We hope to use the PE dance room.",
-            "prez": "Megan Murakami",
-            "advisor": "Brenda Chen",
-            "email": "bchen@pausd.org"
         },
         "53793": {
             "new": true,
@@ -758,6 +798,18 @@
             "prez": "Evelyn Gaskin",
             "advisor": "Marjorie Paronable",
             "email": "mparonable@pausd.org"
+        },
+        "55357": {
+            "new": true,
+            "name": "Code for Change",
+            "tier": 1,
+            "desc": "The focus of the club is to bring awareness to social and environmental issues like climate change and educational inequality. We will do this primarily by developing apps, but, as the year goes on, we may explore AI. This year we will focus on apps for wildfire prevention and mitigation, which is one of the biggest environmental challenges in California, and which also disproportionately affects rural and economically disadvantaged communities. We will work together to learn and teach CS skills like web development, game development, basic algorithms, and some basic AI. Even those who aren't interested in CS can participate in this club by researching social issues, making digital designs for the apps we make, and creating  content for our apps.",
+            "day": "Monday",
+            "time": "Lunch",
+            "room": "N203",
+            "prez": "Agastya Goel",
+            "advisor": "Michael Bautista",
+            "email": "mbautista@pausd.org"
         },
         "55585": {
             "new": false,
@@ -807,19 +859,17 @@
             "advisor": "Katherine Ja",
             "email": "kja@pausd.org"
         },
-        "57229": {
+        "56345": {
             "new": true,
-            "name": "Culture Exchange Club",
+            "name": "STEM Ethics Bowl",
             "tier": 1,
-            "desc": "Our club will provide Gunn Students with as much cultural exchange through meeting actual international students through Zoom. This will allow us to teach Gunn students about various cultures in depth, highlight the unique differences between the cultures around the world, build teaching experience, and most importantly broaden their perspective of viewing different cultures. For those who aren’t familiar or comfortable with meeting international students, we will provide them with lunch meetings as well, where we will promote unique cultures about traditional clothing, food, or music with presentations. Our goal is to expand and work with various schools (including Italy and Japan) over the year, but at first, we will be starting with Korean schools. Our ultimate goal is to get as many students in Gunn to be more familiar with various cultures, and to be able to have a chance to meet new people and share cultural experiences with one another easily.",
-            "day": "Tuesday",
-            "time": "Lunch",
-            "room": "N-112",
-            "prez": "Jenny (Yeondoo) Lee",
-            "advisor": "Julia Choi",
-            "email": "jchoi@pausd.org",
-            "coadvisor": "Diane Ichikawa",
-            "coemail": "dichikawa@pausd.org"
+            "desc": "Ethics lies at the heart of STEM. You don’t need to be an avid STEM enthusiast to discuss and join the ethics conversation. If you are a passionate environmentalist, intrigued coder, fiery social justice debator, or just a person who wants an interesting discussion, the club will be the perfect space for you. Come join the Ethics Bowl to learn and compete!  We will - Participate in National Ethics Bowl held in April, Speaker Events (MIT, Stanford Professors), Launch into exciting debates in various subjects, Bond with fellow enthusiasts and have fun!  Science/tech impacting our lives, our ecosystems, politics. We need ethics to protect our rights, advocate for cruelty-free animal testing, restriction on gene-editing, biases in the internet. Ethics is the moral BACKBONE of stem.  We will lead you all through the enthralling world of science/technology each week focusing on a particular topic in STEM, then discussing it with an ethical lens.",
+            "day": "Thursday",
+            "time": "After School",
+            "room": "J-9",
+            "prez": "Jia Ruparel",
+            "advisor": "Mark Brassey",
+            "email": "mbrassey@pausd.org"
         },
         "58187": {
             "new": false,
@@ -869,6 +919,18 @@
             "advisor": "Charlotte Kaufman",
             "email": "ckaufman@pausd.org"
         },
+        "59804": {
+            "new": false,
+            "name": "Science Olympiad",
+            "tier": 2,
+            "desc": "Science Olympiad promotes the study of scientific topics by preparing members for nearby Science Olympiad competitions. Students will get to explore a variety of subjects, including biology, chemistry, physics, engineering, and environmental science, acquiring knowledge and skills applicable for future science careers. They will also partake in fun club activities, such as trivia games, hands-on experiments, and team bonding. Through studying and competing together, members will build strong connections with their peers and make new friends. No prior competition experience is necessary — only an interest to learn more about science!",
+            "day": "Thursday",
+            "time": "After School",
+            "room": "L1",
+            "prez": "Claire Xu",
+            "advisor": "Laurie Pennington",
+            "email": "lpennington@pausd.org"
+        },
         "60000": {
             "new": false,
             "name": "Star Wars Club",
@@ -880,18 +942,6 @@
             "prez": "Yu-Ting Chang",
             "advisor": "Heather Mellows",
             "email": "hmellows@pausd.org"
-        },
-        "60153": {
-            "new": true,
-            "name": "Math in Scientific Research Club",
-            "tier": 1,
-            "desc": "The Math in Scientific Research Club focuses on the usage of math in scientific research in different fields such as neuroscience, biology, physics, etc. Come by to learn how Hubble used linear regression to calculate the Hubble constant or how mathematical theories can provide insights into complex, living systems. Snacks will be offered and we meet once every two weeks!",
-            "day": "Thursday",
-            "time": "Lunch",
-            "room": "G-03",
-            "prez": "Amelia Yu",
-            "advisor": "Charlotte Kaufman",
-            "email": "ckaufman@pausd.org"
         },
         "60618": {
             "new": false,
@@ -940,6 +990,18 @@
             "prez": "Ethan Zhang",
             "advisor": "Tara Firenzi",
             "email": "tfirenzi@pausd.org"
+        },
+        "63299": {
+            "new": false,
+            "name": "Coding Art Club",
+            "tier": 1,
+            "desc": "The Coding Art Club brings a new form of creativity to the Gunn community by combining art and computer science. We will explore coding generative art with libraries like p5.js, three.js, and processing. During club meetings, we will have live coding demos, as well as mini group projects and presentations for members. No coding experience is required! Join us! :)",
+            "day": "Wednesday",
+            "time": "Lunch",
+            "room": "C",
+            "prez": "Rachael Xia",
+            "advisor": "Jose Medina",
+            "email": "jomedina@pausd.org"
         },
         "63478": {
             "new": false,
@@ -1049,6 +1111,18 @@
             "advisor": "Marc Igler",
             "email": "migler@pausd.org"
         },
+        "73893": {
+            "new": true,
+            "name": "Documentary Production Club",
+            "tier": 1,
+            "desc": "We believe film-making is a beautiful art that should be brought to Gunn in the form of documentary. Students will be involved in a hands-on process in order to develop the key components of a documentary, including the story, production plan, and budget. Our goal is to promote student voice through a new and unique medium. We look forward to seeing you on Wednesday at lunch!",
+            "day": "Wednesday",
+            "time": "Lunch",
+            "room": "N-105",
+            "prez": "Stella Manning",
+            "advisor": "Mark Hernandez",
+            "email": "mhernandez@pausd.org"
+        },
         "74162": {
             "new": false,
             "name": "Socially Responsible Investment Fund (SRIF)",
@@ -1096,6 +1170,20 @@
             "prez": "Jingwen Dou",
             "advisor": "Danielle Whichard",
             "email": "dwhichard@pausd.org"
+        },
+        "78535": {
+            "new": true,
+            "name": "Black Culture Club",
+            "tier": 3,
+            "desc": "This club is a safe space for people of color to talk and share their experience. We will also be having presentations on HBC's (historically black universities) and other subjects as well as guest speakers to speak about their experience. This club is also open to anyone who wants to learn more about black culture. And we will most likely offer snacks depending on the Covid restrictions.",
+            "day": "Wednesday",
+            "time": "Lunch",
+            "room": "The village - V-9",
+            "prez": "Lise Desveaux",
+            "advisor": "Jason Miller",
+            "email": "jasmiller@pausd.org",
+            "coadvisor": "Wendy Stratton",
+            "coemail": "wstratton@pausd.org"
         },
         "78977": {
             "new": false,
@@ -1145,17 +1233,41 @@
             "advisor": "Warren Collier",
             "email": "wcollier@pausd.org"
         },
-        "80882": {
+        "81227": {
             "new": true,
-            "name": "Inventors Club",
+            "name": "Climbing Club",
             "tier": 1,
-            "desc": "This club is to encourage students to have brilliant ideas and help foster those ideas by providing them with a group of like-minded students as well as resources. Whatever students want to create, whether that be software, games, or robots, we intend to be a place where such creative students can gather and work together to make their ideas into reality. Even if you are not tech-savvy, there is no need to worry because there are many people who are willing to help you learn.",
-            "day": "Monday",
+            "desc": "We want to spread our love for climbing to the rest of the climbing community. By the end of the year, we want to have as many people exposed to climbing. We also want to help people improve their climbing skills and stay up to date on climbing events. We will go over proper safety, and watch climbing documentaries in class.",
+            "day": "Thursday",
             "time": "Lunch",
-            "room": "C-6",
-            "prez": "Veer Ruparel",
-            "advisor": "Jose || Medina",
-            "email": "jomedina@pausd.org"
+            "room": "K-4",
+            "prez": "Yamm Elnekave",
+            "advisor": "Naomi Asrir",
+            "email": "nasrir@pausd.org"
+        },
+        "82889": {
+            "new": true,
+            "name": "Songwriting Club!",
+            "tier": 1,
+            "desc": "for people to learn the basics of songwriting and learn some music hacks along the way. Werkelt songwriting challenges and intro to theory,!",
+            "day": "Wednesday",
+            "time": "Lunch",
+            "room": "L-01",
+            "prez": "Mariam Kubursi",
+            "advisor": "Tom Casavant",
+            "email": "tcasavant@pausd.org"
+        },
+        "83688": {
+            "new": true,
+            "name": "Monkey Business Club",
+            "tier": 1,
+            "desc": "Have you ever wanted to get random people to throw cabbage balls at stuffed bunnies? If you have, consider joining Monkey Business Club! Our club runs fun carnival-game-esque activities for students to play during lunch. We hope these activities lighten the mood at school, and offer an outlet for any potential stressors. Help us plan at room N-201, or just check out our events at lunch! Everyone is welcome!",
+            "day": "Thursday",
+            "time": "Lunch",
+            "room": "N201",
+            "prez": "Lee (Kai) Porter",
+            "advisor": "Rachel Congress",
+            "email": "rcongress@pausd.org"
         },
         "84265": {
             "new": true,
@@ -1366,6 +1478,18 @@
             "prez": "Alex Gu",
             "advisor": "Casey O'Connell",
             "email": "coconnell@pausd.org"
+        },
+        "99480": {
+            "new": true,
+            "name": "Juggling Club",
+            "tier": 1,
+            "desc": "The purpose of our club is to spread the knowledge of juggling and manipulation arts so that people can enjoy the fun it brings and hone their skills. It also gives them a healthy break from long hours of studying. We will also foster a supporting community that propagates a love for juggling.",
+            "day": "Wednesday",
+            "time": "Lunch",
+            "room": "Senior Quad or in H3",
+            "prez": "Ethan Cheng",
+            "advisor": "Matt Hall",
+            "email": "mhall@pausd.org"
         }
     }
 }

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import Picker from '../layout/Picker';
 import UserDataContext from '../../contexts/UserDataContext';
-import { parseLabelColor, parsePriority } from './functions/SgyFunctions';
+import { parseLabelColor, parsePriority } from '../../util/sgyFunctions';
 import { Bookmark } from 'react-feather';
 
 

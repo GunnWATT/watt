@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, ReactNode} from 'react';
 import NoResults from './NoResults';
 
 
@@ -13,7 +13,7 @@ type ListProps<T> = {
     pinned: string[]
 }
 
-// Defines a higher order list component of type T where T is the type of the JSON representation of a list value
+// A higher order list component of type T where T is the type of the JSON representation of a list value
 // (ex: Club, Staff, `{ new: true, name: "United Computations", ... }`).
 // List accepts the raw data as either the entire JSON file (`{[key: string]: T}`) or already subjected to Object.entries
 // (`[string, T][]` to be compatible with Club tab data filtering).
@@ -22,7 +22,7 @@ type ListProps<T> = {
 // Pinned items (given as a string[] of IDs) are displayed in a separate category above other results.
 export default function List<T>(props: ListProps<T>) {
     // Filter and map are different for each list, so pass them in as props
-    let {data, filter, map, sort, pinned} = props;
+    const {data, filter, map, sort, pinned} = props;
 
     const [content, setContent] = useState<JSX.Element[]>([]);
     const [pinnedContent, setPinnedContent] = useState<JSX.Element[]>([])
@@ -36,8 +36,8 @@ export default function List<T>(props: ListProps<T>) {
 
         // Filter out pinned components and display separately
         // Can probably be done better
-        let pinnedData = parsed.filter(([id, value]) => pinned.includes(id));
-        let unpinnedData = parsed.filter(([id, value]) => !pinned.includes(id));
+        const pinnedData = parsed.filter(([id, value]) => pinned.includes(id));
+        const unpinnedData = parsed.filter(([id, value]) => !pinned.includes(id));
 
         // Filter each via query, map to components
         setContent(unpinnedData.filter(filter).map(map));
@@ -45,21 +45,27 @@ export default function List<T>(props: ListProps<T>) {
     }, [data, filter])
 
 
-    return (
-        content.length || pinnedContent.length
-            ? <>
-                {pinnedContent.length
-                    ? <ul className="material-list">
-                        {pinnedContent}
-                      </ul>
-                    : null}
-                {content.length && pinnedContent.length ? <hr/> : null}
-                {content.length
-                    ? <ul className="material-list">
-                        {content}
-                      </ul>
-                    : null}
-              </>
-            : <NoResults/>
+    return content.length || pinnedContent.length ? (<>
+        {pinnedContent.length > 0 && (
+            <MaterialList>
+                {pinnedContent}
+            </MaterialList>
+        )}
+        {content.length > 0 && pinnedContent.length > 0 && <hr/>}
+        {content.length > 0 && (
+            <MaterialList>
+                {content}
+            </MaterialList>
+        )}
+    </>) : (
+        <NoResults/>
     );
+}
+
+function MaterialList(props: {children: ReactNode}) {
+    return (
+        <ul className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] list-none">
+            {props.children}
+        </ul>
+    )
 }

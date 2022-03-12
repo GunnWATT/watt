@@ -1,19 +1,20 @@
 import {useEffect, useState} from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {useAuth, useSigninCheck} from 'reactfire';
 import PageVisibility from 'react-page-visibility';
 import moment from 'moment';
 import {GCalEvent} from './components/schedule/Event';
 
 // Components
 import Layout from './components/Layout';
-import Home from './views/Home';
-import Utilities from './views/Utilities';
-import Classes from './views/Classes';
-import Clubs from "./views/Clubs";
-import Settings from './views/Settings';
-import Testing from './views/Testing';
-import PageNotFound from './views/404';
-import SgyAuthRedirect from './views/SgyAuthRedirect';
+import Home from './pages/Home';
+import Utilities from './pages/Utilities';
+import Classes from './pages/Classes';
+import Clubs from './pages/Clubs';
+import Settings from './pages/Settings';
+import Testing from './pages/Testing';
+import PageNotFound from './pages/404';
+import SgyAuthRedirect from './pages/SgyAuthRedirect';
 import FaviconHandler from './components/schedule/FaviconHandler';
 import FirebaseUserDataProvider from './components/firebase/FirebaseUserDataProvider';
 import LocalStorageUserDataProvider from './components/firebase/LocalStorageUserDataProvider';
@@ -21,30 +22,17 @@ import LocalStorageUserDataProvider from './components/firebase/LocalStorageUser
 // Context
 import {TimeProvider} from './contexts/CurrentTimeContext';
 
-// Firestore
-import {useAuth, useSigninCheck} from 'reactfire';
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
-
 
 export default function App() {
     // Global datetime
     const [date, setDate] = useState(moment());
 
-    // Set interval on mount to update datetime every second
     useEffect(() => {
-        const update = () => setDate(moment());
-        const timerID = setInterval(
-            () => update(),
-            1000
-        );
-
-        // Clear interval on unmount
-        return function cleanup() {
-            clearInterval(timerID);
-        }
-    }, [])
-
+        const timerID = setInterval(() => setDate(moment()), 1000);
+        return () => clearInterval(timerID);
+    }, []);
 
     // Events data for schedule
     const [events, setEvents] = useState<GCalEvent[] | null>(null);
@@ -65,7 +53,7 @@ export default function App() {
     }
 
     // Fetch events on mount
-    useEffect(fetchEvents, [])
+    useEffect(fetchEvents, []);
 
     const { data: signInCheckResult } = useSigninCheck()
     const UserDataProvider = signInCheckResult?.signedIn ? FirebaseUserDataProvider : LocalStorageUserDataProvider;

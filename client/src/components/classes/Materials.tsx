@@ -10,9 +10,9 @@ import UserDataContext, { SgyPeriod, SgyData } from '../../contexts/UserDataCont
 import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
-import { findClassesList } from '../../views/Classes';
-import { similarity } from './functions/GeneralHelperFunctions';
-import {AssignmentBlurb, defaultLabels, getMaterials, parseLabelColor} from './functions/SgyFunctions';
+import { findClassesList } from '../../pages/Classes';
+import { similarity } from '../../util/sgyHelpers';
+import {AssignmentBlurb, defaultLabels, getMaterials, parseLabelColor} from '../../util/sgyFunctions';
 
 
 export default function Materials() {

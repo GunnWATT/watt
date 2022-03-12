@@ -1,56 +1,41 @@
 import {useEffect, ReactNode} from 'react';
-import {deepdifferences, deepmerge} from './LocalStorageUserDataProvider';
+import {useLocalStorageData, deepmerge, deepdifferences} from '../../hooks/useLocalStorageData';
 
 // Firestore
-import {useAuth, useFirestore, useFirestoreDoc, useFunctions} from 'reactfire';
+import {useAuth, useFirestore, useFirestoreDoc} from 'reactfire';
 import {doc, setDoc} from 'firebase/firestore';
-import {bulkUpdateFirebaseUserData, updateFirebaseUserData} from '../../firebase/updateUserData';
+import {bulkUpdateFirebaseUserData, updateFirebaseUserData} from '../../util/firestore';
 
 // Context
-import {UserData, UserDataProvider, defaultUserData} from '../../contexts/UserDataContext';
+import {UserDataProvider, defaultUserData} from '../../contexts/UserDataContext';
 
-type FirebaseUserDataProviderProps = {children: ReactNode};
-export default function FirebaseUserDataProvider(props: FirebaseUserDataProviderProps) {
+
+export default function FirebaseUserDataProvider(props: {children: ReactNode}) {
+    const data = useLocalStorageData();
+
     const auth = useAuth();
-    const functions = useFunctions();
     const firestore = useFirestore();
     const { status, data: firebaseDoc } = useFirestoreDoc(doc(firestore, 'users', auth.currentUser!.uid));
 
-    let localStorageRawData = {};
-    try {
-        localStorageRawData = JSON.parse(localStorage.getItem("data") ?? '{}')
-    } catch (err) {
-        // something happened
-        localStorage.removeItem('data');
-    }
-
-    // should be changed later; not all things are stored in localStorage
-    const localStorageData = deepmerge(
-        defaultUserData,
-        localStorageRawData
-    )
-
-    // Update firebase and local data to be up to date with defaultUserData using deepmerge
-    // TODO: support merges
+    // Update localStorage to be up to date with firestore changes
+    // TODO: currently, this always replaces localStorage with firebase data; we may want to support merges
     useEffect(() => {
         if (status !== 'success') return;
 
         if (!firebaseDoc.exists()) {
             console.error('[ERR] Firebase data nonexistent, cancelling merge'); // Try to prevent user data resetting
-            setDoc(doc(firestore, 'users', auth.currentUser!.uid), defaultUserData);
-            return;
+            return void setDoc(doc(firestore, 'users', auth.currentUser!.uid), defaultUserData);
         }
-
         const data = firebaseDoc.data();
-
         const merged = deepmerge(defaultUserData, data);
         const changes = deepdifferences(merged, data);
+
         bulkUpdateFirebaseUserData(changes, auth, firestore);
         localStorage.setItem('data', JSON.stringify(merged));
-    }, [status])
+    }, [status, firebaseDoc]);
 
     return (
-        <UserDataProvider value={(firebaseDoc?.data() ?? localStorageData) as UserData}>
+        <UserDataProvider value={data}>
             {props.children}
         </UserDataProvider>
     )

@@ -2,9 +2,9 @@
 import {useMediaQuery} from 'react-responsive';
 
 export function useScreenType() {
-    const desktop = useMediaQuery({ minWidth: 1440 });
-    const tablet = useMediaQuery({ minWidth: 1265 });
-    const smallScreen = useMediaQuery({ minWidth: 800 });
+    const desktop = useMediaQuery({ minWidth: 1536 });
+    const tablet = useMediaQuery({ minWidth: 1280 });
+    const smallScreen = useMediaQuery({ minWidth: 768 });
 
     if (desktop) return 'desktop';
     if (tablet) return 'tablet';

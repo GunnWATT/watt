@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply text-primary dark:text-primary-dark bg-background dark:bg-background-dark;
+    }
+    a {
+        @apply text-theme dark:text-theme-dark;
+        &:hover {
+            @apply underline;
+        }
+    }
+    h1 {
+        @apply text-4xl font-semibold mb-2;
+    }
+    hr {
+        @apply my-4 border-t-2 border-tertiary dark:border-tertiary-dark;
+    }
+}
+
+@layer utilities {
+    .secondary {
+        @apply text-secondary dark:text-secondary-dark;
+    }
+    .scrollbar-none::-webkit-scrollbar {
+        display: none;
+    }
+}

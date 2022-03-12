@@ -8,7 +8,7 @@ export function useNextPeriod(date: Moment) {
     const {periods} = useSchedule(date);
 
     // Localize date to PST before attempting to parse next period
-    // TODO: does minutes and seconds *really* need to be returned by this hook?
+    // TODO: do minutes and seconds *really* need to be returned by this hook?
     const localizedDate = date.clone().tz('America/Los_Angeles');
     const midnight = localizedDate.clone().startOf('date');
     const minutes = localizedDate.diff(midnight, 'minutes');

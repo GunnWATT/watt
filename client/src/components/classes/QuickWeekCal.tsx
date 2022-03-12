@@ -9,8 +9,8 @@ import UserDataContext from '../../contexts/UserDataContext';
 import { getSchedule } from '../../hooks/useSchedule';
 import { useScreenType } from '../../hooks/useScreenType';
 import { parsePeriodColor } from '../schedule/Periods';
-import { AssignmentBlurb } from './functions/SgyFunctions';
-import { hasClass } from './functions/PeriodFunctions';
+import { AssignmentBlurb } from '../../util/sgyFunctions';
+import { hasClass } from '../../util/sgyPeriodFunctions';
 
 // The week calendar for dashboard
 

@@ -3,6 +3,7 @@ import {useEffect, useRef, useState} from 'react';
 
 // Higher order Picker component for reuse of "close on click outside" logic.
 // Uses render props to expose `open` and `setOpen` to child elements
+// TODO: replace all usages of this with headless-ui's `Popover` and delete this
 type PickerProps = {
     className?: string,
     children: (open: boolean, setOpen: (state: boolean) => void) => JSX.Element

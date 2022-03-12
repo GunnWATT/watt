@@ -2,7 +2,7 @@ import {useContext, useState} from 'react';
 import AssignmentModal from './AssignmentModal';
 import UserDataContext, {SgyData} from '../../contexts/UserDataContext';
 import {parsePeriodColor} from '../schedule/Periods';
-import {AssignmentBlurb, parseLabelColor} from './functions/SgyFunctions';
+import {AssignmentBlurb, parseLabelColor} from '../../util/sgyFunctions';
 import { AssignmentTags } from './Assignments';
 
 

@@ -14,8 +14,39 @@ const num = 100;
 // to
 const num = 100
 ```
+This helps with ASI ambiguity and makes clearer the intentions for where a line ends.
 
-### 1.2 — Leave 2 newlines between imports and code
+### 1.2 — Use 4-space tabs
+```ts
+// Prefer
+for (const club of clubs) {
+    console.log(club.name);
+}
+// to
+for (const club of clubs) {
+  console.log(club.name);
+}
+// or
+for (const club of clubs) {
+	console.log(club.name);
+}
+```
+Most modern IDEs automatically convert tab key presses to spaces, and using spaces instead of tab characters lets _you_ control
+how wide your tabs are (avoiding, for example, GitHub's massive 8-space tab characters).
+
+### 1.3 — Prefer using `const` over `let` for immutable variables
+```ts
+// Prefer
+const data = JSON.parse(localStorage.getItem('data'));
+console.log(data.timestamp);
+
+// to
+let data = JSON.parse(localStorage.getItem('data'));
+console.log(data.timestamp);
+```
+This better enforces mutability and makes it easier to tell what is a reassignable field and what is immutable data.
+
+### 1.4 — Leave 2 newlines between imports and code
 ```ts
 // Prefer
 import fetch from 'node-fetch';
@@ -28,7 +59,8 @@ writeFileSync('./output/clubs.json', JSON.stringify(prev, null, 4));
 // ...
 ```
 
-### 1.3 — Group imports if importing many things at once
+### 1.5 — Group imports if importing many things at once
+<!-- TODO: these examples are super lengthy; we should shorten if possible -->
 ```ts
 // Prefer
 import { useContext, useEffect, useState } from 'react';
@@ -78,17 +110,20 @@ import Loading from '../components/layout/Loading';
 // ...
 ```
 
-### 1.4 — Prefer importing functions directly instead of using default imports where possible
+### 1.6 — Prefer importing functions directly instead of using default imports where possible
 ```ts
 // Prefer
 import {readFileSync, writeFileSync} from 'fs';
+writeFileSync('./output/data.json', ...);
+
 // to
 import fs from 'fs';
+fs.writeFileSync('./output/data.json', ...);
 ```
 This allows readers to ascertain exactly what from `fs` is used at a glance, without having to search for references of
 the `fs` object.
 
-### 1.5 — Prefer minimizing extra newlines from curly braces
+### 1.7 — Prefer minimizing extra newlines from curly braces
 ```tsx
 // Prefer
 if (!signedIn) return <div>You are not signed in!</div>
@@ -102,28 +137,53 @@ if (!signedIn) {
 ```
 Exceptions to this rule may apply on a case by case basis.
 
-### 1.6 — Leave spaces before `if` and `for` conditions and after `:`s in object and type declarations
+### 1.8 — Leave spaces around `if` and `for` conditions and operators and after `:`s in object and type declarations
+<!-- This is sorta just common style convention; should this section be removed? -->
 ```ts
 // Prefer
 if (!description) {
     // ...
 }
+for (let i = 0; i < arr.length; i++) {
+    // ...
+}
+
 // to
-if(!description) {
+if(!description){
+    // ...
+}
+for(let i = 0; i < arr.length; i++){
     // ...
 }
 ```
 ```ts
 // Prefer
 const final = {timestamp: new Date(), data: {}};
+const ratio = 12 / 36;
+const reason = parsed.reason ?? 'No reason given';
+sum += 1;
+
 // to
-const final = {timestamp:new Date(), data:{}};
+const final={timestamp:new Date(),data:{}};
+const ratio=12/36;
+const reason=parsed.reason??'No reason given';
+sum+=1;
 ```
 ```ts
 // Prefer
 type ContainerProps = {size: string, className: string};
 // to
-type ContainerProps = {size:string, className:string};
+type ContainerProps={size:string,className:string};
+```
+Conversely, do not leave a space when invoking a function or before or after an explicit generic type argument.
+```ts
+// Prefer
+const [state, setState] = useState<string | null>(null);
+console.log(state);
+
+// to
+const [state, setState] = useState <string | null> (null);
+console.log (state);
 ```
 
 ## React
@@ -133,11 +193,11 @@ type ContainerProps = {size:string, className:string};
 export default function Sidebar(props: ...) {
     // ...
 }
+
 // to
 const Sidebar = (props: ...) => {
     // ...
 }
-
 export default Sidebar;
 ```
 This disallows use of `React.FC<T>` but use of that is [inadvised](https://gist.github.com/ky28059/c74ad68be64510af55bba9c6828b2942#props-with-manual-typing) anyhow.
@@ -182,13 +242,14 @@ return (
         <p>...</p>
     </div>
 );
+
 // to
 return <div>
     <h1>...</h1>
     <p>...</p>
 </div>
 ```
-This allows the alignment of the outer JSX element to look more natural and akin to HTML.
+This allows the outer JSX element to remain aligned and look more and akin to HTML.
 
 ### [2.4 — Wrap long prop declarations properly](https://github.com/airbnb/javascript/tree/master/react#alignment)
 ```tsx
@@ -220,6 +281,7 @@ This allows the alignment of the outer JSX element to look more natural and akin
     <h1>...</h1>
     <p>...</p>
 </div>
+
 // to
 <div
     onClick={(e) => ...}
@@ -267,6 +329,46 @@ export function Footer() {
     // ...
 }
 ```
+Note that exceptions apply for small layout components extracted from their parent components who are linked enough 
+to their parent to warrant staying in their own file; exporting `<Header>` and `<Footer>` from `Layouts.tsx` violates
+principles of code-splitting and organization, but a `<HeaderBox>` component extracted for reuse from `<Header>` is 
+acceptable:
+```tsx
+// Header.tsx
+export default function Header() {
+    // ...
+    return (
+        <div>
+            <HeaderBox>...</HeaderBox>
+            <nav>...</nav>
+            ...
+        </div>
+    )
+}
+
+export function HeaderBox(props: {children: ReactNode}) {
+    return (
+        <header className="rounded shadow-lg bg-theme ...">
+            {props.children}
+        </header>
+    )
+}
+
+// ClassesHeader.tsx
+import {HeaderBox} from './Header';
+
+export default function ClassesHeader() {
+    // ...
+    return (
+        <div>
+            <HeaderBox>Classes</HeaderBox>
+            ...
+        </div>
+    )
+}
+```
+If a component contains sizeable or complex logic or is otherwise unrelated to its host file, it may be a good indicator
+that that component needs its own file.
 
 ### 2.6 — Use the [boolean prop shortcut](https://gist.github.com/ky28059/c74ad68be64510af55bba9c6828b2942#boolean-props-shortcut)
 ```tsx
@@ -307,6 +409,21 @@ export default function ClubComponent({name, id, teacher, room, prez, coadvisor,
     // ...
 }
 ```
+An exception applies for `props.children` on components which are guaranteed to only require that prop.
+```tsx
+// This is ok, because this is guaranteed to never need any other props than the children being wrapped by the providers
+export default function FirebaseProviders(props: {children: ReactNode}) {
+    return (
+        <AuthProvider sdk={auth}>
+            <FunctionsProvider sdk={functions}>
+                ...
+                    {props.children}
+                ...
+            </FunctionsProvider>
+        </AuthProvider>
+    )
+}
+```
 
 ### 2.8 — Prefer `{x && y}` to `{x ? y : null}`
 ```tsx
@@ -321,8 +438,9 @@ allowing the `&&` syntactic sugar for conditional rendering without having to co
 ### 2.9 — Do not pass context as props
 ```tsx
 // Prefer
-function Home() {
+export default function Home() {
     const time = useContext(CurrentTimeContext);
+
     return (
         <div>
             <Clock />
@@ -337,8 +455,9 @@ function Clock() {
 }
 
 // to
-function Home() {
+export default function Home() {
     const time = useContext(CurrentTimeContext);
+
     return (
         <div>
             <Clock time={time} />
@@ -359,9 +478,9 @@ to the context is functionally the same (while being more readable) than passing
 ### [2.10 — Use `/>` to close an empty element](https://github.com/airbnb/javascript/tree/master/react#tags)
 ```tsx
 // Prefer
-<div />
+<div className="w-8 h-8 bg-red-500 rounded-full ..." />
 // to
-<div></div>
+<div className="w-8 h-8 bg-red-500 rounded-full ..."></div>
 ```
 The self-closing tag looks cleaner and more intuitive and will compile to the same code at build time.
 
@@ -369,17 +488,14 @@ The self-closing tag looks cleaner and more intuitive and will compile to the sa
 ```tsx
 // Prefer
 import {ReactNode} from 'react';
-
 type ContainerProps = {children: ReactNode};
 
 // to
 import React from 'react';
-
 type ContainerProps = {children: React.ReactNode};
 
 // or
 import React, {ReactNode} from 'react';
-
 type ContainerProps = {children: ReactNode};
 ```
 This is to accommodate for React 17's [new JSX transform](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) 
@@ -404,3 +520,4 @@ import UpcomingFullCalendar from './UpcomingFullCalendar';
 // to
 import UpcomingFullCalendar from './FullCalendar';
 ```
+This prevents confusion between the name of a component and which file it's exported from.

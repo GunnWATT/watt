@@ -1,0 +1,124 @@
+.date-selector-box {
+  height: 35px;
+  width: 220px;
+}
+
+.mini-calendar {
+  $border-radius: 0.25rem;
+
+  width: 300px;
+  height: 60vh;
+
+  &.picker {
+    position: absolute;
+    top: calc(100% + 10px);
+  }
+
+  .time {
+    padding: 0px 15px;
+    display: flex;
+    gap: 15px;
+    font-family: var(--font-family-monospace);
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: auto;
+
+      svg {
+        cursor: pointer;
+      }
+    }
+
+    .time-input {
+      text-align: center;
+      width: 80px;
+      background-color: var(--content-secondary);
+      font-size: 3rem;
+      border-radius: 5px;
+    }
+
+    .am {
+      cursor: pointer;
+    }
+  }
+
+  .calendar-days-wrapper {
+    background-color: var(--content-secondary);
+    color: var(--primary);
+    padding: 10px 15px 5px 15px;
+    border-radius: $border-radius $border-radius 0 0;
+
+    .calendar-weekdays {
+      height: 30px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+
+      .calendar-weekday {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .calendar-wrapper {
+    padding: 5px 15px 10px 15px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+
+    .calendar-month-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 15px 0 3px 0;
+      font-size: 0.8rem;
+    }
+
+    .calendar-month {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-auto-rows: 27px;
+
+      .calendar-day {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        &-no-school {
+          color: var(--secondary);
+        }
+
+        &-selected {
+          background-color: var(--active);
+          color: white;
+          border-radius: 15px;
+        }
+        &-active {
+          background-color: var(--active);
+          color: white;
+        }
+      }
+    }
+  }
+
+  .calendar-jump {
+    background-color: var(--content-secondary);
+    color: var(--primary);
+    flex: none;
+    padding: 5px 15px 10px 15px;
+    border-radius: 0 0 $border-radius $border-radius;
+    display: flex;
+    flex-direction: row;
+
+    .calendar-jump-today {
+      cursor: pointer;
+    }
+    .calendar-jump-tmrw {
+      cursor: pointer;
+      margin-left: auto;
+    }
+  }
+}
