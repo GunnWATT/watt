@@ -21,37 +21,6 @@ export default function Layout(props: {children: ReactNode}) {
     // Screen type for responsive layout
     const screenType = useScreenType();
 
-    // Render layout dynamically
-    let content;
-    if (screenType === 'phone') { // On phone screens, use bottom nav instead of sidebar
-        content = (
-            <div id="app" className="vertical">
-                <div id="content">
-                    {props.children}
-                </div>
-                <BottomNav/>
-            </div>
-        );
-    } else if (screenType === 'smallScreen') { // On small screens, collapse the sidebar by default
-        content = (
-            <div id="app">
-                <Sidebar forceCollapsed/>
-                <div id="content">
-                    {props.children}
-                </div>
-            </div>
-        );
-    } else { // Otherwise, display layout normally
-        content = (
-            <div id="app">
-                <Sidebar/>
-                <div id="content">
-                    {props.children}
-                </div>
-            </div>
-        );
-    }
-
     // Create user document on first sign in
     const auth = useAuth();
     const firestore = useFirestore();
@@ -77,7 +46,24 @@ export default function Layout(props: {children: ReactNode}) {
 
     return (
         <>
-            {content}
+            {/* Render layout dynamically */}
+            {screenType === 'phone' ? (
+                // On phones, display a bottom nav instead of the sidebar
+                <div id="app" className="relative h-full flex flex-col vertical">
+                    <div id="content" className="flex-grow pb-16">
+                        {props.children}
+                    </div>
+                    <BottomNav/>
+                </div>
+            ) : (
+                // On small screens, collapse the sidebar by default
+                <div id="app" className="relative h-full flex">
+                    <Sidebar forceCollapsed={screenType === 'smallScreen'} />
+                    <div id="content" className="flex-grow">
+                        {props.children}
+                    </div>
+                </div>
+            )}
 
             {/* Schoology auth success modal */}
             <SgyInitResults />

@@ -1,13 +1,4 @@
 .bottom-nav {
-  .item {
-    transition: background-color 200ms ease;
-
-    // Icon
-    > svg {
-      height: 1em;
-    }
-  }
-
   // Dropup
   .dropup-wrapper {
     .bottom-nav-dropup {

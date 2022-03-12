@@ -33,9 +33,9 @@ export default function Sidebar(props: SidebarProps) {
 
 
     return (
-        <aside className={`sidebar z-10 flex-none relative ${!isOpen ? 'collapsed' : ''}`}>
+        <aside className={'z-10 flex-none relative transition-[width] duration-[400ms] ' + (isOpen ? 'w-56' : 'w-20')}>
             {/* The outer <aside> only exists to occupy space to squish #content; the inner <div> has position: fixed; */}
-            <div className="sidebar-content text-lg bg-sidebar dark:bg-sidebar-dark fixed top-0 bottom-0 flex flex-col overflow-hidden whitespace-nowrap">
+            <div className={'p-4 text-lg bg-sidebar dark:bg-sidebar-dark fixed top-0 bottom-0 flex flex-col transition-[width] duration-[400ms] overflow-hidden whitespace-nowrap ' + (isOpen ? 'w-56' : 'w-20')}>
                 {/* Toggler */}
                 <span className="ml-auto mb-4 p-2 cursor-pointer" onClick={toggle}>
                     {isOpen ? <ChevronLeft/> : <ChevronRight/>}

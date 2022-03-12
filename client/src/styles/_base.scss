@@ -1,7 +1,4 @@
 body {
-  margin: 0;
-  font-size: 16px;
-
   --primary: rgba(0, 0, 0, 0.87);   // Primary text color
   --secondary: rgba(0, 0, 0, 0.54); // Secondary text color
   --tertiary: rgba(0, 0, 0, 0.1);   // Tertiary text color
@@ -26,41 +23,4 @@ body {
     --contrast: rgb(55, 55, 57);
     --active: #ff594c;
   }
-
-  background-color: var(--bg-secondary);
-}
-
-::-webkit-scrollbar {
-  width: 0.25rem;
-
-  &-thumb {
-    background: var(--secondary);
-  }
-}
-
-#root {
-  height: 100%;
-}
-
-#app {
-  height: 100%;
-  display: flex;
-  position: relative;
-
-  &.vertical {
-    flex-direction: column;
-
-    #content {
-      padding-bottom: 64px;
-    }
-  }
-
-  // The main content pane of the app
-  #content {
-    flex-grow: 1;
-  }
-}
-
-.firebase-emulator-warning {
-    display: none;
 }

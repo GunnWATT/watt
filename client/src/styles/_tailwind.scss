@@ -18,6 +18,12 @@
     hr {
         @apply my-4 border-t-2 border-tertiary dark:border-tertiary-dark;
     }
+    ::-webkit-scrollbar {
+        @apply w-1;
+        &-thumb {
+            @apply bg-secondary dark:bg-secondary-dark;
+        }
+    }
 }
 
 @layer utilities {
@@ -25,6 +31,10 @@
         @apply text-secondary dark:text-secondary-dark;
     }
     .scrollbar-none::-webkit-scrollbar {
-        display: none;
+        @apply hidden;
     }
+}
+
+.firebase-emulator-warning {
+    @apply hidden;
 }
