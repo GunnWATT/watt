@@ -35,7 +35,7 @@ export default function FirebaseUserDataProvider(props: {children: ReactNode}) {
         if (Object.entries(changes).length)
             bulkUpdateFirebaseUserData(changes, auth, firestore);
         localStorage.setItem('data', JSON.stringify(merged));
-    }, [status, firebaseDoc]);
+    }, [status]);
 
     return (
         <UserDataProvider value={data}>
