@@ -23,12 +23,12 @@ export default function DateSelector(props: DateSelectorProps) {
     const decDay = () => setViewDate(viewDate.clone().subtract(1, 'days'));
 
     return (
-        <div className="date-selector mb-8 flex justify-center gap-3">
-            <button className="icon" onClick={decDay}>
+        <div className="mb-8 flex justify-center gap-3">
+            <button onClick={decDay}>
                 <ChevronLeft/>
             </button>
 
-            <Popover className="date-selector-box bg-content dark:bg-content-dark flex flex-col relative shadow-lg rounded">
+            <Popover className="h-9 w-56 bg-content dark:bg-content-dark flex flex-col relative shadow-lg rounded">
                 <Popover.Button className="w-full h-full flex items-center justify-center cursor-pointer">
                     {viewDate.format("MMMM D, yyyy")}
                 </Popover.Button>
@@ -49,7 +49,7 @@ export default function DateSelector(props: DateSelectorProps) {
                 </Transition>
             </Popover>
 
-            <button className="icon" onClick={incDay}>
+            <button onClick={incDay}>
                 <ChevronRight/>
             </button>
         </div>
@@ -89,40 +89,33 @@ export function Calendar(props: CalendarProps) {
         const month = m % 12
         const startOfMonth = moment.tz(`${year}-${month + 1}`, "YYYY-MM", 'America/Los_Angeles');
 
-        const days = Array(startOfMonth.daysInMonth())
-            .fill(0).map((_, i) => i + 1)
+        const days = Array(startOfMonth.daysInMonth()).fill(0)
+            .map((_, i) => i + 1)
             .map(day => moment.tz(`${year}-${month + 1}-${day}`, "YYYY-MM-DD", 'America/Los_Angeles'))
             .filter(day => !(day.isBefore(START) || day.isAfter(END)));
 
-        const dayElements = [
-            // extra padding
-            ...Array(days[0].weekday()).fill(0).map((_, i) => (
-                <div key={"padding " + i} className="calendar-day" />
-            )),
-
-            // actual content
-            ...days.map(day => {
-                const noSchool = [0, 6].includes(day.weekday())
-                    || (day.format("MM-DD") in alternates.alternates && alternates.alternates[day.format("MM-DD")] == null);
-                return (
-                    <div
-                        className={"calendar-day" + (noSchool ? " calendar-day-no-school" : "") + (currTime.isSame(day, 'day') ? ' calendar-day-selected' : '')}
-                        onClick={() => setTime(day.clone())}
-                        key={day.toISOString()}
-                    >
-                        {day.date()}
-                    </div>
-                );
-            })
-        ];
-
         return (
-            <>
-                <div key={`month ${m} header`} className="calendar-month-header">{startOfMonth.format("MMMM YYYY")}</div>
-                <div key={`month ${m}`} className="calendar-month">
-                    {dayElements}
+            <div key={`month ${m}`}>
+                <h4 className="text-[0.8rem] text-center mb-0.5">
+                    {startOfMonth.format("MMMM YYYY")}
+                </h4>
+                <div className="calendar-month grid grid-cols-7">
+                    {days.map((day, i) => {
+                        const noSchool = [0, 6].includes(day.weekday())
+                            || (day.format("MM-DD") in alternates.alternates && alternates.alternates[day.format("MM-DD")] == null);
+                        return (
+                            <div
+                                className={'flex items-center justify-center cursor-pointer' + (noSchool ? ' secondary' : '') + (currTime.isSame(day, 'day') ? ' bg-theme dark:bg-theme-dark text-white dark:text-white rounded-full' : '')}
+                                onClick={() => setTime(day.clone())}
+                                key={day.toISOString()}
+                                style={i === 0 ? {gridColumnStart: day.weekday() + 1} : undefined}
+                            >
+                                {day.date()}
+                            </div>
+                        );
+                    })}
                 </div>
-            </>
+            </div>
         )
     });
 
@@ -203,19 +196,19 @@ export function Calendar(props: CalendarProps) {
                 </div>
             )}
 
-            <div className="calendar-days-wrapper">
-                <div className="calendar-weekdays">
-                    {weekdays.map((char, i) => <div className="calendar-weekday" key={char + i}>{char}</div>)}
-                </div>
+            <div className="grid grid-cols-7 px-4 pt-2.5 pb-1.5 bg-content-secondary dark:bg-content-secondary-dark rounded-t">
+                {weekdays.map((char, i) => (
+                    <div className="flex items-center justify-center p-1" key={char + i}>{char}</div>
+                ))}
             </div>
 
-            <div className="calendar-wrapper">
+            <div className="flex flex-col gap-4 px-4 py-3 overflow-auto scroll-smooth">
                 {monthElements}
             </div>
 
-            <div className="calendar-jump">
-                <div className="calendar-jump-today" onClick={() => setTime(today.clone())}>Today</div>
-                <div className="calendar-jump-tmrw" onClick={() => setTime(tmrw.clone())}>Tomorrow</div>
+            <div className="flex justify-between px-4 pt-1.5 pb-2.5 bg-content-secondary dark:bg-content-secondary-dark rounded-b">
+                <button onClick={() => setTime(today.clone())}>Today</button>
+                <button onClick={() => setTime(tmrw.clone())}>Tomorrow</button>
             </div>
         </div>
     )
