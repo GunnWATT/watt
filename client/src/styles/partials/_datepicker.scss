@@ -39,11 +39,5 @@
 
   .calendar-month {
     grid-auto-rows: 27px;
-
-    .calendar-day {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
   }
 }

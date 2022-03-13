@@ -1,4 +1,4 @@
-import { useContext, CSSProperties } from 'react';
+import {useContext, CSSProperties, useRef, useEffect} from 'react';
 import {Popover, Transition} from '@headlessui/react';
 import moment, {Moment} from 'moment-timezone';
 import {ChevronDown, ChevronLeft, ChevronRight, ChevronUp} from 'react-feather'
@@ -70,6 +70,18 @@ export function Calendar(props: CalendarProps) {
     const today = date.clone().tz('America/Los_Angeles').startOf('date');
     const tmrw = today.clone().add(1, "day");
 
+    // Wrapper and month refs for auto-centering on current selected month
+    const wrapper = useRef<HTMLDivElement>(null);
+    const currMonth = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!wrapper.current) return;
+        if (!currMonth.current) return;
+
+        // Set wrapper's scroll position to the offset of the current month, minus the day header and 1rem gap
+        wrapper.current.scrollTop = currMonth.current.offsetTop - 48 - 16;
+    }, [wrapper, currMonth])
+
     // I probably shouldn't do this here
     // generate schedule
     const weekdays = ['U', 'M', 'T', 'W', 'θ', 'F', 'S'];
@@ -95,7 +107,7 @@ export function Calendar(props: CalendarProps) {
             .filter(day => !(day.isBefore(START) || day.isAfter(END)));
 
         return (
-            <div key={`month ${m}`}>
+            <div key={`month ${m}`} ref={currTime.month() === month ? currMonth : undefined}>
                 <h4 className="text-[0.8rem] text-center mb-0.5">
                     {startOfMonth.format("MMMM YYYY")}
                 </h4>
@@ -202,7 +214,7 @@ export function Calendar(props: CalendarProps) {
                 ))}
             </div>
 
-            <div className="flex flex-col gap-4 px-4 py-3 overflow-auto scroll-smooth">
+            <div ref={wrapper} className="flex flex-col gap-4 px-4 py-3 overflow-auto scroll-smooth">
                 {monthElements}
             </div>
 
