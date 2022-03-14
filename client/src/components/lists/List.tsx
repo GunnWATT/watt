@@ -2,14 +2,13 @@ import {useState, useEffect, ReactNode} from 'react';
 import NoResults from './NoResults';
 
 
-type ListEntriesPair<T> = [string, T]
 type ListProps<T> = {
     // Data can either be an Object.entries result or the raw JSON object
     // Perhaps this is an unideal implementation
-    data: ListEntriesPair<T>[] | {[key: string]: T},
-    filter: ([id, value]: ListEntriesPair<T>) => boolean,
-    map: ([id, value]: ListEntriesPair<T>) => JSX.Element,
-    sort: ([idA, valueA]: ListEntriesPair<T>, [idB, valueB]: ListEntriesPair<T>) => number,
+    data: [string, T][] | {[key: string]: T},
+    filter: ([id, value]: [string, T]) => boolean,
+    map: ([id, value]: [string, T]) => JSX.Element,
+    sort: ([idA, valueA]: [string, T], [idB, valueB]: [string, T]) => number,
     pinned: string[]
 }
 

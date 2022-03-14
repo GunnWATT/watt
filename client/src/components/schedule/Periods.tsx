@@ -80,8 +80,10 @@ export default function Periods(props: PeriodsProps) {
     const noSchool = () => {
         return (
             <>
-                <h2 className="mt-10 text-2xl font-medium text-center">No school today!</h2>
-                <p className="text-center mb-4">Enjoy your weekend!</p>
+                <section className="text-center mt-10 mb-4">
+                    <h2 className="text-2xl font-medium">No school today!</h2>
+                    <p>Enjoy your weekend!</p>
+                </section>
                 <NoSchoolImage viewDate={viewDate}/>
             </>
         )

@@ -90,7 +90,7 @@ export default function Clubs() {
                 <StateTab value="6" name={dayFromTabNum('6', shorten)} state={activeTab} setState={toggle} />
             </>}
         >
-            <p className="mb-4">
+            <p className="mb-4 secondary">
                 Please note that club information was taken from{' '}
                 <a href="https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vQ-UXugiZ8GznB367cO8JptTO9BLm5OE4D3WO8oZvYk_365lY25Q6eAFNSEIC5DGXGWOXwK_wauoTFT/pubhtml" target="_blank" rel="noopener noreferrer">the 2021-2022 chartered clubs spreadsheet</a>{' '}
                 as of {moment(timestamp).format('MMMM Do, YYYY')}. Attribute inaccuracies to them.
