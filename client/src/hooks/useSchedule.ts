@@ -1,6 +1,6 @@
 import {useContext, useEffect, useState} from 'react';
 import {Moment} from 'moment';
-import {DayObj, PeriodObj, numToWeekday, sortPeriodsByStart, SCHOOL_END_EXCLUSIVE, SCHOOL_START} from '../components/schedule/Periods';
+import {PeriodObj, numToWeekday, SCHOOL_END_EXCLUSIVE, SCHOOL_START} from '../components/schedule/Periods';
 
 // Context
 import UserDataContext, { UserData } from '../contexts/UserDataContext';
@@ -14,7 +14,7 @@ import schedule from '../data/schedule';
 // and filtering out periods 0 and 8 based on userData preferences.
 // The returned schedule is sorted by period start time.
 export function useSchedule(date: Moment) {
-    const [periods, setPeriods] = useState<[string, PeriodObj][] | null>(null);
+    const [periods, setPeriods] = useState<PeriodObj[] | null>(null);
     const [alternate, setAlternate] = useState(false);
 
     const userData = useContext(UserDataContext);
@@ -29,7 +29,7 @@ export function useSchedule(date: Moment) {
             return setPeriods(null);
 
         // Check for alternate schedules
-        let periods: DayObj | null;
+        let periods: PeriodObj[] | null;
         if (altFormat in alternates.alternates) {
             // If viewDate exists in alt schedules, load that schedule
             periods = alternates.alternates[altFormat];
@@ -38,9 +38,9 @@ export function useSchedule(date: Moment) {
             // Otherwise, use default schedule
             periods = schedule[numToWeekday(Number(localizedDate.format('d')))];
         }
-        setPeriods(periods && sortPeriodsByStart(periods).filter(([name, per]) => {
-            if (name === '0' && !userData.options.period0) return false;
-            if (name === '8' && !userData.options.period8) return false;
+        setPeriods(periods && periods.filter(({n}) => {
+            if (n === '0' && !userData.options.period0) return false;
+            if (n === '8' && !userData.options.period8) return false;
             return true;
         }));
 
@@ -62,7 +62,7 @@ export function getSchedule(date: Moment) {
     if (localizedDate.isBefore(SCHOOL_START) || localizedDate.isAfter(SCHOOL_END_EXCLUSIVE)) return null;
 
     // Check for alternate schedules
-    let periods: DayObj | null;
+    let periods: PeriodObj[] | null;
     if (altFormat in alternates.alternates) {
         // If viewDate exists in alt schedules, load that schedule
         periods = alternates.alternates[altFormat];
@@ -70,7 +70,7 @@ export function getSchedule(date: Moment) {
         // Otherwise, use default schedule
         periods = schedule[numToWeekday(Number(localizedDate.format('d')))];
     }
-    return (periods && sortPeriodsByStart(periods).filter(([name, per]) => {
+    return (periods && periods.filter(({n}) => {
         // if (name === '0' && !userData.options.period0) return false;
         // if (name === '8' && !userData.options.period8) return false;
         return true;

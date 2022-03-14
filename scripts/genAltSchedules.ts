@@ -26,15 +26,8 @@ import chalk from 'chalk';
 import {error, warn} from './logging';
 
 
-// Types modified from `../client/src/components/schedule/Periods.tsx`;
-// Go there for client side documentation on the parsed values.
-type PeriodObj = {s: number, e: number};
-type UnparsedPeriodObj = PeriodObj & {n: string}; // Unparsed period objects contain a name field
-type DayObj = {
-    0?: PeriodObj, 1?: PeriodObj, 2?: PeriodObj, 3?: PeriodObj, 4?: PeriodObj, 5?: PeriodObj, 6?: PeriodObj, 7?: PeriodObj, 8?: PeriodObj,
-    B?: PeriodObj, L?: PeriodObj, S?: PeriodObj, P?:PeriodObj
-    // G?: PeriodObj, O?: PeriodObj
-}
+// Types from `../client/src/components/schedule/Periods.tsx`
+type PeriodObj = {n: string, s: number, e: number};
 
 // Constants
 const EARLIEST_AM_HOUR = 6
@@ -79,7 +72,7 @@ function parseAlternate(summary: string | undefined, description: string | undef
         .replace(noHTMLRegex, '')
         .replace(noNbspRegex, ' ')
 
-    const periods: UnparsedPeriodObj[] = [];
+    const periods: PeriodObj[] = [];
 
     description.split(newLineRegex).forEach(str => {
         const times = str.match(timeGetterRegex);
@@ -139,7 +132,7 @@ function parseAlternate(summary: string | undefined, description: string | undef
             fname = "0";
         } else if (!isStaffPrep) {
             // If no regices match, we've encountered an unrecognized period
-            error(`[${chalk.underline(date)}] Unrecognized period name "${chalk.cyan(fname)}"`);
+            warn(`[${chalk.underline(date)}] Unrecognized period name "${chalk.cyan(fname)}"`);
         }
 
         // If the period is a class, push it to the schedule array
@@ -223,7 +216,7 @@ function parseAlternate(summary: string | undefined, description: string | undef
     const raw = await (await fetch('https://gunn.pausd.org/cf_calendar/feed.cfm?type=ical&feedID=6012BB54F3F048F09CBB988709E5E625')).text();
     const calendar = Object.values(ical.parseICS(raw));
 
-    const fAlternates: {[key: string]: UnparsedPeriodObj[]} = {};
+    const fAlternates: {[key: string]: PeriodObj[]} = {};
 
     // Populate `fAlternates` with unparsed day objects from iCal fetch
     for (const event of calendar) {
@@ -248,20 +241,22 @@ function parseAlternate(summary: string | undefined, description: string | undef
         fAlternates[startDateObj.toISOString().slice(5, 10)] = schedule;
     }
 
-    const alternates: {[key: string]: DayObj | null} = {}
+    const alternates: {[key: string]: PeriodObj[] | null} = {};
 
-    // Populate `alternates` with parsed schedule objects, flattening `name` and normalizing no-school days
+    // Populate `alternates` with parsed schedule objects, normalizing no-school days
     for (const [date, schedule] of Object.entries(fAlternates)) {
-        let parsedSchedule: DayObj | null = {};
-
         // If the schedule array is empty, parse it as a no school day
-        if (schedule.length === 0)
-            parsedSchedule = null;
-        else schedule.forEach(element =>
-            parsedSchedule![element.n as keyof DayObj] = {s: element.s, e: element.e});
-
-        alternates[date] = parsedSchedule;
+        alternates[date] = schedule.length ? schedule : null;
     }
 
     writeFileSync('./output/alternates.json', JSON.stringify({alternates}, null, 4));
 })()
+
+// Function to convert an old `{[key: string]: DayObj}` JSON object into the new format.
+// This isn't used by the alternates script, but remains here for ease of access in case it is needed in the future.
+function convertDayObj(old: {[key: string]: { [key: string]: { s: number, e: number } }}) {
+    return Object.fromEntries(
+        Object.entries(old).map(([n, dayObj]) => [n, dayObj ? Object.entries(dayObj)
+            .map(([key, per]) => ({n: key, ...per}))
+            .sort((a, b) => a.s - b.s) : null]));
+}

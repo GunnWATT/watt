@@ -65,25 +65,23 @@ export default function Clock(props: ClockProps) {
                 />
 
                 {/* Periods */}
-                {periods && periods.map(([name, val]) => {
+                {periods && periods.map(({n, s, e}) => {
                     // TODO: this is not a very clean or efficient way of doing this
                     // Hopefully something else can be thought of soon!
-                    const startObj = viewDate.clone().add(val.s, 'minutes').tz(timeZone);
-                    const endObj = viewDate.clone().add(val.e, 'minutes').tz(timeZone);
-                    const s = startObj.minutes() + startObj.hours() * 60;
-                    const e = endObj.minutes() + endObj.hours() * 60;
+                    const startObj = viewDate.clone().add(s, 'minutes').tz(timeZone);
+                    const endObj = viewDate.clone().add(e, 'minutes').tz(timeZone);
 
-                    const start = (s / 720 - 1/4) * 2 * Math.PI;
-                    const end = (e / 720 - 1/4) * 2 * Math.PI;
+                    const start = ((startObj.minutes() + startObj.hours() * 60) / 720 - 1/4) * 2 * Math.PI;
+                    const end = ((endObj.minutes() + endObj.hours() * 60) / 720 - 1/4) * 2 * Math.PI;
 
                     // Ignore non number periods (brunch, lunch)
                     // TODO: consider whether SELF and PRIME should be displayed?
-                    if (isNaN(parseInt(name))) return null;
+                    if (isNaN(parseInt(n))) return null;
                     return (
                         <path
-                            key={name}
+                            key={n}
                             d={`M ${size / 2 + radius * Math.cos(end)} ${size / 2 + radius * Math.sin(end)} \nA ${radius} ${radius} 0 0 0 ${size / 2 + radius * Math.cos(start)} ${size / 2 + radius * Math.sin(start)}`}
-                            stroke={parsePeriodColor(name, userData)}
+                            stroke={parsePeriodColor(n, userData)}
                             strokeWidth={6}
                             fill={'transparent'}
                         />

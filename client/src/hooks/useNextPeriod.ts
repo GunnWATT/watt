@@ -19,14 +19,12 @@ export function useNextPeriod(date: Moment) {
 
     if (!periods)
         return {prev, next, startingIn: null, endingIn: null, minutes, seconds};
-    if (minutes < periods[0][1].s - 20)
+    if (minutes < periods[0].s - 20)
         return {prev, next, startingIn: null, endingIn: null, minutes, seconds};
 
     let currPd; // current period index
     for (currPd = 0; currPd < periods.length; currPd++) {
-        if (minutes < periods[currPd][1].e) {
-            break;
-        }
+        if (minutes < periods[currPd].e) break;
     }
 
     if (currPd >= periods.length) {
@@ -36,8 +34,8 @@ export function useNextPeriod(date: Moment) {
         next = periods[currPd];
     }
 
-    const startingIn = next && next[1].s - minutes;
-    const endingIn = next && next[1].e - minutes;
+    const startingIn = next && next.s - minutes;
+    const endingIn = next && next.e - minutes;
 
     return {prev, next, startingIn, endingIn, minutes, seconds};
 }

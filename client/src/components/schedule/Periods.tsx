@@ -12,23 +12,16 @@ import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 import UserDataContext, {SgyPeriodData, UserData} from '../../contexts/UserDataContext';
 
 // Constants
-export const SCHOOL_START = moment.tz('2021-08-11', 'America/Los_Angeles'); // new Date(2021,7,11);
+export const SCHOOL_START = moment.tz('2021-08-11', 'America/Los_Angeles'); // new Date(2021,7, 11);
 export const SCHOOL_END = moment.tz('2022-06-02', 'America/Los_Angeles'); // new Date(2022, 5, 2);
-export const SCHOOL_END_EXCLUSIVE = moment.tz('2022-06-03', 'America/Los_Angeles'); // new Date(2022, 5,3);
+export const SCHOOL_END_EXCLUSIVE = moment.tz('2022-06-03', 'America/Los_Angeles'); // new Date(2022, 5, 3);
 
 
 // An object representing a period, with s and e being start and end times (in minutes after 12:00 AM PST)
-export type PeriodObj = {s: number, e: number};
-// An object representing a school day, with period keys that contain info on their start and end times.
-// 0-8 represent periods 0 through 8, while B, L, S, and P represent Brunch, Lunch, SELF, and PRIME, respectively.
-// G and O represent the now deprecated Gunn Together and Office Hours periods.
-export type DayObj = {
-    0?: PeriodObj, 1?: PeriodObj, 2?: PeriodObj, 3?: PeriodObj, 4?: PeriodObj, 5?: PeriodObj, 6?: PeriodObj, 7?: PeriodObj, 8?: PeriodObj,
-    B?: PeriodObj, L?: PeriodObj, S?: PeriodObj, P?: PeriodObj, // G?: PeriodObj, O?: PeriodObj
-    // Catch all unknown keys like "Math CAT" under an index type
-    // TODO: this kills known-key type safety; is there a better way to do this?
-    [key: string]: PeriodObj | undefined
-}
+// and n being the period's key. 0-8 represent periods 0 through 8, while B, L, S, and P represent Brunch, Lunch, SELF,
+// and PRIME, respectively. G and O represent the now deprecated Gunn Together and Office Hours periods. All other period
+// names, like "ELA CAT", remain unparsed.
+export type PeriodObj = {n: string, s: number, e: number};
 
 type PeriodsProps = {viewDate: Moment};
 export default function Periods(props: PeriodsProps) {
@@ -43,43 +36,41 @@ export default function Periods(props: PeriodsProps) {
     const userData = useContext(UserDataContext);
     const format = userData.options.time === '24' ? 'H:mm' : 'h:mm A';
     const classes = userData.classes as {[key: string]: SgyPeriodData};
-    
 
     // Maps periods array to <Period> components
-    const renderPeriods = () => periods!.map(([name, value]) => (
+    const renderPeriods = () => periods!.map(({n, s, e}) => (
         <Period
-            name={parsePeriodName(name, userData)}
-            color={parsePeriodColor(name, userData)}
-            key={name}
+            name={parsePeriodName(n, userData)}
+            color={parsePeriodColor(n, userData)}
+            key={n}
             now={currDate}
-            start={viewDate.clone().startOf('day').add(value.s, 'minutes').tz(timeZone)} // Convert PST times back to local timezone
-            end={viewDate.clone().startOf('day').add(value.e, 'minutes').tz(timeZone)}
+            start={viewDate.clone().startOf('day').add(s, 'minutes').tz(timeZone)} // Convert PST times back to local timezone
+            end={viewDate.clone().startOf('day').add(e, 'minutes').tz(timeZone)}
             format={format}
-            zoom={classes[name]?.l}
+            zoom={classes[n]?.l}
         />
     ))
-
 
     // HTML for a school day, assumes periods is populated
     const schoolDay = () => {
         // End time of the last period of the day
         // Exclude office hours and optionally exclude period 8 based on user preferences
         let endIndex = periods!.length - 1;
-        if (periods![endIndex][0] === 'O') endIndex--;
-        if (!userData.options.period8 && periods![endIndex][0] === '8') endIndex--;
-        const end = viewDate.clone().startOf('day').add(periods![endIndex][1].e, 'minutes').tz(timeZone);
+        if (periods![endIndex].n === 'O') endIndex--;
+        if (!userData.options.period8 && periods![endIndex].n === '8') endIndex--;
+        const end = viewDate.clone().startOf('day').add(periods![endIndex].e, 'minutes').tz(timeZone);
 
         // Display the period indicator if there are periods that day and if time is within 20 minutes of the first period
         // and before the last period
         const minutes = currDate.diff(viewDate, 'minutes');
-        const displayIndicator = periods && minutes < periods[periods.length - 1][1].e && minutes >= periods[0][1].s - 20;
+        const displayIndicator = periods && minutes < periods[periods.length - 1].e && minutes >= periods[0].s - 20;
 
         return (
             <>
                 <p className="mb-4">
                     School ends at <strong>{end.format(format)}</strong> today.
                 </p>
-                {displayIndicator && <PeriodIndicator startTime={periods![0][1].s}/>}
+                {displayIndicator && <PeriodIndicator startTime={periods![0].s}/>}
                 {renderPeriods()}
             </>
         )
@@ -133,14 +124,6 @@ export const darkPerColors = [
 
 // Turns day of the week into schedule object key; Thursday is R, Saturday is A
 export const numToWeekday = (num: number) => ['S', 'M', 'T', 'W', 'R', 'F', 'A'][num];
-
-// Transforms a `DayObj` into a `[string, PeriodObj][]`, sorting by start time so periods are not out of order when
-// rendering.
-export function sortPeriodsByStart(obj: DayObj) {
-    return Object.entries(obj)
-        .filter((a): a is [string, PeriodObj] => a[1] !== undefined)
-        .sort(([nameA, valA], [nameB, valB]) => valA.s - valB.s);
-}
 
 // Turns object key into human readable period name
 export function parsePeriodName(name: string, userData?: UserData) {

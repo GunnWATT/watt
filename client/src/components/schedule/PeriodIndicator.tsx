@@ -20,14 +20,14 @@ export default function PeriodIndicator(props: PeriodIndicatorProps) {
 
     // If current period has yet to start
     if (startingIn > 0) {
-        const end = prev?.[1].e ?? startTime - 20;
+        const end = prev?.e ?? startTime - 20;
         return (
             <div className="mb-4">
                 <p className="mb-1">
-                    <strong>{parsePeriodName(next[0], userData)}</strong>{' '}
+                    <strong>{parsePeriodName(next.n, userData)}</strong>{' '}
                     starting in {startingIn} minute{startingIn !== 1 ? 's' : ''}.
                 </p>
-                <ProgressBar value={(seconds / 60 - end) / (next[1].s - end) * 100} />
+                <ProgressBar value={(seconds / 60 - end) / (next.s - end) * 100} />
             </div>
         )
     }
@@ -35,11 +35,11 @@ export default function PeriodIndicator(props: PeriodIndicatorProps) {
     return (
         <div className="mb-4">
             <p className="mb-1">
-                <strong>{parsePeriodName(next[0], userData)}</strong>{' '}
+                <strong>{parsePeriodName(next.n, userData)}</strong>{' '}
                 ending in {endingIn} minute{endingIn !== 1 ? 's' : ''},{' '}
                 started {-startingIn} minute{startingIn !== -1 ? 's' : ''} ago.
             </p>
-            <ProgressBar value={(seconds / 60 - next[1].s) / (next[1].e - next[1].s) * 100} />
+            <ProgressBar value={(seconds / 60 - next.s) / (next.e - next.s) * 100} />
         </div>
     )
 }

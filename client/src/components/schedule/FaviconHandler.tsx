@@ -49,7 +49,7 @@ export default function FaviconHandler() {
             favicon.current = el;
         }
 
-        const name = parsePeriodName(next[0], userData);
+        const name = parsePeriodName(next.n, userData);
 
         document.title = (startingIn > 0)
             ? `${name} starting in ${startingIn} minute${startingIn !== 1 ? 's' : ''}.`
@@ -64,7 +64,7 @@ export default function FaviconHandler() {
             numToShow = seconds;
         }
         // document.title = ['isSeconds: ', isSeconds, ' & numToShow: ', numToShow].join()
-        const color = parsePeriodColor(next[0], userData)
+        const color = parsePeriodColor(next.n, userData)
         const fc = canvas.current.getContext('2d')!
 
         // configure it to look nice
