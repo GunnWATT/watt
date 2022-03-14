@@ -121,14 +121,14 @@ export default function Periods(props: PeriodsProps) {
 
 
 // Default period colors
-export const periodColors =
-    ['#f4aeafff', '#aef4dcff', '#aedef4ff', '#aeaff4ff', '#f4dcaeff', '#aff4aeff', '#f4f3aeff', '#efefefff'];
-export const darkPerColors =
-    //periodColors.map(x => darken(x))
-    //['#ef5350', '#14B8A6', '#42a5f5', '#7e57c2',
-    //    '#ef6c00', '#7cb342', '#FBBF24', '#3F3F46'];
-    ['#eb4747', '#29a395', '#2b98ca', '#7842d7',
-        '#d22d51', '#ed7621', '#eeb82f', '#373739']
+export const periodColors = [
+    '#f98585', '#78eddc', '#67e8f9', '#9cacfc',
+    '#fb7185', '#fdba74', '#fef08a', '#f0f1f5'
+];
+export const darkPerColors = [
+    '#eb4747', '#29a395', '#2b98ca', '#7842d7',
+    '#d22d51', '#ed7621', '#eeb82f', '#373739'
+];
 
 
 // Turns day of the week into schedule object key; Thursday is R, Saturday is A

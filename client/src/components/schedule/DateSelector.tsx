@@ -115,9 +115,10 @@ export function Calendar(props: CalendarProps) {
                     {days.map((day, i) => {
                         const noSchool = [0, 6].includes(day.weekday())
                             || (day.format("MM-DD") in alternates.alternates && alternates.alternates[day.format("MM-DD")] == null);
+                        const active = currTime.isSame(day, 'day');
                         return (
                             <div
-                                className={'flex items-center justify-center cursor-pointer' + (noSchool ? ' secondary' : '') + (currTime.isSame(day, 'day') ? ' bg-theme dark:bg-theme-dark text-white dark:text-white rounded-full' : '')}
+                                className={'flex items-center justify-center cursor-pointer' + (noSchool && !active ? ' secondary' : '') + (active ? ' bg-theme dark:bg-theme-dark text-white rounded-full' : '')}
                                 onClick={() => setTime(day.clone())}
                                 key={day.toISOString()}
                                 style={i === 0 ? {gridColumnStart: day.weekday() + 1} : undefined}
