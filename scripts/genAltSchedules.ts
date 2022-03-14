@@ -23,7 +23,7 @@ import fetch from 'node-fetch';
 import {writeFileSync} from 'fs';
 import ical from 'ical';
 import chalk from 'chalk';
-import {error, warn} from './logging';
+import {error, info, warn} from './logging';
 
 
 // Types from `../client/src/components/schedule/Periods.tsx`
@@ -250,6 +250,7 @@ function parseAlternate(summary: string | undefined, description: string | undef
     }
 
     writeFileSync('./output/alternates.json', JSON.stringify({alternates}, null, 4));
+    info('Wrote output to "./output/alternates.json".');
 })()
 
 // Function to convert an old `{[key: string]: DayObj}` JSON object into the new format.

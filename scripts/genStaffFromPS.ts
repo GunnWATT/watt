@@ -99,8 +99,6 @@ type ParentSquareAPIDepartment = ParentSquareAPIBase & {
     }
 }
 
-const prev = JSON.parse(readFileSync('./input/staff.json').toString());
-
 function nameSimilarity(a: string, b: string) {
     // this is the most cursed thing i have ever written
     const lf = (str: string) => {
@@ -124,32 +122,6 @@ function nameSimilarity(a: string, b: string) {
 
 function parseUserTitle(title: string) {
     return title.split(':')[0];
-}
-
-function parsePeriods(firstName: string, lastName: string, title: string) {
-    if (title.length === 0) return null;
-    const periods = title
-        .split('), ')
-        .map((str) => {
-            const parsed = str.slice(str.indexOf(':') + 1);
-            const className = parsed.slice(0, parsed.lastIndexOf(':')).trim();
-            const period = parsed.slice(parsed.lastIndexOf(':') + 1).match(/\(([0-9A-Z]+)/)![1].trim();
-            return [className, period];
-        })
-        .filter(([className, period]) => className !== 'Tchr Asst');
-
-    const final: { [key: string]: PeriodObj } = {};
-    for (const period of periods) {
-        const letter = parseInt(period[1]) === 9
-            ? 'P'
-            : !isNaN(Number(period[1][0])) || period[1] === "SELF"
-                ? period[1][0]
-                : null;
-        // Rooms and semesters don't exist anymore
-        // TODO: restructure and remove
-        if (letter) final[letter] = {'1': [period[0], ''], '2': [period[0], '']}
-    }
-    return final;
 }
 
 const newID = () => 10000 + Math.floor(Math.random() * 90000) + '';
@@ -182,8 +154,10 @@ function staffMatch(staffA: Staff, staffB: Staff) {
 }
 
 ;(async () => {
+    const prev = JSON.parse(readFileSync('./input/staff.json').toString());
+
     // Parse partial staff objects from Gunn website
-    const gunnWebsiteRaw = await (await fetch(`https://gunn.pausd.org/connecting/staff-directory`)).text();
+    const gunnWebsiteRaw = await (await fetch('https://gunn.pausd.org/connecting/staff-directory')).text();
 
     const gunnWebsiteStaff: Pick<Staff, 'name' | 'email' | 'dept' | 'phone'>[] = gunnWebsiteRaw
         .match(/<tbody>([^]+)<\/tbody>/)![1]
@@ -205,6 +179,8 @@ function staffMatch(staffA: Staff, staffB: Staff) {
             const {email, name, dept, phone} = regexOut.groups!;
             return { email, name, dept, phone };
         });
+
+    info(`Parsed ${gunnWebsiteStaff.length} staff from Gunn's website`);
 
     // Parse partial staff objects from ParentSquare
     // Ideally we fetch this programmatically, but ParentSquare's dumb same-origin restrictions makes that impossible
@@ -243,15 +219,14 @@ function staffMatch(staffA: Staff, staffB: Staff) {
         .map(({ id, type, attributes }) => {
             const { first_name, last_name, user_title } = attributes;
 
-            const title = parseUserTitle(user_title);
-            const periods = title === 'Teacher' ? parsePeriods(first_name, last_name, user_title) : null;
-
             return {
                 name: `${first_name} ${last_name}`,
-                title,
-                periods: periods ?? undefined
+                title: parseUserTitle(user_title),
+                periods: undefined // TODO: if ParentSquare no longer gives us this, remove from type entirely
             }
         });
+
+    info(`Parsed ${parentSquareStaff.length} staff from ParentSquare`);
 
     const mergedData: Staff[] = [];
 
@@ -278,9 +253,8 @@ function staffMatch(staffA: Staff, staffB: Staff) {
 
         if (exactMatch || nameSimilarity(bestMatch.name, staff.name) >= 0.7) {
             // match!
-
-            gunnWebsiteStaff.splice( i, 1 );
-            parentSquareStaff.splice( bestMatchIndex, 1 );
+            gunnWebsiteStaff.splice(i, 1 );
+            parentSquareStaff.splice(bestMatchIndex, 1);
 
             // staff and bestMatch should be MERGED
             const merged = {...staff, ...bestMatch};
@@ -288,15 +262,13 @@ function staffMatch(staffA: Staff, staffB: Staff) {
         } else {
             // alone... sad!
             mergedData.push({...staff});
-
             // if (nameSimilarity(bestMatch.name, staff.name) >= 0.6) console.log(bestMatch.name, staff.name);
         }
     }
 
-    for (const staff of parentSquareStaff) {
-        // the unmatched staff in Parent Square
-        mergedData.push({...staff});
-    }
+    // the unmatched staff in Parent Square
+    for (const staff of parentSquareStaff) mergedData.push({...staff});
+    info(`Merged ${mergedData.length} staff objects`);
 
     const final: {timestamp: Date, data: any} = {timestamp: new Date(), data: {}};
 
@@ -305,7 +277,7 @@ function staffMatch(staffA: Staff, staffB: Staff) {
     for (const staff of mergedData) {
         // if it's only the name, there's honestly no point adding
         // TODO: is this necessary?
-        const validFields = Object.keys(staff).reduce((x, keys) => keys + x ? 1 : 0, 0)
+        const validFields = Object.keys(staff).reduce((sum, key) => sum + (key ? 1 : 0), 0);
         if (validFields === 1) continue;
 
         // TODO: this is a very similar pattern to what clubs uses; perhaps we can extract into a util
@@ -314,7 +286,7 @@ function staffMatch(staffA: Staff, staffB: Staff) {
             // Match two staff objects using the `staffMatch` weighted string similarity algorithm
             // See comment in `genClubs.ts` on why this is necessary
 
-            const similarity = staffMatch(prev[key], staff);
+            const similarity = staffMatch(prev.data[key], staff);
             if (similarity >= 0.8) {
                 // Log if we are using an imperfect match just in case
                 if (similarity < 1)
@@ -330,6 +302,7 @@ function staffMatch(staffA: Staff, staffB: Staff) {
     }
 
     const str = JSON.stringify(final, null, 4);
-    writeFileSync('../input/staff.json', str);
-    writeFileSync('../output/staff.json', str);
+    writeFileSync('./input/staff.json', str);
+    writeFileSync('./output/staff.json', str);
+    info('Wrote output to "./output/staff.json".');
 })();

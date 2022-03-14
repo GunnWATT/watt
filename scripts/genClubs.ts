@@ -63,4 +63,5 @@ import {info, warn} from './logging';
     // TODO: do we need both input and output if they are just the same file?
     writeFileSync('./input/clubs.json', str);
     writeFileSync('./output/clubs.json', str);
+    info('Wrote output to "./output/clubs.json".');
 })()

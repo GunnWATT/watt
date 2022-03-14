@@ -1,7 +1,7 @@
 import {Club} from '../components/lists/ClubComponent';
 
 const data: {timestamp: string, data: {[key: string]: Club}} = {
-    "timestamp": "2022-02-03T08:11:26.626Z",
+    "timestamp": "2022-03-14T06:06:12.947Z",
     "data": {
         "10496": {
             "new": false,
@@ -763,6 +763,18 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "coadvisor": "Marie Durquet",
             "coemail": "mdurquet@pausd.org"
         },
+        "53611": {
+            "new": false,
+            "name": "K-Pop Dance Club",
+            "tier": 1,
+            "desc": "Welcome to the K-Pop Dance Club! Every K-Pop song has a specific dance that goes with it. We don't have official dance experience; we're all beginners! We accept all skill levels (even if you haven't danced before in your life.) We will learn K-Pop dances, starting with easier ones, and gradually learning the harder ones as the year goes on. Again, we are all beginners and will work together to learn the dances!",
+            "day": "Friday",
+            "time": "Lunch",
+            "room": "PE dance room.",
+            "prez": "Megan Murakami",
+            "advisor": "Brenda Chen",
+            "email": "bchen@pausd.org"
+        },
         "53483": {
             "new": true,
             "name": "Photography Club",
@@ -1299,7 +1311,7 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "new": false,
             "name": "Finance Club",
             "tier": 1,
-            "desc": "70% of high school students don't invest because they don't know how the stock market works and poor money management is a leading cause for dropping out of college. Many small time investors who lacked proper education lost money in the meme stock frenzy this year. Imagine if you could make your money grow safely, impact the world, and ensure financially sound college years. The Gunn Finance Club is one of the biggest communities that helps you achieve these goals as you gain knowledge about investing, economics, and business through our classroom style meetings and fun activities. You can expect to learn something new every time even if you are an experienced investor or a newbie! Connect with professionals to gain insight into the industry as well! As you think about joining, remember what Warren Buffett once said: \"Someone's sitting in the shade today because someone planted a tree a long time ago!\"",
+            "desc": "Gunn Finance is the biggest community of students at Gunn passionate about finance and business. Curious about what's an NFT or what is McDonald's true business model (it's a real estate company)? Join us to gain knowledge in business, finance, and economics through our classroom-style weekly meetings and discussions catered towards experienced members and newbies! Apply your knowledge in our in-house contests and games and win prizes! We also host guest speakers to provide insights into industries and help you develop your professional network to land internships in business. Undoubtedly, you'll also learn how to manage your money and invest wisely! We prepare teams to compete in prestigious competitions like the Tiger Global Case Competition and Wharton's Investment Competition where you can potentially win grand prizes and meet renowned professionals!",
             "day": "Tuesday",
             "time": "Lunch",
             "room": "E-02",

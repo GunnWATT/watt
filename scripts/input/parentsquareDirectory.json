@@ -5,7 +5,7 @@
         "attributes": {
             "id": "SchoolDirectory-6272",
             "hidden": true,
-            "staff_count": 269
+            "staff_count": 273
         },
         "relationships": {
             "institute": {
@@ -26,10 +26,6 @@
                 "data": [
                     {
                         "id": "6243737",
-                        "type": "staff"
-                    },
-                    {
-                        "id": "6274821",
                         "type": "staff"
                     },
                     {
@@ -81,10 +77,6 @@
                         "type": "staff"
                     },
                     {
-                        "id": "6464216",
-                        "type": "staff"
-                    },
-                    {
                         "id": "6464218",
                         "type": "staff"
                     },
@@ -94,10 +86,6 @@
                     },
                     {
                         "id": "6464221",
-                        "type": "staff"
-                    },
-                    {
-                        "id": "6464222",
                         "type": "staff"
                     },
                     {
@@ -126,10 +114,6 @@
                     },
                     {
                         "id": "6464232",
-                        "type": "staff"
-                    },
-                    {
-                        "id": "6464234",
                         "type": "staff"
                     },
                     {
@@ -249,10 +233,6 @@
                         "type": "staff"
                     },
                     {
-                        "id": "6273071",
-                        "type": "staff"
-                    },
-                    {
                         "id": "6459734",
                         "type": "staff"
                     },
@@ -281,10 +261,6 @@
                         "type": "staff"
                     },
                     {
-                        "id": "6278217",
-                        "type": "staff"
-                    },
-                    {
                         "id": "6459667",
                         "type": "staff"
                     },
@@ -293,15 +269,7 @@
                         "type": "staff"
                     },
                     {
-                        "id": "6670480",
-                        "type": "staff"
-                    },
-                    {
                         "id": "6670485",
-                        "type": "staff"
-                    },
-                    {
-                        "id": "6670487",
                         "type": "staff"
                     },
                     {
@@ -365,15 +333,7 @@
                         "type": "staff"
                     },
                     {
-                        "id": "6921001",
-                        "type": "staff"
-                    },
-                    {
                         "id": "11609647",
-                        "type": "staff"
-                    },
-                    {
-                        "id": "6812220",
                         "type": "staff"
                     },
                     {
@@ -397,15 +357,15 @@
                         "type": "staff"
                     },
                     {
+                        "id": "6811920",
+                        "type": "staff"
+                    },
+                    {
                         "id": "6812221",
                         "type": "staff"
                     },
                     {
                         "id": "6938241",
-                        "type": "staff"
-                    },
-                    {
-                        "id": "12280133",
                         "type": "staff"
                     },
                     {
@@ -453,10 +413,6 @@
                         "type": "staff"
                     },
                     {
-                        "id": "6464242",
-                        "type": "staff"
-                    },
-                    {
                         "id": "6464431",
                         "type": "staff"
                     },
@@ -470,10 +426,6 @@
                     },
                     {
                         "id": "13332244",
-                        "type": "staff"
-                    },
-                    {
-                        "id": "13387901",
                         "type": "staff"
                     },
                     {
@@ -501,11 +453,55 @@
                         "type": "staff"
                     },
                     {
-                        "id": "13594713",
+                        "id": "6811704",
                         "type": "staff"
                     },
                     {
-                        "id": "6811704",
+                        "id": "1888248",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "13908320",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "13529593",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "14140361",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "14242897",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6464159",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "14307016",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "14359712",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "14413464",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6812297",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "14501876",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "6278209",
                         "type": "staff"
                     },
                     {
@@ -1057,6 +1053,10 @@
                         "type": "staff"
                     },
                     {
+                        "id": "6812220",
+                        "type": "staff"
+                    },
+                    {
                         "id": "11827173",
                         "type": "staff"
                     },
@@ -1085,10 +1085,6 @@
                         "type": "staff"
                     },
                     {
-                        "id": "6811920",
-                        "type": "staff"
-                    },
-                    {
                         "id": "9699293",
                         "type": "staff"
                     },
@@ -1098,6 +1094,26 @@
                     },
                     {
                         "id": "6459641",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "13594713",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "13840146",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "13931716",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "14208350",
+                        "type": "staff"
+                    },
+                    {
+                        "id": "14098640",
                         "type": "staff"
                     }
                 ]
@@ -1109,8 +1125,9 @@
             "id": "School_6272",
             "type": "institute",
             "attributes": {
-                "id": 6272,
                 "name": "Henry M. Gunn High",
+                "visible_name": null,
+                "id": 6272,
                 "time_zone": "Pacific Time (US & Canada)",
                 "phone": "6503548200",
                 "app_name": "ParentSquare",
@@ -1137,6 +1154,17 @@
                 "name": "Principal's Office",
                 "phone_number": "6503548200",
                 "phone_extension": null
+            }
+        },
+        {
+            "id": "1888248",
+            "type": "staff",
+            "attributes": {
+                "id": 1888248,
+                "first_name": "Yolanda",
+                "last_name": "Conaway",
+                "role": "STAFF",
+                "user_title": "Teacher"
             }
         },
         {
@@ -1169,7 +1197,7 @@
                 "first_name": "Wendy",
                 "last_name": "Stratton",
                 "role": "PRINCIPAL",
-                "user_title": "Principal-HS"
+                "user_title": "Teacher"
             }
         },
         {
@@ -1180,7 +1208,7 @@
                 "first_name": "Tzuhuei",
                 "last_name": "Lo",
                 "role": "STAFF",
-                "user_title": "Teacher"
+                "user_title": "Speech-Language Pathologist"
             }
         },
         {
@@ -1191,17 +1219,6 @@
                 "first_name": "Tessa",
                 "last_name": "Huynh",
                 "role": "TEACHER",
-                "user_title": "Teacher"
-            }
-        },
-        {
-            "id": "6273071",
-            "type": "staff",
-            "attributes": {
-                "id": 6273071,
-                "first_name": "Mark",
-                "last_name": "Dungan",
-                "role": "STAFF",
                 "user_title": "Teacher"
             }
         },
@@ -1708,17 +1725,6 @@
                 "first_name": "Mark",
                 "last_name": "Weisman",
                 "role": "TEACHER",
-                "user_title": "Teacher"
-            }
-        },
-        {
-            "id": "6274821",
-            "type": "staff",
-            "attributes": {
-                "id": 6274821,
-                "first_name": "Adam",
-                "last_name": "Yonkers",
-                "role": "STAFF",
                 "user_title": "Teacher"
             }
         },
@@ -2456,7 +2462,7 @@
                 "first_name": "Jason",
                 "last_name": "Miller",
                 "role": "TEACHER",
-                "user_title": "Athletic Assistant"
+                "user_title": "Teacher"
             }
         },
         {
@@ -2581,12 +2587,12 @@
             }
         },
         {
-            "id": "6278217",
+            "id": "6278209",
             "type": "staff",
             "attributes": {
-                "id": 6278217,
-                "first_name": "Christopher",
-                "last_name": "Bell",
+                "id": 6278209,
+                "first_name": "Deanna",
+                "last_name": "Chute",
                 "role": "STAFF",
                 "user_title": "Teacher"
             }
@@ -2724,6 +2730,17 @@
             }
         },
         {
+            "id": "6464159",
+            "type": "staff",
+            "attributes": {
+                "id": 6464159,
+                "first_name": "Chris",
+                "last_name": "Munoz",
+                "role": "STAFF",
+                "user_title": "Computer Application Specialist"
+            }
+        },
+        {
             "id": "6464205",
             "type": "staff",
             "attributes": {
@@ -2801,17 +2818,6 @@
             }
         },
         {
-            "id": "6464216",
-            "type": "staff",
-            "attributes": {
-                "id": 6464216,
-                "first_name": "Armando",
-                "last_name": "Macias",
-                "role": "STAFF",
-                "user_title": "Custodian I"
-            }
-        },
-        {
             "id": "6464218",
             "type": "staff",
             "attributes": {
@@ -2853,17 +2859,6 @@
                 "last_name": "Kousnetz",
                 "role": "STAFF",
                 "user_title": "Account Clerk I"
-            }
-        },
-        {
-            "id": "6464222",
-            "type": "staff",
-            "attributes": {
-                "id": 6464222,
-                "first_name": "Gretchen",
-                "last_name": "Berg",
-                "role": "STAFF",
-                "user_title": "Instructional Aide SpEd"
             }
         },
         {
@@ -2944,17 +2939,6 @@
             }
         },
         {
-            "id": "6464234",
-            "type": "staff",
-            "attributes": {
-                "id": 6464234,
-                "first_name": "Toshiro",
-                "last_name": "Lang",
-                "role": "STAFF",
-                "user_title": "Teacher"
-            }
-        },
-        {
             "id": "6464235",
             "type": "staff",
             "attributes": {
@@ -2994,17 +2978,6 @@
                 "id": 6464240,
                 "first_name": "Navneet",
                 "last_name": "Schworetzky",
-                "role": "STAFF",
-                "user_title": "Teacher"
-            }
-        },
-        {
-            "id": "6464242",
-            "type": "staff",
-            "attributes": {
-                "id": 6464242,
-                "first_name": "Teri",
-                "last_name": "Lee",
                 "role": "STAFF",
                 "user_title": "Teacher"
             }
@@ -3094,7 +3067,7 @@
                 "first_name": "Joanne Marie",
                 "last_name": "Garlejo",
                 "role": "STAFF",
-                "user_title": "Health Technician"
+                "user_title": "Nurse Clinician"
             }
         },
         {
@@ -3318,34 +3291,12 @@
             }
         },
         {
-            "id": "6670480",
-            "type": "staff",
-            "attributes": {
-                "id": 6670480,
-                "first_name": "Ariane",
-                "last_name": "Tuomy",
-                "role": "STAFF",
-                "user_title": "Teacher"
-            }
-        },
-        {
             "id": "6670485",
             "type": "staff",
             "attributes": {
                 "id": 6670485,
                 "first_name": "Danny",
                 "last_name": "Lee",
-                "role": "STAFF",
-                "user_title": "Computer Support Spec II"
-            }
-        },
-        {
-            "id": "6670487",
-            "type": "staff",
-            "attributes": {
-                "id": 6670487,
-                "first_name": "Rolando",
-                "last_name": "Ruiz Martinez",
                 "role": "STAFF",
                 "user_title": "Computer Support Spec II"
             }
@@ -3379,7 +3330,7 @@
                 "id": 6811920,
                 "first_name": "Deepty",
                 "last_name": "Jain",
-                "role": "TEACHER",
+                "role": "STAFF",
                 "user_title": "Student Teacher"
             }
         },
@@ -3390,7 +3341,7 @@
                 "id": 6812220,
                 "first_name": "Jennifer",
                 "last_name": "Wells Akis",
-                "role": "STAFF",
+                "role": "TEACHER",
                 "user_title": "Instructional Assistant"
             }
         },
@@ -3483,6 +3434,17 @@
             }
         },
         {
+            "id": "6812297",
+            "type": "staff",
+            "attributes": {
+                "id": 6812297,
+                "first_name": "Young Hee",
+                "last_name": "Park Lee",
+                "role": "STAFF",
+                "user_title": "Teacher - Long Tem Sub"
+            }
+        },
+        {
             "id": "6812309",
             "type": "staff",
             "attributes": {
@@ -3535,17 +3497,6 @@
                 "last_name": "Li",
                 "role": "STAFF",
                 "user_title": "Mental Health Therapist Contractor"
-            }
-        },
-        {
-            "id": "6921001",
-            "type": "staff",
-            "attributes": {
-                "id": 6921001,
-                "first_name": "Jared",
-                "last_name": "Searl",
-                "role": "STAFF",
-                "user_title": "Student Attendant"
             }
         },
         {
@@ -3721,7 +3672,7 @@
                 "first_name": "Kris",
                 "last_name": "Lockley",
                 "role": "TEACHER",
-                "user_title": "Teacher"
+                "user_title": "Resource Specialist"
             }
         },
         {
@@ -3923,17 +3874,6 @@
             }
         },
         {
-            "id": "12280133",
-            "type": "staff",
-            "attributes": {
-                "id": 12280133,
-                "first_name": "Kausalya",
-                "last_name": "Ganapathi",
-                "role": "STAFF",
-                "user_title": "Attendance-Secretary"
-            }
-        },
-        {
             "id": "12280136",
             "type": "staff",
             "attributes": {
@@ -4033,17 +3973,6 @@
             }
         },
         {
-            "id": "13387901",
-            "type": "staff",
-            "attributes": {
-                "id": 13387901,
-                "first_name": "Sean",
-                "last_name": "Olalia",
-                "role": "STAFF",
-                "user_title": "Student Attendant"
-            }
-        },
-        {
             "id": "13387902",
             "type": "staff",
             "attributes": {
@@ -4077,13 +4006,24 @@
             }
         },
         {
+            "id": "13529593",
+            "type": "staff",
+            "attributes": {
+                "id": 13529593,
+                "first_name": "Erendira",
+                "last_name": "Velazquez",
+                "role": "STAFF",
+                "user_title": "Instructional Aide GE"
+            }
+        },
+        {
             "id": "13594713",
             "type": "staff",
             "attributes": {
                 "id": 13594713,
                 "first_name": "Christine",
                 "last_name": "Mahimainathan",
-                "role": "STAFF",
+                "role": "TEACHER",
                 "user_title": "Teacher"
             }
         },
@@ -4095,7 +4035,128 @@
                 "first_name": "Susan",
                 "last_name": "Kim",
                 "role": "STAFF",
+                "user_title": "Attendance-Secretary"
+            }
+        },
+        {
+            "id": "13840146",
+            "type": "staff",
+            "attributes": {
+                "id": 13840146,
+                "first_name": "Naomi",
+                "last_name": "Asrir",
+                "role": "TEACHER",
+                "user_title": "Teacher - Long Tem Sub"
+            }
+        },
+        {
+            "id": "13908320",
+            "type": "staff",
+            "attributes": {
+                "id": 13908320,
+                "first_name": "Bjorn",
+                "last_name": "Mulingtapang",
+                "role": "STAFF",
+                "user_title": "Student Attendant"
+            }
+        },
+        {
+            "id": "13931716",
+            "type": "staff",
+            "attributes": {
+                "id": 13931716,
+                "first_name": "Jared",
+                "last_name": "Searl",
+                "role": "TEACHER",
+                "user_title": "Student Teacher"
+            }
+        },
+        {
+            "id": "14098640",
+            "type": "staff",
+            "attributes": {
+                "id": 14098640,
+                "first_name": "Julia",
+                "last_name": "Jacobsen",
+                "role": "TEACHER",
+                "user_title": "Teacher - Long Tem Sub"
+            }
+        },
+        {
+            "id": "14140361",
+            "type": "staff",
+            "attributes": {
+                "id": 14140361,
+                "first_name": "Diem Nhi",
+                "last_name": "Le",
+                "role": "STAFF",
+                "user_title": "Student Attendant"
+            }
+        },
+        {
+            "id": "14208350",
+            "type": "staff",
+            "attributes": {
+                "id": 14208350,
+                "first_name": "Luis",
+                "last_name": "Castellanos Alvarez",
+                "role": "TEACHER",
+                "user_title": "Teacher - Long Tem Sub"
+            }
+        },
+        {
+            "id": "14242897",
+            "type": "staff",
+            "attributes": {
+                "id": 14242897,
+                "first_name": "Dazijer",
+                "last_name": "Horne",
+                "role": "STAFF",
+                "user_title": "Intern - Temp - Contractor"
+            }
+        },
+        {
+            "id": "14307016",
+            "type": "staff",
+            "attributes": {
+                "id": 14307016,
+                "first_name": "Audrey",
+                "last_name": "Loomis",
+                "role": "STAFF",
                 "user_title": "Testing Resource Center Assistant"
+            }
+        },
+        {
+            "id": "14359712",
+            "type": "staff",
+            "attributes": {
+                "id": 14359712,
+                "first_name": "Jennifer",
+                "last_name": "Gross",
+                "role": "STAFF",
+                "user_title": "School-based Mental Health Therapist I"
+            }
+        },
+        {
+            "id": "14413464",
+            "type": "staff",
+            "attributes": {
+                "id": 14413464,
+                "first_name": "Megan",
+                "last_name": "Cox",
+                "role": "STAFF",
+                "user_title": "Teacher"
+            }
+        },
+        {
+            "id": "14501876",
+            "type": "staff",
+            "attributes": {
+                "id": 14501876,
+                "first_name": "Abel",
+                "last_name": "Quintero",
+                "role": "STAFF",
+                "user_title": "Intern - Temp - Contractor"
             }
         }
     ]
