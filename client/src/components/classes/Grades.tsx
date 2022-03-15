@@ -40,12 +40,16 @@ export default function Grades(props: GradesProps) {
                         .map(({ name, color, period }) => (
                             <div key={period} className="dashboard-grade-all flex gap-3 items-center">
                                 <div className="dashboard-grade-all-bubble" style={{ backgroundColor: color }}>{period}</div>
-                                <div>{classifyGrade(allGrades[period])} • {allGrades[period]}% • {name}</div>
+                                <div>{allGrades[period]}% • {name}</div>
                             </div>
                         )
                     ) : (<>
-                        Your grade is {classifyGrade(allGrades[selected])} • {allGrades[selected]}%.
+                        Your grade is {allGrades[selected]}%.
                     </>)}
+                    <p className="secondary text-sm font-light">
+                        Percent grades may not be indicative of your actual letter grade in the class. If your teacher
+                        does not use a percent-based scale, check Schoology for your correct grade.
+                    </p>
                 </Disclosure.Panel>
             </>)}
         </Disclosure>
