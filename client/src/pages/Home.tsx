@@ -62,11 +62,11 @@ export default function Home(props: HomeProps) {
 
 
     return (
-        <div className={`home ${displayFromScreenType()}`}>
+        <div className={`home ${displayFromScreenType()} p-0 md:p-6 xl:flex xl:gap-6`}>
             <Wave />
 
             {/* Schedule */}
-            <main className="schedule relative">
+            <main className="schedule relative flex-grow">
                 {relDays !== 0 && <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>}
 
                 {userData.options?.clock && <Clock viewDate={viewDate} />}

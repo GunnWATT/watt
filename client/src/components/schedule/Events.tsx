@@ -35,7 +35,7 @@ export default function Events(props: EventsProps) {
 
 
     return (
-        <div className="events list-none break-words p-3">
+        <div className="events list-none break-words px-5 py-4 xl:sticky xl:bg-content xl:dark:bg-content-dark xl:rounded-lg xl:shadow-lg xl:top-6 xl:basis-80 xl:h-[calc(100vh_-_48px)]">
             <div>
                 <h2 className="text-3xl font-medium">Events</h2>
                 <hr/>
@@ -48,7 +48,9 @@ export default function Events(props: EventsProps) {
             )}
             {!eventsError && !events && <CenteredMessage>Loading events...</CenteredMessage>}
             {!eventsError && events && (content ? (
-                <ul className="flex flex-col gap-4 overflow-scroll scrollbar-none">{content}</ul>
+                <ul className="flex flex-col gap-4 overflow-scroll scrollbar-none">
+                    {content}
+                </ul>
             ) : (
                 <CenteredMessage>Nothing to show for today.</CenteredMessage>
             ))}
