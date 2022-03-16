@@ -69,7 +69,7 @@ export default function ClubComponent(props: Club & {id: string}) {
                             <p><strong className="secondary font-medium">Email(s):</strong> {email}{coemail && ', ' + coemail}</p>
                         </div>
                     </section>
-                    <hr />
+                    <hr className="my-3" />
 
                     <section className="mb-4 overflow-scroll scroll-smooth scrollbar-none">
                         <Dialog.Description>{desc}</Dialog.Description>
