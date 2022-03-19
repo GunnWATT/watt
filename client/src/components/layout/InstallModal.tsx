@@ -49,7 +49,7 @@ export default function InstallModal() {
                     leaveFrom="opacity-100 translate-y-0"
                     leaveTo="opacity-0 translate-y-12"
                 >
-                    <div className="relative bg-content dark:bg-content-dark rounded-t-2xl max-w-md mx-3 p-6 shadow-xl">
+                    <div className="relative flex flex-col bg-content dark:bg-content-dark rounded-t-2xl max-w-md max-h-[80%] mx-3 pt-6 px-6 shadow-xl">
                         <img
                             src={homeScreenIcon}
                             alt="Home screen icon"
@@ -59,21 +59,23 @@ export default function InstallModal() {
                             It looks like you're using WATT in the iOS Safari app.
                         </h3>
                         <hr className="my-3" />
-                        <p className="mb-3">WATT is best experienced when installed as a PWA.</p>
-                        <p className="mb-3">
-                            To add WATT to your home screen, tap the share button <Share className="inline align-baseline h-[1.1rem] w-[1.1rem]" />,
-                            select <strong>"Add to Home Screen"</strong> in the bottom row, then tap <strong>"Add"</strong>.
-                        </p>
-                        <div className="mb-3 p-2 bg-content-secondary dark:bg-content-secondary-dark rounded-lg">
-                            <span className="flex items-center justify-between text-sm font-light p-3 bg-content dark:bg-content-dark rounded-lg">
-                                Add to Home Screen
-                                <PlusSquare className="h-[1.1rem] w-[1.1rem]" />
-                            </span>
-                        </div>
-                        <p className="secondary text-sm">
-                            Not interested?{' '}
-                            <button onClick={() => setIsOpen(false)} className="font-semibold focus:outline-none focus:underline">Dismiss.</button>
-                        </p>
+                        <section className="overflow-scroll scroll-smooth scrollbar-none pb-6">
+                            <p className="mb-3">WATT is best experienced when installed as a PWA.</p>
+                            <p className="mb-3">
+                                To add WATT to your home screen, tap the share button <Share className="inline align-baseline h-[1.1rem] w-[1.1rem]" />,
+                                select <strong>"Add to Home Screen"</strong> in the bottom row, then tap <strong>"Add"</strong>.
+                            </p>
+                            <div className="mb-3 p-2 bg-content-secondary dark:bg-content-secondary-dark rounded-lg">
+                                <span className="flex items-center justify-between text-sm font-light p-3 bg-content dark:bg-content-dark rounded-lg">
+                                    Add to Home Screen
+                                    <PlusSquare className="h-[1.1rem] w-[1.1rem]" />
+                                </span>
+                            </div>
+                            <p className="secondary text-sm">
+                                Not interested?{' '}
+                                <button onClick={() => setIsOpen(false)} className="font-semibold focus:outline-none focus:underline">Dismiss.</button>
+                            </p>
+                        </section>
                     </div>
                 </Transition.Child>
             </Dialog>
