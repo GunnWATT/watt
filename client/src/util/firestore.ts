@@ -1,6 +1,6 @@
 import {Auth, getAdditionalUserInfo, UserCredential} from 'firebase/auth';
 import {doc, setDoc, updateDoc, Firestore} from 'firebase/firestore';
-import {defaultUserData} from '../contexts/UserDataContext';
+import {defaultUserData, UserData} from '../contexts/UserDataContext';
 
 
 // Updates a userData field, or the whole object if field is ''.
@@ -59,12 +59,12 @@ export function updateLocalStorageUserData(field: string, newValue: any) {
     localStorage.setItem('data', JSON.stringify(data));
 }
 
-// Initializes a new user's Firestore doc with default userData values.
-export function firestoreInit(firestore: Firestore, r: UserCredential) {
+// Initializes a new user's Firestore doc with their localStorage user data.
+export function firestoreInit(firestore: Firestore, r: UserCredential, data: UserData) {
     const info = getAdditionalUserInfo(r);
     if (info && info.isNewUser) {
         const user = r.user;
-        setDoc(doc(firestore, 'users', user.uid), defaultUserData)
+        setDoc(doc(firestore, 'users', user.uid), data)
             .catch(e => console.log('Error when attempting to add new user to Cloud Firestore: ', e))
     }
 }
