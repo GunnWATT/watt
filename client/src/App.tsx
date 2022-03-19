@@ -16,6 +16,7 @@ import Testing from './pages/Testing';
 import PageNotFound from './pages/404';
 import SgyAuthRedirect from './pages/SgyAuthRedirect';
 import FaviconHandler from './components/schedule/FaviconHandler';
+import InstallModal from './components/layout/InstallModal';
 import FirebaseUserDataProvider from './components/firebase/FirebaseUserDataProvider';
 import LocalStorageUserDataProvider from './components/firebase/LocalStorageUserDataProvider';
 
@@ -76,6 +77,7 @@ export default function App() {
                             <Route path="*" element={<PageNotFound />}/>
                         </Routes>
                     </Layout>
+                    <InstallModal />
                 </TimeProvider>
             </UserDataProvider>
         </Router>
