@@ -60,11 +60,11 @@ export function updateLocalStorageUserData(field: string, newValue: any) {
 }
 
 // Initializes a new user's Firestore doc with their localStorage user data.
-export function firestoreInit(firestore: Firestore, r: UserCredential, data: UserData) {
+export function firestoreInit(firestore: Firestore, r: UserCredential, userData: UserData) {
     const info = getAdditionalUserInfo(r);
     if (info && info.isNewUser) {
         const user = r.user;
-        setDoc(doc(firestore, 'users', user.uid), data)
+        setDoc(doc(firestore, 'users', user.uid), userData)
             .catch(e => console.log('Error when attempting to add new user to Cloud Firestore: ', e))
     }
 }

@@ -4,24 +4,30 @@ import {defaultUserData, UserData} from '../contexts/UserDataContext';
 
 // Returns the localStorage-backed `userData` object, updating whenever localStorage updates.
 export function useLocalStorageData() {
-    const [data, setData] = useState(defaultUserData);
     const localStorageRaw = localStorage.getItem('data');
+    const [data, setData] = useState(tryParseLocalStorageData());
 
-    // Parse locally stored data from localStorage, resetting it to `defaultUserData` if it is nonexistent or
-    // unparseable.
+    // Update `data` when localStorage changes.
+    // Also update localStorage with the parsed object in case it is malformed or out of date.
     useEffect(() => {
-        if (!localStorageRaw)
-            return localStorage.setItem('data', JSON.stringify(defaultUserData));
+        const parsed = tryParseLocalStorageData();
+        setData(parsed);
+        localStorage.setItem('data', JSON.stringify(parsed));
+    }, [localStorageRaw]);
+
+    // Parses locally stored data from localStorage, defaulting to `defaultUserData` if it is nonexistent or
+    // unparseable.
+    function tryParseLocalStorageData() {
+        if (!localStorageRaw) return defaultUserData;
 
         try {
             const localStorageData = JSON.parse(localStorageRaw);
             const merged = deepmerge(defaultUserData, localStorageData);
-            setData(merged as UserData)
-        } catch (err) {
-            // If localStorage data is unparseable, set it back to defaults
-            localStorage.setItem('data', JSON.stringify(defaultUserData));
+            return merged as UserData;
+        } catch {
+            return defaultUserData;
         }
-    }, [localStorageRaw]);
+    }
 
     return data;
 }
