@@ -22,8 +22,7 @@ export function useLocalStorageData() {
 
         try {
             const localStorageData = JSON.parse(localStorageRaw);
-            const merged = deepmerge(defaultUserData, localStorageData);
-            return merged as UserData;
+            return deepmerge(defaultUserData, localStorageData);
         } catch {
             return defaultUserData;
         }
@@ -32,17 +31,19 @@ export function useLocalStorageData() {
     return data;
 }
 
-// Merges two objects, prioritizing b over a
-export function deepmerge(a: { [key: string]: any }, b: { [key: string]: any }) {
-    const newObj: { [key: string]: any } = {...a}
+// Merges two objects `a` and `b`, turning `b` into the shape of `a`.
+// Concretely, this function overrides the keys of `a` with values under the same keys in `b`.
+// TODO: `V extends T` isn't entirely faithful; rather, its that T and V overlap in some keys; is there a better way to type this?
+export function deepmerge<T extends {}, V extends T>(a: T, b: V) {
+    const newObj = {...a};
 
-    for (const key in b) {
-        newObj[key] = b[key];
-        // Do not collapse arrays into objects
-        if (typeof a[key] === 'object' && typeof b[key] === 'object'
-            && !Array.isArray(a[key]) && !Array.isArray(b[key])) {
-            newObj[key] = deepmerge(a[key], b[key]);
-        }
+    for (const key in a) if (key in b) {
+        // Recursively merge non-array object keys
+        // TODO: this errors when `V extends T` is removed, as it should; we should implement some type safety
+        // to enforce same key types as well as key names between `a` and `b`
+        newObj[key] = typeof a[key] === 'object' && typeof b[key] === 'object' && !Array.isArray(a[key]) && !Array.isArray(b[key])
+            ? deepmerge(a[key], b[key])
+            : b[key];
     }
 
     return newObj;

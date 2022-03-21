@@ -30,9 +30,9 @@ export function useSchedule(date: Moment) {
 
         // Check for alternate schedules
         let periods: PeriodObj[] | null;
-        if (altFormat in alternates.alternates) {
+        if (altFormat in alternates) {
             // If viewDate exists in alt schedules, load that schedule
-            periods = alternates.alternates[altFormat];
+            periods = alternates[altFormat];
             setAlternate(true);
         } else {
             // Otherwise, use default schedule
@@ -63,9 +63,9 @@ export function getSchedule(date: Moment) {
 
     // Check for alternate schedules
     let periods: PeriodObj[] | null;
-    if (altFormat in alternates.alternates) {
+    if (altFormat in alternates) {
         // If viewDate exists in alt schedules, load that schedule
-        periods = alternates.alternates[altFormat];
+        periods = alternates[altFormat];
     } else {
         // Otherwise, use default schedule
         periods = schedule[numToWeekday(Number(localizedDate.format('d')))];

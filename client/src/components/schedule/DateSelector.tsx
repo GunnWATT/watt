@@ -114,7 +114,7 @@ export function Calendar(props: CalendarProps) {
                 <div className="calendar-month grid grid-cols-7">
                     {days.map((day, i) => {
                         const noSchool = [0, 6].includes(day.weekday())
-                            || (day.format("MM-DD") in alternates.alternates && alternates.alternates[day.format("MM-DD")] == null);
+                            || (day.format("MM-DD") in alternates && alternates[day.format("MM-DD")] == null);
                         const active = currTime.isSame(day, 'day');
                         return (
                             <div
