@@ -944,6 +944,175 @@ const generated: {[key: string]: PeriodObj[] | null} = {
 }
 // Manual overrides for generated alternate schedules
 const override: {[key: string]: PeriodObj[] | null} = {
+    "03-22": [
+        {
+            "n": "0",
+            "s": 475,
+            "e": 530
+        },
+        {
+            "n": "1",
+            "s": 540,
+            "e": 580
+        },
+        {
+            "n": "B",
+            "s": 580,
+            "e": 585
+        },
+        {
+            "n": "ELA PT",
+            "s": 595,
+            "e": 715,
+            "note": "9th, 10th, 12th: PRIME 1 from 9:55-10:55, PRIME 2 from 10:55-11:55\n11th: CAASPP ELA PT"
+        },
+        {
+            "n": "L",
+            "s": 715,
+            "e": 745
+        },
+        {
+            "n": "ELA CAT",
+            "s": 755,
+            "e": 820,
+            "note": "9th, 10th, 12th: SELF\n11th: CAASPP ELA CAT"
+        },
+        {
+            "n": "2",
+            "s": 830,
+            "e": 870
+        },
+        {
+            "n": "3",
+            "s": 880,
+            "e": 920
+        },
+        {
+            "n": "4",
+            "s": 930,
+            "e": 970
+        }
+    ],
+    "03-23": [
+        {
+            "n": "0",
+            "s": 475,
+            "e": 530
+        },
+        {
+            "n": "5",
+            "s": 540,
+            "e": 580
+        },
+        {
+            "n": "6",
+            "s": 590,
+            "e": 630
+        },
+        {
+            "n": "B",
+            "s": 630,
+            "e": 635
+        },
+        {
+            "n": "Math PT",
+            "s": 645,
+            "e": 735,
+            "note": "9th, 10th, 12th: PRIME 1 from 10:45-11:30, PRIME 2 from 11:30-12:15\n11th: CAASPP Math PT"
+        },
+        {
+            "n": "L",
+            "s": 735,
+            "e": 765
+        },
+        {
+            "n": "Math CAT",
+            "s": 775,
+            "e": 865,
+            "note": "9th, 10th, 12th: PRIME 3 from 12:55-1:40, PRIME 4 from 1:40-2:25\n11th: CAASPP Math CAT"
+        },
+        {
+            "n": "7",
+            "s": 875,
+            "e": 915
+        }
+    ],
+    "03-24": [
+        {
+            "n": "0",
+            "s": 475,
+            "e": 530
+        },
+        {
+            "n": "1",
+            "s": 540,
+            "e": 600
+        },
+        {
+            "n": "B",
+            "s": 600,
+            "e": 605
+        },
+        {
+            "n": "CAST 10th",
+            "s": 615,
+            "e": 735,
+            "note": "9th: TBD\n10th: CAST\n11th: SELF Movie\n12th: TBD"
+        },
+        {
+            "n": "L",
+            "s": 735,
+            "e": 765
+        },
+        {
+            "n": "2",
+            "s": 775,
+            "e": 835
+        },
+        {
+            "n": "3",
+            "s": 845,
+            "e": 905
+        },
+        {
+            "n": "4",
+            "s": 915,
+            "e": 970
+        }
+    ],
+    "03-25": [
+        {
+            "n": "5",
+            "s": 540,
+            "e": 600
+        },
+        {
+            "n": "B",
+            "s": 600,
+            "e": 605
+        },
+        {
+            "n": "CAST 12th",
+            "s": 615,
+            "e": 735,
+            "note": "9th: TBD\n10th, 11th: Elections Assembly / Maitri Presentation\n12th: CAST"
+        },
+        {
+            "n": "L",
+            "s": 735,
+            "e": 780
+        },
+        {
+            "n": "6",
+            "s": 790,
+            "e": 850
+        },
+        {
+            "n": "7",
+            "s": 860,
+            "e": 920
+        }
+    ],
     "08-11": [
         {
             "n": "0",

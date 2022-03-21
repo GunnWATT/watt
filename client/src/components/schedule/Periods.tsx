@@ -21,7 +21,7 @@ export const SCHOOL_END_EXCLUSIVE = moment.tz('2022-06-03', 'America/Los_Angeles
 // and n being the period's key. 0-8 represent periods 0 through 8, while B, L, S, and P represent Brunch, Lunch, SELF,
 // and PRIME, respectively. G and O represent the now deprecated Gunn Together and Office Hours periods. All other period
 // names, like "ELA CAT", remain unparsed.
-export type PeriodObj = {n: string, s: number, e: number};
+export type PeriodObj = {n: string, s: number, e: number, note?: string};
 
 type PeriodsProps = {viewDate: Moment};
 export default function Periods(props: PeriodsProps) {
@@ -38,7 +38,7 @@ export default function Periods(props: PeriodsProps) {
     const classes = userData.classes as {[key: string]: SgyPeriodData};
 
     // Maps periods array to <Period> components
-    const renderPeriods = () => periods!.map(({n, s, e}) => (
+    const renderPeriods = () => periods!.map(({n, s, e, note}) => (
         <Period
             name={parsePeriodName(n, userData)}
             color={parsePeriodColor(n, userData)}
@@ -48,6 +48,7 @@ export default function Periods(props: PeriodsProps) {
             end={viewDate.clone().startOf('day').add(e, 'minutes').tz(timeZone)}
             format={format}
             zoom={classes[n]?.l}
+            note={note}
         />
     ))
 

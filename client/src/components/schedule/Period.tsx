@@ -2,14 +2,15 @@ import {Moment} from 'moment';
 import 'twix';
 import {bgColor, barColor, hexToRgb} from '../../util/progressBarColor';
 import {Link} from 'react-feather';
-
+import { ChevronUp, ChevronDown } from 'react-feather';
+import { Disclosure } from '@headlessui/react';
 
 type PeriodProps = {
     now: Moment, start: Moment, end: Moment,
-    name: string, color: string, format: string, zoom?: string
+    name: string, color: string, format: string, zoom?: string, note?: string
 };
 export default function Period(props: PeriodProps) {
-    const {now, start, end, name, color, format, zoom} = props;
+    const {now, start, end, name, color, format, zoom, note} = props;
     const t = start.twix(end); // Twix duration representing the period
 
     // Determines what text to display regarding how long before/after the period was
@@ -22,7 +23,17 @@ export default function Period(props: PeriodProps) {
     return (
         <div className="border-none rounded-md shadow-lg mb-4 p-5 relative" style={{backgroundColor: color}}>
             {zoom && <a className="absolute secondary top-6 right-6" href={zoom} rel="noopener noreferrer" target="_blank"><Link/></a>}
-            <h2 className="text-xl mb-2">{name}</h2>
+            {note ? (
+                <Disclosure>
+                    {({open}) => (<>
+                        <Disclosure.Button className="flex gap-2 items-center mb-2">
+                            <h2 className="text-xl">{name}</h2>
+                            {open ? <ChevronUp className="h-6 w-6" /> : <ChevronDown className="h-6 w-6" />}
+                        </Disclosure.Button>
+                        <Disclosure.Panel className="secondary text-md mb-2"> {note.split('\n').map(t => <p>{t}</p>)} </Disclosure.Panel>
+                    </>)}
+                </Disclosure>
+            ) : <h2 className="text-xl mb-2">{name}</h2> }
             <h3 className="secondary">{t.simpleFormat(format)}</h3>
             <p className="secondary">{parseStartEnd()} — {t.countInner('minutes')} minutes long</p>
             {t.isCurrent() && (
