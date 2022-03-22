@@ -964,7 +964,7 @@ const override: {[key: string]: PeriodObj[] | null} = {
             "n": "ELA PT",
             "s": 595,
             "e": 715,
-            "note": "9th, 10th, 12th: PRIME 1 from 9:55-10:55, PRIME 2 from 10:55-11:55\n11th: CAASPP ELA PT"
+            "note": "9th, 10th: PRIME 1 from 9:55-10:55, PRIME 2 from 10:55-11:55\n11th: CAASPP ELA PT\n12th: League of Women Voters / Alumni Panel"
         },
         {
             "n": "L",
@@ -1057,7 +1057,7 @@ const override: {[key: string]: PeriodObj[] | null} = {
             "n": "CAST 10th",
             "s": 615,
             "e": 735,
-            "note": "9th: TBD\n10th: CAST\n11th: SELF Movie\n12th: TBD"
+            "note": "9th, 12th: PRIME 1 from 10:15-11:15, PRIME 2 from 11:15-12:15\n10th: CAST\n11th: SELF Movie"
         },
         {
             "n": "L",
@@ -1095,7 +1095,7 @@ const override: {[key: string]: PeriodObj[] | null} = {
             "n": "CAST 12th",
             "s": 615,
             "e": 735,
-            "note": "9th: TBD\n10th, 11th: Elections Assembly / Maitri Presentation\n12th: CAST"
+            "note": "9th, 10th, 11th: Elections Assembly / Maitri Presentation\n12th: CAST"
         },
         {
             "n": "L",
