@@ -2,12 +2,6 @@ import {PeriodObj} from '../components/schedule/Periods';
 
 // Generated alternates from `/scripts/genAltSchedules.ts`
 const generated: {[key: string]: PeriodObj[] | null} = {
-    "12-21": null,
-    "12-22": null,
-    "12-23": null,
-    "12-24": null,
-    "12-27": null,
-    "12-28": null,
     "12-29": null,
     "12-30": null,
     "12-31": null,
@@ -849,6 +843,43 @@ const generated: {[key: string]: PeriodObj[] | null} = {
             "n": "7",
             "s": 860,
             "e": 920
+        }
+    ],
+    "03-31": [
+        {
+            "n": "1",
+            "s": 540,
+            "e": 605
+        },
+        {
+            "n": "B",
+            "s": 605,
+            "e": 610
+        },
+        {
+            "n": "2",
+            "s": 620,
+            "e": 685
+        },
+        {
+            "n": "3",
+            "s": 695,
+            "e": 760
+        },
+        {
+            "n": "L",
+            "s": 760,
+            "e": 790
+        },
+        {
+            "n": "4",
+            "s": 800,
+            "e": 865
+        },
+        {
+            "n": "P",
+            "s": 875,
+            "e": 970
         }
     ],
     "04-01": [
@@ -1916,6 +1947,12 @@ const override: {[key: string]: PeriodObj[] | null} = {
         }
     ],
     "12-20": null,
+    "12-21": null,
+    "12-22": null,
+    "12-23": null,
+    "12-24": null,
+    "12-27": null,
+    "12-28": null,
 }
 
 const data = {...generated, ...override};
