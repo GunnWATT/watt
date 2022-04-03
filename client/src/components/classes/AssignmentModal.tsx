@@ -70,8 +70,8 @@ export default function AssignmentModal(props: AssignmentModalProps) {
                 </section>
 
                 {item.description && (
-                    <section className="overflow-scroll scroll-smooth scrollbar-none">
-                        <Dialog.Description>{item.description}</Dialog.Description>
+                    <section className="overflow-scroll scroll-smooth scrollbar-none whitespace-pre-wrap">
+                        <Dialog.Description>{item.description.trim()}</Dialog.Description>
                     </section>
                 )}
 

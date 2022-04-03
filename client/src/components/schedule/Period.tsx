@@ -28,12 +28,18 @@ export default function Period(props: PeriodProps) {
                     {({open}) => (<>
                         <Disclosure.Button className="flex gap-2 items-center mb-2">
                             <h2 className="text-xl">{name}</h2>
-                            {open ? <ChevronUp className="h-6 w-6" /> : <ChevronDown className="h-6 w-6" />}
+                            {open ? (
+                                <ChevronUp className="h-6 w-6 rounded-full p-1 bg-black/10 dark:bg-black/20" />
+                            ) : (
+                                <ChevronDown className="h-6 w-6 rounded-full p-1 bg-black/10 dark:bg-black/20" />
+                            )}
                         </Disclosure.Button>
-                        <Disclosure.Panel className="secondary text-md mb-2"> {note.split('\n').map(t => <p>{t}</p>)} </Disclosure.Panel>
+                        <Disclosure.Panel className="secondary bg-black/10 dark:bg-black/20 rounded text-md p-2 -mx-2 mb-2 whitespace-pre-wrap">
+                            {note}
+                        </Disclosure.Panel>
                     </>)}
                 </Disclosure>
-            ) : <h2 className="text-xl mb-2">{name}</h2> }
+            ) : <h2 className="text-xl mb-2">{name}</h2>}
             <h3 className="secondary">{t.simpleFormat(format)}</h3>
             <p className="secondary">{parseStartEnd()} — {t.countInner('minutes')} minutes long</p>
             {t.isCurrent() && (
