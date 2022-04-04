@@ -31,19 +31,18 @@ const PeriodPicker = (props: { period: 'A'|SgyPeriod, setPeriod: (c: 'A'|SgyPeri
     // however, because of how ClassFilter works this is tricky and I'll leave it for future cleanup
 
     const userData = useContext(UserDataContext);
-    const screenType = useScreenType();
     const { sgyData } = useContext(SgyDataContext);
 
     const classes = findClassesList(sgyData, userData);
 
     return (
-        <Popover className="period-picker relative">
+        <Popover className="relative">
             <Popover.Button className="period-picker-text text-sm px-1.5 py-0.5 cursor-pointer bg-content dark:bg-content-dark rounded">
                 {parsePeriodName(period, userData)}
             </Popover.Button>
-            <AnimatedPopover className={"class-picker " + screenType}>
+            <AnimatedPopover className="class-picker flex flex-col gap-1.5 left-0 ">
                 {classes.map((c, index) => (
-                    <div key={c.name} className="period-picker-period" onClick={() => setPeriod(c.period)}>
+                    <div key={c.name} className="flex items-center gap-3 cursor-pointer" onClick={() => setPeriod(c.period)}>
                         <div
                             className="dot"
                             style={{
@@ -143,9 +142,11 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
 
                     {/* Name */}
                     <input
+                        required
+                        type="text"
                         placeholder="Assignment Name"
-                        autoFocus
-                        className={"create-name w-full" + (name.length ? '' : ' incomplete')}
+                        //autoFocus
+                        className="create-name w-full rounded-sm invalid:outline-1 invalid:outline-dashed invalid:outline-theme dark:invalid:outline-theme-dark"
                         value={name}
                         onChange={e => setName(e.target.value)}
                     />
@@ -156,20 +157,18 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
 
                 <section>
                     <textarea
-                        className="create-desc placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light"
+                        className="create-desc rounded p-3 w-full outline-none resize-none bg-background dark:bg-background-dark placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light"
                         placeholder="Assignment Description [Optional]"
                         value={description}
                         onChange={e => setDescription(e.target.value)}
                     />
 
-                    <div className="create-foot">
+                    <div className="flex items-center gap-2">
                         <PriorityPicker priority={priority} setPriority={setPriority} align='right' />
 
                         <Popover>
-                            <Popover.Button className="assignment-due" onClick={() => setOpen(!open)}>
-                                <div>
-                                    {timestamp.format('hh:mm a on dddd, MMM Do YYYY')}
-                                </div>
+                            <Popover.Button className="py-0.5 px-1.5 rounded-sm text-[0.8rem] bg-theme dark:bg-theme-dark text-white cursor-pointer" onClick={() => setOpen(!open)}>
+                                {timestamp.format('hh:mm a on dddd, MMM Do YYYY')}
                             </Popover.Button>
                             <Transition
                                 as={Fragment}

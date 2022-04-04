@@ -76,6 +76,7 @@ export function Calendar(props: CalendarProps) {
     useEffect(() => {
         if (!wrapper.current) return;
         if (!currMonth.current) return;
+        if (time) return; // Skip scroll behavior on timepicker; TODO: should we support this if we use non-range-constrained timepickers in the future?
 
         // Set wrapper's scroll position to the offset of the current month, minus the day header and 1rem gap
         wrapper.current.scrollTop = currMonth.current.offsetTop - 48 - 16;

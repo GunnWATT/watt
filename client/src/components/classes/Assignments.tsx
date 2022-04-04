@@ -66,43 +66,45 @@ function Assignment(props: AssignmentProps) {
     const auth = useAuth();
     const firestore = useFirestore();
 
-    const toggleCompleted = () => {
-        updateAssignment({ ...assignment, completed: !assignment.completed }, userData, auth, firestore )
-    }
+    const toggleCompleted = () =>
+        updateAssignment({ ...assignment, completed: !assignment.completed }, userData, auth, firestore);
 
     const setPriority = (priority: number) => {
-        if(priority === assignment.priority) return;
-        updateAssignment({ ...assignment, priority: priority }, userData, auth, firestore)
+        if (priority === assignment.priority) return;
+        return updateAssignment({ ...assignment, priority: priority }, userData, auth, firestore)
     }
 
     const isCustomAssignment = assignment.id.startsWith('W');
-
     const overdue = assignment.timestamp?.isBefore(moment());
 
     const CompletedIcon = !assignment.completed ? Square : CheckSquare;
 
     return (
         <div 
-            className={"upcoming-assignment" + (!activeItem || activeItem.id !== assignment.id ? '' : " active")}
+            className={"upcoming-assignment flex bg-sidebar dark:bg-sidebar-dark rounded transition-transform duration-200" + (!activeItem || activeItem.id !== assignment.id ? '' : " scale-[1.03]")}
             id={`assignment-${assignment.id}`}
             onMouseEnter={() => setActiveItem(assignment)}
             onMouseLeave={() => setActiveItem(null)}
         >
-            <div className="upcoming-assignment-content" onClick={() => setModal(!modal)}>
+            <div className="flex-grow py-4 px-5 cursor-pointer" onClick={() => setModal(!modal)}>
                 <AssignmentTags item={assignment} period />
                 <div className="text-lg">{shortify(assignment.name, 150)}</div>
                 {!!assignment.description.length && (
-                    <div className="upcoming-assignment-desc">{shortify(assignment.description,200)}</div>
-                )}
-                <div className="assignment-due">
-                    <div>
-                        {assignment.timestamp!.format('hh:mm a on dddd, MMM Do')}
-                        {overdue && <span> • <span style={{color: "var(--active)"}}>{assignment.timestamp?.fromNow()}</span></span>}
+                    <div className="secondary mt-2.5 text-[0.8rem]">
+                        {shortify(assignment.description,200)}
                     </div>
+                )}
+                <div className="mt-2.5 bg-background dark:bg-background-dark py-0.5 px-1.5 rounded-sm text-[0.8rem] w-max">
+                    {assignment.timestamp!.format('hh:mm a on dddd, MMM Do')}
+                    {overdue && (
+                        <span> • <span style={{color: "var(--active)"}}>
+                            {assignment.timestamp?.fromNow()}
+                        </span></span>
+                    )}
                 </div> {/* TODO: include 24 hour support */}
             </div>
-            <div className="upcoming-assignment-icons">
-                <div className="upcoming-assignment-icons-top">
+            <div className="w-[88px] flex flex-col flex-none py-4 pr-5">
+                <div className="flex justify-between">
                     {!isCustomAssignment && (
                         <a href={assignment.link} target="_blank" rel="noopener noreferrer">
                             <Link size={28} color="var(--primary)" />
@@ -110,12 +112,12 @@ function Assignment(props: AssignmentProps) {
                     )}
                     <CompletedIcon
                         size={28}
-                        style={{ marginLeft: 'auto', cursor: 'pointer', flexShrink: 0 }}
+                        className="cursor-pointer flex-none"
                         onClick={() => toggleCompleted()}
                     />
                 </div>
 
-                <div className="upcoming-assignment-icons-bottom">
+                <div className="flex mt-auto justify-end">
                     <PriorityPicker priority={assignment.priority} setPriority={setPriority} />
                 </div>
             </div>
