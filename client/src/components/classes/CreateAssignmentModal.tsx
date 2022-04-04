@@ -1,5 +1,5 @@
-import { useContext, useState } from 'react';
-import { Popover } from '@headlessui/react';
+import {Fragment, useContext, useState} from 'react';
+import { Popover, Transition } from '@headlessui/react';
 import { useAuth, useFirestore } from 'reactfire';
 import { Edit, Plus, PlusCircle } from 'react-feather';
 import moment from 'moment';
@@ -8,7 +8,6 @@ import moment from 'moment';
 import CenteredModal from '../layout/CenteredModal';
 import AnimatedPopover from '../layout/AnimatedPopover';
 import OutlineButton, {SuccessOutlineButton} from '../layout/OutlineButton';
-import Picker from '../layout/Picker';
 import PriorityPicker from './PriorityPicker';
 import { Calendar } from '../schedule/DateSelector';
 import { AssignmentTag } from './Assignments';
@@ -166,29 +165,33 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
                     <div className="create-foot">
                         <PriorityPicker priority={priority} setPriority={setPriority} align='right' />
 
-                        <Picker>
-                            {(open,setOpen) => <>
-                                <div className="assignment-due" onClick={() => setOpen(!open)}>
-                                    <div>
-                                        {timestamp.format('hh:mm a on dddd, MMM Do YYYY')}
-                                    </div>
+                        <Popover>
+                            <Popover.Button className="assignment-due" onClick={() => setOpen(!open)}>
+                                <div>
+                                    {timestamp.format('hh:mm a on dddd, MMM Do YYYY')}
                                 </div>
-                                <Calendar
-                                    currTime={timestamp}
-                                    setTime={setTimestamp}
-                                    time
-                                    hidden={!open}
-                                    // start={moment().subtract(6, 'days').startOf('day')}
-                                    start={moment().startOf('day')}
-                                    style={{
-                                        position: 'fixed',
-                                        left: '50%',
-                                        top: '50%',
-                                        transform: 'translate(-50%,-50%)'
-                                    }}
-                                />
-                            </>}
-                        </Picker>
+                            </Popover.Button>
+                            <Transition
+                                as={Fragment}
+                                enter="ease-out duration-200 absolute inset-0 m-auto"
+                                enterFrom="opacity-0 scale-95"
+                                enterTo="opacity-100 scale-100"
+                                leave="ease-in duration-150 absolute inset-0 m-auto"
+                                leaveFrom="opacity-100 scale-100"
+                                leaveTo="opacity-0 scale-95"
+                            >
+                                <Popover.Panel>
+                                    <Calendar
+                                        className="inset-0 m-auto"
+                                        currTime={timestamp}
+                                        setTime={setTimestamp}
+                                        time
+                                        // start={moment().subtract(6, 'days').startOf('day')}
+                                        start={moment().startOf('day')}
+                                    />
+                                </Popover.Panel>
+                            </Transition>
+                        </Popover>
                     </div>
                 </section>
 

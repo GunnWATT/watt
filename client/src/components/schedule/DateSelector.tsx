@@ -39,7 +39,13 @@ export default function DateSelector(props: DateSelectorProps) {
                     {/* TODO: Ideally the calendar could just be the popover panel and remove this hacky flex */}
                     {/* centering behavior; perhaps looking into the other uses of `Calendar` and changing */}
                     {/* them could prove beneficial. */}
-                    <Calendar currTime={viewDate} setTime={setViewDate} start={start} end={end} />
+                    <Calendar
+                        currTime={viewDate}
+                        setTime={setViewDate}
+                        start={start}
+                        end={end}
+                        className="top-[calc(100%_+_10px)]"
+                    />
                 </AnimatedPopover>
             </Popover>
 
@@ -53,12 +59,11 @@ export default function DateSelector(props: DateSelectorProps) {
 type CalendarProps = {
     start?: Moment, end?: Moment,
     currTime: Moment, setTime: (day: Moment) => any,
-    hidden?: boolean, style?: CSSProperties,
-    picker?: boolean // assumed to be true
-    time?: boolean // do you choose time as well?
+    time?: boolean, // do you choose time as well?
+    className?: string
 }
 export function Calendar(props: CalendarProps) {
-    const {start, end, currTime, setTime, hidden, style, picker, time} = props;
+    const {start, end, currTime, setTime, time, className} = props;
 
     const date = useContext(CurrentTimeContext);
     const today = date.clone().tz('America/Los_Angeles').startOf('date');
@@ -181,10 +186,8 @@ export function Calendar(props: CalendarProps) {
         setTime(moment(currTime).set('hour', h));
     }
 
-    if (hidden) return null;
-
     return (
-        <div className={"mini-calendar bg-content dark:bg-content-dark z-20 rounded flex flex-col shadow-2xl" + (picker !== false ? ' picker' : '')} style={style}>
+        <div className={"mini-calendar bg-content dark:bg-content-dark z-20 rounded flex flex-col shadow-2xl absolute" + (className ? ` ${className}` : '')}>
             {time && (
                 <div className="time">
                     <div>
