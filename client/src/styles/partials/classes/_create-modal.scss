@@ -16,19 +16,8 @@
   }
 
   .period-picker {
-    position: relative;
-
     &-text {
       margin-top: 10px;
-      display: flex;
-
-      div {
-        cursor: pointer;
-        background-color: var(--content-primary);
-        padding: 0px 5px;
-        border-radius: 5px;
-        font-size: 1rem;
-      }
     }
 
     .class-picker {

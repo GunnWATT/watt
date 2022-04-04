@@ -2,7 +2,7 @@ import {Fragment, ReactNode} from 'react';
 import {Dialog, Transition} from '@headlessui/react';
 
 
-// A reusable `CenteredModal` component to wrap a headlessui transition and dialog overlay around a screen-centered div.
+// A reusable component to wrap a transition and dialog overlay around a screen-centered div.
 type CenteredModalProps = {
     isOpen: boolean, setIsOpen: (isOpen: boolean) => void,
     children: ReactNode

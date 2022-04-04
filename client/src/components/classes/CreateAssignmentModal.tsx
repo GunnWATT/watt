@@ -1,14 +1,18 @@
 import { useContext, useState } from 'react';
+import { Popover } from '@headlessui/react';
 import { useAuth, useFirestore } from 'reactfire';
 import { Edit, Plus, PlusCircle } from 'react-feather';
 import moment from 'moment';
 
 // Components
 import CenteredModal from '../layout/CenteredModal';
+import AnimatedPopover from '../layout/AnimatedPopover';
 import OutlineButton, {SuccessOutlineButton} from '../layout/OutlineButton';
 import Picker from '../layout/Picker';
 import PriorityPicker from './PriorityPicker';
 import { Calendar } from '../schedule/DateSelector';
+import { AssignmentTag } from './Assignments';
+import {PopoverPlus, TagPicker, TagPickerLabels} from "./ClassFilter";
 
 // Contexts
 import UserDataContext, { SgyPeriod } from '../../contexts/UserDataContext';
@@ -17,55 +21,9 @@ import SgyDataContext from '../../contexts/SgyDataContext';
 // Utilities
 import { useScreenType } from '../../hooks/useScreenType';
 import { findClassesList } from '../../pages/Classes';
-import { AssignmentTag } from './Assignments';
 import { allLabels, AssignmentBlurb, createAssignment, parseLabelColor, parseLabelName, updateAssignment } from '../../util/sgyFunctions';
 import { parsePeriodColor, parsePeriodName } from '../schedule/Periods';
 
-
-const TagPicker = (props: {labels: string[], toggleLabel: (label: string) => any}) => {
-    const { labels, toggleLabel } = props;
-
-    // TODO: This component DEFINITELy can be abstracted with ClassFilter.tsx
-    // however, because of how ClassFilter works this is tricky and I'll leave it for future cleanup
-    
-    const userData = useContext(UserDataContext);
-    const screenType = useScreenType();
-
-    return (
-        <div className="assignment-tags" style={{ marginBottom: 5 }}>
-            {labels.map(label => (
-                <AssignmentTag key={label} label={parseLabelName(label, userData)} color={parseLabelColor(label, userData)} />
-            ))}
-
-            <Picker className="tag-plus">
-                {(open, setOpen) => <>
-                    <Plus onClick={() => setOpen(!open)} />
-                    <div hidden={!open} className={"class-picker " + screenType} style={{ fontWeight: 'normal', fontSize: '1rem' }}>
-                        <input type="text" placeholder="Search" className="class-picker-search" />
-
-                        <div className="class-picker-tags">
-                            <section>
-                                {allLabels(userData).map((labelID, index) => (
-                                    <div key={labelID} className="class-picker-class" onClick={() => toggleLabel(labelID)}>
-                                        <div
-                                            className="class-picker-dot"
-                                            style={{
-                                                backgroundColor: labels.includes(labelID) ? parseLabelColor(labelID, userData) : 'var(--content-primary)',
-                                                border: labels.includes(labelID) ? '' : '2px inset var(--secondary)'
-                                            }}
-                                        />
-
-                                        <div>{parseLabelName(labelID, userData)}</div>
-                                    </div>
-                                ))}
-                            </section>
-                        </div>
-                    </div>
-                </>}
-            </Picker>
-        </div>
-    )
-}
 
 const PeriodPicker = (props: { period: 'A'|SgyPeriod, setPeriod: (c: 'A'|SgyPeriod) => any }) => {
     const { period, setPeriod } = props;
@@ -80,26 +38,26 @@ const PeriodPicker = (props: { period: 'A'|SgyPeriod, setPeriod: (c: 'A'|SgyPeri
     const classes = findClassesList(sgyData, userData);
 
     return (
-        <Picker className="period-picker">
-            {(open, setOpen) => <>
-                <div onClick={() => setOpen(!open)} className="period-picker-text"><div>{parsePeriodName(period, userData)}</div></div>
-                <div hidden={!open} className={"class-picker " + screenType} style={{ fontWeight: 'normal', fontSize: '1rem' }}> {/* reusing styles from class-picker b/c im lazy */}
-                    {classes.map((c, index) => (
-                        <div key={c.name} className="period-picker-period" onClick={() => setPeriod(c.period)}>
-                            <div
-                                className="dot"
-                                style={{
-                                    backgroundColor: period === c.period ? parsePeriodColor(c.period, userData) : 'var(--content-primary)',
-                                    border: period === c.period ? '' : '2px inset var(--secondary)'
-                                }}
-                            />
+        <Popover className="period-picker relative">
+            <Popover.Button className="period-picker-text text-sm px-1.5 py-0.5 cursor-pointer bg-content dark:bg-content-dark rounded">
+                {parsePeriodName(period, userData)}
+            </Popover.Button>
+            <AnimatedPopover className={"class-picker " + screenType}>
+                {classes.map((c, index) => (
+                    <div key={c.name} className="period-picker-period" onClick={() => setPeriod(c.period)}>
+                        <div
+                            className="dot"
+                            style={{
+                                backgroundColor: period === c.period ? parsePeriodColor(c.period, userData) : 'var(--content-primary)',
+                                border: period === c.period ? '' : '2px inset var(--secondary)'
+                            }}
+                        />
 
-                            <div>{parsePeriodName(c.period, userData)}</div>
-                        </div>
-                    ))}
-                </div>
-            </>}
-        </Picker>
+                        <div>{parsePeriodName(c.period, userData)}</div>
+                    </div>
+                ))}
+            </AnimatedPopover>
+        </Popover>
     )
 }
 
@@ -117,11 +75,6 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
     const [timestamp, setTimestamp] = useState(item?.timestamp ?? moment().add(1, 'days').startOf('day').add(8, 'hours')); // TODO: TIME SELECTOR
     const [labels, setLabels] = useState(item?.labels ?? ['Note']);
     const [period, setPeriod] = useState<'A' | SgyPeriod>(item?.period ?? 'A');
-
-    const toggleLabel = (label: string) => {
-        if (!labels.includes(label)) setLabels([...labels, label]);
-        else setLabels(labels.filter(l => l !== label));
-    }
 
     const resetState = () => {
         if (item) {
@@ -174,8 +127,20 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
         <CenteredModal isOpen={open} setIsOpen={setOpen}>
             <div className="create-modal relative flex flex-col gap-4 bg-sidebar dark:bg-sidebar-dark rounded-md w-[32rem] max-w-full max-h-[90%] p-6 mx-2">
                 <section>
-                    {/* Tags */}
-                    <TagPicker labels={labels} toggleLabel={toggleLabel} />
+                    <div className="assignment-tags" style={{ marginBottom: 5 }}>
+                        {labels.map(label => (
+                            <AssignmentTag key={label} label={parseLabelName(label, userData)} color={parseLabelColor(label, userData)} />
+                        ))}
+
+                        <Popover className="relative cursor-pointer ml-auto">
+                            <PopoverPlus />
+                            <TagPicker>
+                                {(search) => (
+                                    <TagPickerLabels labels={labels} setLabels={setLabels} search={search} />
+                                )}
+                            </TagPicker>
+                        </Popover>
+                    </div>
 
                     {/* Name */}
                     <input
@@ -230,15 +195,13 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
                 <section className="flex flex-wrap gap-3 items-center justify-end">
                     <OutlineButton onClick={() => setOpen(false)}>Cancel</OutlineButton>
                     <SuccessOutlineButton disabled={!ready} onClick={create}>
-                        {item ? (
-                            <div style={{display: "flex", flexDirection: "row", alignItems:"center"}}>
-                                <Edit style={{marginRight:5}} /> Edit
-                            </div>
-                        ) : (
-                            <div style={{display: "flex", flexDirection: "row", alignItems:"center"}}>
-                                <PlusCircle style={{marginRight:5}} /> Create
-                            </div>
-                        )}
+                        <div className="flex items-center gap-2">
+                            {item ? (<>
+                                <Edit /> Edit
+                            </>) : (<>
+                                <PlusCircle /> Create
+                            </>)}
+                        </div>
                     </SuccessOutlineButton>
                 </section>
             </div>

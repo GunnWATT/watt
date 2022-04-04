@@ -3,6 +3,9 @@ import {Popover, Transition} from '@headlessui/react';
 import moment, {Moment} from 'moment-timezone';
 import {ChevronDown, ChevronLeft, ChevronRight, ChevronUp} from 'react-feather'
 
+// Components
+import AnimatedPopover from '../layout/AnimatedPopover';
+
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
@@ -32,21 +35,12 @@ export default function DateSelector(props: DateSelectorProps) {
                 <Popover.Button className="w-full h-full flex items-center justify-center cursor-pointer">
                     {viewDate.format("MMMM D, yyyy")}
                 </Popover.Button>
-                <Transition
-                    enter="transition duration-150 ease-out z-20"
-                    enterFrom="transform scale-95 opacity-0"
-                    enterTo="transform scale-100 opacity-100"
-                    leave="transition duration-100 ease-out z-20"
-                    leaveFrom="transform scale-100 opacity-100"
-                    leaveTo="transform scale-95 opacity-0"
-                >
-                    <Popover.Panel className="flex justify-center">
-                        {/* TODO: Ideally the calendar could just be the popover panel and remove this hacky flex */}
-                        {/* centering behavior; perhaps looking into the other uses of `Calendar` and changing */}
-                        {/* them could prove beneficial. */}
-                        <Calendar currTime={viewDate} setTime={setViewDate} start={start} end={end} />
-                    </Popover.Panel>
-                </Transition>
+                <AnimatedPopover className="flex justify-center">
+                    {/* TODO: Ideally the calendar could just be the popover panel and remove this hacky flex */}
+                    {/* centering behavior; perhaps looking into the other uses of `Calendar` and changing */}
+                    {/* them could prove beneficial. */}
+                    <Calendar currTime={viewDate} setTime={setViewDate} start={start} end={end} />
+                </AnimatedPopover>
             </Popover>
 
             <button onClick={incDay}>
