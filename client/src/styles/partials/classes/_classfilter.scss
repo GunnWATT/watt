@@ -3,20 +3,6 @@
 
 @import '../../mixins/dot';
 
-.class-filter {
-  .assignment-tags {
-    margin: 0.5rem 0 0.5rem;
-  }
-}
-
-.class-filter-search-bar {
-  background-color: var(--bg-primary);
-  padding: 8px 10px;
-  border-radius: 5px;
-  width: 100%;
-  font-size: 1.2rem;
-}
-
 .class-palette {
   display: flex;
   flex-direction: row;
@@ -81,31 +67,9 @@
     padding: 10px 5px;
 
     > section {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-
-      .heading {
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-
-        button {
-          font-size: 0.7rem;
-          background-color: var(--content-secondary);
-          border-radius: 0.25rem;
-        }
-      }
-
       .class-picker-class {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        cursor: pointer;
-
         .class-picker-dot {
           @include dot(1.75rem);
-          margin-right: 0.75rem;
         }
       }
     }

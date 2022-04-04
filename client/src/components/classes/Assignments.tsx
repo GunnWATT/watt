@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import {ReactNode, useContext, useState} from 'react';
 import { useAuth, useFirestore } from 'reactfire';
 import moment from 'moment';
 
@@ -94,15 +94,16 @@ function Assignment(props: AssignmentProps) {
                         {shortify(assignment.description,200)}
                     </div>
                 )}
-                <div className="mt-2.5 bg-background dark:bg-background-dark py-0.5 px-1.5 rounded-sm text-[0.8rem] w-max">
+                <AssignmentTimestamp className="mt-2.5">
                     {assignment.timestamp!.format('hh:mm a on dddd, MMM Do')}
                     {overdue && (
-                        <span> • <span style={{color: "var(--active)"}}>
+                        <span> • <span className="text-theme dark:text-theme-dark">
                             {assignment.timestamp?.fromNow()}
                         </span></span>
                     )}
-                </div> {/* TODO: include 24 hour support */}
+                </AssignmentTimestamp> {/* TODO: include 24 hour support */}
             </div>
+
             <div className="w-[88px] flex flex-col flex-none py-4 pr-5">
                 <div className="flex justify-between">
                     {!isCustomAssignment && (
@@ -171,13 +172,13 @@ export default function Assignments(props: AssignmentsProps & ActiveItemState) {
 
     return (
         <div className="upcoming-assignments">
-            {days.map(({day}) => (
+            {days.map(({day, upcoming: currUpcoming}) => (
                 <section key={day.format('MM-DD-YYYY')}>
                     <div className="upcoming-day-header">
                         {day.format('dddd, MMMM Do')} • In {day.diff(moment(), 'days') + 1} day{day.diff(moment(), 'days') ? 's' : ''}
                     </div>
 
-                    {upcoming.map((assignment) => (
+                    {currUpcoming.map((assignment) => (
                         <Assignment
                             key={assignment.id}
                             assignment={assignment}
@@ -186,6 +187,14 @@ export default function Assignments(props: AssignmentsProps & ActiveItemState) {
                     ))}
                 </section>
             ))}
+        </div>
+    )
+}
+
+export function AssignmentTimestamp(props: {className?: string, children: ReactNode}) {
+    return (
+        <div className={'bg-background dark:bg-background-dark py-0.5 px-1.5 rounded-sm text-[0.8rem] w-max' + (props.className ? ` ${props.className}` : '')}>
+            {props.children}
         </div>
     )
 }

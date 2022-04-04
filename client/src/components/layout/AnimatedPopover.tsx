@@ -1,4 +1,4 @@
-import {ReactNode} from 'react';
+import {Fragment, ReactNode} from 'react';
 import {Popover, Transition} from '@headlessui/react';
 
 
@@ -6,6 +6,7 @@ import {Popover, Transition} from '@headlessui/react';
 export default function AnimatedPopover(props: {children: ReactNode, className?: string}) {
     return (
         <Transition
+            as={Fragment}
             enter="transition duration-150 ease-out z-20"
             enterFrom="transform scale-95 opacity-0"
             enterTo="transform scale-100 opacity-100"

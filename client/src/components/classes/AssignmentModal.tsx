@@ -6,7 +6,7 @@ import { Square, CheckSquare, Link, Edit, Trash2, SkipBack } from 'react-feather
 // Components
 import CenteredModal from '../layout/CenteredModal';
 import CreateAssignmentModal from './CreateAssignmentModal';
-import { AssignmentTags } from './Assignments';
+import {AssignmentTags, AssignmentTimestamp} from './Assignments';
 import PriorityPicker from './PriorityPicker';
 
 // Context
@@ -79,11 +79,9 @@ export default function AssignmentModal(props: AssignmentModalProps) {
                     <section className="flex gap-3 items-center">
                         <PriorityPicker priority={item.priority} setPriority={setPriority} />
 
-                        <div className="assignment-due">
-                            <div>
-                                {item.timestamp.format('hh:mm a on dddd, MMM Do')}
-                            </div>
-                        </div>
+                        <AssignmentTimestamp>
+                            {item.timestamp.format('hh:mm a on dddd, MMM Do')}
+                        </AssignmentTimestamp>
 
                         <Edit
                             className="cursor-pointer text-theme dark:text-theme-dark ml-auto"

@@ -1,4 +1,4 @@
-import {useContext, useState, ReactNode} from 'react';
+import {useContext, useState, ReactNode, MouseEventHandler} from 'react';
 import {Popover, Transition} from '@headlessui/react';
 import {Plus} from 'react-feather';
 
@@ -35,24 +35,17 @@ export default function ClassFilter(props: ClassFilterProps) {
     const setLabels = (labels: string[]) => setFilter({...filter, labels});
 
     return (
-        <div className="class-filter">
-            <input
-                type="text"
-                placeholder="Search"
-                defaultValue={filter.query}
-                className="class-filter-search-bar"
-                onChange={(event) => setFilter({...filter, query: event.target.value})}
-            />
-            <div className="assignment-tags">
-                {filter.classes.map((c, i) => c && (
-                    <AssignmentTag label={classes[i].name} color={classes[i].color} />
-                ))}
-                {filter.labels.map(label => (
-                    <AssignmentTag label={parseLabelName(label, userData)} color={parseLabelColor(label, userData)} />
-                ))}
-
-                <Popover className="relative cursor-pointer ml-auto">
-                    <PopoverPlus />
+        <div>
+            <div className="relative">
+                <input
+                    type="text"
+                    placeholder="Search"
+                    defaultValue={filter.query}
+                    className="w-full bg-sidebar dark:bg-sidebar-dark border-2 border-tertiary dark:border-tertiary-dark rounded-full py-1.5 px-3"
+                    onChange={(event) => setFilter({...filter, query: event.target.value})}
+                />
+                <Popover>
+                    <PopoverPlus className="absolute inset-y-0 right-4 my-auto" />
                     <TagPicker>
                         {(search) => (<>
                             <TagPickerClasses
@@ -70,13 +63,22 @@ export default function ClassFilter(props: ClassFilterProps) {
                     </TagPicker>
                 </Popover>
             </div>
+
+            <div className="assignment-tags mt-1.5 mb-3">
+                {filter.classes.map((c, i) => c && (
+                    <AssignmentTag label={classes[i].name} color={classes[i].color} />
+                ))}
+                {filter.labels.map(label => (
+                    <AssignmentTag label={parseLabelName(label, userData)} color={parseLabelColor(label, userData)} />
+                ))}
+            </div>
         </div>
     );
 }
 
-export function PopoverPlus() {
+export function PopoverPlus(props: {className?: string}) {
     return (
-        <Popover.Button>
+        <Popover.Button className={props.className}>
             <Plus className="rounded-full bg-background dark:bg-background-dark p-1" />
         </Popover.Button>
     )
@@ -138,18 +140,15 @@ export function TagPickerLabels(props: TagPickerLabelsProps) {
             {allLabels(userData).map((labelID, index) => {
                 if (!labelID.toLowerCase().includes(search.toLowerCase())) return null;
                 return (
-                    <div key={labelID} className="class-picker-class" onClick={() => toggleLabel(labelID)}>
-                        <div
-                            // TODO: see comment below about dot component extraction
-                            className="class-picker-dot"
-                            style={{
-                                backgroundColor: labels.includes(labelID) ? parseLabelColor(labelID, userData) : 'var(--content-primary)',
-                                border: labels.includes(labelID) ? '' : '2px inset var(--secondary)'
-                            }}
-                        />
-
-                        <div>{parseLabelName(labelID, userData)}</div>
-                    </div>
+                    <TagPickerOption
+                        key={labelID}
+                        name={parseLabelName(labelID, userData)}
+                        // TODO: think of how to keep this as style arguments but remove the dependency on var()
+                        // as var() will be eliminated with the CSS removal
+                        backgroundColor={labels.includes(labelID) ? parseLabelColor(labelID, userData) : 'var(--content-primary)'}
+                        border={labels.includes(labelID) ? '' : '2px inset var(--secondary)'}
+                        onClick={() => toggleLabel(labelID)}
+                    />
                 );
             })}
         </TagPickerSection>
@@ -185,20 +184,14 @@ export function TagPickerClasses(props: TagPickerClassesProps) {
             {classes.map((c, index) => {
                 if (!c.name.toLowerCase().includes(search.toLowerCase())) return null;
                 return (
-                    <div key={index} className="class-picker-class" onClick={() => toggleClass(index)}>
-                        <div
-                            // TODO: see comment below about dot component extraction
-                            className="class-picker-dot"
-                            style={{
-                                backgroundColor: selected[index] ? c.color : 'var(--content-primary)',
-                                border: selected[index] ? '' : '2px inset var(--secondary)'
-                            }}
-                        >
-                            {c.period}
-                        </div>
-
-                        <div>{c.name}</div>
-                    </div>
+                    <TagPickerOption
+                        key={index}
+                        name={c.name}
+                        label={c.period}
+                        backgroundColor={selected[index] ? c.color : 'var(--content-primary)'}
+                        border={selected[index] ? '' : '2px inset var(--secondary)'}
+                        onClick={() => toggleClass(index)}
+                    />
                 )
             })}
         </TagPickerSection>
@@ -214,17 +207,52 @@ function TagPickerSection(props: TagPickerSectionProps) {
     const {noneSelected, selectAll, deselectAll, heading, children} = props;
 
     return (
-        <section className="label-tags">
-            <span className="heading">
+        <section className="flex flex-col gap-1">
+            <span className="flex gap-2 items-center">
                 <h4>{heading}</h4>
                 {noneSelected ? (
-                    <button onClick={selectAll}>Select all</button>
+                    <TagPickerSelectButton onClick={selectAll}>
+                        Select all
+                    </TagPickerSelectButton>
                 ) : (
-                    <button onClick={deselectAll}>Deselect all</button>
+                    <TagPickerSelectButton onClick={deselectAll}>
+                        Deselect all
+                    </TagPickerSelectButton>
                 )}
             </span>
             <hr />
             {children}
         </section>
+    )
+}
+
+function TagPickerSelectButton(props: {onClick?: MouseEventHandler<HTMLButtonElement>, children: ReactNode}) {
+    return (
+        <button className="rounded text-[0.7rem] px-1 py-0.5 bg-content-secondary dark:bg-content-secondary-dark" onClick={props.onClick}>
+            {props.children}
+        </button>
+    )
+}
+
+type TagPickerOptionProps = {
+    name: string, label?: string,
+    backgroundColor: string, border: string,
+    onClick: MouseEventHandler<HTMLDivElement>
+};
+function TagPickerOption(props: TagPickerOptionProps) {
+    const {backgroundColor, border, name, label, onClick} = props;
+
+    return (
+        <div className="class-picker-class flex items-center gap-3 cursor-pointer" onClick={onClick}>
+            <div
+                // TODO: see comment below about dot component extraction
+                className="class-picker-dot"
+                style={{ backgroundColor, border }}
+            >
+                {label}
+            </div>
+
+            <div>{name}</div>
+        </div>
     )
 }

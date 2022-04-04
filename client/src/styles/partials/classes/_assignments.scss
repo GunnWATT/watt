@@ -5,13 +5,11 @@
 .assignment-tags {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
   margin-bottom: 5px;
   gap: 5px;
 
   .assignment-tag {
     display: flex;
-    flex-direction: row;
     align-items: center;
     height: max-content;
 
@@ -31,37 +29,13 @@
 }
 
 .priority {
-  position: relative;
-
-  div:first-child {
-    cursor: pointer;
-  }
-
   &-picker {
-    position: absolute;
     top: calc(100% + 10px);
-    right: 0;
-
-    &.right {
-      left: 0;
-    }
-
     width: 150px;
-    background-color: var(--content-primary);
-    padding: 10px;
-    z-index: 4;
-    border-radius: 5px;
 
     &-priority {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      margin-bottom: 5px;
-      cursor: pointer;
-
       &-dot {
         @include dot(30px);
-        margin-right: 10px;
       }
     }
   }
