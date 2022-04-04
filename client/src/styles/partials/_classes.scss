@@ -10,10 +10,6 @@
 }
 
 .classes-sidebar {
-  padding: 15px 10px;
-  &.expanded { 
-    width: min(275px, 80vw);
-  }
   height: 100vh;
 
   &.phone {
@@ -29,16 +25,6 @@
   &.phone {
     width: 45px;
     height: 45px;
-  }
-}
-
-.classes-sidebar-item {
-  display: flex;
-  align-items: center;
-  font-size: 1.2rem;
-
-  .classes-sidebar-text {
-    margin-right: 15px;
   }
 }
 

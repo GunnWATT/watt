@@ -42,7 +42,9 @@ function BlurbAssignment(props: BlurbAssignmentProps) {
             <CheckBox className="cursor-pointer flex-none" onClick={toggleCompleted} />
             <div className="blurb-assignment-content cursor-pointer" style={{ textDecoration: item.completed ? 'line-through' : '' }} onClick={() => setModal(!modal)}>
                 <div className="text-lg">{shortify(item.name)}</div>
-                <div className="assignment-due"><div>{item.timestamp!.format("dddd, MMMM Do")} • {item.timestamp!.fromNow()}</div></div>
+                <div className="bg-content-secondary dark:bg-background-dark py-0.5 px-1.5 rounded-sm text-[0.8rem] w-max">
+                    {item.timestamp!.format("dddd, MMMM Do")} • {item.timestamp!.fromNow()}
+                </div>
             </div>
 
             <AssignmentModal item={item} open={modal} setOpen={setModal} />

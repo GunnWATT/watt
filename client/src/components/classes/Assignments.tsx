@@ -80,7 +80,7 @@ function Assignment(props: AssignmentProps) {
     const CompletedIcon = !assignment.completed ? Square : CheckSquare;
 
     return (
-        <div 
+        <div
             className={"upcoming-assignment flex bg-sidebar dark:bg-sidebar-dark rounded transition-transform duration-200" + (!activeItem || activeItem.id !== assignment.id ? '' : " scale-[1.03]")}
             id={`assignment-${assignment.id}`}
             onMouseEnter={() => setActiveItem(assignment)}
@@ -127,19 +127,6 @@ function Assignment(props: AssignmentProps) {
     )
 }
 
-// grouped by each day
-type AssignmentDayProps = { day: moment.Moment, upcoming: AssignmentBlurb[] }
-function AssignmentDay(props: AssignmentDayProps & ActiveItemState ) {
-    const { day, upcoming, ...activeDayState } = props;
-    return <>
-        <div className="upcoming-day-header">
-            {day.format('dddd, MMMM Do')} • In {day.diff(moment(), 'days') + 1} day{day.diff(moment(), 'days') ? 's' : ''}
-        </div>
-
-        {upcoming.map((assignment) => <Assignment key={assignment.id} assignment={assignment} {...activeDayState} />)}
-    </>
-}
-
 function Overdue(props: { overdue: AssignmentBlurb[] } & ActiveItemState ) {
     const { overdue, ...activeDayState } = props;
 
@@ -184,13 +171,21 @@ export default function Assignments(props: AssignmentsProps & ActiveItemState) {
 
     return (
         <div className="upcoming-assignments">
-            {days.map(assignment =>
-                <AssignmentDay
-                    key={assignment.day.format('MM-DD-YYYY')}
-                    {...assignment}
-                    {...activeDayState}
-                />
-            )}
+            {days.map(({day}) => (
+                <section key={day.format('MM-DD-YYYY')}>
+                    <div className="upcoming-day-header">
+                        {day.format('dddd, MMMM Do')} • In {day.diff(moment(), 'days') + 1} day{day.diff(moment(), 'days') ? 's' : ''}
+                    </div>
+
+                    {upcoming.map((assignment) => (
+                        <Assignment
+                            key={assignment.id}
+                            assignment={assignment}
+                            {...activeDayState}
+                        />
+                    ))}
+                </section>
+            ))}
         </div>
     )
 }
