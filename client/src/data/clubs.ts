@@ -1,7 +1,7 @@
 import {Club} from '../components/lists/ClubComponent';
 
 const data: {timestamp: string, data: {[key: string]: Club}} = {
-    "timestamp": "2022-03-14T06:06:12.947Z",
+    "timestamp": "2022-04-05T05:53:37.153Z",
     "data": {
         "10496": {
             "new": false,
@@ -763,18 +763,6 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "coadvisor": "Marie Durquet",
             "coemail": "mdurquet@pausd.org"
         },
-        "53611": {
-            "new": false,
-            "name": "K-Pop Dance Club",
-            "tier": 1,
-            "desc": "Welcome to the K-Pop Dance Club! Every K-Pop song has a specific dance that goes with it. We don't have official dance experience; we're all beginners! We accept all skill levels (even if you haven't danced before in your life.) We will learn K-Pop dances, starting with easier ones, and gradually learning the harder ones as the year goes on. Again, we are all beginners and will work together to learn the dances!",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "PE dance room.",
-            "prez": "Megan Murakami",
-            "advisor": "Brenda Chen",
-            "email": "bchen@pausd.org"
-        },
         "53483": {
             "new": true,
             "name": "Photography Club",
@@ -788,6 +776,18 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
             "email": "ecorpuz@pausd.org",
             "coadvisor": "Marie-Jose Durquet",
             "coemail": "mdurquet@pausd.org"
+        },
+        "53611": {
+            "new": false,
+            "name": "K-Pop Dance Club",
+            "tier": 1,
+            "desc": "Welcome to the K-Pop Dance Club! Every K-Pop song has a specific dance that goes with it. We don't have official dance experience; we're all beginners! We accept all skill levels (even if you haven't danced before in your life.) We will learn K-Pop dances, starting with easier ones, and gradually learning the harder ones as the year goes on. Again, we are all beginners and will work together to learn the dances!",
+            "day": "Friday",
+            "time": "Lunch",
+            "room": "PE dance room.",
+            "prez": "Megan Murakami",
+            "advisor": "Brenda Chen",
+            "email": "bchen@pausd.org"
         },
         "53793": {
             "new": true,

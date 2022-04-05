@@ -2,11 +2,6 @@ import {PeriodObj} from '../components/schedule/Periods';
 
 // Generated alternates from `/scripts/genAltSchedules.ts`
 const generated: {[key: string]: PeriodObj[] | null} = {
-    "12-29": null,
-    "12-30": null,
-    "12-31": null,
-    "01-03": null,
-    "01-04": null,
     "01-05": [
         {
             "n": "0",
@@ -909,6 +904,80 @@ const generated: {[key: string]: PeriodObj[] | null} = {
     "04-06": null,
     "04-07": null,
     "04-08": null,
+    "04-26": [
+        {
+            "n": "1",
+            "s": 540,
+            "e": 605
+        },
+        {
+            "n": "B",
+            "s": 605,
+            "e": 610
+        },
+        {
+            "n": "2",
+            "s": 620,
+            "e": 685
+        },
+        {
+            "n": "3",
+            "s": 695,
+            "e": 760
+        },
+        {
+            "n": "L",
+            "s": 760,
+            "e": 790
+        },
+        {
+            "n": "4",
+            "s": 800,
+            "e": 865
+        },
+        {
+            "n": "P",
+            "s": 875,
+            "e": 970
+        }
+    ],
+    "04-27": [
+        {
+            "n": "5",
+            "s": 540,
+            "e": 620
+        },
+        {
+            "n": "B",
+            "s": 620,
+            "e": 625
+        },
+        {
+            "n": "6",
+            "s": 635,
+            "e": 710
+        },
+        {
+            "n": "Title IX Lesson",
+            "s": 720,
+            "e": 770
+        },
+        {
+            "n": "L",
+            "s": 770,
+            "e": 800
+        },
+        {
+            "n": "7",
+            "s": 810,
+            "e": 885
+        },
+        {
+            "n": "P",
+            "s": 895,
+            "e": 945
+        }
+    ],
     "05-30": null,
     "05-31": [
         {
@@ -1953,6 +2022,11 @@ const override: {[key: string]: PeriodObj[] | null} = {
     "12-24": null,
     "12-27": null,
     "12-28": null,
+    "12-29": null,
+    "12-30": null,
+    "12-31": null,
+    "01-03": null,
+    "01-04": null,
 }
 
 const data = {...generated, ...override};

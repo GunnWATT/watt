@@ -24,7 +24,7 @@ All contributions are welcome!
 Navigate to the client directory with `cd client` and install the required NPM dependencies with `npm install`. 
 Run `npm start` to start the webpack development server on `localhost:3000`. Your terminal should look something like this:
 
-![image](https://user-images.githubusercontent.com/60120929/147841884-3ffb8a40-0a01-4bed-adb9-57ae0225b7fd.png)
+![image](https://user-images.githubusercontent.com/60120929/161687343-4a45578b-1385-40aa-9994-fb7c45dba275.png)
 
 `npm start` uses Webpack's hot reload feature which will automatically refresh `localhost:3000` when new changes
 are detected in the project; there is no need to rerun the start script after changing code locally.
@@ -54,7 +54,7 @@ From the root directory (`cd ..`), running `firebase emulators:start --import ./
 in a new terminal window should start the emulator suite UI on `localhost:4001` as well as the Firestore, Functions, and Auth
 emulators on other localhost ports.
 
-![image](https://user-images.githubusercontent.com/60120929/147841829-b5d0d43c-2fc7-4a92-bdbc-29d8c3360687.png)
+![image](https://user-images.githubusercontent.com/60120929/161687556-d3cd9682-fe90-4deb-9258-522895443ff6.png)
 
 Navigating to `localhost:4001` should bring up the Emulator UI from which the emulated firestore database and auth
 records can be accessed.
@@ -68,7 +68,8 @@ Navigate to the scripts directory with `cd scripts` and install the necessary de
 scripts use `ts-node` to skip having to manually compile TypeScript before running, with each script having a corresponding
 command defined in `package.json`. Run `npm run` to see a list of scripts, or `npm run [name]` to execute a script.
 
-![image](https://user-images.githubusercontent.com/60120929/147842062-e868ffc2-a034-4fee-b46f-0233deb94102.png)
+![image](https://user-images.githubusercontent.com/60120929/161687846-7ef1a8bb-e78a-4ea5-bf21-4738d980fa9a.png)
+![image](https://user-images.githubusercontent.com/60120929/161687964-9afd773e-b12a-498f-9a14-1f8bd73cd78c.png)
 
 ## Credits
 [Yu-Ting](https://github.com/ytchang05), [Kevin](https://github.com/ky28059), and [Roger](https://github.com/ImNotRog) are the primary creators of WATT. 
