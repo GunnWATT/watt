@@ -29,20 +29,10 @@
 }
 
 .upcoming-icons {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  .toggle-completed {
-    margin-left: 1rem;
-  }
-
   .add-assignment {
     background-color: var(--contrast);
     border-radius: 50%;
     padding: 10px;
-    cursor: pointer;
     display: flex;
   }
 }
-

@@ -23,7 +23,7 @@ export default function ClassesSidebar(props: ClassesSidebarProps) {
     const classes = findClassesList(sgyData, userData);
 
     return (
-        <div className={'classes-sidebar fixed right-0 p-4 w-20 transition-[width] duration-[400ms] bg-sidebar dark:bg-sidebar-dark flex flex-col gap-3 px-[15px] items-end ' + (collapsed ? '' : 'w-72')}>
+        <div className={'classes-sidebar fixed right-0 flex flex-col gap-3 p-4 w-20 transition-[width] duration-[400ms] bg-sidebar dark:bg-sidebar-dark px-[15px] items-end ' + (collapsed ? '' : 'w-72')}>
             {classes.map((c) => (
                 <ClassesSidebarItem
                     key={c.period}

@@ -19,6 +19,7 @@ import { findClassesList } from '../../pages/Classes';
 import {AssignmentBlurb} from '../../util/sgyFunctions';
 import { getUpcomingInfo } from '../../util/sgyFunctions';
 import { similarity } from '../../util/sgyHelpers';
+import ContentButton from "../layout/ContentButton";
 
 
 export default function Upcoming() {
@@ -79,14 +80,17 @@ export default function Upcoming() {
             {/* these props- */}
             <div className="upcoming">
                 <ClassFilter classes={classes} filter={filter} setFilter={setFilter} />
-                <div className="upcoming-icons">
-                    <div className="add-assignment" onClick={() => setCreating(!creating)}><FilePlus size={20} /></div>
+
+                <section className="upcoming-icons flex items-center gap-3">
+                    <button className="add-assignment" onClick={() => setCreating(!creating)}>
+                        <FilePlus size={20} />
+                    </button>
                     <CreateAssignmentModal open={creating} setOpen={setCreating} />
 
-                    <button className="toggle-completed" onClick={() => setIncludeCompleted(!includeCompleted)}>
+                    <ContentButton onClick={() => setIncludeCompleted(!includeCompleted)}>
                         {includeCompleted ? 'Hide completed' : 'Show completed'}
-                    </button>
-                </div>
+                    </ContentButton>
+                </section>
 
                 {upcomingFiltered && overdueFiltered && (
                     <Assignments upcoming={upcomingFiltered} overdue={overdueFiltered} activeItem={activeItem} setActiveItem={setActiveItem} />

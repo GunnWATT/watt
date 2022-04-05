@@ -6,6 +6,7 @@ import moment from 'moment';
 
 // Components
 import AssignmentModal from './AssignmentModal';
+import {AssignmentTimestamp} from './Assignments';
 import UpcomingQuickWeekCal from './QuickWeekCal';
 
 // Contexts
@@ -16,6 +17,7 @@ import UserDataContext from '../../contexts/UserDataContext';
 import { parsePeriodColor } from '../schedule/Periods';
 import { AssignmentBlurb, updateAssignment } from '../../util/sgyFunctions';
 import { shortify } from '../../util/sgyHelpers';
+import ContentButton from "../layout/ContentButton";
 
 
 // Upcoming Blurb
@@ -42,9 +44,9 @@ function BlurbAssignment(props: BlurbAssignmentProps) {
             <CheckBox className="cursor-pointer flex-none" onClick={toggleCompleted} />
             <div className="blurb-assignment-content cursor-pointer" style={{ textDecoration: item.completed ? 'line-through' : '' }} onClick={() => setModal(!modal)}>
                 <div className="text-lg">{shortify(item.name)}</div>
-                <div className="bg-content-secondary dark:bg-background-dark py-0.5 px-1.5 rounded-sm text-[0.8rem] w-max">
+                <AssignmentTimestamp>
                     {item.timestamp!.format("dddd, MMMM Do")} • {item.timestamp!.fromNow()}
-                </div>
+                </AssignmentTimestamp>
             </div>
 
             <AssignmentModal item={item} open={modal} setOpen={setModal} />
@@ -64,9 +66,12 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
     const [includeCompleted, setIncludeCompleted] = useState(false);
 
     return (
-        <div className="upcoming-blurb">
-            <h1 className="dashboard-header">Dashboard</h1>
-            <div>You need to do {assignmentsToDoNextWeek.length} of {assignmentsNextWeek.length} assignment{assignmentsNextWeek.length === 1 ? "" : "s"} due in the next week.</div>
+        <section>
+            <h1>Dashboard</h1>
+            <div>
+                You need to do {assignmentsToDoNextWeek.length} of {assignmentsNextWeek.length}{' '}
+                assignment{assignmentsNextWeek.length === 1 ? "" : "s"} due in the next week.
+            </div>
 
             <UpcomingQuickWeekCal upcoming={upcoming} selected={selected} />
             <div>
@@ -76,13 +81,15 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
                         item={a}
                     />
                 )}
-                <div className="blurb-upcoming-redirect">
-                    <button className="toggle-completed" onClick={() => setIncludeCompleted(!includeCompleted)}>
+                <div className="flex justify-center gap-3">
+                    <ContentButton onClick={() => setIncludeCompleted(!includeCompleted)}>
                         {includeCompleted ? 'Hide completed' : 'Show completed'}
-                    </button>
-                    <div className="see-more"><Link to="upcoming">See More in Upcoming</Link></div>
+                    </ContentButton>
+                    <Link to="upcoming" className="text-inherit dark:text-inherit no-underline">
+                        <ContentButton>See more in Upcoming</ContentButton>
+                    </Link>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
