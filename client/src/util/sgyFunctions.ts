@@ -436,7 +436,10 @@ export const getAllGrades = (sgyData: SgyData, userData: UserData) => {
         if (c.period === "A") continue;
 
         const selectedCourseGrades = findGrades(sgyData, c.period); // find the grades
-        if (selectedCourseGrades) grades[c.period] = selectedCourseGrades.final_grade[0].grade;
+        if (selectedCourseGrades) {
+            const latestPeriod = selectedCourseGrades.period.sort((a, b) => a.period_title.localeCompare(b.period_title)).pop();
+            grades[c.period] = selectedCourseGrades.final_grade.find(g => `${g.period_id}` === `${latestPeriod?.period_id}`)?.grade!;
+        }
     }
 
     return grades;
