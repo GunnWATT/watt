@@ -1,93 +1,22 @@
 @import '../../mixins/dot';
 
 .create-modal {
-  .modal-content {
-    background-color: var(--bg-primary);
-  }
-
   .create-name {
     background-color: var(--contrast);
     padding: 3px 5px;
-    border-radius: 3px;
-
-    &.incomplete {
-      outline: 1px dashed var(--active);
-    }
   }
 
-  .period-picker {
-    position: relative;
+  .period-picker-text {
+    margin-top: 10px;
+  }
 
-    &-text {
-      margin-top: 10px;
-      display: flex;
-
-      div {
-        cursor: pointer;
-        background-color: var(--content-primary);
-        padding: 0px 5px;
-        border-radius: 5px;
-        font-size: 1rem;
-      }
-    }
-
-    .class-picker {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      left: 0px;
-
-      .period-picker-period {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        cursor: pointer;
-
-        & .dot {
-          @include dot(1.75rem);
-          margin-right: 0.75rem;
-        }
-      }
+  .class-picker {
+    .dot {
+      @include dot(1.75rem);
     }
   }
 
   .create-desc {
-    width: 100%;
-    outline: none;
-    resize: none;
     height: 150px;
-    background-color: var(--bg-secondary);
-    color: var(--primary);
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  .create-foot {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    .assignment-due {
-      margin-left: 0.5rem;
-
-      > div {
-        background-color: var(--active);
-        color: white;
-      }
-      
-      cursor: pointer;
-    }
-
-    .create-cal {
-      position: fixed;
-      border-radius: 5px;
-      width: 300px;
-      height: 60vh;
-
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-    }
   }
 }

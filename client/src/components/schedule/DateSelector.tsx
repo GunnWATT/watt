@@ -3,6 +3,9 @@ import {Popover, Transition} from '@headlessui/react';
 import moment, {Moment} from 'moment-timezone';
 import {ChevronDown, ChevronLeft, ChevronRight, ChevronUp} from 'react-feather'
 
+// Components
+import AnimatedPopover from '../layout/AnimatedPopover';
+
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
@@ -32,21 +35,18 @@ export default function DateSelector(props: DateSelectorProps) {
                 <Popover.Button className="w-full h-full flex items-center justify-center cursor-pointer">
                     {viewDate.format("MMMM D, yyyy")}
                 </Popover.Button>
-                <Transition
-                    enter="transition duration-150 ease-out z-20"
-                    enterFrom="transform scale-95 opacity-0"
-                    enterTo="transform scale-100 opacity-100"
-                    leave="transition duration-100 ease-out z-20"
-                    leaveFrom="transform scale-100 opacity-100"
-                    leaveTo="transform scale-95 opacity-0"
-                >
-                    <Popover.Panel className="flex justify-center">
-                        {/* TODO: Ideally the calendar could just be the popover panel and remove this hacky flex */}
-                        {/* centering behavior; perhaps looking into the other uses of `Calendar` and changing */}
-                        {/* them could prove beneficial. */}
-                        <Calendar currTime={viewDate} setTime={setViewDate} start={start} end={end} />
-                    </Popover.Panel>
-                </Transition>
+                <AnimatedPopover className="flex justify-center">
+                    {/* TODO: Ideally the calendar could just be the popover panel and remove this hacky flex */}
+                    {/* centering behavior; perhaps looking into the other uses of `Calendar` and changing */}
+                    {/* them could prove beneficial. */}
+                    <Calendar
+                        currTime={viewDate}
+                        setTime={setViewDate}
+                        start={start}
+                        end={end}
+                        className="top-[calc(100%_+_10px)]"
+                    />
+                </AnimatedPopover>
             </Popover>
 
             <button onClick={incDay}>
@@ -59,12 +59,11 @@ export default function DateSelector(props: DateSelectorProps) {
 type CalendarProps = {
     start?: Moment, end?: Moment,
     currTime: Moment, setTime: (day: Moment) => any,
-    hidden?: boolean, style?: CSSProperties,
-    picker?: boolean // assumed to be true
-    time?: boolean // do you choose time as well?
+    time?: boolean, // do you choose time as well?
+    className?: string
 }
 export function Calendar(props: CalendarProps) {
-    const {start, end, currTime, setTime, hidden, style, picker, time} = props;
+    const {start, end, currTime, setTime, time, className} = props;
 
     const date = useContext(CurrentTimeContext);
     const today = date.clone().tz('America/Los_Angeles').startOf('date');
@@ -77,6 +76,7 @@ export function Calendar(props: CalendarProps) {
     useEffect(() => {
         if (!wrapper.current) return;
         if (!currMonth.current) return;
+        if (time) return; // Skip scroll behavior on timepicker; TODO: should we support this if we use non-range-constrained timepickers in the future?
 
         // Set wrapper's scroll position to the offset of the current month, minus the day header and 1rem gap
         wrapper.current.scrollTop = currMonth.current.offsetTop - 48 - 16;
@@ -114,7 +114,7 @@ export function Calendar(props: CalendarProps) {
                 <div className="calendar-month grid grid-cols-7">
                     {days.map((day, i) => {
                         const noSchool = [0, 6].includes(day.weekday())
-                            || (day.format("MM-DD") in alternates.alternates && alternates.alternates[day.format("MM-DD")] == null);
+                            || (day.format("MM-DD") in alternates && alternates[day.format("MM-DD")] == null);
                         const active = currTime.isSame(day, 'day');
                         return (
                             <div
@@ -187,10 +187,8 @@ export function Calendar(props: CalendarProps) {
         setTime(moment(currTime).set('hour', h));
     }
 
-    if (hidden) return null;
-
     return (
-        <div className={"mini-calendar bg-content dark:bg-content-dark z-20 rounded flex flex-col shadow-2xl" + (picker !== false ? ' picker' : '')} style={style}>
+        <div className={"mini-calendar bg-content dark:bg-content-dark z-20 rounded flex flex-col shadow-2xl absolute" + (className ? ` ${className}` : '')}>
             {time && (
                 <div className="time">
                     <div>

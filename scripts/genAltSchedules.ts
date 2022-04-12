@@ -249,7 +249,7 @@ function parseAlternate(summary: string | undefined, description: string | undef
         alternates[date] = schedule.length ? schedule : null;
     }
 
-    writeFileSync('./output/alternates.json', JSON.stringify({alternates}, null, 4));
+    writeFileSync('./output/alternates.json', JSON.stringify(alternates, null, 4));
     info('Wrote output to "./output/alternates.json".');
 })()
 

@@ -16,8 +16,8 @@
   "dependencies": {
     "@types/node": "^17.0.5",
     "@types/oauth": "^0.9.1",
-    "firebase-admin": "^10.0.1",
-    "firebase-functions": "^3.16.0",
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.20.0",
     "node-fetch": "^2.6.7",
     "oauth": "^0.9.15"
   },

@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import {useState, useContext, useMemo} from 'react';
 import {Dialog} from '@headlessui/react';
 
 // Components
@@ -11,6 +11,9 @@ import UserDataContext from '../../contexts/UserDataContext';
 // Firestore
 import {useAuth, useFirestore} from 'reactfire';
 import { updateUserData } from '../../util/firestore';
+
+// Data
+import clubs from '../../data/clubs';
 
 
 /*
@@ -41,6 +44,13 @@ export default function StaffComponent(props: Staff & {id: string}) {
 
     const userData = useContext(UserDataContext);
     const pinned = userData.staff.includes(id);
+
+    // Fetch a teacher's chartered clubs by matching their email to the club advisor's and coadvisor's email
+    // Memoize to prevent expensive recomputation
+    const charters = useMemo(() => Object.values(clubs.data)
+        .filter(club => email && (club.email === email || club.coemail === email))
+        .map(club => club.name)
+        .join(', '), []);
 
     // Functions to update pins
     const addToPinned = async () => {
@@ -74,8 +84,12 @@ export default function StaffComponent(props: Staff & {id: string}) {
                             {phone && <p><strong className="secondary font-medium">Phone:</strong> {phone}</p>}
                         </div>
                     </section>
+                    {charters && (<>
+                        <hr className="my-3" />
+                        <p><strong className="secondary font-medium">Club(s):</strong> {charters}</p>
+                    </>)}
 
-                    <section className="flex gap-3 flex-wrap justify-end mt-6">
+                    <section className="flex gap-3 flex-wrap justify-end mt-4">
                         {pinned ? (
                             <OutlineButton onClick={removeFromPinned}>
                                 Remove from my list

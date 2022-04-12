@@ -23,7 +23,7 @@ export default function ClassesSidebar(props: ClassesSidebarProps) {
     const classes = findClassesList(sgyData, userData);
 
     return (
-        <div className={'classes-sidebar w-20 fixed right-0 bg-sidebar dark:bg-sidebar-dark flex flex-col gap-3 px-[15px] items-end ' + (collapsed ? 'collapsed' : 'expanded')}>
+        <div className={'classes-sidebar fixed right-0 flex flex-col gap-3 p-4 w-20 transition-[width] duration-[400ms] bg-sidebar dark:bg-sidebar-dark px-[15px] items-end ' + (collapsed ? '' : 'w-72')}>
             {classes.map((c) => (
                 <ClassesSidebarItem
                     key={c.period}
@@ -49,24 +49,8 @@ type ClassesSidebarItemProps = {
 function ClassesSidebarItem(props: ClassesSidebarItemProps) {
     const {collapsed, name, color, period, onClick, active} = props;
 
-    if (collapsed) {
-        return (
-            <div
-                style={{
-                    backgroundColor: color,
-                    border: active ? `3px solid ${bgColor(color)}` : ''
-                }}
-                className="classes-sidebar-bubble"
-                onClick={onClick}
-            >
-                {period}
-            </div>
-        );
-    }
-
     return (
-        <div className='classes-sidebar-item'>
-            <div className='classes-sidebar-text'>{shortify(name, 20)}</div>
+        <div className="flex flex-row-reverse overflow-hidden items-center justify-between gap-4 w-full">
             <div
                 style={{
                     backgroundColor: color,
@@ -77,6 +61,7 @@ function ClassesSidebarItem(props: ClassesSidebarItemProps) {
             >
                 {period}
             </div>
+            <p className="whitespace-nowrap overflow-hidden overflow-ellipsis">{name}</p>
         </div>
     );
 }

@@ -18,18 +18,17 @@ import {firestoreInit} from '../util/firestore';
 
 
 export default function Layout(props: {children: ReactNode}) {
-    // Screen type for responsive layout
+    const userData = useContext(UserDataContext);
     const screenType = useScreenType();
 
     // Create user document on first sign in
     const auth = useAuth();
     const firestore = useFirestore();
     useEffect(() => {
-        getRedirectResult(auth).then(r => r && firestoreInit(firestore, r))
+        getRedirectResult(auth).then(r => r && firestoreInit(firestore, r, userData))
     }, [])
 
     // Change theme on userData change
-    const userData = useContext(UserDataContext);
     useEffect(() => {
         document.documentElement.className = userData.options.theme;
     }, [userData.options.theme])

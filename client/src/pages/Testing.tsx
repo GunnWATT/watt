@@ -115,7 +115,7 @@ export default function Testing() {
                             now={moment()}
                             start={moment().add(20, 'minutes')}
                             end={moment().add(50, 'minutes')}
-                            format='h:mm A'
+                            format="h:mm A"
                         />
                         <Period
                             name="2 · Almost finished"
@@ -123,15 +123,16 @@ export default function Testing() {
                             now={moment()}
                             start={moment().subtract(20, 'minutes')}
                             end={moment().add(10, 'minutes')}
-                            format='h:mm A'
+                            format="h:mm A"
                         />
                         <Period
                             name="3 · Just beginning"
                             color={parsePeriodColor(3, userData)}
+                            note="A cantilever is a rigid structural element that extends horizontally and is supported at only one end. Typically it extends from a flat vertical surface such as a wall, to which it must be firmly attached. Like other structural elements, a cantilever can be formed as a beam, plate, truss, or slab."
                             now={moment()}
                             start={moment().subtract(10, 'minutes')}
                             end={moment().add(20, 'minutes')}
-                            format='h:mm A'
+                            format="h:mm A"
                         />
                         <Period
                             name="4 · Halfway there!"
@@ -139,7 +140,7 @@ export default function Testing() {
                             now={moment()}
                             start={moment().subtract(15, 'minutes')}
                             end={moment().add(15, 'minutes')}
-                            format='h:mm A'
+                            format="h:mm A"
                         />
                         <Period
                             name="5 · Finished"
@@ -163,7 +164,7 @@ export default function Testing() {
                             now={moment()}
                             start={moment().subtract(50, 'minutes')}
                             end={moment().subtract(20, 'minutes')}
-                            format='H:mm'
+                            format="h:mm A"
                             zoom="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                         />
                     </div>

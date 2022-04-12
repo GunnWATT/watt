@@ -16,50 +16,6 @@
 
   .blurb-assignment-content {
     flex-grow: 1;
-
-    .assignment-due > div {
-      background-color: var(--content-tertiary);
-    }
-  }
-}
-
-.toggle-completed {
-  background-color: var(--contrast);
-  padding: 5px 15px;
-  border-radius: 5px;
-  transition: background-color 50ms;
-  height: max-content;
-
-  &:hover {
-    background-color: var(--content-secondary);
-  }
-}
-
-.blurb-upcoming-redirect {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  .toggle-completed {
-    margin-right: 0.75rem;
-  }
-
-  .see-more {
-    background-color: var(--contrast);
-    padding: 5px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 50ms;
-    text-align: center;
-
-    &:hover {
-      background-color: var(--content-secondary);
-    }
-
-    > a {
-      color: var(--primary);
-      text-decoration: none;
-    }
   }
 }
 

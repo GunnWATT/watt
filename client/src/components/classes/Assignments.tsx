@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import {ReactNode, useContext, useState} from 'react';
 import { useAuth, useFirestore } from 'reactfire';
 import moment from 'moment';
 
@@ -66,43 +66,46 @@ function Assignment(props: AssignmentProps) {
     const auth = useAuth();
     const firestore = useFirestore();
 
-    const toggleCompleted = () => {
-        updateAssignment({ ...assignment, completed: !assignment.completed }, userData, auth, firestore )
-    }
+    const toggleCompleted = () =>
+        updateAssignment({ ...assignment, completed: !assignment.completed }, userData, auth, firestore);
 
     const setPriority = (priority: number) => {
-        if(priority === assignment.priority) return;
-        updateAssignment({ ...assignment, priority: priority }, userData, auth, firestore)
+        if (priority === assignment.priority) return;
+        return updateAssignment({ ...assignment, priority: priority }, userData, auth, firestore)
     }
 
     const isCustomAssignment = assignment.id.startsWith('W');
-
     const overdue = assignment.timestamp?.isBefore(moment());
 
     const CompletedIcon = !assignment.completed ? Square : CheckSquare;
 
     return (
-        <div 
-            className={"upcoming-assignment" + (!activeItem || activeItem.id !== assignment.id ? '' : " active")}
+        <div
+            className={"upcoming-assignment flex bg-sidebar dark:bg-sidebar-dark rounded transition-transform duration-200" + (!activeItem || activeItem.id !== assignment.id ? '' : " scale-[1.03]")}
             id={`assignment-${assignment.id}`}
             onMouseEnter={() => setActiveItem(assignment)}
             onMouseLeave={() => setActiveItem(null)}
         >
-            <div className="upcoming-assignment-content" onClick={() => setModal(!modal)}>
+            <div className="flex-grow py-4 px-5 cursor-pointer" onClick={() => setModal(!modal)}>
                 <AssignmentTags item={assignment} period />
                 <div className="text-lg">{shortify(assignment.name, 150)}</div>
                 {!!assignment.description.length && (
-                    <div className="upcoming-assignment-desc">{shortify(assignment.description,200)}</div>
-                )}
-                <div className="assignment-due">
-                    <div>
-                        {assignment.timestamp!.format('hh:mm a on dddd, MMM Do')}
-                        {overdue && <span> • <span style={{color: "var(--active)"}}>{assignment.timestamp?.fromNow()}</span></span>}
+                    <div className="secondary mt-2.5 text-[0.8rem]">
+                        {shortify(assignment.description,200)}
                     </div>
-                </div> {/* TODO: include 24 hour support */}
+                )}
+                <AssignmentTimestamp className="mt-2.5">
+                    {assignment.timestamp!.format('hh:mm a on dddd, MMM Do')}
+                    {overdue && (
+                        <span> • <span className="text-theme dark:text-theme-dark">
+                            {assignment.timestamp?.fromNow()}
+                        </span></span>
+                    )}
+                </AssignmentTimestamp> {/* TODO: include 24 hour support */}
             </div>
-            <div className="upcoming-assignment-icons">
-                <div className="upcoming-assignment-icons-top">
+
+            <div className="w-[88px] flex flex-col flex-none py-4 pr-5">
+                <div className="flex justify-between">
                     {!isCustomAssignment && (
                         <a href={assignment.link} target="_blank" rel="noopener noreferrer">
                             <Link size={28} color="var(--primary)" />
@@ -110,12 +113,12 @@ function Assignment(props: AssignmentProps) {
                     )}
                     <CompletedIcon
                         size={28}
-                        style={{ marginLeft: 'auto', cursor: 'pointer', flexShrink: 0 }}
+                        className="cursor-pointer flex-none"
                         onClick={() => toggleCompleted()}
                     />
                 </div>
 
-                <div className="upcoming-assignment-icons-bottom">
+                <div className="flex mt-auto justify-end">
                     <PriorityPicker priority={assignment.priority} setPriority={setPriority} />
                 </div>
             </div>
@@ -123,19 +126,6 @@ function Assignment(props: AssignmentProps) {
             <AssignmentModal item={assignment} open={modal} setOpen={setModal} />
         </div>
     )
-}
-
-// grouped by each day
-type AssignmentDayProps = { day: moment.Moment, upcoming: AssignmentBlurb[] }
-function AssignmentDay(props: AssignmentDayProps & ActiveItemState ) {
-    const { day, upcoming, ...activeDayState } = props;
-    return <>
-        <div className="upcoming-day-header">
-            {day.format('dddd, MMMM Do')} • In {day.diff(moment(), 'days') + 1} day{day.diff(moment(), 'days') ? 's' : ''}
-        </div>
-
-        {upcoming.map((assignment) => <Assignment key={assignment.id} assignment={assignment} {...activeDayState} />)}
-    </>
 }
 
 function Overdue(props: { overdue: AssignmentBlurb[] } & ActiveItemState ) {
@@ -182,13 +172,29 @@ export default function Assignments(props: AssignmentsProps & ActiveItemState) {
 
     return (
         <div className="upcoming-assignments">
-            {days.map(assignment =>
-                <AssignmentDay
-                    key={assignment.day.format('MM-DD-YYYY')}
-                    {...assignment}
-                    {...activeDayState}
-                />
-            )}
+            {days.map(({day, upcoming: currUpcoming}) => (
+                <section key={day.format('MM-DD-YYYY')}>
+                    <div className="upcoming-day-header">
+                        {day.format('dddd, MMMM Do')} • In {day.diff(moment(), 'days') + 1} day{day.diff(moment(), 'days') ? 's' : ''}
+                    </div>
+
+                    {currUpcoming.map((assignment) => (
+                        <Assignment
+                            key={assignment.id}
+                            assignment={assignment}
+                            {...activeDayState}
+                        />
+                    ))}
+                </section>
+            ))}
+        </div>
+    )
+}
+
+export function AssignmentTimestamp(props: {className?: string, children: ReactNode}) {
+    return (
+        <div className={'bg-background dark:bg-background-dark py-0.5 px-1.5 rounded-sm text-[0.8rem] w-max' + (props.className ? ` ${props.className}` : '')}>
+            {props.children}
         </div>
     )
 }
