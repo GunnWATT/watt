@@ -14,6 +14,7 @@ import { updateUserData } from '../../util/firestore';
 
 // Data
 import clubs from '../../data/clubs';
+import PillClubComponent from "./PillClubComponent";
 
 
 /*
@@ -47,10 +48,9 @@ export default function StaffComponent(props: Staff & {id: string}) {
 
     // Fetch a teacher's chartered clubs by matching their email to the club advisor's and coadvisor's email
     // Memoize to prevent expensive recomputation
-    const charters = useMemo(() => Object.values(clubs.data)
-        .filter(club => email && (club.email === email || club.coemail === email))
-        .map(club => club.name)
-        .join(', '), []);
+    const charters = useMemo(() => Object.entries(clubs.data)
+        .filter(([_, club]) => email && (club.email === email || club.coemail === email))
+        .map(([id, club]) => <PillClubComponent {...club} id={id} />), []);
 
     // Functions to update pins
     const addToPinned = async () => {
@@ -86,7 +86,9 @@ export default function StaffComponent(props: Staff & {id: string}) {
                     </section>
                     {charters && (<>
                         <hr className="my-3" />
-                        <p><strong className="secondary font-medium">Club(s):</strong> {charters}</p>
+                        <p className="flex gap-1 items-center">
+                            <strong className="secondary font-medium">Club(s):</strong> {charters}
+                        </p>
                     </>)}
 
                     <section className="flex gap-3 flex-wrap justify-end mt-4">
