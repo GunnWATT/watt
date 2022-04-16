@@ -4,6 +4,7 @@ import {Dialog} from '@headlessui/react';
 // Components
 import CenteredModal from '../layout/CenteredModal';
 import OutlineButton, {DangerOutlineButton} from '../layout/OutlineButton';
+import PillClubComponent from './PillClubComponent';
 
 // Context
 import UserDataContext from '../../contexts/UserDataContext';
@@ -14,7 +15,6 @@ import { updateUserData } from '../../util/firestore';
 
 // Data
 import clubs from '../../data/clubs';
-import PillClubComponent from "./PillClubComponent";
 
 
 /*
@@ -46,8 +46,8 @@ export default function StaffComponent(props: Staff & {id: string}) {
     const userData = useContext(UserDataContext);
     const pinned = userData.staff.includes(id);
 
-    // Fetch a teacher's chartered clubs by matching their email to the club advisor's and coadvisor's email
-    // Memoize to prevent expensive recomputation
+    // Fetch a teacher's chartered clubs by matching their email to the club advisor's and coadvisor's email.
+    // Memoize to prevent expensive recomputation.
     const charters = useMemo(() => Object.entries(clubs.data)
         .filter(([_, club]) => email && (club.email === email || club.coemail === email))
         .map(([id, club]) => <PillClubComponent {...club} id={id} />), []);
@@ -84,7 +84,8 @@ export default function StaffComponent(props: Staff & {id: string}) {
                             {phone && <p><strong className="secondary font-medium">Phone:</strong> {phone}</p>}
                         </div>
                     </section>
-                    {charters && (<>
+
+                    {charters.length > 0 && (<>
                         <hr className="my-3" />
                         <p className="flex gap-1 items-center">
                             <strong className="secondary font-medium">Club(s):</strong> {charters}
