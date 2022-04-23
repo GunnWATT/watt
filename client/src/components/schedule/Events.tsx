@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import moment, {Moment} from 'moment-timezone';
+import {DateTime} from 'luxon';
 
 // Components
 import Event, {GCalEvent} from './Event';
@@ -9,7 +9,10 @@ import CenteredMessage from '../layout/CenteredMessage';
 import {RefreshCw} from 'react-feather';
 
 
-type EventsProps = {events: GCalEvent[] | null, eventsError: Error | null, fetchEvents: () => void, viewDate: Moment};
+type EventsProps = {
+    events: GCalEvent[] | null, eventsError: Error | null, fetchEvents: () => void,
+    viewDate: DateTime
+};
 export default function Events(props: EventsProps) {
     const {events, eventsError, fetchEvents, viewDate} = props;
     const [content, setContent] = useState<JSX.Element[] | null>(null);
@@ -20,9 +23,9 @@ export default function Events(props: EventsProps) {
         // Subtract one minute from end time to make sure an event from 2/25-2/26 doesn't show up on both 2/25 and 2/26.
         // TODO: is there a better way to do this?
         if (event.start.date && event.end.date)
-            return moment(event.start.date).twix(moment(event.end.date).subtract(1, 'minute')).contains(viewDate);
+            return DateTime.fromISO(event.start.date).until(DateTime.fromISO(event.end.date).minus({minute: 1})).contains(viewDate);
         // Otherwise, if given start and end dateTimes, check to see if they fall on the same day as viewDate
-        return event.start.dateTime?.includes(viewDate.format('YYYY-MM-DD'));
+        return event.start.dateTime?.includes(viewDate.toFormat('YYYY-MM-DD'));
     }
 
     // Render events on mount and viewDate change

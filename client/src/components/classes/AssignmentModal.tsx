@@ -80,7 +80,7 @@ export default function AssignmentModal(props: AssignmentModalProps) {
                         <PriorityPicker priority={item.priority} setPriority={setPriority} />
 
                         <AssignmentTimestamp>
-                            {item.timestamp.format('hh:mm a on dddd, MMM Do')}
+                            {item.timestamp.toFormat('hh:mm a on dddd, MMM Do')}
                         </AssignmentTimestamp>
 
                         <Edit

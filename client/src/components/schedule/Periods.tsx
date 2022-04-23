@@ -1,6 +1,6 @@
 import {useContext} from 'react';
 import {useSchedule} from '../../hooks/useSchedule';
-import moment, {Moment} from 'moment-timezone';
+import {DateTime} from 'luxon';
 
 // Components
 import Period from './Period';
@@ -12,9 +12,9 @@ import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 import UserDataContext, {SgyPeriodData, UserData} from '../../contexts/UserDataContext';
 
 // Constants
-export const SCHOOL_START = moment.tz('2021-08-11', 'America/Los_Angeles'); // new Date(2021,7, 11);
-export const SCHOOL_END = moment.tz('2022-06-02', 'America/Los_Angeles'); // new Date(2022, 5, 2);
-export const SCHOOL_END_EXCLUSIVE = moment.tz('2022-06-03', 'America/Los_Angeles'); // new Date(2022, 5, 3);
+export const SCHOOL_START = DateTime.fromISO('2021-08-11', {zone: 'America/Los_Angeles'}); // new Date(2021,7, 11);
+export const SCHOOL_END = DateTime.fromISO('2022-06-02', {zone: 'America/Los_Angeles'}); // new Date(2022, 5, 2);
+export const SCHOOL_END_EXCLUSIVE = DateTime.fromISO('2022-06-03', {zone: 'America/Los_Angeles'}); // new Date(2022, 5, 3);
 
 
 // An object representing a period, with s and e being start and end times (in minutes after 12:00 AM PST)
@@ -23,18 +23,17 @@ export const SCHOOL_END_EXCLUSIVE = moment.tz('2022-06-03', 'America/Los_Angeles
 // names, like "ELA CAT", remain unparsed.
 export type PeriodObj = {n: string, s: number, e: number, note?: string};
 
-type PeriodsProps = {viewDate: Moment};
+type PeriodsProps = {viewDate: DateTime};
 export default function Periods(props: PeriodsProps) {
     const {viewDate} = props;
     const currDate = useContext(CurrentTimeContext);
-    const timeZone = moment.tz.guess(true);
 
     // Period handling
     const {periods, alternate} = useSchedule(viewDate);
 
     // User data for preferred time display and zoom links
     const userData = useContext(UserDataContext);
-    const format = userData.options.time === '24' ? 'H:mm' : 'h:mm A';
+    const format = userData.options.time === '24' ? 'H:mm' : 'h:mm a';
     const classes = userData.classes as {[key: string]: SgyPeriodData};
 
     // Maps periods array to <Period> components
@@ -43,9 +42,8 @@ export default function Periods(props: PeriodsProps) {
             name={parsePeriodName(n, userData)}
             color={parsePeriodColor(n, userData)}
             key={n}
-            now={currDate}
-            start={viewDate.clone().startOf('day').add(s, 'minutes').tz(timeZone)} // Convert PST times back to local timezone
-            end={viewDate.clone().startOf('day').add(e, 'minutes').tz(timeZone)}
+            start={viewDate.startOf('day').plus({minutes: s}).toLocal()} // Convert PST times back to local timezone
+            end={viewDate.startOf('day').plus({minutes: e}).toLocal()}
             format={format}
             zoom={classes[n]?.l}
             note={note}
@@ -59,17 +57,17 @@ export default function Periods(props: PeriodsProps) {
         let endIndex = periods!.length - 1;
         if (periods![endIndex].n === 'O') endIndex--;
         if (!userData.options.period8 && periods![endIndex].n === '8') endIndex--;
-        const end = viewDate.clone().startOf('day').add(periods![endIndex].e, 'minutes').tz(timeZone);
+        const end = viewDate.startOf('day').plus({minutes: periods![endIndex].e}).toLocal();
 
         // Display the period indicator if there are periods that day and if time is within 20 minutes of the first period
         // and before the last period
-        const minutes = currDate.diff(viewDate, 'minutes');
+        const minutes = currDate.diff(viewDate, 'minutes').minutes;
         const displayIndicator = periods && minutes < periods[periods.length - 1].e && minutes >= periods[0].s - 20;
 
         return (
             <>
                 <p className="mb-4">
-                    School ends at <strong>{end.format(format)}</strong> today.
+                    School ends at <strong>{end.toFormat(format)}</strong> today.
                 </p>
                 {displayIndicator && <PeriodIndicator startTime={periods![0].s}/>}
                 {renderPeriods()}
@@ -125,10 +123,11 @@ export const darkPerColors = [
 ];
 
 
-// Turns day of the week into schedule object key; Thursday is R, Saturday is A
+// Turns day of the week into schedule object key, assuming 0 indexed days (Sunday is 0, Monday is 1).
+// To account for duplicated weekday letters, Thursday is R and Saturday is A.
 export const numToWeekday = (num: number) => ['S', 'M', 'T', 'W', 'R', 'F', 'A'][num];
 
-// Turns object key into human readable period name
+// Turns an object key into human-readable period name.
 export function parsePeriodName(name: string, userData?: UserData) {
     const classes = userData?.classes as {[key: string]: SgyPeriodData} | undefined;
     return classes?.[name]?.n || periodNameDefault(name);

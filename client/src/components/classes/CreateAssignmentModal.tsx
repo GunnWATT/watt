@@ -2,7 +2,6 @@ import {Fragment, useContext, useState} from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { useAuth, useFirestore } from 'reactfire';
 import { Edit, Plus, PlusCircle } from 'react-feather';
-import moment from 'moment';
 
 // Components
 import CenteredModal from '../layout/CenteredModal';
@@ -18,10 +17,10 @@ import UserDataContext, { SgyPeriod } from '../../contexts/UserDataContext';
 import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
-import { useScreenType } from '../../hooks/useScreenType';
 import { findClassesList } from '../../pages/Classes';
 import { allLabels, AssignmentBlurb, createAssignment, parseLabelColor, parseLabelName, updateAssignment } from '../../util/sgyFunctions';
 import { parsePeriodColor, parsePeriodName } from '../schedule/Periods';
+import CurrentTimeContext from "../../contexts/CurrentTimeContext";
 
 
 const PeriodPicker = (props: { period: 'A'|SgyPeriod, setPeriod: (c: 'A'|SgyPeriod) => any }) => {
@@ -64,13 +63,15 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
     const {open, setOpen, item} = props;
 
     const userData = useContext(UserDataContext);
+    const currTime = useContext(CurrentTimeContext);
+
     const auth = useAuth();
     const firestore = useFirestore();
 
     const [name, setName] = useState(item?.name ?? '');
     const [description, setDescription] = useState(item?.description ?? '');
     const [priority, setPriority] = useState(item?.priority ?? -1);
-    const [timestamp, setTimestamp] = useState(item?.timestamp ?? moment().add(1, 'days').startOf('day').add(8, 'hours')); // TODO: TIME SELECTOR
+    const [timestamp, setTimestamp] = useState(item?.timestamp ?? currTime.startOf('day').plus({day: 1, hour: 8})); // TODO: TIME SELECTOR
     const [labels, setLabels] = useState(item?.labels ?? ['Note']);
     const [period, setPeriod] = useState<'A' | SgyPeriod>(item?.period ?? 'A');
 
@@ -78,12 +79,12 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
         if (item) {
             setName(item.name);
             setPriority(item.priority);
-            setTimestamp(item.timestamp || moment().add(1, 'days').startOf('day').add(8, 'hours'));
+            setTimestamp(item.timestamp || currTime.startOf('day').plus({day: 1, hour: 8}));
             setLabels(item.labels);
         } else {
             setName('');
             setPriority(-1);
-            setTimestamp(moment().add(1, 'days').startOf('day').add(8, 'hours'));
+            setTimestamp(currTime.startOf('day').plus({day: 1, hour: 8}));
             setLabels(['Note']);
         }
     }
@@ -168,7 +169,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
 
                         <Popover>
                             <Popover.Button className="py-0.5 px-1.5 rounded-sm text-[0.8rem] bg-theme dark:bg-theme-dark text-white cursor-pointer" onClick={() => setOpen(!open)}>
-                                {timestamp.format('hh:mm a on dddd, MMM Do YYYY')}
+                                {timestamp.toFormat('hh:mm a on dddd, MMM Do YYYY')}
                             </Popover.Button>
                             <Transition
                                 as={Fragment}
@@ -186,7 +187,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
                                         setTime={setTimestamp}
                                         time
                                         // start={moment().subtract(6, 'days').startOf('day')}
-                                        start={moment().startOf('day')}
+                                        start={currTime.startOf('day')}
                                     />
                                 </Popover.Panel>
                             </Transition>

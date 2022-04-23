@@ -1,6 +1,6 @@
 import {ReactNode, useContext, useState} from 'react';
 import { useAuth, useFirestore } from 'reactfire';
-import moment from 'moment';
+import {DateTime} from 'luxon';
 
 // Components
 import PriorityPicker from './PriorityPicker';
@@ -8,6 +8,7 @@ import AssignmentModal from './AssignmentModal';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
+import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
 // Utilities
 import { parsePeriodName, parsePeriodColor } from '../schedule/Periods';
@@ -60,9 +61,11 @@ export function AssignmentTags({item, period}: {item: AssignmentBlurb, period?: 
 type AssignmentProps = { assignment: AssignmentBlurb } & ActiveItemState;
 function Assignment(props: AssignmentProps) {
     const { assignment, activeItem, setActiveItem } = props;
-
     const [modal, setModal] = useState(false);
+
     const userData = useContext(UserDataContext);
+    const currTime = useContext(CurrentTimeContext);
+
     const auth = useAuth();
     const firestore = useFirestore();
 
@@ -75,7 +78,7 @@ function Assignment(props: AssignmentProps) {
     }
 
     const isCustomAssignment = assignment.id.startsWith('W');
-    const overdue = assignment.timestamp?.isBefore(moment());
+    const overdue = assignment.timestamp && assignment.timestamp < currTime;
 
     const CompletedIcon = !assignment.completed ? Square : CheckSquare;
 
@@ -95,10 +98,10 @@ function Assignment(props: AssignmentProps) {
                     </div>
                 )}
                 <AssignmentTimestamp className="mt-2.5">
-                    {assignment.timestamp!.format('hh:mm a on dddd, MMM Do')}
+                    {assignment.timestamp!.toFormat('hh:mm a on dddd, MMM Do')}
                     {overdue && (
                         <span> • <span className="text-theme dark:text-theme-dark">
-                            {assignment.timestamp?.fromNow()}
+                            {assignment.timestamp?.toRelative()}
                         </span></span>
                     )}
                 </AssignmentTimestamp> {/* TODO: include 24 hour support */}
@@ -149,12 +152,13 @@ function Overdue(props: { overdue: AssignmentBlurb[] } & ActiveItemState ) {
 type AssignmentsProps = { upcoming: AssignmentBlurb[], overdue: AssignmentBlurb[] };
 export default function Assignments(props: AssignmentsProps & ActiveItemState) {
     const { upcoming, overdue, ...activeDayState } = props;
+    const currTime = useContext(CurrentTimeContext);
 
     // We map days (like "11-29-2021") to all the assignments that are due on that day
     // that way we can have all the headers and stuff
     const daysMap = new Map<string, AssignmentBlurb[]>();
     for (const assignment of upcoming) {
-        const day = assignment.timestamp!.clone().startOf('day').toISOString();
+        const day = assignment.timestamp!.startOf('day').toISO();
         if (daysMap.has(day)) {
             daysMap.get(day)!.push(assignment);
         } else {
@@ -165,7 +169,7 @@ export default function Assignments(props: AssignmentsProps & ActiveItemState) {
     const days = [];
     for (const day of daysMap.keys()) {
         days.push({
-            day: moment(day),
+            day: DateTime.fromISO(day),
             upcoming: daysMap.get(day)!
         })
     }
@@ -173,9 +177,10 @@ export default function Assignments(props: AssignmentsProps & ActiveItemState) {
     return (
         <div className="upcoming-assignments">
             {days.map(({day, upcoming: currUpcoming}) => (
-                <section key={day.format('MM-DD-YYYY')}>
+                // TODO: replace "strings for cthulu" with customized locale string
+                <section key={day.toFormat('MM-DD-YYYY')}>
                     <div className="upcoming-day-header">
-                        {day.format('dddd, MMMM Do')} • In {day.diff(moment(), 'days') + 1} day{day.diff(moment(), 'days') ? 's' : ''}
+                        {day.toFormat('dddd, MMMM Do')} • In {day.diff(currTime, 'days').days + 1} day{day.diff(currTime, 'days').days ? 's' : ''}
                     </div>
 
                     {currUpcoming.map((assignment) => (

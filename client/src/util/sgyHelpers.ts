@@ -17,9 +17,9 @@ export const classifyGrade = (grade: number) => {
 
 // 1 -> 1st, 2 -> 2nd, 3 -> 3rd, 4 -> 4th english why
 export const cardinalize = (num: number) => {
-    if(num%100 === 11) return num + 'th';
-    if(num%100 === 12) return num + 'th';
-    if(num%100 === 13) return num + 'th';
+    if (num%100 === 11) return num + 'th';
+    if (num%100 === 12) return num + 'th';
+    if (num%100 === 13) return num + 'th';
     switch (num % 10) {
         case 1:
             return num + 'st';
@@ -33,7 +33,7 @@ export const cardinalize = (num: number) => {
 }
 
 export const shortify = (str: string, limit: number = 50) => {
-    if(str.length <= limit) return str;
+    if (str.length <= limit) return str;
     return str.slice(0, limit-3) + '...';
 }
 

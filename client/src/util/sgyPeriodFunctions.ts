@@ -1,4 +1,4 @@
-import moment from 'moment';
+import {DateTime} from 'luxon';
 import { UserData } from '../contexts/UserDataContext';
 import { getSchedule } from '../hooks/useSchedule';
 import { SCHOOL_END_EXCLUSIVE, SCHOOL_START } from '../components/schedule/Periods';
@@ -6,51 +6,50 @@ import { SCHOOL_END_EXCLUSIVE, SCHOOL_START } from '../components/schedule/Perio
 // Functions for dealing with periods
 
 // Tells you if a day has a class
-export const hasClass = (day: moment.Moment, period: string) => {
-    return getSchedule(day)?.find(({n}) => n === period) ?? null;
+export const hasClass = (day: DateTime, period: string) => {
+    return getSchedule(day).periods?.find(({n}) => n === period) ?? null;
 }
 
 // Finds the next period of a certain class
-export const findNextClass = (period: string) => {
-    const current = moment().startOf('day');
+export function findNextClass(period: string) {
+    let current = DateTime.now().startOf('day');
+    let p = hasClass(current, period);
 
-    while (!(
-        (hasClass(current, period) && moment().isBefore(current.clone().add(hasClass(current, period)!.e, 'minutes'))))
-        || current.isAfter(SCHOOL_END_EXCLUSIVE)) { // while the schedule doesn't have the period and we're still in the school year
-        current.add(1, 'days'); // increment day
+    // while the schedule doesn't have the period and we're still in the school year
+    while (
+        !(p && DateTime.now() < current.plus({minutes: p.e}))
+        && current <= SCHOOL_END_EXCLUSIVE
+    ) {
+        current = current.plus({day: 1}); // increment day
+        p = hasClass(current, period);
     }
 
-    if (current.isAfter(SCHOOL_END_EXCLUSIVE)) return null;
-
-    const p = hasClass(current, period)!;
-    if (p) {
-        return current.clone().add(hasClass(current, period)!.s, 'minutes');
-    }
-
-    return null;
+    if (current > SCHOOL_END_EXCLUSIVE) return null;
+    return p ? current.plus({minutes: p.s}) : null;
 }
 
 // Tells you a bunch of info about a class, like how many classes have there been, what day and what week is it, etc.
-export const pastClasses = (period: string): ClassPeriodQuickInfo => {
-    const current = moment(SCHOOL_START);
-    while (!hasClass(current, period) && !current.isAfter(SCHOOL_END_EXCLUSIVE)) current.add(1, 'days'); // find first instance of class
+export function pastClasses(period: string): ClassPeriodQuickInfo {
+    let current = SCHOOL_START;
+    while (!hasClass(current, period) && current <= SCHOOL_END_EXCLUSIVE)
+        current = current.plus({day: 1}); // find first instance of class
 
     let weeks = 1;
     let day = 1;
     let days = 1;
-    let prev = moment(current);
+    let prev = current;
 
     // count previous days
-    while (current.isBefore(moment()) && !current.isAfter(SCHOOL_END_EXCLUSIVE)) {
-        current.add(1, 'days');
+    while (current < DateTime.now() && current <= SCHOOL_END_EXCLUSIVE) {
+        current = current.plus({day: 1});
 
-        if (hasClass(current, period) && moment().isAfter(current.clone().add(hasClass(current, period)!.s, 'minutes'))) {
+        if (hasClass(current, period) && DateTime.now() > current.plus({minutes: hasClass(current, period)!.s})) {
             days++;
-            if (!current.isSame(prev, 'week')) {// if it's not in the same week
+            if (!current.hasSame(prev, 'week')) {// if it's not in the same week
                 // new week!
                 weeks++;
                 day = 1;
-                prev = moment(current);
+                prev = current;
             } else {
                 day++;
             }
@@ -59,16 +58,17 @@ export const pastClasses = (period: string): ClassPeriodQuickInfo => {
 
     let next = findNextClass(period);
 
-    const classToday = hasClass(moment(), period);
+    const classToday = hasClass(DateTime.now(), period);
     let classNow = null;
 
     // it's class right now!
-    if (classToday && moment().isAfter(classToday.s) && moment().isBefore(classToday.e))
+    const now = DateTime.now();
+    if (classToday && now.startOf('day').plus({minute: classToday.s}).until(now.startOf('day').plus({minute: classToday.e})).contains(now))
         classNow = {week: weeks, day}
 
     if (next) {
         // find what week/day is next class
-        if (!next.isSame(prev, 'week')) {
+        if (!next.hasSame(prev, 'week')) {
             weeks++;
             day = 1;
         } else {
@@ -82,42 +82,37 @@ export const pastClasses = (period: string): ClassPeriodQuickInfo => {
 }
 
 // self explanatory
-export const nextSchoolDay = (userData: UserData) => {
-    const now = moment();
+export function nextSchoolDay(userData: UserData) {
+    let now = DateTime.now();
 
     while (true) {
-        if (now.isAfter(SCHOOL_END_EXCLUSIVE)){
-            break;
-        }
-        const sched = getSchedule(now);
+        if (now > SCHOOL_END_EXCLUSIVE) break;
+
+        const sched = getSchedule(now).periods;
         if (sched) {
             const periods = sched.filter(({n}) => {
                 if (n === '0' && !userData.options.period0) return false;
                 if (n === '8' && !userData.options.period8) return false;
                 return true;
-            })
+            });
             const end = periods[periods.length - 1].e;
             // console.log(now.clone().startOf('day').add(end, 'minutes').format('MMMM Do hh:mm:ss'));
             // console.log(moment().isAfter(now.clone().startOf('day').add(end, 'minutes')))
-            if (!moment().isAfter(now.clone().startOf('day').add(end, 'minutes'))) break;
+            if (DateTime.now() <= now.startOf('day').plus({minute: end})) break;
         }
 
-        now.add(1, 'days'); // increment day
+        now = now.plus({day: 1}); // increment day
     }
 
-    if (now.isAfter(SCHOOL_END_EXCLUSIVE)) return null;
+    if (now > SCHOOL_END_EXCLUSIVE) return null;
 
-    const p = getSchedule(now)![0];
+    const p = getSchedule(now).periods![0];
     if (p) {
         const t = p.s;
         const m = t % 60;
         const h = (t - m) / 60;
 
-        now.set("hour", h);
-        now.set("minute", m);
-        now.set("second", 0);
-
-        return now;
+        return now.set({hour: h, minute: m, second: 0});
     }
 
     return null;
@@ -125,23 +120,21 @@ export const nextSchoolDay = (userData: UserData) => {
 
 // number of school days since the start of the year
 export const numSchoolDays = () => {
-    const current = moment(SCHOOL_START);
-
+    let current = SCHOOL_START;
     let days = 1;
 
-    while (current.isBefore(moment()) && !current.isAfter(SCHOOL_END_EXCLUSIVE)) {
-        current.add(1, 'days');
-
-        if (getSchedule(current)) {
-            days++;
-        }
+    // TODO: incrementing current while it is less than the end of school is a very common pattern in
+    // this file; consider abstracting it
+    while (current < DateTime.now() && current <= SCHOOL_END_EXCLUSIVE) {
+        current = current.plus({day: 1});
+        if (getSchedule(current)) days++;
     }
     return days;
 }
 
 export type ClassPeriodQuickInfo = {
     next?: {
-        time: moment.Moment;
+        time: DateTime;
         week: number;
         day: number;
     }

@@ -1,9 +1,11 @@
 import { Auth } from 'firebase/auth';
 import { Firestore } from 'firebase/firestore';
-import moment from "moment";
+import { DateTime } from 'luxon';
 import { SgyPeriod, SgyAssignmentModified, SgyData, UserData, CustomAssignment } from '../contexts/UserDataContext';
-import { updateUserData } from './firestore';
 import { Assignment, Event, Document, Page, SectionGrade } from './sgyTypes';
+
+// Utilities
+import { updateUserData } from './firestore';
 import { findClassesList } from '../pages/Classes';
 import { darkPerColors, periodColors } from '../components/schedule/Periods';
 
@@ -12,7 +14,7 @@ import { darkPerColors, periodColors } from '../components/schedule/Periods';
 export type AssignmentBlurb = {
     name: string;
     link: string;
-    timestamp: moment.Moment | null;
+    timestamp: DateTime | null;
     description: string;
     period: SgyPeriod|'A';
     id: string;
@@ -21,16 +23,17 @@ export type AssignmentBlurb = {
     priority: number;
 }
 
-export const defaultLabels = ['Assignment','Document', 'Event', 'Note', 'Test', 'Page'];
+export const defaultLabels = ['Assignment', 'Document', 'Event', 'Note', 'Test', 'Page'];
 
 const darkLabelColors = ["#fc6471", "#a882dd", "#70ae6e", "#beee62", "#f4743b", "#70A9A1", "#373739"];
-export const parseLabelColor = (label:string, userData: UserData) => {
+
+export function parseLabelColor(label: string, userData: UserData) {
     if (!userData.sgy) throw 'User not authenticated in schoology!';
     const custom = userData.sgy!.custom.labels.find(({id}) => id === label);
-    if(custom) return custom.color;
+    if (custom) return custom.color;
 
     const defaultIndex = defaultLabels.indexOf(label);
-    if(defaultIndex >= 0) {
+    if (defaultIndex >= 0) {
         if(userData.options.theme === 'dark') return darkLabelColors[ defaultIndex ];
         else return periodColors[ defaultIndex ];
     }
@@ -40,7 +43,7 @@ export const parseLabelColor = (label:string, userData: UserData) => {
     return periodColors[periodColors.length - 1];
 }
 
-export const parseLabelName = (label:string, userData: UserData) => {
+export function parseLabelName(label:string, userData: UserData) {
     if (!userData.sgy) throw 'User not authenticated in schoology!';
     const custom = userData.sgy!.custom.labels.find(({ id }) => id === label);
     if(custom) return custom.name;
@@ -51,8 +54,8 @@ export const allLabels = (userData: UserData) => {
     return [...defaultLabels, ...userData.sgy.custom.labels.map(label => label.id)];
 }
 
-export const parsePriority = (priority: number, userData: UserData) => {
-    if(priority === -1) {
+export function parsePriority(priority: number, userData: UserData) {
+    if (priority === -1) {
         // no priority
         if (userData.options.theme === 'dark') return darkPerColors[darkPerColors.length - 1]
         return periodColors[periodColors.length - 1];
@@ -63,19 +66,18 @@ export const parsePriority = (priority: number, userData: UserData) => {
     else return periodColors[priority];
 }
 
-export const updateAssignment = async (data: AssignmentBlurb, userData: UserData, auth: Auth, firestore: Firestore) => {
-    if(data.id.startsWith('W')) await setCustomAssignment(data, userData, auth, firestore);
+export async function updateAssignment(data: AssignmentBlurb, userData: UserData, auth: Auth, firestore: Firestore) {
+    if (data.id.startsWith('W')) await setCustomAssignment(data, userData, auth, firestore);
     else await modifyAssignment(data, userData, auth, firestore);
 }
 
-const createCustomID = () => {
-    return 'W' + Array(16).fill(0).map(()=>Math.floor(Math.random()*10)).join('');
-}
-export const createAssignment = async (data: Omit<AssignmentBlurb, 'id'>, userData: UserData, auth: Auth, firestore: Firestore) => {
-    return await setCustomAssignment({...data, id: createCustomID()}, userData, auth, firestore);
+const createCustomID = () => 'W' + Array(16).fill(0).map(() => Math.floor(Math.random() * 10)).join('');
+
+export async function createAssignment(data: Omit<AssignmentBlurb, 'id'>, userData: UserData, auth: Auth, firestore: Firestore) {
+    await setCustomAssignment({...data, id: createCustomID()}, userData, auth, firestore);
 }
 
-const setCustomAssignment = async (data: AssignmentBlurb, userData: UserData, auth: Auth, firestore: Firestore) => {
+async function setCustomAssignment(data: AssignmentBlurb, userData: UserData, auth: Auth, firestore: Firestore) {
     if (!userData.sgy) throw 'User not authenticated in schoology!';
 
     const dataTimestampNumber = {
@@ -90,7 +92,7 @@ const setCustomAssignment = async (data: AssignmentBlurb, userData: UserData, au
     await updateUserData("sgy.custom.assignments", newCustom, auth, firestore);
 }
 
-const modifyAssignment = async (modifiedData: AssignmentBlurb, userData: UserData, auth: Auth, firestore: Firestore) => {
+async function modifyAssignment(modifiedData: AssignmentBlurb, userData: UserData, auth: Auth, firestore: Firestore) {
     if (!userData.sgy) throw 'User not authenticated in schoology!';
 
     const dataTimestampNumber = {
@@ -105,14 +107,14 @@ const modifyAssignment = async (modifiedData: AssignmentBlurb, userData: UserDat
     await updateUserData("sgy.custom.modified", newModified, auth, firestore);
 }
 
-export const deleteCustomAssignment = async (id: string, userData: UserData, auth: Auth, firestore: Firestore) => {
+export async function deleteCustomAssignment(id: string, userData: UserData, auth: Auth, firestore: Firestore) {
     const custom = userData.sgy!.custom.assignments;
     if(!custom.some(a => a.id === id)) return;
     let newCustom = custom.filter(assignment => assignment.id !== id);
     await updateUserData("sgy.custom.assignments", newCustom, auth, firestore);
 }
 
-export const deleteModifiedAssignment = async (id: string, userData: UserData, auth: Auth, firestore: Firestore) => {
+export async function deleteModifiedAssignment(id: string, userData: UserData, auth: Auth, firestore: Firestore) {
     const custom = userData.sgy!.custom.modified;
     if (!custom.some(m => m.id === id)) return;
     let newCustom = custom.filter(m => m.id !== id);
@@ -133,12 +135,8 @@ const priorityComparator = (a: number, b:number) => {
 
 const assignmentComparator = (a: AssignmentBlurb, b: AssignmentBlurb) => {
     if (a.timestamp && b.timestamp) {
-        if (a.timestamp.isBefore(b.timestamp)) {
-            return -1;
-        }
-        if (a.timestamp.isAfter(b.timestamp)) {
-            return 1;
-        }
+        if (a.timestamp < b.timestamp) return -1;
+        if (a.timestamp > b.timestamp) return 1;
     }
     else if (a.timestamp) return -1;
     else if (b.timestamp) return 1;
@@ -170,7 +168,7 @@ function SgyItemToBlurb(item: Assignment | Event | Document | Page, period: SgyP
 
 function AssignmentToBlurb(item: Assignment, period: SgyPeriod | 'A'): AssignmentBlurb {
     // TODO: moment constructor
-    const timestamp = item.due.length ? moment(item.due) : null;
+    const timestamp = item.due.length ? DateTime.fromISO(item.due) : null;
     const labels = ['Assignment'];
     if (["managed_assessment", "assessment"].includes(item.type)) {
         labels.push('Test')
@@ -191,7 +189,7 @@ function EventToBlurb(item: Event, period: SgyPeriod | 'A'): AssignmentBlurb {
         ...SgyItemToBlurb(item, period),
         description: item.description,
         link: `https://pausd.schoology.com/event/${item.id}`,
-        timestamp: moment(item.start),
+        timestamp: DateTime.fromISO(item.start),
         labels: ['Event']
     }
 }
@@ -247,7 +245,7 @@ export function getMaterials(sgyData: SgyData, selected: SgyPeriod | 'A', userDa
 
             const matchWithMoment = {
                 ...match,
-                timestamp: match.timestamp ? moment(match.timestamp) : null
+                timestamp: match.timestamp ? DateTime.fromMillis(match.timestamp) : null
             }
             materials[i] = {
                 ...materials[i],
@@ -263,7 +261,7 @@ export function getMaterials(sgyData: SgyData, selected: SgyPeriod | 'A', userDa
 }
 
 // Gets all your upcoming and overdue stuff
-export function getUpcomingInfo(sgyData: SgyData, selected: SgyPeriod | 'A', userData: UserData, time: moment.Moment) {
+export function getUpcomingInfo(sgyData: SgyData, selected: SgyPeriod | 'A', userData: UserData, time: DateTime) {
     if (!userData.sgy) throw 'User not authenticated in schoology!';
 
     if (selected === 'A') {
@@ -283,8 +281,8 @@ export function getUpcomingInfo(sgyData: SgyData, selected: SgyPeriod | 'A', use
             }
         }
         for (const item of userData.sgy!.custom.assignments) {
-            const timestamp = moment(item.timestamp);
-            if (item.period === selected && timestamp.isAfter(moment())) {
+            const timestamp = DateTime.fromMillis(item.timestamp!);
+            if (item.period === selected && timestamp > DateTime.now()) {
                 upcoming.push({
                     ...item,
                     link: '',
@@ -318,9 +316,9 @@ export function getUpcomingInfo(sgyData: SgyData, selected: SgyPeriod | 'A', use
         // console.log(item.title, item.grade_stats);
         if (item.due.length > 0) { // if it's actually due
 
-            const due = moment(item.due);
+            const due = DateTime.fromISO(item.due);
 
-            if (due.isAfter(time)) { // if it's due after right now
+            if (due > time) { // if it's due after right now
                 // format the assignment
                 upcoming.push(AssignmentToBlurb(item, selected));
             } else {
@@ -345,9 +343,9 @@ export function getUpcomingInfo(sgyData: SgyData, selected: SgyPeriod | 'A', use
 
     // do the same for events
     for (const item of selectedCourse.events) {
-        const due = moment(item.start);
+        const due = DateTime.fromISO(item.start);
 
-        if (due.isAfter(time) && !item.assignment_id) {
+        if (due > time && !item.assignment_id) {
             upcoming.push(EventToBlurb(item, selected));
         }
     }
@@ -359,7 +357,7 @@ export function getUpcomingInfo(sgyData: SgyData, selected: SgyPeriod | 'A', use
 
             const matchWithMoment = {
                 ...match,
-                timestamp: match.timestamp ? moment(match.timestamp) : null
+                timestamp: match.timestamp ? DateTime.fromMillis(match.timestamp) : null
             }
             upcoming[i] = {
                 ...upcoming[i],
@@ -368,10 +366,11 @@ export function getUpcomingInfo(sgyData: SgyData, selected: SgyPeriod | 'A', use
             }
         }
     }
-    
-    for(const item of userData.sgy!.custom.assignments) {
-        const timestamp = moment(item.timestamp);
-        if(item.period === selected && timestamp.isAfter(moment())) {
+
+    // TODO: duplicated code fragment
+    for (const item of userData.sgy!.custom.assignments) {
+        const timestamp = DateTime.fromMillis(item.timestamp!);
+        if (item.period === selected && timestamp > DateTime.now()) {
             upcoming.push({
                 ...item,
                 link: '',
@@ -395,11 +394,11 @@ export function getUpcomingInfo(sgyData: SgyData, selected: SgyPeriod | 'A', use
 }
 
 // Find your grade objects
-export const findGrades = (sgyData: SgyData, selected: SgyPeriod):SectionGrade|null => {
+export function findGrades(sgyData: SgyData, selected: SgyPeriod) {
     const selectedCourse = sgyData[selected]!;
     // Attempt to match the id of the selected course to the id in the course grades
     const matchID = sgyData.grades.find(sec => sec.section_id === selectedCourse.info.id);
-    if(matchID) return matchID;
+    if (matchID) return matchID;
 
     // they do this quirky and uwu thing where THEY CHANGE THE ID
     // the way we match this is by searching through the courses and seeing if the assignments match up, which is so stupid that it works
@@ -409,12 +408,12 @@ export const findGrades = (sgyData: SgyData, selected: SgyPeriod):SectionGrade|n
     // if the assignment's ID exists in S, hallelujah, the courses line up.
 
     const IDSet = new Set<string>();
-    for(const assignment of selectedCourse.assignments) IDSet.add(assignment.id + '');
+    for (const assignment of selectedCourse.assignments) IDSet.add(assignment.id + '');
 
-    for(const course in sgyData.grades) {
-        for(const period of sgyData.grades[course].period) {
-            for(const assignment of period.assignment) {
-                if(IDSet.has(assignment.assignment_id + '')) {
+    for (const course in sgyData.grades) {
+        for (const period of sgyData.grades[course].period) {
+            for (const assignment of period.assignment) {
+                if (IDSet.has(assignment.assignment_id + '')) {
                     // hallelujah
                     return sgyData.grades[course];
                 }
@@ -423,12 +422,11 @@ export const findGrades = (sgyData: SgyData, selected: SgyPeriod):SectionGrade|n
     }
 
     return null;
-
 }
 
 // Get all grades, but as numbers
 // wildly inefficient lol
-export const getAllGrades = (sgyData: SgyData, userData: UserData) => {
+export function getAllGrades(sgyData: SgyData, userData: UserData) {
     const classes = findClassesList(sgyData, userData);
     const grades: { [key: string]: number } = {};
 
@@ -445,30 +443,26 @@ export const getAllGrades = (sgyData: SgyData, userData: UserData) => {
     return grades;
 }
 
-export const cleanupExpired = async (userData: UserData, auth: Auth, firestore: Firestore) => {
-    const customOutOfDate = ( custom: CustomAssignment ) => {
-        const time = moment(custom.timestamp);
-        if(moment().diff(time, 'days') >= 31) {
-            // it's been expired for over 31 days; get rid of it!
-            return true;
-        }
-        return false;
+export async function cleanupExpired(userData: UserData, auth: Auth, firestore: Firestore) {
+    const customOutOfDate = (custom: CustomAssignment) => {
+        const time = DateTime.fromMillis(custom.timestamp!);
+
+        // If it's been expired for over 31 days, get rid of it!
+        return DateTime.now().diff(time, 'days').days >= 31;
     }
 
     const modifiedOutOfDate = (modified: SgyAssignmentModified) => {
-        if(!modified.timestamp) return false; // we don't kill the modified materials ig
-        const time = moment(modified.timestamp);
-        if (moment().diff(time, 'days') >= 31) {
-            // it's been expired for over 31 days; get rid of it!
-            return true;
-        }
-        return false;
+        if (!modified.timestamp) return false; // we don't kill the modified materials ig
+        const time = DateTime.fromMillis(modified.timestamp);
+
+        // If it's been expired for over 31 days, get rid of it!
+        return DateTime.now().diff(time, 'days').days >= 31;
     }
 
     const assiExpired = userData.sgy.custom.assignments.some(customOutOfDate);
     const modExpired = userData.sgy.custom.modified.some(modifiedOutOfDate);
 
-    if(assiExpired) {
+    if (assiExpired) {
         const assis = userData.sgy.custom.assignments.filter(a => !customOutOfDate(a));
         await updateUserData("sgy.custom.assignments", assis, auth, firestore);
     }
@@ -478,4 +472,3 @@ export const cleanupExpired = async (userData: UserData, auth: Auth, firestore: 
         await updateUserData("sgy.custom.modified", mods, auth, firestore);
     }
 }
-

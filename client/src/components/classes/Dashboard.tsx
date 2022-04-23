@@ -1,5 +1,4 @@
 import {ReactNode, useContext, useEffect, useState} from 'react';
-import moment from 'moment';
 
 // Components
 import DashboardBlurb from './DashboardBlurb';
@@ -22,7 +21,7 @@ export default function Dashboard() {
     const userData = useContext(UserDataContext);
     const time = useContext(CurrentTimeContext);
 
-    const lastFetchedTime = lastFetched && moment(lastFetched);
+    //const lastFetchedTime = lastFetched && moment(lastFetched);
 
     const [upcoming, setUpcoming] = useState<AssignmentBlurb[] | null>(null);
     const [overdue, setOverdue] = useState<AssignmentBlurb[] | null>(null);

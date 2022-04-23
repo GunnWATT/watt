@@ -1,5 +1,4 @@
 import {ReactNode, useContext, useState} from 'react';
-import moment from 'moment';
 
 // Components
 import CenteredMessage from '../components/layout/CenteredMessage';
@@ -11,6 +10,7 @@ import SgySignInBtn from '../components/firebase/SgySignInBtn';
 
 // Contexts
 import UserDataContext from '../contexts/UserDataContext';
+import CurrentTimeContext from '../contexts/CurrentTimeContext';
 
 // Utilities
 import {parsePeriodColor} from '../components/schedule/Periods';
@@ -59,6 +59,7 @@ const items = [
 
 export default function Testing() {
     const userData = useContext(UserDataContext);
+    const currTime = useContext(CurrentTimeContext);
 
     return (
         <div className="container py-6">
@@ -112,43 +113,31 @@ export default function Testing() {
                         <Period
                             name="1 · Not yet started"
                             color={parsePeriodColor(1, userData)}
-                            now={moment()}
-                            start={moment().add(20, 'minutes')}
-                            end={moment().add(50, 'minutes')}
-                            format="h:mm A"
+                            start={currTime.plus({minute: 20})}
                         />
                         <Period
                             name="2 · Almost finished"
                             color={parsePeriodColor(2, userData)}
-                            now={moment()}
-                            start={moment().subtract(20, 'minutes')}
-                            end={moment().add(10, 'minutes')}
-                            format="h:mm A"
                         />
                         <Period
                             name="3 · Just beginning"
                             color={parsePeriodColor(3, userData)}
                             note="A cantilever is a rigid structural element that extends horizontally and is supported at only one end. Typically it extends from a flat vertical surface such as a wall, to which it must be firmly attached. Like other structural elements, a cantilever can be formed as a beam, plate, truss, or slab."
-                            now={moment()}
-                            start={moment().subtract(10, 'minutes')}
-                            end={moment().add(20, 'minutes')}
                             format="h:mm A"
                         />
                         <Period
                             name="4 · Halfway there!"
                             color={parsePeriodColor(4, userData)}
-                            now={moment()}
-                            start={moment().subtract(15, 'minutes')}
                             end={moment().add(15, 'minutes')}
                             format="h:mm A"
                         />
                         <Period
                             name="5 · Finished"
                             color={parsePeriodColor(5, userData)}
-                            now={moment()}
                             start={moment().subtract(50, 'minutes')}
                             end={moment().subtract(20, 'minutes')}
                             format="h:mm A"
+                            format="h:mm a"
                         />
                         <Period
                             name="6 · 24-Hour"

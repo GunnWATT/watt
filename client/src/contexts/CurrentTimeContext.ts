@@ -1,7 +1,7 @@
-import React from 'react';
-import moment, {Moment} from 'moment';
+import {createContext} from 'react';
+import {DateTime} from 'luxon';
 
-const CurrentTimeContext = React.createContext<Moment>(moment());
+const CurrentTimeContext = createContext<DateTime>(DateTime.now());
 
 export const TimeProvider = CurrentTimeContext.Provider;
 export default CurrentTimeContext;

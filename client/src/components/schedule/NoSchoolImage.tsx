@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {Moment} from 'moment';
+import {DateTime} from 'luxon';
 
 // Images
 import noschool1 from '../../assets/electron_hw.png';
@@ -67,13 +67,13 @@ function randomImage(millis: number): string {
 }
 
 
-type NoSchoolImageProps = {viewDate: Moment};
+type NoSchoolImageProps = {viewDate: DateTime};
 export default function NoSchoolImage(props: NoSchoolImageProps) {
     const {viewDate} = props;
     const [image, setImage] = useState<string | undefined>(undefined);
 
     useEffect(() => {
-        const img = randomImage(viewDate.valueOf());
+        const img = randomImage(viewDate.toMillis());
         setImage(img);
     }, [viewDate])
 

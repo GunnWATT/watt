@@ -1,6 +1,6 @@
 import {useContext, useState} from 'react';
 import {useHotkeys} from 'react-hotkeys-hook';
-import moment from 'moment';
+import {DateTime} from 'luxon';
 import {GCalEvent} from '../components/schedule/Event';
 
 // Components
@@ -26,16 +26,15 @@ export default function Home(props: HomeProps) {
     // normalized to PST (like the clock), while viewDate is the current day but converted to PST for things that should be normalized;
     // viewDate is crucially used for calculations on period start times, etc.
     const date = useContext(CurrentTimeContext);
-    const viewDateCurr = date.clone().tz('America/Los_Angeles').startOf('date');
+    const viewDateCurr = date.setZone('America/Los_Angeles').startOf('day');
     const [viewDate, setViewDate] = useState(viewDateCurr);
 
     // Functions for manipulating viewDate
     // It is necessary to clone viewDate before changing it because moment objects are mutable and
     // will cause an infinite cascade of rerenders without clone
-    const incDay = () => setViewDate(viewDate.clone().add(1, 'days'));
-    const decDay = () => setViewDate(viewDate.clone().subtract(1, 'days'));
-    const jumpToPres = () => setViewDate(viewDateCurr.clone());
-    // const setViewDateFromJSDate = (d: Date) => setViewDate(moment(d));
+    const incDay = () => setViewDate(viewDate.plus({day: 1}));
+    const decDay = () => setViewDate(viewDate.minus({days: 1}));
+    const jumpToPres = () => setViewDate(viewDateCurr);
 
     // Hotkeys for switching date
     useHotkeys('left', decDay, [viewDate]);
@@ -44,7 +43,7 @@ export default function Home(props: HomeProps) {
     // Relative days for the day alert
     // viewDate here is compared to viewDateCurr instead of simply date because date still possesses minutes and seconds,
     // which may disrupt the comparison in undesirable ways
-    let relDays = viewDate.diff(viewDateCurr, 'days');
+    let relDays = viewDate.diff(viewDateCurr, 'days').days;
 
     // Screen type for responsive design
     const screenType = useScreenType();
@@ -56,9 +55,7 @@ export default function Home(props: HomeProps) {
 
     // User data for preferred time display
     const userData = useContext(UserDataContext);
-    const format = userData?.options.time === '24' ? 'H:mm:ss' : 'h:mm:ss A';
-    // Use spaced en dash for twix time range formatting
-    moment.twixClass.formatTemplate = (left, right) => left + ' – ' + right;
+    const format = userData?.options.time === '24' ? 'H:mm:ss' : 'h:mm:ss a';
 
 
     return (
@@ -70,19 +67,20 @@ export default function Home(props: HomeProps) {
                 {relDays !== 0 && <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>}
 
                 {userData.options?.clock && <Clock viewDate={viewDate} />}
-                <h2 className="text-3xl text-center mb-3">{date.format(format)}</h2>
+                <h2 className="text-3xl text-center mb-3">{date.toFormat(format)}</h2>
                 <HomeDateSelector
                     viewDate={viewDate}
                     setViewDate={setViewDate}
                 />
-                <h1 className="text-6xl md:text-7xl text-center mb-5">{viewDate.format('dddd')}</h1>
-                <h2 className="text-3xl font-semibold text-center mb-2">{viewDate.format('MMMM Do, YYYY')}</h2>
 
-                {/* <CSSTransition> */}
+                <h1 className="text-6xl md:text-7xl text-center mb-5">{viewDate.weekdayLong}</h1>
+                <h2 className="text-3xl font-semibold text-center mb-2">
+                    {viewDate.toLocaleString(DateTime.DATE_FULL)}
+                </h2>
+
                 <div className="mx-auto max-w-3xl">
                     <Periods viewDate={viewDate} />
                 </div>
-                {/* </CSSTransition> */}
 
                 {/* TODO: implement weekwrapper */}
                 {/* <div id="weekwrapper"></div> */}

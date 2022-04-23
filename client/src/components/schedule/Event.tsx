@@ -1,8 +1,10 @@
 import {useContext} from 'react';
 import {Disclosure} from '@headlessui/react';
-import moment from 'moment';
-import UserDataContext from '../../contexts/UserDataContext';
+import {DateTime} from 'luxon';
 import {ChevronUp, ChevronDown} from 'react-feather';
+
+// Contexts
+import UserDataContext from '../../contexts/UserDataContext';
 
 
 type EventStartEndTime = {date?: string, dateTime?: string};
@@ -16,14 +18,14 @@ export default function Event(props: GCalEvent) {
 
     // User data for preferred time display and zoom links
     const userData = useContext(UserDataContext);
-    const hourFormat = userData?.options.time === '24' ? 'H' : 'h';
+    const hourFormat = userData?.options.time === '24' ? 'MMM d H' : 'MMM d h a';
 
     // Parses start and end times to be human readable
     const formatDateTime = (start: EventStartEndTime, end: EventStartEndTime) => {
         if (start.date && end.date)
-            return moment(start.date).twix(end.date).format({hideTime: true});
+            return DateTime.fromISO(start.date).until(DateTime.fromISO(end.date)).toFormat('MMM d');
         if (start.dateTime && end.dateTime)
-            return moment(start.dateTime).twix(end.dateTime).format({hourFormat: hourFormat, implicitMinutes: false});
+            return DateTime.fromISO(start.dateTime).until(DateTime.fromISO(end.dateTime)).toFormat(hourFormat);
         return "Unknown Date";
     }
 

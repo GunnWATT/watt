@@ -1,18 +1,18 @@
 import {useSchedule} from './useSchedule';
-import {Moment} from 'moment';
+import {DateTime} from 'luxon';
 
 
 // Returns the next period and the time to next period given a Moment object, returning `null` if the time is more than
 // 20 minutes before school or if the time is after the last period.
-export function useNextPeriod(date: Moment) {
+export function useNextPeriod(date: DateTime) {
     const {periods} = useSchedule(date);
 
     // Localize date to PST before attempting to parse next period
     // TODO: do minutes and seconds *really* need to be returned by this hook?
-    const localizedDate = date.clone().tz('America/Los_Angeles');
-    const midnight = localizedDate.clone().startOf('date');
-    const minutes = localizedDate.diff(midnight, 'minutes');
-    const seconds = localizedDate.diff(midnight, 'seconds');
+    const localizedDate = date.setZone('America/Los_Angeles');
+    const midnight = localizedDate.startOf('day');
+    const minutes = localizedDate.diff(midnight, 'minutes').minutes;
+    const seconds = localizedDate.diff(midnight, 'seconds').seconds;
 
     // Period variables
     let prev = null, next = null;
