@@ -114,46 +114,51 @@ export default function Testing() {
                             name="1 · Not yet started"
                             color={parsePeriodColor(1, userData)}
                             start={currTime.plus({minute: 20})}
+                            end={currTime.plus({minute: 50})}
+                            format="h:mm a"
                         />
                         <Period
                             name="2 · Almost finished"
                             color={parsePeriodColor(2, userData)}
+                            start={currTime.minus({minute: 20})}
+                            end={currTime.plus({minute: 10})}
+                            format="h:mm a"
                         />
                         <Period
                             name="3 · Just beginning"
                             color={parsePeriodColor(3, userData)}
                             note="A cantilever is a rigid structural element that extends horizontally and is supported at only one end. Typically it extends from a flat vertical surface such as a wall, to which it must be firmly attached. Like other structural elements, a cantilever can be formed as a beam, plate, truss, or slab."
-                            format="h:mm A"
+                            start={currTime.minus({minute: 10})}
+                            end={currTime.plus({minute: 20})}
+                            format="h:mm a"
                         />
                         <Period
                             name="4 · Halfway there!"
                             color={parsePeriodColor(4, userData)}
-                            end={moment().add(15, 'minutes')}
-                            format="h:mm A"
+                            start={currTime.minus({minute: 15})}
+                            end={currTime.plus({minute: 15})}
+                            format="h:mm a"
                         />
                         <Period
                             name="5 · Finished"
                             color={parsePeriodColor(5, userData)}
-                            start={moment().subtract(50, 'minutes')}
-                            end={moment().subtract(20, 'minutes')}
-                            format="h:mm A"
+                            start={currTime.minus({minute: 50})}
+                            end={currTime.minus({minute: 20})}
                             format="h:mm a"
                         />
                         <Period
                             name="6 · 24-Hour"
                             color={parsePeriodColor(6, userData)}
-                            now={moment()}
-                            start={moment().subtract(20, 'minutes')}
-                            end={moment().add(10, 'minutes')}
+                            start={currTime.minus({minute: 20})}
+                            end={currTime.plus({minute: 10})}
                             format="H:mm"
                         />
                         <Period
                             name="7 · With Zoom Link"
                             color={parsePeriodColor(7, userData)}
-                            now={moment()}
-                            start={moment().subtract(50, 'minutes')}
-                            end={moment().subtract(20, 'minutes')}
-                            format="h:mm A"
+                            start={currTime.minus({minute: 50})}
+                            end={currTime.plus({minute: 15})}
+                            format="h:mm a"
                             zoom="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
                         />
                     </div>

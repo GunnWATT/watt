@@ -25,7 +25,7 @@ export default function Events(props: EventsProps) {
         if (event.start.date && event.end.date)
             return DateTime.fromISO(event.start.date).until(DateTime.fromISO(event.end.date).minus({minute: 1})).contains(viewDate);
         // Otherwise, if given start and end dateTimes, check to see if they fall on the same day as viewDate
-        return event.start.dateTime?.includes(viewDate.toFormat('YYYY-MM-DD'));
+        return event.start.dateTime?.includes(viewDate.toFormat('yyyy-MM-dd'));
     }
 
     // Render events on mount and viewDate change
