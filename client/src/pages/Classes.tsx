@@ -25,7 +25,7 @@ import { SgyDataProvider } from '../contexts/SgyDataContext';
 // Utilities
 import { parsePeriodColor } from '../components/schedule/Periods';
 import { useScreenType } from '../hooks/useScreenType';
-import { cleanupExpired } from '../util/sgyFunctions';
+import { cleanupExpired } from '../util/sgyAssignments';
 
 
 export async function fetchSgyMaterials(functions: Functions) {

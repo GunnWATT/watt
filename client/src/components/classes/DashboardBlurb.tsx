@@ -6,6 +6,7 @@ import { CheckSquare, Square } from 'react-feather';
 // Components
 import AssignmentModal from './AssignmentModal';
 import {AssignmentTimestamp} from './Assignments';
+import ContentButton from '../layout/ContentButton';
 import UpcomingQuickWeekCal from './QuickWeekCal';
 
 // Contexts
@@ -14,9 +15,8 @@ import UserDataContext from '../../contexts/UserDataContext';
 
 // Utils
 import { parsePeriodColor } from '../schedule/Periods';
-import { AssignmentBlurb, updateAssignment } from '../../util/sgyFunctions';
+import { AssignmentBlurb, updateAssignment } from '../../util/sgyAssignments';
 import { shortify } from '../../util/sgyHelpers';
-import ContentButton from "../layout/ContentButton";
 
 
 // Upcoming Blurb

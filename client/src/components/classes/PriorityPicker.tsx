@@ -9,7 +9,7 @@ import AnimatedPopover from '../layout/AnimatedPopover';
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Utilities
-import { parseLabelColor, parsePriority } from '../../util/sgyFunctions';
+import { parseLabelColor, parsePriority } from '../../util/sgyLabels';
 
 
 type PriorityPickerProps = {

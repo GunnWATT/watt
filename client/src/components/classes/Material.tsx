@@ -9,7 +9,7 @@ import UserDataContext, {SgyData} from '../../contexts/UserDataContext';
 
 // Utilities
 import {parsePeriodColor} from '../schedule/Periods';
-import {AssignmentBlurb, parseLabelColor} from '../../util/sgyFunctions';
+import {AssignmentBlurb} from '../../util/sgyAssignments';
 
 
 type MaterialProps = { item: AssignmentBlurb, sgyData: SgyData };

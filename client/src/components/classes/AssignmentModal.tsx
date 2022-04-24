@@ -13,7 +13,7 @@ import PriorityPicker from './PriorityPicker';
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Utilities
-import { AssignmentBlurb, deleteCustomAssignment, deleteModifiedAssignment, updateAssignment } from '../../util/sgyFunctions';
+import {AssignmentBlurb, deleteCustomAssignment, deleteModifiedAssignment, updateAssignment} from '../../util/sgyAssignments';
 
 
 type AssignmentModalProps = {item: AssignmentBlurb, open: boolean, setOpen: (open: boolean) => any};

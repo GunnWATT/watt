@@ -12,7 +12,9 @@ import UserDataContext from '../../contexts/UserDataContext';
 import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
-import { AssignmentBlurb, getAllGrades, getUpcomingInfo } from '../../util/sgyFunctions';
+import { AssignmentBlurb } from '../../util/sgyAssignments';
+import { getUpcomingInfo } from '../../util/sgyMaterials';
+import { getAllGrades } from '../../util/sgyGrades';
 
 
 export default function Dashboard() {

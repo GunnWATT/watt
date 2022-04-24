@@ -1,5 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
+
+// Contexts
 import UserDataContext from '../../contexts/UserDataContext';
+
+// Utilities
 import { cardinalize } from '../../util/sgyHelpers';
 import { ClassPeriodQuickInfo, pastClasses, nextSchoolDay, numSchoolDays } from '../../util/sgyPeriodFunctions';
 

@@ -10,7 +10,7 @@ import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
 // Utilities
 import { ActiveItemState } from './Assignments';
-import { AssignmentBlurb, parseLabelColor, parsePriority } from '../../util/sgyFunctions';
+import { AssignmentBlurb } from '../../util/sgyAssignments';
 import { parsePeriodColor } from '../schedule/Periods';
 import { pluralize, shortify } from '../../util/sgyHelpers';
 

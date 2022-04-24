@@ -18,7 +18,8 @@ import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
 import { findClassesList } from '../../pages/Classes';
-import { allLabels, AssignmentBlurb, createAssignment, parseLabelColor, parseLabelName, updateAssignment } from '../../util/sgyFunctions';
+import { AssignmentBlurb, createAssignment, updateAssignment } from '../../util/sgyAssignments';
+import { parseLabelColor, parseLabelName } from '../../util/sgyLabels';
 import { parsePeriodColor, parsePeriodName } from '../schedule/Periods';
 import CurrentTimeContext from "../../contexts/CurrentTimeContext";
 

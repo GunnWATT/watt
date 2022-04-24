@@ -1,6 +1,7 @@
 import {ReactNode, useContext, useState} from 'react';
 import { useAuth, useFirestore } from 'reactfire';
 import {DateTime} from 'luxon';
+import { AlertCircle, CheckSquare, Link, Square } from 'react-feather';
 
 // Components
 import PriorityPicker from './PriorityPicker';
@@ -12,8 +13,8 @@ import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
 // Utilities
 import { parsePeriodName, parsePeriodColor } from '../schedule/Periods';
-import { AssignmentBlurb, updateAssignment, parseLabelColor } from '../../util/sgyFunctions';
-import { AlertCircle, CheckSquare, Link, Square } from 'react-feather';
+import { AssignmentBlurb, updateAssignment } from '../../util/sgyAssignments';
+import { parseLabelColor } from '../../util/sgyLabels';
 import { shortify } from '../../util/sgyHelpers';
 
 
@@ -134,7 +135,7 @@ function Assignment(props: AssignmentProps) {
 function Overdue(props: { overdue: AssignmentBlurb[] } & ActiveItemState ) {
     const { overdue, ...activeDayState } = props;
 
-    if(!overdue.length) {
+    if (!overdue.length) {
         return <div className="upcoming-overdue-header">
             <a href="https://pausd.schoology.com/home" target="_blank" rel="noopener noreferrer">Check Schoology For Overdue Assignments</a>
         </div>
