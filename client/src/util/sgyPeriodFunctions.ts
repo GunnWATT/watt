@@ -3,14 +3,13 @@ import { UserData } from '../contexts/UserDataContext';
 import { getSchedule } from '../hooks/useSchedule';
 import { SCHOOL_END_EXCLUSIVE, SCHOOL_START } from '../components/schedule/Periods';
 
-// Functions for dealing with periods
 
-// Tells you if a day has a class
-export const hasClass = (day: DateTime, period: string) => {
+// Returns whether a day has a given class.
+export function hasClass(day: DateTime, period: string) {
     return getSchedule(day).periods?.find(({n}) => n === period) ?? null;
 }
 
-// Finds the next period of a certain class
+// Finds the `DateTime` representing the start of the next occurrence of a given class.
 export function findNextClass(period: string) {
     let current = DateTime.now().startOf('day');
     let p = hasClass(current, period);
@@ -81,7 +80,7 @@ export function pastClasses(period: string): ClassPeriodQuickInfo {
     return {past: {days}, classNow};
 }
 
-// self explanatory
+// Returns the `DateTime` representing the start of the next school day.
 export function nextSchoolDay(userData: UserData) {
     let now = DateTime.now();
 
@@ -118,8 +117,8 @@ export function nextSchoolDay(userData: UserData) {
     return null;
 }
 
-// number of school days since the start of the year
-export const numSchoolDays = () => {
+// Returns the number of school days since the start of the year.
+export function numSchoolDays() {
     let current = SCHOOL_START;
     let days = 1;
 
@@ -127,7 +126,7 @@ export const numSchoolDays = () => {
     // this file; consider abstracting it
     while (current < DateTime.now() && current <= SCHOOL_END_EXCLUSIVE) {
         current = current.plus({day: 1});
-        if (getSchedule(current)) days++;
+        if (getSchedule(current).periods) days++;
     }
     return days;
 }

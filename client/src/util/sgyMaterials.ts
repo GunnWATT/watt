@@ -48,7 +48,6 @@ export function getMaterials(sgyData: SgyData, selected: SgyPeriod | 'A', userDa
     }
 
     materials.sort(assignmentComparator);
-
     return materials;
 }
 
@@ -197,7 +196,7 @@ function sgyItemToBlurb(item: Assignment | Event | Document | Page, period: SgyP
 
 function assignmentToBlurb(item: Assignment, period: SgyPeriod | 'A'): AssignmentBlurb {
     // TODO: moment constructor
-    const timestamp = item.due.length ? DateTime.fromISO(item.due) : null;
+    const timestamp = item.due.length ? DateTime.fromISO(item.due.replace(' ', 'T')) : null;
     const labels = ['Assignment'];
     if (["managed_assessment", "assessment"].includes(item.type)) {
         labels.push('Test')
@@ -218,7 +217,7 @@ function eventToBlurb(item: Event, period: SgyPeriod | 'A'): AssignmentBlurb {
         ...sgyItemToBlurb(item, period),
         description: item.description,
         link: `https://pausd.schoology.com/event/${item.id}`,
-        timestamp: DateTime.fromISO(item.start),
+        timestamp: DateTime.fromISO(item.start.replace(' ', 'T')),
         labels: ['Event']
     }
 }

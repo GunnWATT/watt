@@ -24,7 +24,7 @@ export default function Material(props: MaterialProps) {
             <div className="material-name">{item.name}</div>
 
             {/* TODO: use toLocaleString with modified DATE_SHORT */}
-            {item.timestamp && <div className="material-date">{item.timestamp.toFormat('M/D/YY')}</div> }
+            {item.timestamp && <div className="material-date">{item.timestamp.toFormat('M/d/yy')}</div>}
 
             <div className="material-labels">
                 {/* {item.labels.map(label => <div key={label} className="material-date">{label}</div>)} */}
