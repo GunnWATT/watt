@@ -107,7 +107,7 @@ export function getUpcomingInfo(sgyData: SgyData, selected: SgyPeriod | 'A', use
         // console.log(item.title, item.grade_stats);
         if (item.due.length > 0) { // if it's actually due
 
-            const due = DateTime.fromISO(item.due);
+            const due = DateTime.fromISO(item.due.replace(' ', 'T'));
 
             if (due > time) { // if it's due after right now
                 // format the assignment
@@ -134,7 +134,7 @@ export function getUpcomingInfo(sgyData: SgyData, selected: SgyPeriod | 'A', use
 
     // do the same for events
     for (const item of selectedCourse.events) {
-        const due = DateTime.fromISO(item.start);
+        const due = DateTime.fromISO(item.start.replace(' ', 'T'));
 
         if (due > time && !item.assignment_id) {
             upcoming.push(eventToBlurb(item, selected));

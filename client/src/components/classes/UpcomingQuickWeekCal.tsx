@@ -37,15 +37,15 @@ function UpcomingQuickCalDay(props: UpcomingQuickCalDayProps) {
 
     const weekdays = ['U', 'M', 'T', 'W', 'θ', 'F', 'S']
 
-    const relevantAssigments = upcoming.filter((a) => a.timestamp!.ordinal === day.ordinal);
-    const active = selected === 'A' ? !!getSchedule(day) : !!hasClass(day, selected);
+    const relevantAssignments = upcoming.filter((a) => a.timestamp!.ordinal === day.ordinal);
+    const active = selected === 'A' ? !!(getSchedule(day).periods) : !!hasClass(day, selected);
 
     // Lots of flexbox
     return (
         <div className={"quick-calendar-day" + (active ? '-active' : '-inactive')}>
-            <div className="quick-calendar-day-num"> {screenType === 'phone' ? weekdays[day.weekday - 1] : `${weekdays[day.weekday - 1]} • ${day.day}`}</div>
+            <div className="quick-calendar-day-num">{screenType === 'phone' ? weekdays[day.weekday % 7] : `${weekdays[day.weekday % 7]} • ${day.day}`}</div>
             <div className="quick-calendar-dots">
-                {relevantAssigments.map((a,i) => <UpcomingQuickCalDot key={a.period + i} course={a.period} completed={a.completed} />)}
+                {relevantAssignments.map((a,i) => <UpcomingQuickCalDot key={a.period + i} course={a.period} completed={a.completed} />)}
             </div>
         </div>
     );

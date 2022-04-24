@@ -16,6 +16,7 @@ import { parsePeriodName, parsePeriodColor } from '../schedule/Periods';
 import { AssignmentBlurb, updateAssignment } from '../../util/sgyAssignments';
 import { parseLabelColor } from '../../util/sgyLabels';
 import { shortify } from '../../util/sgyHelpers';
+import {DATE_FULL_NO_YEAR, DATE_MED_NO_YEAR} from '../../util/dateFormats';
 
 
 // The assignment blocks for the Upcoming Tab
@@ -99,7 +100,7 @@ function Assignment(props: AssignmentProps) {
                     </div>
                 )}
                 <AssignmentTimestamp className="mt-2.5">
-                    {assignment.timestamp!.toFormat('hh:mm a on dddd, MMM Do')}
+                    {assignment.timestamp!.toLocaleString(DateTime.TIME_SIMPLE)} on {assignment.timestamp!.toLocaleString(DATE_MED_NO_YEAR)}
                     {overdue && (
                         <span> • <span className="text-theme dark:text-theme-dark">
                             {assignment.timestamp?.toRelative()}
@@ -178,10 +179,9 @@ export default function Assignments(props: AssignmentsProps & ActiveItemState) {
     return (
         <div className="upcoming-assignments">
             {days.map(({day, upcoming: currUpcoming}) => (
-                // TODO: replace "strings for cthulu" with customized locale string
-                <section key={day.toFormat('MM-DD-YYYY')}>
+                <section key={day.toISO()}>
                     <div className="upcoming-day-header">
-                        {day.toFormat('dddd, MMMM Do')} • In {day.diff(currTime, 'days').days + 1} day{day.diff(currTime, 'days').days ? 's' : ''}
+                        {day.toLocaleString(DATE_FULL_NO_YEAR)} • In {Math.floor(day.diff(currTime, 'days').days + 1)} day{day.diff(currTime, 'days').days ? 's' : ''}
                     </div>
 
                     {currUpcoming.map((assignment) => (

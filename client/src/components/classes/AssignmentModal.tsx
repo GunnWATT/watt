@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import {Dialog} from '@headlessui/react';
 import { useAuth, useFirestore } from 'reactfire';
 import { Square, CheckSquare, Link, Edit, Trash2, SkipBack } from 'react-feather';
+import {DateTime} from 'luxon';
 
 // Components
 import CenteredModal from '../layout/CenteredModal';
@@ -14,6 +15,7 @@ import UserDataContext from '../../contexts/UserDataContext';
 
 // Utilities
 import {AssignmentBlurb, deleteCustomAssignment, deleteModifiedAssignment, updateAssignment} from '../../util/sgyAssignments';
+import {DATE_MED_NO_YEAR} from '../../util/dateFormats';
 
 
 type AssignmentModalProps = {item: AssignmentBlurb, open: boolean, setOpen: (open: boolean) => any};
@@ -80,7 +82,7 @@ export default function AssignmentModal(props: AssignmentModalProps) {
                         <PriorityPicker priority={item.priority} setPriority={setPriority} />
 
                         <AssignmentTimestamp>
-                            {item.timestamp.toFormat('hh:mm a on dddd, MMM Do')}
+                            {item.timestamp.toLocaleString(DateTime.TIME_SIMPLE)} on {item.timestamp.toLocaleString(DATE_MED_NO_YEAR)}
                         </AssignmentTimestamp>
 
                         <Edit
