@@ -1,6 +1,6 @@
 import { useContext } from 'react';
+import {DateTime} from 'luxon';
 import Loading, { Spinner } from '../layout/Loading';
-import moment from 'moment';
 
 // Firebase
 import { useAuth, useFunctions } from 'reactfire';
@@ -31,7 +31,7 @@ export default function FetchFooter() {
                 {fetching ? (
                     <Loading>Fetching...</Loading>
                 ) : lastFetched ? (
-                    <div>Schoology data last updated {moment(lastFetched).fromNow()}.</div>
+                    <div>Schoology data last updated {DateTime.fromMillis(lastFetched).toRelative()}.</div>
                 ) : (
                     <div>An error occurred.</div>
                 )}

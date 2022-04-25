@@ -1,5 +1,4 @@
-import { Moment } from 'moment';
-import React from 'react';
+import {createContext} from 'react';
 import { SgyPeriod, SgyData } from './UserDataContext';
 
 export type SgyContext = {
@@ -22,7 +21,7 @@ const DefaultSgyContext:SgyContext = {
     updateSgy: async () => {},
 }
 
-const SgyDataContext = React.createContext<SgyContext>(DefaultSgyContext);
+const SgyDataContext = createContext<SgyContext>(DefaultSgyContext);
 
 export const SgyDataProvider = SgyDataContext.Provider;
 export default SgyDataContext;

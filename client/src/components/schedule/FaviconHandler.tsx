@@ -25,7 +25,7 @@ export default function FaviconHandler() {
 
     // Update document name and favicon based on current period
     useEffect(() => {
-        const midnight = date.clone().startOf('date');
+        const midnight = date.startOf('day');
 
         // Initialize canvas reference
         if (!canvas.current) {
@@ -60,7 +60,7 @@ export default function FaviconHandler() {
         const isSeconds = (numToShow === 1);
         let seconds;
         if (isSeconds) {
-            seconds = 60 - (date.diff(midnight, 'seconds') % 60);
+            seconds = 60 - (date.diff(midnight, 'seconds').seconds % 60);
             numToShow = seconds;
         }
         // document.title = ['isSeconds: ', isSeconds, ' & numToShow: ', numToShow].join()

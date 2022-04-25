@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import {useAuth, useSigninCheck} from 'reactfire';
+import {DateTime} from 'luxon';
 import PageVisibility from 'react-page-visibility';
-import moment from 'moment';
 import {GCalEvent} from './components/schedule/Event';
 
 // Components
@@ -28,10 +28,10 @@ const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
 
 export default function App() {
     // Global datetime
-    const [date, setDate] = useState(moment());
+    const [date, setDate] = useState(DateTime.now());
 
     useEffect(() => {
-        const timerID = setInterval(() => setDate(moment()), 1000);
+        const timerID = setInterval(() => setDate(DateTime.now()), 1000);
         return () => clearInterval(timerID);
     }, []);
 

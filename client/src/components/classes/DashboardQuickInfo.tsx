@@ -1,5 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
+
+// Contexts
 import UserDataContext from '../../contexts/UserDataContext';
+
+// Utilities
 import { cardinalize } from '../../util/sgyHelpers';
 import { ClassPeriodQuickInfo, pastClasses, nextSchoolDay, numSchoolDays } from '../../util/sgyPeriodFunctions';
 
@@ -19,7 +23,7 @@ export default function DashboardQuickInfo(props: { selected: string }) {
     if (selected === 'A') {
         return (
             <section>
-                <div className="dashboard-qi-main">The next school day is {nextSchoolDay(userData)?.fromNow()}.</div>
+                <div className="dashboard-qi-main">The next school day is {nextSchoolDay(userData)?.toRelative()}.</div>
                 <div className="secondary">There have been {numSchoolDays()} school days in this school year.</div>
             </section>
         )
@@ -35,9 +39,9 @@ export default function DashboardQuickInfo(props: { selected: string }) {
 
     return (
         <section>
-            <div className="dashboard-qi-main">The next class is {info.next.time.fromNow()}.</div>
+            <div className="dashboard-qi-main">The next class is {info.next.time.toRelative()}.</div>
             <div className="dashboard-qi-note secondary">
-                It will be on {info.next.time.format('dddd, MMMM Do')}, and will be Week {info.next.week} Day {info.next.day},
+                It will be on {info.next.time.toFormat('dddd, MMMM Do')}, and will be Week {info.next.week} Day {info.next.day},
                 the {cardinalize(info.past.days + 1)} class of the school year.
             </div>
         </section>

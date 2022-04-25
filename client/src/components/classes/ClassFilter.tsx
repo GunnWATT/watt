@@ -10,7 +10,7 @@ import {AssignmentTag} from './Assignments';
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Utilities
-import {allLabels, parseLabelColor, parseLabelName} from '../../util/sgyFunctions';
+import {allLabels, parseLabelColor, parseLabelName} from '../../util/sgyLabels';
 import {useScreenType} from '../../hooks/useScreenType';
 
 

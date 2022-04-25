@@ -1,25 +1,26 @@
 import { useContext } from 'react';
-import { useSchedule } from '../../hooks/useSchedule';
-import moment, {Moment} from 'moment-timezone';
-import { parsePeriodColor } from './Periods';
+import {DateTime} from 'luxon';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
+// Utilities
+import { useSchedule } from '../../hooks/useSchedule';
+import { parsePeriodColor } from './Periods';
 
-type ClockProps = { viewDate: Moment };
+
+type ClockProps = { viewDate: DateTime };
 export default function Clock(props: ClockProps) {
     const { viewDate } = props;
     const time = useContext(CurrentTimeContext);
-    const timeZone = moment.tz.guess(true);
 
     const radius = 40;
     const size = radius * 2 + 20;
-    const s = time.seconds() + time.minutes() * 60 + time.hours() * 60 * 60;
+    const s = time.second + time.minute * 60 + time.hour * 60 * 60;
     const secondDegs = s / 60 * 360;
-    const minuteDegs = s / (60**2) * 360;
-    const hourDegs = s / (60**2) / 12 * 360;
+    const minuteDegs = s / (60 ** 2) * 360;
+    const hourDegs = s / (60 ** 2) / 12 * 360;
 
     // Period handling
     const {periods} = useSchedule(time);
@@ -68,11 +69,11 @@ export default function Clock(props: ClockProps) {
                 {periods && periods.map(({n, s, e}) => {
                     // TODO: this is not a very clean or efficient way of doing this
                     // Hopefully something else can be thought of soon!
-                    const startObj = viewDate.clone().add(s, 'minutes').tz(timeZone);
-                    const endObj = viewDate.clone().add(e, 'minutes').tz(timeZone);
+                    const startObj = viewDate.plus({minutes: s}).toLocal();
+                    const endObj = viewDate.plus({minutes: e}).toLocal();
 
-                    const start = ((startObj.minutes() + startObj.hours() * 60) / 720 - 1/4) * 2 * Math.PI;
-                    const end = ((endObj.minutes() + endObj.hours() * 60) / 720 - 1/4) * 2 * Math.PI;
+                    const start = ((startObj.minute + startObj.hour * 60) / 720 - 1/4) * 2 * Math.PI;
+                    const end = ((endObj.minute + endObj.hour * 60) / 720 - 1/4) * 2 * Math.PI;
 
                     // Ignore non number periods (brunch, lunch)
                     // TODO: consider whether SELF and PRIME should be displayed?
@@ -83,7 +84,7 @@ export default function Clock(props: ClockProps) {
                             d={`M ${size / 2 + radius * Math.cos(end)} ${size / 2 + radius * Math.sin(end)} \nA ${radius} ${radius} 0 0 0 ${size / 2 + radius * Math.cos(start)} ${size / 2 + radius * Math.sin(start)}`}
                             stroke={parsePeriodColor(n, userData)}
                             strokeWidth={6}
-                            fill={'transparent'}
+                            fill="transparent"
                         />
                     )
                 })}

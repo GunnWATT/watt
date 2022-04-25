@@ -1,5 +1,4 @@
 import {ReactNode, useContext, useEffect, useState} from 'react';
-import moment from 'moment';
 
 // Components
 import DashboardBlurb from './DashboardBlurb';
@@ -13,7 +12,9 @@ import UserDataContext from '../../contexts/UserDataContext';
 import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
-import { AssignmentBlurb, getAllGrades, getUpcomingInfo } from '../../util/sgyFunctions';
+import { AssignmentBlurb } from '../../util/sgyAssignments';
+import { getUpcomingInfo } from '../../util/sgyMaterials';
+import { getAllGrades } from '../../util/sgyGrades';
 
 
 export default function Dashboard() {
@@ -22,7 +23,7 @@ export default function Dashboard() {
     const userData = useContext(UserDataContext);
     const time = useContext(CurrentTimeContext);
 
-    const lastFetchedTime = lastFetched && moment(lastFetched);
+    //const lastFetchedTime = lastFetched && moment(lastFetched);
 
     const [upcoming, setUpcoming] = useState<AssignmentBlurb[] | null>(null);
     const [overdue, setOverdue] = useState<AssignmentBlurb[] | null>(null);

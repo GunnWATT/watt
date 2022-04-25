@@ -1,9 +1,16 @@
 import {useContext, useState} from 'react';
+
+// Components
 import AssignmentModal from './AssignmentModal';
-import UserDataContext, {SgyData} from '../../contexts/UserDataContext';
-import {parsePeriodColor} from '../schedule/Periods';
-import {AssignmentBlurb, parseLabelColor} from '../../util/sgyFunctions';
 import { AssignmentTags } from './Assignments';
+
+// Contexts
+import UserDataContext, {SgyData} from '../../contexts/UserDataContext';
+
+// Utilities
+import {parsePeriodColor} from '../schedule/Periods';
+import {AssignmentBlurb} from '../../util/sgyAssignments';
+import {DATE_SHORT_YEAR_SHORTENED} from '../../util/dateFormats';
 
 
 type MaterialProps = { item: AssignmentBlurb, sgyData: SgyData };
@@ -17,7 +24,9 @@ export default function Material(props: MaterialProps) {
         <div className="material" onClick={() => setModal(!modal)}>
             <div className="material-name">{item.name}</div>
 
-            {item.timestamp && <div className="material-date">{item.timestamp.format('M/D/YY')}</div> }
+            {item.timestamp && (
+                <div className="material-date">{item.timestamp.toLocaleString(DATE_SHORT_YEAR_SHORTENED)}</div>
+            )}
 
             <div className="material-labels">
                 {/* {item.labels.map(label => <div key={label} className="material-date">{label}</div>)} */}

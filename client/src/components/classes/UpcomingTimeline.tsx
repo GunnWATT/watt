@@ -1,17 +1,19 @@
 import { useContext, useState } from 'react';
-import moment from 'moment';
+import {DateTime} from 'luxon';
 
 // Components
 import {Spinner} from '../layout/Loading';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
-import { pluralize, shortify } from '../../util/sgyHelpers';
+import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
 // Utilities
 import { ActiveItemState } from './Assignments';
-import { AssignmentBlurb, parseLabelColor, parsePriority } from '../../util/sgyFunctions';
+import { AssignmentBlurb } from '../../util/sgyAssignments';
 import { parsePeriodColor } from '../schedule/Periods';
+import { pluralize, shortify } from '../../util/sgyHelpers';
+import {DATE_SHORT_NO_YEAR} from '../../util/dateFormats';
 
 
 // type of a transition
@@ -43,7 +45,9 @@ const SidebarTooltip = (props: {
 // Doubles as a date range filter for the assignments, and for a quick visualization of due dates
 export default function UpcomingTimeline(props: ActiveItemState & {upcoming: AssignmentBlurb[]|null}) {
     const { upcoming: raw, activeItem, setActiveItem } = props;
+
     const userData = useContext(UserDataContext);
+    const currTime = useContext(CurrentTimeContext);
 
     if (!raw) return (
         <div className="upcoming-cal flex items-center justify-center">
@@ -53,24 +57,26 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
 
     const upcoming = raw.filter(a => !a.completed);
 
-    const priorityToRadius = (p: number) => { // priority to radius of circle
+    // Priority to radius of circle
+    const priorityToRadius = (p: number) => {
         const b = 20;
-        if(p === -1) return b;
-        return (4-p)*5 + b;
+        if (p === -1) return b;
+        return (4 - p) * 5 + b;
     }
-    const parseDistance = (from: AssignmentBlurb, to: AssignmentBlurb): [number, LineType] => { // the distance between two circles, and also the *type* of that transition
 
+    // The distance between two circles, and also the *type* of that transition
+    const parseDistance = (from: AssignmentBlurb, to: AssignmentBlurb): [number, LineType] => {
         const minDist = 15; // we don't want the distance to be 0
         // console.log(from.timestamp?.format('YYYY MMMM Do'))
-        if (moment(from.timestamp!).isSame(to.timestamp!, 'day')) {
+        if (from.timestamp!.hasSame(to.timestamp!, 'day')) {
             // if they're the same day, determine the distance by hours
-            const diffSecs = moment(to.timestamp!).diff(moment(from.timestamp!), 'seconds');
+            const diffSecs = to.timestamp!.diff(from.timestamp!, 'seconds').seconds;
             const dist = diffSecs / 60 / 60 * 3; // hours * 3
             return [Math.max(dist, minDist), 'same-day'];
         }
 
         // check days
-        const diffDays = moment(to.timestamp!).startOf('day').diff(moment(from.timestamp!).startOf('day'), 'days');
+        const diffDays = to.timestamp!.startOf('day').diff(from.timestamp!.startOf('day'), 'days').days;
 
         if (diffDays > 5) {
             const diff = 200 + Math.sqrt(diffDays) * 10;
@@ -121,7 +127,7 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
         const ey = circles[i].cy + circles[i].radius;
 
         svgheight = ey + 50;
-        const day = moment(upcoming[i].timestamp!).startOf('day').format('YYYY-MM-DD');
+        const day = upcoming[i].timestamp!.startOf('day').toISO();
         days.set(day, days.has(day) ? {...days.get(day)!, ey} : {sy, ey});
     }
 
@@ -202,41 +208,38 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
                     </a>
                 ))}
 
-                {[...days].map(([day, { sy, ey }]) => (
-                    <g key={day}>
-                        <text
-                            x={weekdayX} y={(sy + ey) / 2}
-                            dominantBaseline="central" // center vertically
-                            className="font-mono fill-primary dark:fill-primary-dark"
-                            style={{
-                                fontSize: 50,
-                            }}
-                        >
-                            {weekdays[moment(day).day()]}
-                        </text>
+                {[...days].map(([day, { sy, ey }]) => {
+                    const dateTime = DateTime.fromISO(day);
+                    return (
+                        <g key={day}>
+                            <text
+                                x={weekdayX} y={(sy + ey) / 2}
+                                dominantBaseline="central" // center vertically
+                                className="font-mono fill-primary dark:fill-primary-dark"
+                                style={{fontSize: 50}}
+                            >
+                                {weekdays[dateTime.weekday % 7]}
+                            </text>
 
-                        <text
-                            x={dayX} y={(sy + ey) / 2 - 10}
-                            dominantBaseline="central" // center vertically
-                            className="fill-primary dark:fill-primary-dark"
-                            style={{
-                                fontSize: 15,
-                            }}
-                        >
-                            {moment(day).format('MM/DD')}
-                        </text>
-                        <text
-                            x={dayX} y={(sy + ey) / 2 + 10}
-                            dominantBaseline="central" // center vertically
-                            className="fill-primary dark:fill-primary-dark"
-                            style={{
-                                fontSize: 15,
-                            }}
-                        >
-                            In {pluralize(moment(day).diff(moment(), 'days'), 'day')}
-                        </text>
-                    </g>
-                ))}
+                            <text
+                                x={dayX} y={(sy + ey) / 2 - 10}
+                                dominantBaseline="central" // center vertically
+                                className="fill-primary dark:fill-primary-dark"
+                                style={{fontSize: 15}}
+                            >
+                                {dateTime.toLocaleString(DATE_SHORT_NO_YEAR)}
+                            </text>
+                            <text
+                                x={dayX} y={(sy + ey) / 2 + 10}
+                                dominantBaseline="central" // center vertically
+                                className="fill-primary dark:fill-primary-dark"
+                                style={{fontSize: 15}}
+                            >
+                                In {pluralize(Math.ceil(dateTime.diff(currTime, 'days').days), 'day')}
+                            </text>
+                        </g>
+                    )
+                })}
             </svg>
 
             {/* Tooltip */}

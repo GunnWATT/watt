@@ -1,5 +1,5 @@
 import {useContext, useState} from 'react';
-import moment from 'moment';
+import {DateTime} from 'luxon';
 import {useScreenType} from '../hooks/useScreenType';
 
 // Components
@@ -21,7 +21,7 @@ export default function Clubs() {
 
     // Dynamically setting default tab
     const currTime = useContext(CurrentTimeContext)
-    let date = (Number(currTime.format('d')) + 1).toString(); // :weary:
+    let date = ((currTime.weekday % 7) + 1).toString();
     if (date > '6') date = '1';
 
     // Tabs
@@ -93,7 +93,7 @@ export default function Clubs() {
             <p className="mb-4 secondary">
                 Please note that club information was taken from{' '}
                 <a href="https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vQ-UXugiZ8GznB367cO8JptTO9BLm5OE4D3WO8oZvYk_365lY25Q6eAFNSEIC5DGXGWOXwK_wauoTFT/pubhtml" target="_blank" rel="noopener noreferrer">the 2021-2022 chartered clubs spreadsheet</a>{' '}
-                as of {moment(timestamp).format('MMMM Do, YYYY')}. Attribute inaccuracies to them.
+                as of {DateTime.fromISO(timestamp).toLocaleString(DateTime.DATE_FULL)}. Attribute inaccuracies to them.
             </p>
             <List
                 data={dataFromTab()}

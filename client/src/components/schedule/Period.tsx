@@ -1,14 +1,14 @@
 import {useContext, useMemo} from 'react';
 import { Disclosure } from '@headlessui/react';
 import {ChevronUp, ChevronDown, Link} from 'react-feather';
-import {Moment} from 'moment';
-import 'twix';
+import {DateTime} from 'luxon';
 
 // Components
 import PillClubComponent from '../lists/PillClubComponent';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
+import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
 // Utilities
 import {bgColor, barColor, hexToRgb} from '../../util/progressBarColor';
@@ -16,20 +16,21 @@ import clubs from '../../data/clubs';
 
 
 type PeriodProps = {
-    now: Moment, start: Moment, end: Moment,
+    start: DateTime, end: DateTime,
     name: string, color: string, format: string, zoom?: string, note?: string
 };
 export default function Period(props: PeriodProps) {
-    const {now, start, end, name, color, format, zoom, note} = props;
-    const t = start.twix(end); // Twix duration representing the period
+    const {start, end, name, color, format, zoom, note} = props;
+    const duration = start.until(end); // Duration representing the period
 
+    const now = useContext(CurrentTimeContext);
     const userData = useContext(UserDataContext);
 
     // Determines what text to display regarding how long before/after the period was
     const parseStartEnd = () => {
-        if (t.isPast()) return <span>Ended {end.fromNow()}</span>
-        if (t.isCurrent()) return <span>Ending {end.fromNow()}, started {start.fromNow()}</span>
-        if (t.isFuture()) return <span>Starting {start.fromNow()}</span>
+        if (duration.isBefore(now)) return <span>Ended {end.toRelative()}</span>
+        if (duration.contains(now)) return <span>Ending {end.toRelative()}, started {start.toRelative()}</span>
+        if (duration.isAfter(now)) return <span>Starting {start.toRelative()}</span>
     }
 
     // Returns whether the given club is occurring in this period.
@@ -37,7 +38,7 @@ export default function Period(props: PeriodProps) {
     const clubOccurring = (id: string) => {
         const club = clubs.data[id];
         return name === 'Lunch' && club.time === 'Lunch'
-            && club.day.toLowerCase().includes(start.format('dddd').toLowerCase());
+            && club.day.toLowerCase().includes(start.weekdayLong.toLowerCase());
     }
 
     // Fetch the pinned clubs occurring on this lunch period.
@@ -71,9 +72,9 @@ export default function Period(props: PeriodProps) {
                 <p className="flex gap-1 mb-1">{pinned}</p>
             )}
 
-            <h3 className="secondary">{t.simpleFormat(format)}</h3>
-            <p className="secondary">{parseStartEnd()} — {t.countInner('minutes')} minutes long</p>
-            {t.isCurrent() && (
+            <h3 className="secondary">{duration.toFormat(format)}</h3>
+            <p className="secondary">{parseStartEnd()} — {duration.length('minutes')} minutes long</p>
+            {duration.contains(now) && (
                 // TODO: should this be abstracted with PeriodIndicator? They share some logic but differ in other ways
                 <div className="mt-2 flex overflow-hidden h-3 rounded" style={{backgroundColor: bgColor(color)}}>
                     <div

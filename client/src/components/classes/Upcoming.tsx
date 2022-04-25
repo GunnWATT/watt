@@ -8,6 +8,7 @@ import Assignments from './Assignments';
 import UpcomingTimeline from './UpcomingTimeline';
 import ClassFilter, {QueryObj} from './ClassFilter';
 import CreateAssignmentModal from './CreateAssignmentModal';
+import ContentButton from '../layout/ContentButton';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
@@ -16,10 +17,9 @@ import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
 import { findClassesList } from '../../pages/Classes';
-import {AssignmentBlurb} from '../../util/sgyFunctions';
-import { getUpcomingInfo } from '../../util/sgyFunctions';
+import {AssignmentBlurb} from '../../util/sgyAssignments';
+import { getUpcomingInfo } from '../../util/sgyMaterials';
 import { similarity } from '../../util/sgyHelpers';
-import ContentButton from "../layout/ContentButton";
 
 
 export default function Upcoming() {

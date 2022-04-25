@@ -2,12 +2,12 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth, useFirestore } from 'reactfire';
 import { CheckSquare, Square } from 'react-feather';
-import moment from 'moment';
 
 // Components
 import AssignmentModal from './AssignmentModal';
 import {AssignmentTimestamp} from './Assignments';
-import UpcomingQuickWeekCal from './QuickWeekCal';
+import ContentButton from '../layout/ContentButton';
+import UpcomingQuickWeekCal from './UpcomingQuickWeekCal';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
@@ -15,9 +15,9 @@ import UserDataContext from '../../contexts/UserDataContext';
 
 // Utils
 import { parsePeriodColor } from '../schedule/Periods';
-import { AssignmentBlurb, updateAssignment } from '../../util/sgyFunctions';
+import { AssignmentBlurb, updateAssignment } from '../../util/sgyAssignments';
 import { shortify } from '../../util/sgyHelpers';
-import ContentButton from "../layout/ContentButton";
+import {DATE_FULL_NO_YEAR} from '../../util/dateFormats';
 
 
 // Upcoming Blurb
@@ -45,7 +45,7 @@ function BlurbAssignment(props: BlurbAssignmentProps) {
             <div className="blurb-assignment-content cursor-pointer" style={{ textDecoration: item.completed ? 'line-through' : '' }} onClick={() => setModal(!modal)}>
                 <div className="text-lg">{shortify(item.name)}</div>
                 <AssignmentTimestamp>
-                    {item.timestamp!.format("dddd, MMMM Do")} • {item.timestamp!.fromNow()}
+                    {item.timestamp!.toLocaleString(DATE_FULL_NO_YEAR)} • {item.timestamp!.toRelative()}
                 </AssignmentTimestamp>
             </div>
 
@@ -59,8 +59,8 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
     const { upcoming, selected } = props;
 
     const time = useContext(CurrentTimeContext);
-    const inAWeek = moment(time).add(6, 'days');
-    const assignmentsNextWeek = upcoming.filter((assi) => assi.timestamp!.isBefore(inAWeek));
+    const inAWeek = time.plus({day: 6});
+    const assignmentsNextWeek = upcoming.filter((assi) => assi.timestamp! < inAWeek);
     const assignmentsToDoNextWeek = assignmentsNextWeek.filter(assi => !assi.completed)
 
     const [includeCompleted, setIncludeCompleted] = useState(false);

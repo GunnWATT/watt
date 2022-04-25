@@ -42,10 +42,10 @@ export default function Appearance() {
 
                 <RadioCards label="Time Format" value={currTimePref} onChange={changeTime}>
                     <RadioCard label="12-hour" value="12">
-                        12-hour time <strong>({currTime.format('h:mm:ss A')})</strong>.
+                        12-hour time <strong>({currTime.toFormat('h:mm:ss a')})</strong>.
                     </RadioCard>
                     <RadioCard label="24-hour" value="24">
-                        24-hour time <strong>({currTime.format('H:mm:ss')})</strong>.
+                        24-hour time <strong>({currTime.toFormat('H:mm:ss')})</strong>.
                     </RadioCard>
                 </RadioCards>
             </section>

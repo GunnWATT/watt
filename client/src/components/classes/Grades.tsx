@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import {Disclosure} from '@headlessui/react';
+import { ChevronDown, ChevronRight, ChevronUp } from 'react-feather';
 
 // Context
 import UserDataContext from '../../contexts/UserDataContext';
@@ -8,9 +9,6 @@ import SgyDataContext from '../../contexts/SgyDataContext';
 // Utilities
 import { findClassesList } from '../../pages/Classes';
 import { classifyGrade } from '../../util/sgyHelpers';
-
-// Icons
-import { ChevronDown, ChevronRight, ChevronUp } from 'react-feather';
 
 
 type GradesProps = { selected: string, allGrades: { [key: string]: number } };

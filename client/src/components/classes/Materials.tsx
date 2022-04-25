@@ -12,7 +12,8 @@ import SgyDataContext from '../../contexts/SgyDataContext';
 // Utilities
 import { findClassesList } from '../../pages/Classes';
 import { similarity } from '../../util/sgyHelpers';
-import {AssignmentBlurb, defaultLabels, getMaterials, parseLabelColor} from '../../util/sgyFunctions';
+import {AssignmentBlurb} from '../../util/sgyAssignments';
+import {getMaterials} from '../../util/sgyMaterials';
 
 
 export default function Materials() {
