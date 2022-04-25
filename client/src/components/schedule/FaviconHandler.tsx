@@ -61,7 +61,7 @@ export default function FaviconHandler() {
         let seconds;
         if (isSeconds) {
             seconds = 60 - (date.diff(midnight, 'seconds').seconds % 60);
-            numToShow = seconds;
+            numToShow = Math.ceil(seconds);
         }
         // document.title = ['isSeconds: ', isSeconds, ' & numToShow: ', numToShow].join()
         const color = parsePeriodColor(next.n, userData)

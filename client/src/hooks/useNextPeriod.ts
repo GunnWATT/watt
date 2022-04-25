@@ -34,8 +34,8 @@ export function useNextPeriod(date: DateTime) {
         next = periods[currPd];
     }
 
-    const startingIn = next && next.s - minutes;
-    const endingIn = next && next.e - minutes;
+    const startingIn = next && next.s - Math.ceil(minutes);
+    const endingIn = next && next.e - Math.ceil(minutes);
 
     return {prev, next, startingIn, endingIn, minutes, seconds};
 }
