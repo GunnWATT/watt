@@ -1,6 +1,12 @@
 import {DateTime} from 'luxon';
 
 
+// `10/14`
+export const DATE_SHORT_NO_YEAR: Intl.DateTimeFormatOptions = {
+    ...DateTime.DATE_SHORT,
+    year: undefined
+}
+
 // `10/14/83`
 export const DATE_SHORT_YEAR_SHORTENED: Intl.DateTimeFormatOptions = {
     ...DateTime.DATE_SHORT,

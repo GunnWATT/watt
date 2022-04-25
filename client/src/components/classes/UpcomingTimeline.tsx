@@ -13,6 +13,7 @@ import { ActiveItemState } from './Assignments';
 import { AssignmentBlurb } from '../../util/sgyAssignments';
 import { parsePeriodColor } from '../schedule/Periods';
 import { pluralize, shortify } from '../../util/sgyHelpers';
+import {DATE_SHORT_NO_YEAR} from '../../util/dateFormats';
 
 
 // type of a transition
@@ -126,7 +127,7 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
         const ey = circles[i].cy + circles[i].radius;
 
         svgheight = ey + 50;
-        const day = upcoming[i].timestamp!.startOf('day').toFormat('YYYY-MM-DD');
+        const day = upcoming[i].timestamp!.startOf('day').toISO();
         days.set(day, days.has(day) ? {...days.get(day)!, ey} : {sy, ey});
     }
 
@@ -217,7 +218,7 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
                                 className="font-mono fill-primary dark:fill-primary-dark"
                                 style={{fontSize: 50}}
                             >
-                                {weekdays[dateTime.weekday]}
+                                {weekdays[dateTime.weekday % 7]}
                             </text>
 
                             <text
@@ -226,7 +227,7 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
                                 className="fill-primary dark:fill-primary-dark"
                                 style={{fontSize: 15}}
                             >
-                                {dateTime.toFormat('MM/DD')}
+                                {dateTime.toLocaleString(DATE_SHORT_NO_YEAR)}
                             </text>
                             <text
                                 x={dayX} y={(sy + ey) / 2 + 10}
@@ -234,7 +235,7 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
                                 className="fill-primary dark:fill-primary-dark"
                                 style={{fontSize: 15}}
                             >
-                                In {pluralize(dateTime.diff(currTime, 'days').days, 'day')}
+                                In {pluralize(Math.ceil(dateTime.diff(currTime, 'days').days), 'day')}
                             </text>
                         </g>
                     )

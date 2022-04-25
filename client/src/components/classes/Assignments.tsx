@@ -15,7 +15,7 @@ import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 import { parsePeriodName, parsePeriodColor } from '../schedule/Periods';
 import { AssignmentBlurb, updateAssignment } from '../../util/sgyAssignments';
 import { parseLabelColor } from '../../util/sgyLabels';
-import { shortify } from '../../util/sgyHelpers';
+import {pluralize, shortify} from '../../util/sgyHelpers';
 import {DATE_FULL_NO_YEAR, DATE_MED_NO_YEAR} from '../../util/dateFormats';
 
 
@@ -181,7 +181,7 @@ export default function Assignments(props: AssignmentsProps & ActiveItemState) {
             {days.map(({day, upcoming: currUpcoming}) => (
                 <section key={day.toISO()}>
                     <div className="upcoming-day-header">
-                        {day.toLocaleString(DATE_FULL_NO_YEAR)} • In {Math.floor(day.diff(currTime, 'days').days + 1)} day{day.diff(currTime, 'days').days ? 's' : ''}
+                        {day.toLocaleString(DATE_FULL_NO_YEAR)} • In {pluralize(Math.ceil(day.diff(currTime, 'days').days), 'day')}
                     </div>
 
                     {currUpcoming.map((assignment) => (
