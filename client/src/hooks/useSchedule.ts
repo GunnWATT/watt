@@ -3,11 +3,11 @@ import {DateTime} from 'luxon';
 import {PeriodObj, numToWeekday, SCHOOL_END_EXCLUSIVE, SCHOOL_START} from '../components/schedule/Periods';
 
 // Context
-import UserDataContext, { UserData } from '../contexts/UserDataContext';
+import UserDataContext from '../contexts/UserDataContext';
+import AlternatesContext, {Alternates} from '../contexts/AlternatesContext';
 
 // Data
 import schedule from '../data/schedule';
-import alternates from '../data/alternates';
 
 
 // Returns the Gunn schedule for a day given a Moment object, returning `null` if there is no school on that day
@@ -17,13 +17,14 @@ export function useSchedule(date: DateTime) {
     const [alternate, setAlternate] = useState(false);
 
     const userData = useContext(UserDataContext);
+    const {alternates} = useContext(AlternatesContext); // TODO: do something with timestamp
 
     // Localize date to PST before attempting to parse schedule
     const localizedDate = date.setZone('America/Los_Angeles');
     const altFormat = localizedDate.toFormat('MM-dd');
 
     useEffect(() => {
-        const {periods, alternate} = getSchedule(date);
+        const {periods, alternate} = getSchedule(date, alternates);
 
         setPeriods(periods && periods.filter(({n}) => {
             if (n === '0' && !userData.options.period0) return false;
@@ -36,14 +37,14 @@ export function useSchedule(date: DateTime) {
             // setPeriods(null);
             setAlternate(false);
         }
-    }, [altFormat]);
+    }, [altFormat, alternates, userData]);
 
     return {periods, alternate};
 }
 
 // Gets the Gunn schedule for a given `DateTime`, as an object {periods, alternate} representing the day's schedule
 // as a `PeriodObj[]` or null if there's no school and whether the schedule is an alternate.
-export function getSchedule(date: DateTime) {
+export function getSchedule(date: DateTime, alternates: Alternates['alternates']) {
     const localizedDate = date.setZone('America/Los_Angeles');
     const altFormat = localizedDate.toFormat('MM-dd');
 

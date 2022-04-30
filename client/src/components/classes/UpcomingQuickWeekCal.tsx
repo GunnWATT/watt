@@ -4,6 +4,7 @@ import {DateTime} from 'luxon';
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 import UserDataContext from '../../contexts/UserDataContext';
+import AlternatesContext from '../../contexts/AlternatesContext';
 
 // Utilities
 import { getSchedule } from '../../hooks/useSchedule';
@@ -33,12 +34,14 @@ function UpcomingQuickCalDot(props: UpcomingQuickCalDotProps) {
 type UpcomingQuickCalDayProps = { day: DateTime, upcoming: AssignmentBlurb[], selected: string };
 function UpcomingQuickCalDay(props: UpcomingQuickCalDayProps) {
     const { day, upcoming, selected } = props;
+
     const screenType = useScreenType();
+    const {alternates} = useContext(AlternatesContext);
 
     const weekdays = ['U', 'M', 'T', 'W', 'θ', 'F', 'S']
 
     const relevantAssignments = upcoming.filter((a) => a.timestamp!.ordinal === day.ordinal);
-    const active = selected === 'A' ? !!(getSchedule(day).periods) : !!hasClass(day, selected);
+    const active = selected === 'A' ? !!(getSchedule(day, alternates).periods) : !!hasClass(day, selected, alternates);
 
     // Lots of flexbox
     return (

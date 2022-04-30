@@ -6,6 +6,7 @@ import UserDataContext from '../../contexts/UserDataContext';
 // Utilities
 import { cardinalize } from '../../util/sgyHelpers';
 import { ClassPeriodQuickInfo, pastClasses, nextSchoolDay, numSchoolDays } from '../../util/sgyPeriodFunctions';
+import AlternatesContext from "../../contexts/AlternatesContext";
 
 
 // Quick Info includes when's the next day that has a given period
@@ -14,17 +15,19 @@ import { ClassPeriodQuickInfo, pastClasses, nextSchoolDay, numSchoolDays } from 
 export default function DashboardQuickInfo(props: { selected: string }) {
     const { selected } = props;
     const [info, setInfo] = useState<ClassPeriodQuickInfo | null>(null);
+
     const userData = useContext(UserDataContext);
+    const {alternates} = useContext(AlternatesContext);
 
     useEffect(() => {
-        if (selected !== 'A') setInfo(pastClasses(selected));
+        if (selected !== 'A') setInfo(pastClasses(selected, alternates));
     }, [selected]);
 
     if (selected === 'A') {
         return (
             <section>
-                <div className="dashboard-qi-main">The next school day is {nextSchoolDay(userData)?.toRelative()}.</div>
-                <div className="secondary">There have been {numSchoolDays()} school days in this school year.</div>
+                <div className="dashboard-qi-main">The next school day is {nextSchoolDay(userData, alternates)?.toRelative()}.</div>
+                <div className="secondary">There have been {numSchoolDays(alternates)} school days in this school year.</div>
             </section>
         )
     }

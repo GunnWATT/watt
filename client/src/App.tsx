@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import {useAuth, useSigninCheck} from 'reactfire';
+import {useAlternates} from './hooks/useAlternates';
 import {DateTime} from 'luxon';
 import PageVisibility from 'react-page-visibility';
 import {GCalEvent} from './components/schedule/Event';
@@ -20,7 +21,8 @@ import InstallModal from './components/layout/InstallModal';
 import FirebaseUserDataProvider from './components/firebase/FirebaseUserDataProvider';
 import LocalStorageUserDataProvider from './components/firebase/LocalStorageUserDataProvider';
 
-// Context
+// Contexts
+import {AlternatesProvider} from './contexts/AlternatesContext';
 import {TimeProvider} from './contexts/CurrentTimeContext';
 
 
@@ -34,6 +36,9 @@ export default function App() {
         const timerID = setInterval(() => setDate(DateTime.now()), 1000);
         return () => clearInterval(timerID);
     }, []);
+
+    // Global alternates
+    const alternates = useAlternates();
 
     // Events data for schedule
     const [events, setEvents] = useState<GCalEvent[] | null>(null);
@@ -63,22 +68,24 @@ export default function App() {
         <Router>
             <PageVisibility onChange={() => navigator.serviceWorker.getRegistration().then(res => res?.update())} />
             <UserDataProvider>
-                <TimeProvider value={date}>
-                    <FaviconHandler />
-                    <Layout>
-                        <Routes>
-                            <Route path="/" element={<Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />}/>
-                            <Route path="/classes/*" element={<Classes />}/>
-                            <Route path="/clubs" element={<Clubs />}/>
-                            <Route path="/utilities/*" element={<Utilities />}/>
-                            <Route path="/settings/*" element={<Settings />}/>
-                            <Route path="/super-secret-testing" element={<Testing />}/>
-                            <Route path="/schoology/auth" element={<SgyAuthRedirect />}/>
-                            <Route path="*" element={<PageNotFound />}/>
-                        </Routes>
-                    </Layout>
-                    <InstallModal />
-                </TimeProvider>
+                <AlternatesProvider value={alternates}>
+                    <TimeProvider value={date}>
+                        <FaviconHandler />
+                        <Layout>
+                            <Routes>
+                                <Route path="/" element={<Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />}/>
+                                <Route path="/classes/*" element={<Classes />}/>
+                                <Route path="/clubs" element={<Clubs />}/>
+                                <Route path="/utilities/*" element={<Utilities />}/>
+                                <Route path="/settings/*" element={<Settings />}/>
+                                <Route path="/super-secret-testing" element={<Testing />}/>
+                                <Route path="/schoology/auth" element={<SgyAuthRedirect />}/>
+                                <Route path="*" element={<PageNotFound />}/>
+                            </Routes>
+                        </Layout>
+                        <InstallModal />
+                    </TimeProvider>
+                </AlternatesProvider>
             </UserDataProvider>
         </Router>
     );
