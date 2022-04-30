@@ -1,7 +1,7 @@
 import {Club} from '../components/lists/ClubComponent';
 
 const data: {timestamp: string, data: {[key: string]: Club}} = {
-    "timestamp": "2022-04-05T05:53:37.153Z",
+    "timestamp": "2022-04-30T18:09:09.395Z",
     "data": {
         "10496": {
             "new": false,

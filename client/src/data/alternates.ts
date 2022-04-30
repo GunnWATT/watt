@@ -1,6 +1,6 @@
 import {PeriodObj} from '../components/schedule/Periods';
 
-// Generated alternates from `/scripts/genAltSchedules.ts`
+// Generated alternates from `/scripts/genAlternates.ts`
 const generated: {[key: string]: PeriodObj[] | null} = {
     "08-11": [
         {

@@ -12,6 +12,9 @@ functions/.runtimeconfig.json
 functions/lib/**/*.js
 functions/lib/**/*.js.map
 
+# Admin SDK private key
+scripts/key.json
+
 # misc
 *.DS_Store
 /.firebase

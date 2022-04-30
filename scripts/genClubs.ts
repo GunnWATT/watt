@@ -5,7 +5,7 @@ import {info, warn} from './logging';
 
 
 (async () => {
-    const prev = JSON.parse(readFileSync('./input/clubs.json').toString());
+    const prev = JSON.parse(readFileSync('./output/clubs.json').toString());
 
     // Fetch TSV source, parse
     const raw = await (await fetch('https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vQ-UXugiZ8GznB367cO8JptTO9BLm5OE4D3WO8oZvYk_365lY25Q6eAFNSEIC5DGXGWOXwK_wauoTFT/pub?output=tsv')).text();
@@ -60,8 +60,6 @@ import {info, warn} from './logging';
 
     const str = JSON.stringify(final, null, 4);
 
-    // TODO: do we need both input and output if they are just the same file?
-    writeFileSync('./input/clubs.json', str);
     writeFileSync('./output/clubs.json', str);
     info('Wrote output to "./output/clubs.json".');
 })()
