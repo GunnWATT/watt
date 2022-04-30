@@ -20,7 +20,7 @@
  */
 
 import fetch from 'node-fetch';
-import {writeFileSync} from 'fs';
+import {readFileSync, writeFileSync} from 'fs';
 import ical from 'ical';
 import chalk from 'chalk';
 import {error, info, warn} from './logging';
@@ -212,11 +212,14 @@ function parseAlternate(summary: string | undefined, description: string | undef
 }
 
 ;(async () => {
+    const prev: {[key: string]: PeriodObj[] | null} = JSON.parse(readFileSync('./output/alternates.json').toString());
+
     // Fetch iCal source, parse
     const raw = await (await fetch('https://gunn.pausd.org/cf_calendar/feed.cfm?type=ical&feedID=6012BB54F3F048F09CBB988709E5E625')).text();
     const calendar = Object.values(ical.parseICS(raw));
 
     const fAlternates: {[key: string]: PeriodObj[]} = {};
+    let firstAlternate = new Date();
 
     // Populate `fAlternates` with unparsed day objects from iCal fetch
     for (const event of calendar) {
@@ -238,10 +241,23 @@ function parseAlternate(summary: string | undefined, description: string | undef
             }
         }
 
+        if (startDateObj < firstAlternate) firstAlternate = startDateObj;
         fAlternates[startDateObj.toISOString().slice(5, 10)] = schedule;
     }
 
     const alternates: {[key: string]: PeriodObj[] | null} = {};
+
+    // Populate `alternates` with all previous alternate schedules dropped by the rolling iCal feed.
+    // More concretely, if a previous alternate schedule falls before the newly parsed first alternate
+    // schedule, assume it has been dropped by the feed and include it in the final JSON.
+    for (const [date, schedule] of Object.entries(prev)) {
+        let [month, day] = date.split('-').map(x => Number(x));
+        if (month > 6) month -= 12; // Hackily account for our truncated ISO key format making 12-03 appear greater than 04-29
+
+        const firstMonth = firstAlternate.getMonth() + 1;
+        if (month < firstMonth || (month === firstMonth && day < firstAlternate.getDate()))
+            alternates[date] = schedule;
+    }
 
     // Populate `alternates` with parsed schedule objects, normalizing no-school days
     for (const [date, schedule] of Object.entries(fAlternates)) {
