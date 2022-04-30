@@ -68,6 +68,7 @@ export default function SgyInitResults() {
                         'You\'re almost set! Just one last step remaining.'
                     )}
                 </Dialog.Title>
+
                 <Dialog.Description as="section" className="mb-3">
                     {!results ? (
                         <Loading>Fetching courses...</Loading>
@@ -91,6 +92,7 @@ export default function SgyInitResults() {
                         </em>
                     </>)}
                 </Dialog.Description>
+
                 <section className="flex gap-3">
                     {results && (confirmDisable ? (<>
                         <DangerOutlineButton onClick={disableSchoology}>
