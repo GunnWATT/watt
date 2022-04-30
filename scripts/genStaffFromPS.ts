@@ -171,7 +171,7 @@ function staffMatch(staffA: Staff, staffB: Staff) {
                 .replace(/&nbsp;/g, '')
                 .replace(/&#39;/g, '\'')
                 .replace(/&amp;/g, '&')
-                .match(/<td><a href="mailto:(?<email>[^"]+)?">(?<name>[^<]+)<\/a><\/td><td>(?<dept>[^<]*)<\/td><td>(?<phone>[^<]*)<\/td>/);
+                .match(/<td><a href="mailto:(?<email>[^"]+)?".*>(?<name>[^<]+)<\/a><\/td><td>(?<dept>[^<]*)<\/td><td>(?<phone>[^<]*)<\/td>/);
 
             if (!regexOut)
                 throw `Error while parsing Gunn website staff: "${str}" not parsable!`;

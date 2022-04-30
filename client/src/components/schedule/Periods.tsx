@@ -36,20 +36,6 @@ export default function Periods(props: PeriodsProps) {
     const format = userData.options.time === '24' ? 'H:mm' : 'h:mm a';
     const classes = userData.classes as {[key: string]: SgyPeriodData};
 
-    // Maps periods array to <Period> components
-    const renderPeriods = () => periods!.map(({n, s, e, note}) => (
-        <Period
-            name={parsePeriodName(n, userData)}
-            color={parsePeriodColor(n, userData)}
-            key={n}
-            start={viewDate.startOf('day').plus({minutes: s}).toLocal()} // Convert PST times back to local timezone
-            end={viewDate.startOf('day').plus({minutes: e}).toLocal()}
-            format={format}
-            zoom={classes[n]?.l}
-            note={note}
-        />
-    ))
-
     // HTML for a school day, assumes periods is populated
     const schoolDay = () => {
         // End time of the last period of the day
@@ -70,7 +56,18 @@ export default function Periods(props: PeriodsProps) {
                     School ends at <strong>{end.toFormat(format)}</strong> today.
                 </p>
                 {displayIndicator && <PeriodIndicator startTime={periods![0].s}/>}
-                {renderPeriods()}
+                {periods!.map(({n, s, e, note}) => (
+                    <Period
+                        name={parsePeriodName(n, userData)}
+                        color={parsePeriodColor(n, userData)}
+                        key={n}
+                        start={viewDate.startOf('day').plus({minutes: s}).toLocal()} // Convert PST times back to local timezone
+                        end={viewDate.startOf('day').plus({minutes: e}).toLocal()}
+                        format={format}
+                        zoom={classes[n]?.l}
+                        note={note}
+                    />
+                ))}
             </>
         )
     }

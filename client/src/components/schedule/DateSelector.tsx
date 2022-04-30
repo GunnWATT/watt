@@ -8,10 +8,10 @@ import AnimatedPopover from '../layout/AnimatedPopover';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
+import AlternatesContext from '../../contexts/AlternatesContext';
 
 // Data
 import { SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE } from './Periods';
-import alternates from '../../data/alternates';
 
 
 // A single-date date selector for Schedule use
@@ -68,6 +68,8 @@ export function Calendar(props: CalendarProps) {
     const date = useContext(CurrentTimeContext);
     const today = date.setZone('America/Los_Angeles').startOf('day');
     const tmrw = today.plus({days: 1});
+
+    const {alternates} = useContext(AlternatesContext);
 
     // Wrapper and month refs for auto-centering on current selected month
     const wrapper = useRef<HTMLDivElement>(null);
