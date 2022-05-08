@@ -44,50 +44,48 @@ export default function ClubComponentModal(props: ClubComponentModalProps) {
         + (data ? `&entry.1448575177=${data.displayName}` : '')
 
     return (
-        <CenteredModal isOpen={isOpen} setIsOpen={setIsOpen}>
-            <div className="relative flex flex-col bg-content dark:bg-content-dark rounded-md max-w-md max-h-[90%] mx-2 p-6 shadow-xl">
-                <Dialog.Title className="text-xl font-semibold mb-3 pr-6">
-                    {name}{props.new && <Badge>New</Badge>}
-                </Dialog.Title>
-                <section className="flex gap-6 justify-between">
-                    <div className="basis-1/3">
-                        <p><strong className="secondary font-medium">Day:</strong> {day}</p>
-                        <p><strong className="secondary font-medium">Time:</strong> {time}</p>
-                        <p><strong className="secondary font-medium">Location:</strong> {room}</p>
-                    </div>
-                    <div className="text-right">
-                        <p><strong className="secondary font-medium">President(s):</strong> {prez}</p>
-                        <p><strong className="secondary font-medium">Advisor(s):</strong> {advisor}{coadvisor && ', ' + coadvisor}</p>
-                        <p><strong className="secondary font-medium">Email(s):</strong> {email}{coemail && ', ' + coemail}</p>
-                    </div>
-                </section>
-                <hr className="my-3" />
+        <CenteredModal className="relative flex flex-col bg-content dark:bg-content-dark rounded-md max-w-md max-h-[90%] mx-2 p-6 shadow-xl" isOpen={isOpen} setIsOpen={setIsOpen}>
+            <Dialog.Title className="text-xl font-semibold mb-3 pr-6">
+                {name}{props.new && <Badge>New</Badge>}
+            </Dialog.Title>
+            <section className="flex gap-6 justify-between">
+                <div className="basis-1/3">
+                    <p><strong className="secondary font-medium">Day:</strong> {day}</p>
+                    <p><strong className="secondary font-medium">Time:</strong> {time}</p>
+                    <p><strong className="secondary font-medium">Location:</strong> {room}</p>
+                </div>
+                <div className="text-right">
+                    <p><strong className="secondary font-medium">President(s):</strong> {prez}</p>
+                    <p><strong className="secondary font-medium">Advisor(s):</strong> {advisor}{coadvisor && ', ' + coadvisor}</p>
+                    <p><strong className="secondary font-medium">Email(s):</strong> {email}{coemail && ', ' + coemail}</p>
+                </div>
+            </section>
+            <hr className="my-3" />
 
-                <section className="mb-4 overflow-scroll scroll-smooth scrollbar-none">
-                    <Dialog.Description>{desc}</Dialog.Description>
-                    {video && <p><strong>Club Video:</strong> <a href={video} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{video}</a></p>}
-                    {signup && <p><strong>Signup Form:</strong> <a href={signup} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{signup}</a></p>}
-                    {zoom && <p><strong>Zoom Link:</strong> <a href={zoom} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{zoom}</a></p>}
-                </section>
+            <section className="mb-4 overflow-scroll scroll-smooth scrollbar-none">
+                <Dialog.Description>{desc}</Dialog.Description>
+                {video && <p><strong>Club Video:</strong> <a href={video} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{video}</a></p>}
+                {signup && <p><strong>Signup Form:</strong> <a href={signup} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{signup}</a></p>}
+                {zoom && <p><strong>Zoom Link:</strong> <a href={zoom} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{zoom}</a></p>}
+            </section>
 
-                <section className="flex gap-3 flex-wrap justify-end">
-                    {pinned ? (
-                        <OutlineButton onClick={removeFromPinned}>
-                            Remove from my list
-                        </OutlineButton>
-                    ) : (
-                        <OutlineButton onClick={addToPinned}>
-                            Add to my list
-                        </OutlineButton>
-                    )}
-                    <a href={prefilledLink} tabIndex={-1} target="_blank" rel="noopener noreferrer">
-                        <OutlineButton>Check In</OutlineButton>
-                    </a>
-                    <DangerOutlineButton onClick={() => setIsOpen(false)}>
-                        Close
-                    </DangerOutlineButton>
-                </section>
-            </div>
+            <section className="flex gap-3 flex-wrap justify-end">
+                {pinned ? (
+                    <OutlineButton onClick={removeFromPinned}>
+                        Remove from my list
+                    </OutlineButton>
+                ) : (
+                    <OutlineButton onClick={addToPinned}>
+                        Add to my list
+                    </OutlineButton>
+                )}
+                <a href={prefilledLink} tabIndex={-1} target="_blank" rel="noopener noreferrer">
+                    <OutlineButton>Check In</OutlineButton>
+                </a>
+                <DangerOutlineButton onClick={() => setIsOpen(false)}>
+                    Close
+                </DangerOutlineButton>
+            </section>
         </CenteredModal>
     )
 }

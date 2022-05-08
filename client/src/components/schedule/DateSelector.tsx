@@ -27,40 +27,36 @@ export default function DateSelector(props: DateSelectorProps) {
     const decDay = () => setViewDate(viewDate.minus({days: 1}));
 
     return (
-        <div className="mb-8 flex justify-center gap-3">
+        <Popover className="relative z-20 mb-8 flex justify-center gap-3">
             <button onClick={decDay}>
                 <ChevronLeft/>
             </button>
 
-            <Popover className="h-9 w-56 bg-content dark:bg-content-dark flex flex-col relative shadow-lg rounded">
-                <Popover.Button className="w-full h-full flex items-center justify-center cursor-pointer">
-                    {viewDate.toLocaleString(DateTime.DATE_FULL)}
-                </Popover.Button>
-                <AnimatedPopover className="flex justify-center">
-                    <Calendar
-                        currTime={viewDate}
-                        setTime={setViewDate}
-                        start={start}
-                        end={end}
-                        className="top-[calc(100%_+_10px)]"
-                    />
-                </AnimatedPopover>
-            </Popover>
+            <Popover.Button className="h-9 w-56 bg-content dark:bg-content-dark flex items-center justify-center shadow-lg rounded cursor-pointer">
+                {viewDate.toLocaleString(DateTime.DATE_FULL)}
+            </Popover.Button>
+            <CalendarPopover
+                currTime={viewDate}
+                setTime={setViewDate}
+                start={start}
+                end={end}
+                className="top-[calc(100%_+_10px)]"
+            />
 
             <button onClick={incDay}>
                 <ChevronRight/>
             </button>
-        </div>
+        </Popover>
     );
 }
 
-type CalendarProps = {
+type CalendarPopoverProps = {
     start?: DateTime, end?: DateTime,
     currTime: DateTime, setTime: (day: DateTime) => any,
     time?: boolean, // do you choose time as well?
     className?: string
 }
-export function Calendar(props: CalendarProps) {
+export function CalendarPopover(props: CalendarPopoverProps) {
     const {start, end, currTime, setTime, time, className} = props;
 
     const date = useContext(CurrentTimeContext);
@@ -137,7 +133,7 @@ export function Calendar(props: CalendarProps) {
     });
 
     return (
-        <div className={"w-[300px] h-max max-h-[60vh] bg-content dark:bg-content-dark z-20 rounded flex flex-col shadow-2xl absolute" + (className ? ` ${className}` : '')}>
+        <AnimatedPopover className={"w-[300px] h-max max-h-[60vh] bg-content dark:bg-content-dark z-20 rounded flex flex-col shadow-2xl absolute" + (className ? ` ${className}` : '')}>
             {time && <TimeSelector currTime={currTime} setTime={setTime} />}
 
             <section className={'grid grid-cols-7 px-4 pt-2.5 pb-1.5 bg-content-secondary dark:bg-content-secondary-dark' + (!time ? ' rounded-t' : '')}>
@@ -154,7 +150,7 @@ export function Calendar(props: CalendarProps) {
                 <button onClick={() => setTime(today)}>Today</button>
                 <button onClick={() => setTime(tmrw)}>Tomorrow</button>
             </section>
-        </div>
+        </AnimatedPopover>
     )
 }
 

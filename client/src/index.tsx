@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 
 // Firebase
 import FirebaseProviders from './components/firebase/FirebaseProviders';
@@ -23,15 +23,17 @@ const firebaseConfig = {
     measurementId: 'G-8EVM6G2Z8X'
 }
 
-ReactDOM.render(
+const container = document.getElementById('root')!;
+const root = createRoot(container);
+
+root.render(
     <React.StrictMode>
         <FirebaseAppProvider firebaseConfig={firebaseConfig}>
             <FirebaseProviders>
                 <App/>
             </FirebaseProviders>
         </FirebaseAppProvider>
-    </React.StrictMode>,
-    document.getElementById('root')
+    </React.StrictMode>
 );
 
 // Config for the service worker

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@headlessui/react": "^1.5.0",
+    "@headlessui/react": "^0.0.0-insiders.c4e35f3",
     "firebase": "^9.7.0",
     "luxon": "^2.3.2",
     "react": "^18.1.0",
