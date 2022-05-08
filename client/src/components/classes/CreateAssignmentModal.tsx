@@ -2,6 +2,7 @@ import {Fragment, useContext, useState} from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { useAuth, useFirestore } from 'reactfire';
 import { Edit, Plus, PlusCircle } from 'react-feather';
+import {DateTime} from 'luxon';
 
 // Components
 import CenteredModal from '../layout/CenteredModal';
@@ -10,18 +11,19 @@ import OutlineButton, {SuccessOutlineButton} from '../layout/OutlineButton';
 import PriorityPicker from './PriorityPicker';
 import { Calendar } from '../schedule/DateSelector';
 import { AssignmentTag } from './Assignments';
-import {PopoverPlus, TagPicker, TagPickerLabels} from "./ClassFilter";
+import {PopoverPlus, TagPicker, TagPickerLabels} from './ClassFilter';
 
 // Contexts
 import UserDataContext, { SgyPeriod } from '../../contexts/UserDataContext';
 import SgyDataContext from '../../contexts/SgyDataContext';
+import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
 // Utilities
 import { findClassesList } from '../../pages/Classes';
 import { AssignmentBlurb, createAssignment, updateAssignment } from '../../util/sgyAssignments';
 import { parseLabelColor, parseLabelName } from '../../util/sgyLabels';
 import { parsePeriodColor, parsePeriodName } from '../schedule/Periods';
-import CurrentTimeContext from "../../contexts/CurrentTimeContext";
+import {DATE_MED_NO_YEAR} from '../../util/dateFormats';
 
 
 const PeriodPicker = (props: { period: 'A'|SgyPeriod, setPeriod: (c: 'A'|SgyPeriod) => any }) => {
@@ -170,7 +172,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
 
                         <Popover>
                             <Popover.Button className="py-0.5 px-1.5 rounded-sm text-[0.8rem] bg-theme dark:bg-theme-dark text-white cursor-pointer" onClick={() => setOpen(!open)}>
-                                {timestamp.toFormat('hh:mm a on dddd, MMM Do YYYY')}
+                                {timestamp.toLocaleString(DateTime.TIME_SIMPLE)} on {timestamp.toLocaleString(DATE_MED_NO_YEAR)}
                             </Popover.Button>
                             <Transition
                                 as={Fragment}
@@ -187,7 +189,6 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
                                         currTime={timestamp}
                                         setTime={setTimestamp}
                                         time
-                                        // start={moment().subtract(6, 'days').startOf('day')}
                                         start={currTime.startOf('day')}
                                     />
                                 </Popover.Panel>
