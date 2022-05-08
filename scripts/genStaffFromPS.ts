@@ -38,8 +38,8 @@
 
 import fetch from 'node-fetch';
 import {readFileSync, writeFileSync} from 'fs';
-import {similarity} from './util';
-import {info, warn} from './logging';
+import {similarity} from './util/strings';
+import {info, warn} from './util/logging';
 
 
 // Types modified from `../client/src/components/lists/StaffComponent.tsx`;

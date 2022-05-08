@@ -1,50 +1,23 @@
-/**
- * This js file runs with node
- * It generates the json for alternate schedules by fetching the iCalendar from gunn's calendar 
- * It then parses it and writes the result to the file ../output/alternates.json
- *      (It does NOT write to ../output/alternates.js, this must be done manually)
- * 
- * Warnings are thrown to terminal via console logs because the school's
- * iCalendar sucks, a lot. Warnings are automatically fixed and nothing to worry about.
- * Errors are important and have to be fixed manually in the output json.
- * 
- * Most of the code was written by Sean Yen and Yu-Ting Chang (I think)
- */
-
-/**
- * Things to note:
- * On certain alternate schedules, lunch collides with 7th period (the iCalendar is weird): 
- *      In this case the code automagically fixes it
- *      In particular, we assume lunch always ends 10 minutes before the next period
- * PSAT testing day is a strange anomaly
- */
-
 import fetch from 'node-fetch';
 import {readFileSync, writeFileSync} from 'fs';
 import ical from 'ical';
 import chalk from 'chalk';
-import {error, info, warn} from './logging';
+import {error, info, warn} from './util/logging';
+import schedule, {numToWeekday, PeriodObj} from './util/schedule';
 
-
-// Types from `../client/src/components/schedule/Periods.tsx`
-type PeriodObj = {n: string, s: number, e: number};
 
 // Constants
-const EARLIEST_AM_HOUR = 6
-const HTMLnewlineRegex = /<\/?(p|div|br).*?>|\),? *(?=[A-Z0-9])/g
-const noHTMLRegex = /<.*?>/g
-const noNbspRegex = /&nbsp;/g
-const timeGetterRegex = /\(?(1?[0-9])(?::([0-9]{2}))? *(?:am)? *(?:-|–) *(1?[0-9])(?::([0-9]{2}))? *(noon|pm)?\)?/
-const newLineRegex = /\r?\n/g
-const noNewLineBeforeTimeRegex = /\n\(/g // hack for 2019-09-06 schedule
-const schoolYearStart = new Date(2021, 7, 10)
-const schoolYearEnd = new Date(2022, 5, 3)
+const EARLIEST_AM_HOUR = 6;
+const schoolYearStart = new Date(2021, 7, 10);
+const schoolYearEnd = new Date(2022, 5, 3);
 
-const altScheduleRegex = /schedule|extended|lunch/i
-const noSchoolRegex = /holiday|no\s(students|school)|break|development/i
+const timeGetterRegex = /\(?(1?\d)(?::(\d{2}))? *(?:am)? *[-–] *(1?\d)(?::(\d{2}))? *(noon|pm)?\)?/;
+const altScheduleRegex = /schedule|extended/i; // /schedule|extended|lunch/i
+const noSchoolRegex = /holiday|no\s(students|school)|break|development/i;
+const primeReplacesSelfRegex = /PRIME (replaces|instead of) SELF/i;
 
 // Parse an iCal summary and description into an array of `UnparsedPeriodObj`s
-function parseAlternate(summary: string | undefined, description: string | undefined, date: string) { // extra date parameter is only for warnings
+function parseAlternate(summary: string | undefined, description: string | undefined, date: string) {
     if (!summary) return;
 
     // If WATT thinks it's a no-school day
@@ -57,7 +30,20 @@ function parseAlternate(summary: string | undefined, description: string | undef
         return [];
     }
 
-    // If the event is neither an alternate schedule or a no-school day, return
+    // If the event is a "PRIME replaces SELF" event, add the day's regular schedule as an alternate, replacing PRIME
+    // with SELF if it occurs
+    // https://github.com/GunnWATT/watt/issues/75
+    if (primeReplacesSelfRegex.test(summary)) {
+        // TODO: is there a better way of converting ISO YYYY-MM-DD format to weekday?
+        const [year, monthNum, dayNum] = date.split('-').map(x => Number(x));
+        const day = new Date();
+        day.setFullYear(year, monthNum - 1, dayNum);
+
+        const weekday = numToWeekday(day.getDay());
+        return schedule[weekday].map(({n, ...t}) => ({n: n === 'S' ? 'P' : n, ...t}));
+    }
+
+    // If the event is neither an alternate schedule nor a no-school day, return
     if (!altScheduleRegex.test(summary)) return;
 
     // Prevent false positive events like "Staff luncheon" that are missing parseable descriptions from causing
@@ -67,14 +53,14 @@ function parseAlternate(summary: string | undefined, description: string | undef
 
     // Parse away HTML tags, entities, and oddities
     description = description
-        .replace(noNewLineBeforeTimeRegex, '(') // https://github.com/GunnWATT/watt/pull/73#discussion_r756519526
-        .replace(HTMLnewlineRegex, '\n')
-        .replace(noHTMLRegex, '')
-        .replace(noNbspRegex, ' ')
+        .replace(/\n\(/g, '(') // https://github.com/GunnWATT/watt/pull/73#discussion_r756519526
+        .replace(/<\/?(p|div|br).*?>|\),? *(?=[A-Z\d])/g, '\n')
+        .replace(/<.*?>/g, '') // Remove all html tags
+        .replace(/&nbsp;/g, ' ') // Replace non-breaking space with normal space
 
     const periods: PeriodObj[] = [];
 
-    description.split(newLineRegex).forEach(str => {
+    description.split(/\r?\n/g).forEach(str => {
         const times = str.match(timeGetterRegex);
         const name = str.replace(timeGetterRegex,  '').trim();
 
@@ -95,40 +81,29 @@ function parseAlternate(summary: string | undefined, description: string | undef
         const startTime = sH * 60 + sM;
         const endTime = eH * 60 + eM;
 
-        // Regices to match specific periods
-        const numberPeriodRegex = /Period (\d)/i;
-        const lunchRegex = /Lunch/i;
-        const brunchRegex = /Brunch/i;
-        const selfRegex = /SELF/i;
-        const primeRegex = /PRIME/i;
-        const gunnTogRegex = /Together/i;
-        const officeHoursRegex = /Office Hours|Tutorial/i;
-        const teacherRegex = /Collaboration|Prep|Meetings|Training|Mtgs|PLC/i;
-        const zeroPeriodRegex = /Zero Period/i;
-
-        const isNumberPeriod = name.match(numberPeriodRegex);
-        const isStaffPrep = name.match(teacherRegex);
+        const isNumberPeriod = name.match(/Period (\d)/i);
+        const isStaffPrep = name.match(/Collaboration|Prep|Meetings|Training|Mtgs|PLC/i);
 
         let fname = name;
         let newEndTime = endTime;
 
         if (isNumberPeriod) {
             fname = isNumberPeriod[1];
-        } else if (name.match(officeHoursRegex)) {
+        } else if (name.match(/Office Hours|Tutorial/i)) {
             fname = "O";
             warn(`[${chalk.underline(date)}] Parsed deprecated period Office Hours`);
-        } else if (name.match(lunchRegex)) {
+        } else if (name.match(/Lunch/i)) {
             fname = "L";
-        } else if (name.match(brunchRegex)) {
+        } else if (name.match(/Brunch/i)) {
             fname = "B";
-        } else if (name.match(selfRegex)) {
+        } else if (name.match(/SELF/i)) {
             fname = "S";
-        } else if (name.match(gunnTogRegex)) {
+        } else if (name.match(/Together/i)) {
             fname = "G";
             warn(`[${chalk.underline(date)}] Parsed deprecated period Gunn Together`);
-        } else if (name.match(primeRegex)) {
+        } else if (name.match(/PRIME/i)) {
             fname = "P";
-        } else if (name.match(zeroPeriodRegex)) {
+        } else if (name.match(/Zero Period/i)) {
             fname = "0";
         } else if (!isStaffPrep) {
             // If no regices match, we've encountered an unrecognized period
@@ -145,60 +120,36 @@ function parseAlternate(summary: string | undefined, description: string | undef
         }
     })
 
-    // lunch fix
-    const lunch = periods.find(({n}) => n === 'L');
-    const brunch = periods.find(({n}) => n === 'B');
+    // Fix lunch and brunch to end 10 minutes before the next period
+    const lunchIndex = periods.findIndex(({n}) => n === 'L');
+    if (lunchIndex !== -1) {
+        const lunch = periods[lunchIndex];
+        const next = periods[lunchIndex + 1];
 
-    // TODO: make this neater
-    if (lunch) {
-        let periodAfterLunch = periods.find(({ n, s }) => n !== "L" && s > lunch.s)!;
-
-        for (const period of periods) {
-            if (period === lunch) {
-                continue;
-            }
-
-            if (period.s > lunch.s && period.s < periodAfterLunch.s) {
-                periodAfterLunch = period;
-            }
-        }
-
-        // next period should start 10 minutes after lunch
-        if (!(periodAfterLunch.s >= lunch.e + 10)) {
-            lunch.e = periodAfterLunch.s - 10;
-            // warn(`[${chalk.underline(date)}] Period "${chalk.cyan(periodAfterLunch.n)}" collides with lunch. Automatically corrected lunch's end time to 10 minutes before this period.`);
+        if (next && !(next.s >= lunch.e + 10)) {
+            lunch.e = next.s - 10;
+            // warn(`[${chalk.underline(date)}] Period "${chalk.cyan(next.n)}" collides with lunch. Automatically corrected lunch's end time to 10 minutes before this period.`);
         }
     }
 
-    // TODO: make this neater
-    if (brunch) {
-        let periodAfterBrunch = periods.find(({ n, s }) => n !== "L" && s > brunch.s)!;
+    const brunchIndex = periods.findIndex(({n}) => n === 'B');
+    if (brunchIndex !== -1) {
+        const brunch = periods[brunchIndex];
+        const next = periods[brunchIndex + 1];
 
-        for (const period of periods) {
-            if (period === brunch) {
-                continue;
-            }
-
-            if (period.s > brunch.s && period.s < periodAfterBrunch.s) {
-                periodAfterBrunch = period;
-            }
-        }
-
-        // next period should start 10 minutes after brunch
-        if (!(periodAfterBrunch.s >= brunch.e + 10)) {
-            brunch.e = periodAfterBrunch.s - 10;
+        if (next && !(next.s >= brunch.e + 10)) {
+            brunch.e = next.s - 10;
             // warn(`[${chalk.underline(date)}] Period "${chalk.cyan(periodAfterBrunch.n)}" collides with brunch. Automatically corrected brunch's end time to 10 minutes before this period.`);
         }
     }
 
-    // period validation (make sure none collide)
+    // Validate periods, checking if all periods end after they start and warning if any collide
     for (let i = 0; i < periods.length; i++) {
         const p1 = periods[i];
-        if (!(p1.e > p1.s))
-            error(`[${chalk.underline(date)}] Period "${chalk.cyan(periods[i].n)}" starts at ${chalk.green(p1.s)} but ends at ${chalk.green(p1.e)}. Cannot end before it begins!`);
+        if (p1.e <= p1.s)
+            error(`[${chalk.underline(date)}] Period "${chalk.cyan(p1.n)}" starts at ${chalk.green(p1.s)} but ends at ${chalk.green(p1.e)}. Cannot end before it begins!`);
 
-        for (let j = i+1; j < periods.length; j++) {
-
+        for (let j = i + 1; j < periods.length; j++) {
             const p2 = periods[j];
 
             // one must be directly after another; if this doesn't work, the district is being false and fraudulent.

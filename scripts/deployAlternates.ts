@@ -1,6 +1,6 @@
 import admin from 'firebase-admin';
 import {readFileSync} from 'fs';
-import {info} from './logging';
+import {info} from './util/logging';
 
 
 admin.initializeApp({
