@@ -40,7 +40,7 @@ export function useAlternates() {
         if (!localStorageRaw) return defaultAlternates;
 
         try {
-            // Don't deepmerge `localStorage` parsed value because
+            // Don't deepmerge `localStorage` parsed value to prevent merging of the `alternates` object
             return JSON.parse(localStorageRaw) as Alternates;
         } catch {
             return defaultAlternates;

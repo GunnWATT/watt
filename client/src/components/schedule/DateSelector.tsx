@@ -1,4 +1,4 @@
-import {useContext, CSSProperties, useRef, useEffect} from 'react';
+import {useContext, CSSProperties, useRef, useEffect, ReactNode} from 'react';
 import {Popover, Transition} from '@headlessui/react';
 import {DateTime} from 'luxon';
 import {ChevronDown, ChevronLeft, ChevronRight, ChevronUp} from 'react-feather'
@@ -37,9 +37,6 @@ export default function DateSelector(props: DateSelectorProps) {
                     {viewDate.toLocaleString(DateTime.DATE_FULL)}
                 </Popover.Button>
                 <AnimatedPopover className="flex justify-center">
-                    {/* TODO: Ideally the calendar could just be the popover panel and remove this hacky flex */}
-                    {/* centering behavior; perhaps looking into the other uses of `Calendar` and changing */}
-                    {/* them could prove beneficial. */}
                     <Calendar
                         currTime={viewDate}
                         setTime={setViewDate}
@@ -118,14 +115,14 @@ export function Calendar(props: CalendarProps) {
                 <h4 className="text-[0.8rem] text-center mb-0.5">
                     {startOfMonth.toFormat('MMMM yyyy')}
                 </h4>
-                <div className="calendar-month grid grid-cols-7">
+                <div className="grid grid-cols-7">
                     {days.map((day, i) => {
                         const noSchool = [0, 6].includes(day.weekday % 7)
                             || (day.toFormat('MM-dd') in alternates && alternates[day.toFormat('MM-dd')] == null);
                         const active = currTime.hasSame(day, 'day');
                         return (
                             <div
-                                className={'flex items-center justify-center cursor-pointer' + (noSchool && !active ? ' secondary' : '') + (active ? ' bg-theme dark:bg-theme-dark text-white rounded-full' : '')}
+                                className={'flex items-center justify-center cursor-pointer py-0.5' + (noSchool && !active ? ' secondary' : '') + (active ? ' bg-theme dark:bg-theme-dark text-white rounded-full' : '')}
                                 onClick={() => setTime(day)}
                                 key={day.toISO()}
                                 style={i === 0 ? {gridColumnStart: (day.weekday % 7) + 1} : undefined}
@@ -140,23 +137,23 @@ export function Calendar(props: CalendarProps) {
     });
 
     return (
-        <div className={"mini-calendar h-max max-h-[60vh] bg-content dark:bg-content-dark z-20 rounded flex flex-col shadow-2xl absolute" + (className ? ` ${className}` : '')}>
+        <div className={"w-[300px] h-max max-h-[60vh] bg-content dark:bg-content-dark z-20 rounded flex flex-col shadow-2xl absolute" + (className ? ` ${className}` : '')}>
             {time && <TimeSelector currTime={currTime} setTime={setTime} />}
 
-            <div className="grid grid-cols-7 px-4 pt-2.5 pb-1.5 bg-content-secondary dark:bg-content-secondary-dark rounded-t">
+            <section className={'grid grid-cols-7 px-4 pt-2.5 pb-1.5 bg-content-secondary dark:bg-content-secondary-dark' + (!time ? ' rounded-t' : '')}>
                 {weekdays.map((char, i) => (
                     <div className="flex items-center justify-center p-1" key={char + i}>{char}</div>
                 ))}
-            </div>
+            </section>
 
-            <div ref={wrapper} className="flex flex-col gap-4 px-4 py-3 overflow-auto scroll-smooth">
+            <section ref={wrapper} className="flex flex-col gap-4 px-4 py-3 overflow-auto scroll-smooth">
                 {monthElements}
-            </div>
+            </section>
 
-            <div className="flex justify-between px-4 pt-1.5 pb-2.5 bg-content-secondary dark:bg-content-secondary-dark rounded-b">
+            <section className="flex justify-between px-4 pt-1.5 pb-2.5 bg-content-secondary dark:bg-content-secondary-dark rounded-b">
                 <button onClick={() => setTime(today)}>Today</button>
                 <button onClick={() => setTime(tmrw)}>Tomorrow</button>
-            </div>
+            </section>
         </div>
     )
 }
@@ -216,32 +213,45 @@ function TimeSelector(props: TimeSelectorProps) {
     const decMinute = () => setTime(currTime.set({minute: (currTime.hour - 5) % 60}));
 
     return (
-        <div className="time flex gap-3 items-center justify-center text-[3rem]">
-            <div>
-                <ChevronUp size={40} onClick={incHour} />
+        <section className="flex gap-3 px-4 items-center justify-center text-[3rem]">
+            <TimePickerColumn>
+                <ChevronUp size={40} onClick={incHour} className="cursor-pointer" />
                 <input
-                    className="time-input"
+                    className="text-center w-20 bg-content-secondary dark:bg-content-secondary-dark rounded-md"
                     type="text"
                     value={currTime.toFormat(showMeridiem ? 'hh' : 'HH')}
                     onChange={(e) => setTimeValue(e.target.value, 'hour')}
                 />
-                <ChevronDown size={40} onClick={decHour} />
-            </div>
-            <div>
-                <ChevronUp size={40} onClick={incMinute} />
+                <ChevronDown size={40} onClick={decHour} className="cursor-pointer" />
+            </TimePickerColumn>
+            <TimePickerColumn>
+                <ChevronUp size={40} onClick={incMinute} className="cursor-pointer" />
                 <input
-                    className="time-input"
+                    className="text-center w-20 bg-content-secondary dark:bg-content-secondary-dark rounded-md"
                     type="text"
                     value={currTime.toFormat('mm')}
                     onChange={(e) => setTimeValue(e.target.value, 'minute')}
                 />
-                <ChevronDown size={40} onClick={decMinute}/>
-            </div>
+                <ChevronDown size={40} onClick={decMinute} className="cursor-pointer" />
+            </TimePickerColumn>
             {showMeridiem && (
-                <div>
-                    <div className="time-input am" onClick={toggleAM}>{currTime.toFormat('a')}</div>
-                </div>
+                <TimePickerColumn>
+                    <button
+                        className="text-center w-20 bg-content-secondary dark:bg-content-secondary-dark rounded-md"
+                        onClick={toggleAM}
+                    >
+                        {currTime.toFormat('a')}
+                    </button>
+                </TimePickerColumn>
             )}
+        </section>
+    )
+}
+
+function TimePickerColumn(props: {children: ReactNode}) {
+    return (
+        <div className="flex flex-col items-center">
+            {props.children}
         </div>
     )
 }
