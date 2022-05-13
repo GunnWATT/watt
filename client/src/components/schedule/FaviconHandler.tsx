@@ -13,7 +13,7 @@ export default function FaviconHandler() {
 
     // TODO: use timeouts
     const date = useContext(CurrentTimeContext);
-    const {next, startingIn, endingIn} = useNextPeriod(date);
+    const {next, startingIn, endingIn, nextSeconds} = useNextPeriod(date);
 
     // Reference to the favicon element
     const favicon = useRef<HTMLLinkElement>();
@@ -35,7 +35,7 @@ export default function FaviconHandler() {
         }
 
         // If there's no period to display, set favicon and tab title back to defaults
-        if (!next || !startingIn || !endingIn) {
+        if (!next) {
             favicon.current?.remove();
             document.title = 'Web App of The Titans (WATT)';
             return;
@@ -56,13 +56,10 @@ export default function FaviconHandler() {
             : `${name} ending in ${endingIn} minute${endingIn !== 1 ? 's' : ''}, started ${-startingIn} minute${startingIn !== -1 ? 's' : ''} ago.`
             + ' (WATT)'
 
-        let numToShow = startingIn > 0 ? startingIn : endingIn;
-        const isSeconds = (numToShow === 1);
-        let seconds;
-        if (isSeconds) {
-            seconds = 60 - (date.diff(midnight, 'seconds').seconds % 60);
-            numToShow = Math.ceil(seconds);
-        }
+        let numToShow = startingIn >= 0 ? startingIn : endingIn;
+        const isSeconds = numToShow === 0;
+        if (isSeconds) numToShow = nextSeconds;
+
         // document.title = ['isSeconds: ', isSeconds, ' & numToShow: ', numToShow].join()
         const color = parsePeriodColor(next.n, userData)
         const fc = canvas.current.getContext('2d')!

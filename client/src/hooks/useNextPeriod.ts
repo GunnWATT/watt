@@ -14,19 +14,26 @@ export function useNextPeriod(date: DateTime) {
     const minutes = localizedDate.diff(midnight, 'minutes').minutes;
     const seconds = localizedDate.diff(midnight, 'seconds').seconds;
 
+    // The seconds left in the current minute, for display when the time to the next start or end is less
+    // than a full minute.
+    const nextSeconds = 60 - (Math.floor(seconds % 60));
+
     // Period variables
     let prev = null, next = null;
 
     if (!periods)
-        return {prev, next, startingIn: null, endingIn: null, minutes, seconds};
+        return {prev, next, startingIn: 0, endingIn: 0, nextSeconds, minutes, seconds};
     if (minutes < periods[0].s - 20)
-        return {prev, next, startingIn: null, endingIn: null, minutes, seconds};
+        return {prev, next, startingIn: 0, endingIn: 0, nextSeconds, minutes, seconds};
 
-    let currPd; // current period index
+    // Loop through all periods, finding the index of the first period for which the current time is less
+    // than the end time.
+    let currPd;
     for (currPd = 0; currPd < periods.length; currPd++) {
         if (minutes < periods[currPd].e) break;
     }
 
+    // If no period exists that has an end time after the current time, no next period exists.
     if (currPd >= periods.length) {
         prev = periods[periods.length - 1];
     } else {
@@ -34,8 +41,9 @@ export function useNextPeriod(date: DateTime) {
         next = periods[currPd];
     }
 
-    const startingIn = next && next.s - Math.ceil(minutes);
-    const endingIn = next && next.e - Math.ceil(minutes);
+    // The minutes to the start and end of the next period, or 0 if there is no next period.
+    const startingIn = next ? next.s - Math.ceil(minutes) : 0;
+    const endingIn = next ? next.e - Math.ceil(minutes) : 0;
 
-    return {prev, next, startingIn, endingIn, minutes, seconds};
+    return {prev, next, startingIn, endingIn, nextSeconds, minutes, seconds};
 }
