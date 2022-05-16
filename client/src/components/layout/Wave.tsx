@@ -3,7 +3,10 @@ export default function Wave() {
     const rightColor = 'eb144c';
 
     return (
-        <svg className="fixed top-0 left-0 -z-10 w-[max(800px,_100%)]" viewBox="0 0 1440 700" xmlns="http://www.w3.org/2000/svg">
+        // Constrain the width between 800px and 100vw as a hack for phone aspect ratio.
+        // 100vw is used instead of 100% to not cause the wave to shift slightly depending on the presence of
+        // a scrollbar; the wave will never cause a horizontal scrollbar so 100vw is safe.
+        <svg className="fixed top-0 left-0 -z-10 w-[max(800px,_100vw)]" viewBox="0 0 1440 700" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="low">
                     <stop offset="5%" stopColor={`#${rightColor}44`}/>
