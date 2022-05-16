@@ -1,15 +1,4 @@
-import {useEffect, useState} from 'react';
-
-
 export default function About() {
-    const [contributors, setContributors] = useState<any[] | null>(null);
-
-    useEffect(() => {
-        fetch('https://api.github.com/repos/GunnWATT/watt/contributors')
-            .then(res => res.json())
-            .then(json => setContributors(json))
-    }, [])
-
     return (
         <>
             <h1 className="mb-4">About</h1>
@@ -38,47 +27,13 @@ export default function About() {
                 Special thanks to <a href="https://github.com/mymylie" target="_blank" rel="noopener noreferrer">Mylie</a> who designed our lovely logo.
             </p>
 
-            <p className="mb-4">
-                Thank you to all of our GitHub contributors, who dedicated their time and expertise to work on
-                this project.
-            </p>
-            {contributors && (
-                <div className="flex flex-wrap justify-center gap-3 px-4 mb-4">
-                    {contributors.map((c) => (
-                        <Contributor name={c.login} href={c.html_url} src={c.avatar_url} />
-                    ))}
-                </div>
-            )}
-
-            <p className="mb-4">
-                And thank you to our testers and advisors. Your bug reports and design advice guides the continued improvement
-                of WATT as it heads into the future.
-            </p>
-            <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 secondary font-light text-sm px-4 mb-4">
-                <span>Brandon Chung</span>
-                <span>Sean Yen</span>
-                <span>Timothy Herchen</span>
-                <span>Saumya Singhal</span>
-                <span>Mylie Rodrigo</span>
-                <span>Victor Dang</span>
-            </div>
-
             <p>
                 Finally, this app would not have been possible without its predecessor, <a href="https://github.com/Orbiit/gunn-web-app" target="_blank" rel="noopener noreferrer">UGWA</a>.
                 A large thank you to <a href="https://github.com/SheepTester" target="_blank" rel="noopener noreferrer">Sean</a>,
                 for not just his mentorship and guidance but for inspiring the new generation of Gunn creators to reach
-                for the stars. It is our hope that WATT can take up this mantle, fostering interest in programming for
-                years to come.
+                for the stars. It is our hope that WATT can take up this mantle, inspiring the next generation of Gunn
+                students to pursue their dreams in years to come.
             </p>
         </>
     );
-}
-
-type ContributorProps = {name: string, href: string, src: string};
-function Contributor(props: ContributorProps) {
-    return (
-        <a href={props.href} target="_blank" rel="noopener noreferrer" className="rounded-full overflow-clip hover:ring-4 hover:ring-tertiary dark:hover:ring-tertiary-dark transition duration-100">
-            <img src={props.src} alt={props.name} className="h-12 w-12" />
-        </a>
-    )
 }
