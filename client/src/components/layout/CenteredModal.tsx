@@ -12,7 +12,7 @@ export default function CenteredModal(props: CenteredModalProps) {
 
     return (
         <Transition show={isOpen} as={Fragment}>
-            <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="fixed z-10 inset-0 flex items-center justify-center">
+            <Dialog onClose={() => setIsOpen(false)} className="fixed z-10 inset-0 flex items-center justify-center">
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"
