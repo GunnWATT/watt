@@ -9,7 +9,7 @@ import CenteredModal from '../layout/CenteredModal';
 import AnimatedPopover from '../layout/AnimatedPopover';
 import OutlineButton, {SuccessOutlineButton} from '../layout/OutlineButton';
 import PriorityPicker from './PriorityPicker';
-import { CalendarPopover } from '../schedule/DateSelector';
+import { Calendar } from '../schedule/DateSelector';
 import { AssignmentTag } from './Assignments';
 import {PopoverPlus, TagPicker, TagPickerLabels} from './ClassFilter';
 
@@ -173,13 +173,14 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
                         <Popover.Button className="py-0.5 px-1.5 rounded-sm text-[0.8rem] bg-theme dark:bg-theme-dark text-white cursor-pointer" onClick={() => setOpen(!open)}>
                             {timestamp.toLocaleString(DateTime.TIME_SIMPLE)} on {timestamp.toLocaleString(DATE_MED_NO_YEAR)}
                         </Popover.Button>
-                        <CalendarPopover
-                            className="inset-0 m-auto"
-                            currTime={timestamp}
-                            setTime={setTimestamp}
-                            time
-                            start={currTime.startOf('day')}
-                        />
+                        <AnimatedPopover className="inset-0 m-auto">
+                            <Calendar
+                                currTime={timestamp}
+                                setTime={setTimestamp}
+                                time
+                                start={currTime.startOf('day')}
+                            />
+                        </AnimatedPopover>
                     </Popover>
                 </div>
             </section>
