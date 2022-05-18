@@ -60,9 +60,9 @@ export function AssignmentTags({item, period}: {item: AssignmentBlurb, period?: 
 // the individual assignment
 // TODO: instead of taking the assignment as `props.assignment`, would it be neater to take it spread out?
 // ie. `props.name`, `props.link`, `props.timestamp`, with assignment passed in as `{...assignment}`
-type AssignmentProps = { assignment: AssignmentBlurb } & ActiveItemState;
+type AssignmentProps = { assignment: AssignmentBlurb, zIndex?: number } & ActiveItemState;
 function Assignment(props: AssignmentProps) {
-    const { assignment, activeItem, setActiveItem } = props;
+    const { assignment, activeItem, setActiveItem, zIndex } = props;
     const [modal, setModal] = useState(false);
 
     const userData = useContext(UserDataContext);
@@ -86,10 +86,11 @@ function Assignment(props: AssignmentProps) {
 
     return (
         <div
-            className={"upcoming-assignment flex bg-sidebar dark:bg-sidebar-dark rounded transition-transform duration-200" + (!activeItem || activeItem.id !== assignment.id ? '' : " scale-[1.03]")}
+            className={"relative flex bg-sidebar dark:bg-sidebar-dark rounded transition-transform duration-200" + (!activeItem || activeItem.id !== assignment.id ? '' : " scale-[1.03]")}
             id={`assignment-${assignment.id}`}
             onMouseEnter={() => setActiveItem(assignment)}
             onMouseLeave={() => setActiveItem(null)}
+            style={{zIndex}}
         >
             <div className="flex-grow py-4 px-5 cursor-pointer" onClick={() => setModal(!modal)}>
                 <AssignmentTags item={assignment} period />
@@ -156,6 +157,8 @@ export default function Assignments(props: AssignmentsProps & ActiveItemState) {
     const { upcoming, overdue, ...activeDayState } = props;
     const currTime = useContext(CurrentTimeContext);
 
+    let count = 0;
+
     // We map days (like "11-29-2021") to all the assignments that are due on that day
     // that way we can have all the headers and stuff
     const daysMap = new Map<string, AssignmentBlurb[]>();
@@ -166,6 +169,7 @@ export default function Assignments(props: AssignmentsProps & ActiveItemState) {
         } else {
             daysMap.set(day, [assignment]);
         }
+        count++;
     }
 
     const days = [];
@@ -177,18 +181,19 @@ export default function Assignments(props: AssignmentsProps & ActiveItemState) {
     }
 
     return (
-        <div className="upcoming-assignments">
+        <div className="flex flex-col gap-4">
             {days.map(({day, upcoming: currUpcoming}) => (
-                <section key={day.toISO()}>
-                    <div className="upcoming-day-header">
+                <section className="flex flex-col gap-2.5" key={day.toISO()}>
+                    <h3 className="secondary">
                         {day.toLocaleString(DATE_FULL_NO_YEAR)} • In {pluralize(Math.ceil(day.diff(currTime, 'days').days), 'day')}
-                    </div>
+                    </h3>
 
                     {currUpcoming.map((assignment) => (
                         <Assignment
                             key={assignment.id}
                             assignment={assignment}
                             {...activeDayState}
+                            zIndex={count--}
                         />
                     ))}
                 </section>

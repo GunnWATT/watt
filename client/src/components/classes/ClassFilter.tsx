@@ -36,7 +36,7 @@ export default function ClassFilter(props: ClassFilterProps) {
 
     return (
         <div>
-            <div className="relative">
+            <div className="relative z-[9999]">
                 <input
                     type="text"
                     placeholder="Search"

@@ -2,19 +2,12 @@
 
 .upcoming-burrito {
   display: flex;
-  flex-direction: row;
-  flex-grow: 1;
   margin: -15px;
 }
 
 .upcoming {
   flex: 1;
   margin: 15px;
-}
-
-.upcoming-day-header {
-  margin: 10px 0;
-  font-size: 1.1rem;
 }
 
 .upcoming-overdue-header {

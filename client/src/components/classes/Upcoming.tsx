@@ -81,7 +81,7 @@ export default function Upcoming() {
             <div className="upcoming">
                 <ClassFilter classes={classes} filter={filter} setFilter={setFilter} />
 
-                <section className="upcoming-icons flex items-center gap-3">
+                <section className="upcoming-icons flex items-center gap-3 mb-4">
                     <button className="add-assignment" onClick={() => setCreating(!creating)}>
                         <FilePlus size={20} />
                     </button>
@@ -93,7 +93,12 @@ export default function Upcoming() {
                 </section>
 
                 {upcomingFiltered && overdueFiltered && (
-                    <Assignments upcoming={upcomingFiltered} overdue={overdueFiltered} activeItem={activeItem} setActiveItem={setActiveItem} />
+                    <Assignments
+                        upcoming={upcomingFiltered}
+                        overdue={overdueFiltered}
+                        activeItem={activeItem}
+                        setActiveItem={setActiveItem}
+                    />
                 )}
             </div>
             {screenType !== 'smallScreen' && screenType !== 'phone' && (
