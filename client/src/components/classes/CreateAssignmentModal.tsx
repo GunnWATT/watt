@@ -173,14 +173,25 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
                         <Popover.Button className="py-0.5 px-1.5 rounded-sm text-[0.8rem] bg-theme dark:bg-theme-dark text-white cursor-pointer" onClick={() => setOpen(!open)}>
                             {timestamp.toLocaleString(DateTime.TIME_SIMPLE)} on {timestamp.toLocaleString(DATE_MED_NO_YEAR)}
                         </Popover.Button>
-                        <AnimatedPopover className="inset-0 m-auto">
-                            <Calendar
-                                currTime={timestamp}
-                                setTime={setTimestamp}
-                                time
-                                start={currTime.startOf('day')}
-                            />
-                        </AnimatedPopover>
+                        <Transition
+                            as={Fragment}
+                            enter="ease-out duration-200 absolute inset-0 m-auto"
+                            enterFrom="opacity-0 scale-95"
+                            enterTo="opacity-100 scale-100"
+                            leave="ease-in duration-150 absolute inset-0 m-auto"
+                            leaveFrom="opacity-100 scale-100"
+                            leaveTo="opacity-0 scale-95"
+                        >
+                            <Popover.Panel>
+                                <Calendar
+                                    className="inset-0 m-auto"
+                                    currTime={timestamp}
+                                    setTime={setTimestamp}
+                                    time
+                                    start={currTime.startOf('day')}
+                                />
+                            </Popover.Panel>
+                        </Transition>
                     </Popover>
                 </div>
             </section>
