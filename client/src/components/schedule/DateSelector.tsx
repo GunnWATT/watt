@@ -83,6 +83,9 @@ export function Calendar(props: CalendarProps) {
         wrapper.current.scrollTop = currMonth.current.offsetTop - 48 - 16;
     }, [wrapper, currMonth])
 
+    // Function to set the day without modifying the hour or minutes
+    const setDate = (day: DateTime) => setTime(currTime.set({year: day.year, ordinal: day.ordinal}));
+
     // I probably shouldn't do this here
     // generate schedule
     const weekdays = ['U', 'M', 'T', 'W', 'θ', 'F', 'S'];
@@ -123,7 +126,7 @@ export function Calendar(props: CalendarProps) {
                         return (
                             <div
                                 className={'flex items-center justify-center cursor-pointer py-0.5' + (noSchool && !active ? ' secondary' : '') + (active ? ' bg-theme dark:bg-theme-dark text-white rounded-full' : '')}
-                                onClick={() => setTime(day)}
+                                onClick={() => setDate(day)}
                                 key={day.toISO()}
                                 style={i === 0 ? {gridColumnStart: (day.weekday % 7) + 1} : undefined}
                             >
@@ -151,8 +154,8 @@ export function Calendar(props: CalendarProps) {
             </section>
 
             <section className="flex justify-between px-4 pt-1.5 pb-2.5 bg-content-secondary dark:bg-content-secondary-dark rounded-b">
-                <button onClick={() => setTime(today)}>Today</button>
-                <button onClick={() => setTime(tmrw)}>Tomorrow</button>
+                <button onClick={() => setDate(today)}>Today</button>
+                <button onClick={() => setDate(tmrw)}>Tomorrow</button>
             </section>
         </div>
     )
