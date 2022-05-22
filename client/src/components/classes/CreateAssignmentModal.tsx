@@ -170,14 +170,14 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
                     <PriorityPicker priority={priority} setPriority={setPriority} align='right' />
 
                     <Popover>
-                        <Popover.Button className="py-0.5 px-1.5 rounded-sm text-[0.8rem] bg-theme dark:bg-theme-dark text-white cursor-pointer" onClick={() => setOpen(!open)}>
+                        <Popover.Button className="py-0.5 px-1.5 rounded-sm text-[0.8rem] bg-theme dark:bg-theme-dark text-white cursor-pointer">
                             {timestamp.toLocaleString(DateTime.TIME_SIMPLE)} on {timestamp.toLocaleString(DATE_MED_NO_YEAR)}
                         </Popover.Button>
                         <Transition
                             as={Fragment}
                             enter="ease-out duration-200 absolute inset-0 m-auto"
                             enterFrom="opacity-0 scale-95"
-                            enterTo="opacity-100 scale-100"
+                            enterTo="opacity-100 scale-100 transform-none" // TODO: does this hacky "transform-none" have implications?
                             leave="ease-in duration-150 absolute inset-0 m-auto"
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
