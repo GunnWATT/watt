@@ -27,22 +27,22 @@ export default function DateSelector(props: DateSelectorProps) {
     const decDay = () => setViewDate(viewDate.minus({days: 1}));
 
     return (
-        <div className="mb-8 flex justify-center gap-3">
+        <div className="relative z-20 mb-8 flex justify-center gap-3">
             <button onClick={decDay}>
                 <ChevronLeft/>
             </button>
 
-            <Popover className="h-9 w-56 bg-content dark:bg-content-dark flex flex-col relative shadow-lg rounded">
-                <Popover.Button className="w-full h-full flex items-center justify-center cursor-pointer">
+            <Popover className="relative flex flex-col">
+                <Popover.Button className="h-9 w-56 bg-content dark:bg-content-dark flex items-center justify-center shadow-lg rounded cursor-pointer">
                     {viewDate.toLocaleString(DateTime.DATE_FULL)}
                 </Popover.Button>
                 <AnimatedPopover className="flex justify-center">
                     <Calendar
+                        className="top-[calc(100%_+_10px)]"
                         currTime={viewDate}
                         setTime={setViewDate}
                         start={start}
                         end={end}
-                        className="top-[calc(100%_+_10px)]"
                     />
                 </AnimatedPopover>
             </Popover>
@@ -82,6 +82,9 @@ export function Calendar(props: CalendarProps) {
         // Set wrapper's scroll position to the offset of the current month, minus the day header and 1rem gap
         wrapper.current.scrollTop = currMonth.current.offsetTop - 48 - 16;
     }, [wrapper, currMonth])
+
+    // Function to set the day without modifying the hour or minutes
+    const setDate = (day: DateTime) => setTime(currTime.set({year: day.year, ordinal: day.ordinal}));
 
     // I probably shouldn't do this here
     // generate schedule
@@ -123,7 +126,7 @@ export function Calendar(props: CalendarProps) {
                         return (
                             <div
                                 className={'flex items-center justify-center cursor-pointer py-0.5' + (noSchool && !active ? ' secondary' : '') + (active ? ' bg-theme dark:bg-theme-dark text-white rounded-full' : '')}
-                                onClick={() => setTime(day)}
+                                onClick={() => setDate(day)}
                                 key={day.toISO()}
                                 style={i === 0 ? {gridColumnStart: (day.weekday % 7) + 1} : undefined}
                             >
@@ -151,8 +154,8 @@ export function Calendar(props: CalendarProps) {
             </section>
 
             <section className="flex justify-between px-4 pt-1.5 pb-2.5 bg-content-secondary dark:bg-content-secondary-dark rounded-b">
-                <button onClick={() => setTime(today)}>Today</button>
-                <button onClick={() => setTime(tmrw)}>Tomorrow</button>
+                <button onClick={() => setDate(today)}>Today</button>
+                <button onClick={() => setDate(tmrw)}>Tomorrow</button>
             </section>
         </div>
     )

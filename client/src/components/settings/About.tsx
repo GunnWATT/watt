@@ -28,9 +28,11 @@ export default function About() {
             </p>
 
             <p>
-                This app would not have been possible without its predecessor, <a href="https://github.com/Orbiit/gunn-web-app" target="_blank" rel="noopener noreferrer">UGWA</a>.
+                Finally, this app would not have been possible without its predecessor, <a href="https://github.com/Orbiit/gunn-web-app" target="_blank" rel="noopener noreferrer">UGWA</a>.
                 A large thank you to <a href="https://github.com/SheepTester" target="_blank" rel="noopener noreferrer">Sean</a>,
-                for not just UGWA but also his mentorship and guidance of the project in its infancy.
+                for not just his mentorship and guidance but for inspiring the new generation of Gunn creators to reach
+                for the stars. It is our hope that WATT can take up this mantle, inspiring the next generation of Gunn
+                students to pursue their dreams in years to come.
             </p>
         </>
     );

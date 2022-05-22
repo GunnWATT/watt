@@ -126,90 +126,88 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
     }
 
     return (
-        <CenteredModal isOpen={open} setIsOpen={setOpen}>
-            <div className="create-modal relative flex flex-col gap-4 bg-sidebar dark:bg-sidebar-dark rounded-md w-[32rem] max-w-full max-h-[90%] p-6 mx-2">
-                <section>
-                    <div className="assignment-tags" style={{ marginBottom: 5 }}>
-                        {labels.map(label => (
-                            <AssignmentTag key={label} label={parseLabelName(label, userData)} color={parseLabelColor(label, userData)} />
-                        ))}
+        <CenteredModal className="create-modal relative flex flex-col gap-4 bg-sidebar dark:bg-sidebar-dark rounded-md w-[32rem] max-w-full max-h-[90%] p-6 mx-2" isOpen={open} setIsOpen={setOpen}>
+            <section>
+                <div className="assignment-tags" style={{ marginBottom: 5 }}>
+                    {labels.map(label => (
+                        <AssignmentTag key={label} label={parseLabelName(label, userData)} color={parseLabelColor(label, userData)} />
+                    ))}
 
-                        <Popover className="relative cursor-pointer ml-auto">
-                            <PopoverPlus />
-                            <TagPicker>
-                                {(search) => (
-                                    <TagPickerLabels labels={labels} setLabels={setLabels} search={search} />
-                                )}
-                            </TagPicker>
-                        </Popover>
-                    </div>
+                    <Popover className="relative cursor-pointer ml-auto">
+                        <PopoverPlus />
+                        <TagPicker>
+                            {(search) => (
+                                <TagPickerLabels labels={labels} setLabels={setLabels} search={search} />
+                            )}
+                        </TagPicker>
+                    </Popover>
+                </div>
 
-                    {/* Name */}
-                    <input
-                        required
-                        type="text"
-                        placeholder="Assignment Name"
-                        //autoFocus
-                        className="create-name w-full rounded-sm invalid:outline-1 invalid:outline-dashed invalid:outline-theme dark:invalid:outline-theme-dark"
-                        value={name}
-                        onChange={e => setName(e.target.value)}
-                    />
+                {/* Name */}
+                <input
+                    required
+                    type="text"
+                    placeholder="Assignment Name"
+                    //autoFocus
+                    className="create-name w-full rounded-sm invalid:outline-1 invalid:outline-dashed invalid:outline-theme dark:invalid:outline-theme-dark"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                />
 
-                    {/* Period */}
-                    <PeriodPicker period={period} setPeriod={setPeriod} />
-                </section>
+                {/* Period */}
+                <PeriodPicker period={period} setPeriod={setPeriod} />
+            </section>
 
-                <section>
-                    <textarea
-                        className="create-desc rounded p-3 w-full outline-none resize-none bg-background dark:bg-background-dark placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light"
-                        placeholder="Assignment Description [Optional]"
-                        value={description}
-                        onChange={e => setDescription(e.target.value)}
-                    />
+            <section>
+                <textarea
+                    className="create-desc rounded p-3 w-full outline-none resize-none bg-background dark:bg-background-dark placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light"
+                    placeholder="Assignment Description [Optional]"
+                    value={description}
+                    onChange={e => setDescription(e.target.value)}
+                />
 
+                <div className="flex items-center gap-2">
+                    <PriorityPicker priority={priority} setPriority={setPriority} align='right' />
+
+                    <Popover>
+                        <Popover.Button className="py-0.5 px-1.5 rounded-sm text-[0.8rem] bg-theme dark:bg-theme-dark text-white cursor-pointer">
+                            {timestamp.toLocaleString(DateTime.TIME_SIMPLE)} on {timestamp.toLocaleString(DATE_MED_NO_YEAR)}
+                        </Popover.Button>
+                        <Transition
+                            as={Fragment}
+                            enter="ease-out duration-200 absolute inset-0 m-auto"
+                            enterFrom="opacity-0 scale-95"
+                            enterTo="opacity-100 scale-100 transform-none" // TODO: does this hacky "transform-none" have implications?
+                            leave="ease-in duration-150 absolute inset-0 m-auto"
+                            leaveFrom="opacity-100 scale-100"
+                            leaveTo="opacity-0 scale-95"
+                        >
+                            <Popover.Panel>
+                                <Calendar
+                                    className="inset-0 m-auto"
+                                    currTime={timestamp}
+                                    setTime={setTimestamp}
+                                    time
+                                    start={currTime.startOf('day')}
+                                />
+                            </Popover.Panel>
+                        </Transition>
+                    </Popover>
+                </div>
+            </section>
+
+            <section className="flex flex-wrap gap-3 items-center justify-end">
+                <OutlineButton onClick={() => setOpen(false)}>Cancel</OutlineButton>
+                <SuccessOutlineButton disabled={!ready} onClick={create}>
                     <div className="flex items-center gap-2">
-                        <PriorityPicker priority={priority} setPriority={setPriority} align='right' />
-
-                        <Popover>
-                            <Popover.Button className="py-0.5 px-1.5 rounded-sm text-[0.8rem] bg-theme dark:bg-theme-dark text-white cursor-pointer" onClick={() => setOpen(!open)}>
-                                {timestamp.toLocaleString(DateTime.TIME_SIMPLE)} on {timestamp.toLocaleString(DATE_MED_NO_YEAR)}
-                            </Popover.Button>
-                            <Transition
-                                as={Fragment}
-                                enter="ease-out duration-200 absolute inset-0 m-auto"
-                                enterFrom="opacity-0 scale-95"
-                                enterTo="opacity-100 scale-100"
-                                leave="ease-in duration-150 absolute inset-0 m-auto"
-                                leaveFrom="opacity-100 scale-100"
-                                leaveTo="opacity-0 scale-95"
-                            >
-                                <Popover.Panel>
-                                    <Calendar
-                                        className="inset-0 m-auto"
-                                        currTime={timestamp}
-                                        setTime={setTimestamp}
-                                        time
-                                        start={currTime.startOf('day')}
-                                    />
-                                </Popover.Panel>
-                            </Transition>
-                        </Popover>
+                        {item ? (<>
+                            <Edit /> Edit
+                        </>) : (<>
+                            <PlusCircle /> Create
+                        </>)}
                     </div>
-                </section>
-
-                <section className="flex flex-wrap gap-3 items-center justify-end">
-                    <OutlineButton onClick={() => setOpen(false)}>Cancel</OutlineButton>
-                    <SuccessOutlineButton disabled={!ready} onClick={create}>
-                        <div className="flex items-center gap-2">
-                            {item ? (<>
-                                <Edit /> Edit
-                            </>) : (<>
-                                <PlusCircle /> Create
-                            </>)}
-                        </div>
-                    </SuccessOutlineButton>
-                </section>
-            </div>
+                </SuccessOutlineButton>
+            </section>
         </CenteredModal>
     )
 }

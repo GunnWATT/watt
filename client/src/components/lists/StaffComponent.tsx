@@ -70,43 +70,41 @@ export default function StaffComponent(props: Staff & {id: string}) {
             )}
             {email && <p className="secondary">{email}</p>}
 
-            <CenteredModal isOpen={modal} setIsOpen={setModal}>
-                <div className="relative bg-content dark:bg-content-dark rounded-md max-w-md mx-2 p-6 shadow-xl">
-                    <Dialog.Title className="text-xl font-semibold mb-3 pr-6">{name}</Dialog.Title>
-                    <section className="flex gap-6 justify-between">
-                        <div>
-                            {title && <p><strong className="secondary font-medium">Title:</strong> {title}</p>}
-                            {dept && <p><strong className="secondary font-medium">Department:</strong> {dept}</p>}
-                            {room && <p><strong className="secondary font-medium">Room:</strong> {room}</p>}
-                        </div>
-                        <div className="text-right">
-                            {email && <p><strong className="secondary font-medium">Email:</strong> {email}</p>}
-                            {phone && <p><strong className="secondary font-medium">Phone:</strong> {phone}</p>}
-                        </div>
-                    </section>
+            <CenteredModal className="relative bg-content dark:bg-content-dark rounded-md max-w-md mx-2 p-6 shadow-xl" isOpen={modal} setIsOpen={setModal}>
+                <Dialog.Title className="text-xl font-semibold mb-3 pr-6">{name}</Dialog.Title>
+                <section className="flex gap-6 justify-between">
+                    <div>
+                        {title && <p><strong className="secondary font-medium">Title:</strong> {title}</p>}
+                        {dept && <p><strong className="secondary font-medium">Department:</strong> {dept}</p>}
+                        {room && <p><strong className="secondary font-medium">Room:</strong> {room}</p>}
+                    </div>
+                    <div className="text-right">
+                        {email && <p><strong className="secondary font-medium">Email:</strong> {email}</p>}
+                        {phone && <p><strong className="secondary font-medium">Phone:</strong> {phone}</p>}
+                    </div>
+                </section>
 
-                    {charters.length > 0 && (<>
-                        <hr className="my-3" />
-                        <p className="flex gap-1 items-center">
-                            <strong className="secondary font-medium">Club(s):</strong> {charters}
-                        </p>
-                    </>)}
+                {charters.length > 0 && (<>
+                    <hr className="my-3" />
+                    <p className="flex gap-1 items-center">
+                        <strong className="secondary font-medium">Club(s):</strong> {charters}
+                    </p>
+                </>)}
 
-                    <section className="flex gap-3 flex-wrap justify-end mt-4">
-                        {pinned ? (
-                            <OutlineButton onClick={removeFromPinned}>
-                                Remove from my list
-                            </OutlineButton>
-                        ) : (
-                            <OutlineButton onClick={addToPinned}>
-                                Add to my list
-                            </OutlineButton>
-                        )}
-                        <DangerOutlineButton onClick={() => setModal(false)}>
-                            Close
-                        </DangerOutlineButton>
-                    </section>
-                </div>
+                <section className="flex gap-3 flex-wrap justify-end mt-4">
+                    {pinned ? (
+                        <OutlineButton onClick={removeFromPinned}>
+                            Remove from my list
+                        </OutlineButton>
+                    ) : (
+                        <OutlineButton onClick={addToPinned}>
+                            Add to my list
+                        </OutlineButton>
+                    )}
+                    <DangerOutlineButton onClick={() => setModal(false)}>
+                        Close
+                    </DangerOutlineButton>
+                </section>
             </CenteredModal>
         </li>
     );
