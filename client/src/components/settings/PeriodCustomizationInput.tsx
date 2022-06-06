@@ -3,6 +3,9 @@ import {Popover} from '@headlessui/react';
 import {useAuth, useFirestore} from 'reactfire';
 import { ColorResult, SketchPicker } from 'react-color';
 
+// Components
+import AnimatedPopover from '../layout/AnimatedPopover';
+
 // Contexts
 import UserDataContext, {SgyPeriodData} from '../../contexts/UserDataContext';
 
@@ -28,8 +31,7 @@ export default function PeriodCustomizationInput(props: PeriodCustomizationInput
     const [color, setColor] = useState(parsePeriodColor(id, userData));
     const changeColor = (color: ColorResult) => setColor(color.hex);
 
-    const upperPeriods = ['0', '1', '2', '3'];
-    const isUpperPeriod = upperPeriods.includes(id);
+    const isUpperPeriod = ['0', '1', '2', '3'].includes(id);
 
     return (
         <div className="periods-custom-row-burrito flex items-center gap-6">
@@ -38,18 +40,19 @@ export default function PeriodCustomizationInput(props: PeriodCustomizationInput
                     className="w-10 h-10 rounded border-2 border-tertiary dark:border-tertiary-dark"
                     style={{backgroundColor: color}}
                 />
-                <Popover.Panel className={`periods-custom-picker-div-${isUpperPeriod ? 'top' : 'bottom'}`}>
+                <AnimatedPopover className={`absolute z-10 touch-none ${isUpperPeriod ? 'top-[calc(100%_+_10px)]' : 'bottom-[calc(100%_+_10px)]'}`}>
                     {/* TODO: we should consider making our own custom picker for this */}
                     {/* or maybe styling a browser default input; these pickers come with their own component styles */}
                     {/* and, like reactstrap, don't give enough creative freedom to add, say, a "reset to defaults" button */}
                     <SketchPicker
+                        className="period-customization-picker"
                         color={color}
                         onChange={changeColor}
                         onChangeComplete={(color: ColorResult) => updatePeriodData(color.hex, 'c')}
                         presetColors={userData.options.theme === 'light' ? periodColors : darkPerColors}
                         disableAlpha
                     />
-                </Popover.Panel>
+                </AnimatedPopover>
             </Popover>
 
             <div className="flex-grow flex flex-wrap gap-4">
