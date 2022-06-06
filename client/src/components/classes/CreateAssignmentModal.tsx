@@ -10,7 +10,7 @@ import AnimatedPopover from '../layout/AnimatedPopover';
 import OutlineButton, {SuccessOutlineButton} from '../layout/OutlineButton';
 import PriorityPicker from './PriorityPicker';
 import { Calendar } from '../schedule/DateSelector';
-import { AssignmentTag } from './Assignments';
+import { Tags, AssignmentTag } from './AssignmentTags';
 import {PopoverPlus, TagPicker, TagPickerLabels} from './ClassFilter';
 
 // Contexts
@@ -128,7 +128,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
     return (
         <CenteredModal className="create-modal relative flex flex-col gap-4 bg-sidebar dark:bg-sidebar-dark rounded-md w-[32rem] max-w-full max-h-[90%] p-6 mx-2" isOpen={open} setIsOpen={setOpen}>
             <section>
-                <div className="assignment-tags" style={{ marginBottom: 5 }}>
+                <Tags>
                     {labels.map(label => (
                         <AssignmentTag key={label} label={parseLabelName(label, userData)} color={parseLabelColor(label, userData)} />
                     ))}
@@ -141,7 +141,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
                             )}
                         </TagPicker>
                     </Popover>
-                </div>
+                </Tags>
 
                 {/* Name */}
                 <input

@@ -5,10 +5,6 @@
   flex-shrink: 0;
 }
 
-.classes-error-content {
-  max-width: 1000px;
-}
-
 .classes-sidebar {
   height: 100vh;
 
@@ -25,19 +21,5 @@
   &.phone {
     width: 45px;
     height: 45px;
-  }
-}
-
-.classes-header-bubble {
-  width: 40px;
-  height: 40px;
-}
-
-// Nav Bar
-.classes-navbar {
-  &-item {
-    padding: 8px 12px;
-    border-radius: 5px;
-    transition: all ease-in-out 100ms;
   }
 }

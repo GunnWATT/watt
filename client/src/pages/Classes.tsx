@@ -232,13 +232,13 @@ export default function Classes() {
                 <div className="container h-max py-4 md:py-6 ">
                     <Header>
                         <div
-                            className="classes-header-bubble border-2 border-secondary dark:border-secondary-dark rounded-full flex-shrink-0"
+                            className="w-10 h-10 border-2 border-secondary dark:border-secondary-dark rounded-full flex-shrink-0"
                             style={{backgroundColor: color}}
                         />
                         <h1 className="mb-0">{name}</h1>
                     </Header>
 
-                    <nav className="classes-navbar mt-6 flex flex-wrap gap-2 mb-4 text-lg">
+                    <nav className="mt-6 flex flex-wrap gap-2 mb-4 text-lg">
                         <ClassesNavBarItem text="Dashboard" to="." />
                         <ClassesNavBarItem text="Upcoming" to="upcoming" />
                         <ClassesNavBarItem text="Materials" to="materials" />
@@ -268,7 +268,7 @@ function ClassesNavBarItem(props: {text: string, to: string}) {
     const match = useMatch({ path: resolved.pathname, end: true });
 
     return (
-        <Link to={to} className={'classes-navbar-item flex-grow text-center hover:no-underline ' + (match ? 'text-primary dark:text-primary-dark bg-content dark:bg-content-dark shadow-lg' : 'secondary bg-content-secondary dark:bg-content-secondary-dark')}>
+        <Link to={to} className={'py-2 px-3 rounded-md transition duration-100 ease-in-out flex-grow text-center hover:no-underline ' + (match ? 'text-primary dark:text-primary-dark bg-content dark:bg-content-dark shadow-lg' : 'secondary bg-content-secondary dark:bg-content-secondary-dark')}>
             {text}
         </Link>
     )
@@ -279,7 +279,7 @@ function ClassesErrorBurrito(props: {children?: ReactNode}) {
     return <>
         <Wave />
         <div className="w-full h-screen flex items-center justify-center pb-16 -mb-16 md:pb-0 md:mb-0">
-            <div className="classes-error-content rounded p-6 mx-4 text-center bg-sidebar dark:bg-sidebar-dark">
+            <div className="max-w-5xl rounded p-6 mx-4 text-center bg-sidebar dark:bg-sidebar-dark">
                 {props.children}
             </div>
         </div>

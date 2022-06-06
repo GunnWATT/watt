@@ -1,33 +1,6 @@
 // A SCSS file detailing all assignment-related things
 // includes assignment things in Dashboard, Upcoming, and the modal
 
-// General Reused components
-.assignment-tags {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 5px;
-  gap: 5px;
-
-  .assignment-tag {
-    display: flex;
-    align-items: center;
-    height: max-content;
-
-    .assignment-dot {
-      flex-shrink: 0;
-      width: 10px;
-      height: 10px;
-      border-radius: 10px;
-      margin-right: 5px;
-    }
-
-    font-size: 0.7rem;
-    background-color: var(--bg-secondary);
-    padding: 2px 5px;
-    border-radius: 5px;
-  }
-}
-
 .priority {
   &-picker {
     top: calc(100% + 10px);

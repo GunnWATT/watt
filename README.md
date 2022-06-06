@@ -56,7 +56,7 @@ emulators on other localhost ports.
 
 ![image](https://user-images.githubusercontent.com/60120929/161687556-d3cd9682-fe90-4deb-9258-522895443ff6.png)
 
-Navigating to `localhost:4001` should bring up the Emulator UI from which the emulated firestore database and auth
+Navigating to `localhost:4000` should bring up the Emulator UI from which the emulated firestore database and auth
 records can be accessed.
 
 ![image](https://user-images.githubusercontent.com/60120929/134827751-de1a3398-7aa8-4138-a290-4e02e1c5c59a.png)

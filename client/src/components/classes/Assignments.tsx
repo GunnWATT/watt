@@ -6,55 +6,21 @@ import { AlertCircle, CheckSquare, Link, Square } from 'react-feather';
 // Components
 import PriorityPicker from './PriorityPicker';
 import AssignmentModal from './AssignmentModal';
+import {AssignmentTags} from './AssignmentTags';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
 // Utilities
-import { parsePeriodName, parsePeriodColor } from '../schedule/Periods';
 import { AssignmentBlurb, updateAssignment } from '../../util/sgyAssignments';
-import { parseLabelColor } from '../../util/sgyLabels';
 import {pluralize, shortify} from '../../util/sgyHelpers';
 import {DATE_FULL_NO_YEAR, DATE_MED_NO_YEAR} from '../../util/dateFormats';
 
 
-// The assignment blocks for the Upcoming Tab
-// Pretty self explanatory
-
 export type ActiveItemState = {
     activeItem: AssignmentBlurb | null;
     setActiveItem: (item: AssignmentBlurb | null) => void;
-}
-
-type AssignmentTagProps = { label: string, color?: string };
-export function AssignmentTag(props: AssignmentTagProps) {
-    const {label, color} = props;
-
-    return (
-        <div className="assignment-tag">
-            {color && <div style={{backgroundColor: color}} className="assignment-dot"/>}
-            <div className="assignment-label">{label}</div>
-        </div>
-    )
-}
-
-export function AssignmentTags({item, period}: {item: AssignmentBlurb, period?: boolean}) {
-    const userData = useContext(UserDataContext);
-
-    return (
-        <div className="assignment-tags">
-            {period && (
-                <AssignmentTag
-                    label={parsePeriodName(item.period, userData)}
-                    color={parsePeriodColor(item.period, userData)}
-                />
-            )}
-            {item.labels.map(label => (
-                <AssignmentTag key={label} label={label} color={parseLabelColor(label, userData)} />
-            ))}
-        </div>
-    )
 }
 
 // the individual assignment

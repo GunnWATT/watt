@@ -7,7 +7,8 @@ import {DateTime} from 'luxon';
 // Components
 import CenteredModal from '../layout/CenteredModal';
 import CreateAssignmentModal from './CreateAssignmentModal';
-import {AssignmentTags, AssignmentTimestamp} from './Assignments';
+import {AssignmentTimestamp} from './Assignments';
+import {AssignmentTags} from './AssignmentTags';
 import PriorityPicker from './PriorityPicker';
 
 // Context
@@ -51,7 +52,7 @@ export default function AssignmentModal(props: AssignmentModalProps) {
     return (
         <CenteredModal className="item-modal relative flex flex-col gap-4 bg-sidebar dark:bg-sidebar-dark rounded-md max-w-lg max-h-[90%] p-6 mx-2" isOpen={open} setIsOpen={setOpen}>
             <section>
-                <AssignmentTags item={item} period />
+                <AssignmentTags className="mb-1.5" item={item} period />
                 <span className="flex items-center gap-2">
                     {item.timestamp && (
                         <CompletedIcon

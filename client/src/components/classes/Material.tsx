@@ -2,7 +2,7 @@ import {useContext, useState} from 'react';
 
 // Components
 import AssignmentModal from './AssignmentModal';
-import { AssignmentTags } from './Assignments';
+import { AssignmentTags } from './AssignmentTags';
 
 // Contexts
 import UserDataContext, {SgyData} from '../../contexts/UserDataContext';

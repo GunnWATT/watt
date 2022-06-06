@@ -4,7 +4,7 @@ import {Plus} from 'react-feather';
 
 // Components
 import AnimatedPopover from '../layout/AnimatedPopover';
-import {AssignmentTag} from './Assignments';
+import {Tags, AssignmentTag} from './AssignmentTags';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
@@ -64,14 +64,14 @@ export default function ClassFilter(props: ClassFilterProps) {
                 </Popover>
             </div>
 
-            <div className="assignment-tags mt-1.5 mb-3">
+            <Tags className="mt-1.5 mb-3">
                 {filter.classes.map((c, i) => c && (
                     <AssignmentTag label={classes[i].name} color={classes[i].color} />
                 ))}
                 {filter.labels.map(label => (
                     <AssignmentTag label={parseLabelName(label, userData)} color={parseLabelColor(label, userData)} />
                 ))}
-            </div>
+            </Tags>
         </div>
     );
 }
