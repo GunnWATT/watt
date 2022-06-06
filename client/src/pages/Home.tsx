@@ -45,25 +45,17 @@ export default function Home(props: HomeProps) {
     // which may disrupt the comparison in undesirable ways
     let relDays = viewDate.diff(viewDateCurr, 'days').days;
 
-    // Screen type for responsive design
-    const screenType = useScreenType();
-    const displayFromScreenType = () => {
-        if (screenType === 'phone') return 'one-col narrow';
-        if (screenType === 'smallScreen') return 'one-col';
-        return 'two-col';
-    }
-
     // User data for preferred time display
     const userData = useContext(UserDataContext);
     const format = userData?.options.time === '24' ? 'H:mm:ss' : 'h:mm:ss a';
 
 
     return (
-        <div className={`home ${displayFromScreenType()} p-0 md:p-6 xl:flex xl:gap-6`}>
+        <div className="p-0 md:p-6 xl:flex xl:gap-6">
             <Wave />
 
             {/* Schedule */}
-            <main className="schedule relative flex-grow">
+            <main className="relative flex-grow p-4">
                 {relDays !== 0 && <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>}
 
                 {userData.options?.clock && <Clock viewDate={viewDate} />}
