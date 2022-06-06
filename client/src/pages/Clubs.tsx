@@ -4,6 +4,7 @@ import {useScreenType} from '../hooks/useScreenType';
 
 // Components
 import HeaderPage from '../components/layout/HeaderPage';
+import Search from '../components/layout/Search';
 import List from '../components/lists/List';
 import StateTab from '../components/layout/StateTab';
 import ClubComponent from '../components/lists/ClubComponent';
@@ -74,9 +75,7 @@ export default function Clubs() {
         <HeaderPage
             heading="Clubs"
             other={
-                <input
-                    type="search"
-                    className="py-1 px-2.5 rounded-full border-2 border-tertiary"
+                <Search
                     placeholder="Search clubs"
                     onChange={e => setQuery(e.target.value)}
                 />

@@ -3,6 +3,7 @@ import {DateTime} from 'luxon';
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Components
+import Search from '../layout/Search';
 import List from './List';
 import StaffComponent, {ClassObj, SemesterClassObj, Staff as StaffComponentProps} from './StaffComponent';
 
@@ -60,9 +61,7 @@ export default function Staff() {
         <>
             <span className="flex gap-4 items-center">
                 <h1>Staff</h1>
-                <input
-                    type="search"
-                    className="py-1 px-2.5 rounded-full border-2 border-tertiary"
+                <Search
                     placeholder="Search Staff"
                     onChange={e => setQuery(e.target.value)}
                 />
