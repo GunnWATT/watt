@@ -59,13 +59,16 @@ function Assignment(props: AssignmentProps) {
             style={{zIndex}}
         >
             <div className="flex-grow py-4 px-5 cursor-pointer" onClick={() => setModal(!modal)}>
-                <AssignmentTags item={assignment} period />
+                <AssignmentTags className="mb-1.5" item={assignment} period />
+
                 <div className="text-lg">{shortify(assignment.name, 150)}</div>
+
                 {!!assignment.description.length && (
                     <div className="secondary mt-2.5 text-[0.8rem]">
                         {shortify(assignment.description,200)}
                     </div>
                 )}
+
                 <AssignmentTimestamp className="mt-2.5">
                     {assignment.timestamp!.toLocaleString(DateTime.TIME_SIMPLE)} on {assignment.timestamp!.toLocaleString(DATE_MED_NO_YEAR)}
                     {overdue && (
@@ -77,7 +80,7 @@ function Assignment(props: AssignmentProps) {
             </div>
 
             <div className="w-[88px] flex flex-col flex-none py-4 pr-5">
-                <div className="flex justify-between">
+                <div className="flex">
                     {!isCustomAssignment && (
                         <a href={assignment.link} target="_blank" rel="noopener noreferrer">
                             <Link size={28} color="var(--primary)" />
@@ -85,7 +88,7 @@ function Assignment(props: AssignmentProps) {
                     )}
                     <CompletedIcon
                         size={28}
-                        className="cursor-pointer flex-none"
+                        className="cursor-pointer flex-none ml-auto"
                         onClick={() => toggleCompleted()}
                     />
                 </div>

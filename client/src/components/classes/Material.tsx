@@ -2,13 +2,14 @@ import {useContext, useState} from 'react';
 
 // Components
 import AssignmentModal from './AssignmentModal';
-import { AssignmentTags } from './AssignmentTags';
+import {Tags, AssignmentTag} from './AssignmentTags';
 
 // Contexts
 import UserDataContext, {SgyData} from '../../contexts/UserDataContext';
 
 // Utilities
 import {parsePeriodColor} from '../schedule/Periods';
+import {parseLabelColor} from '../../util/sgyLabels';
 import {AssignmentBlurb} from '../../util/sgyAssignments';
 import {DATE_SHORT_YEAR_SHORTENED} from '../../util/dateFormats';
 
@@ -21,18 +22,23 @@ export default function Material(props: MaterialProps) {
     const [modal, setModal] = useState(false);
 
     return (
-        <div className="material" onClick={() => setModal(!modal)}>
-            <div className="material-name">{item.name}</div>
+        <div className="py-2 px-3 bg-sidebar dark:bg-sidebar-dark flex items-center justify-between gap-4 rounded cursor-pointer" onClick={() => setModal(!modal)}>
+            <div className="break-words">{item.name}</div>
 
-            {item.timestamp && (
-                <div className="material-date">{item.timestamp.toLocaleString(DATE_SHORT_YEAR_SHORTENED)}</div>
-            )}
-
-            <div className="material-labels">
-                {/* {item.labels.map(label => <div key={label} className="material-date">{label}</div>)} */}
-                <AssignmentTags item={item} />
+            <div className="flex items-center gap-3">
+                <Tags className="justify-end">
+                    {item.timestamp && (
+                        <AssignmentTag label={item.timestamp.toLocaleString(DATE_SHORT_YEAR_SHORTENED)} />
+                    )}
+                    {item.labels.map(label => (
+                        <AssignmentTag key={label} label={label} color={parseLabelColor(label, userData)} />
+                    ))}
+                </Tags>
+                <div
+                    className="w-7 h-7 rounded-full flex-none"
+                    style={{backgroundColor: parsePeriodColor(item.period, userData)}}
+                />
             </div>
-            <div className="material-class" style={{backgroundColor: parsePeriodColor(item.period, userData)}} />
 
             <AssignmentModal item={item} open={modal} setOpen={setModal} />
         </div>

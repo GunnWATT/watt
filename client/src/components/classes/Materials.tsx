@@ -47,9 +47,11 @@ export default function Materials() {
         .map((item) => <Material key={item.id} item={item} sgyData={sgyData} />)
 
     return (
-        <div className="materials">
+        <div className="flex flex-col gap-2">
             <ClassFilter filter={filter} setFilter={setFilter} classes={classes} />
-            {content && content.length ? content : <NoResults />}
+            <section className="flex flex-col gap-1.5">
+                {content && content.length ? content : <NoResults />}
+            </section>
         </div>
     );
 }

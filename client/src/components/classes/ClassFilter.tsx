@@ -35,8 +35,8 @@ export default function ClassFilter(props: ClassFilterProps) {
     const setLabels = (labels: string[]) => setFilter({...filter, labels});
 
     return (
-        <div>
-            <div className="relative z-[9999]">
+        <div className="flex flex-col gap-1.5 mb-3">
+            <div className="relative">
                 <input
                     type="text"
                     placeholder="Search"
@@ -64,7 +64,7 @@ export default function ClassFilter(props: ClassFilterProps) {
                 </Popover>
             </div>
 
-            <Tags className="mt-1.5 mb-3">
+            <Tags>
                 {filter.classes.map((c, i) => c && (
                     <AssignmentTag label={classes[i].name} color={classes[i].color} />
                 ))}
