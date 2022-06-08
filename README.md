@@ -67,6 +67,7 @@ records can be accessed.
 Navigate to the scripts directory with `cd scripts` and install the necessary dependencies with `npm install`. WATT's 
 scripts use `ts-node` to skip having to manually compile TypeScript before running, with each script having a corresponding
 command defined in `package.json`. Run `npm run` to see a list of scripts, or `npm run [name]` to execute a script.
+More detailed documentation on what each script does can be found in the [scripts README](https://github.com/GunnWATT/watt/blob/main/scripts/README.md).
 
 ![image](https://user-images.githubusercontent.com/60120929/161687846-7ef1a8bb-e78a-4ea5-bf21-4738d980fa9a.png)
 ![image](https://user-images.githubusercontent.com/60120929/161687964-9afd773e-b12a-498f-9a14-1f8bd73cd78c.png)
