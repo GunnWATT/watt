@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import {startTransition, useContext, useEffect, useState} from 'react';
 
 // Components
 import Material from './Material';
@@ -17,8 +17,7 @@ import {getMaterials} from '../../util/sgyMaterials';
 
 
 export default function Materials() {
-    const sgyInfo = useContext(SgyDataContext);
-    const { sgyData, selected } = sgyInfo;
+    const { sgyData, selected } = useContext(SgyDataContext);
 
     // Userdata handling
     const userData = useContext(UserDataContext);
@@ -31,20 +30,25 @@ export default function Materials() {
 
     // Materials
     const [materials, setMaterials] = useState<AssignmentBlurb[] | null> (null);
+    const [content, setContent] = useState<JSX.Element[] | null>(null);
 
     useEffect(() => {
         setMaterials(getMaterials(sgyData, selected, userData));
     }, [selected, userData]);
 
-    const content = materials && materials
-        .filter((assi) => filter.query.length === 0
-            || similarity(filter.query, assi.name) >= 0.8
-            || similarity(filter.query, assi.description) >= 0.8)
-        .filter((assi) => filter.classes.every(c => !c) ||
-            filter.classes[classes.findIndex(({ period }) => assi.period === period)])
-        .filter((assi) => !filter.labels.length ||
-            assi.labels.some(label => filter.labels.includes(label)))
-        .map((item) => <Material key={item.id} item={item} sgyData={sgyData} />)
+    useEffect(() => {
+        startTransition(() => {
+            setContent(materials && materials
+                .filter((assi) => filter.query.length === 0
+                    || similarity(filter.query, assi.name) >= 0.8
+                    || similarity(filter.query, assi.description) >= 0.8)
+                .filter((assi) => filter.classes.every(c => !c) ||
+                    filter.classes[classes.findIndex(({ period }) => assi.period === period)])
+                .filter((assi) => !filter.labels.length ||
+                    assi.labels.some(label => filter.labels.includes(label)))
+                .map((item) => <Material key={item.id} item={item} sgyData={sgyData} />))
+        });
+    }, [materials, filter])
 
     return (
         <div className="flex flex-col gap-2">

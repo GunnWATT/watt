@@ -53,18 +53,12 @@ export default function Clubs() {
     // Used to render tab names as well as to filter the displayed JSON
     const dayFromTabNum = (tab: string, shorten?: boolean) => {
         switch (tab) {
-            case '1':
-                return 'All';
-            case '2':
-                return shorten ? 'Mon' : 'Monday';
-            case '3':
-                return shorten ? 'Tues' : 'Tuesday';
-            case '4':
-                return shorten ? 'Wed' : 'Wednesday';
-            case '5':
-                return shorten ? 'Thur' : 'Thursday';
-            case '6':
-                return shorten ? 'Fri' : 'Friday';
+            case '1': return 'All';
+            case '2': return shorten ? 'Mon' : 'Monday';
+            case '3': return shorten ? 'Tues' : 'Tuesday';
+            case '4': return shorten ? 'Wed' : 'Wednesday';
+            case '5': return shorten ? 'Thur' : 'Thursday';
+            case '6': return shorten ? 'Fri' : 'Friday';
         }
         // Hopefully this never triggers!
         return 'Unknown';

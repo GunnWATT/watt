@@ -62,9 +62,6 @@ export default function Upcoming() {
                 assi.labels.some(label => filter.labels.includes(label)));
     }
 
-    const upcomingFiltered = filterItems(upcoming);
-    const overdueFiltered = filterItems(overdue);
-
     useEffect(() => {
         const {upcoming, overdue} = getUpcomingInfo(sgyData, selected, userData, time);
 
@@ -74,6 +71,9 @@ export default function Upcoming() {
 
     // if user is making a new assignment
     const [creating, setCreating] = useState(false);
+
+    const upcomingFiltered = filterItems(upcoming);
+    const overdueFiltered = filterItems(overdue);
 
     return (
         <div className={"upcoming-burrito " + screenType}>

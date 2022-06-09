@@ -10,7 +10,7 @@ export default function StateTab(props: StateTabProps) {
     const {value, name, state, setState} = props;
 
     return (
-        <Tab active={value === state} onClick={setState.bind(null, value)}>
+        <Tab active={value === state} onClick={() => setState(value)}>
             {name}
         </Tab>
     )

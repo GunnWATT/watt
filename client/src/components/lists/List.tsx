@@ -1,4 +1,4 @@
-import {useState, useEffect, ReactNode} from 'react';
+import {useState, useEffect, ReactNode, startTransition} from 'react';
 import NoResults from './NoResults';
 
 
@@ -39,8 +39,10 @@ export default function List<T>(props: ListProps<T>) {
         const unpinnedData = parsed.filter(([id, value]) => !pinned.includes(id));
 
         // Filter each via query, map to components
-        setContent(unpinnedData.filter(filter).map(map));
-        setPinnedContent(pinnedData.filter(filter).map(map))
+        startTransition(() => {
+            setContent(unpinnedData.filter(filter).map(map));
+            setPinnedContent(pinnedData.filter(filter).map(map));
+        });
     }, [data, filter])
 
 
