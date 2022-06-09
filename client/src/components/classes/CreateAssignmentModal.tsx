@@ -39,14 +39,14 @@ const PeriodPicker = (props: { period: 'A'|SgyPeriod, setPeriod: (c: 'A'|SgyPeri
 
     return (
         <Popover className="relative">
-            <Popover.Button className="period-picker-text text-sm px-1.5 py-0.5 cursor-pointer bg-content dark:bg-content-dark rounded">
+            <Popover.Button className="mt-2.5 text-sm px-1.5 py-0.5 cursor-pointer bg-content dark:bg-content-dark rounded">
                 {parsePeriodName(period, userData)}
             </Popover.Button>
             <AnimatedPopover className="class-picker flex flex-col gap-1.5 left-0 ">
                 {classes.map((c, index) => (
                     <div key={c.name} className="flex items-center gap-3 cursor-pointer" onClick={() => setPeriod(c.period)}>
                         <div
-                            className="dot"
+                            className="h-7 w-7 rounded-full flex-none"
                             style={{
                                 backgroundColor: period === c.period ? parsePeriodColor(c.period, userData) : 'var(--content-primary)',
                                 border: period === c.period ? '' : '2px inset var(--secondary)'
@@ -74,27 +74,19 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
     const [name, setName] = useState(item?.name ?? '');
     const [description, setDescription] = useState(item?.description ?? '');
     const [priority, setPriority] = useState(item?.priority ?? -1);
-    const [timestamp, setTimestamp] = useState(item?.timestamp ?? currTime.startOf('day').plus({day: 1, hour: 8})); // TODO: TIME SELECTOR
+    const [timestamp, setTimestamp] = useState(item?.timestamp ?? currTime.startOf('day').plus({day: 1, hour: 8}));
     const [labels, setLabels] = useState(item?.labels ?? ['Note']);
     const [period, setPeriod] = useState<'A' | SgyPeriod>(item?.period ?? 'A');
 
-    const resetState = () => {
-        if (item) {
-            setName(item.name);
-            setPriority(item.priority);
-            setTimestamp(item.timestamp || currTime.startOf('day').plus({day: 1, hour: 8}));
-            setLabels(item.labels);
-        } else {
-            setName('');
-            setPriority(-1);
-            setTimestamp(currTime.startOf('day').plus({day: 1, hour: 8}));
-            setLabels(['Note']);
-        }
-    }
-
+    // Closes the modal and resets the input states.
     const close = () => {
         setOpen(false);
-        resetState();
+        setName(item?.name ?? '');
+        setDescription(item?.description ?? '');
+        setPriority(item?.priority ?? -1);
+        setTimestamp(item?.timestamp ?? currTime.startOf('day').plus({day: 1, hour: 8}));
+        setLabels(item?.labels ?? ['Note']);
+        setPeriod(item?.period ?? 'A');
     }
 
     const ready = name.length;
@@ -149,7 +141,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
                     type="text"
                     placeholder="Assignment Name"
                     //autoFocus
-                    className="create-name w-full rounded-sm invalid:outline-1 invalid:outline-dashed invalid:outline-theme dark:invalid:outline-theme-dark"
+                    className="px-1.5 py-1 bg-background dark:bg-content-dark w-full rounded-sm invalid:outline-1 invalid:outline-dashed invalid:outline-theme dark:invalid:outline-theme-dark"
                     value={name}
                     onChange={e => setName(e.target.value)}
                 />
@@ -160,7 +152,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
 
             <section>
                 <textarea
-                    className="create-desc rounded p-3 w-full outline-none resize-none bg-background dark:bg-background-dark placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light"
+                    className="h-36 text-sm rounded p-3 w-full outline-none resize-none bg-background dark:bg-background-dark placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light"
                     placeholder="Assignment Description [Optional]"
                     value={description}
                     onChange={e => setDescription(e.target.value)}
