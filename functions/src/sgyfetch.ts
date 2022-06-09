@@ -1,4 +1,4 @@
-import * as functions from 'firebase-functions';
+import functions from 'firebase-functions';
 import admin from './util/adminInit';
 import {get} from './util/sgyOAuth';
 
