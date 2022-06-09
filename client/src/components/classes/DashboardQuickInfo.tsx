@@ -24,10 +24,19 @@ export default function DashboardQuickInfo(props: { selected: string }) {
     }, [selected]);
 
     if (selected === 'A') {
+        const next = nextSchoolDay(userData, alternates);
         return (
             <section>
-                <div className="dashboard-qi-main">The next school day is {nextSchoolDay(userData, alternates)?.toRelative()}.</div>
-                <div className="secondary">There have been {numSchoolDays(alternates)} school days in this school year.</div>
+                <h2 className="text-xl">
+                    {next ? (<>
+                        The next school day is {next.toRelative()}.
+                    </>) : (<>
+                        The school year has ended!
+                    </>)}
+                </h2>
+                <p className="secondary">
+                    There have been {numSchoolDays(alternates)} school days in this school year.
+                </p>
             </section>
         )
     }
@@ -36,17 +45,17 @@ export default function DashboardQuickInfo(props: { selected: string }) {
 
     if (!info.next) return (
         <section>
-            <div className="dashboard-qi-main">There have been {info.past.days} classes in this school year.</div>
+            <h2 className="text-xl">There have been {info.past.days} classes in this school year.</h2>
         </section>
     )
 
     return (
         <section>
-            <div className="dashboard-qi-main">The next class is {info.next.time.toRelative()}.</div>
-            <div className="dashboard-qi-note secondary">
+            <h2 className="text-xl">The next class is {info.next.time.toRelative()}.</h2>
+            <p className="secondary">
                 It will be on {info.next.time.toFormat('dddd, MMMM Do')}, and will be Week {info.next.week} Day {info.next.day},
                 the {cardinalize(info.past.days + 1)} class of the school year.
-            </div>
+            </p>
         </section>
     )
 }

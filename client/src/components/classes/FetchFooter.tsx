@@ -20,14 +20,14 @@ export default function FetchFooter() {
 
     return (
         <footer className="mt-auto border-t border-tertiary dark:border-tertiary-dark divide-y divide-tertiary dark:divide-tertiary-dark">
-            <div className="reauth-footer py-2 flex items-center">
+            <div className="py-2 flex items-center justify-between">
                 If your classes are wrong, reset Schoology.
-                <button className="ml-auto rounded-md text-white bg-theme dark:bg-theme-dark" onClick={() => sgyAuth(auth, functions)}>
+                <button className="px-2.5 py-[3px] rounded-md text-white bg-theme dark:bg-theme-dark transition duration-200" onClick={() => sgyAuth(auth, functions)}>
                     Reset
                 </button>
             </div>
 
-            <div className="fetch-footer pt-2 flex items-center">
+            <div className="pt-2 flex items-center justify-between">
                 {fetching ? (
                     <Loading>Fetching...</Loading>
                 ) : lastFetched ? (
@@ -39,7 +39,7 @@ export default function FetchFooter() {
                 <button
                     onClick={updateSgy}
                     disabled={cannotFetch}
-                    className="fetch-footer-button ml-auto rounded-md disabled:opacity-30"
+                    className="px-2.5 py-[3px] rounded-md disabled:opacity-30 bg-background dark:bg-content-dark transition duration-200"
                 >
                     Fetch
                 </button>

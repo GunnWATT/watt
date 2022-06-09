@@ -43,7 +43,7 @@ export default function Dashboard() {
     }, [selected, userData])
 
     return (
-        <div className="dashboard-burrito flex gap-4 flex-wrap xl:flex-nowrap">
+        <div className="flex gap-4 flex-wrap xl:flex-nowrap">
             {/* Dashboard left section */}
             <DashboardSection>
                 {upcoming && <DashboardBlurb upcoming={upcoming} selected={selected} />}
@@ -61,7 +61,7 @@ export default function Dashboard() {
 
 function DashboardSection(props: {children: ReactNode}) {
     return (
-        <section className="dashboard-section p-4 rounded-md flex flex-col bg-sidebar dark:bg-sidebar-dark shadow-lg">
+        <section className="basis-1/2 flex-grow p-4 rounded-md flex flex-col bg-sidebar dark:bg-sidebar-dark shadow-lg">
             {props.children}
         </section>
     )

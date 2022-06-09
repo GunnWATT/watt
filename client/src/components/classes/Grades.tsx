@@ -32,12 +32,14 @@ export default function Grades(props: GradesProps) {
                     )}
                 </Disclosure.Button>
 
-                <Disclosure.Panel className="dashboard-grade flex flex-col gap-2 px-4 py-3 rounded-lg bg-content-secondary/50 dark:bg-content-secondary-dark/50">
+                <Disclosure.Panel className="flex flex-col gap-2 px-4 py-3 rounded-lg bg-content-secondary/50 dark:bg-content-secondary-dark/50 mb-4">
                     {selected === 'A' ? findClassesList(sgyData, userData)
                         .filter(({ period }) => period !== 'A' && allGrades[period])
                         .map(({ name, color, period }) => (
-                            <div key={period} className="dashboard-grade-all flex gap-3 items-center">
-                                <div className="dashboard-grade-all-bubble" style={{ backgroundColor: color }}>{period}</div>
+                            <div key={period} className="flex gap-3 items-center">
+                                <div className="w-[30px] h-[30px] rounded-full flex items-center justify-center flex-none" style={{ backgroundColor: color }}>
+                                    {period}
+                                </div>
                                 <div>{allGrades[period]}% • {name}</div>
                             </div>
                         )

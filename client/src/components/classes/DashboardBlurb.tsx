@@ -7,7 +7,7 @@ import { CheckSquare, Square } from 'react-feather';
 import AssignmentModal from './AssignmentModal';
 import {AssignmentTimestamp} from './Assignments';
 import ContentButton from '../layout/ContentButton';
-import UpcomingQuickWeekCal from './UpcomingQuickWeekCal';
+import DashboardQuickWeekCal from './DashboardQuickWeekCal';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
@@ -38,11 +38,11 @@ function BlurbAssignment(props: BlurbAssignmentProps) {
 
     return (
         <div
-            className="blurb-assignment flex items-center rounded p-4 gap-3"
+            className="flex items-center bg-background dark:bg-content-dark rounded p-4 gap-3"
             style={{ borderLeft: `4px solid ${parsePeriodColor(item.period, userData)}`}}
         >
             <CheckBox className="cursor-pointer flex-none" onClick={toggleCompleted} />
-            <div className="blurb-assignment-content cursor-pointer" style={{ textDecoration: item.completed ? 'line-through' : '' }} onClick={() => setModal(!modal)}>
+            <div className="flex-grow cursor-pointer" style={{ textDecoration: item.completed ? 'line-through' : '' }} onClick={() => setModal(!modal)}>
                 <div className="text-lg">{shortify(item.name)}</div>
                 <AssignmentTimestamp>
                     {item.timestamp!.toLocaleString(DATE_FULL_NO_YEAR)} • {item.timestamp!.toRelative()}
@@ -66,21 +66,21 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
     const [includeCompleted, setIncludeCompleted] = useState(false);
 
     return (
-        <section>
+        <>
             <h1>Dashboard</h1>
             <div>
                 You need to do {assignmentsToDoNextWeek.length} of {assignmentsNextWeek.length}{' '}
                 assignment{assignmentsNextWeek.length === 1 ? "" : "s"} due in the next week.
             </div>
 
-            <UpcomingQuickWeekCal upcoming={upcoming} selected={selected} />
-            <div>
-                {upcoming.filter(assi => !assi.completed || includeCompleted).slice(0, 5).map((a) =>
+            <DashboardQuickWeekCal upcoming={upcoming} selected={selected} />
+            <div className="flex flex-col gap-4">
+                {upcoming.filter(assi => !assi.completed || includeCompleted).slice(0, 5).map((a) => (
                     <BlurbAssignment
                         key={a.id}
                         item={a}
                     />
-                )}
+                ))}
                 <div className="flex justify-center gap-3">
                     <ContentButton onClick={() => setIncludeCompleted(!includeCompleted)}>
                         {includeCompleted ? 'Hide completed' : 'Show completed'}
@@ -90,6 +90,6 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
                     </Link>
                 </div>
             </div>
-        </section>
+        </>
     );
 }

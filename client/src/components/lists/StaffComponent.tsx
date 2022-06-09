@@ -50,7 +50,7 @@ export default function StaffComponent(props: Staff & {id: string}) {
     // Memoize to prevent expensive recomputation.
     const charters = useMemo(() => Object.entries(clubs.data)
         .filter(([_, club]) => email && (club.email === email || club.coemail === email))
-        .map(([id, club]) => <PillClubComponent {...club} id={id} />), []);
+        .map(([id, club]) => <PillClubComponent key={id} {...club} id={id} />), []);
 
     // Functions to update pins
     const addToPinned = async () => {
