@@ -1,5 +1,8 @@
 import {ReactNode, useContext} from 'react';
 
+// Components
+import Dot from '../layout/Dot';
+
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
 
@@ -16,10 +19,7 @@ export function AssignmentTag(props: AssignmentTagProps) {
     return (
         <div className="flex gap-[5px] items-center py-0.5 px-1.5 text-[0.7rem] h-max bg-background dark:bg-background-dark rounded">
             {color && (
-                <div
-                    style={{backgroundColor: color}}
-                    className="w-2.5 h-2.5 rounded-full flex-none"
-                />
+                <Dot size={10} color={color} />
             )}
             <div>{label}</div>
         </div>

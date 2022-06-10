@@ -65,14 +65,6 @@
     border-top: 1px solid var(--tertiary);
     border-bottom: 1px solid var(--tertiary);
     padding: 10px 5px;
-
-    > section {
-      .class-picker-class {
-        .class-picker-dot {
-          @include dot(1.75rem);
-        }
-      }
-    }
   }
 
   .class-picker-footer {

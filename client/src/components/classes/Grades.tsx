@@ -2,6 +2,9 @@ import { useContext } from 'react';
 import {Disclosure} from '@headlessui/react';
 import { ChevronDown, ChevronRight, ChevronUp } from 'react-feather';
 
+// Components
+import Dot from '../layout/Dot';
+
 // Context
 import UserDataContext from '../../contexts/UserDataContext';
 import SgyDataContext from '../../contexts/SgyDataContext';
@@ -37,9 +40,9 @@ export default function Grades(props: GradesProps) {
                         .filter(({ period }) => period !== 'A' && allGrades[period])
                         .map(({ name, color, period }) => (
                             <div key={period} className="flex gap-3 items-center">
-                                <div className="w-[30px] h-[30px] rounded-full flex items-center justify-center flex-none" style={{ backgroundColor: color }}>
+                                <Dot size={30} color={color}>
                                     {period}
-                                </div>
+                                </Dot>
                                 <div>{allGrades[period]}% • {name}</div>
                             </div>
                         )

@@ -4,6 +4,7 @@ import { Bookmark } from 'react-feather';
 
 // Components
 import AnimatedPopover from '../layout/AnimatedPopover';
+import Dot from '../layout/Dot';
 
 // Context
 import UserDataContext from '../../contexts/UserDataContext';
@@ -22,7 +23,7 @@ export default function PriorityPicker(props: PriorityPickerProps) {
     const userData = useContext(UserDataContext);
 
     return (
-        <Popover className="priority relative">
+        <Popover className="relative">
             <Popover.Button>
                 {icon ? (
                     icon(priority)
@@ -31,19 +32,16 @@ export default function PriorityPicker(props: PriorityPickerProps) {
                 )}
             </Popover.Button>
 
-            <AnimatedPopover className={'priority-picker absolute flex flex-col gap-1 p-2.5 bg-content dark:bg-content-dark rounded z-10 ' + (align === 'right' ? 'left-0' : 'right-0')}>
+            <AnimatedPopover className={'absolute top-[calc(100%_+_10px)] w-[150px] flex flex-col gap-1 p-2.5 bg-content dark:bg-content-dark rounded z-10 ' + (align === 'right' ? 'left-0' : 'right-0')}>
                 {[0, 1, 2, 3, -1].map(p => (
-                    <div className="priority-picker-priority flex items-center gap-2.5 cursor-pointer" key={p} onClick={() => setPriority(p)}>
-                        <div
-                            // TODO: see comment about extracting dots in UpcomingPalette.tsx
-                            className="priority-picker-priority-dot"
-                            style={{
-                                backgroundColor: p === priority ? parsePriority(p, userData) : 'var(--content-primary)',
-                                border: p === priority ? '' : '2px inset var(--secondary)'
-                            }}
+                    <div className="flex items-center gap-2.5 cursor-pointer" key={p} onClick={() => setPriority(p)}>
+                        <Dot
+                            size={30}
+                            color={p === priority ? parsePriority(p, userData) : 'var(--content-primary)'}
+                            border={p === priority ? '' : '2px inset var(--secondary)'}
                         >
                             {p + 1}
-                        </div>
+                        </Dot>
                         <div>{p !== -1 ? `Priority ${p+1}` : 'No Priority'}</div>
                     </div>
                 ))}

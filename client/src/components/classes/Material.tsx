@@ -3,6 +3,7 @@ import {useContext, useState} from 'react';
 // Components
 import AssignmentModal from './AssignmentModal';
 import {Tags, AssignmentTag} from './AssignmentTags';
+import Dot from '../layout/Dot';
 
 // Contexts
 import UserDataContext, {SgyData} from '../../contexts/UserDataContext';
@@ -34,9 +35,9 @@ export default function Material(props: MaterialProps) {
                         <AssignmentTag key={label} label={label} color={parseLabelColor(label, userData)} />
                     ))}
                 </Tags>
-                <div
-                    className="w-7 h-7 rounded-full flex-none"
-                    style={{backgroundColor: parsePeriodColor(item.period, userData)}}
+                <Dot
+                    size={28}
+                    color={parsePeriodColor(item.period, userData)}
                 />
             </div>
 

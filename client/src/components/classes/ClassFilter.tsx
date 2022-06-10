@@ -5,6 +5,7 @@ import {Plus} from 'react-feather';
 // Components
 import AnimatedPopover from '../layout/AnimatedPopover';
 import {Tags, AssignmentTag} from './AssignmentTags';
+import Dot from '../layout/Dot';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
@@ -243,14 +244,14 @@ function TagPickerOption(props: TagPickerOptionProps) {
     const {backgroundColor, border, name, label, onClick} = props;
 
     return (
-        <div className="class-picker-class flex items-center gap-3 cursor-pointer" onClick={onClick}>
-            <div
-                // TODO: see comment below about dot component extraction
-                className="class-picker-dot"
-                style={{ backgroundColor, border }}
+        <div className="flex items-center gap-3 cursor-pointer" onClick={onClick}>
+            <Dot
+                size={28}
+                color={backgroundColor}
+                border={border}
             >
                 {label}
-            </div>
+            </Dot>
 
             <div>{name}</div>
         </div>
