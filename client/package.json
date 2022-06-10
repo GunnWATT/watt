@@ -5,6 +5,7 @@
   "dependencies": {
     "@headlessui/react": "^1.6.4",
     "firebase": "^9.8.2",
+    "he": "^1.2.0",
     "luxon": "^2.4.0",
     "react": "^18.1.0",
     "react-color": "^2.19.3",
@@ -20,6 +21,7 @@
     "tslib": "^2.4.0"
   },
   "devDependencies": {
+    "@types/he": "^1.1.2",
     "@types/luxon": "^2.3.2",
     "@types/react": "^18.0.12",
     "@types/react-color": "^3.0.4",

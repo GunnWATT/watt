@@ -1,9 +1,14 @@
-import {Assignment, Document, Event, Page} from "./sgyTypes";
-import {SgyData, SgyPeriod, UserData} from "../contexts/UserDataContext";
-import {DateTime} from "luxon";
-import {AssignmentBlurb} from "./sgyAssignments";
-import {findClassesList} from "../pages/Classes";
-import {findGrades} from "./sgyGrades";
+import {DateTime} from 'luxon';
+import he from 'he';
+
+// Types
+import {Assignment, Document, Event, Page} from './sgyTypes';
+import {SgyData, SgyPeriod, UserData} from '../contexts/UserDataContext';
+import {AssignmentBlurb} from './sgyAssignments';
+
+// Utilities
+import {findClassesList} from '../pages/Classes';
+import {findGrades} from './sgyGrades';
 
 
 export function getMaterials(sgyData: SgyData, selected: SgyPeriod | 'A', userData: UserData): AssignmentBlurb[] {
@@ -186,7 +191,7 @@ export function getUpcomingInfo(sgyData: SgyData, selected: SgyPeriod | 'A', use
 
 function sgyItemToBlurb(item: Assignment | Event | Document | Page, period: SgyPeriod | 'A') {
     return {
-        name: item.title,
+        name: he.decode(item.title),
         id: item.id+'',
         period,
         completed: false,
