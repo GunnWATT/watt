@@ -96,7 +96,7 @@ export function TagPicker(props: TagPickerProps) {
     const [search, setSearch] = useState('');
 
     return (
-        <AnimatedPopover className={"class-picker " + screenType}>
+        <AnimatedPopover className={"class-picker shadow-lg " + screenType}>
             <input
                 type="text"
                 placeholder="Search"

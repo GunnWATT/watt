@@ -32,7 +32,7 @@ export default function PriorityPicker(props: PriorityPickerProps) {
                 )}
             </Popover.Button>
 
-            <AnimatedPopover className={'absolute top-[calc(100%_+_10px)] w-[150px] flex flex-col gap-1 p-2.5 bg-content dark:bg-content-dark rounded z-10 ' + (align === 'right' ? 'left-0' : 'right-0')}>
+            <AnimatedPopover className={'absolute top-[calc(100%_+_10px)] w-[150px] flex flex-col gap-1 p-2.5 bg-content dark:bg-content-dark rounded shadow-lg z-10 ' + (align === 'right' ? 'left-0' : 'right-0')}>
                 {[0, 1, 2, 3, -1].map(p => (
                     <div className="flex items-center gap-2.5 cursor-pointer" key={p} onClick={() => setPriority(p)}>
                         <Dot

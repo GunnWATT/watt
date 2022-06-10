@@ -2,8 +2,7 @@ import {ReactNode, useContext, useEffect, useState} from 'react';
 import {Routes, Route, Link, useMatch, useResolvedPath} from 'react-router-dom';
 
 // Components
-import {Header} from '../components/layout/HeaderPage';
-import ClassesSidebar from '../components/classes/ClassesSidebar';
+import ClassesHeader from '../components/classes/ClassesHeader';
 import Dashboard from '../components/classes/Dashboard';
 import Upcoming from '../components/classes/Upcoming';
 import Materials from '../components/classes/Materials';
@@ -53,25 +52,18 @@ export default function Classes() {
     const screenType = useScreenType();
 
     const [fetching, setFetching] = useState(false);
-    const [lastFetched, setLastFetched] = useState<null | number>(null);
-    const [lastAttemptedFetch, setLastAttemptedFetch] = useState<null | number>(null);
+    const [lastFetched, setLastFetched] = useState<number | null>(null);
+    const [lastAttemptedFetch, setLastAttemptedFetch] = useState<number | null>(null);
 
     // Raw Schoology Data
-    const [sgyData, setSgyData] = useState<null | SgyData>(null);
+    const [sgyData, setSgyData] = useState<SgyData | null>(null);
 
     const updateSgy = async () => {
-
-        if (lastFetched && Date.now() - lastFetched < 6 * 1000) // if it's been less than 5 seconds since the last attempted fetch
-        {
-            // this is a problem!!!
-            console.error('Attempted to fetch within 5 seconds of previous fetch!')
-            throw 'Cannot fetch within 5 seconds of previous fetch!!';
-        }
-
-        if(fetching) {
-            console.error('Attempted to fetch but already fetching!')
-            throw 'Already fetching!!!';
-        }
+        // If it's been less than 5 seconds since the last attempted fetch
+        if (lastFetched && Date.now() - lastFetched < 6 * 1000)
+            return console.error('Attempted to fetch within 5 seconds of previous fetch!');
+        if (fetching)
+            return console.error('Attempted to fetch but already fetching!');
 
         setFetching(true);
         setLastAttemptedFetch(Date.now());
@@ -82,8 +74,7 @@ export default function Classes() {
         setSgyData(newSgyData || null);
 
         // update classes!
-        if(newSgyData) {
-
+        if (newSgyData) {
             let needToReset = false;
             let classes: {[key:string]: any} = {};
 
@@ -93,7 +84,7 @@ export default function Classes() {
 
                 classes[p] = { ...userData.classes[p] };
 
-                if(newSgyData[p]) {
+                if (newSgyData[p]) {
                     // exists! if the ID is wrong, reset the name and ID
                     const sgycourse = newSgyData[p]!;
                     if(course.s !== sgycourse.info.id) {
@@ -115,9 +106,7 @@ export default function Classes() {
                 }
             }
 
-            if(needToReset) {
-                updateUserData('classes', classes, auth, firestore);
-            }
+            if (needToReset) await updateUserData('classes', classes, auth, firestore);
         }
 
         setLastFetched(Date.now());
@@ -149,9 +138,7 @@ export default function Classes() {
 
         setSgyData(lsSgyData);
 
-        if (needToFetch && signedIn && userData.options.sgy) {
-            updateSgy();
-        }
+        if (needToFetch && signedIn && userData.options.sgy) updateSgy();
     }, [userData.options.sgy]);
     // this was originally going to trigger on sign in
     // however, there is a period of time between being signed in and changing to firebase data from localstorage
@@ -160,7 +147,7 @@ export default function Classes() {
     // to fix this, I do not allow this useEffect to trigger on sign in. Instead, it will trigger after the remount.
 
     // cleanup of old items in data
-    useEffect( () => {
+    useEffect(() => {
         cleanupExpired(userData, auth, firestore);
     }, [])
 
@@ -208,7 +195,7 @@ export default function Classes() {
                 <Loading>Fetching materials. This can take up to a minute...</Loading>
             ) : (<>
                 <h2 className="text-2xl font-semibold mb-3">Something Went Wrong.</h2>
-                <p className="secondary">
+                <p className="secondary mb-3">
                     Your user data is missing! Please click the button below to fetch materials.
                     If this is a recurring problem, please submit an issue to Github.
                 </p>
@@ -221,22 +208,13 @@ export default function Classes() {
     if (!userData.sgy?.custom || !userData.sgy?.custom.assignments || !userData.sgy?.custom.labels || !userData.sgy?.custom.modified)
         return <Loading /> // make sure user has all of these things :D, if not, usually gets corrected by FirebaseUserDataProvider
 
-    // Currently selected period name and color for classes header
-    const {name, color} = findClassesList(sgyData, userData).find(({period}) => period === selected)!;
-
     return (
         <SgyDataProvider value={{sgyData, fetching, lastFetched, lastAttemptedFetch, selected, updateSgy}}>
-            <div className={"flex h-screen overflow-y-scroll scroll-smooth pb-16 -mb-16 md:pb-0 md:mb-0 md:mr-20 " + screenType}>
+            <div className={"flex h-screen overflow-y-scroll scroll-smooth pb-16 -mb-16 md:pb-0 md:mb-0 " + screenType}>
                 <Wave />
 
-                <div className="container h-max py-4 md:py-6 ">
-                    <Header>
-                        <div
-                            className="w-10 h-10 border-2 border-secondary dark:border-secondary-dark rounded-full flex-shrink-0"
-                            style={{backgroundColor: color}}
-                        />
-                        <h1 className="mb-0">{name}</h1>
-                    </Header>
+                <div className="container h-max py-4 md:py-6">
+                    <ClassesHeader selected={selected} setSelected={setSelected} />
 
                     <nav className="mt-6 flex flex-wrap gap-2 mb-4 text-lg">
                         <ClassesNavBarItem text="Dashboard" to="." />
@@ -252,10 +230,6 @@ export default function Classes() {
                         </Routes>
                     </main>
                 </div>
-
-                {/* Kill the sidebar on phone; this is a temporary solution */}
-                {/* TODO: think about how to implement class switching on mobile without it looking ugly */}
-                {screenType !== 'phone' && <ClassesSidebar selected={selected} setSelected={setSelected}/>}
             </div>
         </SgyDataProvider>
     )
