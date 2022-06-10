@@ -43,7 +43,9 @@ export default function Grades(props: GradesProps) {
                                 <Dot size={30} color={color}>
                                     {period}
                                 </Dot>
-                                <div>{allGrades[period]}% • {name}</div>
+                                <div className="overflow-ellipsis overflow-hidden whitespace-nowrap">
+                                    {allGrades[period]}% • {name}
+                                </div>
                             </div>
                         )
                     ) : (<>

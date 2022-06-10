@@ -27,16 +27,18 @@ export default function ClassesHeader(props: ClassesHeaderProps) {
 
     return (
         <Header>
-            <Popover className="relative">
-                <Popover.Button className="flex items-center gap-4">
+            <Popover className="relative max-w-full">
+                <Popover.Button className="flex items-center gap-4 w-full">
                     <Dot
                         size={40}
                         color={currColor}
-                        border={`2px solid ${bgColor(currColor)}`}
+                        border={`3px solid ${bgColor(currColor)}`}
                     />
-                    <h1 className="pb-1 mb-0">{currName}</h1>
+                    <h1 className="pb-1 mb-0 overflow-ellipsis overflow-hidden whitespace-nowrap">
+                        {currName}
+                    </h1>
                 </Popover.Button>
-                <AnimatedPopover className="absolute top-[calc(100%_+_10px)] flex flex-col py-4 text-primary dark:text-primary-dark bg-content dark:bg-content-dark rounded shadow-lg z-10">
+                <AnimatedPopover className="absolute top-[calc(100%_+_10px)] max-w-xs md:max-w-sm flex flex-col py-4 text-primary dark:text-primary-dark bg-content dark:bg-content-dark rounded shadow-2xl z-10">
                     {classes.map(({name, color, period}) => (
                         <div
                             className={'flex items-center gap-2.5 py-1 px-5 cursor-pointer transition duration-100 ' + (period === selected ? 'bg-content-secondary dark:bg-black/20' : 'hover:bg-content-secondary dark:hover:bg-black/20')}
@@ -50,7 +52,7 @@ export default function ClassesHeader(props: ClassesHeaderProps) {
                             >
                                 {period}
                             </Dot>
-                            <p className="whitespace-nowrap">{name}</p>
+                            <p className="overflow-ellipsis overflow-hidden whitespace-nowrap">{name}</p>
                         </div>
                     ))}
                 </AnimatedPopover>

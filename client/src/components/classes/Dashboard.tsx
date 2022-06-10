@@ -61,7 +61,7 @@ export default function Dashboard() {
 
 function DashboardSection(props: {children: ReactNode}) {
     return (
-        <section className="basis-1/2 flex-grow p-4 rounded-md flex flex-col bg-sidebar dark:bg-sidebar-dark shadow-lg">
+        <section className="basis-1/2 flex-grow p-4 rounded-md flex flex-col bg-sidebar dark:bg-sidebar-dark shadow-lg min-w-0">
             {props.children}
         </section>
     )

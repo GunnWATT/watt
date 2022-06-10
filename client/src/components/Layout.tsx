@@ -48,8 +48,8 @@ export default function Layout(props: {children: ReactNode}) {
             {/* Render layout dynamically */}
             {screenType === 'phone' ? (
                 // On phones, display a bottom nav instead of the sidebar
-                <div id="app" className="relative h-full flex flex-col vertical">
-                    <div id="content" className="flex-grow pb-16">
+                <div id="app" className="relative h-full flex flex-col">
+                    <div id="content" className="flex-grow pb-16 min-w-0">
                         {props.children}
                     </div>
                     <BottomNav/>
@@ -58,7 +58,7 @@ export default function Layout(props: {children: ReactNode}) {
                 // On small screens, collapse the sidebar by default
                 <div id="app" className="relative h-full flex">
                     <Sidebar forceCollapsed={screenType === 'smallScreen'} />
-                    <div id="content" className="flex-grow">
+                    <div id="content" className="flex-grow min-w-0">
                         {props.children}
                     </div>
                 </div>

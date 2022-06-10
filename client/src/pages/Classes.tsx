@@ -210,26 +210,24 @@ export default function Classes() {
 
     return (
         <SgyDataProvider value={{sgyData, fetching, lastFetched, lastAttemptedFetch, selected, updateSgy}}>
-            <div className={"flex h-screen overflow-y-scroll scroll-smooth pb-16 -mb-16 md:pb-0 md:mb-0 " + screenType}>
+            <div className={"container py-4 md:py-6 " + screenType}>
                 <Wave />
 
-                <div className="container h-max py-4 md:py-6">
-                    <ClassesHeader selected={selected} setSelected={setSelected} />
+                <ClassesHeader selected={selected} setSelected={setSelected} />
 
-                    <nav className="mt-6 flex flex-wrap gap-2 mb-4 text-lg">
-                        <ClassesNavBarItem text="Dashboard" to="." />
-                        <ClassesNavBarItem text="Upcoming" to="upcoming" />
-                        <ClassesNavBarItem text="Materials" to="materials" />
-                    </nav>
+                <nav className="mt-6 flex flex-wrap gap-2 mb-4 text-lg">
+                    <ClassesNavBarItem text="Dashboard" to="." />
+                    <ClassesNavBarItem text="Upcoming" to="upcoming" />
+                    <ClassesNavBarItem text="Materials" to="materials" />
+                </nav>
 
-                    <main>
-                        <Routes>
-                            <Route path="/" element={<Dashboard />} />
-                            <Route path="/upcoming" element={<Upcoming />} />
-                            <Route path="/materials" element={<Materials />} />
-                        </Routes>
-                    </main>
-                </div>
+                <main>
+                    <Routes>
+                        <Route path="/" element={<Dashboard />} />
+                        <Route path="/upcoming" element={<Upcoming />} />
+                        <Route path="/materials" element={<Materials />} />
+                    </Routes>
+                </main>
             </div>
         </SgyDataProvider>
     )

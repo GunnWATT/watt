@@ -24,7 +24,7 @@ export default function Material(props: MaterialProps) {
 
     return (
         <div className="py-2 px-3 bg-sidebar dark:bg-sidebar-dark flex items-center justify-between gap-4 rounded cursor-pointer" onClick={() => setModal(!modal)}>
-            <div className="break-words">{item.name}</div>
+            <div className="break-words min-w-0">{item.name}</div>
 
             <div className="flex items-center gap-3">
                 <Tags className="justify-end">

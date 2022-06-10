@@ -17,11 +17,13 @@ export function AssignmentTag(props: AssignmentTagProps) {
     const {label, color} = props;
 
     return (
-        <div className="flex gap-[5px] items-center py-0.5 px-1.5 text-[0.7rem] h-max bg-background dark:bg-background-dark rounded">
+        <div className="flex gap-[5px] items-center py-0.5 px-1.5 text-[0.7rem] h-max max-w-xs bg-background dark:bg-background-dark rounded">
             {color && (
                 <Dot size={10} color={color} />
             )}
-            <div>{label}</div>
+            <div className="overflow-ellipsis overflow-hidden whitespace-nowrap">
+                {label}
+            </div>
         </div>
     )
 }

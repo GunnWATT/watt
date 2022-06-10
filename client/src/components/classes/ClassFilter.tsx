@@ -253,7 +253,9 @@ function TagPickerOption(props: TagPickerOptionProps) {
                 {label}
             </Dot>
 
-            <div>{name}</div>
+            <div className="overflow-ellipsis overflow-hidden whitespace-nowrap">
+                {name}
+            </div>
         </div>
     )
 }
