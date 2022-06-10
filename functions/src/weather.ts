@@ -1,4 +1,4 @@
-import functions from 'firebase-functions';
+import * as functions from 'firebase-functions';
 
 // weather-weather
 export const weather = functions.https.onCall((data,context) => {
