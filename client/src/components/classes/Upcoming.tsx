@@ -76,15 +76,15 @@ export default function Upcoming() {
     const overdueFiltered = filterItems(overdue);
 
     return (
-        <div className={"upcoming-burrito " + screenType}>
+        <div className="flex gap-6">
             {/* these props- */}
-            <div className="upcoming">
+            <div className="flex-grow">
                 <ClassFilter classes={classes} filter={filter} setFilter={setFilter} />
 
-                <section className="upcoming-icons flex items-center gap-3 mb-4">
-                    <button className="add-assignment" onClick={() => setCreating(!creating)}>
-                        <FilePlus size={20} />
-                    </button>
+                <section className="flex items-center gap-2.5 mb-4">
+                    <ContentButton onClick={() => setCreating(!creating)}>
+                        <FilePlus size={18} /> Create assignment
+                    </ContentButton>
                     <CreateAssignmentModal open={creating} setOpen={setCreating} />
 
                     <ContentButton onClick={() => setIncludeCompleted(!includeCompleted)}>

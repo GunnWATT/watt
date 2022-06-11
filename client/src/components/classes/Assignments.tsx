@@ -103,22 +103,27 @@ function Assignment(props: AssignmentProps) {
     )
 }
 
+// See https://github.com/GunnWATT/watt/discussions/88.
+// The CSS pertaining to this was removed, so if we decide to reimplement we should style using tailwind
+// from the ground up.
+/*
 function Overdue(props: { overdue: AssignmentBlurb[] } & ActiveItemState ) {
     const { overdue, ...activeDayState } = props;
 
-    if (!overdue.length) {
-        return <div className="upcoming-overdue-header">
+    if (!overdue.length) return (
+        <div className="upcoming-overdue-header">
             <a href="https://pausd.schoology.com/home" target="_blank" rel="noopener noreferrer">Check Schoology For Overdue Assignments</a>
         </div>
-    }
-    
-    return <>
+    )
+
+    return (<>
         <div className="upcoming-overdue-header">
             <AlertCircle /> <span>Overdue <a href="https://pausd.schoology.com/home" target="_blank" rel="noopener noreferrer">(More On Schoology)</a></span>
         </div>
         {overdue.map((assignment) => <Assignment key={assignment.id} assignment={assignment} {...activeDayState} />)}
-    </>
+    </>)
 }
+*/
 
 // all assignments
 type AssignmentsProps = { upcoming: AssignmentBlurb[], overdue: AssignmentBlurb[] };

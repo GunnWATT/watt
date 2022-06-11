@@ -243,7 +243,12 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
             </svg>
 
             {/* Tooltip */}
-            {tooltipItem && <SidebarTooltip left={timelineX + tooltipItem.radius + 2 * strokeWeight} circle={tooltipItem}/>}
+            {tooltipItem && (
+                <SidebarTooltip
+                    left={timelineX + tooltipItem.radius + 2 * strokeWeight}
+                    circle={tooltipItem}
+                />
+            )}
         </div>
     );
 }
