@@ -42,8 +42,14 @@ function BlurbAssignment(props: BlurbAssignmentProps) {
             style={{ borderLeft: `4px solid ${parsePeriodColor(item.period, userData)}`}}
         >
             <CheckBox className="cursor-pointer flex-none" onClick={toggleCompleted} />
-            <div className="flex-grow cursor-pointer" style={{ textDecoration: item.completed ? 'line-through' : '' }} onClick={() => setModal(!modal)}>
-                <div className="text-lg">{shortify(item.name)}</div>
+            <div className={'flex-grow cursor-pointer min-w-0' + (item.completed ? ' line-through' : '')} onClick={() => setModal(!modal)}>
+                <div className="text-lg overflow-hidden overflow-ellipsis">
+                    {/* TODO: I'm leaving this shortify in and excluding 'whitespace-nowrap' from the class */}
+                    {/* name because I'm inferring that line wraps are allowed here, at least to the extent */}
+                    {/* allowed by the 50 character truncation. Is that true? If the text is only supposed */}
+                    {/* to be limited to one line, then CSS truncation is probably the answer. */}
+                    {shortify(item.name)}
+                </div>
                 <AssignmentTimestamp>
                     {item.timestamp!.toLocaleString(DATE_FULL_NO_YEAR)} • {item.timestamp!.toRelative()}
                 </AssignmentTimestamp>

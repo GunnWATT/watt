@@ -58,13 +58,13 @@ function Assignment(props: AssignmentProps) {
             onMouseLeave={() => setActiveItem(null)}
             style={{zIndex}}
         >
-            <div className="flex-grow py-4 px-5 cursor-pointer" onClick={() => setModal(!modal)}>
+            <div className="flex-grow py-4 px-5 cursor-pointer min-w-0" onClick={() => setModal(!modal)}>
                 <AssignmentTags className="mb-1.5" item={assignment} period />
 
-                <div className="text-lg">{shortify(assignment.name, 150)}</div>
+                <div className="text-lg break-words">{shortify(assignment.name, 150)}</div>
 
                 {!!assignment.description.length && (
-                    <div className="secondary mt-2.5 text-[0.8rem]">
+                    <div className="secondary mt-2.5 text-[0.8rem] break-words">
                         {shortify(assignment.description,200)}
                     </div>
                 )}

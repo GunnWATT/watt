@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import {ReactNode, useContext, useState} from 'react';
 import {DateTime} from 'luxon';
 
 // Components
@@ -12,33 +12,32 @@ import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 import { ActiveItemState } from './Assignments';
 import { AssignmentBlurb } from '../../util/sgyAssignments';
 import { parsePeriodColor } from '../schedule/Periods';
-import { pluralize, shortify } from '../../util/sgyHelpers';
+import { pluralize } from '../../util/sgyHelpers';
 import {DATE_SHORT_NO_YEAR} from '../../util/dateFormats';
 
 
 // type of a transition
 type LineType = "same-day" | "diff-day" | "large-diff";
 
-const SidebarTooltip = (props: { 
-    circle: {
-        item: AssignmentBlurb;
-        radius: number;
-        cy: number
-    },
+type TimelineTooltipProps = {
+    circle: { item: AssignmentBlurb, radius: number, cy: number },
     left: number
-}) => {
-    const {circle,left} = props;
+};
+function TimelineTooltip(props: TimelineTooltipProps) {
+    const {circle, left} = props;
     const item = circle.item;
 
-    return <div
-        className="upcoming-cal-tooltip"
-        style={{
-            top: circle.cy,
-            left,
-        }}
-    >
-        {shortify(item.name, 20)}
-    </div>
+    return (
+        <div
+            className="absolute -translate-y-1/2 px-2 py-0.5 max-w-[12.5rem] overflow-hidden overflow-ellipsis whitespace-nowrap bg-content dark:bg-content-dark rounded-sm"
+            style={{
+                top: circle.cy,
+                left,
+            }}
+        >
+            {item.name}
+        </div>
+    )
 }
 
 // Side calendar for large screens on Upcoming
@@ -50,9 +49,9 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
     const currTime = useContext(CurrentTimeContext);
 
     if (!raw) return (
-        <div className="upcoming-cal flex items-center justify-center">
+        <TimelineWrapper className="flex items-center justify-center">
             <Spinner />
-        </div>
+        </TimelineWrapper>
     )
 
     const upcoming = raw.filter(a => !a.completed);
@@ -142,7 +141,11 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
 
 
     return (
-        <div className="upcoming-cal">
+        // TODO: the `position: sticky` on this was broken a while ago and now is explicitly removed;
+        // the height of the timeline when scrolling up didn't take up the full screen and thus looked odd.
+        // Should we try to keep the sticky scrolling and attempt to remedy the height problem or keep it
+        // at 100% height?
+        <TimelineWrapper>
             <svg width={width} height={svgheight} >
                 <defs>
                     {/* https://tympanus.net/codrops/2019/01/15/svg-filters-101/ < super helpful info on svg filters */}
@@ -244,11 +247,19 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
 
             {/* Tooltip */}
             {tooltipItem && (
-                <SidebarTooltip
+                <TimelineTooltip
                     left={timelineX + tooltipItem.radius + 2 * strokeWeight}
                     circle={tooltipItem}
                 />
             )}
-        </div>
+        </TimelineWrapper>
     );
+}
+
+function TimelineWrapper(props: {children: ReactNode, className?: string}) {
+    return (
+        <div className={'relative bg-sidebar dark:bg-sidebar-dark rounded w-72 flex-none' + (props.className ? ` ${props.className}` : '')}>
+            {props.children}
+        </div>
+    )
 }

@@ -78,7 +78,7 @@ export default function Upcoming() {
     return (
         <div className="flex gap-6">
             {/* these props- */}
-            <div className="flex-grow">
+            <div className="flex-grow min-w-0">
                 <ClassFilter classes={classes} filter={filter} setFilter={setFilter} />
 
                 <section className="flex items-center gap-2.5 mb-4">

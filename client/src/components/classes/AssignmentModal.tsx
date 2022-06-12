@@ -62,10 +62,14 @@ export default function AssignmentModal(props: AssignmentModalProps) {
                         />
                     )}
                     {isCustomAssignment ? (
-                        <Dialog.Title className="text-lg font-semibold">{item.name}</Dialog.Title>
+                        <Dialog.Title className="text-lg font-semibold break-words min-w-0">
+                            {item.name}
+                        </Dialog.Title>
                     ) : (
                         <a href={item.link} className="text-inherit dark:text-inherit" target="_blank" rel="noopener noreferrer">
-                            <Dialog.Title className="text-lg font-semibold">{item.name}</Dialog.Title>
+                            <Dialog.Title className="text-lg font-semibold break-words min-w-0">
+                                {item.name}
+                            </Dialog.Title>
                         </a>
                     )}
                 </span>
