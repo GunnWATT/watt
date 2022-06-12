@@ -8,8 +8,8 @@ import {FirebaseAppProvider} from 'reactfire';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
-import './styles/index.scss';
-import './styles/_tailwind.scss';
+import './styles/base.scss';
+import './styles/tailwind.scss';
 
 
 const firebaseConfig = {

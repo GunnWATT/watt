@@ -1,6 +1,0 @@
-@import 'square';
-
-@mixin circle($size) {
-  @include square($size);
-  border-radius: 50%;
-}
