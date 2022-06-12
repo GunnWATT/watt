@@ -96,15 +96,15 @@ export function TagPicker(props: TagPickerProps) {
     const [search, setSearch] = useState('');
 
     return (
-        <AnimatedPopover className={"class-picker shadow-lg " + screenType}>
+        <AnimatedPopover className={"absolute top-[calc(100%_+_15px)] right-0 p-2.5 w-[300px] bg-content dark:bg-content-dark rounded-md z-10 shadow-lg " + screenType}>
             <input
                 type="text"
                 placeholder="Search"
-                className="class-picker-search"
+                className="bg-content-secondary dark:bg-content-secondary-dark rounded w-full px-2.5 py-1.5"
                 onChange={(e) => setSearch(e.target.value)}
             />
 
-            <div className="class-picker-tags">
+            <div className="flex flex-col gap-4 h-64 mt-2 p-1.5 border-y border-tertiary dark:border-tertiary-dark overflow-y-auto">
                 {children(search)}
             </div>
         </AnimatedPopover>
@@ -209,8 +209,8 @@ function TagPickerSection(props: TagPickerSectionProps) {
 
     return (
         <section className="flex flex-col gap-1">
-            <span className="flex gap-2 items-center">
-                <h4>{heading}</h4>
+            <span className="flex gap-2 items-center border-b-2 border-tertiary dark:border-tertiary-dark mb-1">
+                <h4 className="text-lg font-medium">{heading}</h4>
                 {noneSelected ? (
                     <TagPickerSelectButton onClick={selectAll}>
                         Select all
@@ -221,7 +221,6 @@ function TagPickerSection(props: TagPickerSectionProps) {
                     </TagPickerSelectButton>
                 )}
             </span>
-            <hr />
             {children}
         </section>
     )

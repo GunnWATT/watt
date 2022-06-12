@@ -42,7 +42,7 @@ const PeriodPicker = (props: { period: 'A'|SgyPeriod, setPeriod: (c: 'A'|SgyPeri
             <Popover.Button className="mt-2.5 text-sm px-1.5 py-0.5 cursor-pointer bg-content dark:bg-content-dark rounded">
                 {parsePeriodName(period, userData)}
             </Popover.Button>
-            <AnimatedPopover className="class-picker flex flex-col gap-1.5 left-0 ">
+            <AnimatedPopover className="absolute top-[calc(100%_+_15px)] left-0 p-2.5 w-[300px] bg-content dark:bg-content-dark rounded-md z-10 flex flex-col gap-1.5">
                 {classes.map((c, index) => (
                     <div key={c.name} className="flex items-center gap-3 cursor-pointer" onClick={() => setPeriod(c.period)}>
                         <div
@@ -118,7 +118,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
     }
 
     return (
-        <CenteredModal className="create-modal relative flex flex-col gap-4 bg-sidebar dark:bg-sidebar-dark rounded-md w-[32rem] max-w-full max-h-[90%] p-6 mx-2" isOpen={open} setIsOpen={setOpen}>
+        <CenteredModal className="relative flex flex-col gap-4 bg-sidebar dark:bg-sidebar-dark rounded-md w-[32rem] max-w-full max-h-[90%] p-6 mx-2" isOpen={open} setIsOpen={setOpen}>
             <section>
                 <Tags>
                     {labels.map(label => (
