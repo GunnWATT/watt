@@ -15,7 +15,7 @@ export default function HeaderPage(props: HeaderPageProps) {
                     <h1 className="mb-0">{heading}</h1>
                     {other}
                 </Header>
-                <nav className="mt-6 flex flex-wrap">
+                <nav className="mt-3.5 md:mt-5 flex flex-wrap">
                     {nav}
                 </nav>
                 <main className="p-5 bg-content dark:bg-content-dark rounded-b-lg shadow-lg">

@@ -215,7 +215,7 @@ export default function Classes() {
 
                 <ClassesHeader selected={selected} setSelected={setSelected} />
 
-                <nav className="mt-6 flex flex-wrap gap-2 mb-4 text-lg">
+                <nav className="mt-3.5 md:mt-5 flex flex-wrap gap-2 mb-4 text-lg">
                     <ClassesNavBarItem text="Dashboard" to="." />
                     <ClassesNavBarItem text="Upcoming" to="upcoming" />
                     <ClassesNavBarItem text="Materials" to="materials" />
