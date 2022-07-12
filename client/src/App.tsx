@@ -1,13 +1,12 @@
-import {useEffect, useState} from 'react';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import {useAuth, useSigninCheck} from 'reactfire';
-import {useAlternates} from './hooks/useAlternates';
+import {useContext, useEffect, useState} from 'react';
+import {BrowserRouter as Router, Route, Routes, useLocation} from 'react-router-dom';
+import {useAnalytics, useAuth, useFirestore, useSigninCheck} from 'reactfire';
 import {DateTime} from 'luxon';
 import PageVisibility from 'react-page-visibility';
 import {GCalEvent} from './components/schedule/Event';
 
 // Components
-import Layout from './components/Layout';
+import AppLayout from './components/layout/AppLayout';
 import Home from './pages/Home';
 import Utilities from './pages/Utilities';
 import Classes from './pages/Classes';
@@ -16,19 +15,29 @@ import Settings from './pages/Settings';
 import Testing from './pages/Testing';
 import PageNotFound from './pages/404';
 import SgyAuthRedirect from './pages/SgyAuthRedirect';
+import NYTimes from './pages/NYTimes';
 import FaviconHandler from './components/schedule/FaviconHandler';
 import InstallModal from './components/layout/InstallModal';
-import FirebaseUserDataProvider from './components/firebase/FirebaseUserDataProvider';
-import LocalStorageUserDataProvider from './components/firebase/LocalStorageUserDataProvider';
+import SgyInitResults from './components/firebase/SgyInitResults';
 
 // Contexts
 import {AlternatesProvider} from './contexts/AlternatesContext';
 import {TimeProvider} from './contexts/CurrentTimeContext';
+import UserDataContext from './contexts/UserDataContext';
+
+// Utils
+import {logEvent} from 'firebase/analytics';
+import {getRedirectResult} from 'firebase/auth';
+import {firestoreInit} from './util/firestore';
+import {useAlternates} from './hooks/useAlternates';
+import ArticleLayout from './components/layout/ArticleLayout';
 
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
 
 export default function App() {
+    const userData = useContext(UserDataContext);
+
     // Global datetime
     const [date, setDate] = useState(DateTime.now());
 
@@ -61,32 +70,53 @@ export default function App() {
     // Fetch events on mount
     useEffect(fetchEvents, []);
 
-    const { data: signInCheckResult } = useSigninCheck()
-    const UserDataProvider = signInCheckResult?.signedIn ? FirebaseUserDataProvider : LocalStorageUserDataProvider;
+    // Log every route change for analytics
+    const location = useLocation();
+    const analytics = useAnalytics();
+    useEffect(() => {
+        logEvent(analytics, 'screen_view', {
+            firebase_screen: location.pathname,
+            firebase_screen_class: location.pathname
+        });
+    }, [location]);
+
+    // Create user document on first sign in
+    const auth = useAuth();
+    const firestore = useFirestore();
+    useEffect(() => {
+        getRedirectResult(auth).then(r => r && firestoreInit(firestore, r, userData))
+    }, [])
+
+    // Change theme on userData change
+    useEffect(() => {
+        document.documentElement.className = userData.options.theme;
+    }, [userData.options.theme])
 
     return (
-        <Router>
-            <PageVisibility onChange={() => navigator.serviceWorker.getRegistration().then(res => res?.update())} />
-            <UserDataProvider>
-                <AlternatesProvider value={alternates}>
-                    <TimeProvider value={date}>
-                        <FaviconHandler />
-                        <Layout>
-                            <Routes>
-                                <Route path="/" element={<Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />}/>
-                                <Route path="/classes/*" element={<Classes />}/>
-                                <Route path="/clubs" element={<Clubs />}/>
-                                <Route path="/utilities/*" element={<Utilities />}/>
-                                <Route path="/settings/*" element={<Settings />}/>
-                                <Route path="/super-secret-testing" element={<Testing />}/>
-                                <Route path="/schoology/auth" element={<SgyAuthRedirect />}/>
-                                <Route path="*" element={<PageNotFound />}/>
-                            </Routes>
-                        </Layout>
-                        <InstallModal />
-                    </TimeProvider>
-                </AlternatesProvider>
-            </UserDataProvider>
-        </Router>
+        <AlternatesProvider value={alternates}>
+            <TimeProvider value={date}>
+                <PageVisibility onChange={() => navigator.serviceWorker.getRegistration().then(res => res?.update())} />
+                <FaviconHandler />
+
+                <Routes>
+                    <Route element={<AppLayout />}>
+                        <Route index element={<Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />}/>
+                        <Route path="/classes/*" element={<Classes />}/>
+                        <Route path="/clubs" element={<Clubs />}/>
+                        <Route path="/utilities/*" element={<Utilities />}/>
+                        <Route path="/settings/*" element={<Settings />}/>
+                        <Route path="/super-secret-testing" element={<Testing />}/>
+                        <Route path="/schoology/auth" element={<SgyAuthRedirect />}/>
+                    </Route>
+                    <Route path="/articles" element={<ArticleLayout />}>
+                        <Route path="nytimes" element={<NYTimes />} />
+                    </Route>
+                    <Route path="*" element={<PageNotFound />}/>
+                </Routes>
+
+                <InstallModal />
+                <SgyInitResults />
+            </TimeProvider>
+        </AlternatesProvider>
     );
 }
