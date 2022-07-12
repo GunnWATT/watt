@@ -10,6 +10,9 @@ export default function Articles() {
                 <ArticleCard name="New York Times" href="/articles/nytimes">
                     Instructions for how to register for a free New York Times subscription.
                 </ArticleCard>
+                <ArticleCard name="Support" href="/articles/support">
+                    Resources for students in crisis.
+                </ArticleCard>
             </section>
         </>
     );

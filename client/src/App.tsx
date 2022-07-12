@@ -16,6 +16,7 @@ import Testing from './pages/Testing';
 import PageNotFound from './pages/404';
 import SgyAuthRedirect from './pages/SgyAuthRedirect';
 import NYTimes from './pages/NYTimes';
+import Support from './pages/Support';
 import FaviconHandler from './components/schedule/FaviconHandler';
 import InstallModal from './components/layout/InstallModal';
 import SgyInitResults from './components/firebase/SgyInitResults';
@@ -110,6 +111,7 @@ export default function App() {
                     </Route>
                     <Route path="/articles" element={<ArticleLayout />}>
                         <Route path="nytimes" element={<NYTimes />} />
+                        <Route path="support" element={<Support />} />
                     </Route>
                     <Route path="*" element={<PageNotFound />}/>
                 </Routes>
