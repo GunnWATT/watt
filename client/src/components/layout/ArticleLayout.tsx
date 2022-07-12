@@ -7,8 +7,8 @@ export default function ArticleLayout() {
     return (
         <div className="container pt-24">
             <main className="px-4">
-                <Link to="/" className="block text-sm secondary text-inherit hover:no-underline -ml-4 mb-8">
-                    ← Return to the main site
+                <Link to="/utilities/articles" className="block text-sm secondary text-inherit hover:no-underline -ml-4 mb-8">
+                    ← Return to utilities
                 </Link>
                 <Outlet />
             </main>

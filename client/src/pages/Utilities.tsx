@@ -9,6 +9,7 @@ import Map from '../components/utilities/Map';
 import Calculator from '../components/utilities/Calculator';
 import WIP from '../components/layout/WIP';
 import Barcode from '../components/utilities/Barcode';
+import Articles from '../components/utilities/Articles';
 
 
 export default function Utilities() {
@@ -23,6 +24,7 @@ export default function Utilities() {
                 <NavTab to="calculator" name="Finals Calc." />
                 <NavTab to="staff" name="Staff" />
                 <NavTab to="courses" name="Courses" />
+                <NavTab to="articles" name="Articles" />
             </>}
         >
             <Routes>
@@ -33,6 +35,7 @@ export default function Utilities() {
                 <Route path="/calculator" element={<Calculator />}/>
                 <Route path="/staff" element={<Staff />}/>
                 <Route path="/courses" element={<WIP />}/> {/* WIP is temporary, will replace with courses when it's finished */}
+                <Route path="/articles" element={<Articles />} />
             </Routes>
         </HeaderPage>
     );
