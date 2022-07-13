@@ -28,7 +28,7 @@ function ArticleCard(props: ArticleCardProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="flex items-center gap-4 rounded-lg shadow-md px-5 py-4 cursor-pointer bg-gray-100 dark:bg-background-dark" onClick={() => setIsOpen(true)}>
+        <div className="flex items-center gap-4 rounded-lg shadow-md px-5 py-4 cursor-pointer bg-gray-100 dark:bg-background-dark hover:bg-gray-50/50 dark:hover:bg-content-secondary-dark transition duration-200" onClick={() => setIsOpen(true)}>
             <h3>{props.name}</h3>
             <p className="font-light">
                 {props.children}

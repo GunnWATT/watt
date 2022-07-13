@@ -4,8 +4,8 @@ import {Routes, Route} from 'react-router-dom';
 import HeaderPage from '../components/layout/HeaderPage';
 import NavTab from '../components/layout/NavTab';
 import Appearance from '../components/settings/Appearance';
-import PeriodCustomization from '../components/settings/PeriodCustomization';
 import Features from '../components/settings/Features';
+import PeriodCustomization from '../components/settings/PeriodCustomization';
 import About from '../components/settings/About';
 
 

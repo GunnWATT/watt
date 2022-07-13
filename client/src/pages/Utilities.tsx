@@ -3,11 +3,11 @@ import {Routes, Route} from 'react-router-dom';
 // Components
 import HeaderPage from '../components/layout/HeaderPage';
 import NavTab from '../components/layout/NavTab';
-import Staff from '../components/lists/Staff';
+import Barcode from '../components/utilities/Barcode';
 import Map from '../components/utilities/Map';
 import Calculator from '../components/utilities/Calculator';
+import Staff from '../components/lists/Staff';
 import WIP from '../components/layout/WIP';
-import Barcode from '../components/utilities/Barcode';
 import Articles from '../components/utilities/Articles';
 
 
