@@ -8,7 +8,7 @@ import Map from '../components/utilities/Map';
 import Calculator from '../components/utilities/Calculator';
 import Staff from '../components/lists/Staff';
 import WIP from '../components/layout/WIP';
-import Articles from '../components/utilities/Articles';
+import Resources from '../components/utilities/Resources';
 
 
 export default function Utilities() {
@@ -22,7 +22,7 @@ export default function Utilities() {
                 <NavTab to="calculator" name="Finals Calc." />
                 <NavTab to="staff" name="Staff" />
                 <NavTab to="courses" name="Courses" />
-                <NavTab to="articles" name="Articles" />
+                <NavTab to="resources" name="Resources" />
             </>}
         >
             <Routes>
@@ -32,7 +32,7 @@ export default function Utilities() {
                 <Route path="/calculator" element={<Calculator />}/>
                 <Route path="/staff" element={<Staff />}/>
                 <Route path="/courses" element={<WIP />}/> {/* WIP is temporary, will replace with courses when it's finished */}
-                <Route path="/articles" element={<Articles />} />
+                <Route path="/resources" element={<Resources />} />
             </Routes>
         </HeaderPage>
     );

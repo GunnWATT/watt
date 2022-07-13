@@ -7,15 +7,15 @@ import NYTimes from './NYTimes';
 import Support from './Support';
 
 
-export default function Articles() {
+export default function Resources() {
     return (
         <>
-            <h1 className="mb-6">Articles</h1>
+            <h1 className="mb-6">Resources</h1>
             <section className="flex flex-col gap-3">
                 <ArticleCard name="New York Times" element={<NYTimes />}>
                     Instructions for how to register for a free New York Times subscription.
                 </ArticleCard>
-                <ArticleCard name="Support" element={<Support />}>
+                <ArticleCard name="Crisis Support" element={<Support />}>
                     Resources for students in crisis.
                 </ArticleCard>
             </section>
@@ -34,7 +34,7 @@ function ArticleCard(props: ArticleCardProps) {
                 {props.children}
             </p>
 
-            <CenteredModal className="relative p-6 md:p-8 mx-2 bg-content dark:bg-content-dark rounded-lg shadow-xl max-h-[90%] overflow-y-auto scrollbar-none" isOpen={isOpen} setIsOpen={setIsOpen}>
+            <CenteredModal className="relative p-6 md:py-7 md:px-8 mx-2 bg-content dark:bg-content-dark rounded-lg shadow-xl max-h-[90%] overflow-y-auto scrollbar-none" isOpen={isOpen} setIsOpen={setIsOpen}>
                 <CloseButton className="absolute top-4 right-4 md:right-6" onClick={() => setIsOpen(false)} />
                 {props.element}
             </CenteredModal>
