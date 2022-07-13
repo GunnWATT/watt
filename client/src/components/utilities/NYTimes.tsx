@@ -1,4 +1,4 @@
-import {ArticleHeader} from '../components/layout/ArticleLayout';
+import {ArticleHeader} from '../layout/ArticleLayout';
 
 
 export default function NYTimes() {

@@ -1,5 +1,5 @@
 import {useContext, useEffect, useState} from 'react';
-import {BrowserRouter as Router, Route, Routes, useLocation} from 'react-router-dom';
+import {Route, Routes, useLocation} from 'react-router-dom';
 import {useAnalytics, useAuth, useFirestore, useSigninCheck} from 'reactfire';
 import {DateTime} from 'luxon';
 import PageVisibility from 'react-page-visibility';
@@ -7,6 +7,7 @@ import {GCalEvent} from './components/schedule/Event';
 
 // Components
 import AppLayout from './components/layout/AppLayout';
+//import ArticleLayout from './components/layout/ArticleLayout';
 import Home from './pages/Home';
 import Utilities from './pages/Utilities';
 import Classes from './pages/Classes';
@@ -15,8 +16,8 @@ import Settings from './pages/Settings';
 import Testing from './pages/Testing';
 import PageNotFound from './pages/404';
 import SgyAuthRedirect from './pages/SgyAuthRedirect';
-import NYTimes from './pages/NYTimes';
-import Support from './pages/Support';
+//import NYTimes from './pages/NYTimes';
+//import Support from './pages/Support';
 import FaviconHandler from './components/schedule/FaviconHandler';
 import InstallModal from './components/layout/InstallModal';
 import SgyInitResults from './components/firebase/SgyInitResults';
@@ -31,7 +32,6 @@ import {logEvent} from 'firebase/analytics';
 import {getRedirectResult} from 'firebase/auth';
 import {firestoreInit} from './util/firestore';
 import {useAlternates} from './hooks/useAlternates';
-import ArticleLayout from './components/layout/ArticleLayout';
 
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
@@ -107,12 +107,14 @@ export default function App() {
                         <Route path="/utilities/*" element={<Utilities />}/>
                         <Route path="/settings/*" element={<Settings />}/>
                         <Route path="/super-secret-testing" element={<Testing />}/>
-                        <Route path="/schoology/auth" element={<SgyAuthRedirect />}/>
                     </Route>
+                    {/*
                     <Route path="/articles" element={<ArticleLayout />}>
                         <Route path="nytimes" element={<NYTimes />} />
                         <Route path="support" element={<Support />} />
                     </Route>
+                    */}
+                    <Route path="/schoology/auth" element={<SgyAuthRedirect />}/>
                     <Route path="*" element={<PageNotFound />}/>
                 </Routes>
 

@@ -18,7 +18,7 @@ export default function ArticleLayout() {
 
 export function ArticleHeader(props: {children: ReactNode}) {
     return (
-        <h1 className="text-5xl font-bold underline decoration-theme dark:decoration-theme-dark mb-6">
+        <h1 className="text-4xl font-bold underline decoration-theme dark:decoration-theme-dark mb-6 pr-6">
             {props.children}
         </h1>
     )
