@@ -7,7 +7,7 @@ import {GCalEvent} from './components/schedule/Event';
 
 // Components
 import AppLayout from './components/layout/AppLayout';
-//import ArticleLayout from './components/layout/ArticleLayout';
+import ResourcesLayout from './components/layout/ResourcesLayout';
 import Home from './pages/Home';
 import Utilities from './pages/Utilities';
 import Classes from './pages/Classes';
@@ -16,8 +16,8 @@ import Settings from './pages/Settings';
 import Testing from './pages/Testing';
 import PageNotFound from './pages/404';
 import SgyAuthRedirect from './pages/SgyAuthRedirect';
-//import NYTimes from './pages/NYTimes';
-//import Support from './pages/Support';
+import NYTimes from './components/utilities/NYTimes';
+import Support from './components/utilities/Support';
 import FaviconHandler from './components/schedule/FaviconHandler';
 import InstallModal from './components/layout/InstallModal';
 import SgyInitResults from './components/firebase/SgyInitResults';
@@ -108,12 +108,10 @@ export default function App() {
                         <Route path="/settings/*" element={<Settings />}/>
                         <Route path="/super-secret-testing" element={<Testing />}/>
                     </Route>
-                    {/*
-                    <Route path="/articles" element={<ArticleLayout />}>
+                    <Route path="/resources" element={<ResourcesLayout />}>
                         <Route path="nytimes" element={<NYTimes />} />
                         <Route path="support" element={<Support />} />
                     </Route>
-                    */}
                     <Route path="/schoology/auth" element={<SgyAuthRedirect />}/>
                     <Route path="*" element={<PageNotFound />}/>
                 </Routes>

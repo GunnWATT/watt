@@ -1,11 +1,13 @@
 import {ReactNode} from 'react';
-import {ArticleHeader} from '../layout/ArticleLayout';
 
 
 export default function Support() {
     return (
         <>
-            <ArticleHeader>Student resources</ArticleHeader>
+            <h1 className="text-4xl font-bold mb-5 pr-6">
+                Student resources
+            </h1>
+
             <section className="grid grid-cols-[repeat(auto-fill,_minmax(16rem,_1fr))] gap-2">
                 <SupportCard name="Crisis Text Line" tel="741-741" sms>
                     For everyone in crisis; text "Help", Text "LGBTQ" for LGBTQQ-specific support.
