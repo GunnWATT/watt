@@ -1,11 +1,8 @@
 import {ReactNode, useContext, useEffect, useState} from 'react';
-import {Routes, Route, Link, useMatch, useResolvedPath} from 'react-router-dom';
+import {Link, useMatch, useResolvedPath, Outlet} from 'react-router-dom';
 
 // Components
 import ClassesHeader from '../components/classes/ClassesHeader';
-import Dashboard from '../components/classes/Dashboard';
-import Upcoming from '../components/classes/Upcoming';
-import Materials from '../components/classes/Materials';
 import SgySignInBtn from '../components/firebase/SgySignInBtn';
 import Loading from '../components/layout/Loading';
 import Wave from '../components/layout/Wave';
@@ -222,11 +219,7 @@ export default function Classes() {
                 </nav>
 
                 <main>
-                    <Routes>
-                        <Route path="/" element={<Dashboard />} />
-                        <Route path="/upcoming" element={<Upcoming />} />
-                        <Route path="/materials" element={<Materials />} />
-                    </Routes>
+                    <Outlet />
                 </main>
             </div>
         </SgyDataProvider>

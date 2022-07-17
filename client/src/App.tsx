@@ -16,6 +16,19 @@ import Settings from './pages/Settings';
 import Testing from './pages/Testing';
 import PageNotFound from './pages/404';
 import SgyAuthRedirect from './pages/SgyAuthRedirect';
+import Barcode from './components/utilities/Barcode';
+import Map from './components/utilities/Map';
+import Calculator from './components/utilities/Calculator';
+import Staff from './components/lists/Staff';
+import WIP from './components/layout/WIP';
+import Resources from './components/utilities/Resources';
+import Appearance from './components/settings/Appearance';
+import Features from './components/settings/Features';
+import PeriodCustomization from './components/settings/PeriodCustomization';
+import About from './components/settings/About';
+import Dashboard from './components/classes/Dashboard';
+import Upcoming from './components/classes/Upcoming';
+import Materials from './components/classes/Materials';
 import NYTimes from './components/utilities/NYTimes';
 import Support from './components/utilities/Support';
 import FaviconHandler from './components/schedule/FaviconHandler';
@@ -101,12 +114,29 @@ export default function App() {
 
                 <Routes>
                     <Route element={<AppLayout />}>
-                        <Route index element={<Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />}/>
-                        <Route path="/classes/*" element={<Classes />}/>
-                        <Route path="/clubs" element={<Clubs />}/>
-                        <Route path="/utilities/*" element={<Utilities />}/>
-                        <Route path="/settings/*" element={<Settings />}/>
-                        <Route path="/super-secret-testing" element={<Testing />}/>
+                        <Route path="/" element={<Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />}/>
+                        <Route path="/classes" element={<Classes />}>
+                            <Route index element={<Dashboard />} />
+                            <Route path="upcoming" element={<Upcoming />} />
+                            <Route path="materials" element={<Materials />} />
+                        </Route>
+                        <Route path="/clubs" element={<Clubs />} />
+                        <Route path="/utilities" element={<Utilities />}>
+                            <Route index element={<Barcode />} />
+                            {/* <Route path="graphing`} element={<GraphingCalculator />}/> */}
+                            <Route path="map" element={<Map />} />
+                            <Route path="calculator" element={<Calculator />} />
+                            <Route path="staff" element={<Staff />} />
+                            <Route path="courses" element={<WIP />} /> {/* WIP is temporary, will replace with courses when it's finished */}
+                            <Route path="resources" element={<Resources />} />
+                        </Route>
+                        <Route path="/settings" element={<Settings />}>
+                            <Route index element={<Appearance />} />
+                            <Route path="features" element={<Features />} />
+                            <Route path="periods" element={<PeriodCustomization />} />
+                            <Route path="about" element={<About />} />
+                        </Route>
+                        <Route path="/super-secret-testing" element={<Testing />} />
                     </Route>
                     <Route path="/resources" element={<ResourcesLayout />}>
                         <Route path="nytimes" element={<NYTimes />} />
