@@ -32,6 +32,7 @@ import {logEvent} from 'firebase/analytics';
 import {getRedirectResult} from 'firebase/auth';
 import {firestoreInit} from './util/firestore';
 import {useAlternates} from './hooks/useAlternates';
+import ImageMap from './components/utilities/ImageMap';
 
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
@@ -112,6 +113,7 @@ export default function App() {
                         <Route path="nytimes" element={<NYTimes />} />
                         <Route path="support" element={<Support />} />
                     </Route>
+                    <Route path="/image-map" element={<ImageMap />} />
                     <Route path="/schoology/auth" element={<SgyAuthRedirect />}/>
                     <Route path="*" element={<PageNotFound />}/>
                 </Routes>

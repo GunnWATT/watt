@@ -1,9 +1,8 @@
 import {useEffect, useState} from 'react';
-import ReactDOM from 'react-dom';
+import {Link} from 'react-router-dom';
 import imageMap from '../../assets/imageMap.png';
 
 // Components
-import ImageMap from './ImageMap';
 import ImageBox from '../layout/ImageBox';
 
 
@@ -34,18 +33,13 @@ export default function Map() {
         <>
             <h1 className="mb-5">Map</h1>
 
-            <ImageBox
-                src={imageMap}
-                onClick={() => setShowMap(true)}
-                header="Image Map"
-                caption="Use the mouse to pan and scroll to zoom."
-            />
-
-            {/* TODO: use <Dialog> for this to trap focus and generally be more screen-reader friendly */}
-            {showMap && ReactDOM.createPortal(
-                <ImageMap close={() => setShowMap(false)} />,
-                document.getElementById('content')!
-            )}
+            <Link to="/image-map" className="!text-inherit hover:no-underline">
+                <ImageBox
+                    src={imageMap}
+                    header="Image Map"
+                    caption="Use the mouse to pan and scroll to zoom."
+                />
+            </Link>
         </>
     );
 }

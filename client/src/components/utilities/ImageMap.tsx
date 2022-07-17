@@ -1,12 +1,11 @@
-import {useContext, useEffect, useRef, useState, PointerEvent} from 'react';
+import {useEffect, useRef, useState, PointerEvent} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {useHotkeys} from 'react-hotkeys-hook';
+import GunnMapImage from '../../assets/gunnmap.png';
 
 // Components
 import Wave from '../layout/Wave';
 import CloseButton from '../layout/CloseButton';
-
-import GunnMapImage from '../../assets/gunnmap.png';
-import UserDataContext from '../../contexts/UserDataContext';
 
 
 type Pointer = {
@@ -16,10 +15,10 @@ type Pointer = {
     transformation?: Matrix,
     other?: Pointer | null
 }
-type ImageMapProps = {close: () => void};
-export default function ImageMap(props : ImageMapProps) {
-    const {close} = props;
-    const userData = useContext(UserDataContext);
+export default function ImageMap() {
+    // Return to `/utilities/map` on close
+    const navigate = useNavigate();
+    const close = () => navigate('/utilities/map');
 
     // Refs, pointers, and transformations for manipulating the map image
     const mapRef = useRef<HTMLImageElement | null>(null);
@@ -60,7 +59,7 @@ export default function ImageMap(props : ImageMapProps) {
     }
 
     return (
-        <div className="bg-background dark:bg-background-dark fixed w-full h-full top-0 left-0 touch-none z-20">
+        <div className="h-screen touch-none">
             <Wave />
             <CloseButton className="absolute top-8 right-8" onClick={close} />
 
