@@ -1,5 +1,5 @@
 import {useContext} from 'react';
-import PeriodCustomizationInput from './PeriodCustomizationInput';
+import PeriodCustomizationInput from '../../components/settings/PeriodCustomizationInput';
 import UserDataContext from '../../contexts/UserDataContext';
 
 

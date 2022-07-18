@@ -1,10 +1,10 @@
 import {ReactNode, useState} from 'react';
 
 // Components
-import CenteredModal from '../layout/CenteredModal';
-import CloseButton from '../layout/CloseButton';
-import NYTimes from '../resources/NYTimes';
-import Support from '../resources/Support';
+import CenteredModal from '../../components/layout/CenteredModal';
+import CloseButton from '../../components/layout/CloseButton';
+import NYTimes from '../../components/resources/NYTimes';
+import Support from '../../components/resources/Support';
 
 
 export default function Resources() {

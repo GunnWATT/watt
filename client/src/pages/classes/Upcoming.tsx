@@ -4,11 +4,11 @@ import { useScreenType } from '../../hooks/useScreenType';
 import { FilePlus } from 'react-feather';
 
 // Components
-import Assignments from './Assignments';
-import UpcomingTimeline from './UpcomingTimeline';
-import ClassFilter, {QueryObj} from './ClassFilter';
-import CreateAssignmentModal from './CreateAssignmentModal';
-import ContentButton from '../layout/ContentButton';
+import Assignments from '../../components/classes/Assignments';
+import UpcomingTimeline from '../../components/classes/UpcomingTimeline';
+import ClassFilter, {QueryObj} from '../../components/classes/ClassFilter';
+import CreateAssignmentModal from '../../components/classes/CreateAssignmentModal';
+import ContentButton from '../../components/layout/ContentButton';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
@@ -16,7 +16,7 @@ import UserDataContext from '../../contexts/UserDataContext';
 import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
-import { findClassesList } from '../../pages/Classes';
+import { findClassesList } from '../../components/classes/ClassesLayout';
 import {AssignmentBlurb} from '../../util/sgyAssignments';
 import { getUpcomingInfo } from '../../util/sgyMaterials';
 import { similarity } from '../../util/sgyHelpers';

@@ -1,30 +1,27 @@
 import {ReactNode, useContext, useEffect, useState} from 'react';
-import {Routes, Route, Link, useMatch, useResolvedPath} from 'react-router-dom';
+import {Link, useMatch, useResolvedPath, Outlet} from 'react-router-dom';
 
 // Components
-import ClassesHeader from '../components/classes/ClassesHeader';
-import Dashboard from '../components/classes/Dashboard';
-import Upcoming from '../components/classes/Upcoming';
-import Materials from '../components/classes/Materials';
-import SgySignInBtn from '../components/firebase/SgySignInBtn';
-import Loading from '../components/layout/Loading';
-import Wave from '../components/layout/Wave';
+import ClassesHeader from './ClassesHeader';
+import SgySignInBtn from '../firebase/SgySignInBtn';
+import Loading from '../layout/Loading';
+import Wave from '../layout/Wave';
 
 // Firebase
 import { Functions, httpsCallable } from 'firebase/functions';
 import { useAuth, useFirestore, useFunctions, useSigninCheck } from 'reactfire';
 import { FirebaseError } from '@firebase/util';
-import { updateUserData } from '../util/firestore';
+import { updateUserData } from '../../util/firestore';
 
 // Contexts
-import CurrentTimeContext from '../contexts/CurrentTimeContext';
-import UserDataContext, { SgyPeriod, SgyData, UserData } from '../contexts/UserDataContext';
-import { SgyDataProvider } from '../contexts/SgyDataContext';
+import CurrentTimeContext from '../../contexts/CurrentTimeContext';
+import UserDataContext, { SgyPeriod, SgyData, UserData } from '../../contexts/UserDataContext';
+import { SgyDataProvider } from '../../contexts/SgyDataContext';
 
 // Utilities
-import { parsePeriodColor } from '../components/schedule/Periods';
-import { useScreenType } from '../hooks/useScreenType';
-import { cleanupExpired } from '../util/sgyAssignments';
+import { parsePeriodColor } from '../schedule/Periods';
+import { useScreenType } from '../../hooks/useScreenType';
+import { cleanupExpired } from '../../util/sgyAssignments';
 
 
 export async function fetchSgyMaterials(functions: Functions) {
@@ -40,7 +37,7 @@ export async function fetchSgyMaterials(functions: Functions) {
     return res.data;
 }
 
-export default function Classes() {
+export default function ClassesLayout() {
     const functions = useFunctions();
     const auth = useAuth();
     const firestore = useFirestore();
@@ -222,11 +219,7 @@ export default function Classes() {
                 </nav>
 
                 <main>
-                    <Routes>
-                        <Route path="/" element={<Dashboard />} />
-                        <Route path="/upcoming" element={<Upcoming />} />
-                        <Route path="/materials" element={<Materials />} />
-                    </Routes>
+                    <Outlet />
                 </main>
             </div>
         </SgyDataProvider>

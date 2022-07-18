@@ -3,9 +3,9 @@ import {DateTime} from 'luxon';
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Components
-import Search from '../layout/Search';
-import List from './List';
-import StaffComponent, {ClassObj, SemesterClassObj, Staff as StaffComponentProps} from './StaffComponent';
+import Search from '../../components/layout/Search';
+import List from '../../components/lists/List';
+import StaffComponent, {ClassObj, SemesterClassObj, Staff as StaffComponentProps} from '../../components/lists/StaffComponent';
 
 // Data
 import staff from '../../data/staff';

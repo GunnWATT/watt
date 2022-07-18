@@ -7,7 +7,7 @@ import {SgyData, SgyPeriod, UserData} from '../contexts/UserDataContext';
 import {AssignmentBlurb} from './sgyAssignments';
 
 // Utilities
-import {findClassesList} from '../pages/Classes';
+import {findClassesList} from '../components/classes/ClassesLayout';
 import {findGrades} from './sgyGrades';
 
 

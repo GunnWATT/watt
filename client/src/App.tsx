@@ -5,16 +5,33 @@ import {DateTime} from 'luxon';
 import PageVisibility from 'react-page-visibility';
 import {GCalEvent} from './components/schedule/Event';
 
-// Components
+// Layouts
 import AppLayout from './components/layout/AppLayout';
 import ResourcesLayout from './components/resources/ResourcesLayout';
+import UtilitiesLayout from './components/utilities/UtilitiesLayout';
+import SettingsLayout from './components/settings/SettingsLayout';
+import ClassesLayout from './components/classes/ClassesLayout';
+
+// Pages
 import Home from './pages/Home';
-import Utilities from './pages/Utilities';
-import Classes from './pages/Classes';
 import Clubs from './pages/Clubs';
-import Settings from './pages/Settings';
+import Barcode from './pages/utilities/Barcode';
+import Map from './pages/utilities/Map';
+import Calculator from './pages/utilities/Calculator';
+import Staff from './pages/utilities/Staff';
+import WIP from './components/layout/WIP';
+import Resources from './pages/utilities/Resources';
+import Appearance from './pages/settings/Appearance';
+import Features from './pages/settings/Features';
+import PeriodCustomization from './pages/settings/PeriodCustomization';
+import About from './pages/settings/About';
+import Dashboard from './pages/classes/Dashboard';
+import Upcoming from './pages/classes/Upcoming';
+import Materials from './pages/classes/Materials';
 import PageNotFound from './pages/404';
 import SgyAuthRedirect from './pages/SgyAuthRedirect';
+
+// Components
 import FaviconHandler from './components/schedule/FaviconHandler';
 import InstallModal from './components/layout/InstallModal';
 import SgyInitResults from './components/firebase/SgyInitResults';
@@ -30,6 +47,7 @@ import {getRedirectResult} from 'firebase/auth';
 import {firestoreInit} from './util/firestore';
 import {useAlternates} from './hooks/useAlternates';
 
+// Lazy-loaded pages
 const Testing = lazy(() => import('./pages/Testing'));
 const NYTimes = lazy(() => import('./components/resources/NYTimes'));
 const Support = lazy(() => import('./components/resources/Support'));
@@ -102,11 +120,28 @@ export default function App() {
 
                 <Routes>
                     <Route element={<AppLayout />}>
-                        <Route index element={<Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />}/>
-                        <Route path="/classes/*" element={<Classes />}/>
-                        <Route path="/clubs" element={<Clubs />}/>
-                        <Route path="/utilities/*" element={<Utilities />}/>
-                        <Route path="/settings/*" element={<Settings />}/>
+                        <Route path="/" element={<Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />}/>
+                        <Route path="/classes" element={<ClassesLayout />}>
+                            <Route index element={<Dashboard />} />
+                            <Route path="upcoming" element={<Upcoming />} />
+                            <Route path="materials" element={<Materials />} />
+                        </Route>
+                        <Route path="/clubs" element={<Clubs />} />
+                        <Route path="/utilities" element={<UtilitiesLayout />}>
+                            <Route index element={<Barcode />} />
+                            {/* <Route path="graphing`} element={<GraphingCalculator />}/> */}
+                            <Route path="map" element={<Map />} />
+                            <Route path="calculator" element={<Calculator />} />
+                            <Route path="staff" element={<Staff />} />
+                            <Route path="courses" element={<WIP />} /> {/* WIP is temporary, will replace with courses when it's finished */}
+                            <Route path="resources" element={<Resources />} />
+                        </Route>
+                        <Route path="/settings" element={<SettingsLayout />}>
+                            <Route index element={<Appearance />} />
+                            <Route path="features" element={<Features />} />
+                            <Route path="periods" element={<PeriodCustomization />} />
+                            <Route path="about" element={<About />} />
+                        </Route>
                         <Route
                             path="/super-secret-testing"
                             element={<Suspense><Testing /></Suspense>}
