@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from 'react';
+import {useContext, useEffect, useState, lazy} from 'react';
 import {Route, Routes, useLocation} from 'react-router-dom';
 import {useAnalytics, useAuth, useFirestore, useSigninCheck} from 'reactfire';
 import {DateTime} from 'luxon';
@@ -7,7 +7,7 @@ import {GCalEvent} from './components/schedule/Event';
 
 // Components
 import AppLayout from './components/layout/AppLayout';
-import ResourcesLayout from './components/layout/ResourcesLayout';
+import ResourcesLayout from './components/resources/ResourcesLayout';
 import Home from './pages/Home';
 import Utilities from './pages/Utilities';
 import Classes from './pages/Classes';
@@ -16,8 +16,6 @@ import Settings from './pages/Settings';
 import Testing from './pages/Testing';
 import PageNotFound from './pages/404';
 import SgyAuthRedirect from './pages/SgyAuthRedirect';
-import NYTimes from './components/utilities/NYTimes';
-import Support from './components/utilities/Support';
 import FaviconHandler from './components/schedule/FaviconHandler';
 import InstallModal from './components/layout/InstallModal';
 import SgyInitResults from './components/firebase/SgyInitResults';
@@ -32,6 +30,9 @@ import {logEvent} from 'firebase/analytics';
 import {getRedirectResult} from 'firebase/auth';
 import {firestoreInit} from './util/firestore';
 import {useAlternates} from './hooks/useAlternates';
+
+const NYTimes = lazy(() => import('./components/resources/NYTimes'));
+const Support = lazy(() => import('./components/resources/Support'));
 
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';

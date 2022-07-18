@@ -1,4 +1,6 @@
+import {Suspense} from 'react';
 import {Link, Outlet} from 'react-router-dom';
+import ResourcesFallback from './ResourcesFallback';
 
 
 // The layout for the resources subpages.
@@ -9,7 +11,9 @@ export default function ResourcesLayout() {
                 <Link to="/utilities" className="block text-sm secondary text-inherit hover:no-underline -ml-4 mb-8">
                     ← Return to utilities
                 </Link>
-                <Outlet />
+                <Suspense fallback={<ResourcesFallback />}>
+                    <Outlet />
+                </Suspense>
             </main>
         </div>
     )
