@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState, lazy} from 'react';
+import {useContext, useEffect, useState, lazy, Suspense} from 'react';
 import {Route, Routes, useLocation} from 'react-router-dom';
 import {useAnalytics, useAuth, useFirestore, useSigninCheck} from 'reactfire';
 import {DateTime} from 'luxon';
@@ -13,7 +13,6 @@ import Utilities from './pages/Utilities';
 import Classes from './pages/Classes';
 import Clubs from './pages/Clubs';
 import Settings from './pages/Settings';
-import Testing from './pages/Testing';
 import PageNotFound from './pages/404';
 import SgyAuthRedirect from './pages/SgyAuthRedirect';
 import FaviconHandler from './components/schedule/FaviconHandler';
@@ -31,6 +30,7 @@ import {getRedirectResult} from 'firebase/auth';
 import {firestoreInit} from './util/firestore';
 import {useAlternates} from './hooks/useAlternates';
 
+const Testing = lazy(() => import('./pages/Testing'));
 const NYTimes = lazy(() => import('./components/resources/NYTimes'));
 const Support = lazy(() => import('./components/resources/Support'));
 
@@ -107,7 +107,10 @@ export default function App() {
                         <Route path="/clubs" element={<Clubs />}/>
                         <Route path="/utilities/*" element={<Utilities />}/>
                         <Route path="/settings/*" element={<Settings />}/>
-                        <Route path="/super-secret-testing" element={<Testing />}/>
+                        <Route
+                            path="/super-secret-testing"
+                            element={<Suspense><Testing /></Suspense>}
+                        />
                     </Route>
                     <Route path="/resources" element={<ResourcesLayout />}>
                         <Route path="nytimes" element={<NYTimes />} />
