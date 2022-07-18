@@ -3,8 +3,8 @@ import {ReactNode, useState} from 'react';
 // Components
 import CenteredModal from '../layout/CenteredModal';
 import CloseButton from '../layout/CloseButton';
-import NYTimes from './NYTimes';
-import Support from './Support';
+import NYTimes from '../resources/NYTimes';
+import Support from '../resources/Support';
 
 
 export default function Resources() {
