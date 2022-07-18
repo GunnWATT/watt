@@ -1,9 +1,9 @@
 import {Outlet} from 'react-router-dom';
-import HeaderPage from '../components/layout/HeaderPage';
-import NavTab from '../components/layout/NavTab';
+import HeaderPage from '../layout/HeaderPage';
+import NavTab from '../layout/NavTab';
 
 
-export default function Utilities() {
+export default function UtilitiesLayout() {
     return (
         <HeaderPage
             heading="Utilities"

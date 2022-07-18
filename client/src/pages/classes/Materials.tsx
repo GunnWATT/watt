@@ -1,16 +1,16 @@
 import {startTransition, useContext, useEffect, useState} from 'react';
 
 // Components
-import Material from './Material';
-import ClassFilter, {QueryObj} from './ClassFilter';
-import NoResults from '../lists/NoResults';
+import Material from '../../components/classes/Material';
+import ClassFilter, {QueryObj} from '../../components/classes/ClassFilter';
+import NoResults from '../../components/lists/NoResults';
 
 // Contexts
 import UserDataContext, { SgyPeriod, SgyData } from '../../contexts/UserDataContext';
 import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
-import { findClassesList } from '../../pages/Classes';
+import { findClassesList } from '../../components/classes/ClassesLayout';
 import { similarity } from '../../util/sgyHelpers';
 import {AssignmentBlurb} from '../../util/sgyAssignments';
 import {getMaterials} from '../../util/sgyMaterials';

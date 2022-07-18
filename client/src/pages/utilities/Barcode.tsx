@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import UserDataContext from '../../contexts/UserDataContext';
-import BarcodeRow from './BarcodeRow';
+import BarcodeRow from '../../components/utilities/BarcodeRow';
 
 // Firestore
 import {useAuth, useFirestore} from 'reactfire';

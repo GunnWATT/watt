@@ -1,5 +1,5 @@
 import {SgyData, SgyPeriod, UserData} from "../contexts/UserDataContext";
-import {findClassesList} from "../pages/Classes";
+import {findClassesList} from "../components/classes/ClassesLayout";
 
 
 // Find your grade objects

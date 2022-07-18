@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import imageMap from '../../assets/imageMap.png';
 
 // Components
-import ImageMap from './ImageMap';
-import ImageBox from '../layout/ImageBox';
+import ImageMap from '../../components/utilities/ImageMap';
+import ImageBox from '../../components/layout/ImageBox';
 
 
 export default function Map() {
