@@ -1,4 +1,5 @@
 import {ReactNode, useContext, useEffect, useState} from 'react';
+import {Helmet} from 'react-helmet-async';
 
 // Components
 import CenteredMessage from '../components/layout/CenteredMessage';
@@ -72,6 +73,17 @@ export default function Testing() {
 
     return (
         <div className="container py-6">
+            <Helmet>
+                <title>Super secret testing | WATT</title>
+                <meta property="og:title" content="Super secret testing | WATT" />
+                <meta property="twitter:title" content="Super secret testing | WATT" />
+
+                {/* TODO: make description better */}
+                <meta name="description" content="Experiments, components, and other fun stuff." />
+                <meta name="og:description" content="Experiments, components, and other fun stuff." />
+                <meta name="twitter:description" content="Experiments, components, and other fun stuff." />
+            </Helmet>
+
             <h1 className="mb-4">Super Secret Testing Facility</h1>
 
             <p className="mb-4">

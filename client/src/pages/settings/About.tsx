@@ -6,8 +6,13 @@ export default function About() {
         <>
             <Helmet>
                 <title>About | WATT</title>
+                <meta property="og:title" content="About | WATT" />
+                <meta property="twitter:title" content="About | WATT" />
+
                 {/* TODO: make description better */}
                 <meta name="description" content="All about the Web App of the Titans." />
+                <meta name="og:description" content="All about the Web App of the Titans." />
+                <meta name="twitter:description" content="All about the Web App of the Titans." />
             </Helmet>
 
             <h1 className="mb-4">About</h1>

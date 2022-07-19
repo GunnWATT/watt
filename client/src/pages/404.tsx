@@ -7,7 +7,12 @@ export default function PageNotFound() {
         <div className="h-screen flex items-center justify-center">
             <Helmet>
                 <title>404 | WATT</title>
+                <meta property="og:title" content="404 | WATT" />
+                <meta property="twitter:title" content="404 | WATT" />
+
                 <meta name="description" content="Page not found." />
+                <meta name="og:description" content="Page not found." />
+                <meta name="twitter:description" content="Page not found." />
             </Helmet>
 
             <main className="max-w-prose p-8">

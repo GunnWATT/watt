@@ -86,8 +86,13 @@ export default function Clubs() {
         >
             <Helmet>
                 <title>Clubs | WATT</title>
+                <meta property="og:title" content="Clubs | WATT" />
+                <meta property="twitter:title" content="Clubs | WATT" />
+
                 {/* TODO: make description better */}
                 <meta name="description" content="Directory of clubs at Gunn." />
+                <meta name="og:description" content="Directory of clubs at Gunn." />
+                <meta name="twitter:description" content="Directory of clubs at Gunn." />
             </Helmet>
 
             <p className="mb-4 secondary">

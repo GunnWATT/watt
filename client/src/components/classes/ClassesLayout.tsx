@@ -247,11 +247,13 @@ function ClassesErrorBurrito(props: {children?: ReactNode}) {
         <div className="w-full h-screen flex items-center justify-center pb-16 -mb-16 md:pb-0 md:mb-0">
             <Helmet>
                 <title>Classes | WATT</title>
+                <meta property="og:title" content="Classes | WATT" />
+                <meta property="twitter:title" content="Classes | WATT" />
+
                 {/* TODO: make description better */}
-                <meta
-                    name="description"
-                    content="Schoology integration for quickly viewing upcoming assignments, materials, and grades. Sign in to WATT and authenticate Schoology to enable access."
-                />
+                <meta name="description" content="Schoology integration for quickly viewing upcoming assignments, materials, and grades. Sign in to WATT and authenticate Schoology to enable access." />
+                <meta name="og:description" content="Schoology integration for quickly viewing upcoming assignments, materials, and grades. Sign in to WATT and authenticate Schoology to enable access." />
+                <meta name="twitter:description" content="Schoology integration for quickly viewing upcoming assignments, materials, and grades. Sign in to WATT and authenticate Schoology to enable access." />
             </Helmet>
 
             <div className="max-w-5xl rounded p-6 mx-4 text-center bg-sidebar dark:bg-sidebar-dark">

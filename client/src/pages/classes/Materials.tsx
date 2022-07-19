@@ -55,8 +55,13 @@ export default function Materials() {
         <div className="flex flex-col gap-2">
             <Helmet>
                 <title>Materials | WATT</title>
+                <meta property="og:title" content="Materials | WATT" />
+                <meta property="twitter:title" content="Materials | WATT" />
+
                 {/* TODO: make description better */}
                 <meta name="description" content="Easily searchable and filterable Schoology materials list." />
+                <meta name="og:description" content="Easily searchable and filterable Schoology materials list." />
+                <meta name="twitter:description" content="Easily searchable and filterable Schoology materials list." />
             </Helmet>
 
             <ClassFilter filter={filter} setFilter={setFilter} classes={classes} />

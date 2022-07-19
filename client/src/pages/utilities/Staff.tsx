@@ -62,8 +62,13 @@ export default function Staff() {
         <>
             <Helmet>
                 <title>Staff | WATT</title>
+                <meta property="og:title" content="Staff | WATT" />
+                <meta property="twitter:title" content="Staff | WATT" />
+
                 {/* TODO: make description better */}
                 <meta name="description" content="Directory of staff members at Gunn." />
+                <meta name="og:description" content="Directory of staff members at Gunn." />
+                <meta name="twitter:description" content="Directory of staff members at Gunn." />
             </Helmet>
 
             <span className="flex gap-4 items-center">

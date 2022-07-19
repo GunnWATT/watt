@@ -11,8 +11,13 @@ export default function PeriodCustomization() {
         <>
             <Helmet>
                 <title>Periods | WATT</title>
+                <meta property="og:title" content="Periods | WATT" />
+                <meta property="twitter:title" content="Periods | WATT" />
+
                 {/* TODO: make description better */}
                 <meta name="description" content="Customize the names and colors of the periods WATT renders in the schedule." />
+                <meta name="og:description" content="Customize the names and colors of the periods WATT renders in the schedule." />
+                <meta name="twitter:description" content="Customize the names and colors of the periods WATT renders in the schedule." />
             </Helmet>
 
             <h1>Periods</h1>

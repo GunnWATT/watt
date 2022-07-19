@@ -59,8 +59,13 @@ export default function Barcode() {
         <>
             <Helmet>
                 <title>Barcode | WATT</title>
+                <meta property="og:title" content="Barcode | WATT" />
+                <meta property="twitter:title" content="Barcode | WATT" />
+
                 {/* TODO: make description better */}
                 <meta name="description" content="Your student ID barcode, scannable on your phone." />
+                <meta name="og:description" content="Your student ID barcode, scannable on your phone." />
+                <meta name="twitter:description" content="Your student ID barcode, scannable on your phone." />
             </Helmet>
 
             <h1>Barcode</h1>

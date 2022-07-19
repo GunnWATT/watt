@@ -34,11 +34,13 @@ export default function Calculator() {
         <>
             <Helmet>
                 <title>Minimum finals score calculator | WATT</title>
+                <meta property="og:title" content="Minimum finals score calculator | WATT" />
+                <meta property="twitter:title" content="Minimum finals score calculator | WATT" />
+
                 {/* TODO: make description better */}
-                <meta
-                    name="description"
-                    content="A calculator for determining the minimum score you can get on the final while staying above a certain grade."
-                />
+                <meta name="description" content="A calculator for determining the minimum score you can get on the final while staying above a certain grade." />
+                <meta name="og:description" content="A calculator for determining the minimum score you can get on the final while staying above a certain grade." />
+                <meta name="twitter:description" content="A calculator for determining the minimum score you can get on the final while staying above a certain grade." />
             </Helmet>
 
             <h1>Minimum finals score calculator</h1>

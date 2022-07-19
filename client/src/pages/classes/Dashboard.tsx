@@ -47,8 +47,13 @@ export default function Dashboard() {
         <div className="flex gap-4 flex-wrap xl:flex-nowrap">
             <Helmet>
                 <title>Dashboard | WATT</title>
+                <meta property="og:title" content="Dashboard | WATT" />
+                <meta property="twitter:title" content="Dashboard | WATT" />
+
                 {/* TODO: make description better */}
                 <meta name="description" content="A minimal Schoology dashboard to keep you up to speed with assignments and grades." />
+                <meta name="og:description" content="A minimal Schoology dashboard to keep you up to speed with assignments and grades." />
+                <meta name="twitter:description" content="A minimal Schoology dashboard to keep you up to speed with assignments and grades." />
             </Helmet>
 
             {/* Dashboard left section */}

@@ -122,10 +122,12 @@ export default function App() {
 
                     <Helmet>
                         <title>Web App of The Titans (WATT)</title>
-                        <meta
-                            name="description"
-                            content="WATT is the modern successor to UGWA, with features from the bell schedule to automatic importing of Schoology assignments and class links. Go Titans!"
-                        />
+                        <meta property="og:title" content="Web App of The Titans (WATT)" />
+                        <meta property="twitter:title" content="Web App of The Titans (WATT)" />
+
+                        <meta name="description" content="WATT is the modern successor to UGWA, with features from the bell schedule to automatic importing of Schoology assignments and class links. Go Titans!" />
+                        <meta name="og:description" content="WATT is the modern successor to UGWA, with features from the bell schedule to automatic importing of Schoology assignments and class links. Go Titans!" />
+                        <meta name="twitter:description" content="WATT is the modern successor to UGWA, with features from the bell schedule to automatic importing of Schoology assignments and class links. Go Titans!" />
                     </Helmet>
 
                     <Routes>

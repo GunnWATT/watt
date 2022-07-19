@@ -30,8 +30,13 @@ export default function Appearance() {
         <>
             <Helmet>
                 <title>Appearance | WATT</title>
+                <meta property="og:title" content="Appearance | WATT" />
+                <meta property="twitter:title" content="Appearance | WATT" />
+
                 {/* TODO: make description better */}
                 <meta name="description" content="Customize WATT display settings like theme or time preferences." />
+                <meta name="og:description" content="Customize WATT display settings like theme or time preferences." />
+                <meta name="twitter:description" content="Customize WATT display settings like theme or time preferences." />
             </Helmet>
 
             <h1>Appearance</h1>

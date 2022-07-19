@@ -80,8 +80,13 @@ export default function Upcoming() {
         <div className="flex gap-6">
             <Helmet>
                 <title>Upcoming | WATT</title>
+                <meta property="og:title" content="Upcoming | WATT" />
+                <meta property="twitter:title" content="Upcoming | WATT" />
+
                 {/* TODO: make description better */}
                 <meta name="description" content="A timeline of upcoming Schoology assignments." />
+                <meta name="og:description" content="A timeline of upcoming Schoology assignments." />
+                <meta name="twitter:description" content="A timeline of upcoming Schoology assignments." />
             </Helmet>
 
             <div className="flex-grow min-w-0">

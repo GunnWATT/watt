@@ -27,8 +27,13 @@ export default function Features() {
         <>
             <Helmet>
                 <title>Features | WATT</title>
+                <meta property="og:title" content="Features | WATT" />
+                <meta property="twitter:title" content="Features | WATT" />
+
                 {/* TODO: make description better */}
                 <meta name="description" content="Toggle WATT features like displaying 0th or 8th period, or showing the clock." />
+                <meta name="og:description" content="Toggle WATT features like displaying 0th or 8th period, or showing the clock." />
+                <meta name="twitter:description" content="Toggle WATT features like displaying 0th or 8th period, or showing the clock." />
             </Helmet>
 
             <h1>Features</h1>

@@ -13,8 +13,13 @@ export default function Resources() {
         <>
             <Helmet>
                 <title>Resources | WATT</title>
+                <meta property="og:title" content="Resources | WATT" />
+                <meta property="twitter:title" content="Resources | WATT" />
+
                 {/* TODO: make description better */}
                 <meta name="description" content="Information and resources for all Gunn students." />
+                <meta name="og:description" content="Information and resources for all Gunn students." />
+                <meta name="twitter:description" content="Information and resources for all Gunn students." />
             </Helmet>
 
             <h1 className="mb-6">Resources</h1>

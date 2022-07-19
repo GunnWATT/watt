@@ -35,8 +35,13 @@ export default function Map() {
         <>
             <Helmet>
                 <title>Map | WATT</title>
+                <meta property="og:title" content="Map | WATT" />
+                <meta property="twitter:title" content="Map | WATT" />
+
                 {/* TODO: make description better */}
                 <meta name="description" content="Interactive Gunn maps to help you navigate around campus." />
+                <meta name="og:description" content="Interactive Gunn maps to help you navigate around campus." />
+                <meta name="twitter:description" content="Interactive Gunn maps to help you navigate around campus." />
             </Helmet>
 
             <h1 className="mb-5">Map</h1>
