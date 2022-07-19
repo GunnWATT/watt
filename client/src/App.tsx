@@ -1,5 +1,6 @@
 import {useContext, useEffect, useState, lazy, Suspense} from 'react';
 import {Route, Routes, useLocation} from 'react-router-dom';
+import {Helmet, HelmetProvider} from 'react-helmet-async';
 import {useAnalytics, useAuth, useFirestore, useSigninCheck} from 'reactfire';
 import {DateTime} from 'luxon';
 import PageVisibility from 'react-page-visibility';
@@ -113,51 +114,61 @@ export default function App() {
     }, [userData.options.theme])
 
     return (
-        <AlternatesProvider value={alternates}>
-            <TimeProvider value={date}>
-                <PageVisibility onChange={() => navigator.serviceWorker.getRegistration().then(res => res?.update())} />
-                <FaviconHandler />
+        <HelmetProvider>
+            <AlternatesProvider value={alternates}>
+                <TimeProvider value={date}>
+                    <PageVisibility onChange={() => navigator.serviceWorker.getRegistration().then(res => res?.update())} />
+                    <FaviconHandler />
 
-                <Routes>
-                    <Route element={<AppLayout />}>
-                        <Route path="/" element={<Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />}/>
-                        <Route path="/classes" element={<ClassesLayout />}>
-                            <Route index element={<Dashboard />} />
-                            <Route path="upcoming" element={<Upcoming />} />
-                            <Route path="materials" element={<Materials />} />
-                        </Route>
-                        <Route path="/clubs" element={<Clubs />} />
-                        <Route path="/utilities" element={<UtilitiesLayout />}>
-                            <Route index element={<Barcode />} />
-                            {/* <Route path="graphing`} element={<GraphingCalculator />}/> */}
-                            <Route path="map" element={<Map />} />
-                            <Route path="calculator" element={<Calculator />} />
-                            <Route path="staff" element={<Staff />} />
-                            <Route path="courses" element={<WIP />} /> {/* WIP is temporary, will replace with courses when it's finished */}
-                            <Route path="resources" element={<Resources />} />
-                        </Route>
-                        <Route path="/settings" element={<SettingsLayout />}>
-                            <Route index element={<Appearance />} />
-                            <Route path="features" element={<Features />} />
-                            <Route path="periods" element={<PeriodCustomization />} />
-                            <Route path="about" element={<About />} />
-                        </Route>
-                        <Route
-                            path="/super-secret-testing"
-                            element={<Suspense><Testing /></Suspense>}
+                    <Helmet>
+                        <title>Web App of The Titans (WATT)</title>
+                        <meta
+                            name="description"
+                            content="WATT is the modern successor to UGWA, with features from the bell schedule to automatic importing of Schoology assignments and class links. Go Titans!"
                         />
-                    </Route>
-                    <Route path="/resources" element={<ResourcesLayout />}>
-                        <Route path="nytimes" element={<NYTimes />} />
-                        <Route path="support" element={<Support />} />
-                    </Route>
-                    <Route path="/schoology/auth" element={<SgyAuthRedirect />}/>
-                    <Route path="*" element={<PageNotFound />}/>
-                </Routes>
+                    </Helmet>
 
-                <InstallModal />
-                <SgyInitResults />
-            </TimeProvider>
-        </AlternatesProvider>
+                    <Routes>
+                        <Route element={<AppLayout />}>
+                            <Route path="/" element={<Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />}/>
+                            <Route path="/classes" element={<ClassesLayout />}>
+                                <Route index element={<Dashboard />} />
+                                <Route path="upcoming" element={<Upcoming />} />
+                                <Route path="materials" element={<Materials />} />
+                            </Route>
+                            <Route path="/clubs" element={<Clubs />} />
+                            <Route path="/utilities" element={<UtilitiesLayout />}>
+                                <Route index element={<Barcode />} />
+                                {/* <Route path="graphing`} element={<GraphingCalculator />}/> */}
+                                <Route path="map" element={<Map />} />
+                                <Route path="calculator" element={<Calculator />} />
+                                <Route path="staff" element={<Staff />} />
+                                <Route path="courses" element={<WIP />} /> {/* WIP is temporary, will replace with courses when it's finished */}
+                                <Route path="resources" element={<Resources />} />
+                            </Route>
+                            <Route path="/settings" element={<SettingsLayout />}>
+                                <Route index element={<Appearance />} />
+                                <Route path="features" element={<Features />} />
+                                <Route path="periods" element={<PeriodCustomization />} />
+                                <Route path="about" element={<About />} />
+                            </Route>
+                            <Route
+                                path="/super-secret-testing"
+                                element={<Suspense><Testing /></Suspense>}
+                            />
+                        </Route>
+                        <Route path="/resources" element={<ResourcesLayout />}>
+                            <Route path="nytimes" element={<NYTimes />} />
+                            <Route path="support" element={<Support />} />
+                        </Route>
+                        <Route path="/schoology/auth" element={<SgyAuthRedirect />}/>
+                        <Route path="*" element={<PageNotFound />}/>
+                    </Routes>
+
+                    <InstallModal />
+                    <SgyInitResults />
+                </TimeProvider>
+            </AlternatesProvider>
+        </HelmetProvider>
     );
 }

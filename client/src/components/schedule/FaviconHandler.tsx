@@ -1,15 +1,22 @@
-import {useContext, useEffect, useRef} from 'react';
-import {useNextPeriod} from '../../hooks/useNextPeriod';
-import {parsePeriodColor, parsePeriodName} from './Periods';
-import {hexToRgb} from '../../util/progressBarColor';
+import {useContext, useEffect, useRef, useState} from 'react';
+import {Helmet} from 'react-helmet-async';
 
 // Context
 import UserDataContext from '../../contexts/UserDataContext';
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
+// Utils
+import {useNextPeriod} from '../../hooks/useNextPeriod';
+import {parsePeriodColor, parsePeriodName} from './Periods';
+import {hexToRgb} from '../../util/progressBarColor';
+
 
 export default function FaviconHandler() {
     const userData = useContext(UserDataContext);
+
+    // TODO: this is somewhat hacky. Ideally we could access the helmet object directly, but I don't think the API
+    // supports that.
+    const [pageTitle, setPageTitle] = useState('');
 
     // TODO: use timeouts
     const date = useContext(CurrentTimeContext);
@@ -25,8 +32,6 @@ export default function FaviconHandler() {
 
     // Update document name and favicon based on current period
     useEffect(() => {
-        const midnight = date.startOf('day');
-
         // Initialize canvas reference
         if (!canvas.current) {
             canvas.current = document.createElement('canvas');
@@ -37,7 +42,7 @@ export default function FaviconHandler() {
         // If there's no period to display, set favicon and tab title back to defaults
         if (!next) {
             favicon.current?.remove();
-            document.title = 'Web App of The Titans (WATT)';
+            document.title = pageTitle;
             return;
         }
 
@@ -168,5 +173,5 @@ export default function FaviconHandler() {
 
     }, [date])
 
-    return null;
+    return <Helmet onChangeClientState={(state) => setPageTitle(state.title)} />;
 }

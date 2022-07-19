@@ -1,4 +1,5 @@
 import {startTransition, useContext, useEffect, useState} from 'react';
+import {Helmet} from 'react-helmet-async';
 
 // Components
 import Material from '../../components/classes/Material';
@@ -52,6 +53,12 @@ export default function Materials() {
 
     return (
         <div className="flex flex-col gap-2">
+            <Helmet>
+                <title>Materials | WATT</title>
+                {/* TODO: make description better */}
+                <meta name="description" content="Easily searchable and filterable Schoology materials list." />
+            </Helmet>
+
             <ClassFilter filter={filter} setFilter={setFilter} classes={classes} />
             <section className="flex flex-col gap-1.5">
                 {content && content.length ? content : <NoResults />}

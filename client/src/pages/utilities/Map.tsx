@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
+import {Helmet} from 'react-helmet-async';
 import imageMap from '../../assets/imageMap.png';
 
 // Components
@@ -32,6 +33,12 @@ export default function Map() {
 
     return (
         <>
+            <Helmet>
+                <title>Map | WATT</title>
+                {/* TODO: make description better */}
+                <meta name="description" content="Interactive Gunn maps to help you navigate around campus." />
+            </Helmet>
+
             <h1 className="mb-5">Map</h1>
 
             <ImageBox

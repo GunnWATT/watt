@@ -1,4 +1,5 @@
 import {ReactNode, useContext, useEffect, useState} from 'react';
+import {Helmet} from 'react-helmet-async';
 
 // Components
 import DashboardBlurb from '../../components/classes/DashboardBlurb';
@@ -44,6 +45,12 @@ export default function Dashboard() {
 
     return (
         <div className="flex gap-4 flex-wrap xl:flex-nowrap">
+            <Helmet>
+                <title>Dashboard | WATT</title>
+                {/* TODO: make description better */}
+                <meta name="description" content="A minimal Schoology dashboard to keep you up to speed with assignments and grades." />
+            </Helmet>
+
             {/* Dashboard left section */}
             <DashboardSection>
                 {upcoming && <DashboardBlurb upcoming={upcoming} selected={selected} />}

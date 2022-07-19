@@ -1,4 +1,5 @@
 import {ReactNode, useContext} from 'react';
+import {Helmet} from 'react-helmet-async';
 import {RadioGroup} from '@headlessui/react';
 import {Check, Circle} from 'react-feather';
 
@@ -27,6 +28,12 @@ export default function Appearance() {
 
     return (
         <>
+            <Helmet>
+                <title>Appearance | WATT</title>
+                {/* TODO: make description better */}
+                <meta name="description" content="Customize WATT display settings like theme or time preferences." />
+            </Helmet>
+
             <h1>Appearance</h1>
             <hr/>
 

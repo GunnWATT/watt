@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useScreenType } from '../../hooks/useScreenType';
 import { FilePlus } from 'react-feather';
+import {Helmet} from 'react-helmet-async';
 
 // Components
 import Assignments from '../../components/classes/Assignments';
@@ -77,7 +78,12 @@ export default function Upcoming() {
 
     return (
         <div className="flex gap-6">
-            {/* these props- */}
+            <Helmet>
+                <title>Upcoming | WATT</title>
+                {/* TODO: make description better */}
+                <meta name="description" content="A timeline of upcoming Schoology assignments." />
+            </Helmet>
+
             <div className="flex-grow min-w-0">
                 <ClassFilter classes={classes} filter={filter} setFilter={setFilter} />
 

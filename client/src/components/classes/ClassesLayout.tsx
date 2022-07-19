@@ -1,5 +1,6 @@
 import {ReactNode, useContext, useEffect, useState} from 'react';
 import {Link, useMatch, useResolvedPath, Outlet} from 'react-router-dom';
+import {Helmet} from 'react-helmet-async';
 
 // Components
 import ClassesHeader from './ClassesHeader';
@@ -244,6 +245,15 @@ function ClassesErrorBurrito(props: {children?: ReactNode}) {
     return <>
         <Wave />
         <div className="w-full h-screen flex items-center justify-center pb-16 -mb-16 md:pb-0 md:mb-0">
+            <Helmet>
+                <title>Classes | WATT</title>
+                {/* TODO: make description better */}
+                <meta
+                    name="description"
+                    content="Schoology integration for quickly viewing upcoming assignments, materials, and grades. Sign in to WATT and authenticate Schoology to enable access."
+                />
+            </Helmet>
+
             <div className="max-w-5xl rounded p-6 mx-4 text-center bg-sidebar dark:bg-sidebar-dark">
                 {props.children}
             </div>

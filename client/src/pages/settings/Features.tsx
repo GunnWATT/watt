@@ -1,4 +1,5 @@
 import {ReactNode, useContext} from 'react';
+import {Helmet} from 'react-helmet-async';
 import {Switch} from '@headlessui/react';
 
 // Contexts
@@ -24,6 +25,12 @@ export default function Features() {
 
     return (
         <>
+            <Helmet>
+                <title>Features | WATT</title>
+                {/* TODO: make description better */}
+                <meta name="description" content="Toggle WATT features like displaying 0th or 8th period, or showing the clock." />
+            </Helmet>
+
             <h1>Features</h1>
             <hr/>
 

@@ -11,9 +11,6 @@ import Periods from '../components/schedule/Periods';
 import DayAlert from '../components/schedule/DayAlert';
 import Events from '../components/schedule/Events';
 
-// Hooks
-import {useScreenType} from '../hooks/useScreenType';
-
 // Contexts
 import CurrentTimeContext from '../contexts/CurrentTimeContext';
 import UserDataContext from '../contexts/UserDataContext';

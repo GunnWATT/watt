@@ -1,6 +1,15 @@
+import {Helmet} from 'react-helmet-async';
+
+
 export default function About() {
     return (
         <>
+            <Helmet>
+                <title>About | WATT</title>
+                {/* TODO: make description better */}
+                <meta name="description" content="All about the Web App of the Titans." />
+            </Helmet>
+
             <h1 className="mb-4">About</h1>
             <section className="bg-content-secondary dark:bg-background-dark font-light rounded-md mb-4 px-8 py-16">
                 <p className="text-xl mb-4">

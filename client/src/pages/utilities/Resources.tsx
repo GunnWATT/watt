@@ -1,4 +1,5 @@
 import {ReactNode, useState} from 'react';
+import {Helmet} from 'react-helmet-async';
 
 // Components
 import CenteredModal from '../../components/layout/CenteredModal';
@@ -10,6 +11,12 @@ import Support from '../../components/resources/Support';
 export default function Resources() {
     return (
         <>
+            <Helmet>
+                <title>Resources | WATT</title>
+                {/* TODO: make description better */}
+                <meta name="description" content="Information and resources for all Gunn students." />
+            </Helmet>
+
             <h1 className="mb-6">Resources</h1>
             <section className="flex flex-col gap-3">
                 <ArticleCard name="New York Times" element={<NYTimes />}>

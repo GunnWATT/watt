@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import {Helmet} from 'react-helmet-async';
 import UserDataContext from '../../contexts/UserDataContext';
 import BarcodeRow from '../../components/utilities/BarcodeRow';
 
@@ -56,6 +57,12 @@ export default function Barcode() {
 
     return (
         <>
+            <Helmet>
+                <title>Barcode | WATT</title>
+                {/* TODO: make description better */}
+                <meta name="description" content="Your student ID barcode, scannable on your phone." />
+            </Helmet>
+
             <h1>Barcode</h1>
             <p className="secondary">
                 The <strong>You</strong> barcode will be autofilled with your student ID when logged in.

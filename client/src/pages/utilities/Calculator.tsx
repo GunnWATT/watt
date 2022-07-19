@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {Helmet} from 'react-helmet-async';
 
 
 export default function Calculator() {
@@ -31,6 +32,15 @@ export default function Calculator() {
 
     return (
         <>
+            <Helmet>
+                <title>Minimum finals score calculator | WATT</title>
+                {/* TODO: make description better */}
+                <meta
+                    name="description"
+                    content="A calculator for determining the minimum score you can get on the final while staying above a certain grade."
+                />
+            </Helmet>
+
             <h1>Minimum finals score calculator</h1>
             <hr/>
             <CalculatorInput

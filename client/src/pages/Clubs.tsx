@@ -1,4 +1,5 @@
 import {useContext, useState} from 'react';
+import {Helmet} from 'react-helmet-async';
 import {DateTime} from 'luxon';
 import {useScreenType} from '../hooks/useScreenType';
 
@@ -83,6 +84,12 @@ export default function Clubs() {
                 <StateTab value="6" name={dayFromTabNum('6', shorten)} state={activeTab} setState={toggle} />
             </>}
         >
+            <Helmet>
+                <title>Clubs | WATT</title>
+                {/* TODO: make description better */}
+                <meta name="description" content="Directory of clubs at Gunn." />
+            </Helmet>
+
             <p className="mb-4 secondary">
                 Please note that club information was taken from{' '}
                 <a href="https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vQ-UXugiZ8GznB367cO8JptTO9BLm5OE4D3WO8oZvYk_365lY25Q6eAFNSEIC5DGXGWOXwK_wauoTFT/pubhtml" target="_blank" rel="noopener noreferrer">the 2021-2022 chartered clubs spreadsheet</a>{' '}

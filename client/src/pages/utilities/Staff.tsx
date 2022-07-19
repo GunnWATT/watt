@@ -1,4 +1,5 @@
 import {useContext, useState} from 'react';
+import {Helmet} from 'react-helmet-async';
 import {DateTime} from 'luxon';
 import UserDataContext from '../../contexts/UserDataContext';
 
@@ -59,6 +60,12 @@ export default function Staff() {
 
     return (
         <>
+            <Helmet>
+                <title>Staff | WATT</title>
+                {/* TODO: make description better */}
+                <meta name="description" content="Directory of staff members at Gunn." />
+            </Helmet>
+
             <span className="flex gap-4 items-center">
                 <h1>Staff</h1>
                 <Search
