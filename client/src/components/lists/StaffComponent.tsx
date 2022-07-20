@@ -63,12 +63,14 @@ export default function StaffComponent(props: Staff & {id: string}) {
     }
 
     return (
-        <li className="text-sm cursor-pointer px-4 py-5" onClick={() => setModal(true)}>
-            <p>{name}</p>
-            {(title || dept) && (
-                <p className="secondary">{title === "Teacher" && dept ? `${title}, ${dept}` : title ? title : dept ? dept : ``}</p>
-            )}
-            {email && <p className="secondary">{email}</p>}
+        <>
+            <li className="text-sm cursor-pointer px-4 py-5" onClick={() => setModal(true)}>
+                <p>{name}</p>
+                {(title || dept) && (
+                    <p className="secondary">{title === "Teacher" && dept ? `${title}, ${dept}` : title ? title : dept ? dept : ``}</p>
+                )}
+                {email && <p className="secondary">{email}</p>}
+            </li>
 
             <CenteredModal className="relative bg-content dark:bg-content-dark rounded-md max-w-md mx-2 p-6 shadow-xl" isOpen={modal} setIsOpen={setModal}>
                 <Dialog.Title className="text-xl font-semibold mb-3 pr-6">{name}</Dialog.Title>
@@ -106,6 +108,6 @@ export default function StaffComponent(props: Staff & {id: string}) {
                     </DangerOutlineButton>
                 </section>
             </CenteredModal>
-        </li>
+        </>
     );
 }
