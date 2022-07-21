@@ -1,7 +1,7 @@
 # API Types
 The full reference for all types referenced in WATT's API can be found below:
 
-### `PeriodObj`
+### PeriodObj
 An object representing a class period.
 ```ts
 type PeriodObj = {n: string, s: number, e: number, note?: string};
@@ -31,9 +31,9 @@ type PeriodObj = {n: string, s: number, e: number, note?: string};
 {"n": "1", "s": 540, "e": 585}
 ```
 
-### `Schedule`
-An object representing a day's schedule. The `Schedule` comprises an array of `PeriodObj`s, or `null` if there is no 
-school on that day.
+### Schedule
+An object representing a day's schedule. The `Schedule` comprises an array of `PeriodObj`s representing the day's periods, 
+or `null` if there is no school on that day.
 ```ts
 type Schedule = PeriodObj[] | null;
 ```
@@ -42,22 +42,18 @@ type Schedule = PeriodObj[] | null;
 ```json
 [
     {"n": "0", "s": 475, "e": 530},
-    {"n": "1", "s": 540, "e": 585},
-    {"n": "2", "s": 595, "e": 640},
-    {"n": "B", "s": 640, "e": 645},
-    {"n": "3", "s": 655, "e": 700},
-    {"n": "4", "s": 710, "e": 755},
-    {"n": "L", "s": 755, "e": 785},
-    {"n": "5", "s": 795, "e": 840},
-    {"n": "6", "s": 850, "e": 895},
-    {"n": "7", "s": 905, "e": 950},
-    {"n": "8", "s": 960, "e": 1005}
+    {"n": "5", "s": 540, "e": 635},
+    {"n": "B", "s": 635, "e": 640},
+    {"n": "6", "s": 650, "e": 740},
+    {"n": "L", "s": 740, "e": 770},
+    {"n": "7", "s": 780, "e": 870},
+    {"n": "P", "s": 880, "e": 930}
 ]
 ```
 
-### `Alternates`
-`Alternates` represents an alternates object. It contains a `timestamp` representing the last time alternates were
-generated from the iCal, and an `alternates` object with string keys corresponding to the alternate schedule on that day.
+### Alternates
+An alternates object, containing a `timestamp` of the last time alternates were generated from the iCal and an object with 
+date-string keys corresponding to the alternate `Schedule` on that day.
 ```ts
 type Alternates = {
     timestamp: string,

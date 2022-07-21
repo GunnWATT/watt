@@ -13,13 +13,27 @@ to WATT's current alternate schedules.
 ```
 
 ### GET /schedule
-Returns a [`Schedule`](https://github.com/GunnWATT/watt/blob/api/docs/types.md#schedule) object of the current day's 
-schedule, and a boolean indicating whether the schedule is an alternate. This information is returned as
+Returns a [`Schedule`](https://github.com/GunnWATT/watt/blob/api/docs/types.md#schedule) object corresponding to the 
+requested day's schedule, and a boolean indicating whether that schedule is an alternate. This information is returned as
 ```ts
 {periods: Schedule, alternate: boolean}
 ```
 
+| Parameter           | Type     | Description                                                                                                             |
+|---------------------|----------|-------------------------------------------------------------------------------------------------------------------------|
+| `date` *(optional)* | `string` | An ISO timestamp representing the day to return the schedule for. If no date is provided, the current day will be used. |
+
+| Status code | Description                                                                 |
+|-------------|-----------------------------------------------------------------------------|
+| 200         | OK                                                                          |
+| 400         | `query.date` was provided but not a string, or invalid as an ISO timestamp. |
+
 ##### Example successful response:
 ```json
 {"periods": null, "alternate": false}
+```
+
+##### Example error response:
+```json
+{"message": "Error parsing date string: the input \"aaa\" can't be parsed as ISO 8601."}
 ```
