@@ -50,8 +50,11 @@ Navigate to the functions directory with `cd functions` and install the necessar
 Before starting the emulators (and after changing any code), compile the TypeScript source files with `npm run build`.
 **If you change the functions code, you will have to run build again.**
 
-From the root directory (`cd ..`), running `firebase emulators:start --import ./functions/presets`
-in a new terminal window should start the emulator suite UI on `localhost:4001` as well as the Firestore, Functions, and Auth
+From the root directory (`cd ..`), running 
+```
+firebase emulators:start --import ./functions/presets
+```
+in a new terminal window should start the emulator suite UI on `localhost:4000` as well as the Firestore, Functions, and Auth
 emulators on other localhost ports.
 
 ![image](https://user-images.githubusercontent.com/60120929/161687556-d3cd9682-fe90-4deb-9258-522895443ff6.png)
