@@ -11,7 +11,7 @@ import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 import AlternatesContext from '../../contexts/AlternatesContext';
 
 // Data
-import { SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE } from './Periods';
+import { SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE } from 'shared/util/schedule';
 import UserDataContext from "../../contexts/UserDataContext";
 
 

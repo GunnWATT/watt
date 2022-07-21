@@ -10,7 +10,7 @@ import StateTab from '../components/layout/StateTab';
 import ClubComponent from '../components/lists/ClubComponent';
 
 // Data
-import clubs from '../data/clubs';
+import clubs from 'shared/data/clubs';
 
 // Contexts
 import CurrentTimeContext from '../contexts/CurrentTimeContext';

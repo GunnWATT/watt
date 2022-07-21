@@ -8,7 +8,7 @@ import List from './List';
 import StaffComponent, {ClassObj, SemesterClassObj, Staff as StaffComponentProps} from './StaffComponent';
 
 // Data
-import staff from '../../data/staff';
+import staff from 'shared/data/staff';
 
 
 export default function Staff() {

@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 import express from 'express';
 import admin from './util/adminInit';
 import {DateTime} from 'luxon';
-import {getSchedule} from './util/schedule';
+import {getSchedule} from 'shared/util/schedule';
 
 const app = express();
 

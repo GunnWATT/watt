@@ -3,7 +3,11 @@ import {readFileSync, writeFileSync} from 'fs';
 import ical from 'ical';
 import chalk from 'chalk';
 import {error, info, warn} from './util/logging';
-import schedule, {numToWeekday, PeriodObj} from './util/schedule';
+
+// Shared utils
+import schedule from 'shared/data/schedule';
+import {PeriodObj} from 'shared/types/periods';
+import {numToWeekday} from 'shared/util/schedule';
 
 
 // Constants

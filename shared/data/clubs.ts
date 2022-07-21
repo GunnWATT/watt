@@ -1,4 +1,4 @@
-import {Club} from '../components/lists/ClubComponent';
+import {Club} from 'client/src/components/lists/ClubComponent';
 
 const data: {timestamp: string, data: {[key: string]: Club}} = {
     "timestamp": "2022-04-30T18:09:09.395Z",

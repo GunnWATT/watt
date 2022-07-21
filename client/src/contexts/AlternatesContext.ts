@@ -1,5 +1,5 @@
 import {createContext} from 'react';
-import {PeriodObj} from '../components/schedule/Periods';
+import {PeriodObj} from 'shared/types/periods';
 
 
 export type Alternates = {

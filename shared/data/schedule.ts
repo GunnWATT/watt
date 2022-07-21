@@ -1,5 +1,4 @@
-// Type from `../client/src/components/schedule/Periods.tsx`
-export type PeriodObj = {n: string, s: number, e: number};
+import {PeriodObj} from 'client/src/components/schedule/Periods';
 
 const data: {[key: string]: PeriodObj[]} = {
     "M": [
@@ -214,8 +213,3 @@ const data: {[key: string]: PeriodObj[]} = {
     ]
 }
 export default data;
-
-// Turns day of the week into schedule object key, assuming 0 indexed days (Sunday is 0, Monday is 1).
-// To account for duplicated weekday letters, Thursday is R and Saturday is A.
-// From `../client/src/components/schedule/Periods.tsx`
-export const numToWeekday = (num: number) => ['S', 'M', 'T', 'W', 'R', 'F', 'A'][num];

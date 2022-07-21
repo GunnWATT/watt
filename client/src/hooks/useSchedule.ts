@@ -1,13 +1,11 @@
 import {useContext, useEffect, useState} from 'react';
 import {DateTime} from 'luxon';
-import {PeriodObj, numToWeekday, SCHOOL_END_EXCLUSIVE, SCHOOL_START} from '../components/schedule/Periods';
+import {PeriodObj} from 'shared/types/periods';
+import {getSchedule} from 'shared/util/schedule';
 
 // Context
 import UserDataContext from '../contexts/UserDataContext';
 import AlternatesContext, {Alternates} from '../contexts/AlternatesContext';
-
-// Data
-import schedule from '../data/schedule';
 
 
 // Returns the Gunn schedule for a day given a Moment object, returning `null` if there is no school on that day
@@ -38,32 +36,6 @@ export function useSchedule(date: DateTime) {
             setAlternate(false);
         }
     }, [altFormat, alternates, userData]);
-
-    return {periods, alternate};
-}
-
-// Gets the Gunn schedule for a given `DateTime`, as an object {periods, alternate} representing the day's schedule
-// as a `PeriodObj[]` or null if there's no school and whether the schedule is an alternate.
-export function getSchedule(date: DateTime, alternates: Alternates['alternates']) {
-    const localizedDate = date.setZone('America/Los_Angeles');
-    const altFormat = localizedDate.toFormat('MM-dd');
-
-    // If the current date falls on summer break, return early
-    if (localizedDate < SCHOOL_START || localizedDate > SCHOOL_END_EXCLUSIVE)
-        return {periods: null, alternate: false};
-
-    let periods: PeriodObj[] | null;
-    let alternate = false;
-
-    // Check for alternate schedules
-    if (altFormat in alternates) {
-        // If viewDate exists in alt schedules, load that schedule
-        periods = alternates[altFormat];
-        alternate = true;
-    } else {
-        // Otherwise, use default schedule
-        periods = schedule[numToWeekday(localizedDate.weekday % 7)];
-    }
 
     return {periods, alternate};
 }

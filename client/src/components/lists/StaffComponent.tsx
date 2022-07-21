@@ -14,7 +14,7 @@ import {useAuth, useFirestore} from 'reactfire';
 import { updateUserData } from '../../util/firestore';
 
 // Data
-import clubs from '../../data/clubs';
+import clubs from 'shared/data/clubs';
 
 
 /*

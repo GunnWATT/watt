@@ -1,4 +1,4 @@
-import {Staff} from '../components/lists/StaffComponent';
+import {Staff} from 'client/src/components/lists/StaffComponent';
 
 const data: {timestamp: string, data: {[key: string]: Staff}} = {
     "timestamp": "2021-09-19T01:59:48.232Z",
