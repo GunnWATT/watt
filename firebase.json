@@ -18,10 +18,6 @@
       {
         "source": "/weather/**",
         "function": "weather"
-      },
-      {
-        "source": "**",
-        "destination": "/index.html"
       }
     ]
   },
