@@ -1,9 +1,12 @@
 # Dependencies
 *node_modules/
 
-# React
-client/coverage
+# Next
+client/.next/
+client/out/
 client/build
+client/public/sw.js*
+client/public/workbox-*.js*
 
 # Emulators Config
 functions/.runtimeconfig.json

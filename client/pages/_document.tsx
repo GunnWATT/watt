@@ -1,0 +1,59 @@
+import Document, {Html, Head, Main, NextScript} from 'next/document';
+
+
+class WATTDocument extends Document {
+    render() {
+        return (
+            <Html>
+                <Head>
+                    <meta charSet="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <meta name="theme-color" content="#972721" />
+                    <meta name="msapplication-TileColor" content="#ffffff" />
+                    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+                    <title>Web App of The Titans (WATT)</title>
+                    <meta
+                        name="description"
+                        content="WATT is the modern successor to UGWA, with features from the bell schedule to automatic importing of Schoology assignments and class links. Go Titans!"
+                    />
+                    <meta name="application-name" content="WATT" />
+                    <meta name="apple-mobile-web-app-title" content="WATT" />
+
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content="https://gunnwatt.web.app" />
+                    <meta property="og:title" content="Web App of The Titans (WATT)" />
+                    <meta property="og:image" content="/icons/watt.png" />
+                    <meta
+                        name="og:description"
+                        content="WATT is the modern successor to UGWA, with features from the bell schedule to automatic importing of Schoology assignments and class links. Go Titans!"
+                    />
+
+                    <meta property="twitter:card" content="summary" />
+                    <meta property="twitter:title" content="Web App of The Titans (WATT)" />
+                    <meta
+                        name="twitter:description"
+                        content="WATT is the modern successor to UGWA, with features from the bell schedule to automatic importing of Schoology assignments and class links. Go Titans!"
+                    />
+                    <meta property="twitter:image" content="/icons/watt.png" />
+
+                    <link rel="icon" type="image/x-icon" sizes="48x48" href="/icons/favicon.ico" />
+                    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+                    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+                    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+                    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#972721" />
+                    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+
+                    <link rel="manifest" href="/manifest.json" />
+                    <script async src="https://unpkg.com/pwacompat" crossOrigin="anonymous" />
+                </Head>
+                <body>
+                    <Main />
+                    <NextScript />
+                </body>
+            </Html>
+        )
+    }
+}
+
+export default WATTDocument;
