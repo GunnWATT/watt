@@ -1,6 +1,7 @@
 import {ReactNode, useContext, useEffect, useState} from 'react';
 
 // Components
+import ClassesLayout from '../../components/classes/ClassesLayout';
 import DashboardBlurb from '../../components/classes/DashboardBlurb';
 import DashboardQuickInfo from '../../components/classes/DashboardQuickInfo';
 import Grades from '../../components/classes/Grades';
@@ -43,19 +44,21 @@ export default function Dashboard() {
     }, [selected, userData])
 
     return (
-        <div className="flex gap-4 flex-wrap xl:flex-nowrap">
-            {/* Dashboard left section */}
-            <DashboardSection>
-                {upcoming && <DashboardBlurb upcoming={upcoming} selected={selected} />}
-            </DashboardSection>
+        <ClassesLayout>
+            <div className="flex gap-4 flex-wrap xl:flex-nowrap">
+                {/* Dashboard left section */}
+                <DashboardSection>
+                    {upcoming && <DashboardBlurb upcoming={upcoming} selected={selected} />}
+                </DashboardSection>
 
-            {/* Dashboard right section */}
-            <DashboardSection>
-                <DashboardQuickInfo selected={selected} />
-                {allGrades && <Grades selected={selected} allGrades={allGrades} />}
-                <FetchFooter />
-            </DashboardSection>
-        </div>
+                {/* Dashboard right section */}
+                <DashboardSection>
+                    <DashboardQuickInfo selected={selected} />
+                    {allGrades && <Grades selected={selected} allGrades={allGrades} />}
+                    <FetchFooter />
+                </DashboardSection>
+            </div>
+        </ClassesLayout>
     );
 };
 

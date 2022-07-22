@@ -1,6 +1,7 @@
 import {startTransition, useContext, useEffect, useState} from 'react';
 
 // Components
+import ClassesLayout, { findClassesList } from '../../components/classes/ClassesLayout';
 import Material from '../../components/classes/Material';
 import ClassFilter, {QueryObj} from '../../components/classes/ClassFilter';
 import NoResults from '../../components/lists/NoResults';
@@ -10,7 +11,6 @@ import UserDataContext, { SgyPeriod, SgyData } from '../../contexts/UserDataCont
 import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
-import { findClassesList } from '../../components/classes/ClassesLayout';
 import { similarity } from '../../util/sgyHelpers';
 import {AssignmentBlurb} from '../../util/sgyAssignments';
 import {getMaterials} from '../../util/sgyMaterials';
@@ -51,11 +51,13 @@ export default function Materials() {
     }, [materials, filter])
 
     return (
-        <div className="flex flex-col gap-2">
-            <ClassFilter filter={filter} setFilter={setFilter} classes={classes} />
-            <section className="flex flex-col gap-1.5">
-                {content && content.length ? content : <NoResults />}
-            </section>
-        </div>
+        <ClassesLayout>
+            <div className="flex flex-col gap-2">
+                <ClassFilter filter={filter} setFilter={setFilter} classes={classes} />
+                <section className="flex flex-col gap-1.5">
+                    {content && content.length ? content : <NoResults />}
+                </section>
+            </div>
+        </ClassesLayout>
     );
 }

@@ -1,5 +1,6 @@
 import {ReactNode, useContext, useEffect, useState} from 'react';
-import {Link, useMatch, useResolvedPath, Outlet} from 'react-router-dom';
+import Link from 'next/link';
+import {useRouter} from 'next/router';
 
 // Components
 import AppLayout from '../layout/AppLayout';
@@ -38,7 +39,7 @@ export async function fetchSgyMaterials(functions: Functions) {
     return res.data;
 }
 
-export default function ClassesLayout() {
+export default function ClassesLayout(props: {children: ReactNode}) {
     const functions = useFunctions();
     const auth = useAuth();
     const firestore = useFirestore();
@@ -215,13 +216,13 @@ export default function ClassesLayout() {
                     <ClassesHeader selected={selected} setSelected={setSelected} />
 
                     <nav className="mt-3.5 md:mt-5 flex flex-wrap gap-2 mb-4 text-lg">
-                        <ClassesNavBarItem text="Dashboard" to="." />
-                        <ClassesNavBarItem text="Upcoming" to="upcoming" />
-                        <ClassesNavBarItem text="Materials" to="materials" />
+                        <ClassesNavBarItem text="Dashboard" to="/classes" />
+                        <ClassesNavBarItem text="Upcoming" to="/classes/upcoming" />
+                        <ClassesNavBarItem text="Materials" to="/classes/materials" />
                     </nav>
 
                     <main>
-                        <Outlet />
+                        {props.children}
                     </main>
                 </div>
             </SgyDataProvider>
@@ -232,12 +233,14 @@ export default function ClassesLayout() {
 function ClassesNavBarItem(props: {text: string, to: string}) {
     const {text, to} = props;
 
-    const resolved = useResolvedPath(to);
-    const match = useMatch({ path: resolved.pathname, end: true });
+    const router = useRouter();
+    const match = router.pathname === to;
 
     return (
-        <Link to={to} className={'py-2 px-3 rounded-md transition duration-100 ease-in-out flex-grow text-center hover:no-underline ' + (match ? 'text-primary dark:text-primary-dark bg-content dark:bg-content-dark shadow-lg' : 'secondary bg-content-secondary dark:bg-content-secondary-dark')}>
-            {text}
+        <Link href={to}>
+            <a className={'py-2 px-3 rounded-md transition duration-100 ease-in-out flex-grow text-center hover:no-underline ' + (match ? 'text-primary dark:text-primary-dark bg-content dark:bg-content-dark shadow-lg' : 'secondary bg-content-secondary dark:bg-content-secondary-dark')}>
+                {text}
+            </a>
         </Link>
     )
 }

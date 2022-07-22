@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { useScreenType } from '../../hooks/useScreenType';
 import { FilePlus } from 'react-feather';
 
 // Components
+import ClassesLayout, { findClassesList } from '../../components/classes/ClassesLayout';
 import Assignments from '../../components/classes/Assignments';
 import UpcomingTimeline from '../../components/classes/UpcomingTimeline';
 import ClassFilter, {QueryObj} from '../../components/classes/ClassFilter';
@@ -16,7 +17,6 @@ import UserDataContext from '../../contexts/UserDataContext';
 import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
-import { findClassesList } from '../../components/classes/ClassesLayout';
 import {AssignmentBlurb} from '../../util/sgyAssignments';
 import { getUpcomingInfo } from '../../util/sgyMaterials';
 import { similarity } from '../../util/sgyHelpers';
@@ -34,12 +34,13 @@ export default function Upcoming() {
     const [overdue, setOverdue] = useState<AssignmentBlurb[] | null>(null);
 
     // Search params
-    const { search } = useLocation();
-    const searchParams = new URLSearchParams(search);
+    const { query } = useRouter();
 
     // Filter
     const [filter, setFilter] = useState<QueryObj>({
-        query: searchParams.get('search') ?? '', labels: [], classes: Array(classes.length).fill(false)
+        query: typeof query.search === 'string' ? query.search : '',
+        labels: [],
+        classes: Array(classes.length).fill(false)
     });
 
     const [includeCompleted, setIncludeCompleted] = useState(false);
@@ -76,34 +77,36 @@ export default function Upcoming() {
     const overdueFiltered = filterItems(overdue);
 
     return (
-        <div className="flex gap-6">
-            {/* these props- */}
-            <div className="flex-grow min-w-0">
-                <ClassFilter classes={classes} filter={filter} setFilter={setFilter} />
+        <ClassesLayout>
+            <div className="flex gap-6">
+                {/* these props- */}
+                <div className="flex-grow min-w-0">
+                    <ClassFilter classes={classes} filter={filter} setFilter={setFilter} />
 
-                <section className="flex items-center gap-2.5 mb-4">
-                    <ContentButton onClick={() => setCreating(!creating)}>
-                        <FilePlus size={18} /> Create assignment
-                    </ContentButton>
-                    <CreateAssignmentModal open={creating} setOpen={setCreating} />
+                    <section className="flex items-center gap-2.5 mb-4">
+                        <ContentButton onClick={() => setCreating(!creating)}>
+                            <FilePlus size={18} /> Create assignment
+                        </ContentButton>
+                        <CreateAssignmentModal open={creating} setOpen={setCreating} />
 
-                    <ContentButton onClick={() => setIncludeCompleted(!includeCompleted)}>
-                        {includeCompleted ? 'Hide completed' : 'Show completed'}
-                    </ContentButton>
-                </section>
+                        <ContentButton onClick={() => setIncludeCompleted(!includeCompleted)}>
+                            {includeCompleted ? 'Hide completed' : 'Show completed'}
+                        </ContentButton>
+                    </section>
 
-                {upcomingFiltered && overdueFiltered && (
-                    <Assignments
-                        upcoming={upcomingFiltered}
-                        overdue={overdueFiltered}
-                        activeItem={activeItem}
-                        setActiveItem={setActiveItem}
-                    />
+                    {upcomingFiltered && overdueFiltered && (
+                        <Assignments
+                            upcoming={upcomingFiltered}
+                            overdue={overdueFiltered}
+                            activeItem={activeItem}
+                            setActiveItem={setActiveItem}
+                        />
+                    )}
+                </div>
+                {screenType !== 'smallScreen' && screenType !== 'phone' && (
+                    <UpcomingTimeline upcoming={upcoming} activeItem={activeItem} setActiveItem={setActiveItem} />
                 )}
             </div>
-            {screenType !== 'smallScreen' && screenType !== 'phone' && (
-                <UpcomingTimeline upcoming={upcoming} activeItem={activeItem} setActiveItem={setActiveItem} />
-            )}
-        </div>
+        </ClassesLayout>
     );
 }
