@@ -8,10 +8,10 @@ export default function SettingsLayout(props: {children: ReactNode}) {
         <HeaderPage
             heading="Settings"
             nav={<>
-                <NavTab to="." name="Appearance" />
-                <NavTab to="features" name="Features" />
-                <NavTab to="periods" name="Periods" />
-                <NavTab to="about" name="About" />
+                <NavTab to="/settings" name="Appearance" />
+                <NavTab to="/settings/features" name="Features" />
+                <NavTab to="/settings/periods" name="Periods" />
+                <NavTab to="/settings/about" name="About" />
             </>}
         >
             {props.children}

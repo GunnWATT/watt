@@ -1,4 +1,5 @@
-import {Link, useMatch, useResolvedPath} from 'react-router-dom';
+import Link from 'next/link';
+import {useRouter} from 'next/router';
 import Tab from './Tab';
 
 
@@ -7,13 +8,16 @@ import Tab from './Tab';
 type NavTabProps = {to: string, name: string};
 export default function NavTab(props: NavTabProps) {
     const {to, name} = props;
-    const resolved = useResolvedPath(to);
-    const match = useMatch({ path: resolved.pathname, end: true });
+
+    const router = useRouter();
+    const match = router.pathname === to;
 
     return (
         // If the current URL matches the `to` prop, make the tab active
-        <Link to={to} className="flex flex-grow hover:no-underline">
-            <Tab active={match != null}>{name}</Tab>
+        <Link href={to}>
+            <a className="flex flex-grow hover:no-underline">
+                <Tab active={match}>{name}</Tab>
+            </a>
         </Link>
     )
 }

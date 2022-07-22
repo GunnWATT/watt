@@ -1,7 +1,8 @@
 import {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+import Link from 'next/link';
 
-// Authentication
+// Utilities
+import {useScreenType} from '../../hooks/useScreenType';
 import {useSigninCheck} from 'reactfire';
 
 // Components
@@ -14,9 +15,9 @@ import Badge from './Badge';
 import {Home, CheckSquare, Users, Settings, Tool, ChevronRight, ChevronLeft} from 'react-feather';
 
 
-type SidebarProps = {forceCollapsed?: boolean};
-export default function Sidebar(props: SidebarProps) {
-    const {forceCollapsed} = props;
+export default function Sidebar() {
+    const screenType = useScreenType();
+    const forceCollapsed = screenType === 'smallScreen';
 
     // Authentication
     const {status, data: signInCheckResult} = useSigninCheck();
@@ -30,6 +31,9 @@ export default function Sidebar(props: SidebarProps) {
         setIsOpen(!forceCollapsed);
     }, [forceCollapsed])
 
+    // Only display the sidebar on larger screens
+    if (screenType === 'phone') return null;
+
 
     return (
         <aside className={'z-10 flex-none relative transition-[width] duration-[400ms] ' + (isOpen ? 'w-56' : 'w-20')}>
@@ -41,8 +45,10 @@ export default function Sidebar(props: SidebarProps) {
                 </span>
 
                 {/* Heading */}
-                <Link to="/" className="w-16 h-16 self-center">
-                    <img src="/watt.png" alt="WATT Logo"/>
+                <Link href="/">
+                    <a className="w-16 h-16 self-center">
+                        <img src="/watt.png" alt="WATT Logo" />
+                    </a>
                 </Link>
                 <h1 className={'text-sm mt-4 mx-auto mb-8' + (!isOpen ? ' opacity-0' : '')}>
                     Web App of the Titans

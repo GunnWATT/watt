@@ -4,15 +4,13 @@ import {DateTime} from 'luxon';
 import {GCalEvent} from '../components/schedule/Event';
 
 // Components
+import AppLayout from '../components/layout/AppLayout';
 import Wave from '../components/layout/Wave';
 import Clock from '../components/schedule/Clock';
 import HomeDateSelector from '../components/schedule/DateSelector';
 import Periods from '../components/schedule/Periods';
 import DayAlert from '../components/schedule/DayAlert';
 import Events from '../components/schedule/Events';
-
-// Hooks
-import {useScreenType} from '../hooks/useScreenType';
 
 // Contexts
 import CurrentTimeContext from '../contexts/CurrentTimeContext';
@@ -51,35 +49,37 @@ export default function Home(props: HomeProps) {
 
 
     return (
-        <div className="p-0 md:p-6 xl:flex xl:gap-6">
-            <Wave />
+        <AppLayout>
+            <div className="p-0 md:p-6 xl:flex xl:gap-6">
+                <Wave />
 
-            {/* Schedule */}
-            <main className="relative flex-grow p-4">
-                {relDays !== 0 && <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>}
+                {/* Schedule */}
+                <main className="relative flex-grow p-4">
+                    {relDays !== 0 && <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>}
 
-                {userData.options?.clock && <Clock viewDate={viewDate} />}
-                <h2 className="text-3xl text-center mb-3">{date.toFormat(format)}</h2>
-                <HomeDateSelector
-                    viewDate={viewDate}
-                    setViewDate={setViewDate}
-                />
+                    {userData.options?.clock && <Clock viewDate={viewDate} />}
+                    <h2 className="text-3xl text-center mb-3">{date.toFormat(format)}</h2>
+                    <HomeDateSelector
+                        viewDate={viewDate}
+                        setViewDate={setViewDate}
+                    />
 
-                <h1 className="text-6xl md:text-7xl text-center mb-5">{viewDate.weekdayLong}</h1>
-                <h2 className="text-3xl font-semibold text-center mb-2">
-                    {viewDate.toLocaleString(DateTime.DATE_FULL)}
-                </h2>
+                    <h1 className="text-6xl md:text-7xl text-center mb-5">{viewDate.weekdayLong}</h1>
+                    <h2 className="text-3xl font-semibold text-center mb-2">
+                        {viewDate.toLocaleString(DateTime.DATE_FULL)}
+                    </h2>
 
-                <div className="mx-auto max-w-3xl">
-                    <Periods viewDate={viewDate} />
-                </div>
+                    <div className="mx-auto max-w-3xl">
+                        <Periods viewDate={viewDate} />
+                    </div>
 
-                {/* TODO: implement weekwrapper */}
-                {/* <div id="weekwrapper"></div> */}
-            </main>
+                    {/* TODO: implement weekwrapper */}
+                    {/* <div id="weekwrapper"></div> */}
+                </main>
 
-            {/* Events */}
-            <Events {...props} viewDate={viewDate} />
-        </div>
+                {/* Events */}
+                <Events {...props} viewDate={viewDate} />
+            </div>
+        </AppLayout>
     );
 }

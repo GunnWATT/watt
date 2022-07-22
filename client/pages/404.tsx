@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import Link from 'next/link';
 
 
 export default function PageNotFound() {
@@ -11,7 +11,7 @@ export default function PageNotFound() {
                 <p className="secondary mb-1">
                     Your requested page was not found. Check your URL and try again?
                 </p>
-                <Link to="/">Go home</Link>
+                <Link href="/"><a>Go home</a></Link>
             </main>
         </div>
     )

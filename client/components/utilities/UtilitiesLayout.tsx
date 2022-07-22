@@ -8,13 +8,13 @@ export default function UtilitiesLayout(props: {children: ReactNode}) {
         <HeaderPage
             heading="Utilities"
             nav={<>
-                <NavTab to="." name="Barcode" />
+                <NavTab to="/utilities" name="Barcode" />
                 {/* <NavTab to="graphing" name="Graphing Calculator"/> */}
-                <NavTab to="map" name="Map" />
-                <NavTab to="calculator" name="Finals Calc." />
-                <NavTab to="staff" name="Staff" />
-                <NavTab to="courses" name="Courses" />
-                <NavTab to="resources" name="Resources" />
+                <NavTab to="/utilities/map" name="Map" />
+                <NavTab to="/utilities/calculator" name="Finals Calc." />
+                <NavTab to="/utilities/staff" name="Staff" />
+                <NavTab to="/utilities/courses" name="Courses" />
+                <NavTab to="/utilities/resources" name="Resources" />
             </>}
         >
             {props.children}
