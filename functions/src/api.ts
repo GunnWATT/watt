@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 import express from 'express';
 import admin from './util/adminInit';
 import {DateTime} from 'luxon';
-import {getSchedule} from './util/schedule';
+import {getNextPeriod, getSchedule} from './util/schedule';
 
 const app = express();
 
@@ -17,7 +17,7 @@ async function getAlternates() {
 // for information about this endpoint's return type.
 app.get('/alternates', async (req, res) => {
     const data = await getAlternates();
-    if (!data) return res.status(500).json({message: 'Alternates document malformed or nonexistant.'});
+    if (!data) return res.status(500).json({error: 'Alternates document malformed or nonexistant.'});
     return res.json(data);
 });
 
@@ -27,21 +27,41 @@ app.get('/alternates', async (req, res) => {
 // the returned schedule is an alternate.
 app.get('/schedule', async (req, res) => {
     const alternates = await getAlternates();
-    if (!alternates) return res.status(500).json({message: 'Alternates document malformed or nonexistant.'});
+    if (!alternates) return res.status(500).json({error: 'Alternates document malformed or nonexistant.'});
 
     if (req.query.date) {
         if (typeof req.query.date !== 'string')
-            return res.status(400).json({message: 'Query parameter "date" must be a string.'});
+            return res.status(400).json({error: 'Query parameter "date" must be a string.'});
 
         const date = DateTime.fromISO(req.query.date);
         if (!date.isValid)
-            return res.status(400).json({message: `Error parsing date string: ${date.invalidExplanation}.`});
+            return res.status(400).json({error: `Error parsing date string: ${date.invalidExplanation}.`});
 
         return res.json(getSchedule(date, alternates));
     }
 
     const schedule = getSchedule(DateTime.now(), alternates);
     return res.json(schedule);
+});
+
+// GET /api/next-period
+app.get('/next-period', async (req, res) => {
+    const alternates = await getAlternates();
+    if (!alternates) return res.status(500).json({error: 'Alternates document malformed or nonexistant.'});
+
+    if (req.query.date) {
+        if (typeof req.query.date !== 'string')
+            return res.status(400).json({error: 'Query parameter "date" must be a string.'});
+
+        const date = DateTime.fromISO(req.query.date);
+        if (!date.isValid)
+            return res.status(400).json({error: `Error parsing date string: ${date.invalidExplanation}.`});
+
+        return res.json(getNextPeriod(date, alternates));
+    }
+
+    const next = getNextPeriod(DateTime.now(), alternates);
+    return res.json(next);
 });
 
 export const api = functions.https.onRequest(app);

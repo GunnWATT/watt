@@ -6,7 +6,8 @@ An object representing a class period.
 ```ts
 type PeriodObj = {n: string, s: number, e: number, note?: string};
 ```
-#### Reference: [`/client/src/components/schedule/Periods.tsx`](https://github.com/GunnWATT/watt/blob/main/client/src/components/schedule/Periods.tsx#L24)
+#### Reference: 
+[`/client/src/components/schedule/Periods.tsx`](https://github.com/GunnWATT/watt/blob/main/client/src/components/schedule/Periods.tsx#L24)
 
 #### Specifications:
 - `n`: The name of the period. This will be a string corresponding to one of the following:
@@ -60,7 +61,8 @@ type Alternates = {
     alternates: {[key: string]: Schedule}
 }
 ```
-#### Reference: [`/client/src/contexts/AlternatesContext.ts`](https://github.com/GunnWATT/watt/blob/main/client/src/contexts/AlternatesContext.ts#L5-L8)
+#### Reference: 
+[`/client/src/contexts/AlternatesContext.ts`](https://github.com/GunnWATT/watt/blob/main/client/src/contexts/AlternatesContext.ts#L5-L8)
 
 #### Specifications:
 - `timestamp`: The ISO timestamp of the last run of [`/scripts/deployAlternates`](https://github.com/GunnWATT/watt/tree/main/scripts#deploy-alternates).
