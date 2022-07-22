@@ -83,6 +83,55 @@ export function getNextPeriod(date: DateTime, alternates: {[key: string]: Period
     return {prev, next, startingIn, endingIn, nextSeconds};
 }
 
+// Logic from `/client/src/components/schedule/PeriodIndicator.tsx`.
+// https://github.com/GunnWATT/watt/blob/api/client/src/components/schedule/PeriodIndicator.tsx#L38-L44
+export function getNextPeriodMessage(date: DateTime, alternates: {[key: string]: PeriodObj[] | null}) {
+    const {next, startingIn, endingIn, nextSeconds} = getNextPeriod(date, alternates);
+    if (!next) return null;
+
+    const name = periodNameDefault(next.n);
+
+    if (startingIn >= 0) {
+        const num = startingIn || nextSeconds;
+        const unit = `${startingIn ? 'minute' : 'second'}${num !== 1 ? 's' : ''}`;
+
+        return `${name} starting in ${num} ${unit}.`
+    }
+
+    const endingNum = endingIn || nextSeconds;
+    const endingUnit = `${endingIn ? 'minute' : 'second'}${endingNum !== 1 ? 's' : ''}`;
+
+    // If the period started less than a minute ago, invert `nextSeconds` to get the seconds elapsed *since*
+    // the minute started.
+    const startedNum = startingIn !== -1 ? -startingIn : 60 - nextSeconds;
+    const startedUnit = `${startingIn !== -1 ? 'minute' : 'second'}${startedNum !== 1 ? 's' : ''}`;
+
+    return `${name} ending in ${endingNum} ${endingUnit}, started ${startedNum} ${startedUnit} ago.`
+}
+
+// Paste from `/client/src/components/schedule/Periods.tsx`.
+// https://github.com/GunnWATT/watt/blob/api/client/src/components/schedule/Periods.tsx#L149-L169
+export function periodNameDefault(name: string) {
+    if (!isNaN(parseInt(name))) return `Period ${name}`;
+
+    switch (name) {
+        case 'L':
+            return 'Lunch';
+        case 'S':
+            return 'SELF';
+        case 'P':
+            return 'PRIME';
+        case 'O':
+            return 'Office Hours';
+        case 'B':
+            return 'Brunch';
+        case 'A':
+            return 'No Class'; // for assignments that are not associated with a class
+        default:
+            return name;
+    }
+}
+
 const schedule: {[key: string]: PeriodObj[]} = {
     "M": [
         {

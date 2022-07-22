@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 import express from 'express';
 import admin from './util/adminInit';
 import {DateTime} from 'luxon';
-import {getNextPeriod, getSchedule} from './util/schedule';
+import {getNextPeriod, getNextPeriodMessage, getSchedule} from './util/schedule';
 
 const app = express();
 
@@ -62,6 +62,26 @@ app.get('/next-period', async (req, res) => {
 
     const next = getNextPeriod(DateTime.now(), alternates);
     return res.json(next);
+});
+
+// GET /api/next-period-message
+app.get('/next-period-message', async (req, res) => {
+    const alternates = await getAlternates();
+    if (!alternates) return res.status(500).json({error: 'Alternates document malformed or nonexistant.'});
+
+    if (req.query.date) {
+        if (typeof req.query.date !== 'string')
+            return res.status(400).json({error: 'Query parameter "date" must be a string.'});
+
+        const date = DateTime.fromISO(req.query.date);
+        if (!date.isValid)
+            return res.status(400).json({error: `Error parsing date string: ${date.invalidExplanation}.`});
+
+        return res.json({message: getNextPeriodMessage(date, alternates)});
+    }
+
+    const message = getNextPeriodMessage(DateTime.now(), alternates);
+    return res.json({message});
 });
 
 export const api = functions.https.onRequest(app);

@@ -92,3 +92,43 @@ current period, the period immediately before it, and additional information for
 ```json
 {"error": "Error parsing date string: the input \"aaa\" can't be parsed as ISO 8601."}
 ```
+
+### GET /next-period-message
+Returns a string containing information about the next period. Equivalent to fetching `/next-period` and returning
+```ts
+"{period} is {starting | ending} in {...} {minutes | seconds}, started {...} {minutes | seconds} ago."
+```
+if `next` has started and
+```ts
+"{period} is {starting | ending} in {...} {minutes | seconds}."
+```
+if it has not.
+
+##### Response schema
+```ts
+{message: string | null}
+```
+- `message`: The message, or `null` if there is no next period.
+
+##### Request parameters
+
+| Parameter           | Type     | Description                                                                                                                                 |
+|---------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| `date` *(optional)* | `string` | An ISO timestamp representing the date and time to get the next period for. If no date is provided, the current date and time will be used. |
+
+##### HTTP status codes
+
+| Status code | Description                                                                 |
+|-------------|-----------------------------------------------------------------------------|
+| 200         | OK                                                                          |
+| 400         | `query.date` was provided but not a string, or invalid as an ISO timestamp. |
+
+##### Example successful response:
+```json
+{"message": "Period 6 ending in 87 minutes, started 3 minutes ago."}
+```
+
+##### Example error response:
+```json
+{"error": "Error parsing date string: the input \"aaa\" can't be parsed as ISO 8601."}
+```
