@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { useAuth, useFirestore } from 'reactfire';
 import { CheckSquare, Square } from 'react-feather';
 
@@ -91,8 +91,10 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
                     <ContentButton onClick={() => setIncludeCompleted(!includeCompleted)}>
                         {includeCompleted ? 'Hide completed' : 'Show completed'}
                     </ContentButton>
-                    <Link to="upcoming" className="text-inherit dark:text-inherit no-underline">
-                        <ContentButton>See more in Upcoming</ContentButton>
+                    <Link href="upcoming">
+                        <a className="text-inherit dark:text-inherit no-underline">
+                            <ContentButton>See more in Upcoming</ContentButton>
+                        </a>
                     </Link>
                 </div>
             </div>
