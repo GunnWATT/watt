@@ -11,7 +11,7 @@ import {Alternates, defaultAlternates} from '../contexts/AlternatesContext';
 // TODO: this reuses a lot of logic from `useLocalStorageData` and `FirebaseUserDataProvider`;
 // perhaps we can try abstracting at some point.
 export function useAlternates() {
-    const localStorageRaw = localStorage.getItem('alternates');
+    const localStorageRaw = (typeof window !== 'undefined') && localStorage.getItem('alternates');
     const [alternates, setAlternates] = useState(tryParseLocalStorageAlternates());
 
     const firestore = useFirestore();

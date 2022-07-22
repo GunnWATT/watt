@@ -12,25 +12,27 @@ export default function FirebaseProviders(props: {children: ReactNode}) {
     // Initialize firebase SDKs
     const auth = getAuth(firebase);
     const functions = getFunctions(firebase);
-    const analytics = getAnalytics(firebase);
+    // const analytics = getAnalytics(firebase);
     const firestore = getFirestore(firebase);
 
     // Set up emulators on dev build
     // TODO: should this go into a useEffect? this seems to spam the emulator connections quite a bit
     // though maybe that's ok
+    /*
     if (process.env.NODE_ENV !== 'production') {
         connectAuthEmulator(auth, 'http://localhost:9099');
         connectFunctionsEmulator(functions, 'localhost', 5001);
         connectFirestoreEmulator(firestore, 'localhost', 8080);
     }
+    */
 
     return (
         <AuthProvider sdk={auth}>
             <FunctionsProvider sdk={functions}>
                 <FirestoreProvider sdk={firestore}>
-                    <AnalyticsProvider sdk={analytics}>
+                    {/* <AnalyticsProvider sdk={analytics}> */}
                         {props.children}
-                    </AnalyticsProvider>
+                    {/* </AnalyticsProvider> */}
                 </FirestoreProvider>
             </FunctionsProvider>
         </AuthProvider>

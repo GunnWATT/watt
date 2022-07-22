@@ -4,7 +4,7 @@ import {defaultUserData, UserData} from '../contexts/UserDataContext';
 
 // Returns the localStorage-backed `userData` object, updating whenever localStorage updates.
 export function useLocalStorageData() {
-    const localStorageRaw = localStorage.getItem('data');
+    const localStorageRaw = (typeof window !== 'undefined') && localStorage.getItem('data');
     const [data, setData] = useState(tryParseLocalStorageData());
 
     // Update `data` when localStorage changes.

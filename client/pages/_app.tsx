@@ -94,14 +94,16 @@ export default function App({ Component, pageProps }: AppProps) {
 
 function NestedProviders(props: {children: ReactNode}) {
     // Log every route change for analytics
+    /*
     const router = useRouter();
     const analytics = useAnalytics();
     useEffect(() => {
         logEvent(analytics, 'screen_view', {
-            firebase_screen: location.pathname,
-            firebase_screen_class: location.pathname
+            firebase_screen: router.pathname,
+            firebase_screen_class: router.pathname
         });
-    }, [location]);
+    }, [router.pathname]);
+    */
 
     // Create user document on first sign in
     const auth = useAuth();

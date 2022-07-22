@@ -19,7 +19,7 @@ export default function InstallModal() {
 
     // Display the modal if the user is on iOS and not running in standalone mode
     // @ts-ignore
-    const [isOpen, setIsOpen] = useState((/iPad|iPod|iPhone/).test(navigator.userAgent) && !navigator.standalone);
+    const [isOpen, setIsOpen] = useState((typeof window !== 'undefined') && (/iPad|iPod|iPhone/).test(navigator.userAgent) && !navigator.standalone);
 
     return (
         <Transition appear show={isOpen} as={Fragment}>

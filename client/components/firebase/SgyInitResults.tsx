@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import {useRouter} from 'next/router';
 import {Dialog} from '@headlessui/react';
 
 // Components
@@ -23,11 +23,8 @@ export default function SgyInitResults() {
     const [confirmDisable, setConfirm] = useState<boolean>(false);
 
     // Search params handling
-    const { search, pathname } = useLocation();
-    const navigate = useNavigate();
-    const searchParams = new URLSearchParams(search);
-
-    const [sgyModal, setSgyModal] = useState(searchParams.get('modal') === 'sgyauth');
+    const router = useRouter();
+    const [sgyModal, setSgyModal] = useState(router.query.modal === 'sgyauth');
 
     // Set the results to the value returned by initialization to be displayed
     useEffect(() => {
@@ -44,18 +41,22 @@ export default function SgyInitResults() {
 
     const closeDialog = () => {
         setSgyModal(false);
-        searchParams.delete('modal'); // Delete modal param from url to prevent retrigger on page refresh
-        navigate(`${pathname}${searchParams}`, {replace: true}); // Replace current instance in history stack with updated search params
+
+        // Replace current instance in history stack with updated search params
+        return router.replace({
+            pathname: router.pathname,
+            query: {...router.query, modal: undefined}
+        });
     }
 
     const disableSchoology = async () => {
         await updateUserData('options.sgy', false, auth, firestore);
-        closeDialog();
+        return closeDialog();
     }
 
     const enableSchoology = async () => {
         await updateUserData('options.sgy', true, auth, firestore);
-        closeDialog();
+        return closeDialog();
     }
 
     return (

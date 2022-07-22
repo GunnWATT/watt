@@ -3,9 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-    body {
-        @apply text-primary dark:text-primary-dark bg-background dark:bg-background-dark;
-    }
     a {
         @apply text-theme dark:text-theme-dark;
         &:hover {

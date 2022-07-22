@@ -47,7 +47,7 @@ class WATTDocument extends Document {
                     <link rel="manifest" href="/manifest.json" />
                     <script async src="https://unpkg.com/pwacompat" crossOrigin="anonymous" />
                 </Head>
-                <body>
+                <body className="text-primary dark:text-primary-dark bg-background dark:bg-background-dark">
                     <Main />
                     <NextScript />
                 </body>
