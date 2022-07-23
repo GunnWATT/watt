@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {DateTime} from 'luxon';
 import {useScreenType} from '../hooks/useScreenType';
 
@@ -19,17 +19,20 @@ import UserDataContext from '../contexts/UserDataContext';
 
 export default function Clubs() {
     const {timestamp, data} = clubs;
-
-    // Dynamically setting default tab
     const currTime = useContext(CurrentTimeContext)
-    let date = ((currTime.weekday % 7) + 1).toString();
-    if (date > '6') date = '1';
 
-    // Tabs
-    const [activeTab, setActiveTab] = useState(date);
+    const [activeTab, setActiveTab] = useState('1');
     const toggle = (tab: string) => {
         if (activeTab !== tab) setActiveTab(tab);
     }
+
+    // Dynamically set the current tab based on the weekday
+    // TODO: does moving this to a `useEffect()` cause a noticeable delay or flash in regular usage?
+    useEffect(() => {
+        let date = ((currTime.weekday % 7) + 1).toString();
+        if (date > '6') date = '1';
+        toggle(date);
+    }, []);
 
     // User data for pinned
     const userData = useContext(UserDataContext);
@@ -51,6 +54,7 @@ export default function Clubs() {
 
     // Function to get day string from tab number
     // Used to render tab names as well as to filter the displayed JSON
+    // TODO: dynamic tab shortening causes hydration error
     const dayFromTabNum = (tab: string, shorten?: boolean) => {
         switch (tab) {
             case '1': return 'All';

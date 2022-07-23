@@ -1,11 +1,14 @@
 import { useState, useEffect, useContext } from 'react';
 import UserDataContext from '../../contexts/UserDataContext';
+
+// Components
 import UtilitiesLayout from '../../components/utilities/UtilitiesLayout';
 import BarcodeRow from '../../components/utilities/BarcodeRow';
 
-// Firestore
+// Utils
 import {useAuth, useFirestore} from 'reactfire';
 import {updateUserData} from '../../util/firestore';
+import {useIsMounted} from '../../hooks/useIsMounted';
 
 const DEFAULT_BARCODE = '95000000'
 
@@ -54,6 +57,8 @@ export default function Barcode() {
         ? '950' + auth.currentUser.email.slice(2, 7)
         : DEFAULT_BARCODE;
 
+    const mounted = useIsMounted();
+
 
     return (
         <UtilitiesLayout>
@@ -66,7 +71,8 @@ export default function Barcode() {
 
             <BarcodeRow you name="You" code={youCode} />
 
-            {barcodes.map(([name, code], index) => (
+            {/* TODO: does a immediate rerender on mounted cause a noticeable delay or flash in regular usage? */}
+            {mounted && barcodes.map(([name, code], index) => (
                 <BarcodeRow name={name} code={code}
                     // Providing a key causes the BarcodeRows to lose focus on state change for some reason
                     //key={`${name}${code}${index}`}

@@ -1,4 +1,4 @@
-import {ReactNode, useContext} from 'react';
+import {ReactNode, useContext, useEffect, useState} from 'react';
 import {RadioGroup} from '@headlessui/react';
 import {Check, Circle} from 'react-feather';
 import SettingsLayout from '../../components/settings/SettingsLayout';
@@ -7,9 +7,10 @@ import SettingsLayout from '../../components/settings/SettingsLayout';
 import UserDataContext from '../../contexts/UserDataContext';
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
-// Firestore
+// Utils
 import {useAuth, useFirestore} from 'reactfire';
 import { updateUserData } from '../../util/firestore';
+import {useIsMounted} from '../../hooks/useIsMounted';
 
 
 export default function Appearance() {
@@ -24,6 +25,8 @@ export default function Appearance() {
 
     const changeTheme = async (theme: string) => await updateUserData('options.theme', theme, auth, firestore);
     const changeTime = async (time: string) => await updateUserData('options.time', time, auth, firestore);
+
+    const mounted = useIsMounted();
 
 
     return (
@@ -42,11 +45,13 @@ export default function Appearance() {
                 </RadioCards>
 
                 <RadioCards label="Time Format" value={currTimePref} onChange={changeTime}>
+                    {/* TODO: instead of placeholders with XX:XX (which might look disorienting on first load), */}
+                    {/* we can instead consider using a pulsing <span> a la `ResourcesPlaceholder`? */}
                     <RadioCard label="12-hour" value="12">
-                        12-hour time <strong>({currTime.toFormat('h:mm:ss a')})</strong>.
+                        12-hour time <strong>({mounted ? currTime.toFormat('h:mm:ss a') : 'X:XX:XX AM'})</strong>.
                     </RadioCard>
                     <RadioCard label="24-hour" value="24">
-                        24-hour time <strong>({currTime.toFormat('H:mm:ss')})</strong>.
+                        24-hour time <strong>({mounted ? currTime.toFormat('H:mm:ss') : 'XX:XX:XX'})</strong>.
                     </RadioCard>
                 </RadioCards>
             </section>
