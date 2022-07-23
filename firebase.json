@@ -19,7 +19,8 @@
         "source": "/weather/**",
         "function": "weather"
       }
-    ]
+    ],
+    "cleanUrls": true
   },
   "emulators": {
     "auth": {
