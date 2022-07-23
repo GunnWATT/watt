@@ -1,4 +1,4 @@
-import {ReactNode, useContext, useEffect, useState} from 'react';
+import {ReactNode, useContext, useEffect, useLayoutEffect, useState} from 'react';
 import {AppProps} from 'next/app';
 import {useRouter} from 'next/router';
 import {FirebaseAppProvider, useAnalytics, useAuth, useFirestore, useSigninCheck} from 'reactfire';
@@ -114,7 +114,7 @@ function NestedProviders(props: {children: ReactNode}) {
 
     // Change theme on userData change
     const userData = useContext(UserDataContext);
-    useEffect(() => {
+    useLayoutEffect(() => {
         document.documentElement.className = userData.options.theme;
     }, [userData.options.theme])
 

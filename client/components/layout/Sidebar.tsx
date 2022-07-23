@@ -17,7 +17,7 @@ import {Home, CheckSquare, Users, Settings, Tool, ChevronRight, ChevronLeft} fro
 
 export default function Sidebar() {
     const screenType = useScreenType();
-    const forceCollapsed = screenType === 'smallScreen';
+    const forceCollapsed = screenType === 'smallScreen' || screenType === 'phone';
 
     // Authentication
     const {status, data: signInCheckResult} = useSigninCheck();
@@ -31,12 +31,9 @@ export default function Sidebar() {
         setIsOpen(!forceCollapsed);
     }, [forceCollapsed])
 
-    // Only display the sidebar on larger screens
-    if (screenType === 'phone') return null;
-
 
     return (
-        <aside className={'z-10 flex-none relative transition-[width] duration-[400ms] ' + (isOpen ? 'w-56' : 'w-20')}>
+        <aside className={'hidden md:block z-10 flex-none relative transition-[width] duration-[400ms] ' + (isOpen ? 'w-56' : 'w-20')}>
             {/* The outer <aside> only exists to occupy space to squish #content; the inner <div> has position: fixed; */}
             <div className={'p-4 text-lg bg-sidebar dark:bg-sidebar-dark fixed top-0 bottom-0 flex flex-col transition-[width] duration-[400ms] overflow-hidden whitespace-nowrap ' + (isOpen ? 'w-56' : 'w-20')}>
                 {/* Toggler */}
