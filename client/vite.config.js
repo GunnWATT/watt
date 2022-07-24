@@ -8,6 +8,9 @@ export default defineConfig({
         react(),
         VitePWA({registerType: 'autoUpdate'})
     ],
+    build: {
+        sourcemap: true
+    },
     server: {
         port: 3000
     }
