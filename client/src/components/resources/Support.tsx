@@ -4,8 +4,11 @@ import {ReactNode} from 'react';
 export default function Support() {
     return (
         <>
-            <h1 className="mb-6">Student resources</h1>
-            <section className="grid grid-cols-[repeat(auto-fill,_minmax(16rem,_1fr))]">
+            <h1 className="text-4xl font-bold mb-5 pr-6">
+                Student resources
+            </h1>
+
+            <section className="grid grid-cols-[repeat(auto-fill,_minmax(16rem,_1fr))] gap-2">
                 <SupportCard name="Crisis Text Line" tel="741-741" sms>
                     For everyone in crisis; text "Help", Text "LGBTQ" for LGBTQQ-specific support.
                 </SupportCard>
@@ -34,7 +37,7 @@ function SupportCard(props: SupportCardProps) {
     const {name, tel, children, sms} = props;
 
     return (
-        <div className="p-3">
+        <div className="px-5 py-3 bg-gray-100 dark:bg-content-secondary-dark rounded">
             <h2 className="font-semibold mb-0.5">{name}</h2>
             <h3><a href={`${sms ? 'sms' : 'tel'}:${tel}`}>{tel}</a></h3>
             <p className="secondary">{children}</p>

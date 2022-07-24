@@ -1,11 +1,13 @@
 import React from 'react';
 import {createRoot} from 'react-dom/client';
 
-// Firebase
-import FirebaseProviders from './components/firebase/FirebaseProviders';
-import {FirebaseAppProvider} from 'reactfire';
-
+// Components
 import App from './App';
+import {BrowserRouter as Router} from 'react-router-dom';
+import {FirebaseAppProvider} from 'reactfire';
+import FirebaseProviders from './components/firebase/FirebaseProviders';
+import UserDataProvider from './components/firebase/UserDataProvider';
+
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 import './styles/base.scss';
@@ -30,7 +32,11 @@ root.render(
     <React.StrictMode>
         <FirebaseAppProvider firebaseConfig={firebaseConfig}>
             <FirebaseProviders>
-                <App/>
+                <UserDataProvider>
+                    <Router>
+                        <App/>
+                    </Router>
+                </UserDataProvider>
             </FirebaseProviders>
         </FirebaseAppProvider>
     </React.StrictMode>

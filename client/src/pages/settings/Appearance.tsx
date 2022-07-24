@@ -75,8 +75,7 @@ function RadioCard(props: RadioCardProps) {
 
     return (
         // TODO: better light mode card colors
-        // TODO: we really need to figure out the tailwind color situation.
-        <RadioGroup.Option value={value} className={({checked}) => `flex items-center gap-4 rounded-lg shadow-md px-5 py-4 cursor-pointer` + (checked ? ' bg-gray-100 dark:bg-[color:var(--content-tertiary)]' : ' bg-gray-50/50 dark:bg-zinc-800/30')}>
+        <RadioGroup.Option value={value} className={({checked}) => `flex items-center gap-4 rounded-lg shadow-md px-5 py-4 cursor-pointer` + (checked ? ' bg-gray-100 dark:bg-background-dark' : ' bg-gray-50/50 dark:bg-zinc-800/30')}>
             {({checked}) => (<>
                 {checked ? (
                     <Check className="bg-tertiary dark:bg-white/10 rounded-full p-1 flex-none" />

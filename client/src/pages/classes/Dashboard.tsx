@@ -1,10 +1,10 @@
 import {ReactNode, useContext, useEffect, useState} from 'react';
 
 // Components
-import DashboardBlurb from './DashboardBlurb';
-import DashboardQuickInfo from './DashboardQuickInfo';
-import Grades from './Grades';
-import FetchFooter from './FetchFooter';
+import DashboardBlurb from '../../components/classes/DashboardBlurb';
+import DashboardQuickInfo from '../../components/classes/DashboardQuickInfo';
+import Grades from '../../components/classes/Grades';
+import FetchFooter from '../../components/classes/FetchFooter';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';

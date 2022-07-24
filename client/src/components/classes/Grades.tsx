@@ -10,7 +10,7 @@ import UserDataContext from '../../contexts/UserDataContext';
 import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
-import { findClassesList } from '../../pages/Classes';
+import { findClassesList } from './ClassesLayout';
 import { classifyGrade } from '../../util/sgyHelpers';
 
 
