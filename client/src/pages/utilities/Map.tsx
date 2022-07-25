@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import ReactDOM from 'react-dom';
+import {Dialog} from '@headlessui/react';
 import imageMap from '../../assets/imageMap.png';
 
 // Components
@@ -41,11 +41,9 @@ export default function Map() {
                 caption="Use the mouse to pan and scroll to zoom."
             />
 
-            {/* TODO: use <Dialog> for this to trap focus and generally be more screen-reader friendly */}
-            {showMap && ReactDOM.createPortal(
-                <ImageMap close={() => setShowMap(false)} />,
-                document.getElementById('content')!
-            )}
+            <Dialog open={showMap} onClose={() => setShowMap(false)}>
+                <ImageMap close={() => setShowMap(false)} />
+            </Dialog>
         </>
     );
 }
