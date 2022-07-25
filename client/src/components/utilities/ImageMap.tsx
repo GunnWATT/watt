@@ -1,12 +1,9 @@
 import {useContext, useEffect, useRef, useState, PointerEvent} from 'react';
-import {useHotkeys} from 'react-hotkeys-hook';
+import gunnMap from '../../assets/gunnmap.png';
 
 // Components
 import Wave from '../layout/Wave';
 import CloseButton from '../layout/CloseButton';
-
-import GunnMapImage from '../../assets/gunnmap.png';
-import UserDataContext from '../../contexts/UserDataContext';
 
 
 type Pointer = {
@@ -19,7 +16,6 @@ type Pointer = {
 type ImageMapProps = {close: () => void};
 export default function ImageMap(props : ImageMapProps) {
     const {close} = props;
-    const userData = useContext(UserDataContext);
 
     // Refs, pointers, and transformations for manipulating the map image
     const mapRef = useRef<HTMLImageElement | null>(null);
@@ -31,10 +27,7 @@ export default function ImageMap(props : ImageMapProps) {
         // Unideal, but https://github.com/facebook/react/issues/14856 forces this
         // onWheel and onTouchMove are both passive event listeners so preventDefault does not work within them
         mapRef.current?.addEventListener('wheel', (e) => e.preventDefault());
-    }, [mapRef])
-
-    // Hotkey for closing map overlay
-    useHotkeys('escape', close);
+    }, [mapRef]);
 
     // When a pointer deactivates
     const pointerEnd = (e: PointerEvent<HTMLImageElement>) => {
@@ -166,7 +159,7 @@ export default function ImageMap(props : ImageMapProps) {
                 }}
             >
                 <img
-                    src={GunnMapImage}
+                    src={gunnMap}
                     ref={mapRef}
                     draggable={false}
                     alt="Gunn map"
