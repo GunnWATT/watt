@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
-    "baseUrl": "./"
+    "baseUrl": ".",
+    "paths": {
+      "@watt/client/*": ["client/*"],
+      "@watt/functions/*": ["functions/*"],
+      "@watt/scripts/*": ["scripts/*"],
+      "@watt/shared/*": ["shared/*"]
+    }
   }
 }
