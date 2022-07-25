@@ -3,8 +3,7 @@ Welcome to WATT's API documentation! Information about the endpoints exposed by 
 The base URL for WATT's REST API is `gunnwatt.web.app/api`.
 
 ### GET /alternates
-<!-- TODO: replace all these URLs with ones linking to `main` when the PR is merged -->
-Returns an [`Alternates`](https://github.com/GunnWATT/watt/blob/api/docs/types.md#alternates) object corresponding
+Returns an [`Alternates`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#alternates) object corresponding
 to WATT's current alternate schedules.
 
 ##### Example successful response:
@@ -13,14 +12,14 @@ to WATT's current alternate schedules.
 ```
 
 ### GET /schedule
-Returns a [`Schedule`](https://github.com/GunnWATT/watt/blob/api/docs/types.md#schedule) object corresponding to the 
+Returns a [`Schedule`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#schedule) object corresponding to the 
 requested day's schedule, and a boolean indicating whether that schedule is an alternate.
 
 ##### Response schema
 ```ts
 {periods: Schedule, alternate: boolean}
 ```
-- `periods`: The day's [`Schedule`](https://github.com/GunnWATT/watt/blob/api/docs/types.md#schedule).
+- `periods`: The day's [`Schedule`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#schedule).
 - `alternate`: Whether that schedule is an alternate.
 
 ##### Request parameters
@@ -47,16 +46,16 @@ requested day's schedule, and a boolean indicating whether that schedule is an a
 ```
 
 ### GET /next-period
-Returns a [`PeriodObj`](https://github.com/GunnWATT/watt/blob/api/docs/types.md#periodobj) corresponding to the next or 
+Returns a [`PeriodObj`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#periodobj) corresponding to the next or 
 current period, the period immediately before it, and additional information for displaying those periods.
 
 ##### Response schema
 ```ts
 {prev: PeriodObj | null, next: PeriodObj | null, startingIn: number, endingIn: number, nextSeconds: number}
 ```
-- `prev`: A [`PeriodObj`](https://github.com/GunnWATT/watt/blob/api/docs/types.md#periodobj) corresponding to the previous
+- `prev`: A [`PeriodObj`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#periodobj) corresponding to the previous
   period, or `null` if there is none.
-- `next`: A [`PeriodObj`](https://github.com/GunnWATT/watt/blob/api/docs/types.md#periodobj) corresponding to the next or
+- `next`: A [`PeriodObj`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#periodobj) corresponding to the next or
   current period, or `null` is there is none.
 - `startingIn`: The minutes until the `next` period starts, rounded down (if there is less than a minute left, this is `0`). 
   If the period has already started, this is negative. If there is no next period, this is `0`.

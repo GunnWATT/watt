@@ -6,9 +6,9 @@ database, Schoology integration, and many more features.
 WATT can be found live at [gunnwatt.web.app](https://gunnwatt.web.app).
 
 ## About
-WATT is built using ReactJS and Firebase, with a backend in Cloud Functions and database using Cloud Firestore.
+WATT is built using React and Firebase, with a backend in Cloud Functions and database using Cloud Firestore.
 
-`/client` houses WATT's frontend, built with React (CRA).
+`/client` houses WATT's frontend, built with Vite and React.
 
 `/functions` houses WATT's Firebase Functions backend.
 
@@ -17,19 +17,25 @@ WATT is built using ReactJS and Firebase, with a backend in Cloud Functions and 
 If you have bug fixes or features you want to implement, you can fork this repository and create a pull request with your changes.
 All contributions are welcome!
 
+## API
+WATT exposes API endpoints for developers wishing to fetch schedules, alternates, and other data. Read the API docs 
+[here](https://github.com/GunnWATT/watt/blob/main/docs/index.md).
+
 ## Running Locally
 ###### These instructions assume you have a compatible version of Node installed. Install Node [here](https://nodejs.org/en/).
 
 ### Client
 Navigate to the client directory with `cd client` and install the required NPM dependencies with `npm install`. 
-Run `npm start` to start the webpack development server on `localhost:3000`. Your terminal should look something like this:
+Run `npm start` to start the vite development server on `localhost:3000`. Your terminal should look something like this:
 
-![image](https://user-images.githubusercontent.com/60120929/161687343-4a45578b-1385-40aa-9994-fb7c45dba275.png)
+![image](https://user-images.githubusercontent.com/60120929/180681967-1bc6450e-6b94-47c1-9064-5c7a45a6af05.png)
+<!-- ![image](https://user-images.githubusercontent.com/60120929/161687343-4a45578b-1385-40aa-9994-fb7c45dba275.png) -->
 
-`npm start` uses Webpack's hot reload feature which will automatically refresh `localhost:3000` when new changes
-are detected in the project; there is no need to rerun the start script after changing code locally.
+Vite leverages `react-refresh` to perform [hot module replacement](https://vitejs.dev/guide/features.html#hot-module-replacement) 
+and automatically update the development server whenever files are updated locally; there's no need to rerun `npm start` 
+after editing a file.
 
-Note that you will be unable to log in or call Firebase functions without emulators running (see next section).
+Note that you will be unable to log in or call Firebase functions without running emulators (see next section).
 
 ### Functions
 When running locally, WATT uses Firebase's [Emulator Suite](https://firebase.google.com/docs/emulator-suite) to emulate 
@@ -48,7 +54,8 @@ To replace the private credentials WATT uses in production, visit <https://pausd
 
 Navigate to the functions directory with `cd functions` and install the necessary dependencies with `npm install`.
 Before starting the emulators (and after changing any code), compile the TypeScript source files with `npm run build`.
-**If you change the functions code, you will have to run build again.**
+**If you change the functions code, you will have to run build again, but this can be done concurrently while the emulator 
+is running.**
 
 From the root directory (`cd ..`), running 
 ```
