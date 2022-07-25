@@ -26,7 +26,7 @@ export default function InstallModal() {
 
     return (
         <Transition appear show={isOpen} as={Fragment}>
-            <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="fixed z-20 inset-0 flex flex-col items-center justify-end">
+            <Dialog onClose={() => setIsOpen(false)} className="fixed z-20 inset-0 flex flex-col items-center justify-end">
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"

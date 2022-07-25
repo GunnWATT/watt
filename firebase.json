@@ -8,20 +8,8 @@
     ],
     "rewrites": [
       {
-        "source": "/api/**",
+        "source": "/api{,/**}",
         "function": "api"
-      },
-      {
-        "source": "/sgyauth/**",
-        "function": "sgyauth"
-      },
-      {
-        "source": "/sgyfetch/**",
-        "function": "sgyfetch"
-      },
-      {
-        "source": "/weather/**",
-        "function": "weather"
       },
       {
         "source": "**",

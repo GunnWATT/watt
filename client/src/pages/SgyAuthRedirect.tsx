@@ -20,49 +20,42 @@ export default function SgyAuthRedirect() {
     // const {status, data} = useCallableFunctionResponse('sgyauth', {data: {oauth_token}});
 
     const functions = useFunctions();
-    const auth = useAuth();
+    const {status, data: user} = useUser();
 
     useEffect(() => {
-        // TODO: make error boxes for if `origin` and `oauth_token` are missing
-        // and if the user is not signed in
-        if (auth.currentUser) {
-            const sgyAuthFunction = httpsCallable(functions, 'sgyauth');
-            const result = sgyAuthFunction({ oauth_token });
+        if (!oauth_token) return;
+        if (!user) return;
 
-            result.then((data) => {
-                console.log(data);
+        const sgyAuthFunction = httpsCallable(functions, 'sgyauth');
+        const result = sgyAuthFunction({ oauth_token });
 
-                if (data.data === false) {
-                    // this is a problem.
-                    window.location.href = origin ?? '/';
-                    // console.log(user);
-                } else {
-                    const to = new URL(origin!);
-                    to.searchParams.append('modal', 'sgyauth');
-                    window.location.href = to.href;
-                }
-            }).catch((err) => {
+        result.then((data) => {
+            console.log(data);
+
+            if (data.data === false) {
+                // this is a problem.
                 window.location.href = origin ?? '/';
-                console.error(err)
-            })
-        }
-    }, [auth.currentUser]);
-
-    // useEffect(() => {
-        // if (status === 'error') {
-        //     console.error('Error occurred while calling sgyauth')
-        // }
-        // if (status === 'success') {
-        //     console.log(data);
-
-        //     const to = new URL(origin!); to.searchParams.append('modal', 'sgyauth');
-        //     // window.location.href = `${to.href}`;
-        // }
-    // }, [status])
+                // console.log(user);
+            } else {
+                const to = new URL(origin!);
+                to.searchParams.append('modal', 'sgyauth');
+                window.location.href = to.href;
+            }
+        }).catch((err) => {
+            window.location.href = origin ?? '/';
+            console.error(err)
+        })
+    }, [user]);
 
     return (
         <CenteredMessage>
-            <Loading>Preparing to redirect you...</Loading>
+            {!oauth_token ? (
+                <p>Malformed or missing required query param <code>oauth_token</code>.</p>
+            ) : (status === 'success' && !user) || status === 'error' ? (
+                'You are not signed in! Please sign in and try again.'
+            ) : (
+                <Loading>Preparing to redirect you...</Loading>
+            )}
         </CenteredMessage>
     );
 }

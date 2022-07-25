@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-    body {
-        @apply text-primary dark:text-primary-dark bg-background dark:bg-background-dark;
+    html {
+        @apply h-full;
     }
     a {
         @apply text-theme dark:text-theme-dark;
