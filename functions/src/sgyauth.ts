@@ -37,6 +37,7 @@ async function setAccessToken(uid: string, creds: {key: string, sec: string}, or
 }
 
 
+// sgyauth
 type AuthData = {oauth_token: string}
 export const sgyauth = functions.https.onCall(async (data: AuthData, context: functions.https.CallableContext) => {
     // If the context contains no firebase auth token, return early

@@ -16,7 +16,7 @@ imperfect match or if a club wasn't matched to an existing ID.
 
 ![image](https://user-images.githubusercontent.com/60120929/166117012-a3d04f1c-31a5-44a3-92d5-f870f78e0d80.png)
 
-Note that the spreadsheet this script fetches clubs from is hard coded and must be updated manually whenever a new 
+Note that the spreadsheet URL this script fetches clubs from is hard coded and must be updated manually whenever a new 
 spreadsheet is released.
 
 <!-- TODO: clean up staff scripts -->
