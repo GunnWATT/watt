@@ -1,8 +1,9 @@
 name: Deploy to Firebase Hosting on PR
-'on':
+on:
   pull_request:
     paths:
       - "client/**"
+      - "shared/**"
 jobs:
   build_and_preview:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'

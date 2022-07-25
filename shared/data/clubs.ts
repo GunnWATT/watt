@@ -1,6 +1,10 @@
-import {Club} from '../components/lists/ClubComponent';
+export type Club = {
+    name: string, new?: boolean, room: string, desc: string, day: string, time: string,
+    zoom?: string, video?: string, signup?: string, tier: number,
+    prez: string, advisor: string, email: string, coadvisor?: string, coemail?: string;
+}
 
-const data: {timestamp: string, data: {[key: string]: Club}} = {
+const clubs: {timestamp: string, data: {[key: string]: Club}} = {
     "timestamp": "2022-04-30T18:09:09.395Z",
     "data": {
         "10496": {
@@ -1507,4 +1511,4 @@ const data: {timestamp: string, data: {[key: string]: Club}} = {
         }
     }
 }
-export default data;
+export default clubs;

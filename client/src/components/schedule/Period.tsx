@@ -12,7 +12,7 @@ import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
 // Utilities
 import {bgColor, barColor, hexToRgb} from '../../util/progressBarColor';
-import clubs from '../../data/clubs';
+import clubs from '@watt/shared/data/clubs';
 
 
 type PeriodProps = {

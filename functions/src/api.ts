@@ -2,7 +2,10 @@ import * as functions from 'firebase-functions';
 import express from 'express';
 import admin from './util/adminInit';
 import {DateTime} from 'luxon';
-import {getNextPeriod, getNextPeriodMessage, getSchedule} from './util/schedule';
+
+// Utils
+import {getSchedule} from '@watt/shared/util/schedule';
+import {getNextPeriod, getNextPeriodMessage} from './util/schedule';
 
 const app = express();
 

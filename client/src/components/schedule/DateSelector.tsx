@@ -8,11 +8,11 @@ import AnimatedPopover from '../layout/AnimatedPopover';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
+import UserDataContext from '../../contexts/UserDataContext';
 import AlternatesContext from '../../contexts/AlternatesContext';
 
 // Data
-import { SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE } from './Periods';
-import UserDataContext from "../../contexts/UserDataContext";
+import { SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE } from '@watt/shared/data/schedule';
 
 
 // A single-date date selector for Schedule use

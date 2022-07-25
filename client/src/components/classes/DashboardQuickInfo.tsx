@@ -2,11 +2,11 @@ import { useState, useEffect, useContext } from 'react';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
+import AlternatesContext from '../../contexts/AlternatesContext';
 
 // Utilities
 import { cardinalize } from '../../util/sgyHelpers';
 import { ClassPeriodQuickInfo, pastClasses, nextSchoolDay, numSchoolDays } from '../../util/sgyPeriodFunctions';
-import AlternatesContext from "../../contexts/AlternatesContext";
 
 
 // Quick Info includes when's the next day that has a given period

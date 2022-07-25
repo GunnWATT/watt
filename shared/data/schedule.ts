@@ -1,7 +1,17 @@
-// Type from `../client/src/components/schedule/Periods.tsx`
-export type PeriodObj = {n: string, s: number, e: number};
+import {DateTime} from 'luxon';
 
-const data: {[key: string]: PeriodObj[]} = {
+
+// An object representing a period, with s and e being start and end times (in minutes after 12:00 AM PST)
+// and n being the period's key. 0-8 represent periods 0 through 8, while B, L, S, and P represent Brunch, Lunch, SELF,
+// and PRIME, respectively. G and O represent the now deprecated Gunn Together and Office Hours periods. All other period
+// names, like "ELA CAT", remain unparsed.
+export type PeriodObj = {n: string, s: number, e: number, note?: string};
+
+export const SCHOOL_START = DateTime.fromISO('2021-08-11', {zone: 'America/Los_Angeles'}); // new Date(2021,7, 11);
+export const SCHOOL_END = DateTime.fromISO('2022-06-02', {zone: 'America/Los_Angeles'}); // new Date(2022, 5, 2);
+export const SCHOOL_END_EXCLUSIVE = DateTime.fromISO('2022-06-03', {zone: 'America/Los_Angeles'}); // new Date(2022, 5, 3);
+
+const schedule: {[key: string]: PeriodObj[]} = {
     "M": [
         {
             "n": "0",
@@ -213,9 +223,4 @@ const data: {[key: string]: PeriodObj[]} = {
         }
     ]
 }
-export default data;
-
-// Turns day of the week into schedule object key, assuming 0 indexed days (Sunday is 0, Monday is 1).
-// To account for duplicated weekday letters, Thursday is R and Saturday is A.
-// From `../client/src/components/schedule/Periods.tsx`
-export const numToWeekday = (num: number) => ['S', 'M', 'T', 'W', 'R', 'F', 'A'][num];
+export default schedule;

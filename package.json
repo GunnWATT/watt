@@ -1,0 +1,14 @@
+{
+  "name": "Gunn-WATT",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "functions",
+    "scripts",
+    "shared"
+  ],
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}

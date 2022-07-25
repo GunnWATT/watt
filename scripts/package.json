@@ -1,5 +1,5 @@
 {
-  "name": "scripts",
+  "name": "@watt/scripts",
   "version": "1.0.0",
   "description": "WATT scripts to generate client JSONs",
   "scripts": {

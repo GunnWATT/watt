@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ClubComponentModal from './ClubComponentModal';
-import {Club} from './ClubComponent';
+import {Club} from '@watt/shared/data/clubs';
 
 
 export default function PillClubComponent(props: Club & {id: string}) {

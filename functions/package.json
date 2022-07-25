@@ -1,5 +1,5 @@
 {
-  "name": "functions",
+  "name": "@watt/functions",
   "description": "Cloud Functions for Firebase",
   "scripts": {
     "serve": "npm run build && firebase emulators:start --only functions",
