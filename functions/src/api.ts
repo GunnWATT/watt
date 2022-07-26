@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions';
 import express from 'express';
+import cors from 'cors';
 import admin from './util/adminInit';
 import {DateTime} from 'luxon';
 
@@ -8,6 +9,7 @@ import {getSchedule} from '@watt/shared/util/schedule';
 import {getNextPeriod, getNextPeriodMessage} from './util/schedule';
 
 const app = express();
+app.use(cors({origin: true}));
 
 
 async function getAlternates() {
@@ -18,7 +20,7 @@ async function getAlternates() {
 // GET /api/alternates
 // Gets WATT's parsed alternate schedules. See https://github.com/GunnWATT/watt/blob/main/client/src/contexts/AlternatesContext.ts#L5-L8
 // for information about this endpoint's return type.
-app.get('/alternates', async (req, res) => {
+app.get('/api/alternates', async (req, res) => {
     const data = await getAlternates();
     if (!data) return res.status(500).json({error: 'Alternates document malformed or nonexistant.'});
     return res.json(data);
@@ -28,7 +30,7 @@ app.get('/alternates', async (req, res) => {
 // Gets the current day's schedule, accounting for alternates. Returns the current schedule as `{periods: PeriodObj[] | null, alternate: boolean}`,
 // with `periods` set to an array of the day's periods (or `null` if there is no school) and `alternate` set to whether
 // the returned schedule is an alternate.
-app.get('/schedule', async (req, res) => {
+app.get('/api/schedule', async (req, res) => {
     const alternates = await getAlternates();
     if (!alternates) return res.status(500).json({error: 'Alternates document malformed or nonexistant.'});
 
@@ -48,7 +50,7 @@ app.get('/schedule', async (req, res) => {
 });
 
 // GET /api/next-period
-app.get('/next-period', async (req, res) => {
+app.get('/api/next-period', async (req, res) => {
     const alternates = await getAlternates();
     if (!alternates) return res.status(500).json({error: 'Alternates document malformed or nonexistant.'});
 
@@ -68,7 +70,7 @@ app.get('/next-period', async (req, res) => {
 });
 
 // GET /api/next-period-message
-app.get('/next-period-message', async (req, res) => {
+app.get('/api/next-period-message', async (req, res) => {
     const alternates = await getAlternates();
     if (!alternates) return res.status(500).json({error: 'Alternates document malformed or nonexistant.'});
 
