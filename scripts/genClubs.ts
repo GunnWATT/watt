@@ -1,5 +1,8 @@
 import fetch from 'node-fetch';
 import {readFileSync, writeFileSync} from 'fs';
+import {Club} from '@watt/shared/data/clubs';
+
+// Utils
 import {similarity} from './util/strings';
 import {info, warn} from './util/logging';
 
@@ -15,7 +18,7 @@ import {info, warn} from './util/logging';
 
     // Map raw data to an array of club objects
     // Remove the first (header) row
-    const clubs = data.slice(1)
+    const clubs: Club[] = data.slice(1)
         .map(club => {
             const [retOrNew, name, typeText, desc, day, time, room, prez, advisor, email, coadvisor, coemail] = club.map(x => x.trim());
             const newClub = retOrNew.toLowerCase().includes('new');
@@ -30,7 +33,7 @@ import {info, warn} from './util/logging';
             }
         })
 
-    const final: {timestamp: Date, data: any} = {timestamp: new Date(), data: {}};
+    const final: {timestamp: Date, data: {[key: string]: Club}} = {timestamp: new Date(), data: {}};
 
     // Populate `final` with club objects, referencing the previous generated JSON to match clubs to their IDs
     // Proper ID matching is imperative to ensure that pinned clubs persist between regens

@@ -1,8 +1,8 @@
 import {DateTime} from 'luxon';
 import { UserData } from '../contexts/UserDataContext';
 import {Alternates} from '../contexts/AlternatesContext';
-import { getSchedule } from '../hooks/useSchedule';
-import { SCHOOL_END_EXCLUSIVE, SCHOOL_START } from '../components/schedule/Periods';
+import { getSchedule } from '@watt/shared/util/schedule';
+import { SCHOOL_END_EXCLUSIVE, SCHOOL_START } from '@watt/shared/data/schedule';
 
 
 // Returns whether a day has a given class.

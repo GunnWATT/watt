@@ -2,8 +2,11 @@ import fetch from 'node-fetch';
 import {readFileSync, writeFileSync} from 'fs';
 import ical from 'ical';
 import chalk from 'chalk';
+
+// Utils
 import {error, info, warn} from './util/logging';
-import schedule, {numToWeekday, PeriodObj} from './util/schedule';
+import schedule, {PeriodObj} from '@watt/shared/data/schedule';
+import {numToWeekday} from '@watt/shared/util/schedule';
 
 
 // Constants

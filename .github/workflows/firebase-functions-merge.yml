@@ -1,16 +1,17 @@
 name: Deploy Firebase Functions on merge
-'on':
+on:
   push:
     branches:
       - main
     paths:
       - "functions/**"
+      - "shared/**"
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd functions && npm ci
+      - run: npm ci
       - uses: w9jds/firebase-action@master
         with:
           args: deploy --only functions

@@ -2,8 +2,7 @@
 *node_modules/
 
 # React
-client/coverage
-client/build
+client/dist
 
 # Emulators Config
 functions/.runtimeconfig.json

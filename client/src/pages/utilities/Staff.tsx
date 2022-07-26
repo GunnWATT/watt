@@ -5,10 +5,10 @@ import UserDataContext from '../../contexts/UserDataContext';
 // Components
 import Search from '../../components/layout/Search';
 import List from '../../components/lists/List';
-import StaffComponent, {ClassObj, SemesterClassObj, Staff as StaffComponentProps} from '../../components/lists/StaffComponent';
+import StaffComponent from '../../components/lists/StaffComponent';
 
 // Data
-import staff from '../../data/staff';
+import staff, {ClassObj, SemesterClassObj, Staff as StaffComponentProps} from '@watt/shared/data/staff';
 
 
 export default function Staff() {

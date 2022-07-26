@@ -1,5 +1,6 @@
 import {useState, useContext, useMemo} from 'react';
 import {Dialog} from '@headlessui/react';
+import {Staff} from '@watt/shared/data/staff';
 
 // Components
 import CenteredModal from '../layout/CenteredModal';
@@ -14,26 +15,8 @@ import {useAuth, useFirestore} from 'reactfire';
 import { updateUserData } from '../../util/firestore';
 
 // Data
-import clubs from '../../data/clubs';
+import clubs from '@watt/shared/data/clubs';
 
-
-/*
-The period data structure is a bunch of nested Objects, where each period is represented by its name
-(1, 2, 3, SELF, etc.) and contains data structured like so:
-{1: [Class, Room], 2: [Class, Room]}
-where 1 and 2 represent first and second semester. However, we also need to support when two classes
-are taught at once in one period, where the data would be structured instead like
-{1: {1: [Class, Room], 2: [Class, Room]} 2: ...}
-*/
-
-export type SemesterClassObj = [string, string | null] | 'none';
-export type ClassObj = SemesterClassObj | {1: SemesterClassObj, 2: SemesterClassObj};
-export type PeriodObj = {1: ClassObj, 2: ClassObj};
-export type Staff = {
-    name: string, title?: string, email?: string, room?: string,
-    dept?: string, phone?: string, periods?: {[key: string]: PeriodObj},
-    other?: string // "other" info like "Teaches SELF", "Has Counseling"
-};
 
 export default function StaffComponent(props: Staff & {id: string}) {
     const {name, id, title, email, room, dept, phone, periods, other} = props;

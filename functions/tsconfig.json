@@ -1,4 +1,5 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
     "noImplicitReturns": true,
@@ -8,7 +9,8 @@
     "target": "es2017",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "compileOnSave": true,
   "include": [

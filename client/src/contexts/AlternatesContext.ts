@@ -1,5 +1,5 @@
 import {createContext} from 'react';
-import {PeriodObj} from '../components/schedule/Periods';
+import {PeriodObj} from '@watt/shared/data/schedule';
 
 
 export type Alternates = {

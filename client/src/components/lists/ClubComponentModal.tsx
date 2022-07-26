@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import {Dialog} from '@headlessui/react';
-import {Club} from './ClubComponent';
+import {Club} from '@watt/shared/data/clubs';
 
 // Components
 import CenteredModal from '../layout/CenteredModal';

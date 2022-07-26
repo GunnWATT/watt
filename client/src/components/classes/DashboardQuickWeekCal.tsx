@@ -7,7 +7,7 @@ import UserDataContext from '../../contexts/UserDataContext';
 import AlternatesContext from '../../contexts/AlternatesContext';
 
 // Utilities
-import {getSchedule} from '../../hooks/useSchedule';
+import {getSchedule} from '@watt/shared/util/schedule';
 import {useScreenType} from '../../hooks/useScreenType';
 import {parsePeriodColor} from '../schedule/Periods';
 import {AssignmentBlurb} from '../../util/sgyAssignments';
