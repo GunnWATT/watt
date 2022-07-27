@@ -6,13 +6,17 @@ database, Schoology integration, and many more features.
 WATT can be found live at [gunnwatt.web.app](https://gunnwatt.web.app).
 
 ## About
-WATT is built using React and Firebase, with a backend in Cloud Functions and database using Cloud Firestore.
+WATT is built using React and Firebase, with a backend in Cloud Functions and database using Cloud Firestore. This
+repository is a monorepo containing nested node packages managed via npm `workspaces` and TypeScript `paths`. Within the
+repository,
 
 `/client` houses WATT's frontend, built with Vite and React.
 
 `/functions` houses WATT's Firebase Functions backend.
 
 `/scripts` houses various scripts to fetch and update the JSONs WATT uses for clubs, staff, and alternate schedules.
+
+`/shared` houses shared data and utility functions for use in the client, functions, and scripts.
 
 If you have bug fixes or features you want to implement, you can fork this repository and create a pull request with your changes.
 All contributions are welcome!
@@ -24,9 +28,15 @@ WATT exposes API endpoints for developers wishing to fetch schedules, alternates
 ## Running Locally
 ###### These instructions assume you have a compatible version of Node installed. Install Node [here](https://nodejs.org/en/).
 
+Before running everything, install all necessary packages by running `npm install` in the root folder. This should
+install all the dependencies required by the client, functions, and scripts and generate `node_modules` in each package
+and at the root with the installed files. 
+
+The following sections will go over how to run each component of WATT locally.
+
 ### Client
-Navigate to the client directory with `cd client` and install the required NPM dependencies with `npm install`. 
-Run `npm start` to start the vite development server on `localhost:3000`. Your terminal should look something like this:
+Navigate to the client directory with `cd client`. Run `npm start` to start the vite development server on `localhost:3000`. 
+Your terminal should look something like this:
 
 ![image](https://user-images.githubusercontent.com/60120929/180681967-1bc6450e-6b94-47c1-9064-5c7a45a6af05.png)
 <!-- ![image](https://user-images.githubusercontent.com/60120929/161687343-4a45578b-1385-40aa-9994-fb7c45dba275.png) -->
@@ -52,10 +62,9 @@ To replace the private credentials WATT uses in production, visit <https://pausd
 }
 ```
 
-Navigate to the functions directory with `cd functions` and install the necessary dependencies with `npm install`.
-Before starting the emulators (and after changing any code), compile the TypeScript source files with `npm run build`.
-**If you change the functions code, you will have to run build again, but this can be done concurrently while the emulator 
-is running.**
+Navigate to the functions directory with `cd functions`. Before starting the emulators (and after changing any code), 
+compile the TypeScript source files with `npm run build`. **If you change the functions code, you will have to run build 
+again, but this can be done concurrently while the emulator is running.**
 
 From the root directory (`cd ..`), running 
 ```
@@ -74,9 +83,10 @@ records can be accessed.
 ![image](https://user-images.githubusercontent.com/60120929/147842171-c012e8b8-1031-4f3c-8686-9e0cf8f10872.png)
 
 ### Scripts
-Navigate to the scripts directory with `cd scripts` and install the necessary dependencies with `npm install`. WATT's 
-scripts use `ts-node` to skip having to manually compile TypeScript before running, with each script having a corresponding
-command defined in `package.json`. Run `npm run` to see a list of scripts, or `npm run [name]` to execute a script.
+Navigate to the scripts directory with `cd scripts`. WATT's scripts use `ts-node` to skip having to manually compile 
+TypeScript before running, with each script having a corresponding command defined in `package.json`. Run `npm run` to 
+see a list of scripts, or `npm run [name]` to execute a script.
+
 More detailed documentation on what each script does can be found in the [scripts README](https://github.com/GunnWATT/watt/blob/main/scripts/README.md).
 
 ![image](https://user-images.githubusercontent.com/60120929/161687846-7ef1a8bb-e78a-4ea5-bf21-4738d980fa9a.png)
