@@ -8,8 +8,20 @@
     ],
     "rewrites": [
       {
-        "source": "/api{,/**}",
-        "function": "api"
+        "source": "/api/alternates",
+        "function": "api-alternates"
+      },
+      {
+        "source": "/api/schedule",
+        "function": "api-schedule"
+      },
+      {
+        "source": "/api/next-period",
+        "function": "api-nextPeriod"
+      },
+      {
+        "source": "/api/next-period-message",
+        "function": "api-nextPeriodMessage"
       },
       {
         "source": "**",

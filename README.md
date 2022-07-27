@@ -66,9 +66,9 @@ Navigate to the functions directory with `cd functions`. Before starting the emu
 compile the TypeScript source files with `npm run build`. **If you change the functions code, you will have to run build 
 again, but this can be done concurrently while the emulator is running.**
 
-From the root directory (`cd ..`), running 
+From the functions directory, running 
 ```
-firebase emulators:start --import ./functions/presets
+firebase emulators:start --import ./presets
 ```
 in a new terminal window should start the emulator suite UI on `localhost:4000` as well as the Firestore, Functions, and Auth
 emulators on other localhost ports.
