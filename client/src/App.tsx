@@ -115,7 +115,7 @@ export default function App() {
     return (
         <AlternatesProvider value={alternates}>
             <TimeProvider value={date}>
-                {/* <PageVisibility onChange={() => navigator.serviceWorker.getRegistration().then(res => res?.update())}/> */}
+                <PageVisibility onChange={() => navigator.serviceWorker.getRegistration().then(res => res?.update())}/>
                 <FaviconHandler />
 
                 <Routes>
