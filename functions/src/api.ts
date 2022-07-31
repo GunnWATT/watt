@@ -1,5 +1,6 @@
-import {onRequest} from 'firebase-functions/v2/https';
+import * as functions from 'firebase-functions';
 import express from 'express';
+import cors from 'cors';
 import admin from './util/adminInit';
 import {DateTime} from 'luxon';
 
@@ -10,6 +11,7 @@ import staff from '@watt/shared/data/staff';
 import {getNextPeriod, getNextPeriodMessage} from './util/schedule';
 
 const app = express();
+app.use(cors({origin: true}));
 
 
 async function getAlternates() {
@@ -99,4 +101,6 @@ app.get('/api/next-period-message', async (req, res) => {
     return res.json({message});
 });
 
-export const api = onRequest({minInstances: 1, cors: true}, app);
+export const api = functions
+    .runWith({minInstances: 1})
+    .https.onRequest(app);

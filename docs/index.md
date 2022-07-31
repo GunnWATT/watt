@@ -17,7 +17,7 @@ requested day's schedule, and a boolean indicating whether that schedule is an a
 
 ##### Response schema
 ```ts
-type ScheduleResponse = {periods: Schedule, alternate: boolean}
+{periods: Schedule, alternate: boolean}
 ```
 - `periods`: The day's [`Schedule`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#schedule).
 - `alternate`: Whether that schedule is an alternate.
@@ -51,11 +51,7 @@ current period, the period immediately before it, and additional information for
 
 ##### Response schema
 ```ts
-type NextPeriodResponse = {
-    prev: PeriodObj | null, next: PeriodObj | null, 
-    startingIn: number, endingIn: number, 
-    nextSeconds: number
-}
+{prev: PeriodObj | null, next: PeriodObj | null, startingIn: number, endingIn: number, nextSeconds: number}
 ```
 - `prev`: A [`PeriodObj`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#periodobj) corresponding to the previous
   period, or `null` if there is none.
@@ -109,7 +105,7 @@ if it has not.
 
 ##### Response schema
 ```ts
-type NextPeriodMessageResponse = {message: string | null}
+{message: string | null}
 ```
 - `message`: The message, or `null` if there is no next period.
 
@@ -141,10 +137,7 @@ Returns WATT's generated clubs list.
 
 ##### Response schema:
 ```ts
-type ClubsResponse = {
-    timestamp: string, 
-    data: {[key: string]: Club}
-}
+{timestamp: string, data: {[key: string]: Club}}
 ```
 - `timestamp`: The ISO timestamp of the last run of [`/scripts/clubs`](https://github.com/GunnWATT/watt/tree/main/scripts#clubs).
 - `data`: An object with unique club ID keys corresponding to their [`Club`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#club)
@@ -177,10 +170,7 @@ Returns WATT's generated staff list.
 
 ##### Response schema:
 ```ts
-type StaffResponse = {
-    timestamp: string,
-    data: {[key: string]: StaffObj}
-}
+{timestamp: string, data: {[key: string]: StaffObj}}
 ```
 - `timestamp`: The ISO timestamp of the last run of `/scripts/staff`.
 - `data`: An object with unique staff ID keys corresponding to their [`Staff`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#staff)
