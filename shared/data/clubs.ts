@@ -1,6 +1,7 @@
 export type Club = {
-    name: string, new?: boolean, room: string, desc: string, day: string, time: string,
-    zoom?: string, video?: string, signup?: string, tier: number,
+    new: boolean, name: string, tier: 1 | 2 | 3, desc: string,
+    day: string, time: "Lunch" | "After School", room: string,
+    zoom?: string, video?: string, signup?: string,
     prez: string, advisor: string, email: string, coadvisor?: string, coemail?: string;
 }
 

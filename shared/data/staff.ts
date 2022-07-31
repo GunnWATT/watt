@@ -4,7 +4,7 @@ The period data structure is a bunch of nested Objects, where each period is rep
 {1: [Class, Room], 2: [Class, Room]}
 where 1 and 2 represent first and second semester. However, we also need to support when two classes
 are taught at once in one period, where the data would be structured instead like
-{1: {1: [Class, Room], 2: [Class, Room]} 2: ...}
+{1: {1: [Class, Room], 2: [Class, Room]}, 2: ...}
 */
 
 export type SemesterClassObj = [string, string | null] | 'none';
@@ -13,7 +13,7 @@ export type PeriodObj = {1: ClassObj, 2: ClassObj};
 export type Staff = {
     name: string, title?: string, email?: string, room?: string,
     dept?: string, phone?: string, periods?: {[key: string]: PeriodObj},
-    other?: string // "other" info like "Teaches SELF", "Has Counseling"
+    other?: "Teaches SELF." | "Has counseling"
 };
 
 const data: {timestamp: string, data: {[key: string]: Staff}} = {

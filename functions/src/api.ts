@@ -5,6 +5,8 @@ import {DateTime} from 'luxon';
 
 // Utils
 import {getSchedule} from '@watt/shared/util/schedule';
+import clubs from '@watt/shared/data/clubs';
+import staff from '@watt/shared/data/staff';
 import {getNextPeriod, getNextPeriodMessage} from './util/schedule';
 
 const app = express();
@@ -14,6 +16,16 @@ async function getAlternates() {
     const doc = await admin.firestore().collection('gunn').doc('alternates').get();
     return doc.data();
 }
+
+// GET /api/clubs
+app.get('/api/clubs', async (req, res) => {
+    return res.json(clubs);
+});
+
+// GET /api/staff
+app.get('/api/staff', async (req, res) => {
+    return res.json(staff);
+});
 
 // GET /api/alternates
 // Gets WATT's parsed alternate schedules. See https://github.com/GunnWATT/watt/blob/main/client/src/contexts/AlternatesContext.ts#L5-L8

@@ -4,7 +4,7 @@ The base URL for WATT's REST API is `gunnwatt.web.app/api`.
 
 ### GET /alternates
 Returns an [`Alternates`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#alternates) object corresponding
-to WATT's current alternate schedules.
+to WATT's current generated alternate schedules.
 
 ##### Example successful response:
 ```json
@@ -17,7 +17,7 @@ requested day's schedule, and a boolean indicating whether that schedule is an a
 
 ##### Response schema
 ```ts
-{periods: Schedule, alternate: boolean}
+type ScheduleResponse = {periods: Schedule, alternate: boolean}
 ```
 - `periods`: The day's [`Schedule`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#schedule).
 - `alternate`: Whether that schedule is an alternate.
@@ -51,7 +51,11 @@ current period, the period immediately before it, and additional information for
 
 ##### Response schema
 ```ts
-{prev: PeriodObj | null, next: PeriodObj | null, startingIn: number, endingIn: number, nextSeconds: number}
+type NextPeriodResponse = {
+    prev: PeriodObj | null, next: PeriodObj | null, 
+    startingIn: number, endingIn: number, 
+    nextSeconds: number
+}
 ```
 - `prev`: A [`PeriodObj`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#periodobj) corresponding to the previous
   period, or `null` if there is none.
@@ -105,7 +109,7 @@ if it has not.
 
 ##### Response schema
 ```ts
-{message: string | null}
+type NextPeriodMessageResponse = {message: string | null}
 ```
 - `message`: The message, or `null` if there is no next period.
 
@@ -130,4 +134,72 @@ if it has not.
 ##### Example error response:
 ```json
 {"error": "Error parsing date string: the input \"aaa\" can't be parsed as ISO 8601."}
+```
+
+### GET /clubs
+Returns WATT's generated clubs list.
+
+##### Response schema:
+```ts
+type ClubsResponse = {
+    timestamp: string, 
+    data: {[key: string]: Club}
+}
+```
+- `timestamp`: The ISO timestamp of the last run of [`/scripts/clubs`](https://github.com/GunnWATT/watt/tree/main/scripts#clubs).
+- `data`: An object with unique club ID keys corresponding to their [`Club`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#club)
+  object. Club IDs are randomly generated 5-digit integers and persist between regens (the same ID will map to the same
+  club, if it exists, after regenerating clubs).
+
+##### Example successful response:
+```json
+{
+  "data": {
+    "55585": {
+      "new": false,
+      "name": "United Computations",
+      "tier": 2,
+      "desc": "United Computations brings together a community of people interested in CS. During our weekly lunch meetings, we explore the various fields of CS through hands-on activities, guest speakers, lectures, and more. We also plan and run Gunn’s annual hackathon (GunnHacks 8.0) -- and any club member can apply to help out with publicity, website, events planning, and sponsorships! We’re one of the longest-running AND largest CS clubs at Gunn. Anyone is welcome to join!",
+      "day": "Wednesday",
+      "time": "Lunch",
+      "room": "N-215",
+      "prez": "Alina Li",
+      "advisor": "Josh Paley",
+      "email": "jpaley@pausd.org"
+    }
+  }, 
+  "timestamp": "2022-04-30T18:09:09.395Z"
+}
+```
+
+### GET /staff
+Returns WATT's generated staff list.
+
+##### Response schema:
+```ts
+type StaffResponse = {
+    timestamp: string,
+    data: {[key: string]: StaffObj}
+}
+```
+- `timestamp`: The ISO timestamp of the last run of `/scripts/staff`.
+- `data`: An object with unique staff ID keys corresponding to their [`Staff`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#staff)
+  object. Staff IDs are randomly generated 5-digit integers and persist between regens (the same ID will map to the same
+  staff member, if they exist, after regenerating clubs).
+
+##### Example successful response:
+```json
+{
+  "data": {
+    "47914": {
+      "name": "Harvey Newland",
+      "title": "Assistant Principal-HS",
+      "email": "hnewland@pausd.org",
+      "phone": "354-8260",
+      "dept": "Asst. Principal",
+      "room": "Main Office"
+    }
+  }, 
+  "timestamp": "2022-04-30T19:15:30.052Z"
+}
 ```
