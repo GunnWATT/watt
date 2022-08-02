@@ -1,5 +1,4 @@
 import {useContext} from 'react';
-import {useSchedule} from '../../hooks/useSchedule';
 import {DateTime} from 'luxon';
 
 // Components
@@ -10,6 +9,10 @@ import NoSchoolImage from './NoSchoolImage';
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 import UserDataContext, {SgyPeriodData, UserData} from '../../contexts/UserDataContext';
+
+// Utils
+import {useSchedule} from '../../hooks/useSchedule';
+import {periodNameDefault} from '@watt/shared/util/schedule';
 
 
 type PeriodsProps = {viewDate: DateTime};
@@ -128,26 +131,4 @@ export function parsePeriodColor(name: string | number | null, userData?: UserDa
     // Non numbered periods are default colored
     if (userData?.options.theme === 'dark') return darkPerColors[darkPerColors.length - 1]
     return periodColors[periodColors.length - 1];
-}
-
-// Gets the default period name for the given key
-export function periodNameDefault(name: string) {
-    if (!isNaN(parseInt(name))) return `Period ${name}`;
-
-    switch (name) {
-        case 'L':
-            return 'Lunch';
-        case 'S':
-            return 'SELF';
-        case 'P':
-            return 'PRIME';
-        case 'O':
-            return 'Office Hours';
-        case 'B':
-            return 'Brunch';
-        case 'A':
-            return 'No Class'; // for assignments that are not associated with a class
-        default:
-            return name;
-    }
 }

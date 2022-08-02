@@ -1,6 +1,6 @@
 import {DateTime} from 'luxon';
 import {PeriodObj} from '@watt/shared/data/schedule';
-import {getSchedule} from '@watt/shared/util/schedule';
+import {getSchedule, periodNameDefault} from '@watt/shared/util/schedule';
 
 
 // Modified paste from `/client/src/hooks/useNextPeriod.ts`.
@@ -73,27 +73,4 @@ export function getNextPeriodMessage(date: DateTime, alternates: {[key: string]:
     const startedUnit = `${startingIn !== -1 ? 'minute' : 'second'}${startedNum !== 1 ? 's' : ''}`;
 
     return `${name} ending in ${endingNum} ${endingUnit}, started ${startedNum} ${startedUnit} ago.`
-}
-
-// Paste from `/client/src/components/schedule/Periods.tsx`.
-// https://github.com/GunnWATT/watt/blob/api/client/src/components/schedule/Periods.tsx#L149-L169
-export function periodNameDefault(name: string) {
-    if (!isNaN(parseInt(name))) return `Period ${name}`;
-
-    switch (name) {
-        case 'L':
-            return 'Lunch';
-        case 'S':
-            return 'SELF';
-        case 'P':
-            return 'PRIME';
-        case 'O':
-            return 'Office Hours';
-        case 'B':
-            return 'Brunch';
-        case 'A':
-            return 'No Class'; // for assignments that are not associated with a class
-        default:
-            return name;
-    }
 }

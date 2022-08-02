@@ -19,6 +19,7 @@ type PeriodObj = {n: string, s: number, e: number, note?: string};
 | `'L'`                          | Lunch.                                                                                                                                        |
 | `'S'`                          | SELF.                                                                                                                                         |
 | `'P'`                          | PRIME.                                                                                                                                        |
+| `'H'`                          | Study hall.                                                                                                                                   |
 | `'G'`                          | Gunn Together. *(deprecated)*                                                                                                                 |
 | `'O'`                          | Office hours. *(deprecated)*                                                                                                                  |
 | Any other string               | An unrecognized period. This can be a one-off period such as `'Title IX Lesson'`, or a recurring but unsupported period such as `'Math CAT'`. |

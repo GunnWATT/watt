@@ -32,3 +32,19 @@ export function getSchedule(date: DateTime, alternates: Alternates['alternates']
 
     return {periods, alternate};
 }
+
+// Gets the default period name for the given key
+export function periodNameDefault(name: string) {
+    if (!isNaN(parseInt(name))) return `Period ${name}`;
+
+    switch (name) {
+        case 'L': return 'Lunch';
+        case 'S': return 'SELF';
+        case 'P': return 'PRIME';
+        case 'H': return 'Study Hall';
+        case 'O': return 'Office Hours';
+        case 'B': return 'Brunch';
+        case 'A': return 'No Class'; // For assignments that are not associated with a class
+        default: return name;
+    }
+}

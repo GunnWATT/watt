@@ -13,6 +13,7 @@ import {numToWeekday} from '@watt/shared/util/schedule';
 const EARLIEST_AM_HOUR = 6;
 
 const timeGetterRegex = /\(?(1?\d)(?::(\d{2}))? *(?:am)? *[-–] *(1?\d)(?::(\d{2}))? *(noon|pm)?\)?/;
+const gradeGetterRegex = /^\d+(\/\d+)*/;
 const altScheduleRegex = /schedule|extended/i; // /schedule|extended|lunch/i
 const noSchoolRegex = /holiday|no\s(students|school)|break|development/i;
 const primeReplacesSelfRegex = /PRIME (replaces|instead of) SELF/i;
@@ -31,8 +32,8 @@ function parseAlternate(summary: string | undefined, description: string | undef
         return [];
     }
 
-    // If the event is a "PRIME replaces SELF" event, add the day's regular schedule as an alternate, replacing PRIME
-    // with SELF if it occurs
+    // If the event is a "PRIME replaces SELF" event, add the day's regular schedule as an alternate, replacing SELF
+    // with PRIME if it occurs
     // https://github.com/GunnWATT/watt/issues/75
     if (primeReplacesSelfRegex.test(summary)) {
         // TODO: is there a better way of converting ISO YYYY-MM-DD format to weekday?
@@ -63,7 +64,7 @@ function parseAlternate(summary: string | undefined, description: string | undef
 
     description.split(/\r?\n/g).forEach(str => {
         const times = str.match(timeGetterRegex);
-        const name = str.replace(timeGetterRegex,  '').trim();
+        const names = str.replace(timeGetterRegex,  '').split('&').map(name => name.trim());
 
         // Ignore irrelevant non-time-containing lines
         // https://github.com/GunnWATT/watt/pull/73#discussion_r756519858
@@ -82,42 +83,50 @@ function parseAlternate(summary: string | undefined, description: string | undef
         const startTime = sH * 60 + sM;
         const endTime = eH * 60 + eM;
 
-        const isNumberPeriod = name.match(/Period (\d)/i);
-        const isStaffPrep = name.match(/Collaboration|Prep|Meetings|Training|Mtgs|PLC/i);
+        for (const raw of names) {
+            const grades = raw.match(gradeGetterRegex)?.[0].split('/').map(grade => Number(grade));
+            const name = raw.replace(gradeGetterRegex, '').trim();
+            if (!name) continue;
 
-        let fname = name;
-        let newEndTime = endTime;
+            const isNumberPeriod = name.match(/Period (\d)/i);
+            const isStaffPrep = name.match(/Collaboration|Prep|Meetings?|Training|Mtgs|PLC/i);
 
-        if (isNumberPeriod) {
-            fname = isNumberPeriod[1];
-        } else if (name.match(/Office Hours|Tutorial/i)) {
-            fname = "O";
-            warn(`[${chalk.underline(date)}] Parsed deprecated period Office Hours`);
-        } else if (name.match(/Lunch/i)) {
-            fname = "L";
-        } else if (name.match(/Brunch/i)) {
-            fname = "B";
-        } else if (name.match(/SELF/i)) {
-            fname = "S";
-        } else if (name.match(/Together/i)) {
-            fname = "G";
-            warn(`[${chalk.underline(date)}] Parsed deprecated period Gunn Together`);
-        } else if (name.match(/PRIME/i)) {
-            fname = "P";
-        } else if (name.match(/Zero Period/i)) {
-            fname = "0";
-        } else if (!isStaffPrep) {
-            // If no regices match, we've encountered an unrecognized period
-            warn(`[${chalk.underline(date)}] Unrecognized period name "${chalk.cyan(fname)}"`);
-        }
+            let fname = name;
+            let newEndTime = endTime;
 
-        // If the period is a class, push it to the schedule array
-        if (!isStaffPrep) {
-            periods.push({
-                n: fname,
-                s: startTime,
-                e: newEndTime
-            });
+            if (isNumberPeriod) {
+                fname = isNumberPeriod[1];
+            } else if (name.match(/Office Hours|Tutorial/i)) {
+                fname = "O";
+                warn(`[${chalk.underline(date)}] Parsed deprecated period Office Hours`);
+            } else if (name.match(/Lunch/i)) {
+                fname = "L";
+            } else if (name.match(/Brunch/i)) {
+                fname = "B";
+            } else if (name.match(/SELF/i)) {
+                fname = "S";
+            } else if (name.match(/Study Hall/i)) {
+                fname = "H";
+            } else if (name.match(/Together/i)) {
+                fname = "G";
+                warn(`[${chalk.underline(date)}] Parsed deprecated period Gunn Together`);
+            } else if (name.match(/PRIME/i)) {
+                fname = "P";
+            } else if (name.match(/Zero Period/i)) {
+                fname = "0";
+            } else if (!isStaffPrep) {
+                // If no regices match, we've encountered an unrecognized period
+                warn(`[${chalk.underline(date)}] Unrecognized period name "${chalk.cyan(fname)}"`);
+            }
+
+            // If the period is a class, push it to the schedule array
+            if (!isStaffPrep) {
+                periods.push({
+                    n: fname,
+                    s: startTime,
+                    e: newEndTime
+                });
+            }
         }
     })
 

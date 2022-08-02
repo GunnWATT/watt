@@ -11,7 +11,8 @@ import UserDataContext, {SgyPeriodData} from '../../contexts/UserDataContext';
 
 // Utilities
 import {updateUserData} from '../../util/firestore';
-import {darkPerColors, parsePeriodColor, periodColors, periodNameDefault} from '../schedule/Periods';
+import {darkPerColors, parsePeriodColor, periodColors} from '../schedule/Periods';
+import {periodNameDefault} from '@watt/shared/util/schedule';
 
 
 type PeriodCustomizationInputProps = {id: string, data: SgyPeriodData};
