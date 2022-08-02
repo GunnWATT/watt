@@ -13,7 +13,7 @@ import {numToWeekday} from '@watt/shared/util/schedule';
 const EARLIEST_AM_HOUR = 6;
 
 const timeGetterRegex = /\(?(1?\d)(?::(\d{2}))? *(?:am)? *[-–] *(1?\d)(?::(\d{2}))? *(noon|pm)?\)?/;
-const gradeGetterRegex = /^\d+(\/\d+)*/;
+const gradeGetterRegex = /(?<!Period |#)\d+(\/\d+)*/;
 const altScheduleRegex = /schedule|extended/i; // /schedule|extended|lunch/i
 const noSchoolRegex = /holiday|no\s(students|school)|break|development/i;
 const primeReplacesSelfRegex = /PRIME (replaces|instead of) SELF/i;
@@ -64,7 +64,7 @@ function parseAlternate(summary: string | undefined, description: string | undef
 
     description.split(/\r?\n/g).forEach(str => {
         const times = str.match(timeGetterRegex);
-        const names = str.replace(timeGetterRegex,  '').split('&').map(name => name.trim());
+        const names = str.replace(timeGetterRegex,  '').split(/[&,]/).map(name => name.trim());
 
         // Ignore irrelevant non-time-containing lines
         // https://github.com/GunnWATT/watt/pull/73#discussion_r756519858
@@ -124,7 +124,8 @@ function parseAlternate(summary: string | undefined, description: string | undef
                 periods.push({
                     n: fname,
                     s: startTime,
-                    e: newEndTime
+                    e: newEndTime,
+                    grades
                 });
             }
         }
@@ -162,8 +163,8 @@ function parseAlternate(summary: string | undefined, description: string | undef
         for (let j = i + 1; j < periods.length; j++) {
             const p2 = periods[j];
 
-            // one must be directly after another; if this doesn't work, the district is being false and fraudulent.
-            if (!(p1.s >= p2.e || p2.s >= p1.e) ) {
+            // Each period must directly follow each other unless they are for different grades.
+            if (!(p1.s >= p2.e || p2.s >= p1.e) && p1.grades?.join() === p2.grades?.join()) {
                 warn(`[${chalk.underline(date)}] Periods "${p1.n}" and "${p2.n}" collide!`);
             }
         }

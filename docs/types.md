@@ -4,7 +4,7 @@ The full reference for all types referenced in WATT's API can be found below:
 ### PeriodObj
 An object representing a class period.
 ```ts
-type PeriodObj = {n: string, s: number, e: number, note?: string};
+type PeriodObj = {n: string, s: number, e: number, note?: string, grades?: number[]};
 ```
 #### Reference: 
 [`/shared/data/schedule.ts`](https://github.com/GunnWATT/watt/blob/main/shared/data/schedule.ts#L8)
@@ -27,6 +27,7 @@ type PeriodObj = {n: string, s: number, e: number, note?: string};
 - `s`: The start time of the period, in minutes after `12:00 AM` in the timezone `America/Los_Angeles`.
 - `e`: The end time of the period, in minutes after `12:00 AM` in the timezone `America/Los_Angeles`.
 - `note`?: An optional note with more details about the period.
+- `grades`?: The subset of grades this period applies to. If not provided, the period applies for all grades.
 
 #### Example:
 ```json

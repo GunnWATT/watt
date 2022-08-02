@@ -5,7 +5,7 @@ import {DateTime} from 'luxon';
 // and n being the period's key. 0-8 represent periods 0 through 8, while B, L, S, and P represent Brunch, Lunch, SELF,
 // and PRIME, respectively. G and O represent the now deprecated Gunn Together and Office Hours periods. All other period
 // names, like "ELA CAT", remain unparsed.
-export type PeriodObj = {n: string, s: number, e: number, note?: string};
+export type PeriodObj = {n: string, s: number, e: number, note?: string, grades?: number[]};
 
 export const SCHOOL_START = DateTime.fromISO('2022-08-10', {zone: 'America/Los_Angeles'});
 export const SCHOOL_END = DateTime.fromISO('2023-06-01', {zone: 'America/Los_Angeles'});
