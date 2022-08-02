@@ -5,14 +5,12 @@ import chalk from 'chalk';
 
 // Utils
 import {error, info, warn} from './util/logging';
-import schedule, {PeriodObj} from '@watt/shared/data/schedule';
+import schedule, {SCHOOL_START, SCHOOL_END_EXCLUSIVE, PeriodObj} from '@watt/shared/data/schedule';
 import {numToWeekday} from '@watt/shared/util/schedule';
 
 
 // Constants
 const EARLIEST_AM_HOUR = 6;
-const schoolYearStart = new Date(2021, 7, 10);
-const schoolYearEnd = new Date(2022, 5, 3);
 
 const timeGetterRegex = /\(?(1?\d)(?::(\d{2}))? *(?:am)? *[-–] *(1?\d)(?::(\d{2}))? *(noon|pm)?\)?/;
 const altScheduleRegex = /schedule|extended/i; // /schedule|extended|lunch/i
@@ -169,7 +167,7 @@ function parseAlternate(summary: string | undefined, description: string | undef
     const prev: {[key: string]: PeriodObj[] | null} = JSON.parse(readFileSync('./output/alternates.json').toString());
 
     // Fetch iCal source, parse
-    const raw = await (await fetch('https://gunn.pausd.org/cf_calendar/feed.cfm?type=ical&feedID=6012BB54F3F048F09CBB988709E5E625')).text();
+    const raw = await (await fetch('https://gunn.pausd.org/cf_calendar/feed.cfm?type=ical&feedID=7654073B8805455AAB50D082A5DE0A70')).text();
     const calendar = Object.values(ical.parseICS(raw));
 
     const fAlternates: {[key: string]: PeriodObj[]} = {};
@@ -181,14 +179,14 @@ function parseAlternate(summary: string | undefined, description: string | undef
         const endDateObj = event.end;
 
         // If the alternate schedule does not lie within the school year, skip it
-        if (!(startDateObj >= schoolYearStart && startDateObj <= schoolYearEnd))
+        if (startDateObj < SCHOOL_START.toJSDate() || startDateObj >= SCHOOL_END_EXCLUSIVE.toJSDate())
             continue;
 
         const schedule = parseAlternate(event.summary, event.description, startDateObj.toISOString().slice(0, 10))
         if (!schedule) continue;
 
         // If an end date exists, add all dates between the start and end dates with the alternate schedule
-        if (endDateObj && endDateObj >= schoolYearStart && endDateObj <= schoolYearEnd) {
+        if (endDateObj) {
             while (startDateObj.toISOString().slice(5, 10) !== endDateObj.toISOString().slice(5, 10)) {
                 fAlternates[startDateObj.toISOString().slice(5, 10)] = schedule;
                 startDateObj.setUTCDate(startDateObj.getUTCDate() + 1);

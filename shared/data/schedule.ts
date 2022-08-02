@@ -7,9 +7,9 @@ import {DateTime} from 'luxon';
 // names, like "ELA CAT", remain unparsed.
 export type PeriodObj = {n: string, s: number, e: number, note?: string};
 
-export const SCHOOL_START = DateTime.fromISO('2021-08-11', {zone: 'America/Los_Angeles'}); // new Date(2021,7, 11);
-export const SCHOOL_END = DateTime.fromISO('2022-06-02', {zone: 'America/Los_Angeles'}); // new Date(2022, 5, 2);
-export const SCHOOL_END_EXCLUSIVE = DateTime.fromISO('2022-06-03', {zone: 'America/Los_Angeles'}); // new Date(2022, 5, 3);
+export const SCHOOL_START = DateTime.fromISO('2022-08-10', {zone: 'America/Los_Angeles'});
+export const SCHOOL_END = DateTime.fromISO('2023-06-01', {zone: 'America/Los_Angeles'});
+export const SCHOOL_END_EXCLUSIVE = DateTime.fromISO('2023-06-02', {zone: 'America/Los_Angeles'});
 
 const schedule: {[key: string]: PeriodObj[]} = {
     "M": [
