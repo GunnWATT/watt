@@ -16,7 +16,8 @@ const timeGetterRegex = /\(?(1?\d)(?::(\d{2}))? *(?:am)? *[-–] *(1?\d)(?::(\d{
 const gradeGetterRegex = /(?<!Period |#)\d+(\/\d+)*/;
 const altScheduleRegex = /schedule|extended/i; // /schedule|extended|lunch/i
 const noSchoolRegex = /holiday|no\s(students|school)|break|development/i;
-const primeReplacesSelfRegex = /PRIME (replaces|instead of) SELF/i;
+const primeReplacesSelfRegex = /PRIME (replaces|instead of) SELF|No SELF, extra PRIME/i;
+const selfStudyHallRegex = /9\/10 (SELF|Study Hall), 11\/12 (SELF|Study Hall)/i;
 
 // Parse an iCal summary and description into an array of `UnparsedPeriodObj`s
 function parseAlternate(summary: string | undefined, description: string | undefined, date: string) {
@@ -43,6 +44,32 @@ function parseAlternate(summary: string | undefined, description: string | undef
 
         const weekday = numToWeekday(day.getDay());
         return schedule[weekday].map(({n, ...t}) => ({n: n === 'S' ? 'P' : n, ...t}));
+    }
+
+    // If the event is a "9/10 SELF, 11/12 Study Hall" event, add the day's regular schedule as an alternate, assigning
+    // the proper grades to SELF and inserting Study Hall afterwards.
+    const selfStudyHallMatch = summary.match(selfStudyHallRegex);
+    if (selfStudyHallMatch) {
+        const [, underPer, upperPer] = selfStudyHallMatch;
+
+        // TODO: is there a better way of converting ISO YYYY-MM-DD format to weekday?
+        const [year, monthNum, dayNum] = date.split('-').map(x => Number(x));
+        const day = new Date();
+        day.setFullYear(year, monthNum - 1, dayNum);
+
+        const weekday = numToWeekday(day.getDay());
+        const temp = [...schedule[weekday]];
+
+        // TODO: better way of doing this?
+        const selfIndex = temp.findIndex(per => per.n === 'S');
+        if (selfIndex === -1) return;
+
+        const selfPeriod = {...temp[selfIndex], grades: underPer === 'SELF' ? [9, 10] : [11, 12]};
+        temp.splice(selfIndex, 1, selfPeriod, {
+            n: 'H', s: selfPeriod.s, e: selfPeriod.e,
+            grades: upperPer === 'Study Hall' ? [11, 12] : [9, 10]
+        });
+        return temp;
     }
 
     // If the event is neither an alternate schedule nor a no-school day, return
