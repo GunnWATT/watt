@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import {defaultUserData, UserData} from '../contexts/UserDataContext';
+import {deleteField} from 'firebase/firestore';
 
 
 // Returns the localStorage-backed `userData` object, updating whenever localStorage updates.
@@ -49,7 +50,8 @@ export function deepmerge<T extends {}, V extends T>(a: T, b: V) {
     return newObj;
 }
 
-// Returns the updates that need to be made so that b can become the shape of a
+// Returns the updates that need to be made so that `b` can become the shape of `a`, for use with
+// `bulUpdateFirebaseUserData()`.
 // https://github.com/GunnWATT/watt/commit/8c5ed5c96a5351fa65b085c7e1ecfc99f40003d7
 export function deepdifferences(a: { [key: string]: any }, b: { [key: string]: any }) {
     const diff: { [key: string]: any } = {};
@@ -67,6 +69,11 @@ export function deepdifferences(a: { [key: string]: any }, b: { [key: string]: a
                 }
             }
         }
+    }
+
+    // Delete all extra fields in `b`.
+    for (const key in b) {
+        if (!(key in a)) diff[key] = deleteField();
     }
 
     return diff;

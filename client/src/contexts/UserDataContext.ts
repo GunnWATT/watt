@@ -18,7 +18,6 @@ export type SgyAssignmentModified = Partial<CustomAssignment> & {id: string}; //
 export type CustomLabel = { id: string, name: string, color: string };
 
 export type UserData = {
-    v: number,
     classes: {
         1: SgyPeriodData, 2: SgyPeriodData, 3: SgyPeriodData, 4: SgyPeriodData,
         5: SgyPeriodData, 6: SgyPeriodData, 7: SgyPeriodData, S: SgyPeriodData,
@@ -57,7 +56,6 @@ export type SgyData = {
 export type SgyPeriod = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '0' | 'S';
 
 export const defaultUserData: UserData = {
-    v: 0,
     clubs: [],
     staff: [],
     barcodes: "[]",

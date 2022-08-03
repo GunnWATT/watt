@@ -29,11 +29,15 @@ export default function FirebaseUserDataProvider(props: {children: ReactNode}) {
         }
         const firebaseData = firebaseDoc.data();
         const merged = deepmerge(defaultUserData, firebaseData as any);
-        const changes = deepdifferences(merged, firebaseData);
+
+        // Update `userData.id` if it's set to the default value
+        if (merged.id === '00000') merged.id = auth.currentUser!.email!.slice(2, 7);
 
         // Only update firestore if changes exist
+        const changes = deepdifferences(merged, firebaseData);
         if (Object.entries(changes).length)
             bulkUpdateFirebaseUserData(changes, auth, firestore);
+
         localStorage.setItem('data', JSON.stringify(merged));
     }, [status, firebaseDoc]);
 

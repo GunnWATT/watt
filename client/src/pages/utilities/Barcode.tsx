@@ -48,11 +48,6 @@ export default function Barcode() {
         setBarcodes(JSON.parse(userData.barcodes));
     }, [userData.barcodes])
 
-    // The barcode of the logged in user or DEFAULT_BARCODE if the user or email is null
-    const youCode = auth.currentUser?.email
-        ? '950' + auth.currentUser.email.slice(2, 7)
-        : DEFAULT_BARCODE;
-
 
     return (
         <>
@@ -63,7 +58,7 @@ export default function Barcode() {
             </p>
             <hr />
 
-            <BarcodeRow you name="You" code={youCode} />
+            <BarcodeRow you name="You" code={`950${userData.id}`} />
 
             {barcodes.map(([name, code], index) => (
                 <BarcodeRow name={name} code={code}
