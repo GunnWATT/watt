@@ -18,16 +18,17 @@ export type SgyAssignmentModified = Partial<CustomAssignment> & {id: string}; //
 export type CustomLabel = { id: string, name: string, color: string };
 
 export type UserData = {
+    clubs: string[],
+    staff: string[],
+    barcodes: string, // Stringified [string, string][] because firestore doesn't support nested arrays
     classes: {
         1: SgyPeriodData, 2: SgyPeriodData, 3: SgyPeriodData, 4: SgyPeriodData,
         5: SgyPeriodData, 6: SgyPeriodData, 7: SgyPeriodData, S: SgyPeriodData,
         0: SgyPeriodData, 8: SgyPeriodData
     },
     options: {theme: string, time: string, period0: boolean, period8: boolean, clock: boolean, sgy: boolean},
-    clubs: string[],
-    staff: string[],
     id: string,
-    barcodes: string, // stringified [string, string][] because firestore doesn't support nested arrays
+    gradYear: number, // The year (eg. 2023) or `0` if unset
     sgy: {
         key: string, 
         sec: string, 
@@ -37,7 +38,7 @@ export type UserData = {
             modified: SgyAssignmentModified[],
             labels: CustomLabel[]
         }
-    },
+    }
 };
 
 type SgyCourseData = {
@@ -80,6 +81,7 @@ export const defaultUserData: UserData = {
         sgy: false
     },
     id: '00000',
+    gradYear: 0,
     sgy: {
         key: '',
         sec: '',

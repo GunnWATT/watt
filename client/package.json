@@ -12,6 +12,7 @@
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",
     "react-hotkeys-hook": "^3.4.6",
+    "react-icons": "^4.4.0",
     "react-page-visibility": "^7.0.0",
     "react-responsive": "^9.0.0-beta.10",
     "react-router-dom": "^6.3.0",

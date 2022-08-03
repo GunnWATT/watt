@@ -7,11 +7,11 @@ import AlternatesContext, {Alternates} from '../contexts/AlternatesContext';
 
 // Utils
 import {getSchedule} from '@watt/shared/util/schedule';
-import {PeriodObj} from '@watt/shared/data/schedule';
+import {SCHOOL_END_EXCLUSIVE, PeriodObj} from '@watt/shared/data/schedule';
 
 
-// Returns the Gunn schedule for a day given a Moment object, returning `null` if there is no school on that day
-// and filtering out periods 0 and 8 based on userData preferences.
+// Returns the Gunn schedule for a day given a Moment object, returning `null` if there is no school on that day,
+// filtering out periods 0 and 8 and grade-specific periods based on `userData` settings.
 export function useSchedule(date: DateTime) {
     const [periods, setPeriods] = useState<PeriodObj[] | null>(null);
     const [alternate, setAlternate] = useState(false);
@@ -26,9 +26,10 @@ export function useSchedule(date: DateTime) {
     useEffect(() => {
         const {periods, alternate} = getSchedule(date, alternates);
 
-        setPeriods(periods && periods.filter(({n}) => {
+        setPeriods(periods && periods.filter(({n, grades}) => {
             if (n === '0' && !userData.options.period0) return false;
             if (n === '8' && !userData.options.period8) return false;
+            if (grades && userData.gradYear) return grades.includes(12 - (userData.gradYear - SCHOOL_END_EXCLUSIVE.year));
             return true;
         }));
         setAlternate(alternate);
