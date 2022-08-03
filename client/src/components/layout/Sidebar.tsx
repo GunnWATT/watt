@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
+import {useScreenType} from '../../hooks/useScreenType';
 
 // Authentication
 import {useSigninCheck} from 'reactfire';
@@ -15,15 +16,15 @@ import logo from '../../assets/watt.png';
 import {Home, CheckSquare, Users, Settings, Tool, ChevronRight, ChevronLeft} from 'react-feather';
 
 
-type SidebarProps = {forceCollapsed?: boolean};
-export default function Sidebar(props: SidebarProps) {
-    const {forceCollapsed} = props;
+export default function Sidebar() {
+    const screenType = useScreenType();
+    const forceCollapsed = screenType === 'smallScreen';
 
     // Authentication
     const {status, data: signInCheckResult} = useSigninCheck();
 
     // Collapse
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(!forceCollapsed);
     const toggle = () => setIsOpen(!isOpen);
 
     // Unideal but oh well
