@@ -175,13 +175,16 @@ export default function Testing() {
                             start={currTime.minus({minute: 15})}
                             end={currTime.plus({minute: 15})}
                             format="h:mm a"
+                            grades={[9, 10]}
                         />
                         <Period
                             name="5 · Finished"
                             color={parsePeriodColor(5, userData)}
+                            note="Assembly #1; not to be confused with assembly #2."
                             start={currTime.minus({minute: 50})}
                             end={currTime.minus({minute: 20})}
                             format="h:mm a"
+                            grades={[11, 12]}
                         />
                         <Period
                             name="6 · 24-Hour"

@@ -48,16 +48,17 @@ export default function Periods(props: PeriodsProps) {
                     School ends at <strong>{end.toFormat(format)}</strong> today.
                 </p>
                 {displayIndicator && <PeriodIndicator startTime={periods![0].s}/>}
-                {periods!.map(({n, s, e, note}) => (
+                {periods!.map(({n, s, e, note, grades}) => (
                     <Period
                         name={parsePeriodName(n, userData)}
                         color={parsePeriodColor(n, userData)}
-                        key={n}
+                        key={n + s + e + note + grades}
                         start={viewDate.startOf('day').plus({minutes: s}).toLocal()} // Convert PST times back to local timezone
                         end={viewDate.startOf('day').plus({minutes: e}).toLocal()}
                         format={format}
                         zoom={classes[n]?.l}
                         note={note}
+                        grades={grades}
                     />
                 ))}
             </>

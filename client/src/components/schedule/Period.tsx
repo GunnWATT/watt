@@ -17,10 +17,10 @@ import clubs from '@watt/shared/data/clubs';
 
 type PeriodProps = {
     start: DateTime, end: DateTime,
-    name: string, color: string, format: string, zoom?: string, note?: string
+    name: string, color: string, format: string, zoom?: string, note?: string, grades?: number[]
 };
 export default function Period(props: PeriodProps) {
-    const {start, end, name, color, format, zoom, note} = props;
+    const {start, end, name, color, format, zoom, note, grades} = props;
     const duration = start.until(end); // Duration representing the period
 
     const now = useContext(CurrentTimeContext);
@@ -47,6 +47,21 @@ export default function Period(props: PeriodProps) {
         .filter(clubOccurring)
         .map(id => <PillClubComponent {...clubs.data[id]} id={id} />), [start]);
 
+    const header = (
+        <>
+            <h2 className="text-xl">{name}</h2>
+            {grades && (
+                <span className="flex gap-1">
+                    {grades.map(grade => (
+                        <span className="rounded-full px-2 py-1 text-xs h-max bg-black/10 dark:bg-black/20">
+                            {grade}th
+                        </span>
+                    ))}
+                </span>
+            )}
+        </>
+    )
+
     return (
         <div className="border-none rounded-md shadow-lg mb-4 p-5 relative" style={{backgroundColor: color}}>
             {zoom && <a className="absolute secondary top-6 right-6" href={zoom} rel="noopener noreferrer" target="_blank"><Link/></a>}
@@ -54,7 +69,7 @@ export default function Period(props: PeriodProps) {
                 <Disclosure>
                     {({open}) => (<>
                         <Disclosure.Button className="flex gap-2 items-center mb-2">
-                            <h2 className="text-xl">{name}</h2>
+                            {header}
                             {open ? (
                                 <ChevronUp className="h-6 w-6 rounded-full p-1 bg-black/10 dark:bg-black/20" />
                             ) : (
@@ -66,7 +81,11 @@ export default function Period(props: PeriodProps) {
                         </Disclosure.Panel>
                     </>)}
                 </Disclosure>
-            ) : <h2 className="text-xl mb-2">{name}</h2>}
+            ) : (
+                <div className="flex gap-2 items-center mb-2">
+                    {header}
+                </div>
+            )}
 
             {pinned.length > 0 && (
                 <p className="flex gap-1 mb-1">{pinned}</p>
