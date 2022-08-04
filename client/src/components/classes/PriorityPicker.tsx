@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Popover } from '@headlessui/react';
-import { Bookmark } from 'react-feather';
+import { FiBookmark } from 'react-icons/all';
 
 // Components
 import AnimatedPopover from '../layout/AnimatedPopover';
@@ -28,7 +28,7 @@ export default function PriorityPicker(props: PriorityPickerProps) {
                 {icon ? (
                     icon(priority)
                 ) : (
-                    <Bookmark color={parsePriority(priority, userData)} size={30} />
+                    <FiBookmark color={parsePriority(priority, userData)} size={30} />
                 )}
             </Popover.Button>
 

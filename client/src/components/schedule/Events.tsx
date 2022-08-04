@@ -6,7 +6,7 @@ import Event, {GCalEvent} from './Event';
 import CenteredMessage from '../layout/CenteredMessage';
 
 // Icons
-import {RefreshCw} from 'react-feather';
+import {FiRefreshCw} from 'react-icons/all';
 
 
 type EventsProps = {
@@ -46,7 +46,7 @@ export default function Events(props: EventsProps) {
             {eventsError && (
                 <CenteredMessage>
                     <span>Error fetching events.</span>
-                    <RefreshCw onClick={fetchEvents} className="cursor-pointer" />
+                    <FiRefreshCw onClick={fetchEvents} className="h-6 w-6 cursor-pointer" />
                 </CenteredMessage>
             )}
             {!eventsError && !events && <CenteredMessage>Loading events...</CenteredMessage>}

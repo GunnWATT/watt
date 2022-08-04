@@ -1,7 +1,7 @@
 import {useContext, CSSProperties, useRef, useEffect, ReactNode} from 'react';
 import {Popover, Transition} from '@headlessui/react';
 import {DateTime} from 'luxon';
-import {ChevronDown, ChevronLeft, ChevronRight, ChevronUp} from 'react-feather'
+import {FiChevronDown, FiChevronLeft, FiChevronRight, FiChevronUp} from 'react-icons/all'
 
 // Components
 import AnimatedPopover from '../layout/AnimatedPopover';
@@ -29,7 +29,7 @@ export default function DateSelector(props: DateSelectorProps) {
     return (
         <div className="relative z-20 mb-8 flex justify-center gap-3">
             <button onClick={decDay}>
-                <ChevronLeft/>
+                <FiChevronLeft className="w-6 h-6" />
             </button>
 
             <Popover className="relative flex flex-col">
@@ -48,7 +48,7 @@ export default function DateSelector(props: DateSelectorProps) {
             </Popover>
 
             <button onClick={incDay}>
-                <ChevronRight/>
+                <FiChevronRight className="w-6 h-6" />
             </button>
         </div>
     );
@@ -218,24 +218,24 @@ function TimeSelector(props: TimeSelectorProps) {
     return (
         <section className="flex gap-3 px-4 items-center justify-center text-[3rem]">
             <TimePickerColumn>
-                <ChevronUp size={40} onClick={incHour} className="cursor-pointer" />
+                <FiChevronUp size={40} onClick={incHour} className="cursor-pointer" />
                 <input
                     className="text-center w-20 bg-content-secondary dark:bg-content-secondary-dark rounded-md"
                     type="text"
                     value={currTime.toFormat(showMeridiem ? 'hh' : 'HH')}
                     onChange={(e) => setTimeValue(e.target.value, 'hour')}
                 />
-                <ChevronDown size={40} onClick={decHour} className="cursor-pointer" />
+                <FiChevronDown size={40} onClick={decHour} className="cursor-pointer" />
             </TimePickerColumn>
             <TimePickerColumn>
-                <ChevronUp size={40} onClick={incMinute} className="cursor-pointer" />
+                <FiChevronUp size={40} onClick={incMinute} className="cursor-pointer" />
                 <input
                     className="text-center w-20 bg-content-secondary dark:bg-content-secondary-dark rounded-md"
                     type="text"
                     value={currTime.toFormat('mm')}
                     onChange={(e) => setTimeValue(e.target.value, 'minute')}
                 />
-                <ChevronDown size={40} onClick={decMinute} className="cursor-pointer" />
+                <FiChevronDown size={40} onClick={decMinute} className="cursor-pointer" />
             </TimePickerColumn>
             {showMeridiem && (
                 <TimePickerColumn>

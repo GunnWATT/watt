@@ -12,8 +12,8 @@ import GoogleSignOutBtn from '../firebase/GoogleSignOutBtn';
 import Badge from './Badge';
 
 // Icons
+import {FiHome, FiCheckSquare, FiUsers, FiSettings, FiTool, FiChevronLeft} from 'react-icons/all';
 import logo from '../../assets/watt.png';
-import {Home, CheckSquare, Users, Settings, Tool, ChevronRight, ChevronLeft} from 'react-feather';
 
 
 export default function Sidebar() {
@@ -39,7 +39,7 @@ export default function Sidebar() {
             <div className={'p-4 text-lg bg-sidebar dark:bg-sidebar-dark fixed top-0 bottom-0 flex flex-col transition-[width] duration-[400ms] overflow-hidden whitespace-nowrap ' + (isOpen ? 'w-56' : 'w-20')}>
                 {/* Toggler */}
                 <span className="ml-auto mb-4 p-2 cursor-pointer" onClick={toggle}>
-                    {isOpen ? <ChevronLeft/> : <ChevronRight/>}
+                    <FiChevronLeft className={'h-6 w-6' + (!isOpen ? ' rotate-180' : '')} />
                 </span>
 
                 {/* Heading */}
@@ -52,13 +52,13 @@ export default function Sidebar() {
 
                 {/* Nav */}
                 <nav className="flex flex-col gap-3 mt-3 h-full">
-                    <SidebarItem to="/" icon={Home}>Home</SidebarItem>
-                    <SidebarItem to="/classes" icon={CheckSquare}>
+                    <SidebarItem to="/" icon={FiHome}>Home</SidebarItem>
+                    <SidebarItem to="/classes" icon={FiCheckSquare}>
                         Classes<Badge>Beta</Badge>
                     </SidebarItem>
-                    <SidebarItem to="/clubs" icon={Users}>Clubs</SidebarItem>
-                    <SidebarItem to="/utilities" icon={Tool}>Utilities</SidebarItem>
-                    <SidebarItem to="/settings" icon={Settings}>Settings</SidebarItem>
+                    <SidebarItem to="/clubs" icon={FiUsers}>Clubs</SidebarItem>
+                    <SidebarItem to="/utilities" icon={FiTool}>Utilities</SidebarItem>
+                    <SidebarItem to="/settings" icon={FiSettings}>Settings</SidebarItem>
 
                     {/* Bottom Account Status Button */}
                     {signInCheckResult?.signedIn ? (

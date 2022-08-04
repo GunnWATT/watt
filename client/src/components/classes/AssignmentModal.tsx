@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import {Dialog} from '@headlessui/react';
 import { useAuth, useFirestore } from 'reactfire';
-import { Square, CheckSquare, Link, Edit, Trash2, SkipBack } from 'react-feather';
+import { FiSquare, FiCheckSquare, FiEdit, FiTrash2, FiSkipBack } from 'react-icons/fi';
 import {DateTime} from 'luxon';
 
 // Components
@@ -46,7 +46,7 @@ export default function AssignmentModal(props: AssignmentModalProps) {
     const isCustomAssignment = item.id.startsWith('W');
     const modified = !isCustomAssignment && userData.sgy.custom.modified.some(a => a.id === item.id);
 
-    const CompletedIcon = !item.completed ? Square : CheckSquare;
+    const CompletedIcon = !item.completed ? FiSquare : FiCheckSquare;
 
 
     return (
@@ -56,8 +56,7 @@ export default function AssignmentModal(props: AssignmentModalProps) {
                 <span className="flex items-center gap-2">
                     {item.timestamp && (
                         <CompletedIcon
-                            size={24}
-                            className="cursor-pointer flex-none"
+                            className="w-6 h-6 cursor-pointer flex-none"
                             onClick={() => toggleCompleted()}
                         />
                     )}
@@ -91,19 +90,19 @@ export default function AssignmentModal(props: AssignmentModalProps) {
                         {item.timestamp.toLocaleString(DateTime.TIME_SIMPLE)} on {item.timestamp.toLocaleString(DATE_MED_NO_YEAR)}
                     </AssignmentTimestamp>
 
-                    <Edit
-                        className="cursor-pointer text-theme dark:text-theme-dark ml-auto"
+                    <FiEdit
+                        className="w-6 h-6 cursor-pointer text-theme dark:text-theme-dark ml-auto"
                         onClick={() => setEditing(true)}
                     />
                     {isCustomAssignment && (
-                        <Trash2
-                            className="cursor-pointer text-theme dark:text-theme-dark"
+                        <FiTrash2
+                            className="w-6 h-6 cursor-pointer text-theme dark:text-theme-dark"
                             onClick={deleteCustom}
                         />
                     )}
                     {modified && (
-                        <SkipBack
-                            className="cursor-pointer text-theme dark:text-theme-dark"
+                        <FiSkipBack
+                            className="w-6 h-6 cursor-pointer text-theme dark:text-theme-dark"
                             onClick={reset}
                         />
                     )}

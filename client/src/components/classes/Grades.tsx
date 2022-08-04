@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import {Disclosure} from '@headlessui/react';
-import { ChevronDown, ChevronRight, ChevronUp } from 'react-feather';
+import { FiChevronDown, FiChevronRight, FiChevronUp } from 'react-icons/all';
 
 // Components
 import Dot from '../layout/Dot';
@@ -28,11 +28,7 @@ export default function Grades(props: GradesProps) {
             {({open}) => (<>
                 <Disclosure.Button className="flex gap-2 items-end text-3xl font-semibold my-3">
                     Grades
-                    {open ? (
-                        <ChevronDown size={28} className="cursor-pointer" />
-                    ) : (
-                        <ChevronRight size={28} className="cursor-pointer" />
-                    )}
+                    <FiChevronRight size={28} className={'cursor-pointer transition duration-150' + (open ? ' rotate-90' : '')} />
                 </Disclosure.Button>
 
                 <Disclosure.Panel className="flex flex-col gap-2 px-4 py-3 rounded-lg bg-content-secondary/50 dark:bg-content-secondary-dark/50 mb-4">

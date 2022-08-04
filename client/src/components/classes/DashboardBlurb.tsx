@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth, useFirestore } from 'reactfire';
-import { CheckSquare, Square } from 'react-feather';
+import { FiCheckSquare, FiSquare } from 'react-icons/all';
 
 // Components
 import AssignmentModal from './AssignmentModal';
@@ -34,14 +34,14 @@ function BlurbAssignment(props: BlurbAssignmentProps) {
 
     const [modal, setModal] = useState(false);
 
-    const CheckBox = item.completed ? CheckSquare : Square;
+    const CheckBox = item.completed ? FiCheckSquare : FiSquare;
 
     return (
         <div
             className="flex items-center bg-background dark:bg-content-dark rounded p-4 gap-3"
             style={{ borderLeft: `4px solid ${parsePeriodColor(item.period, userData)}`}}
         >
-            <CheckBox className="cursor-pointer flex-none" onClick={toggleCompleted} />
+            <CheckBox className="w-6 h-6 cursor-pointer flex-none" onClick={toggleCompleted} />
             <div className={'flex-grow cursor-pointer min-w-0' + (item.completed ? ' line-through' : '')} onClick={() => setModal(!modal)}>
                 <div className="text-lg overflow-hidden overflow-ellipsis">
                     {/* TODO: I'm leaving this shortify in and excluding 'whitespace-nowrap' from the class */}

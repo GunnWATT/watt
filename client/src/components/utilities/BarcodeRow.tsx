@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {Dialog} from '@headlessui/react';
-import {Eye, X} from 'react-feather';
+import {FaEye, MdClose} from 'react-icons/all';
 
 
 type BarcodeRowProps = {
@@ -84,8 +84,8 @@ export default function BarcodeRow(props: BarcodeRowProps) {
                     />
                 </div>
                 <div className="flex flex-col gap-4 p-4">
-                    {!you && <X className="cursor-pointer" onClick={() => removeBarcode && removeBarcode()}/>}
-                    <Eye className="cursor-pointer" onClick={() => setOverlay(true)}/>
+                    {!you && <MdClose className="w-6 h-6 cursor-pointer" onClick={() => removeBarcode && removeBarcode()}/>}
+                    <FaEye className="w-6 h-6 cursor-pointer" onClick={() => setOverlay(true)}/>
                 </div>
             </div>
 

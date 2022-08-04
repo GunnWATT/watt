@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useScreenType } from '../../hooks/useScreenType';
-import { FilePlus } from 'react-feather';
+import { MdCreate } from 'react-icons/all';
 
 // Components
 import Assignments from '../../components/classes/Assignments';
@@ -83,7 +83,7 @@ export default function Upcoming() {
 
                 <section className="flex items-center gap-2.5 mb-4">
                     <ContentButton onClick={() => setCreating(!creating)}>
-                        <FilePlus size={18} /> Create assignment
+                        <MdCreate size={18} className="-ml-1" /> Create assignment
                     </ContentButton>
                     <CreateAssignmentModal open={creating} setOpen={setCreating} />
 

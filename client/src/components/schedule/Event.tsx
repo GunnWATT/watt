@@ -1,7 +1,7 @@
 import {useContext} from 'react';
 import {Disclosure} from '@headlessui/react';
 import {DateTime} from 'luxon';
-import {ChevronUp, ChevronDown} from 'react-feather';
+import {FiChevronDown} from 'react-icons/all';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
@@ -48,7 +48,7 @@ export default function Event(props: GCalEvent) {
                         {location && <p className="secondary">@ {location}</p>}
                     </div>
                     <div className="flex-none">
-                        {open ? <ChevronUp/> : <ChevronDown/>}
+                        <FiChevronDown className={'w-6 h-6' + (open ? ' rotate-180' : '')} />
                     </div>
                 </Disclosure.Button>
                 <Disclosure.Panel className="flex flex-col gap-2 secondary text-sm mt-2 whitespace-pre-wrap">

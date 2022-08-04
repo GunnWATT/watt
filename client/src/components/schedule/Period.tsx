@@ -1,6 +1,6 @@
 import {useContext, useMemo} from 'react';
 import { Disclosure } from '@headlessui/react';
-import {ChevronUp, ChevronDown, Link} from 'react-feather';
+import {FiChevronDown, FiLink} from 'react-icons/all';
 import {DateTime} from 'luxon';
 
 // Components
@@ -64,17 +64,13 @@ export default function Period(props: PeriodProps) {
 
     return (
         <div className="border-none rounded-md shadow-lg mb-4 p-5 relative" style={{backgroundColor: color}}>
-            {zoom && <a className="absolute secondary top-6 right-6" href={zoom} rel="noopener noreferrer" target="_blank"><Link/></a>}
+            {zoom && <a className="absolute secondary top-6 right-6" href={zoom} rel="noopener noreferrer" target="_blank"><FiLink /></a>}
             {note ? (
                 <Disclosure>
                     {({open}) => (<>
                         <Disclosure.Button className="flex gap-2 items-center mb-2">
                             {header}
-                            {open ? (
-                                <ChevronUp className="h-6 w-6 rounded-full p-1 bg-black/10 dark:bg-black/20" />
-                            ) : (
-                                <ChevronDown className="h-6 w-6 rounded-full p-1 bg-black/10 dark:bg-black/20" />
-                            )}
+                            <FiChevronDown className={'h-6 w-6 rounded-full p-1 bg-black/10 dark:bg-black/20' + (open ? ' rotate-180' : '')} />
                         </Disclosure.Button>
                         <Disclosure.Panel className="secondary bg-black/10 dark:bg-black/20 rounded text-md p-2 -mx-2 mb-2 whitespace-pre-wrap">
                             {note}

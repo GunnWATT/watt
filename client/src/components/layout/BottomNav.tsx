@@ -8,8 +8,7 @@ import GoogleSignInBtn from '../firebase/GoogleSignInBtn';
 import GoogleSignOutBtn from '../firebase/GoogleSignOutBtn';
 
 // Icons
-// import logo from '../../assets/watt.png';
-import {Home, CheckSquare, Users, Settings, Tool, ChevronUp, ChevronDown} from 'react-feather';
+import {FiHome, FiCheckSquare, FiUsers, FiSettings, FiTool, FiChevronUp, FiChevronDown} from 'react-icons/all';
 
 
 export default function BottomNav() {
@@ -19,16 +18,16 @@ export default function BottomNav() {
         <footer className="z-10 text-lg bg-sidebar dark:bg-sidebar-dark fixed bottom-0 left-0 w-screen">
             <nav className="flex justify-between py-3 px-8 max-w-lg mx-auto">
                 {/* Nav */}
-                <SidebarItem to="/clubs" icon={Users} />
-                <SidebarItem to="/classes" icon={CheckSquare} />
-                <SidebarItem to="/" icon={Home} />
-                <SidebarItem to="/utilities" icon={Tool} />
+                <SidebarItem to="/clubs" icon={FiUsers} />
+                <SidebarItem to="/classes" icon={FiCheckSquare} />
+                <SidebarItem to="/" icon={FiHome} />
+                <SidebarItem to="/utilities" icon={FiTool} />
 
                 {/* Dropup */}
-                <Popover className="item relative flex">
+                <Popover className="relative flex">
                     {({open}) => (<>
                         <Popover.Button className="p-2">
-                            {open ? <ChevronDown /> : <ChevronUp />}
+                            {open ? <FiChevronDown className="w-6 h-6" /> : <FiChevronUp className="w-6 h-6" />}
                         </Popover.Button>
 
                         {/* TODO: this can use a custom transition where it translates up instead of just `AnimatedPopover` */}
@@ -40,7 +39,7 @@ export default function BottomNav() {
                                 <GoogleSignInBtn mobile />
                             )}
 
-                            <SidebarItem to="/settings" icon={Settings} />
+                            <SidebarItem to="/settings" icon={FiSettings} />
                         </AnimatedPopover>
                     </>)}
                 </Popover>

@@ -1,6 +1,6 @@
 import {ReactNode, useContext} from 'react';
 import {RadioGroup} from '@headlessui/react';
-import {Check, Circle} from 'react-feather';
+import {FiCheck, FiCircle} from 'react-icons/all';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
@@ -78,9 +78,9 @@ function RadioCard(props: RadioCardProps) {
         <RadioGroup.Option value={value} className={({checked}) => `flex items-center gap-4 rounded-lg shadow-md px-5 py-4 cursor-pointer` + (checked ? ' bg-gray-100 dark:bg-background-dark' : ' bg-gray-50/50 dark:bg-zinc-800/30')}>
             {({checked}) => (<>
                 {checked ? (
-                    <Check className="bg-tertiary dark:bg-white/10 rounded-full p-1 flex-none" />
+                    <FiCheck className="w-6 h-6 bg-tertiary dark:bg-white/10 rounded-full p-1 flex-none" />
                 ) : (
-                    <Circle className="text-transparent bg-tertiary dark:bg-white/10 rounded-full p-0.5 flex-none" />
+                    <FiCircle className="w-6 h-6 text-transparent bg-tertiary dark:bg-white/10 rounded-full p-0.5 flex-none" />
                 )}
                 <div>
                     <RadioGroup.Label className="font-medium">{label}</RadioGroup.Label>

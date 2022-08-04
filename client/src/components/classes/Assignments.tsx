@@ -1,7 +1,7 @@
 import {ReactNode, useContext, useState} from 'react';
 import { useAuth, useFirestore } from 'reactfire';
 import {DateTime} from 'luxon';
-import { AlertCircle, CheckSquare, Link, Square } from 'react-feather';
+import { FiSquare, FiCheckSquare, FiLink  } from 'react-icons/fi';
 
 // Components
 import PriorityPicker from './PriorityPicker';
@@ -48,7 +48,7 @@ function Assignment(props: AssignmentProps) {
     const isCustomAssignment = assignment.id.startsWith('W');
     const overdue = assignment.timestamp && assignment.timestamp < currTime;
 
-    const CompletedIcon = !assignment.completed ? Square : CheckSquare;
+    const CompletedIcon = !assignment.completed ? FiSquare : FiCheckSquare;
 
     return (
         <div
@@ -83,7 +83,7 @@ function Assignment(props: AssignmentProps) {
                 <div className="flex">
                     {!isCustomAssignment && (
                         <a href={assignment.link} target="_blank" rel="noopener noreferrer">
-                            <Link size={28} color="var(--primary)" />
+                            <FiLink size={28} color="var(--primary)" />
                         </a>
                     )}
                     <CompletedIcon

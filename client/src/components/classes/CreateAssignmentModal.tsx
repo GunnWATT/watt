@@ -1,7 +1,7 @@
 import {Fragment, useContext, useState} from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { useAuth, useFirestore } from 'reactfire';
-import { Edit, Plus, PlusCircle } from 'react-feather';
+import { FiEdit, FiPlus } from 'react-icons/all';
 import {DateTime} from 'luxon';
 
 // Components
@@ -191,11 +191,11 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
             <section className="flex flex-wrap gap-3 items-center justify-end">
                 <OutlineButton onClick={() => setOpen(false)}>Cancel</OutlineButton>
                 <SuccessOutlineButton disabled={!ready} onClick={create}>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1">
                         {item ? (<>
-                            <Edit /> Edit
+                            <FiEdit className="w-5 h-5" /> Edit
                         </>) : (<>
-                            <PlusCircle /> Create
+                            <FiPlus className="w-5 h-5" /> Create
                         </>)}
                     </div>
                 </SuccessOutlineButton>

@@ -2,7 +2,7 @@ import {Fragment, useState, useEffect} from 'react';
 import {Dialog, Transition} from '@headlessui/react';
 
 // Icons
-import {PlusSquare, Share} from 'react-feather';
+import {FiPlusSquare, FiShare} from 'react-icons/all';
 import homeScreenIcon from '../../assets/home_screen.jpg';
 
 
@@ -62,12 +62,12 @@ export default function InstallModal() {
                             <p className="mb-3">WATT is best experienced when installed as a PWA.</p>
                             <p className="mb-3">To add WATT to your home screen,</p>
                             <ol className="list-decimal list-inside space-y-1 mb-3">
-                                <li>Tap the share button <Share className="inline h-6 w-6 p-1 bg-content-secondary dark:bg-content-secondary-dark rounded-md" />.</li>
+                                <li>Tap the share button <FiShare className="inline h-6 w-6 p-1 bg-content-secondary dark:bg-content-secondary-dark rounded-md" />.</li>
                                 <li>Select <strong>"Add to Home Screen"</strong> in the bottom row.</li>
                                 <div className="p-2 bg-content-secondary dark:bg-content-secondary-dark rounded-lg">
                                     <span className="flex items-center justify-between text-sm font-light p-3 bg-content dark:bg-content-dark rounded-lg">
                                         Add to Home Screen
-                                        <PlusSquare className="h-[1.1rem] w-[1.1rem]" />
+                                        <FiPlusSquare className="h-[1.1rem] w-[1.1rem]" />
                                     </span>
                                 </div>
                                 <li>In the dialogue, tap <strong>"Add"</strong>.</li>

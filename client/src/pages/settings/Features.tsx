@@ -1,7 +1,6 @@
 import {ReactNode, useContext, useState, Fragment} from 'react';
 import {Listbox, Switch, Transition} from '@headlessui/react';
-import {HiSelector} from 'react-icons/hi';
-import {Check, Circle} from 'react-feather';
+import {HiSelector, FiCheck, FiCircle} from 'react-icons/all';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
@@ -21,6 +20,7 @@ export default function Features() {
     // TODO: we use both the `selected` state and `userData` so that UI changes take effect immediately without having
     // to wait for firebase userData to be set; should we do this for the radio toggles too?
     const changeGradYear = async (value: number) => {
+        console.log('aaa')
         setSelected(value);
         await updateUserData('gradYear', value, auth, firestore)
     };
@@ -62,13 +62,13 @@ export default function Features() {
                         >
                             <Listbox.Options className="absolute z-20 mt-1 w-64 py-1 rounded-md bg-white dark:bg-content-secondary-dark shadow-lg">
                                 {years.map(year => (
-                                    <Listbox.Option key={year} value={year} className={({active}) => 'flex gap-2 cursor-pointer px-4 py-1.5' + (active ? ' bg-gray-100 dark:bg-background-dark' : '')}>
+                                    <Listbox.Option key={year} value={year} className={({active}) => 'flex items-center gap-2 cursor-pointer px-4 py-1.5' + (active ? ' bg-gray-100 dark:bg-background-dark' : '')}>
                                         {({selected, active}) => (
                                             <>
                                                 {selected ? (
-                                                    <Check className="bg-tertiary dark:bg-white/10 rounded-full p-1 flex-none" />
+                                                    <FiCheck className="w-5 h-5 bg-tertiary dark:bg-white/10 rounded-full p-1 flex-none" />
                                                 ) : (
-                                                    <Circle className="text-transparent bg-tertiary dark:bg-white/10 rounded-full p-0.5 flex-none" />
+                                                    <FiCircle className="w-5 h-5 text-transparent bg-tertiary dark:bg-white/10 rounded-full p-0.5 flex-none" />
                                                 )}
                                                 <span className={(selected ? 'font-medium' : '') + (!active ? ' secondary' : '')}>
                                                     {year || 'Unset'}

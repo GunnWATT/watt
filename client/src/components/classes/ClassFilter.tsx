@@ -1,6 +1,6 @@
 import {useContext, useState, ReactNode, MouseEventHandler} from 'react';
 import {Popover, Transition} from '@headlessui/react';
-import {Plus} from 'react-feather';
+import {FiPlus} from 'react-icons/all';
 
 // Components
 import AnimatedPopover from '../layout/AnimatedPopover';
@@ -80,7 +80,7 @@ export default function ClassFilter(props: ClassFilterProps) {
 export function PopoverPlus(props: {className?: string}) {
     return (
         <Popover.Button className={props.className}>
-            <Plus className="rounded-full bg-background dark:bg-background-dark p-1" />
+            <FiPlus className="w-6 h-6 rounded-full bg-background dark:bg-background-dark p-1" />
         </Popover.Button>
     )
 }
