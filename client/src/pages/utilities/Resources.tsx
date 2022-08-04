@@ -4,6 +4,7 @@ import {ReactNode, useState} from 'react';
 import CenteredModal from '../../components/layout/CenteredModal';
 import CloseButton from '../../components/layout/CloseButton';
 import NYTimes from '../../components/resources/NYTimes';
+import LibraryCard from '../../components/resources/LibraryCard';
 import Support from '../../components/resources/Support';
 
 
@@ -13,7 +14,10 @@ export default function Resources() {
             <h1 className="mb-6">Resources</h1>
             <section className="flex flex-col gap-3">
                 <ArticleCard name="New York Times" element={<NYTimes />}>
-                    Instructions for how to register for a free New York Times subscription.
+                    How to register for a free New York Times subscription.
+                </ArticleCard>
+                <ArticleCard name="Library Card" element={<LibraryCard />}>
+                    How to access your PAUSD-provided Palo Alto Library account.
                 </ArticleCard>
                 <ArticleCard name="Crisis Support" element={<Support />}>
                     Resources for students in crisis.
