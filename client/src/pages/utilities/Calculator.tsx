@@ -63,7 +63,7 @@ function CalculatorInput(props: CalculatorInputProps) {
             <span className="relative">
                 <input
                     type="text"
-                    className="rounded w-48 bg-content-secondary dark:bg-content-secondary-dark px-2 py-1 pr-7"
+                    className="rounded w-48 bg-content-secondary dark:bg-content-secondary-dark px-2 py-1 pr-7 focus:outline-none focus-visible:ring-2 focus-visible:ring-[0xFF7DADD9]"
                     value={value}
                     onChange={(e) => !isNaN(Number(e.target.value)) && setValue(e.target.value)}
                 />

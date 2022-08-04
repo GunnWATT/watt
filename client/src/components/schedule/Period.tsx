@@ -53,7 +53,7 @@ export default function Period(props: PeriodProps) {
             {grades && (
                 <span className="flex gap-1">
                     {grades.map(grade => (
-                        <span className="rounded-full px-2 py-1 text-xs h-max bg-black/10 dark:bg-black/20">
+                        <span className="rounded-full px-2 py-1 text-xs h-max bg-black/10 dark:bg-black/20" key={grade}>
                             {grade}th
                         </span>
                     ))}
@@ -84,7 +84,7 @@ export default function Period(props: PeriodProps) {
             )}
 
             {pinned.length > 0 && (
-                <p className="flex gap-1 mb-1">{pinned}</p>
+                <div className="flex gap-1 mb-1">{pinned}</div>
             )}
 
             <h3 className="secondary">{duration.toFormat(format)}</h3>

@@ -28,7 +28,7 @@ export default function DateSelector(props: DateSelectorProps) {
 
     return (
         <div className="relative z-20 mb-8 flex justify-center gap-3">
-            <button onClick={decDay}>
+            <button onClick={decDay} className="focus:outline-none">
                 <FiChevronLeft className="w-6 h-6" />
             </button>
 
@@ -47,7 +47,7 @@ export default function DateSelector(props: DateSelectorProps) {
                 </AnimatedPopover>
             </Popover>
 
-            <button onClick={incDay}>
+            <button onClick={incDay} className="focus:outline-none">
                 <FiChevronRight className="w-6 h-6" />
             </button>
         </div>
