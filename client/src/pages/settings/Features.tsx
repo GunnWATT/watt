@@ -1,6 +1,9 @@
-import {ReactNode, useContext, useState, Fragment} from 'react';
-import {Listbox, Switch, Transition} from '@headlessui/react';
+import {ReactNode, useContext, useState} from 'react';
+import {Listbox, Switch} from '@headlessui/react';
 import {HiSelector, FiCheck, FiCircle} from 'react-icons/all';
+
+// Components
+import AnimatedListbox from '../../components/layout/AnimatedListbox';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
@@ -51,34 +54,24 @@ export default function Features() {
                             </span>
                         </Listbox.Button>
 
-                        <Transition
-                            as={Fragment}
-                            enter="transition ease-in duration-100"
-                            enterFrom="opacity-0"
-                            enterTo="opacity-100"
-                            leave="transition ease-in duration-100"
-                            leaveFrom="opacity-100"
-                            leaveTo="opacity-0"
-                        >
-                            <Listbox.Options className="absolute z-20 mt-1 w-64 py-1 rounded-md bg-white dark:bg-content-secondary-dark shadow-lg">
-                                {years.map(year => (
-                                    <Listbox.Option key={year} value={year} className={({active}) => 'flex items-center gap-2 cursor-pointer px-4 py-1.5' + (active ? ' bg-gray-100 dark:bg-background-dark' : '')}>
-                                        {({selected, active}) => (
-                                            <>
-                                                {selected ? (
-                                                    <FiCheck className="w-5 h-5 bg-tertiary dark:bg-white/10 rounded-full p-1 flex-none" />
-                                                ) : (
-                                                    <FiCircle className="w-5 h-5 text-transparent bg-tertiary dark:bg-white/10 rounded-full p-0.5 flex-none" />
-                                                )}
-                                                <span className={(selected ? 'font-medium' : '') + (!active ? ' secondary' : '')}>
-                                                    {year || 'Unset'}
-                                                </span>
-                                            </>
-                                        )}
-                                    </Listbox.Option>
-                                ))}
-                            </Listbox.Options>
-                        </Transition>
+                        <AnimatedListbox className="absolute z-20 mt-1 w-64 py-1 rounded-md bg-white dark:bg-content-secondary-dark shadow-lg">
+                            {years.map(year => (
+                                <Listbox.Option key={year} value={year} className={({active}) => 'flex items-center gap-2 cursor-pointer px-4 py-1.5' + (active ? ' bg-gray-100 dark:bg-background-dark' : '')}>
+                                    {({selected, active}) => (
+                                        <>
+                                            {selected ? (
+                                                <FiCheck className="w-5 h-5 bg-tertiary dark:bg-white/10 rounded-full p-1 flex-none" />
+                                            ) : (
+                                                <FiCircle className="w-5 h-5 text-transparent bg-tertiary dark:bg-white/10 rounded-full p-0.5 flex-none" />
+                                            )}
+                                            <span className={(selected ? 'font-medium' : '') + (!active ? ' secondary' : '')}>
+                                                {year || 'Unset'}
+                                            </span>
+                                        </>
+                                    )}
+                                </Listbox.Option>
+                            ))}
+                        </AnimatedListbox>
                     </div>
                 </Listbox>
 
