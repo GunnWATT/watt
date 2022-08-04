@@ -39,3 +39,6 @@ root.render(
         </FirebaseAppProvider>
     </React.StrictMode>
 );
+
+// Immediately reload the page when a new service worker activates
+navigator.serviceWorker.addEventListener('controllerchange', () => location.reload());
