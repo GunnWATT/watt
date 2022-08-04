@@ -1,9 +1,9 @@
 import {useContext} from 'react';
-import {Popover} from '@headlessui/react';
+import {Listbox} from '@headlessui/react';
 
 // Components
 import {Header} from '../layout/HeaderPage';
-import AnimatedPopover from '../layout/AnimatedPopover';
+import AnimatedListbox from '../layout/AnimatedListbox';
 import Dot from '../layout/Dot';
 
 // Contexts
@@ -27,36 +27,40 @@ export default function ClassesHeader(props: ClassesHeaderProps) {
 
     return (
         <Header>
-            <Popover className="relative max-w-full">
-                <Popover.Button className="flex items-center gap-4 w-full">
-                    <Dot
-                        size={40}
-                        color={currColor}
-                        border={`3px solid ${bgColor(currColor)}`}
-                    />
-                    <h1 className="pb-1 mb-0 overflow-ellipsis overflow-hidden whitespace-nowrap">
-                        {currName}
-                    </h1>
-                </Popover.Button>
-                <AnimatedPopover className="absolute top-[calc(100%_+_10px)] max-w-xs md:max-w-sm flex flex-col py-4 text-primary dark:text-primary-dark bg-content dark:bg-content-dark rounded shadow-2xl z-10">
-                    {classes.map(({name, color, period}) => (
-                        <div
-                            className={'flex items-center gap-2.5 py-1 px-5 cursor-pointer transition duration-100 ' + (period === selected ? 'bg-content-secondary dark:bg-black/20' : 'hover:bg-content-secondary dark:hover:bg-black/20')}
-                            onClick={() => setSelected(period)}
-                            key={period}
-                        >
-                            <Dot
-                                size={30}
-                                color={color}
-                                border={period === selected ? `3px solid ${bgColor(color)}` : undefined}
+            <Listbox value={selected} onChange={setSelected}>
+                <div className="relative max-w-full">
+                    <Listbox.Button className="flex items-center gap-4 w-full focus:outline-none">
+                        <Dot
+                            size={40}
+                            color={currColor}
+                            border={`3px solid ${bgColor(currColor)}`}
+                        />
+                        <h1 className="pb-1 mb-0 overflow-ellipsis overflow-hidden whitespace-nowrap">
+                            {currName}
+                        </h1>
+                    </Listbox.Button>
+                    <AnimatedListbox className="absolute top-[calc(100%_+_10px)] max-w-xs md:max-w-sm flex flex-col py-4 text-primary dark:text-primary-dark bg-content dark:bg-content-dark rounded shadow-2xl z-10 focus:outline-none focus-visible:ring-1 focus-visible:ring-secondary/10 dark:focus-visible:ring-secondary-dark/25">
+                        {classes.map(({name, color, period}) => (
+                            <Listbox.Option
+                                className={({active}) => 'flex items-center gap-2.5 py-1 px-5 cursor-pointer transition duration-100' + (active ? ' bg-content-secondary dark:bg-black/20' : '')}
+                                value={period}
+                                key={period}
                             >
-                                {period}
-                            </Dot>
-                            <p className="overflow-ellipsis overflow-hidden whitespace-nowrap">{name}</p>
-                        </div>
-                    ))}
-                </AnimatedPopover>
-            </Popover>
+                                {({selected}) => (<>
+                                    <Dot
+                                        size={30}
+                                        color={color}
+                                        border={selected ? `3px solid ${bgColor(color)}` : undefined}
+                                    >
+                                        {period}
+                                    </Dot>
+                                    <p className="overflow-ellipsis overflow-hidden whitespace-nowrap">{name}</p>
+                                </>)}
+                            </Listbox.Option>
+                        ))}
+                    </AnimatedListbox>
+                </div>
+            </Listbox>
         </Header>
     )
 }
