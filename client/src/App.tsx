@@ -50,6 +50,7 @@ import {useAlternates} from './hooks/useAlternates';
 // Lazy-loaded pages
 const Testing = lazy(() => import('./pages/Testing'));
 const NYTimes = lazy(() => import('./components/resources/NYTimes'));
+const Adobe = lazy(() => import('./components/resources/Adobe'));
 const LibraryCard = lazy(() => import('./components/resources/LibraryCard'));
 const Support = lazy(() => import('./components/resources/Support'));
 
@@ -150,6 +151,7 @@ export default function App() {
                     </Route>
                     <Route path="/resources" element={<ResourcesLayout />}>
                         <Route path="nytimes" element={<NYTimes />} />
+                        <Route path="adobe" element={<Adobe />} />
                         <Route path="library-card" element={<LibraryCard />} />
                         <Route path="support" element={<Support />} />
                     </Route>

@@ -4,6 +4,7 @@ import {ReactNode, useState} from 'react';
 import CenteredModal from '../../components/layout/CenteredModal';
 import CloseButton from '../../components/layout/CloseButton';
 import NYTimes from '../../components/resources/NYTimes';
+import Adobe from '../../components/resources/Adobe';
 import LibraryCard from '../../components/resources/LibraryCard';
 import Support from '../../components/resources/Support';
 
@@ -15,6 +16,9 @@ export default function Resources() {
             <section className="flex flex-col gap-3">
                 <ArticleCard name="New York Times" element={<NYTimes />}>
                     How to register for a free New York Times subscription.
+                </ArticleCard>
+                <ArticleCard name="Adobe" element={<Adobe />}>
+                    How to access your free Adobe Creative Cloud subscription.
                 </ArticleCard>
                 <ArticleCard name="Library Card" element={<LibraryCard />}>
                     How to access your PAUSD-provided Palo Alto Library account.
