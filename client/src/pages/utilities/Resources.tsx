@@ -44,7 +44,7 @@ function ArticleCard(props: ArticleCardProps) {
                 </p>
             </div>
 
-            <CenteredModal className="relative p-6 md:py-7 md:px-8 mx-2 bg-content dark:bg-content-dark rounded-lg shadow-xl max-h-[90%] overflow-y-auto scrollbar-none" isOpen={isOpen} setIsOpen={setIsOpen}>
+            <CenteredModal className="relative p-6 md:py-7 md:px-8 mx-2 bg-content dark:bg-content-dark rounded-lg shadow-xl box-content max-w-prose max-h-[90%] overflow-y-auto scrollbar-none" isOpen={isOpen} setIsOpen={setIsOpen}>
                 <CloseButton className="absolute top-4 right-4 md:right-6" onClick={() => setIsOpen(false)} />
                 {props.element}
             </CenteredModal>

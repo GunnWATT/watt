@@ -9,13 +9,13 @@ export default function Adobe() {
                 Adobe
             </h1>
 
-            <img src={adobe} alt="Adobe" className="max-w-prose rounded-lg mb-4" />
-            <p className="max-w-prose mb-4">
+            <img src={adobe} alt="Adobe" className="max-w-prose rounded-lg mx-auto mb-4" />
+            <p className="mb-4">
                 All PAUSD students have access to a free Adobe Creative Cloud subscription. Go to <a href="https://adobe.com" target="_blank" rel="noopener noreferrer">adobe.com</a>{' '}
                 and sign in with your PAUSD google account. When prompted, choose to sign in with an <strong>Enterprise ID</strong>.
                 Click "Open Creative Cloud" to download your adobe products of choice!
             </p>
-            <img src={creativeCloud} alt="Creative cloud" className="max-w-prose rounded-lg" />
+            <img src={creativeCloud} alt="Creative cloud" className="max-w-prose rounded-lg mx-auto" />
         </>
     )
 }

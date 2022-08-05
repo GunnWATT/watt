@@ -5,7 +5,7 @@ export default function NYTimes() {
                 New York Times
             </h1>
 
-            <p className="max-w-prose mb-4">
+            <p className="mb-4">
                 All PAUSD students have free access to a New York Times subscription. Register at the link below;
                 when prompted, log in with your PAUSD email. Subscriptions have to be renewed every year.
             </p>
