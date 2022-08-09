@@ -49,12 +49,16 @@ export default function SgyInitResults() {
     }
 
     const disableSchoology = async () => {
-        await updateUserData('options.sgy', false, auth, firestore);
+        await updateUserData('options.sgy', false, auth, firestore).catch(() => {});
         closeDialog();
     }
 
     const enableSchoology = async () => {
-        await updateUserData('options.sgy', true, auth, firestore);
+        // hotfix: add a catch statement to prevent break when firebase malds
+        // when you try to set options.sgy from true to true
+        // this allows you to actually close the modal for resetting schoology
+        // might be the easiest fix idk
+        await updateUserData('options.sgy', true, auth, firestore).catch(() => {}); 
         closeDialog();
     }
 
