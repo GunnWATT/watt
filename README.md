@@ -28,11 +28,9 @@ WATT exposes API endpoints for developers wishing to fetch schedules, alternates
 ## Running Locally
 ###### These instructions assume you have a compatible version of Node installed. Install Node [here](https://nodejs.org/en/).
 
-Before running everything, install all necessary packages by running `npm install` in the root folder (as well 
-as in every subfolder with a package.json; there are a lot of them). This should install all the dependencies required 
-by the client, functions, and scripts and generate `node_modules` in each package and at the root with the installed files.
-
-Some new things are happening too: run `npm run build` in `/functions`, and delete all `package-lock.json` files you find.
+Before running everything, install all necessary packages by running `npm install` in the root folder. This should
+install all the dependencies required by the client, functions, and scripts and generate `node_modules` in each package
+and at the root with the installed files.
 
 The following sections will go over how to run each component of WATT locally.
 
