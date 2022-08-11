@@ -22,12 +22,21 @@ async function getSgyInfo(uid: string) {
 }
 
 // Parses info about the given schoology info string. Ex.
-// `"Study Hall Kaneko (9813 43 FY)"` -> `{ pName: "Study Hall", pTeacher: "Kaneko", term: "FY" }`
+// `"Study Hall Kaneko (9813 43 FY)"` -> `{ pName: "H", pTeacher: "Kaneko", term: "FY" }`
 // `"2 Liberatore (9813 43 FY)"` -> `{ pName: "2", pTeacher: "Liberatore", term: "FY" }`
+// Note: regarding pName, it changes "Study Hall" into "H", "SELF" into "S", and "PRIME" into "P" 
 function getClassInfo(info: string) {
     const match = info.match(/(.+?) (\w+) \(\d+ \d+ (\w+)\)/);
     if (!match) return { pName: '', pTeacher: '', term: null };
-    return { pName: match[1], pTeacher: match[2], term: match[3] };
+    return { pName: pNameToLetter(match[1]), pTeacher: match[2], term: match[3] };
+}
+
+// Turns "Study Hall" into "H"
+function pNameToLetter(pName: string) {
+    if (pName === 'SELF') return 'S'
+    if (pName === 'PRIME') return 'P'
+    if (pName === 'Study Hall') return 'H'
+    return pName;
 }
 
 
@@ -56,10 +65,6 @@ export const init = functions.https.onCall(async (data, context) => {
     for (const element of sgyClasses) {
         let {pName, pTeacher, term} = getClassInfo(element['section_title']);
         if (term === `S${3-SEMESTER}`) continue; // 3 - SEMESTER will rule out S1 courses if SEMESTER is 2, and S2 courses if SEMESTER is 1
-
-        if (pName === 'SELF') pName = 'S'
-        if (pName === 'PRIME') pName = 'P'
-        if (pName === 'Study Hall') pName = 'H'
 
         if (periods.includes(pName)) {
             classes[pName] = {
@@ -145,10 +150,6 @@ export const fetchMaterials = functions.https.onCall(async (data, context) => {
                 let {pName, term} = getClassInfo(sec.section_title);
                 if (term === `S${3 - SEMESTER}`) return false; // 3 - SEMESTER will rule out S1 courses if SEMESTER is 2, and S2 courses if SEMESTER is 1
 
-                if (pName === 'SELF') pName = 'S'
-                if (pName === 'PRIME') pName = 'P'
-                if (pName === 'Study Hall') pName = 'H'
-
                 return periods.includes(pName);
             });
 
@@ -187,7 +188,9 @@ export const fetchMaterials = functions.https.onCall(async (data, context) => {
             const pages = responses[4 * i + 2].page;
             const events = responses[4 * i + 3].event;
 
-            sections[course.section_title.split(' ')[0][0] as SgyPeriod] = {
+            const { pName } = getClassInfo(course.section_title) as { pName: SgyPeriod };
+
+            sections[pName] = {
                 info: course,
                 documents,
                 assignments,
