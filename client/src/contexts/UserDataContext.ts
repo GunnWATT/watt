@@ -52,9 +52,9 @@ export type SgyData = {
     grades: SectionGrade[];
     1?: SgyCourseData, 2?: SgyCourseData, 3?: SgyCourseData, 4?: SgyCourseData,
     5?: SgyCourseData, 6?: SgyCourseData, 7?: SgyCourseData, S?: SgyCourseData,
-    0?: SgyCourseData, 8?: SgyCourseData
+    0?: SgyCourseData, 8?: SgyCourseData, P?: SgyCourseData, H?: SgyCourseData
 };
-export type SgyPeriod = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '0' | 'S';
+export type SgyPeriod = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '0' | 'S' | 'P' | 'H';
 
 export const defaultUserData: UserData = {
     clubs: [],

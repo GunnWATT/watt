@@ -3,9 +3,12 @@ import admin from './util/adminInit';
 import {get} from './util/sgyOAuth';
 
 const SEMESTER = 1; // We are in semester 1
+const CURRENT_YEAR = 2022; // will work for 2022-2023 school year
+
+const YEAR_STR = `${CURRENT_YEAR}-${CURRENT_YEAR+1}`;
 
 const firestore = admin.firestore();
-const periods = ['0', '1', '2', '3', '4', '5', '6', '7', '8', 'SELF'];
+const periods = ['0', '1', '2', '3', '4', '5', '6', '7', '8', 'S', 'P', 'H'];
 
 
 // Get a user's stored firestore sgy info
@@ -18,16 +21,9 @@ async function getSgyInfo(uid: string) {
 }
 
 function getClassInfo(info: string) {
-    const words = info.split(' ');
-    const pRegex = info.match(/\((.+)\)/); 
-    let term = null;
-    if(pRegex) {
-        const parenblock = pRegex[1]; // 2696 1 FY
-        const items = parenblock.split(' '); // [2696, 1, FY]
-        term = items[items.length - 1]; // FY
-    }
-    
-    return { pName: words[0], pTeacher: words[1], term };
+    const match = info.match(/(.+?) (\w+) \(\d+ \d+ (\w+)\)/);
+    if (!match) return { pName: '', pTeacher: '', term: null };
+    return { pName: match[1], pTeacher: match[2], term: match[3] };
 }
 
 type SgyPeriodData = {n: string, c: string, l: string, o: string, s: string};
@@ -51,16 +47,19 @@ export const init = functions.https.onCall(async (data, context) => {
 
     const classes: {[key: string]: SgyPeriodData} = {};
     for (const p in periods) {
-        classes[p[0]] = { n: '', c: '', l: '', o: '', s: '' };
+        classes[p] = { n: '', c: '', l: '', o: '', s: '' };
     }
 
     const teachers: {[key: string]: [string, string]} = {};
     for (const element of sgyClasses) {
         let {pName, pTeacher, term} = getClassInfo(element['section_title']);
         if (term === `S${3-SEMESTER}`) continue; // 3 - SEMESTER will rule out S1 courses if SEMESTER is 2, and S2 courses if SEMESTER is 1
+
+        if (pName === 'SELF') pName = 'S'
+        if (pName === 'PRIME') pName = 'P'
+        if (pName === 'Study Hall') pName = 'H'
+
         if (periods.includes(pName)) {
-            if (pName === 'SELF') pName = 'S'
-            if (pName === 'PRIME') pName = 'P'
             classes[pName] = {
                 n: `${element.course_title} · ${pTeacher}`,
                 c: sgyInfo.classes[pName].c,
@@ -132,10 +131,22 @@ export const fetchMaterials = functions.https.onCall(async (data, context) => {
 
         // Fetch courses, then kick out yucky ones
         // TODO: type this better
-        let courses = (await get(`users/${sgyInfo.uid}/sections`, sgyInfo.key, sgyInfo.sec)).section
+        const courses_unfiltered = await get(`users/${sgyInfo.uid}/sections`, sgyInfo.key, sgyInfo.sec);
+        const gunn_student_course = courses_unfiltered.section.find((sec: {section_title: string}) => {
+            const title = sec.section_title.toLowerCase();
+            return (title.endsWith(YEAR_STR) && title !== YEAR_STR);
+        })
+        const grad_year = ['se', 'ju', 'so', 'fr'].indexOf(gunn_student_course.section_title.slice(0,2)) + CURRENT_YEAR + 1;
+
+        let courses = courses_unfiltered.section
             .filter((sec: {section_title: string}) => {
-                const {pName, term} = getClassInfo(sec.section_title);
+                let {pName, term} = getClassInfo(sec.section_title);
                 if (term === `S${3 - SEMESTER}`) return false; // 3 - SEMESTER will rule out S1 courses if SEMESTER is 2, and S2 courses if SEMESTER is 1
+
+                if (pName === 'SELF') pName = 'S'
+                if (pName === 'PRIME') pName = 'P'
+                if (pName === 'Study Hall') pName = 'H'
+
                 return periods.includes(pName);
             });
 
@@ -159,7 +170,7 @@ export const fetchMaterials = functions.https.onCall(async (data, context) => {
         const responses = await Promise.all(promises);
 
         // TODO: type this better
-        const sections: {[key: string]: {info: any, documents: any, assignments: any, pages: any, events: any}} = {};
+        const sections: {[key: string]: {info: any, documents: any, assignments: any, pages: any, events: any}} & { grad_year?: number } = {};
 
         // Unflattening smh my head my head my head
         for (let i = 0; i < courses.length; i++) {
@@ -181,6 +192,7 @@ export const fetchMaterials = functions.https.onCall(async (data, context) => {
         }
 
         sections.grades = (await grades).section;
+        sections.grad_year = grad_year;
 
         return sections;
 
