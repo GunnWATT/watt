@@ -50,10 +50,10 @@ type SgyCourseData = {
 }
 export type SgyData = {
     grades: SectionGrade[],
-    gradYear: number
 } & {
     [P in SgyPeriod]?: SgyCourseData
 };
+export type SgyFetchResponse = SgyData & {gradYear: number};
 export type SgyPeriod =  '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | 'S' | 'P' | 'H';
 
 export const defaultUserData: UserData = {
