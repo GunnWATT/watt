@@ -22,9 +22,9 @@ export type UserData = {
     staff: string[],
     barcodes: string, // Stringified [string, string][] because firestore doesn't support nested arrays
     classes: {
-        1: SgyPeriodData, 2: SgyPeriodData, 3: SgyPeriodData, 4: SgyPeriodData,
-        5: SgyPeriodData, 6: SgyPeriodData, 7: SgyPeriodData, S: SgyPeriodData,
-        0: SgyPeriodData, 8: SgyPeriodData
+        0: SgyPeriodData, 1: SgyPeriodData, 2: SgyPeriodData, 3: SgyPeriodData, 4: SgyPeriodData,
+        5: SgyPeriodData, 6: SgyPeriodData, 7: SgyPeriodData, 8: SgyPeriodData,
+        P: SgyPeriodData, S: SgyPeriodData, H: SgyPeriodData
     },
     options: {theme: string, time: string, period0: boolean, period8: boolean, clock: boolean, sgy: boolean},
     id: string,
@@ -70,7 +70,9 @@ export const defaultUserData: UserData = {
         6: { n: "", c: "", l: "", o: "", s: "" },
         7: { n: "", c: "", l: "", o: "", s: "" },
         8: { n: "", c: "", l: "", o: "", s: "" },
-        S: { n: "", c: "", l: "", o: "", s: "" }
+        P: { n: "", c: "", l: "", o: "", s: "" },
+        S: { n: "", c: "", l: "", o: "", s: "" },
+        H: { n: "", c: "", l: "", o: "", s: "" }
     },
     options: {
         theme: "dark",
