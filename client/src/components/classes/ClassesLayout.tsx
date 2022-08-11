@@ -243,7 +243,7 @@ function ClassesNavBarItem(props: {text: string, to: string}) {
 function ClassesErrorBurrito(props: {children?: ReactNode}) {
     return <>
         <Wave />
-        <div className="w-full h-screen flex items-center justify-center pb-16 -mb-16 md:pb-0 md:mb-0">
+        <div className="w-full h-full flex items-center justify-center">
             <div className="max-w-5xl rounded p-6 mx-4 text-center bg-sidebar dark:bg-sidebar-dark">
                 {props.children}
             </div>
