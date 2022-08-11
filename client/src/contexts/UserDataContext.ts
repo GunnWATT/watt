@@ -49,12 +49,12 @@ type SgyCourseData = {
     events: Event[];
 }
 export type SgyData = {
-    grades: SectionGrade[];
-    1?: SgyCourseData, 2?: SgyCourseData, 3?: SgyCourseData, 4?: SgyCourseData,
-    5?: SgyCourseData, 6?: SgyCourseData, 7?: SgyCourseData, S?: SgyCourseData,
-    0?: SgyCourseData, 8?: SgyCourseData, P?: SgyCourseData, H?: SgyCourseData
+    grades: SectionGrade[],
+    gradYear: number
+} & {
+    [P in SgyPeriod]?: SgyCourseData
 };
-export type SgyPeriod = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '0' | 'S' | 'P' | 'H';
+export type SgyPeriod =  '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | 'S' | 'P' | 'H';
 
 export const defaultUserData: UserData = {
     clubs: [],
