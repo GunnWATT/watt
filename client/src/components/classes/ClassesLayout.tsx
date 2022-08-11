@@ -15,7 +15,7 @@ import { updateUserData } from '../../util/firestore';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
-import UserDataContext, { SgyPeriod, SgyData, UserData } from '../../contexts/UserDataContext';
+import UserDataContext, {SgyPeriod, SgyData, UserData, SgyFetchResponse} from '../../contexts/UserDataContext';
 import { SgyDataProvider } from '../../contexts/SgyDataContext';
 
 // Utilities
@@ -28,7 +28,7 @@ export async function fetchSgyMaterials(functions: Functions) {
     localStorage.setItem('sgy-last-attempted-fetch', '' + Date.now());
 
     // HttpsCallable<T, K> where T is the type of the arguments to the callable and K is the return type
-    const fetchMaterials = httpsCallable<undefined, SgyData>(functions, 'sgyfetch-fetchMaterials');
+    const fetchMaterials = httpsCallable<undefined, SgyFetchResponse>(functions, 'sgyfetch-fetchMaterials');
     const res = await fetchMaterials();
 
     localStorage.setItem('sgy-data', JSON.stringify(res.data));

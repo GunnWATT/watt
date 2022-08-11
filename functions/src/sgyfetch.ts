@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import admin from './util/adminInit';
 import {get} from './util/sgyOAuth';
-import {SgyData, SgyPeriod, SgyPeriodData} from '@watt/client/src/contexts/UserDataContext';
+import {SgyData, SgyFetchResponse, SgyPeriod, SgyPeriodData} from '@watt/client/src/contexts/UserDataContext';
 
 const SEMESTER = 1; // We are in semester 1
 const CURRENT_YEAR = 2022; // will work for 2022-2023 school year
@@ -172,7 +172,7 @@ export const fetchMaterials = functions.https.onCall(async (data, context) => {
         const responses = await Promise.all(promises);
 
         // Return an object of type `SgyData` containing relevant data.
-        const sections: SgyData = {
+        const sections: SgyFetchResponse = {
             grades: (await grades).section,
             gradYear: grad_year
         }

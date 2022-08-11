@@ -10,7 +10,7 @@ export type SgyContext = {
     updateSgy: () => Promise<any>,
 };
 
-const DefaultSgyContext:SgyContext = {
+const DefaultSgyContext: SgyContext = {
     sgyData: {
         grades: []
     },
