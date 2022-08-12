@@ -17,7 +17,7 @@ import {periodNameDefault} from '@watt/shared/util/schedule';
 
 type PeriodCustomizationInputProps = {id: string, data: SgyPeriodData};
 export default function PeriodCustomizationInput(props: PeriodCustomizationInputProps) {
-    const {id, data: {n, c, l, o, s}} = props;
+    const {id, data: {n, c, r, o, s}} = props;
     const name = periodNameDefault(id);
 
     // Function to update this period's fields on firestore
@@ -71,15 +71,15 @@ export default function PeriodCustomizationInput(props: PeriodCustomizationInput
                 </div>
 
                 <div className="flex-grow flex flex-col gap-2">
-                    <label htmlFor="link" className="secondary text-sm">{name} Link</label>
+                    <label htmlFor="rm-number" className="secondary text-sm">{name} Room Number</label>
                     <input
                         type="text"
-                        name="link"
-                        id="link"
+                        name="rm-number"
+                        id="rm-number"
                         className="rounded px-3 py-1.5 bg-gray-50 dark:bg-content-secondary-dark placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light border border-tertiary dark:border-tertiary-dark"
-                        placeholder={`${name} Link`}
-                        defaultValue={l}
-                        onBlur={e => updatePeriodData(e.target.value, 'l')}
+                        placeholder={`${name} Room Number`}
+                        defaultValue={r}
+                        onBlur={e => updatePeriodData(e.target.value, 'r')}
                     />
                 </div>
             </div>

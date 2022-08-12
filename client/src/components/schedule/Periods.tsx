@@ -23,7 +23,7 @@ export default function Periods(props: PeriodsProps) {
     // Period handling
     const {periods, alternate} = useSchedule(viewDate);
 
-    // User data for preferred time display and zoom links
+    // User data for preferred time display and room number
     const userData = useContext(UserDataContext);
     const format = userData.options.time === '24' ? 'H:mm' : 'h:mm a';
     const classes = userData.classes as {[key: string]: SgyPeriodData};
@@ -56,7 +56,7 @@ export default function Periods(props: PeriodsProps) {
                         start={viewDate.startOf('day').plus({minutes: s}).toLocal()} // Convert PST times back to local timezone
                         end={viewDate.startOf('day').plus({minutes: e}).toLocal()}
                         format={format}
-                        zoom={classes[n]?.l}
+                        room={classes[n]?.r}
                         note={note}
                         grades={grades}
                     />

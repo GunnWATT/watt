@@ -5,10 +5,10 @@ import { Assignment, Document, Event, Page, Section, SectionGrade } from '../uti
 // Represents a course on Schoology.
 // n: class name
 // c: color
-// l: class zoom link
+// r: class room number
 // o: office hours zoom link
 // s: schoology course id
-export type SgyPeriodData = {n: string, c: string, l: string, o: string, s: string};
+export type SgyPeriodData = {n: string, c: string, r: string, o: string, s: string};
 
 export type CustomAssignment = {
     id: string, name: string, description: string, labels: string[], timestamp: number | null, period: SgyPeriod|'A',
@@ -61,18 +61,18 @@ export const defaultUserData: UserData = {
     staff: [],
     barcodes: "[]",
     classes: {
-        0: { n: "", c: "", l: "", o: "", s: "" },
-        1: { n: "", c: "", l: "", o: "", s: "" },
-        2: { n: "", c: "", l: "", o: "", s: "" },
-        3: { n: "", c: "", l: "", o: "", s: "" },
-        4: { n: "", c: "", l: "", o: "", s: "" },
-        5: { n: "", c: "", l: "", o: "", s: "" },
-        6: { n: "", c: "", l: "", o: "", s: "" },
-        7: { n: "", c: "", l: "", o: "", s: "" },
-        8: { n: "", c: "", l: "", o: "", s: "" },
-        P: { n: "", c: "", l: "", o: "", s: "" },
-        S: { n: "", c: "", l: "", o: "", s: "" },
-        H: { n: "", c: "", l: "", o: "", s: "" }
+        0: { n: "", c: "", r: "", o: "", s: "" },
+        1: { n: "", c: "", r: "", o: "", s: "" },
+        2: { n: "", c: "", r: "", o: "", s: "" },
+        3: { n: "", c: "", r: "", o: "", s: "" },
+        4: { n: "", c: "", r: "", o: "", s: "" },
+        5: { n: "", c: "", r: "", o: "", s: "" },
+        6: { n: "", c: "", r: "", o: "", s: "" },
+        7: { n: "", c: "", r: "", o: "", s: "" },
+        8: { n: "", c: "", r: "", o: "", s: "" },
+        P: { n: "", c: "", r: "", o: "", s: "" },
+        S: { n: "", c: "", r: "", o: "", s: "" },
+        H: { n: "", c: "", r: "", o: "", s: "" }
     },
     options: {
         theme: "dark",
