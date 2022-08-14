@@ -56,7 +56,7 @@ export default function Periods(props: PeriodsProps) {
                         start={viewDate.startOf('day').plus({minutes: s}).toLocal()} // Convert PST times back to local timezone
                         end={viewDate.startOf('day').plus({minutes: e}).toLocal()}
                         format={format}
-                        zoom={classes[n]?.l}
+                        room={classes[n]?.r}
                         note={note}
                         grades={grades}
                     />

@@ -1,6 +1,6 @@
 import {useContext, useMemo} from 'react';
 import { Disclosure } from '@headlessui/react';
-import {FiChevronDown, FiLink} from 'react-icons/all';
+import {FiChevronDown} from 'react-icons/all';
 import {DateTime} from 'luxon';
 
 // Components
@@ -17,10 +17,10 @@ import clubs from '@watt/shared/data/clubs';
 
 type PeriodProps = {
     start: DateTime, end: DateTime,
-    name: string, color: string, format: string, zoom?: string, note?: string, grades?: number[]
+    name: string, color: string, format: string, room?: string, note?: string, grades?: number[]
 };
 export default function Period(props: PeriodProps) {
-    const {start, end, name, color, format, zoom, note, grades} = props;
+    const {start, end, name, color, format, room, note, grades} = props;
     const duration = start.until(end); // Duration representing the period
 
     const now = useContext(CurrentTimeContext);
@@ -50,21 +50,23 @@ export default function Period(props: PeriodProps) {
     const header = (
         <>
             <h2 className="text-xl">{name}</h2>
-            {grades && (
-                <span className="flex gap-1">
-                    {grades.map(grade => (
-                        <span className="rounded-full px-2 py-1 text-xs h-max bg-black/10 dark:bg-black/20" key={grade}>
-                            {grade}th
-                        </span>
-                    ))}
-                </span>
-            )}
+            <span className="flex gap-1">
+                {room && (
+                    <span className="rounded-full px-2 py-1 text-xs h-max bg-black/10 dark:bg-black/20">
+                        {room}
+                    </span>
+                )}
+                {grades?.map(grade => (
+                    <span className="rounded-full px-2 py-1 text-xs h-max bg-black/10 dark:bg-black/20" key={grade}>
+                        {grade}th
+                    </span>
+                ))}
+            </span>
         </>
     )
 
     return (
         <div className="border-none rounded-md shadow-lg mb-4 p-5 relative" style={{backgroundColor: color}}>
-            {zoom && <a className="absolute secondary top-6 right-6" href={zoom} rel="noopener noreferrer" target="_blank"><FiLink /></a>}
             {note ? (
                 <Disclosure>
                     {({open}) => (<>

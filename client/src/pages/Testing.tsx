@@ -194,12 +194,12 @@ export default function Testing() {
                             format="H:mm"
                         />
                         <Period
-                            name="7 · With Zoom Link"
+                            name="7 · With Room Number"
                             color={parsePeriodColor(7, userData)}
                             start={currTime.minus({minute: 50})}
                             end={currTime.plus({minute: 15})}
                             format="h:mm a"
-                            zoom="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                            room="N-215"
                         />
                     </div>
                 </ContentBox>

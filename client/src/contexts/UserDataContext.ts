@@ -5,10 +5,11 @@ import { Assignment, Document, Event, Page, Section, SectionGrade } from '../uti
 // Represents a course on Schoology.
 // n: class name
 // c: color
-// l: class zoom link
-// o: office hours zoom link
+// l: class zoom link (deprecated)
+// o: office hours zoom link (deprecated)
 // s: schoology course id
-export type SgyPeriodData = {n: string, c: string, l: string, o: string, s: string};
+// r: room number
+export type SgyPeriodData = {n: string, c: string, l: string, o: string, s: string, r: string};
 
 export type CustomAssignment = {
     id: string, name: string, description: string, labels: string[], timestamp: number | null, period: SgyPeriod|'A',
@@ -61,18 +62,18 @@ export const defaultUserData: UserData = {
     staff: [],
     barcodes: "[]",
     classes: {
-        0: { n: "", c: "", l: "", o: "", s: "" },
-        1: { n: "", c: "", l: "", o: "", s: "" },
-        2: { n: "", c: "", l: "", o: "", s: "" },
-        3: { n: "", c: "", l: "", o: "", s: "" },
-        4: { n: "", c: "", l: "", o: "", s: "" },
-        5: { n: "", c: "", l: "", o: "", s: "" },
-        6: { n: "", c: "", l: "", o: "", s: "" },
-        7: { n: "", c: "", l: "", o: "", s: "" },
-        8: { n: "", c: "", l: "", o: "", s: "" },
-        P: { n: "", c: "", l: "", o: "", s: "" },
-        S: { n: "", c: "", l: "", o: "", s: "" },
-        H: { n: "", c: "", l: "", o: "", s: "" }
+        0: { n: "", c: "", l: "", o: "", s: "", r: "" },
+        1: { n: "", c: "", l: "", o: "", s: "", r: "" },
+        2: { n: "", c: "", l: "", o: "", s: "", r: "" },
+        3: { n: "", c: "", l: "", o: "", s: "", r: "" },
+        4: { n: "", c: "", l: "", o: "", s: "", r: "" },
+        5: { n: "", c: "", l: "", o: "", s: "", r: "" },
+        6: { n: "", c: "", l: "", o: "", s: "", r: "" },
+        7: { n: "", c: "", l: "", o: "", s: "", r: "" },
+        8: { n: "", c: "", l: "", o: "", s: "", r: "" },
+        P: { n: "", c: "", l: "", o: "", s: "", r: "" },
+        S: { n: "", c: "", l: "", o: "", s: "", r: "" },
+        H: { n: "", c: "", l: "", o: "", s: "", r: "" }
     },
     options: {
         theme: "dark",
