@@ -28,7 +28,7 @@ import {info, warn} from './util/logging';
                 coadvisor, coemail
             } : {};
             return {
-                new: newClub, name, tier, desc, day, time, room, prez,
+                new: newClub, name, tier: tier as 1 | 2 | 3, desc, day, time: time as 'Lunch' | 'After School', room, prez,
                 advisor, email, ...extras
             }
         })
