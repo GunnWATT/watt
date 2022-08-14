@@ -51,7 +51,10 @@ current period, the period immediately before it, and additional information for
 
 ##### Response schema
 ```ts
-{prev: PeriodObj | null, next: PeriodObj | null, startingIn: number, endingIn: number, nextSeconds: number}
+{
+    prev: PeriodObj | null, next: PeriodObj | null, startingIn: number, endingIn: number, 
+    nextSeconds: number, minutes: number, seconds: number
+}
 ```
 - `prev`: A [`PeriodObj`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#periodobj) corresponding to the previous
   period, or `null` if there is none.
@@ -62,12 +65,17 @@ current period, the period immediately before it, and additional information for
 - `endingIn`: The minutes until the `next` period ends, rounded down. If there is no next period, this is `0`.
 - `nextSeconds`: The seconds left in the current minute of the provided timestamp. When `startingIn` or `endingIn` are `0`
   and `next` is not null, you can use this to display `"ending in {...} seconds"` instead of `"ending in 0 minutes"`.
+- `minutes`: The minutes elapsed since 12:00 AM in the timezone `America/Los_Angeles`, for progress bars.
+- `seconds`: The seconds elapsed since 12:00 AM in the timezone `America/Los_Angeles`, for progress bars.
 
 ##### Request parameters
 
-| Parameter           | Type     | Description                                                                                                                                 |
-|---------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| `date` *(optional)* | `string` | An ISO timestamp representing the date and time to get the next period for. If no date is provided, the current date and time will be used. |
+| Parameter               | Type      | Description                                                                                                                                 |
+|-------------------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| `date` *(optional)*     | `string`  | An ISO timestamp representing the date and time to get the next period for. If no date is provided, the current date and time will be used. |
+| `period0` *(optional)*  | `boolean` | Whether to include Period 0 when parsing the next period. Defaults to `false`.                                                              |
+| `period8` *(optional)*  | `boolean` | Whether to include Period 8 when parsing the next period. Defaults to `false`.                                                              |
+| `gradYear` *(optional)* | `number`  | The graduation year to filter year-specific periods for. If not provided, all periods are included.                                         |
 
 ##### HTTP status codes
 
@@ -75,15 +83,18 @@ current period, the period immediately before it, and additional information for
 |-------------|-----------------------------------------------------------------------------|
 | 200         | OK                                                                          |
 | 400         | `query.date` was provided but not a string, or invalid as an ISO timestamp. |
+| 400         | `query.gradYear` was provided but not a number.                             |
 
 ##### Example successful response:
 ```json
 {
-  "prev": {"n": "B", "s": 635, "e": 640},
-  "next": {"n": "6", "s": 650, "e": 740},
-  "startingIn": 7,
-  "endingIn": 97,
-  "nextSeconds": 23
+  "prev": {"n": "7", "s": 905, "e": 950},
+  "next": {"n": "8", "s": 960, "e": 1005},
+  "startingIn": 3,
+  "endingIn": 48,
+  "nextSeconds": 23,
+  "minutes": 956.6166666666667,
+  "seconds": 57397
 }
 ```
 
@@ -111,9 +122,12 @@ if it has not.
 
 ##### Request parameters
 
-| Parameter           | Type     | Description                                                                                                                                 |
-|---------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| `date` *(optional)* | `string` | An ISO timestamp representing the date and time to get the next period for. If no date is provided, the current date and time will be used. |
+| Parameter               | Type       | Description                                                                                                                                 |
+|-------------------------|------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| `date` *(optional)*     | `string`   | An ISO timestamp representing the date and time to get the next period for. If no date is provided, the current date and time will be used. |
+| `period0` *(optional)*  | `boolean`  | Whether to include Period 0 when parsing the next period. Defaults to `false`.                                                              |
+| `period8` *(optional)*  | `boolean`  | Whether to include Period 8 when parsing the next period. Defaults to `false`.                                                              |
+| `gradYear` *(optional)* | `number`   | The graduation year to filter year-specific periods for. If not provided, all periods are included.                                         |
 
 ##### HTTP status codes
 
@@ -121,6 +135,7 @@ if it has not.
 |-------------|-----------------------------------------------------------------------------|
 | 200         | OK                                                                          |
 | 400         | `query.date` was provided but not a string, or invalid as an ISO timestamp. |
+| 400         | `query.gradYear` was provided but not a number.                             |
 
 ##### Example successful response:
 ```json

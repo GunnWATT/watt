@@ -1,7 +1,7 @@
 import {useContext, useEffect, useState} from 'react';
 import {DateTime} from 'luxon';
 
-// Context
+// Contexts
 import UserDataContext from '../contexts/UserDataContext';
 import AlternatesContext, {Alternates} from '../contexts/AlternatesContext';
 

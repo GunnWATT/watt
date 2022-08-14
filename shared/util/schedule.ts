@@ -33,7 +33,64 @@ export function getSchedule(date: DateTime, alternates: Alternates['alternates']
     return {periods, alternate};
 }
 
-// Gets the default period name for the given key
+// Returns the next and previous period and information relevant for displaying them. Returns the next period or null
+// if there is none, the previous period or null if there is none, the minutes the next period starts in (or 0 if none),
+// the minutes the next period ends in (or 0 if none), the seconds left in the current minute, and the current minutes
+// and seconds since 12 AM in the timezone America/Los_Angeles.
+export function getNextPeriod(
+    date: DateTime,
+    alternates: Alternates['alternates'],
+    opts: { period0?: boolean, period8?: boolean, gradYear?: number } = {}
+) {
+    const periods = getSchedule(date, alternates).periods?.filter(({n, grades}) => {
+        if (n === '0' && !opts.period0) return false;
+        if (n === '8' && !opts.period8) return false;
+        if (grades && opts.gradYear) return grades.includes(12 - (opts.gradYear - SCHOOL_END_EXCLUSIVE.year));
+        return true;
+    });
+
+    // Localize date to PST before attempting to parse next period
+    // TODO: do minutes and seconds *really* need to be returned by this function?
+    const localizedDate = date.setZone('America/Los_Angeles');
+    const midnight = localizedDate.startOf('day');
+    const minutes = localizedDate.diff(midnight, 'minutes').minutes;
+    const seconds = localizedDate.diff(midnight, 'seconds').seconds;
+
+    // The seconds left in the current minute, for display when the time to the next start or end is less
+    // than a full minute.
+    const nextSeconds = 60 - (Math.floor(seconds % 60));
+
+    // Period variables
+    let prev = null, next = null;
+
+    if (!periods || !periods.length)
+        return {prev, next, startingIn: 0, endingIn: 0, nextSeconds, minutes, seconds};
+    if (minutes < periods[0].s - 20)
+        return {prev, next, startingIn: 0, endingIn: 0, nextSeconds, minutes, seconds};
+
+    // Loop through all periods, finding the index of the first period for which the current time is less
+    // than the end time.
+    let currPd;
+    for (currPd = 0; currPd < periods.length; currPd++) {
+        if (minutes < periods[currPd].e) break;
+    }
+
+    // If no period exists that has an end time after the current time, no next period exists.
+    if (currPd >= periods.length) {
+        prev = periods[periods.length - 1];
+    } else {
+        prev = periods[currPd - 1];
+        next = periods[currPd];
+    }
+
+    // The minutes to the start and end of the next period, or 0 if there is no next period.
+    const startingIn = next ? next.s - Math.ceil(minutes) : 0;
+    const endingIn = next ? next.e - Math.ceil(minutes) : 0;
+
+    return {prev, next, startingIn, endingIn, nextSeconds, minutes, seconds};
+}
+
+// Gets the default period name for the given single-letter key.
 export function periodNameDefault(name: string) {
     if (!isNaN(parseInt(name))) return `Period ${name}`;
 

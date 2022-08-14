@@ -1,58 +1,17 @@
 import {DateTime} from 'luxon';
 import {PeriodObj} from '@watt/shared/data/schedule';
-import {getSchedule, periodNameDefault} from '@watt/shared/util/schedule';
+import {getNextPeriod, periodNameDefault} from '@watt/shared/util/schedule';
 
-
-// Modified paste from `/client/src/hooks/useNextPeriod.ts`.
-// https://github.com/GunnWATT/watt/blob/main/client/src/hooks/useNextPeriod.ts#L5-L49
-export function getNextPeriod(date: DateTime, alternates: {[key: string]: PeriodObj[] | null}) {
-    const {periods} = getSchedule(date, alternates);
-
-    // Localize date to PST before attempting to parse next period
-    // TODO: do minutes and seconds *really* need to be returned by this hook?
-    const localizedDate = date.setZone('America/Los_Angeles');
-    const midnight = localizedDate.startOf('day');
-    const minutes = localizedDate.diff(midnight, 'minutes').minutes;
-    const seconds = localizedDate.diff(midnight, 'seconds').seconds;
-
-    // The seconds left in the current minute, for display when the time to the next start or end is less
-    // than a full minute.
-    const nextSeconds = 60 - (Math.floor(seconds % 60));
-
-    // Period variables
-    let prev = null, next = null;
-
-    if (!periods)
-        return {prev, next, startingIn: 0, endingIn: 0, nextSeconds};
-    if (minutes < periods[0].s - 20)
-        return {prev, next, startingIn: 0, endingIn: 0, nextSeconds};
-
-    // Loop through all periods, finding the index of the first period for which the current time is less
-    // than the end time.
-    let currPd;
-    for (currPd = 0; currPd < periods.length; currPd++) {
-        if (minutes < periods[currPd].e) break;
-    }
-
-    // If no period exists that has an end time after the current time, no next period exists.
-    if (currPd >= periods.length) {
-        prev = periods[periods.length - 1];
-    } else {
-        prev = periods[currPd - 1];
-        next = periods[currPd];
-    }
-
-    // The minutes to the start and end of the next period, or 0 if there is no next period.
-    const startingIn = next ? next.s - Math.ceil(minutes) : 0;
-    const endingIn = next ? next.e - Math.ceil(minutes) : 0;
-
-    return {prev, next, startingIn, endingIn, nextSeconds};
-}
 
 // Logic from `/client/src/components/schedule/PeriodIndicator.tsx`.
 // https://github.com/GunnWATT/watt/blob/api/client/src/components/schedule/PeriodIndicator.tsx#L38-L44
-export function getNextPeriodMessage(date: DateTime, alternates: {[key: string]: PeriodObj[] | null}) {
-    const {next, startingIn, endingIn, nextSeconds} = getNextPeriod(date, alternates);
+// TODO: find some way to abstract this to `shared`
+export function getNextPeriodMessage(
+    date: DateTime,
+    alternates: {[key: string]: PeriodObj[] | null},
+    opts: Parameters<typeof getNextPeriod>[2] = {}
+) {
+    const {next, startingIn, endingIn, nextSeconds} = getNextPeriod(date, alternates, opts);
     if (!next) return null;
 
     const name = periodNameDefault(next.n);

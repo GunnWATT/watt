@@ -25,8 +25,6 @@ export default function FaviconHandler() {
 
     // Update document name and favicon based on current period
     useEffect(() => {
-        const midnight = date.startOf('day');
-
         // Initialize canvas reference
         if (!canvas.current) {
             canvas.current = document.createElement('canvas');
