@@ -49,7 +49,7 @@ export default function Period(props: PeriodProps) {
 
     const header = (
         <>
-            <h2 className="text-xl">{name}</h2>
+            <h2 className="text-xl break-words min-w-0">{name}</h2>
             <span className="flex gap-1">
                 {room && (
                     <span className="rounded-full px-2 py-1 text-xs h-max bg-black/10 dark:bg-black/20">
@@ -70,7 +70,7 @@ export default function Period(props: PeriodProps) {
             {note ? (
                 <Disclosure>
                     {({open}) => (<>
-                        <Disclosure.Button className="flex gap-2 items-center mb-2">
+                        <Disclosure.Button className="flex flex-wrap gap-2 items-center mb-2">
                             {header}
                             <FiChevronDown className={'h-6 w-6 rounded-full p-1 bg-black/10 dark:bg-black/20' + (open ? ' rotate-180' : '')} />
                         </Disclosure.Button>
@@ -80,7 +80,7 @@ export default function Period(props: PeriodProps) {
                     </>)}
                 </Disclosure>
             ) : (
-                <div className="flex gap-2 items-center mb-2">
+                <div className="flex flex-wrap gap-2 items-center mb-2">
                     {header}
                 </div>
             )}

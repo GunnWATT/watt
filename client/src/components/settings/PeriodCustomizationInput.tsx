@@ -58,11 +58,11 @@ export default function PeriodCustomizationInput(props: PeriodCustomizationInput
 
             <div className="flex-grow flex flex-wrap gap-4">
                 <div className="flex-grow flex flex-col gap-2">
-                    <label htmlFor="class-name" className="secondary text-sm">{name}</label>
+                    <label htmlFor={`${id} name`} className="secondary text-sm">{name}</label>
                     <input
                         type="text"
-                        name="name"
-                        id="class-name"
+                        name={`${id} name`}
+                        id={`${id} name`}
                         className="rounded px-3 py-1.5 bg-gray-50 dark:bg-content-secondary-dark placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light border border-tertiary dark:border-tertiary-dark focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[0xFF7DADD9]"
                         placeholder={name}
                         defaultValue={n}
@@ -71,11 +71,11 @@ export default function PeriodCustomizationInput(props: PeriodCustomizationInput
                 </div>
 
                 <div className="flex-grow flex flex-col gap-2">
-                    <label htmlFor="room" className="secondary text-sm">{name} Room</label>
+                    <label htmlFor={`${id} room`} className="secondary text-sm">{name} Room</label>
                     <input
                         type="text"
-                        name="room"
-                        id="room"
+                        name={`${id} room`}
+                        id={`${id} room`}
                         className="rounded px-3 py-1.5 bg-gray-50 dark:bg-content-secondary-dark placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light border border-tertiary dark:border-tertiary-dark focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[0xFF7DADD9]"
                         placeholder={`${name} Room`}
                         defaultValue={r}
