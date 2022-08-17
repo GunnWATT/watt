@@ -51,8 +51,8 @@ export function deepmerge<T extends {}, V extends T>(a: T, b: V) {
 }
 
 // Returns the updates that need to be made so that `b` can become the shape of `a`, for use with
-// `bulUpdateFirebaseUserData()`.
-// https://github.com/GunnWATT/watt/commit/8c5ed5c96a5351fa65b085c7e1ecfc99f40003d7
+// `bulkUpdateFirebaseUserData()`. Only tracks field additions and does not delete extra fields; see
+// https://github.com/GunnWATT/watt/issues/120 for why that is.
 export function deepdifferences(a: { [key: string]: any }, b: { [key: string]: any }) {
     const diff: { [key: string]: any } = {};
     for (const key in a) {
@@ -69,11 +69,6 @@ export function deepdifferences(a: { [key: string]: any }, b: { [key: string]: a
                 }
             }
         }
-    }
-
-    // Delete all extra fields in `b`.
-    for (const key in b) {
-        if (!(key in a)) diff[key] = deleteField();
     }
 
     return diff;

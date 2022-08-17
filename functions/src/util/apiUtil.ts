@@ -37,14 +37,15 @@ export function getNextPeriodOptsParams(req: Request) {
 
     return {
         gradYear,
-        period0: req.query.period0 ? parseBooleanParam(req.query.period0) : false,
-        period8: req.query.period8 ? parseBooleanParam(req.query.period8) : false
+        period0: parseBooleanParam(req.query.period0),
+        period8: parseBooleanParam(req.query.period8),
     };
 }
 
 // Parses an express query param to a boolean.
 // https://stackoverflow.com/a/65091751
 function parseBooleanParam(param: Request['query'][string]) {
+    if (!param) return false;
     if (typeof param !== 'string') return true;
     return Boolean(param.replace(/\s*(false|null|undefined|0)\s*/i, ''));
 }
