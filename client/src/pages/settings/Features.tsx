@@ -54,7 +54,7 @@ export default function Features() {
             <section className="flex flex-wrap-reverse md:flex-nowrap gap-2 md:gap-6 mb-6">
                 <Listbox value={displayYear} onChange={changeYear}>
                     <div className="relative">
-                        <Listbox.Button className="relative w-64 text-left bg-white dark:bg-content-secondary rounded-lg shadow-lg py-2 pl-3 pr-10 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#0000001a] dark:focus-visible:ring-[#ffffff3f]">
+                        <Listbox.Button className="relative w-64 text-left bg-white dark:bg-content-secondary rounded-lg shadow-lg py-2 pl-3 pr-10 focus:outline-none focus-visible:ring-1 focus-visible:ring-black/10 dark:focus-visible:ring-white/25">
                             <span className={displayYear === 0 ? 'invisible' : ''}>
                                 {displayYear}
                             </span>
@@ -63,7 +63,7 @@ export default function Features() {
                             </span>
                         </Listbox.Button>
 
-                        <AnimatedListbox className="absolute z-20 mt-1 w-64 py-1 rounded-md bg-white dark:bg-content-secondary shadow-lg focus:outline-none focus-visible:ring-1 focus-visible:ring-[#0000001a] dark:focus-visible:ring-[#ffffff3f]">
+                        <AnimatedListbox className="absolute z-20 mt-1 w-64 py-1 rounded-md bg-white dark:bg-content-secondary shadow-lg focus:outline-none focus-visible:ring-1 focus-visible:ring-black/10 dark:focus-visible:ring-white/25">
                             {years.map(year => (
                                 <Listbox.Option key={year} value={year} className={({active}) => 'flex items-center gap-2 cursor-pointer px-4 py-1.5' + (active ? ' bg-gray-100 dark:bg-background' : '')}>
                                     {({selected, active}) => (
@@ -123,7 +123,7 @@ function RadioToggle(props: RadioToggleProps) {
                 <Switch
                     checked={checked}
                     onChange={setChecked}
-                    className={`${checked ? 'bg-theme dark:bg-theme/80' : 'bg-content-secondary'} relative inline-flex items-center h-6 rounded-full w-11 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus-visible:ring-[#0000001a] focus:ring-offset-transparent`}
+                    className={`${checked ? 'bg-theme dark:bg-theme/80' : 'bg-content-secondary'} relative inline-flex items-center h-6 rounded-full w-11 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black/10 dark:focus:ring-white/10 focus:ring-offset-transparent`}
                 >
                     <span className={`${checked ? 'translate-x-6' : 'translate-x-1'} inline-block w-4 h-4 transform bg-white rounded-full transition-transform`}/>
                 </Switch>
