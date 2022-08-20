@@ -49,7 +49,7 @@ const PeriodPicker = (props: { period: 'A'|SgyPeriod, setPeriod: (c: 'A'|SgyPeri
                             className="h-7 w-7 rounded-full flex-none"
                             style={{
                                 backgroundColor: period === c.period ? parsePeriodColor(c.period, userData) : 'rgb(var(--content))',
-                                border: period === c.period ? '' : '2px inset var(--secondary)'
+                                border: period === c.period ? '' : '2px inset rgb(var(--secondary))'
                             }}
                         />
 
@@ -152,7 +152,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
 
             <section>
                 <textarea
-                    className="h-36 text-sm rounded p-3 w-full outline-none resize-none bg-background placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light"
+                    className="h-36 text-sm rounded p-3 w-full outline-none resize-none bg-background placeholder:text-secondary placeholder:font-light"
                     placeholder="Assignment Description [Optional]"
                     value={description}
                     onChange={e => setDescription(e.target.value)}

@@ -8,7 +8,7 @@ export default function ResourcesLayout() {
     return (
         <div className="container pt-24 pb-20">
             <main className="px-4">
-                <Link to="/utilities" className="block text-sm secondary text-inherit hover:no-underline -ml-4 mb-8">
+                <Link to="/utilities" className="block text-sm text-secondary text-inherit hover:no-underline -ml-4 mb-8">
                     ← Return to utilities
                 </Link>
                 <Suspense fallback={<ResourcesFallback />}>

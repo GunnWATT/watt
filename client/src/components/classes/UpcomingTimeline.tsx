@@ -218,7 +218,7 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
                             <text
                                 x={weekdayX} y={(sy + ey) / 2}
                                 dominantBaseline="central" // center vertically
-                                className="font-mono fill-primary dark:fill-primary-dark"
+                                className="font-mono fill-primary"
                                 style={{fontSize: 50}}
                             >
                                 {weekdays[dateTime.weekday % 7]}
@@ -227,7 +227,7 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
                             <text
                                 x={dayX} y={(sy + ey) / 2 - 10}
                                 dominantBaseline="central" // center vertically
-                                className="fill-primary dark:fill-primary-dark"
+                                className="fill-primary"
                                 style={{fontSize: 15}}
                             >
                                 {dateTime.toLocaleString(DATE_SHORT_NO_YEAR)}
@@ -235,7 +235,7 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
                             <text
                                 x={dayX} y={(sy + ey) / 2 + 10}
                                 dominantBaseline="central" // center vertically
-                                className="fill-primary dark:fill-primary-dark"
+                                className="fill-primary"
                                 style={{fontSize: 15}}
                             >
                                 In {pluralize(Math.ceil(dateTime.diff(currTime, 'days').days), 'day')}

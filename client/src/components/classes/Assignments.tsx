@@ -64,7 +64,7 @@ function Assignment(props: AssignmentProps) {
                 <div className="text-lg break-words">{shortify(assignment.name, 150)}</div>
 
                 {!!assignment.description.length && (
-                    <div className="secondary mt-2.5 text-[0.8rem] break-words">
+                    <div className="text-secondary mt-2.5 text-[0.8rem] break-words">
                         {shortify(assignment.description,200)}
                     </div>
                 )}
@@ -158,7 +158,7 @@ export default function Assignments(props: AssignmentsProps & ActiveItemState) {
         <div className="flex flex-col gap-4">
             {days.map(({day, upcoming: currUpcoming}) => (
                 <section className="flex flex-col gap-2.5" key={day.toISO()}>
-                    <h3 className="secondary">
+                    <h3 className="text-secondary">
                         {day.toLocaleString(DATE_FULL_NO_YEAR)} • In {pluralize(Math.ceil(day.diff(currTime, 'days').days), 'day')}
                     </h3>
 

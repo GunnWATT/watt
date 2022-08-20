@@ -25,7 +25,7 @@ function DashboardQuickCalDot(props: DashboardQuickCalDotProps) {
             className="w-2.5 h-2.5 rounded-full m-[3px]"
             style={{
                 backgroundColor: props.completed ? 'rgb(var(--content))' : parsePeriodColor(props.course, userData),
-                border: props.completed ? '2px inset var(--secondary)' : ''
+                border: props.completed ? '2px inset rgb(var(--secondary))' : ''
             }}
         />
     );

@@ -72,7 +72,7 @@ export default function InstallModal() {
                                 </div>
                                 <li>In the dialogue, tap <strong>"Add"</strong>.</li>
                             </ol>
-                            <p className="secondary text-sm">
+                            <p className="text-secondary text-sm">
                                 Not interested?{' '}
                                 <button onClick={() => setIsOpen(false)} className="font-semibold focus:outline-none focus:underline">Dismiss.</button>
                             </p>

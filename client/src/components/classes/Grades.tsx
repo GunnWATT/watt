@@ -47,7 +47,7 @@ export default function Grades(props: GradesProps) {
                     ) : (<>
                         Your grade is {allGrades[selected]}%.
                     </>)}
-                    <p className="secondary text-sm font-light">
+                    <p className="text-secondary text-sm font-light">
                         Percent grades may not be indicative of your actual letter grade in the class. If your teacher
                         does not use a percent-based scale, check Schoology for your correct grade.
                     </p>

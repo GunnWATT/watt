@@ -84,7 +84,7 @@ function RadioCard(props: RadioCardProps) {
                 )}
                 <div>
                     <RadioGroup.Label className="font-medium">{label}</RadioGroup.Label>
-                    <RadioGroup.Description className="secondary font-light">
+                    <RadioGroup.Description className="text-secondary font-light">
                         {children}
                     </RadioGroup.Description>
                 </div>

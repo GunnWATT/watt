@@ -93,7 +93,7 @@ export default function Testing() {
                     ))}
                 </div>
             )}
-            <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 secondary font-light text-sm px-4 mb-4">
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-secondary font-light text-sm px-4 mb-4">
                 <span>Brandon Chung</span>
                 <span>Sean Yen</span>
                 <span>Timothy Herchen</span>
@@ -219,7 +219,7 @@ function ContentBox(props: {children: ReactNode, className?: string}) {
 type ContributorProps = {name: string, href: string, src: string};
 function Contributor(props: ContributorProps) {
     return (
-        <a href={props.href} target="_blank" rel="noopener noreferrer" className="rounded-full overflow-clip hover:ring-4 hover:ring-tertiary dark:hover:ring-tertiary-dark transition duration-100">
+        <a href={props.href} target="_blank" rel="noopener noreferrer" className="rounded-full overflow-clip hover:ring-4 hover:ring-tertiary transition duration-100">
             <img src={props.src} alt={props.name} className="h-12 w-12" />
         </a>
     )

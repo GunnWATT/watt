@@ -42,7 +42,7 @@ export default function ClassFilter(props: ClassFilterProps) {
                     type="text"
                     placeholder="Search"
                     defaultValue={filter.query}
-                    className="w-full bg-sidebar dark:bg-sidebar-dark border-2 border-tertiary dark:border-tertiary-dark rounded-full py-1.5 px-3"
+                    className="w-full bg-sidebar dark:bg-sidebar-dark border-2 border-tertiary rounded-full py-1.5 px-3"
                     onChange={(event) => setFilter({...filter, query: event.target.value})}
                 />
                 <Popover>
@@ -104,7 +104,7 @@ export function TagPicker(props: TagPickerProps) {
                 onChange={(e) => setSearch(e.target.value)}
             />
 
-            <div className="flex flex-col gap-4 h-64 mt-2 p-1.5 border-y border-tertiary dark:border-tertiary-dark overflow-y-auto">
+            <div className="flex flex-col gap-4 h-64 mt-2 p-1.5 border-y border-tertiary overflow-y-auto">
                 {children(search)}
             </div>
         </AnimatedPopover>
@@ -147,7 +147,7 @@ export function TagPickerLabels(props: TagPickerLabelsProps) {
                         // TODO: think of how to keep this as style arguments but remove the dependency on var()
                         // as var() will be eliminated with the CSS removal
                         backgroundColor={labels.includes(labelID) ? parseLabelColor(labelID, userData) : 'rgb(var(--content))'}
-                        border={labels.includes(labelID) ? '' : '2px inset var(--secondary)'}
+                        border={labels.includes(labelID) ? '' : '2px inset rgb(var(--secondary))'}
                         onClick={() => toggleLabel(labelID)}
                     />
                 );
@@ -190,7 +190,7 @@ export function TagPickerClasses(props: TagPickerClassesProps) {
                         name={c.name}
                         label={c.period}
                         backgroundColor={selected[index] ? c.color : 'rgb(var(--content))'}
-                        border={selected[index] ? '' : '2px inset var(--secondary)'}
+                        border={selected[index] ? '' : '2px inset rgb(var(--secondary))'}
                         onClick={() => toggleClass(index)}
                     />
                 )
@@ -209,7 +209,7 @@ function TagPickerSection(props: TagPickerSectionProps) {
 
     return (
         <section className="flex flex-col gap-1">
-            <span className="flex gap-2 items-center border-b-2 border-tertiary dark:border-tertiary-dark mb-1">
+            <span className="flex gap-2 items-center border-b-2 border-tertiary mb-1">
                 <h4 className="text-lg font-medium">{heading}</h4>
                 {noneSelected ? (
                     <TagPickerSelectButton onClick={selectAll}>

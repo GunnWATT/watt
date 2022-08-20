@@ -54,16 +54,16 @@ export default function Features() {
             <section className="flex flex-wrap-reverse md:flex-nowrap gap-2 md:gap-6 mb-6">
                 <Listbox value={displayYear} onChange={changeYear}>
                     <div className="relative">
-                        <Listbox.Button className="relative w-64 text-left bg-white dark:bg-content-secondary rounded-lg shadow-lg py-2 pl-3 pr-10 focus:outline-none focus-visible:ring-1 focus-visible:ring-secondary/10 dark:focus-visible:ring-secondary-dark/25">
+                        <Listbox.Button className="relative w-64 text-left bg-white dark:bg-content-secondary rounded-lg shadow-lg py-2 pl-3 pr-10 focus:outline-none focus-visible:ring-1 focus-visible:ring-secondary/10 dark:focus-visible:ring-secondary/25">
                             <span className={displayYear === 0 ? 'invisible' : ''}>
                                 {displayYear}
                             </span>
                             <span className="absolute inset-y-0 right-2 flex items-center">
-                                <HiSelector className="h-5 w-5 secondary" />
+                                <HiSelector className="h-5 w-5 text-secondary" />
                             </span>
                         </Listbox.Button>
 
-                        <AnimatedListbox className="absolute z-20 mt-1 w-64 py-1 rounded-md bg-white dark:bg-content-secondary shadow-lg focus:outline-none focus-visible:ring-1 focus-visible:ring-secondary/10 dark:focus-visible:ring-secondary-dark/25">
+                        <AnimatedListbox className="absolute z-20 mt-1 w-64 py-1 rounded-md bg-white dark:bg-content-secondary shadow-lg focus:outline-none focus-visible:ring-1 focus-visible:ring-secondary/10 dark:focus-visible:ring-secondary/25">
                             {years.map(year => (
                                 <Listbox.Option key={year} value={year} className={({active}) => 'flex items-center gap-2 cursor-pointer px-4 py-1.5' + (active ? ' bg-gray-100 dark:bg-background' : '')}>
                                     {({selected, active}) => (
@@ -73,7 +73,7 @@ export default function Features() {
                                             ) : (
                                                 <FiCircle className="w-5 h-5 text-transparent bg-tertiary dark:bg-white/10 rounded-full p-0.5 flex-none" />
                                             )}
-                                            <span className={(selected ? 'font-medium' : '') + (!active ? ' secondary' : '')}>
+                                            <span className={(selected ? 'font-medium' : '') + (!active ? ' text-secondary' : '')}>
                                                 {year || 'Unset'}
                                             </span>
                                         </>
@@ -86,7 +86,7 @@ export default function Features() {
 
                 <div>
                     <h3 className="font-medium mb-1">Graduation Year</h3>
-                    <p className="secondary font-light text-sm max-w-prose">
+                    <p className="text-secondary font-light text-sm max-w-prose">
                         If set, your graduation year will be used to filter grade-specific periods in the schedule
                         to show only what's relevant to you.
                     </p>
@@ -123,13 +123,13 @@ function RadioToggle(props: RadioToggleProps) {
                 <Switch
                     checked={checked}
                     onChange={setChecked}
-                    className={`${checked ? 'bg-theme dark:bg-theme/80' : 'bg-content-secondary'} relative inline-flex items-center h-6 rounded-full w-11 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary/10 dark:focus:ring-secondary-dark/10 focus:ring-offset-transparent`}
+                    className={`${checked ? 'bg-theme dark:bg-theme/80' : 'bg-content-secondary'} relative inline-flex items-center h-6 rounded-full w-11 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary/10 focus:ring-offset-transparent`}
                 >
                     <span className={`${checked ? 'translate-x-6' : 'translate-x-1'} inline-block w-4 h-4 transform bg-white rounded-full transition-transform`}/>
                 </Switch>
                 <div>
                     <Switch.Label passive className="font-medium">{label}</Switch.Label>
-                    <p className="secondary font-light text-sm">{children}</p>
+                    <p className="text-secondary font-light text-sm">{children}</p>
                 </div>
             </div>
         </Switch.Group>

@@ -36,7 +36,7 @@ export default function Clock(props: ClockProps) {
                 <line
                     x1={size / 2} y1={size / 2}
                     x2={size / 2} y2={size / 2 - radius * 0.7}
-                    className="stroke-primary dark:stroke-primary-dark stroke-2 origin-center transition-transform duration-100"
+                    className="stroke-primary stroke-2 origin-center transition-transform duration-100"
                     style={{
                         strokeLinecap: 'round',
                         transform: `rotate(${minuteDegs}deg)`,
@@ -47,7 +47,7 @@ export default function Clock(props: ClockProps) {
                 <line
                     x1={size / 2} y1={size / 2}
                     x2={size / 2} y2={size / 2 - radius * 0.8}
-                    className="stroke-secondary dark:stroke-secondary-dark stroke-[1.5] origin-center transition-transform duration-100"
+                    className="stroke-secondary stroke-[1.5] origin-center transition-transform duration-100"
                     style={{
                         strokeLinecap: 'round',
                         transform: `rotate(${secondDegs}deg)`,

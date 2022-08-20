@@ -11,8 +11,8 @@ export default function ClubComponent(props: Club & {id: string}) {
         <>
             <li className="text-sm cursor-pointer px-4 py-5" onClick={() => setModal(true)}>
                 <p>{name}</p>
-                <p className="secondary">{room}</p>
-                <p className="secondary">{day}</p>
+                <p className="text-secondary">{room}</p>
+                <p className="text-secondary">{day}</p>
             </li>
 
             <ClubComponentModal {...props} isOpen={modal} setIsOpen={setModal} />

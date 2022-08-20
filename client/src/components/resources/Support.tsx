@@ -40,7 +40,7 @@ function SupportCard(props: SupportCardProps) {
         <div className="px-5 py-3 bg-gray-100 dark:bg-content-secondary rounded">
             <h2 className="font-semibold mb-0.5">{name}</h2>
             <h3><a href={`${sms ? 'sms' : 'tel'}:${tel}`}>{tel}</a></h3>
-            <p className="secondary">{children}</p>
+            <p className="text-secondary">{children}</p>
         </div>
     )
 }

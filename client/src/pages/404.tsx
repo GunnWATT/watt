@@ -8,7 +8,7 @@ export default function PageNotFound() {
                 <h1 className="text-5xl font-bold underline decoration-theme mb-4">
                     404.
                 </h1>
-                <p className="secondary mb-1">
+                <p className="text-secondary mb-1">
                     Your requested page was not found. Check your URL and try again?
                 </p>
                 <Link to="/">Go home</Link>

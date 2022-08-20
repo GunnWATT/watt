@@ -50,14 +50,14 @@ export default function ClubComponentModal(props: ClubComponentModalProps) {
             </Dialog.Title>
             <section className="flex gap-6 justify-between">
                 <div className="basis-1/3">
-                    <p><strong className="secondary font-medium">Day:</strong> {day}</p>
-                    <p><strong className="secondary font-medium">Time:</strong> {time}</p>
-                    <p><strong className="secondary font-medium">Location:</strong> {room}</p>
+                    <p><strong className="text-secondary font-medium">Day:</strong> {day}</p>
+                    <p><strong className="text-secondary font-medium">Time:</strong> {time}</p>
+                    <p><strong className="text-secondary font-medium">Location:</strong> {room}</p>
                 </div>
                 <div className="text-right">
-                    <p><strong className="secondary font-medium">President(s):</strong> {prez}</p>
-                    <p><strong className="secondary font-medium">Advisor(s):</strong> {advisor}{coadvisor && ', ' + coadvisor}</p>
-                    <p><strong className="secondary font-medium">Email(s):</strong> {email}{coemail && ', ' + coemail}</p>
+                    <p><strong className="text-secondary font-medium">President(s):</strong> {prez}</p>
+                    <p><strong className="text-secondary font-medium">Advisor(s):</strong> {advisor}{coadvisor && ', ' + coadvisor}</p>
+                    <p><strong className="text-secondary font-medium">Email(s):</strong> {email}{coemail && ', ' + coemail}</p>
                 </div>
             </section>
             <hr className="my-3" />

@@ -76,7 +76,7 @@ export default function SgyInitResults() {
                 {!results ? (
                     <Loading>Fetching courses...</Loading>
                 ) : confirmDisable ? (
-                    <em className="secondary mb-3">
+                    <em className="text-secondary mb-3">
                         If there was a problem, please submit an issue on Github.
                     </em>
                 ) : (<>
@@ -90,7 +90,7 @@ export default function SgyInitResults() {
                             </div>
                         ))}
                     </div>
-                    <em className="secondary">
+                    <em className="text-secondary">
                         If this does not look right, disable Schoology integration and submit an issue on Github.
                     </em>
                 </>)}

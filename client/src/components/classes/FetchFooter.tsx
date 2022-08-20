@@ -19,7 +19,7 @@ export default function FetchFooter() {
     const cannotFetch = (lastAttemptedFetch != null && Date.now() - lastAttemptedFetch < 6 * 1000) || fetching;
 
     return (
-        <footer className="mt-auto border-t border-tertiary dark:border-tertiary-dark divide-y divide-tertiary dark:divide-tertiary-dark">
+        <footer className="mt-auto border-t border-tertiary divide-y divide-tertiary">
             <div className="py-2 flex items-center justify-between">
                 If your classes are wrong, reset Schoology.
                 <button className="px-2.5 py-[3px] rounded-md text-white bg-theme transition duration-200" onClick={() => sgyAuth(auth, functions)}>

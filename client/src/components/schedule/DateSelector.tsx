@@ -33,7 +33,7 @@ export default function DateSelector(props: DateSelectorProps) {
             </button>
 
             <Popover className="relative flex flex-col">
-                <Popover.Button className="h-9 w-56 bg-content flex items-center justify-center shadow-lg rounded cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-secondary/10 dark:focus-visible:ring-secondary-dark/25">
+                <Popover.Button className="h-9 w-56 bg-content flex items-center justify-center shadow-lg rounded cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-secondary/10 dark:focus-visible:ring-secondary/25">
                     {viewDate.toLocaleString(DateTime.DATE_FULL)}
                 </Popover.Button>
                 <AnimatedPopover className="flex justify-center">
@@ -125,7 +125,7 @@ export function Calendar(props: CalendarProps) {
                         const active = currTime.hasSame(day, 'day');
                         return (
                             <div
-                                className={'flex items-center justify-center cursor-pointer py-0.5' + (noSchool && !active ? ' secondary' : '') + (active ? ' bg-theme text-white rounded-full' : '')}
+                                className={'flex items-center justify-center cursor-pointer py-0.5' + (noSchool && !active ? ' text-secondary' : '') + (active ? ' bg-theme text-white rounded-full' : '')}
                                 onClick={() => setDate(day)}
                                 key={day.toISO()}
                                 style={i === 0 ? {gridColumnStart: (day.weekday % 7) + 1} : undefined}

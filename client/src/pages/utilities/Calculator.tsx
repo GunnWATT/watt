@@ -67,7 +67,7 @@ function CalculatorInput(props: CalculatorInputProps) {
                     value={value}
                     onChange={(e) => !isNaN(Number(e.target.value)) && setValue(e.target.value)}
                 />
-                <span className="secondary absolute top-1 right-2">%</span>
+                <span className="text-secondary absolute top-1 right-2">%</span>
             </span>
         </p>
     )

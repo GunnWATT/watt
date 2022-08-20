@@ -6,7 +6,7 @@ export default function About() {
                 <p className="text-xl mb-4">
                     If I have seen further, it is by standing on the shoulders of giants.
                 </p>
-                <em className="secondary">―Isaac Newton</em>
+                <em className="text-secondary">―Isaac Newton</em>
             </section>
 
             <p className="mb-4">
