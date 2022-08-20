@@ -5,7 +5,7 @@ export default function PageNotFound() {
     return (
         <div className="h-full flex items-center justify-center">
             <main className="max-w-prose p-8">
-                <h1 className="text-5xl font-bold underline decoration-theme dark:decoration-theme-dark mb-4">
+                <h1 className="text-5xl font-bold underline decoration-theme mb-4">
                     404.
                 </h1>
                 <p className="secondary mb-1">

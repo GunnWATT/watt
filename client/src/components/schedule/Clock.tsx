@@ -58,7 +58,7 @@ export default function Clock(props: ClockProps) {
                 <line
                     x1={size / 2} y1={size / 2}
                     x2={size / 2} y2={size / 2 - radius * 0.5}
-                    className="stroke-theme dark:stroke-theme-dark stroke-2 origin-center transition-transform duration-100"
+                    className="stroke-theme stroke-2 origin-center transition-transform duration-100"
                     style={{
                         strokeLinecap: 'round',
                         transform: `rotate(${hourDegs}deg)`,

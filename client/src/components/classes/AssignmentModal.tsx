@@ -91,18 +91,18 @@ export default function AssignmentModal(props: AssignmentModalProps) {
                     </AssignmentTimestamp>
 
                     <FiEdit
-                        className="w-6 h-6 cursor-pointer text-theme dark:text-theme-dark ml-auto"
+                        className="w-6 h-6 cursor-pointer text-theme ml-auto"
                         onClick={() => setEditing(true)}
                     />
                     {isCustomAssignment && (
                         <FiTrash2
-                            className="w-6 h-6 cursor-pointer text-theme dark:text-theme-dark"
+                            className="w-6 h-6 cursor-pointer text-theme"
                             onClick={deleteCustom}
                         />
                     )}
                     {modified && (
                         <FiSkipBack
-                            className="w-6 h-6 cursor-pointer text-theme dark:text-theme-dark"
+                            className="w-6 h-6 cursor-pointer text-theme"
                             onClick={reset}
                         />
                     )}

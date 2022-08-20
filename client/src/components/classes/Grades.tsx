@@ -31,7 +31,7 @@ export default function Grades(props: GradesProps) {
                     <FiChevronRight size={28} className={'cursor-pointer transition duration-150' + (open ? ' rotate-90' : '')} />
                 </Disclosure.Button>
 
-                <Disclosure.Panel className="flex flex-col gap-2 px-4 py-3 rounded-lg bg-content-secondary/50 dark:bg-content-secondary-dark/50 mb-4">
+                <Disclosure.Panel className="flex flex-col gap-2 px-4 py-3 rounded-lg bg-content-secondary/50 mb-4">
                     {selected === 'A' ? findClassesList(sgyData, userData)
                         .filter(({ period }) => period !== 'A' && allGrades[period])
                         .map(({ name, color, period }) => (

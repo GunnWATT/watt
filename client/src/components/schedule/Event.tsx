@@ -31,7 +31,7 @@ export default function Event(props: GCalEvent) {
 
     // Don't render a disclosure if there's no event description
     if (!description) return (
-        <li className="w-full text-left px-4 py-2 rounded bg-content-secondary dark:bg-content-secondary-dark text-sm bg-opacity-50">
+        <li className="w-full text-left px-4 py-2 rounded bg-content-secondary/80 text-sm">
             <strong>{summary}</strong>
             <p className="secondary">{formatDateTime(start, end)}</p>
             {location && <p className="secondary">@ {location}</p>}
@@ -41,7 +41,7 @@ export default function Event(props: GCalEvent) {
     return (
         <Disclosure as={'li'}>
             {({open}) => (<>
-                <Disclosure.Button className="flex items-center justify-between gap-2 w-full text-left px-4 py-2 rounded bg-content-secondary dark:bg-content-secondary-dark text-sm bg-opacity-50">
+                <Disclosure.Button className="flex items-center justify-between gap-2 w-full text-left px-4 py-2 rounded bg-content-secondary/80 text-sm">
                     <div>
                         <strong>{summary}</strong>
                         <p className="secondary">{formatDateTime(start, end)}</p>

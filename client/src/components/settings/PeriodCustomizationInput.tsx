@@ -63,7 +63,7 @@ export default function PeriodCustomizationInput(props: PeriodCustomizationInput
                         type="text"
                         name={`${id} name`}
                         id={`${id} name`}
-                        className="rounded px-3 py-1.5 bg-gray-50 dark:bg-content-secondary-dark placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light border border-tertiary dark:border-tertiary-dark focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[0xFF7DADD9]"
+                        className="rounded px-3 py-1.5 bg-gray-50 dark:bg-content-secondary placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light border border-tertiary dark:border-tertiary-dark focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[0xFF7DADD9]"
                         placeholder={name}
                         defaultValue={n}
                         onBlur={e => updatePeriodData(e.target.value, 'n')}
@@ -76,7 +76,7 @@ export default function PeriodCustomizationInput(props: PeriodCustomizationInput
                         type="text"
                         name={`${id} room`}
                         id={`${id} room`}
-                        className="rounded px-3 py-1.5 bg-gray-50 dark:bg-content-secondary-dark placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light border border-tertiary dark:border-tertiary-dark focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[0xFF7DADD9]"
+                        className="rounded px-3 py-1.5 bg-gray-50 dark:bg-content-secondary placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light border border-tertiary dark:border-tertiary-dark focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[0xFF7DADD9]"
                         placeholder={`${name} Room`}
                         defaultValue={r}
                         onBlur={e => updatePeriodData(e.target.value, 'r')}

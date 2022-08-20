@@ -72,7 +72,7 @@ function Assignment(props: AssignmentProps) {
                 <AssignmentTimestamp className="mt-2.5">
                     {assignment.timestamp!.toLocaleString(DateTime.TIME_SIMPLE)} on {assignment.timestamp!.toLocaleString(DATE_MED_NO_YEAR)}
                     {overdue && (
-                        <span> • <span className="text-theme dark:text-theme-dark">
+                        <span> • <span className="text-theme">
                             {assignment.timestamp?.toRelative()}
                         </span></span>
                     )}
@@ -178,7 +178,7 @@ export default function Assignments(props: AssignmentsProps & ActiveItemState) {
 
 export function AssignmentTimestamp(props: {className?: string, children: ReactNode}) {
     return (
-        <div className={'bg-background dark:bg-background-dark py-0.5 px-1.5 rounded-sm text-[0.8rem] w-max' + (props.className ? ` ${props.className}` : '')}>
+        <div className={'bg-background py-0.5 px-1.5 rounded-sm text-[0.8rem] w-max' + (props.className ? ` ${props.className}` : '')}>
             {props.children}
         </div>
     )

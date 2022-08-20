@@ -80,7 +80,7 @@ export default function ClassFilter(props: ClassFilterProps) {
 export function PopoverPlus(props: {className?: string}) {
     return (
         <Popover.Button className={props.className}>
-            <FiPlus className="w-6 h-6 rounded-full bg-background dark:bg-background-dark p-1" />
+            <FiPlus className="w-6 h-6 rounded-full bg-background p-1" />
         </Popover.Button>
     )
 }
@@ -96,11 +96,11 @@ export function TagPicker(props: TagPickerProps) {
     const [search, setSearch] = useState('');
 
     return (
-        <AnimatedPopover className={"absolute top-[calc(100%_+_15px)] right-0 p-2.5 w-[300px] bg-content dark:bg-content-dark rounded-md z-10 shadow-lg " + screenType}>
+        <AnimatedPopover className={"absolute top-[calc(100%_+_15px)] right-0 p-2.5 w-[300px] bg-content rounded-md z-10 shadow-lg " + screenType}>
             <input
                 type="text"
                 placeholder="Search"
-                className="bg-content-secondary dark:bg-content-secondary-dark rounded w-full px-2.5 py-1.5"
+                className="bg-content-secondary rounded w-full px-2.5 py-1.5"
                 onChange={(e) => setSearch(e.target.value)}
             />
 
@@ -146,7 +146,7 @@ export function TagPickerLabels(props: TagPickerLabelsProps) {
                         name={parseLabelName(labelID, userData)}
                         // TODO: think of how to keep this as style arguments but remove the dependency on var()
                         // as var() will be eliminated with the CSS removal
-                        backgroundColor={labels.includes(labelID) ? parseLabelColor(labelID, userData) : 'var(--content-primary)'}
+                        backgroundColor={labels.includes(labelID) ? parseLabelColor(labelID, userData) : 'rgb(var(--content))'}
                         border={labels.includes(labelID) ? '' : '2px inset var(--secondary)'}
                         onClick={() => toggleLabel(labelID)}
                     />
@@ -189,7 +189,7 @@ export function TagPickerClasses(props: TagPickerClassesProps) {
                         key={index}
                         name={c.name}
                         label={c.period}
-                        backgroundColor={selected[index] ? c.color : 'var(--content-primary)'}
+                        backgroundColor={selected[index] ? c.color : 'rgb(var(--content))'}
                         border={selected[index] ? '' : '2px inset var(--secondary)'}
                         onClick={() => toggleClass(index)}
                     />
@@ -228,7 +228,7 @@ function TagPickerSection(props: TagPickerSectionProps) {
 
 function TagPickerSelectButton(props: {onClick?: MouseEventHandler<HTMLButtonElement>, children: ReactNode}) {
     return (
-        <button className="rounded text-[0.7rem] px-1 py-0.5 bg-content-secondary dark:bg-content-secondary-dark" onClick={props.onClick}>
+        <button className="rounded text-[0.7rem] px-1 py-0.5 bg-content-secondary" onClick={props.onClick}>
             {props.children}
         </button>
     )

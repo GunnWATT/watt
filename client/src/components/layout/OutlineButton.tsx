@@ -23,7 +23,7 @@ export function DangerOutlineButton(props: OutlineButtonProps) {
     const {children, ...buttonProps} = props;
 
     return (
-        <button className="text-theme dark:text-theme-dark border border-theme dark:border-theme-dark hover:!text-white hover:bg-gradient-to-br hover:from-theme hover:to-red-700 dark:hover:from-red-500 dark:hover:to-[#eb144c] hover:shadow-lg hover:shadow-red-700/40 hover:!border-transparent px-3 py-2 rounded transition-shadow duration-100 focus:outline-none focus-visible:ring-[3px] focus-visible:ring-theme/25 dark:focus-visible:ring-theme-dark/25" {...buttonProps}>
+        <button className="text-theme border border-theme hover:text-white hover:bg-gradient-to-br hover:from-theme hover:to-red-700 dark:hover:from-red-500 dark:hover:to-[#eb144c] hover:shadow-lg hover:shadow-red-700/40 hover:border-transparent px-3 py-2 rounded transition-shadow duration-100 focus:outline-none focus-visible:ring-[3px] focus-visible:ring-theme/25" {...buttonProps}>
             {children}
         </button>
     )

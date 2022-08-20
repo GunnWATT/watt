@@ -210,7 +210,7 @@ export default function Testing() {
 
 function ContentBox(props: {children: ReactNode, className?: string}) {
     return (
-        <section className={'p-5 rounded-lg bg-content dark:bg-content-dark shadow-lg' + (props.className ? ` ${props.className}` : '')}>
+        <section className={'p-5 rounded-lg bg-content shadow-lg' + (props.className ? ` ${props.className}` : '')}>
             {props.children}
         </section>
     )

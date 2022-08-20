@@ -39,16 +39,16 @@ const PeriodPicker = (props: { period: 'A'|SgyPeriod, setPeriod: (c: 'A'|SgyPeri
 
     return (
         <Popover className="relative">
-            <Popover.Button className="mt-2.5 text-sm px-1.5 py-0.5 cursor-pointer bg-content dark:bg-content-dark rounded">
+            <Popover.Button className="mt-2.5 text-sm px-1.5 py-0.5 cursor-pointer bg-content rounded">
                 {parsePeriodName(period, userData)}
             </Popover.Button>
-            <AnimatedPopover className="absolute top-[calc(100%_+_15px)] left-0 p-2.5 w-[300px] bg-content dark:bg-content-dark rounded-md z-10 flex flex-col gap-1.5">
+            <AnimatedPopover className="absolute top-[calc(100%_+_15px)] left-0 p-2.5 w-[300px] bg-content rounded-md z-10 flex flex-col gap-1.5">
                 {classes.map((c, index) => (
                     <div key={c.name} className="flex items-center gap-3 cursor-pointer" onClick={() => setPeriod(c.period)}>
                         <div
                             className="h-7 w-7 rounded-full flex-none"
                             style={{
-                                backgroundColor: period === c.period ? parsePeriodColor(c.period, userData) : 'var(--content-primary)',
+                                backgroundColor: period === c.period ? parsePeriodColor(c.period, userData) : 'rgb(var(--content))',
                                 border: period === c.period ? '' : '2px inset var(--secondary)'
                             }}
                         />
@@ -141,7 +141,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
                     type="text"
                     placeholder="Assignment Name"
                     //autoFocus
-                    className="px-1.5 py-1 bg-background dark:bg-content-dark w-full rounded-sm invalid:outline-1 invalid:outline-dashed invalid:outline-theme dark:invalid:outline-theme-dark"
+                    className="px-1.5 py-1 bg-background dark:bg-content w-full rounded-sm invalid:outline-1 invalid:outline-dashed invalid:outline-theme"
                     value={name}
                     onChange={e => setName(e.target.value)}
                 />
@@ -152,7 +152,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
 
             <section>
                 <textarea
-                    className="h-36 text-sm rounded p-3 w-full outline-none resize-none bg-background dark:bg-background-dark placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light"
+                    className="h-36 text-sm rounded p-3 w-full outline-none resize-none bg-background placeholder:text-secondary dark:placeholder:text-secondary-dark placeholder:font-light"
                     placeholder="Assignment Description [Optional]"
                     value={description}
                     onChange={e => setDescription(e.target.value)}
@@ -162,7 +162,7 @@ export default function CreateAssignmentModal(props: CreateAssignmentModalProps 
                     <PriorityPicker priority={priority} setPriority={setPriority} align='right' />
 
                     <Popover>
-                        <Popover.Button className="py-0.5 px-1.5 rounded-sm text-[0.8rem] bg-theme dark:bg-theme-dark text-white cursor-pointer">
+                        <Popover.Button className="py-0.5 px-1.5 rounded-sm text-[0.8rem] bg-theme text-white cursor-pointer">
                             {timestamp.toLocaleString(DateTime.TIME_SIMPLE)} on {timestamp.toLocaleString(DATE_MED_NO_YEAR)}
                         </Popover.Button>
                         <Transition

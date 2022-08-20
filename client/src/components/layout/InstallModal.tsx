@@ -48,7 +48,7 @@ export default function InstallModal() {
                     leaveFrom="opacity-100 translate-y-0"
                     leaveTo="opacity-0 translate-y-12"
                 >
-                    <div className="relative flex flex-col bg-content dark:bg-content-dark rounded-t-2xl max-w-md max-h-[80%] mx-3 pt-6 px-6 shadow-xl">
+                    <div className="relative flex flex-col bg-content rounded-t-2xl max-w-md max-h-[80%] mx-3 pt-6 px-6 shadow-xl">
                         <img
                             src={homeScreenIcon}
                             alt="Home screen icon"
@@ -62,10 +62,10 @@ export default function InstallModal() {
                             <p className="mb-3">WATT is best experienced when installed as a PWA.</p>
                             <p className="mb-3">To add WATT to your home screen,</p>
                             <ol className="list-decimal list-inside space-y-1 mb-3">
-                                <li>Tap the share button <FiShare className="inline h-6 w-6 p-1 bg-content-secondary dark:bg-content-secondary-dark rounded-md" />.</li>
+                                <li>Tap the share button <FiShare className="inline h-6 w-6 p-1 bg-content-secondary rounded-md" />.</li>
                                 <li>Select <strong>"Add to Home Screen"</strong> in the bottom row.</li>
-                                <div className="p-2 bg-content-secondary dark:bg-content-secondary-dark rounded-lg">
-                                    <span className="flex items-center justify-between text-sm font-light p-3 bg-content dark:bg-content-dark rounded-lg">
+                                <div className="p-2 bg-content-secondary rounded-lg">
+                                    <span className="flex items-center justify-between text-sm font-light p-3 bg-content rounded-lg">
                                         Add to Home Screen
                                         <FiPlusSquare className="h-[1.1rem] w-[1.1rem]" />
                                     </span>

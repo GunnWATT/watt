@@ -196,7 +196,7 @@ export default function ClassesLayout() {
                     Your user data is missing! Please click the button below to fetch materials.
                     If this is a recurring problem, please submit an issue to Github.
                 </p>
-                <button className="rounded w-full p-5 bg-background dark:bg-background-dark shadow-lg" onClick={updateSgy}>
+                <button className="rounded w-full p-5 bg-background shadow-lg" onClick={updateSgy}>
                     Fetch Materials
                 </button>
             </>)}
@@ -233,7 +233,7 @@ function ClassesNavBarItem(props: {text: string, to: string}) {
     const match = useMatch({ path: resolved.pathname, end: true });
 
     return (
-        <Link to={to} className={'py-2 px-3 rounded-md transition duration-100 ease-in-out flex-grow text-center hover:no-underline ' + (match ? 'text-primary dark:text-primary-dark bg-content dark:bg-content-dark shadow-lg' : 'secondary bg-content-secondary dark:bg-content-secondary-dark')}>
+        <Link to={to} className={'py-2 px-3 rounded-md transition duration-100 ease-in-out flex-grow text-center hover:no-underline ' + (match ? 'text-primary dark:text-primary-dark bg-content shadow-lg' : 'secondary bg-content-secondary')}>
             {text}
         </Link>
     )
@@ -244,7 +244,7 @@ function ClassesErrorBurrito(props: {children?: ReactNode}) {
     return <>
         <Wave />
         <div className="w-full h-full flex items-center justify-center">
-            <div className="max-w-5xl rounded p-6 mx-4 text-center bg-sidebar dark:bg-sidebar-dark">
+            <div className="max-w-5xl rounded p-6 mx-4 text-center bg-sidebar">
                 {props.children}
             </div>
         </div>

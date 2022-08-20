@@ -18,7 +18,7 @@ export default function GoogleSignInBtn(props: GoogleAuthBtnProps) {
     }
 
     return (
-        <button className="item mt-auto flex items-center gap-4 p-2 w-full rounded overflow-hidden hover:bg-background dark:hover:bg-background-dark" onClick={googleSignIn}>
+        <button className="item mt-auto flex items-center gap-4 p-2 w-full rounded overflow-hidden hover:bg-background" onClick={googleSignIn}>
             <FiLogIn className="flex-none h-6 w-8" />
             {!props.mobile && <span>Sign In</span>}
         </button>

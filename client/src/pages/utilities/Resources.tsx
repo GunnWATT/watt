@@ -37,14 +37,14 @@ function ArticleCard(props: ArticleCardProps) {
 
     return (
         <>
-            <div className="flex items-center gap-4 rounded-lg shadow-md px-5 py-4 cursor-pointer bg-gray-100 dark:bg-background-dark hover:bg-gray-50/50 dark:hover:bg-content-secondary-dark transition duration-200" onClick={() => setIsOpen(true)}>
+            <div className="flex items-center gap-4 rounded-lg shadow-md px-5 py-4 cursor-pointer bg-gray-100 dark:bg-background hover:bg-gray-50/50 dark:hover:bg-content-secondary transition duration-200" onClick={() => setIsOpen(true)}>
                 <h3>{props.name}</h3>
                 <p className="font-light">
                     {props.children}
                 </p>
             </div>
 
-            <CenteredModal className="relative p-6 md:py-7 md:px-8 mx-2 bg-content dark:bg-content-dark rounded-lg shadow-xl box-content max-w-prose max-h-[90%] overflow-y-auto scrollbar-none" isOpen={isOpen} setIsOpen={setIsOpen}>
+            <CenteredModal className="relative p-6 md:py-7 md:px-8 mx-2 bg-content rounded-lg shadow-xl box-content max-w-prose max-h-[90%] overflow-y-auto scrollbar-none" isOpen={isOpen} setIsOpen={setIsOpen}>
                 <CloseButton className="absolute top-4 right-4 md:right-6" onClick={() => setIsOpen(false)} />
                 {props.element}
             </CenteredModal>

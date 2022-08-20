@@ -37,7 +37,7 @@ function SupportCard(props: SupportCardProps) {
     const {name, tel, children, sms} = props;
 
     return (
-        <div className="px-5 py-3 bg-gray-100 dark:bg-content-secondary-dark rounded">
+        <div className="px-5 py-3 bg-gray-100 dark:bg-content-secondary rounded">
             <h2 className="font-semibold mb-0.5">{name}</h2>
             <h3><a href={`${sms ? 'sms' : 'tel'}:${tel}`}>{tel}</a></h3>
             <p className="secondary">{children}</p>
