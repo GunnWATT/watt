@@ -33,7 +33,7 @@ export default function DateSelector(props: DateSelectorProps) {
             </button>
 
             <Popover className="relative flex flex-col">
-                <Popover.Button className="h-9 w-56 bg-content flex items-center justify-center shadow-lg rounded cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-secondary/10 dark:focus-visible:ring-secondary/25">
+                <Popover.Button className="h-9 w-56 bg-content flex items-center justify-center shadow-lg rounded cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-[#0000001a] dark:focus-visible:ring-[#ffffff3f]">
                     {viewDate.toLocaleString(DateTime.DATE_FULL)}
                 </Popover.Button>
                 <AnimatedPopover className="flex justify-center">

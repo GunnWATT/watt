@@ -33,7 +33,7 @@ export default function PriorityPicker(props: PriorityPickerProps) {
                     )}
                 </Listbox.Button>
 
-                <AnimatedListbox className={'absolute top-[calc(100%_+_10px)] w-[150px] flex flex-col py-1.5 bg-content rounded shadow-lg z-10 focus:outline-none focus-visible:ring-1 focus-visible:ring-secondary/10 dark:focus-visible:ring-secondary/25 ' + (align === 'right' ? 'left-0' : 'right-0')}>
+                <AnimatedListbox className={'absolute top-[calc(100%_+_10px)] w-[150px] flex flex-col py-1.5 bg-content rounded shadow-lg z-10 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#0000001a] dark:focus-visible:ring-[#ffffff3f] ' + (align === 'right' ? 'left-0' : 'right-0')}>
                     {[0, 1, 2, 3, -1].map(p => (
                         <Listbox.Option value={p} className={({active}) => 'flex items-center gap-2.5 cursor-pointer px-2.5 py-1' + (active ? ' bg-content-secondary' : '')} key={p}>
                             <Dot
