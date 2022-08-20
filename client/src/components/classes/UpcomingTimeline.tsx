@@ -174,7 +174,7 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
                             <line
                                 x1={timelineX} y1={line.sy}
                                 x2={timelineX} y2={line.ey}
-                                stroke={'var(--contrast)'}
+                                className="stroke-background dark:stroke-content-dark"
                                 strokeWidth={strokeWeight}
                             />
 
@@ -183,7 +183,7 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
                                     key={line.sy + " " + t}
                                     x1={timelineX - tick} y1={avg + tick + t}
                                     x2={timelineX + tick} y2={avg - tick + t}
-                                    stroke={'var(--contrast)'}
+                                    className="stroke-background dark:stroke-content-dark"
                                     strokeWidth={strokeWeight}
                                 />
                             ))}

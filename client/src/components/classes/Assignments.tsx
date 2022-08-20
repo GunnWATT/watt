@@ -82,8 +82,8 @@ function Assignment(props: AssignmentProps) {
             <div className="w-[88px] flex flex-col flex-none py-4 pr-5">
                 <div className="flex">
                     {!isCustomAssignment && (
-                        <a href={assignment.link} target="_blank" rel="noopener noreferrer">
-                            <FiLink size={28} color="var(--primary)" />
+                        <a href={assignment.link} target="_blank" rel="noopener noreferrer" className="!text-inherit">
+                            <FiLink size={28} />
                         </a>
                     )}
                     <CompletedIcon
