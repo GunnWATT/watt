@@ -13,7 +13,7 @@ export default function OutlineButton(props: OutlineButtonProps) {
     const {children, ...buttonProps} = props;
 
     return (
-        <button className="text-secondary border border-secondary hover:text-white hover:bg-[#9c9ca2] dark:hover:bg-[#717173] hover:shadow-lg hover:shadow-gray-500/40 dark:hover:shadow-zinc-800/40 hover:!border-transparent rounded px-3 py-2 transition-shadow duration-100 focus:outline-none focus-visible:ring-[3px] focus-visible:ring-secondary/20" {...buttonProps}>
+        <button className="text-secondary border border-secondary hover:text-white hover:bg-[#9c9ca2] dark:hover:bg-[#717173] hover:shadow-lg hover:shadow-gray-500/40 dark:hover:shadow-zinc-800/40 hover:!border-transparent rounded px-3 py-2 transition-shadow duration-100 focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[#00000033] dark:focus-visible:ring-[#ffffff33]" {...buttonProps}>
             {children}
         </button>
     )
