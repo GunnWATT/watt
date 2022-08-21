@@ -74,7 +74,7 @@ export default function Period(props: PeriodProps) {
                             {header}
                             <FiChevronDown className={'h-6 w-6 rounded-full p-1 bg-black/10 dark:bg-black/20' + (open ? ' rotate-180' : '')} />
                         </Disclosure.Button>
-                        <Disclosure.Panel className="secondary bg-black/10 dark:bg-black/20 rounded text-md p-2 -mx-2 mb-2 whitespace-pre-wrap">
+                        <Disclosure.Panel className="text-secondary bg-black/10 dark:bg-black/20 rounded text-md p-2 -mx-2 mb-2 whitespace-pre-wrap">
                             {note}
                         </Disclosure.Panel>
                     </>)}
@@ -89,8 +89,8 @@ export default function Period(props: PeriodProps) {
                 <div className="flex gap-1 mb-1">{pinned}</div>
             )}
 
-            <h3 className="secondary">{duration.toFormat(format)}</h3>
-            <p className="secondary">{parseStartEnd()} — {duration.length('minutes')} minutes long</p>
+            <h3 className="text-secondary">{duration.toFormat(format)}</h3>
+            <p className="text-secondary">{parseStartEnd()} — {duration.length('minutes')} minutes long</p>
             {duration.contains(now) && (
                 // TODO: should this be abstracted with PeriodIndicator? They share some logic but differ in other ways
                 <div className="mt-2 flex overflow-hidden h-3 rounded" style={{backgroundColor: bgColor(color)}}>

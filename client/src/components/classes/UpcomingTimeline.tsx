@@ -29,7 +29,7 @@ function TimelineTooltip(props: TimelineTooltipProps) {
 
     return (
         <div
-            className="absolute -translate-y-1/2 px-2 py-0.5 max-w-[12.5rem] overflow-hidden overflow-ellipsis whitespace-nowrap bg-content dark:bg-content-dark rounded-sm"
+            className="absolute -translate-y-1/2 px-2 py-0.5 max-w-[12.5rem] overflow-hidden overflow-ellipsis whitespace-nowrap bg-content rounded-sm"
             style={{
                 top: circle.cy,
                 left,
@@ -174,7 +174,7 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
                             <line
                                 x1={timelineX} y1={line.sy}
                                 x2={timelineX} y2={line.ey}
-                                className="stroke-background dark:stroke-content-dark"
+                                className="stroke-background dark:stroke-content"
                                 strokeWidth={strokeWeight}
                             />
 
@@ -183,7 +183,7 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
                                     key={line.sy + " " + t}
                                     x1={timelineX - tick} y1={avg + tick + t}
                                     x2={timelineX + tick} y2={avg - tick + t}
-                                    className="stroke-background dark:stroke-content-dark"
+                                    className="stroke-background dark:stroke-content"
                                     strokeWidth={strokeWeight}
                                 />
                             ))}
@@ -218,7 +218,7 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
                             <text
                                 x={weekdayX} y={(sy + ey) / 2}
                                 dominantBaseline="central" // center vertically
-                                className="font-mono fill-primary dark:fill-primary-dark"
+                                className="font-mono fill-primary"
                                 style={{fontSize: 50}}
                             >
                                 {weekdays[dateTime.weekday % 7]}
@@ -227,7 +227,7 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
                             <text
                                 x={dayX} y={(sy + ey) / 2 - 10}
                                 dominantBaseline="central" // center vertically
-                                className="fill-primary dark:fill-primary-dark"
+                                className="fill-primary"
                                 style={{fontSize: 15}}
                             >
                                 {dateTime.toLocaleString(DATE_SHORT_NO_YEAR)}
@@ -235,7 +235,7 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
                             <text
                                 x={dayX} y={(sy + ey) / 2 + 10}
                                 dominantBaseline="central" // center vertically
-                                className="fill-primary dark:fill-primary-dark"
+                                className="fill-primary"
                                 style={{fontSize: 15}}
                             >
                                 In {pluralize(Math.ceil(dateTime.diff(currTime, 'days').days), 'day')}

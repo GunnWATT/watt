@@ -3,11 +3,33 @@
 @tailwind utilities;
 
 @layer base {
+    :root {
+        --theme: 165 22 24;               // Red theme color, for links and header boxes. (#a51618)
+        --primary: 0 0 0 / 0.87;          // Primary text color.
+        --secondary: 0 0 0 / 0.54;        // Secondary text color.
+        --tertiary: 0 0 0 / 0.1;          // Tertiary text color.
+        --sidebar: 255 255 255;           // Sidebar color. (white)
+        --background: 247 248 253;        // Background color. (#f7f8fd)
+        --content: 255 255 255;           // Primary content color. (white)
+        --content-secondary: 233 236 239; // Secondary content color. (#e9ecef)
+
+        &.dark {
+            --theme: 255 89 76; // #ff594c
+            --primary: 255 255 255; // white
+            --secondary: 255 255 255 / 0.54;
+            --tertiary: 255 255 255 / 0.1;
+            --sidebar: 25 25 27;
+            --background: 35 35 37;
+            --content: 55 55 57;
+            --content-secondary: 42 42 44;
+        }
+    }
+
     html {
         @apply h-full;
     }
     a {
-        @apply text-theme dark:text-theme-dark;
+        @apply text-theme;
         &:hover {
             @apply underline;
         }
@@ -16,20 +38,17 @@
         @apply text-4xl font-semibold mb-2;
     }
     hr {
-        @apply my-4 border-t-2 border-tertiary dark:border-tertiary-dark;
+        @apply my-4 border-t-2 border-tertiary;
     }
     ::-webkit-scrollbar {
         @apply w-1;
         &-thumb {
-            @apply bg-secondary dark:bg-secondary-dark;
+            @apply bg-secondary;
         }
     }
 }
 
 @layer utilities {
-    .secondary {
-        @apply text-secondary dark:text-secondary-dark;
-    }
     .scrollbar-none::-webkit-scrollbar {
         @apply hidden;
     }
@@ -39,16 +58,16 @@
 // `!important` is needed to override the inline `style="..."` tags the picker elements have.
 // https://github.com/tailwindlabs/discuss/issues/224
 .sketch-picker.period-customization-picker {
-    @apply bg-sidebar dark:bg-sidebar-dark #{!important};
+    @apply bg-sidebar #{!important};
 
     label {
-        @apply text-primary dark:text-primary-dark #{!important};
+        @apply text-primary #{!important};
     }
     input {
-        @apply bg-content dark:bg-content-dark rounded text-center w-full ring-1 ring-tertiary dark:ring-tertiary-dark ring-inset #{!important};
+        @apply bg-content rounded text-center w-full ring-1 ring-tertiary ring-inset #{!important};
     }
     > div:last-child {
-        @apply border-t-tertiary dark:border-t-tertiary-dark #{!important};
+        @apply border-t-tertiary #{!important};
     }
 }
 

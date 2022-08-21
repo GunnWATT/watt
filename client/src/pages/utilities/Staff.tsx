@@ -66,7 +66,7 @@ export default function Staff() {
                     onChange={e => setQuery(e.target.value)}
                 />
             </span>
-            <p className="mb-4 secondary">
+            <p className="mb-4 text-secondary">
                 Please note that staff information was taken from{' '}
                 <a href="https://www.parentsquare.com/api/v2/schools/6272/directory" target="_blank" rel="noopener noreferrer">ParentSquare</a> and the{' '}
                 <a href="https://gunn.pausd.org/connecting/staff-directory" target="_blank" rel="noopener noreferrer">Gunn website</a>{' '}

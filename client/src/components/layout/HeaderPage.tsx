@@ -18,7 +18,7 @@ export default function HeaderPage(props: HeaderPageProps) {
                 <nav className="mt-3.5 md:mt-5 flex flex-wrap">
                     {nav}
                 </nav>
-                <main className="p-5 bg-content dark:bg-content-dark rounded-b-lg shadow-lg">
+                <main className="p-5 bg-content rounded-b-lg shadow-lg">
                     {children}
                 </main>
             </div>
@@ -28,7 +28,7 @@ export default function HeaderPage(props: HeaderPageProps) {
 
 export function Header(props: {children: ReactNode}) {
     return (
-        <header className="px-5 py-3 flex items-center gap-4 text-white bg-gradient-to-r from-theme to-red-700 dark:from-theme-dark dark:to-[#eb144c] rounded-lg shadow-lg shadow-red-700/40">
+        <header className="px-5 py-3 flex items-center gap-4 text-white bg-gradient-to-r from-theme to-red-700 dark:to-[#eb144c] rounded-lg shadow-lg shadow-red-700/40">
             {props.children}
         </header>
     )

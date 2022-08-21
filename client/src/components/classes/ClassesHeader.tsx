@@ -39,7 +39,7 @@ export default function ClassesHeader(props: ClassesHeaderProps) {
                             {currName}
                         </h1>
                     </Listbox.Button>
-                    <AnimatedListbox className="absolute top-[calc(100%_+_10px)] max-w-xs md:max-w-sm flex flex-col py-4 text-primary dark:text-primary-dark bg-content dark:bg-content-dark rounded shadow-2xl z-10 focus:outline-none focus-visible:ring-1 focus-visible:ring-secondary/10 dark:focus-visible:ring-secondary-dark/25">
+                    <AnimatedListbox className="absolute top-[calc(100%_+_10px)] max-w-xs md:max-w-sm flex flex-col py-4 text-primary bg-content rounded shadow-2xl z-10 focus:outline-none focus-visible:ring-1 focus-visible:ring-black/10 dark:focus-visible:ring-white/25">
                         {classes.map(({name, color, period}) => (
                             <Listbox.Option
                                 className={({active}) => 'flex items-center gap-2.5 py-1 px-5 cursor-pointer transition duration-100' + (active ? ' bg-content-secondary dark:bg-black/20' : '')}

@@ -20,7 +20,7 @@ export default function SgySignInBtn() {
     const functions = useFunctions();
 
     return (
-        <button className="rounded w-full p-5 bg-background dark:bg-background-dark shadow-lg" onClick={() => sgyAuth(auth, functions)}>
+        <button className="rounded w-full p-5 bg-background shadow-lg" onClick={() => sgyAuth(auth, functions)}>
             Authenticate Schoology
         </button>
     )

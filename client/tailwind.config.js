@@ -7,23 +7,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        theme: '#a51618',
-        primary: 'rgba(0, 0, 0, 0.87)',
-        secondary: 'rgba(0, 0, 0, 0.54)',
-        tertiary: 'rgba(0, 0, 0, 0.1)',
-        content: 'white',
-        'content-secondary': '#e9ecef',
-        'sidebar': 'white',
-        'background': '#f7f8fd',
-
-        'theme-dark': '#ff594c',
-        'primary-dark': 'white',
-        'secondary-dark': 'rgba(255, 255, 255, 0.54)',
-        'tertiary-dark': 'rgba(255, 255, 255, 0.1)',
-        'content-dark': 'rgb(55, 55, 57)',
-        'content-secondary-dark': 'rgb(42, 42, 44)',
-        'sidebar-dark': 'rgb(25, 25, 27)',
-        'background-dark': 'rgb(35, 35, 37)'
+        theme: 'rgb(var(--theme) / <alpha-value>)',
+        primary: 'rgb(var(--primary))', // NOTE: `primary`, `secondary`, and `tertiary` do *not* work with opacity modifiers.
+        secondary: 'rgb(var(--secondary))',
+        tertiary: 'rgb(var(--tertiary))',
+        content: 'rgb(var(--content) / <alpha-value>)',
+        'content-secondary': 'rgb(var(--content-secondary) / <alpha-value>)',
+        sidebar: 'rgb(var(--sidebar) / <alpha-value>)',
+        background: 'rgb(var(--background) / <alpha-value>)',
       }
     },
     container: {

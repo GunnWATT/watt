@@ -44,20 +44,20 @@ export default function ClubComponentModal(props: ClubComponentModalProps) {
         + (data ? `&entry.1448575177=${data.displayName}` : '')
 
     return (
-        <CenteredModal className="relative flex flex-col bg-content dark:bg-content-dark rounded-md max-w-md max-h-[90%] mx-2 p-6 shadow-xl" isOpen={isOpen} setIsOpen={setIsOpen}>
+        <CenteredModal className="relative flex flex-col bg-content rounded-md max-w-md max-h-[90%] mx-2 p-6 shadow-xl" isOpen={isOpen} setIsOpen={setIsOpen}>
             <Dialog.Title className="text-xl font-semibold mb-3 pr-6">
                 {name}{props.new && <Badge>New</Badge>}
             </Dialog.Title>
             <section className="flex gap-6 justify-between">
                 <div className="basis-1/3">
-                    <p><strong className="secondary font-medium">Day:</strong> {day}</p>
-                    <p><strong className="secondary font-medium">Time:</strong> {time}</p>
-                    <p><strong className="secondary font-medium">Location:</strong> {room}</p>
+                    <p><strong className="text-secondary font-medium">Day:</strong> {day}</p>
+                    <p><strong className="text-secondary font-medium">Time:</strong> {time}</p>
+                    <p><strong className="text-secondary font-medium">Location:</strong> {room}</p>
                 </div>
                 <div className="text-right">
-                    <p><strong className="secondary font-medium">President(s):</strong> {prez}</p>
-                    <p><strong className="secondary font-medium">Advisor(s):</strong> {advisor}{coadvisor && ', ' + coadvisor}</p>
-                    <p><strong className="secondary font-medium">Email(s):</strong> {email}{coemail && ', ' + coemail}</p>
+                    <p><strong className="text-secondary font-medium">President(s):</strong> {prez}</p>
+                    <p><strong className="text-secondary font-medium">Advisor(s):</strong> {advisor}{coadvisor && ', ' + coadvisor}</p>
+                    <p><strong className="text-secondary font-medium">Email(s):</strong> {email}{coemail && ', ' + coemail}</p>
                 </div>
             </section>
             <hr className="my-3" />

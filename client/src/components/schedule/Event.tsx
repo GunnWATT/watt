@@ -31,27 +31,27 @@ export default function Event(props: GCalEvent) {
 
     // Don't render a disclosure if there's no event description
     if (!description) return (
-        <li className="w-full text-left px-4 py-2 rounded bg-content-secondary dark:bg-content-secondary-dark text-sm bg-opacity-50">
+        <li className="w-full text-left px-4 py-2 rounded bg-content-secondary/80 text-sm">
             <strong>{summary}</strong>
-            <p className="secondary">{formatDateTime(start, end)}</p>
-            {location && <p className="secondary">@ {location}</p>}
+            <p className="text-secondary">{formatDateTime(start, end)}</p>
+            {location && <p className="text-secondary">@ {location}</p>}
         </li>
     )
 
     return (
         <Disclosure as={'li'}>
             {({open}) => (<>
-                <Disclosure.Button className="flex items-center justify-between gap-2 w-full text-left px-4 py-2 rounded bg-content-secondary dark:bg-content-secondary-dark text-sm bg-opacity-50">
+                <Disclosure.Button className="flex items-center justify-between gap-2 w-full text-left px-4 py-2 rounded bg-content-secondary/80 text-sm">
                     <div>
                         <strong>{summary}</strong>
-                        <p className="secondary">{formatDateTime(start, end)}</p>
-                        {location && <p className="secondary">@ {location}</p>}
+                        <p className="text-secondary">{formatDateTime(start, end)}</p>
+                        {location && <p className="text-secondary">@ {location}</p>}
                     </div>
                     <div className="flex-none">
                         <FiChevronDown className={'w-6 h-6' + (open ? ' rotate-180' : '')} />
                     </div>
                 </Disclosure.Button>
-                <Disclosure.Panel className="flex flex-col gap-2 secondary text-sm mt-2 whitespace-pre-wrap">
+                <Disclosure.Panel className="flex flex-col gap-2 text-secondary text-sm mt-2 whitespace-pre-wrap">
                     {/* Parse away trailing whitespace, split excessive newlines into paragraph spacing */}
                     {description.trim().split(/(?:\n\s*)+/).map(l => <p>{l}</p>)}
                 </Disclosure.Panel>

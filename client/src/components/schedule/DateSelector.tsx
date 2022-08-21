@@ -33,7 +33,7 @@ export default function DateSelector(props: DateSelectorProps) {
             </button>
 
             <Popover className="relative flex flex-col">
-                <Popover.Button className="h-9 w-56 bg-content dark:bg-content-dark flex items-center justify-center shadow-lg rounded cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-secondary/10 dark:focus-visible:ring-secondary-dark/25">
+                <Popover.Button className="h-9 w-56 bg-content flex items-center justify-center shadow-lg rounded cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-black/10 dark:focus-visible:ring-white/25">
                     {viewDate.toLocaleString(DateTime.DATE_FULL)}
                 </Popover.Button>
                 <AnimatedPopover className="flex justify-center">
@@ -125,7 +125,7 @@ export function Calendar(props: CalendarProps) {
                         const active = currTime.hasSame(day, 'day');
                         return (
                             <div
-                                className={'flex items-center justify-center cursor-pointer py-0.5' + (noSchool && !active ? ' secondary' : '') + (active ? ' bg-theme dark:bg-theme-dark text-white rounded-full' : '')}
+                                className={'flex items-center justify-center cursor-pointer py-0.5' + (noSchool && !active ? ' text-secondary' : '') + (active ? ' bg-theme text-white rounded-full' : '')}
                                 onClick={() => setDate(day)}
                                 key={day.toISO()}
                                 style={i === 0 ? {gridColumnStart: (day.weekday % 7) + 1} : undefined}
@@ -140,10 +140,10 @@ export function Calendar(props: CalendarProps) {
     });
 
     return (
-        <div className={"w-[300px] h-max max-h-[60vh] bg-content dark:bg-content-dark z-20 rounded flex flex-col shadow-2xl absolute" + (className ? ` ${className}` : '')}>
+        <div className={"w-[300px] h-max max-h-[60vh] bg-content z-20 rounded flex flex-col shadow-2xl absolute" + (className ? ` ${className}` : '')}>
             {time && <TimeSelector currTime={currTime} setTime={setTime} />}
 
-            <section className={'grid grid-cols-7 px-4 pt-2.5 pb-1.5 bg-content-secondary dark:bg-content-secondary-dark' + (!time ? ' rounded-t' : '')}>
+            <section className={'grid grid-cols-7 px-4 pt-2.5 pb-1.5 bg-content-secondary' + (!time ? ' rounded-t' : '')}>
                 {weekdays.map((char, i) => (
                     <div className="flex items-center justify-center p-1" key={char + i}>{char}</div>
                 ))}
@@ -153,7 +153,7 @@ export function Calendar(props: CalendarProps) {
                 {monthElements}
             </section>
 
-            <section className="flex justify-between px-4 pt-1.5 pb-2.5 bg-content-secondary dark:bg-content-secondary-dark rounded-b">
+            <section className="flex justify-between px-4 pt-1.5 pb-2.5 bg-content-secondary rounded-b">
                 <button onClick={() => setDate(today)}>Today</button>
                 <button onClick={() => setDate(tmrw)}>Tomorrow</button>
             </section>
@@ -220,7 +220,7 @@ function TimeSelector(props: TimeSelectorProps) {
             <TimePickerColumn>
                 <FiChevronUp size={40} onClick={incHour} className="cursor-pointer" />
                 <input
-                    className="text-center w-20 bg-content-secondary dark:bg-content-secondary-dark rounded-md"
+                    className="text-center w-20 bg-content-secondary rounded-md"
                     type="text"
                     value={currTime.toFormat(showMeridiem ? 'hh' : 'HH')}
                     onChange={(e) => setTimeValue(e.target.value, 'hour')}
@@ -230,7 +230,7 @@ function TimeSelector(props: TimeSelectorProps) {
             <TimePickerColumn>
                 <FiChevronUp size={40} onClick={incMinute} className="cursor-pointer" />
                 <input
-                    className="text-center w-20 bg-content-secondary dark:bg-content-secondary-dark rounded-md"
+                    className="text-center w-20 bg-content-secondary rounded-md"
                     type="text"
                     value={currTime.toFormat('mm')}
                     onChange={(e) => setTimeValue(e.target.value, 'minute')}
@@ -240,7 +240,7 @@ function TimeSelector(props: TimeSelectorProps) {
             {showMeridiem && (
                 <TimePickerColumn>
                     <button
-                        className="text-center w-20 bg-content-secondary dark:bg-content-secondary-dark rounded-md"
+                        className="text-center w-20 bg-content-secondary rounded-md"
                         onClick={toggleAM}
                     >
                         {currTime.toFormat('a')}

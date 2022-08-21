@@ -42,7 +42,7 @@ export default function ClassFilter(props: ClassFilterProps) {
                     type="text"
                     placeholder="Search"
                     defaultValue={filter.query}
-                    className="w-full bg-sidebar dark:bg-sidebar-dark border-2 border-tertiary dark:border-tertiary-dark rounded-full py-1.5 px-3"
+                    className="w-full bg-sidebar dark:bg-sidebar-dark border-2 border-tertiary rounded-full py-1.5 px-3"
                     onChange={(event) => setFilter({...filter, query: event.target.value})}
                 />
                 <Popover>
@@ -80,7 +80,7 @@ export default function ClassFilter(props: ClassFilterProps) {
 export function PopoverPlus(props: {className?: string}) {
     return (
         <Popover.Button className={props.className}>
-            <FiPlus className="w-6 h-6 rounded-full bg-background dark:bg-background-dark p-1" />
+            <FiPlus className="w-6 h-6 rounded-full bg-background p-1" />
         </Popover.Button>
     )
 }
@@ -96,15 +96,15 @@ export function TagPicker(props: TagPickerProps) {
     const [search, setSearch] = useState('');
 
     return (
-        <AnimatedPopover className={"absolute top-[calc(100%_+_15px)] right-0 p-2.5 w-[300px] bg-content dark:bg-content-dark rounded-md z-10 shadow-lg " + screenType}>
+        <AnimatedPopover className={"absolute top-[calc(100%_+_15px)] right-0 p-2.5 w-[300px] bg-content rounded-md z-10 shadow-lg " + screenType}>
             <input
                 type="text"
                 placeholder="Search"
-                className="bg-content-secondary dark:bg-content-secondary-dark rounded w-full px-2.5 py-1.5"
+                className="bg-content-secondary rounded w-full px-2.5 py-1.5"
                 onChange={(e) => setSearch(e.target.value)}
             />
 
-            <div className="flex flex-col gap-4 h-64 mt-2 p-1.5 border-y border-tertiary dark:border-tertiary-dark overflow-y-auto">
+            <div className="flex flex-col gap-4 h-64 mt-2 p-1.5 border-y border-tertiary overflow-y-auto">
                 {children(search)}
             </div>
         </AnimatedPopover>
@@ -146,8 +146,8 @@ export function TagPickerLabels(props: TagPickerLabelsProps) {
                         name={parseLabelName(labelID, userData)}
                         // TODO: think of how to keep this as style arguments but remove the dependency on var()
                         // as var() will be eliminated with the CSS removal
-                        backgroundColor={labels.includes(labelID) ? parseLabelColor(labelID, userData) : 'var(--content-primary)'}
-                        border={labels.includes(labelID) ? '' : '2px inset var(--secondary)'}
+                        backgroundColor={labels.includes(labelID) ? parseLabelColor(labelID, userData) : 'rgb(var(--content))'}
+                        border={labels.includes(labelID) ? '' : '2px inset rgb(var(--secondary))'}
                         onClick={() => toggleLabel(labelID)}
                     />
                 );
@@ -189,8 +189,8 @@ export function TagPickerClasses(props: TagPickerClassesProps) {
                         key={index}
                         name={c.name}
                         label={c.period}
-                        backgroundColor={selected[index] ? c.color : 'var(--content-primary)'}
-                        border={selected[index] ? '' : '2px inset var(--secondary)'}
+                        backgroundColor={selected[index] ? c.color : 'rgb(var(--content))'}
+                        border={selected[index] ? '' : '2px inset rgb(var(--secondary))'}
                         onClick={() => toggleClass(index)}
                     />
                 )
@@ -209,7 +209,7 @@ function TagPickerSection(props: TagPickerSectionProps) {
 
     return (
         <section className="flex flex-col gap-1">
-            <span className="flex gap-2 items-center border-b-2 border-tertiary dark:border-tertiary-dark mb-1">
+            <span className="flex gap-2 items-center border-b-2 border-tertiary mb-1">
                 <h4 className="text-lg font-medium">{heading}</h4>
                 {noneSelected ? (
                     <TagPickerSelectButton onClick={selectAll}>
@@ -228,7 +228,7 @@ function TagPickerSection(props: TagPickerSectionProps) {
 
 function TagPickerSelectButton(props: {onClick?: MouseEventHandler<HTMLButtonElement>, children: ReactNode}) {
     return (
-        <button className="rounded text-[0.7rem] px-1 py-0.5 bg-content-secondary dark:bg-content-secondary-dark" onClick={props.onClick}>
+        <button className="rounded text-[0.7rem] px-1 py-0.5 bg-content-secondary" onClick={props.onClick}>
             {props.children}
         </button>
     )

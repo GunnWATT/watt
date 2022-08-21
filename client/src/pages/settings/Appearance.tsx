@@ -75,7 +75,7 @@ function RadioCard(props: RadioCardProps) {
 
     return (
         // TODO: better light mode card colors
-        <RadioGroup.Option value={value} className={({checked}) => `flex items-center gap-4 rounded-lg shadow-md px-5 py-4 cursor-pointer` + (checked ? ' bg-gray-100 dark:bg-background-dark' : ' bg-gray-50/50 dark:bg-zinc-800/30')}>
+        <RadioGroup.Option value={value} className={({checked}) => `flex items-center gap-4 rounded-lg shadow-md px-5 py-4 cursor-pointer` + (checked ? ' bg-gray-100 dark:bg-background' : ' bg-gray-50/50 dark:bg-zinc-800/30')}>
             {({checked}) => (<>
                 {checked ? (
                     <FiCheck className="w-6 h-6 bg-tertiary dark:bg-white/10 rounded-full p-1 flex-none" />
@@ -84,7 +84,7 @@ function RadioCard(props: RadioCardProps) {
                 )}
                 <div>
                     <RadioGroup.Label className="font-medium">{label}</RadioGroup.Label>
-                    <RadioGroup.Description className="secondary font-light">
+                    <RadioGroup.Description className="text-secondary font-light">
                         {children}
                     </RadioGroup.Description>
                 </div>

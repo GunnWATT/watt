@@ -101,7 +101,7 @@ export default function BarcodeRow(props: BarcodeRowProps) {
                 <Dialog.Overlay className="fixed inset-0 bg-black/80" />
 
                 <div className="relative w-full h-[200px] p-6 flex items-center justify-center bg-white">
-                    <Dialog.Description className="secondary absolute -bottom-8">
+                    <Dialog.Description className="text-secondary absolute -bottom-8">
                         Click/tap anywhere to close.
                     </Dialog.Description>
                     <canvas

@@ -50,29 +50,29 @@ export default function StaffComponent(props: Staff & {id: string}) {
             <li className="text-sm cursor-pointer px-4 py-5" onClick={() => setModal(true)}>
                 <p>{name}</p>
                 {(title || dept) && (
-                    <p className="secondary">{title === "Teacher" && dept ? `${title}, ${dept}` : title ? title : dept ? dept : ``}</p>
+                    <p className="text-secondary">{title === "Teacher" && dept ? `${title}, ${dept}` : title ? title : dept ? dept : ``}</p>
                 )}
-                {email && <p className="secondary">{email}</p>}
+                {email && <p className="text-secondary">{email}</p>}
             </li>
 
-            <CenteredModal className="relative bg-content dark:bg-content-dark rounded-md max-w-md mx-2 p-6 shadow-xl" isOpen={modal} setIsOpen={setModal}>
+            <CenteredModal className="relative bg-content rounded-md max-w-md mx-2 p-6 shadow-xl" isOpen={modal} setIsOpen={setModal}>
                 <Dialog.Title className="text-xl font-semibold mb-3 pr-6">{name}</Dialog.Title>
                 <section className="flex gap-6 justify-between">
                     <div>
-                        {title && <p><strong className="secondary font-medium">Title:</strong> {title}</p>}
-                        {dept && <p><strong className="secondary font-medium">Department:</strong> {dept}</p>}
-                        {room && <p><strong className="secondary font-medium">Room:</strong> {room}</p>}
+                        {title && <p><strong className="text-secondary font-medium">Title:</strong> {title}</p>}
+                        {dept && <p><strong className="text-secondary font-medium">Department:</strong> {dept}</p>}
+                        {room && <p><strong className="text-secondary font-medium">Room:</strong> {room}</p>}
                     </div>
                     <div className="text-right">
-                        {email && <p><strong className="secondary font-medium">Email:</strong> {email}</p>}
-                        {phone && <p><strong className="secondary font-medium">Phone:</strong> {phone}</p>}
+                        {email && <p><strong className="text-secondary font-medium">Email:</strong> {email}</p>}
+                        {phone && <p><strong className="text-secondary font-medium">Phone:</strong> {phone}</p>}
                     </div>
                 </section>
 
                 {charters.length > 0 && (<>
                     <hr className="my-3" />
                     <p className="flex gap-1 items-center">
-                        <strong className="secondary font-medium">Club(s):</strong> {charters}
+                        <strong className="text-secondary font-medium">Club(s):</strong> {charters}
                     </p>
                 </>)}
 

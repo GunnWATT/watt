@@ -64,7 +64,7 @@ function Assignment(props: AssignmentProps) {
                 <div className="text-lg break-words">{shortify(assignment.name, 150)}</div>
 
                 {!!assignment.description.length && (
-                    <div className="secondary mt-2.5 text-[0.8rem] break-words">
+                    <div className="text-secondary mt-2.5 text-[0.8rem] break-words">
                         {shortify(assignment.description,200)}
                     </div>
                 )}
@@ -72,7 +72,7 @@ function Assignment(props: AssignmentProps) {
                 <AssignmentTimestamp className="mt-2.5">
                     {assignment.timestamp!.toLocaleString(DateTime.TIME_SIMPLE)} on {assignment.timestamp!.toLocaleString(DATE_MED_NO_YEAR)}
                     {overdue && (
-                        <span> • <span className="text-theme dark:text-theme-dark">
+                        <span> • <span className="text-theme">
                             {assignment.timestamp?.toRelative()}
                         </span></span>
                     )}
@@ -158,7 +158,7 @@ export default function Assignments(props: AssignmentsProps & ActiveItemState) {
         <div className="flex flex-col gap-4">
             {days.map(({day, upcoming: currUpcoming}) => (
                 <section className="flex flex-col gap-2.5" key={day.toISO()}>
-                    <h3 className="secondary">
+                    <h3 className="text-secondary">
                         {day.toLocaleString(DATE_FULL_NO_YEAR)} • In {pluralize(Math.ceil(day.diff(currTime, 'days').days), 'day')}
                     </h3>
 
@@ -178,7 +178,7 @@ export default function Assignments(props: AssignmentsProps & ActiveItemState) {
 
 export function AssignmentTimestamp(props: {className?: string, children: ReactNode}) {
     return (
-        <div className={'bg-background dark:bg-background-dark py-0.5 px-1.5 rounded-sm text-[0.8rem] w-max' + (props.className ? ` ${props.className}` : '')}>
+        <div className={'bg-background py-0.5 px-1.5 rounded-sm text-[0.8rem] w-max' + (props.className ? ` ${props.className}` : '')}>
             {props.children}
         </div>
     )

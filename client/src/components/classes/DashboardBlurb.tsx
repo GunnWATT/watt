@@ -38,7 +38,7 @@ function BlurbAssignment(props: BlurbAssignmentProps) {
 
     return (
         <div
-            className="flex items-center bg-background dark:bg-content-dark rounded p-4 gap-3"
+            className="flex items-center bg-background dark:bg-content rounded p-4 gap-3"
             style={{ borderLeft: `4px solid ${parsePeriodColor(item.period, userData)}`}}
         >
             <CheckBox className="w-6 h-6 cursor-pointer flex-none" onClick={toggleCompleted} />

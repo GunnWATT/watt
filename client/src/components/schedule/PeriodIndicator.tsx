@@ -56,8 +56,8 @@ export default function PeriodIndicator(props: PeriodIndicatorProps) {
 
 function ProgressBar(props: {value: number}) {
     return (
-        <div className="flex overflow-hidden bg-tertiary dark:bg-tertiary-dark h-2 rounded">
-            <div className="bg-primary dark:bg-primary-dark transition-all duration-700" style={{width: `${props.value}%`}} />
+        <div className="flex overflow-hidden bg-tertiary h-2 rounded">
+            <div className="bg-primary transition-all duration-700" style={{width: `${props.value}%`}} />
         </div>
     )
 }

@@ -34,7 +34,7 @@ export default function DashboardQuickInfo(props: { selected: string }) {
                         The school year has ended!
                     </>)}
                 </h2>
-                <p className="secondary">
+                <p className="text-secondary">
                     There have been {numSchoolDays(alternates)} school days in this school year.
                 </p>
             </section>
@@ -52,7 +52,7 @@ export default function DashboardQuickInfo(props: { selected: string }) {
     return (
         <section>
             <h2 className="text-xl">The next class is {info.next.time.toRelative()}.</h2>
-            <p className="secondary">
+            <p className="text-secondary">
                 It will be on {info.next.time.toFormat('dddd, MMMM Do')}, and will be Week {info.next.week} Day {info.next.day},
                 the {cardinalize(info.past.days + 1)} class of the school year.
             </p>

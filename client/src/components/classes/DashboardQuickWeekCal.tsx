@@ -24,8 +24,8 @@ function DashboardQuickCalDot(props: DashboardQuickCalDotProps) {
         <div
             className="w-2.5 h-2.5 rounded-full m-[3px]"
             style={{
-                backgroundColor: props.completed ? 'var(--content-primary)' : parsePeriodColor(props.course, userData),
-                border: props.completed ? '2px inset var(--secondary)' : ''
+                backgroundColor: props.completed ? 'rgb(var(--content))' : parsePeriodColor(props.course, userData),
+                border: props.completed ? '2px inset rgb(var(--secondary))' : ''
             }}
         />
     );
@@ -44,7 +44,7 @@ function DashboardQuickCalDay(props: DashboardQuickCalDayProps) {
     const active = selected === 'A' ? !!(getSchedule(day, alternates).periods) : !!hasClass(day, selected, alternates);
 
     return (
-        <div className={'p-1 rounded min-h-[70px] text-center ' + (active ? 'bg-background dark:bg-content-dark' : 'bg-content-secondary dark:bg-background-dark')}>
+        <div className={'p-1 rounded min-h-[70px] text-center ' + (active ? 'bg-background dark:bg-content' : 'bg-content-secondary dark:bg-background')}>
             <div>
                 {weekdays[day.weekday % 7]}{screenType !== 'phone' && ` • ${day.day}`}
             </div>

@@ -8,7 +8,6 @@ import {FirebaseAppProvider} from 'reactfire';
 import FirebaseProviders from './components/firebase/FirebaseProviders';
 import UserDataProvider from './components/firebase/UserDataProvider';
 
-import './styles/base.scss';
 import './styles/tailwind.scss';
 
 
