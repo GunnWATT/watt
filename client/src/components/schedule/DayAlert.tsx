@@ -32,7 +32,7 @@ export default function DayAlert(props: DayAlertProps) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
         >
-            <div className="absolute left-3 right-3 md:left-0 md:right-0 flex items-center max-w-5xl mx-auto shadow-lg border-none bg-sidebar dark:bg-sidebar-dark rounded px-5 py-3 pr-16">
+            <div className="absolute z-50 left-3 right-3 md:left-0 md:right-0 flex items-center max-w-5xl mx-auto shadow-lg border-none bg-sidebar dark:bg-sidebar-dark rounded px-5 py-3 pr-16">
                 {makeDateString()}
                 <button className="ml-auto" onClick={jumpToPres}>JUMP TO PRESENT</button>
                 <CloseButton className="absolute right-4" onClick={() => setVisible(false)} />
