@@ -22,13 +22,30 @@ imperfect match or if a club wasn't matched to an existing ID.
 
 ![image](https://user-images.githubusercontent.com/60120929/166117012-a3d04f1c-31a5-44a3-92d5-f870f78e0d80.png)
 
-Once generated, the JSON can be pasted into the exported `clubs` object in `../shared/data/clubs.ts`, updating the data
-used by the client. For cross-year generation, note that the spreadsheet URL this script fetches clubs from is hard coded 
+Once generated, the JSON can be pasted into the exported `clubs` object in `../shared/data/clubs.ts` to update the data
+used by the client and API. For cross-year generation, note that the spreadsheet URL this script fetches clubs from is hard coded 
 and must be updated manually if a new spreadsheet is released.
 
-<!-- TODO: clean up staff scripts -->
-<!-- ### `npm run staff` -->
-<!-- `npm run staff` generates the staff directory JSON by ___. -->
+### Staff
+
+#### This script reads:
+| Filename              | Description                               |
+|-----------------------|-------------------------------------------|
+| `./output/staff.json` | The previous staff JSON, for ID matching. |
+
+#### This script writes:
+| Filename              | Description                     |
+|-----------------------|---------------------------------|
+| `./output/staff.json` | The newly generated staff JSON. |
+
+`npm run staff` generates the staff directory JSON by scraping and parsing the Gunn website's staff directory page. Unlike
+the club spreadsheet, the Gunn website is hard to parse and full of inaccuracies, so the Staff script may have to be 
+updated frequently and the quality of the staff data generated may be more questionable.
+
+<!-- TODO: image -->
+
+As for clubs, once generated, the JSON can be pasted into the exported `staff` object in `../shared/data/staff.ts` to 
+update the data used by the client and API.
 
 ### Generate alternates
 
