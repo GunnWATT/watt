@@ -71,7 +71,7 @@ function staffMatch(staffA: Staff, staffB: Staff) {
 }
 
 ;(async () => {
-    const prev = JSON.parse(readFileSync('./input/staff.json').toString());
+    const prev = JSON.parse(readFileSync('./output/staff.json').toString());
 
     // Parse partial staff objects from Gunn website
     const gunnWebsiteRaw = await (await fetch('https://gunn.pausd.org/connecting/staff-directory')).text();
@@ -110,7 +110,7 @@ function staffMatch(staffA: Staff, staffB: Staff) {
     // Populate `final` with staff objects, referencing the previous generated JSON to match staff to their IDs
     // See comment in `genClubs.ts` on why this is necessary
     for (const staff of gunnWebsiteStaff) {
-        // TODO: this is a very similar pattern to what clubs uses; perhaps we can extract into a util
+        // TODO: this is a very similar pattern to what clubs uses; perhaps we can extract into a util?
         let match;
         for (const key in prev.data) {
             // Match two staff objects using the `staffMatch` weighted string similarity algorithm
@@ -118,8 +118,8 @@ function staffMatch(staffA: Staff, staffB: Staff) {
 
             const similarity = staffMatch(prev.data[key], staff);
             if (similarity >= 0.8) {
-                // Log if we are using an imperfect match just in case
-                if (similarity < 1)
+                // Log if the staff's name has changed for manual review
+                if (prev.data[key].name !== staff.name)
                     warn(`Matched similar keys ${prev.data[key].name} and ${staff.name}`);
 
                 match = key;
@@ -132,7 +132,7 @@ function staffMatch(staffA: Staff, staffB: Staff) {
     }
 
     const str = JSON.stringify(final, null, 4);
-    writeFileSync('./input/staff.json', str);
+
     writeFileSync('./output/staff.json', str);
     info('Wrote output to "./output/staff.json".');
 })();
