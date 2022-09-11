@@ -45,8 +45,7 @@ export default function Staff() {
                 />
             </span>
             <p className="mb-4 text-secondary">
-                Please note that staff information was taken from{' '}
-                <a href="https://www.parentsquare.com/api/v2/schools/6272/directory" target="_blank" rel="noopener noreferrer">ParentSquare</a> and the{' '}
+                Please note that staff information was taken from the{' '}
                 <a href="https://gunn.pausd.org/connecting/staff-directory" target="_blank" rel="noopener noreferrer">Gunn website</a>{' '}
                 as of {DateTime.fromISO(timestamp).toLocaleString(DateTime.DATE_FULL)}. Attribute inaccuracies to them.
             </p>
@@ -56,8 +55,8 @@ export default function Staff() {
                     query === ''
                     || staff.name.toLowerCase().includes(query.toLowerCase())
                     || (staff.title && staff.title.toLowerCase().includes(query.toLowerCase()))
-                    || (staff.dept && staff.dept.toLowerCase().includes(query.toLowerCase()))
-                    || !!(staff.email && staff.email.toLowerCase().includes(query.toLowerCase()))
+                    || (staff.email && staff.email.toLowerCase().includes(query.toLowerCase()))
+                    || staff.dept.toLowerCase().includes(query.toLowerCase())
                 }
                 map={([id, staff]) => (
                     <StaffComponent
