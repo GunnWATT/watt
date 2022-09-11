@@ -19,7 +19,7 @@ import clubs from '@watt/shared/data/clubs';
 
 
 export default function StaffComponent(props: Staff & {id: string}) {
-    const {name, id, title, email, room, dept, phone, periods, other} = props;
+    const {name, id, title, email, room, dept, phone} = props;
     const [modal, setModal] = useState(false);
 
     // Firestore
