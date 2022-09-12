@@ -7,17 +7,22 @@ const lines = data.split('\n')
     .map(line => line.includes('GUNN HIGH SCHOOL COURSE CATALOG 2022-2023') ? '' : line) // delete lines for page nums
     .map(line => line.replace(/[ \t]/g, '').length ? line : '' );
 
-/** classes will be an array
- * {
- *      names: { title: string, CID: number }[] // some have multiple names
- *      grades: [number, number] // lower bound, upper bound
- *      length: "Year"|"Semester"
- *      notes: string // i.e. UC Approved "g"
- *      section: string // i.e. Mathematics
- *      description: string
- * }
- */
-const classes = [];
+
+// TODO: move this to shared, export object, display on frontend, etc.
+type Course = {
+    names: { title: string, CID: number }[],
+    grades: number[],
+    length?: "Year" | "Semester" | "Semester/Year",
+    credit: string,
+    section: string,
+    description: string,
+    hw?: string,
+    slos?: number[],
+    notes?: string[]
+}
+
+
+const courses: Course[] = [];
 
 let titleNameStack = []; // titles span multiple lines, so we need to keep a running stack of the lines before each title
 let courseStack = []; // courses have multiple titles, so we need to keep a running stack of full titles (yeah, it's a lot)
@@ -52,8 +57,9 @@ for (let ln = 0; ln < lines.length; ln++) {
 
         // This line can look like any of `Grades 11-12 Year UC Approved “b”`, `Grade 9 Year  NOT UC Approved`,
         // "Grades 9-12  NOT UC Approved", or any other weirdly formatted variant thereof.
+        // If it doesn't start with "Grade", it's not a course info line.
         const courseInfo = lines[infoln];
-        if (!courseInfo.startsWith('Grade')) continue; // If it doesn't start with "Grade", it's not a course info line
+        if (!courseInfo.startsWith('Grade')) continue;
 
         const match = courseInfo.match(/Grades? +(\d+)(?:-(\d+))? +(?:(Year|Semester|Semester\/Year) +)?(.+)/);
         if (!match) throw `Error matching string ${courseInfo}!`;
@@ -66,22 +72,40 @@ for (let ln = 0; ln < lines.length; ln++) {
 
         // find description !
         let description = '';
+        let hw: string | undefined = undefined;
+        let slos: number[] | undefined = undefined;
+        const notes: string[] = [];
+
         let descln = infoln + 1;
         while (lines[descln].length === 0) descln++; // find nonempty line
 
-        for (; lines[descln].length && !lines[descln].includes('::'); descln++) { // while the next line isn't a course title and isn't empty
-            if (lines[descln].startsWith('•')) description += '\n'; // if it's a bulleted point add a new line
-            description += lines[descln]; // add the line
+        // While the next line isn't a course title and isn't empty, add to the current course description and info.
+        for (; lines[descln].length && !lines[descln].includes('::'); descln++) {
+            const line = lines[descln];
+
+            // If the line starts with a bullet point, it's special course info
+            if (line.startsWith('•')) {
+                const [name, value] = line.slice(2).split(':').map(x => x.trim());
+                if (name === 'Homework Expectation') hw = value;
+                else if (name === 'District SLOs Addressed in this Course') slos = value.split(', ').map(x => Number(x));
+                else notes.push(value);
+                continue;
+            }
+
+            // Otherwise, add the line to the course description
+            description += line;
         }
 
-        classes.push({
+        courses.push({
             names: courseStack,
             grades,
-            length,
+            length: length as "Year" | "Semester" | "Semester/Year" | undefined,
             credit: credit.replace(/ +/g, ' '),
             section,
             description: description.replace(/ +/g, ' '),
-            notes: '' // TODO
+            hw,
+            slos,
+            notes: notes.length ? notes : undefined // TODO: better way of doing this?
         });
 
         courseStack = [];
@@ -98,5 +122,5 @@ for (let ln = 0; ln < lines.length; ln++) {
     titleNameStack.push(line);
 }
 
-writeFileSync('./output/catalog.json', JSON.stringify(classes, null, 4));
+writeFileSync('./output/catalog.json', JSON.stringify(courses, null, 4));
 info('Wrote output to "./output/catalog.json".');
