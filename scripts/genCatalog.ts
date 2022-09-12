@@ -20,6 +20,7 @@ type Course = {
     description: string,
     hw?: string,
     prereqs?: string,
+    recCourses?: string,
     slos?: string[],
     notes?: string[]
 }
@@ -47,6 +48,7 @@ for (const [section, raw] of sections) {
         // Parse bullet point course info
         let hw: string | undefined = undefined;
         let prereqs: string | undefined = undefined;
+        let recCourses: string | undefined = undefined;
         let slos: string[] | undefined = undefined;
 
         const notes: string[] = [];
@@ -55,6 +57,7 @@ for (const [section, raw] of sections) {
             const [name, value] = line.split(':').map(x => x.trim());
             if (/Homework +Expectation/.test(name)) hw = value;
             else if (/Prerequisite\(?s\)?/.test(name)) prereqs = value;
+            else if (/Prior +Recommended +Course\(?s\)?/.test(name)) recCourses = value;
             else if (name === 'District SLOs Addressed in this Course') slos = value.split(', ');
             else if (name) notes.push(name);
         }
@@ -68,6 +71,7 @@ for (const [section, raw] of sections) {
             description: desc.replace(/ +/g, ' ').trim(),
             hw,
             prereqs,
+            recCourses,
             slos,
             notes: notes.length ? notes : undefined // TODO: better way of doing this?
         });

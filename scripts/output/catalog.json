@@ -44,9 +44,7 @@
         "credit": "UC Approved “f”",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "Advanced Video Production Digital Filmmaking II is a course which provides students with opportunities to work on \r\nindividual and small group video projects at the mastery level with industry grade equipment and software. Peer \r\nmentorship and brief workshop methods will be employed to provide students with understandings of advanced \r\nprinciple and practices of digital filmmaking. Students in this course will be expected to use time outside of the school \r\nday in collaborative groups during the production process and are expected to complete post production within our \r\nspecialty lab via Adobe Premiere, After Effects and Audition. \r\nThis course can be used to fulfill the Career-Technical Education graduation requirements or the “f” requirement, the \r\nVisual and Performing Arts requirement, for the CSU and UC systems with honors credit. May be repeated for credit \r\nwith permission of instructor.",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "Completion of Video Production"
     },
     {
         "names": [
@@ -162,9 +160,7 @@
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "Advanced Journalism and Media Studies (AJAMS) builds upon the foundational understandings of journalistic writing \r\nand ethics that were explored in the Beginning Journalism course. Working under the guidance of students in Media \r\nLeadership and Management (and under the supervision of the teacher/adviser), AJAMS students will employ various \r\ngenres of journalistic writing to investigate topics of importance within their local community, and will work together \r\nto develop and circulate a regularly recurring journalistic publication or other media production to their school \r\ncommunity, publishing in print, digital, audio, broadcast/streaming, and/or social media. Students will progress in \r\ntheir ability to defend – both orally and in writing – decisions regarding the medium and style of their journalistic \r\noutput, and its legal and ethical soundness. Students will analyze the writing styles and perspectives of prominent \r\nlocal media while also frequently reflecting on the styles, perspectives, and values represented in their own publication. \r\nThis course may be repeated for credit, but students entering their senior year will enroll in Media Leadership and \r\nManagement or Media Leadership and Management Honors.",
         "hw": "Minimal, except during production times when students are expected to attend after-",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "Successful completion of Beginning Journalism. Adviser interview required"
     },
     {
         "names": [
@@ -182,9 +178,7 @@
         "credit": "UC Approved “g”",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "Advanced Journalism and Media Studies (AJAMS) builds upon the foundational understandings of journalistic \r\nwriting and ethics that were explored in the Beginning Journalism course. Working under the guidance of students in \r\nMedia Leadership and Management (and under the supervision of the teacher/adviser), AJAMS students will employ \r\nvarious genres of journalistic writing to investigate topics of importance within their local community, and will work \r\ntogether to develop and circulate a regularly recurring journalistic publication or other media production to their \r\nschool community, publishing in print, digital, audio, broadcast/streaming, and/or social media. Students will progress \r\nin their ability to defend – both orally and in writing – decisions regarding the medium and style of their journalistic \r\noutput, and its legal and ethical soundness. Students will analyze the writing styles and perspectives of prominent local \r\nmedia while also frequently reflecting on the styles, perspectives, and values represented in their own publication. This \r\ncourse may be repeated for credit.",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "Successful completion of Beginning Journalism, Graphic Design or Photo plus"
     },
     {
         "names": [
@@ -201,9 +195,7 @@
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "This course is a capstone option in an extensive media and digital communication strand offered at the school. \r\nStudents will have successfully completed the course sequence that covers journalism reporting and writing, design, \r\nphotography and production. This leads to a year of serving in a publication leadership role in peer-editing and \r\nproduction teams for student media as well as studying college and career options. Options will range from serving as \r\na section editor to managing editor to business manager, or as an editor-in-chief over a full staff. In addition to peer \r\nediting responsibilities, leadership and management, students will work to create a sense of community, foster the \r\ndevelopment of good journalistic principles, help each other and their younger peers in the selection of story ideas, \r\nconduct primary research, and will serve as writing coaches. \r\nThe honors class differs from its parallel in Media Leadership and Management in that students will complete more \r\nextensive personal explorations, reflections and analytical work in leadership and management. In key assignments, \r\nthey will interact with professional media leaders. They will demonstrate mastery of all journalistic reporting and \r\nwriting principles as well as print, digital and mobile package planning and execution.",
         "hw": "Minimal, except during production times when students are expected to attend after-",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "Successful completion of prior courses in Journalism pathway"
     },
     {
         "names": [
@@ -249,9 +241,7 @@
         "credit": "UC Approved “g”",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "BEAM (Business, Entrepreneurship and Math) is a private-public partnership that replicates real-life business \r\nenvironments, which require application of mathematical principles. During this course, students develop their own \r\n\r\nstart-ups while learning entrepreneurship, finance, and quantitative marketing from customized curricula created in \r\npartnership with Ernst & Young and PricewaterhouseCoopers. The students design and develop self-driven solutions \r\nwhile being mentored by the teacher and designated mentors. After finishing the BEAM curriculum and successfully \r\ncompleting the business pathway, students will have the opportunity to work for local companies or non-profit \r\norganizations through internships and/or volunteer consulting work.",
-        "notes": [
-            "Prior  Recommended  Course(s)"
-        ]
+        "recCourses": "Successful  completion  of  an  introductory  Algebra  course and Principles  of"
     },
     {
         "names": [
@@ -429,9 +419,7 @@
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "This course will introduce students to the theoretical aspects of Biotechnology (Cell Biology, Microbiology, Molecular \r\nBiology, Immunology) and societal issues arising from this new technology. Hands on laboratory activities will \r\nreinforce theoretical information and teach lab safety, data analysis, the scientific method, and related computer skills. \r\nThis course may include topical speakers from biotechnology.",
         "hw": "No  assigned  homework.  Students  are  given  class  time  to  complete  work.    Some",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "Successful completion of Biology and Chemistry or with department approval"
     },
     {
         "names": [
@@ -450,9 +438,7 @@
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "Athletic injury prevention is emphasized through pre-participation physical exams, exercise programs, preventative \r\ntaping, proper fitting of equipment, and protective braces. Basic injury recognition and emergency response of acute \r\ntrauma. Practical hands-on skills are emphasized in laboratories.",
         "hw": "1-2 hours per week",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "Completion of Biology; open to 10, 11, 12 graders"
     },
     {
         "names": [
@@ -548,14 +534,12 @@
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "Designed for the student who desires more information, experience and proficiency related to automotive operation, \r\nrepair and maintenance. Instrument troubleshooting of electrical systems, brake systems, suspension systems, and \r\ncustom alignment are but a few of the topics explored in depth in the course. Vehicle design and parts \r\nconstruction/fabrication projects. Certain operations and projects are required but adequate time is provided for \r\npersonal projects and problems. Competent students who wish to be teacher aides or desire further grooming for \r\nemployment can make special arrangements for a third year of Auto with the instructor’s permission. They will be \r\nclassified as teacher aides or special service. Students who enroll in and complete Automotive Technology 2 will be \r\ngiven special consideration during the selection process for the Gunn Robotics Team (GRT)",
         "hw": "None",
+        "recCourses": "Completion of Auto 1 or permission of the instructor",
         "slos": [
             "1",
             "4",
             "6",
             "7"
-        ],
-        "notes": [
-            "Prior Recommended Course(s)"
         ]
     },
     {
@@ -575,9 +559,7 @@
         "credit": "UC Approved “d”",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "This course will introduce basic analog and digital electronics concepts to students who want to explore how binary \r\nnumbers and logic elements are used to implement complex digital circuits. The course is based on curriculum \r\nprovided by Project Lead the Way (PLTW) and includes topics such as analog circuits, transistors and logic gates, \r\nBoolean algebra and Karnaugh mapping, combinational and sequential logic, synchronous and asynchronous clocks, \r\nstate machines, programmable logic devices and programming microcontrollers. Students use a circuit design program \r\nto simulate circuits before building them using soldered breadboards and integrated circuits. Students develop personal \r\nengineering notebooks that document skills, design plans and completed projects. Teamwork, problem-solving, and \r\ncommunication skills are developed through group projects.",
-        "notes": [
-            "Prior  Recommended  Course(s)"
-        ]
+        "recCourses": "Completion  of Algebra 1A.  Concurrent  enrollment  in  a  college  preparatory"
     },
     {
         "names": [
@@ -596,9 +578,7 @@
         "credit": "UC Approved “d”",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "This course will introduce students to foundational concepts of design and engineering. The course is based on \r\ncurriculum provided by Project Lead the Way (PLTW) and has been customized to address Gunn High School’s \r\nSilicon Valley student population and equipment, including a state-of-the-art 3D printer. Topics include the process \r\nof design, technical sketching, CAD (computer-aided design), dimensional analysis, statistical analysis using Microsoft \r\nExcel, tolerances, reverse engineering and 3D printing. Students develop personal engineering notebooks that \r\ndocument skills and designs, including several projects printed on the 3D printer. Teamwork and communication \r\nskills are developed through group projects. Students in this course have the opportunity to compete in regional and \r\nstatewide PLTW design competitions hosted by local tech companies and universities. Students who enroll in and \r\ncomplete Introduction to Engineering Design will be given special consideration during the selection process for the \r\nGunn Robotics Team (GRT).",
-        "notes": [
-            "Prior  Recommended  Course(s)"
-        ]
+        "recCourses": "Successful  completion  of  Algebra  IA.    Concurrent  enrollment  in  a  college"
     },
     {
         "names": [
@@ -616,9 +596,7 @@
         "credit": "UC Approved “d”",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "This course will introduce students to foundational concepts of design and engineering. The course is based on \r\ncurriculum provided by Project Lead the Way (PLTW) and has been customized to address Gunn High School’s \r\nSilicon Valley student population and equipment, including a state-of-the-art 3D printer. Topics include the process \r\nof design, technical sketching, CAD (computer-aided design), dimensional analysis, data analysis and presentation \r\nusing spreadsheets, tolerances, reverse engineering and 3D printing. Students develop personal engineering notebooks \r\nthat document skills and designs, including several projects printed on the 3D printer. Teamwork and communication \r\nskills are developed through group projects. Students in this course have the opportunity to compete in regional and \r\nstatewide PLTW design competitions hosted by local tech companies and universities. Students who enroll in and \r\ncomplete Introduction to Engineering Design will be given special consideration during the selection process for the \r\nGunn Robotics Team (GRT). \r\nThe honors option requires additional independent study to earn CAD certification.",
-        "notes": [
-            "Prior  Recommended  Course(s)"
-        ]
+        "recCourses": "Successful  completion  of  Algebra  IA.    Concurrent  enrollment  in  a  college"
     },
     {
         "names": [
@@ -636,9 +614,7 @@
         "credit": "UC Approved “d”",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "This course will introduce basic engineering concepts and mathematical models to students who want to build and \r\nprogram their own mechanical inventions. The course is based on curriculum provided by Project Lead the Way \r\n(PLTW) and includes topics such as simple machines, work and energy, statics, electronics, robotic control and real-\r\ntime programming, and projectile motion. Theory is developed through application problems and hands-on projects \r\nbuilt from VEX robotics and other components. Students develop personal engineering notebooks that document \r\nskills, design plans and completed projects. Teamwork, problem-solving, and communication skills are developed \r\nthrough group projects. Students in this course also have the opportunity to compete in VEX Robotics competitions. \r\nStudents who enroll in and complete Principles of Engineering and Robotics will be given special consideration during \r\nthe selection process for the Gunn Robotics Team (GRT).",
-        "notes": [
-            "Prior  Recommended  Course(s)"
-        ]
+        "recCourses": "Successful  completion  of  Algebra  IA.   Concurrent  enrollment  in  a  college"
     },
     {
         "names": [
@@ -656,9 +632,7 @@
         "credit": "UC Approved “d”",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "This course will introduce basic engineering concepts and mathematical models to students who want to build and \r\nprogram their own mechanical inventions. The course is based on curriculum provided by Project Lead the Way \r\n(PLTW) and includes topics such as simple machines, work and energy, statics, electronics, robotic control and real-\r\ntime programming, and projectile motion. Theory is developed through application problems and hands-on projects \r\nbuilt from VEX robotics and other components. Students develop personal engineering notebooks that document \r\nskills, design plans and completed projects. Teamwork, problem-solving, and communication skills are developed \r\nthrough group projects. Students in this course also have the opportunity to compete in VEX Robotics competitions. \r\nStudents who enroll in and complete Principles of Engineering and Robotics will be given special consideration during \r\nthe selection process for the Gunn Robotics Team (GRT). \r\nThe honors option requires additional independent on-line study to earn a pre-engineering certification (by passing \r\nan online exam administered by the REC Foundation).",
-        "notes": [
-            "Prior  Recommended  Course(s)"
-        ]
+        "recCourses": "Successful  completion  of  Algebra  IA.    Concurrent  enrollment  in  a  college"
     },
     {
         "names": [
@@ -755,6 +729,7 @@
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "This course is designed to give the student a taste of what it is like to be a freshman computer science major at a good \r\nuniversity. The course includes data abstraction, procedural abstraction, evaluation processes, top-down design, \r\niteration, recursion, primitive and abstract data types, data structures (arrays, lists, sets, tables, queues, stacks, trees), \r\nalgorithm analysis and orders of growth, the beginnings of an object system (with message passing), searching and \r\nsorting, inheritance and delegation, interfaces and polymorphism, and more! Students should be able to analyze code in \r\nterms of functionality, efficiency, readability, reusability, modularity, and meaning.",
         "hw": "4 hours per week",
+        "recCourses": "Completion of Functional & Object-Oriented Programming",
         "slos": [
             "1",
             "2",
@@ -763,7 +738,6 @@
             "7"
         ],
         "notes": [
-            "Prior Recommended Course(s)",
             "This is an advanced placement course",
             "Not approved NCAA course"
         ]
@@ -784,8 +758,8 @@
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "This course allows students to apply their computational skills in a real-world context. Students will work in teams to \r\nuse the design thinking process to identify a problem within their local community and then develop a possible \r\nsolution. Students will work with mentors related to their problem areas and the teacher of the course will facilitate \r\nthe design-thinking process and support students in managing their projects. The course will culminate in a public \r\npresentation of their yearlong project.",
         "hw": "1-1.5 hours per week",
+        "recCourses": "Prior completion of or concurrent enrollment in AP Computer Science A",
         "notes": [
-            "Prior Recommended Course(s)",
             "Also qualifies for Career Tech Ed credits"
         ]
     },
@@ -805,9 +779,7 @@
         "credit": "Board & UC Approval Pending",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "In this course students will take a project-based approach to learning the basics of full-stack Web development. Topics \r\ninclude how the internet works, http, building databases, version control, servers, the document object model (DOM), \r\nModel-View-Controller design pattern, coupled and decoupled applications, routing, API’s, and test-driven \r\ndevelopment. Languages, modules, libraries, frameworks, etc. are always evolving, but this course will include the \r\nfollowing (or an analogue to the following): HTML, CSS, JavaScript, jQuery, Ajax, SQL, Active Record, Ruby, Sinatra, \r\nand Ruby on Rails.",
-        "notes": [
-            "Prior  Recommended  Course(s)"
-        ]
+        "recCourses": "Successful  completion  of  Functional  and  Object-Oriented  Programming  or"
     },
     {
         "names": [
@@ -1176,9 +1148,7 @@
         "credit": "UC Approved “b”",
         "section": "ENGLISH",
         "description": "In this creative writing course, students will have the opportunity to write memoir, short fiction, and poetry, as well \r\nas to experiment with innovative forms. We will focus on developing a strong, authentic voice, developing scenes, and \r\nunderstanding effective structure. Students will write daily and will regularly share their work with other students. The \r\ncourse is recommended only for those who understand that the best writing comes from both creativity and discipline.",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "Successful completion of 9th and 10th grade UC Approved “b” courses; grades"
     },
     {
         "names": [
@@ -2609,13 +2579,11 @@
         "section": "VISUAL & PERFORMING ARTS",
         "description": "Drawing is the foundation of all artists to describe their ideas, regardless of the medium of the final product. This \r\ncourse will prepare any student to draw well by enhancing their ability to see subtle value ranges, create a full range of \r\nbold values, understand relationships of space and learn what makes a strong composition. This course can be repeated \r\nfor two years with credit. \r\nDesigned as the first course in the Drawing and Painting Program, the curriculum gradually builds upon itself to move \r\nfrom an exploration in expressive mark-making with graphite, conté, charcoal, colored pencil and pastel, to a painting \r\nexperience. Drawing well is the foundation for painting well, thus it is after drawing that advanced color theory, \r\npainting approaches and brush techniques are considered through acrylic, watercolor and digital painting. \r\nAssignments are designed to build the “artist’s tool belt”– the technical and expressive skills to render a broad range \r\nof surface qualities or textures upon the illusion of forms, in both black and white and color. The lessons encourage \r\ncreative, imaginative thinking to begin visually communicating personal concepts. \r\nHistorical and cross-cultural views on art are integrated into lessons and discussions; sketchbooks are highly used; and \r\nexposure to local artwork is obligatory. Representatives will be invited to present, from private Art Colleges and UCs \r\nwith strong art programs, about options for art careers. \r\nCourse work will include art history, research, museum reports, artist statements, and participation in critiques.",
         "hw": "1 hour per week on average",
+        "recCourses": "Art Spectrum or equivalent, or consent of the instructor; grades 10-12",
         "slos": [
             "1",
             "4",
             "6"
-        ],
-        "notes": [
-            "Prior Recommended Course(s)"
         ]
     },
     {
@@ -2635,13 +2603,13 @@
         "section": "VISUAL & PERFORMING ARTS",
         "description": "This course can be used to fulfill a year of Career Tech Education (CTE) credit. \r\nDesigned sequentially as the second course in the Drawing and Painting Program, Advanced Painting and Drawing is \r\nan expansion of the drawing and painting experience, and is less rigorous than the Honors curriculum. This course \r\ndevelops the artist’s expression to communicate visually and find personal meaning in student work. While building \r\ntechnical and expressive skills in advanced media such as Intaglio printmaking, oil painting, digital painting and mixed \r\nmedia, the creation of concept-driven work will be achievable. Through advanced understanding and use of design \r\nelements and principles, the beginning of a high- quality body of work will be developed in preparation for college \r\nand personal portfolios. \r\nStudents will support one another’s artistic process through peer assessment, build articulation of conceptual meaning \r\nby using advanced art vocabulary in critiques, and create a positive studio environment. This course is for mature \r\nartists who have a strong foundation in the use of multiple media, are serious about making art and have responsible \r\nstudio behavior. \r\n\r\nAssignments will gradually be less structured, allowing for personal motivation towards artistic independence. \r\nSketchbooks become an essential part of documenting growth, and semester museum visits and reports offer \r\nimportant exposure to new art and artists. Seniors have the option to curate and exhibit their body of work in the \r\nLibrary Gallery through a sign-up process.",
         "hw": "2 hours per week on average",
+        "recCourses": "Successful completion of one full year of Drawing/Painting; grades 10-12",
         "slos": [
             "1",
             "4",
             "6"
         ],
         "notes": [
-            "Prior Recommended Course(s)",
             "Offered together with Advanced Painting & Drawing H",
             "May also satisfy the CTE graduation requirement"
         ]
@@ -2663,13 +2631,13 @@
         "section": "VISUAL & PERFORMING ARTS",
         "description": "This course can be used to fulfill a year of Career Tech Education (CTE) credit and can be repeated an additional year \r\nfor Elective (non-CTE) credit. \r\nDesigned sequentially as the second course in the Drawing and Painting Program, Advanced Painting and Drawing \r\nHonors is an expansion of the drawing and painting experience and gives Honors credits. This course develops the \r\nartist’s expression to communicate visually and find personal meaning in student work. While building technical and \r\nexpressive skills in advanced media such as Intaglio printmaking, oil painting, digital painting and mixed media, the \r\ncreation of concept-driven work will be achievable. Through advanced understanding and use of design elements and \r\nprinciples, the beginning of a high-quality body of work will be developed in preparation for college and personal \r\nportfolios. Overall, it is a “Portfolio Preparation” course meant to build and refine 2-D work for a college portfolio, an \r\nAP Studio Art Portfolio, or for personal interest. \r\nStudents will support one another’s artistic process through peer assessment, build articulation of conceptual meaning \r\nby using advanced art vocabulary in critiques, and create a positive studio environment. This course is for mature \r\nartists who have a strong foundation in the use of multiple media, are serious about making art and have responsible \r\nstudio behavior. \r\nAssignments will gradually be less structured, allowing for personal motivation towards artistic independence. The \r\nHonors status will involve more rigor with regular sketchbook work and compositional analysis and ideation \r\ndevelopment writing. Sketchbooks become an essential part of documenting growth, and semester museum visits and \r\nreports offer important exposure to new art and artists. Seniors have the option to curate and exhibit their body of \r\nwork in the Library Gallery through a sign-up process.",
         "hw": "2 hours per week on average",
+        "recCourses": "Successful completion of one full year of Drawing/Painting; grades 10-12",
         "slos": [
             "1",
             "4",
             "6"
         ],
         "notes": [
-            "Prior Recommended Course(s)",
             "Offered together with Advanced Painting and Drawing I",
             "May also satisfy the CTE graduation requirement"
         ]
@@ -2689,9 +2657,7 @@
         "credit": "UC Approved “f”",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "Designed as the third course in the Painting and Drawing Program, this course has a self-directed curriculum. Thus, \r\nquarterly contracts will be based on student-designed learning objectives and aesthetic intent, with a minimum of \r\nthree pieces of artwork per quarter. Portfolio development will be supported through quarterly one-on-one \r\nconsultations and class critiques. \r\nThis advanced course is in the same period as AP Studio Art, and is for students who choose to opt out of AP Studio \r\nArt, but desire artistic independence and full studio access. Sketchbooks continue to be an essential part of \r\ndocumenting personal and artistic growth, and semester museum visits and reports offer important exposure to art \r\ntrends and concepts. \r\nSeniors have the option to curate and exhibit their body of work in the Library Gallery through a sign-up process.",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "Successful completion of one full year of Advanced Drawing/Painting; grades"
     },
     {
         "names": [
@@ -2708,9 +2674,7 @@
         "credit": "UC Approved “f”",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "The AP Studio Art Painting and Drawing Portfolio consists of artwork involving drawing, painting, printmaking, and \r\nmixed media. Advanced Drawing & Painting II and AP Studio Art students are in the same period, and both courses \r\nwill be together for critiques twice a year. \r\nStudents who enroll in this college-level course must first successfully complete a review of their current portfolio with \r\nthe Painting and Drawing instructor for assessment, ideally by the end of the previous year. If the quantity and quality \r\nin the body of work reflects the necessary preparation, or summer plans indicate productive art making or instruction, \r\nthen there is acceptance to proceed. \r\nApproximately 15 completed pieces reflecting first-year, college-level standards are required in the portfolio by the \r\nfirst week of May, and should exhibit these areas of concern: Sustained Investigation and Selected Works. Photo shoots \r\nare scheduled as a service to digitally document artwork for digital submission of Sustained Investigation. Five actual \r\npieces for the Selected Works portion are mailed in an 18” X 24” portfolio to the AP College Board, to be returned \r\nmid-summer. \r\nQuarterly, one-on-one reviews are scheduled with instructor to monitor progress, guide the artistic process and \r\nevaluate conceptual development and mastery of drawing and painting. To maintain a position in this course, evidence \r\nof roughly four pieces per quarter is upheld and a commitment of responsible studio behavior is expected. The AP \r\nCollege Board will assign college credit for this course after their review in summer, upon receiving a score of 3 or \r\nhigher and completion of their form.",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "Successful completion of one full year of at least one Advanced Painting and"
     },
     {
         "names": [
@@ -2751,9 +2715,7 @@
         "credit": "UC Approved “f”",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "The primary goal of this course is to develop an advanced understanding of the methods and concepts employed in \r\nsolving communications problems in graphic and package design. This course also serves to prepare a portfolio of \r\nfundamental and dependable methods for creating meaningful, imaginative, communication solutions through \r\nresearch, analysis, oral and written investigation of communication tasks and their target audiences. Traditional and \r\ndigital media are utilized, as well as demonstrations, presentations, group exercises, historical and cultural research, \r\nclass critiques, and one-on-one meetings with students. \r\nSeniors have the option to curate and exhibit their body of work in the Library Gallery through a sign-up process. This \r\ncourse is open to grades 11-12.",
-        "notes": [
-            "Prior  Recommended  Course(s)"
-        ]
+        "recCourses": "Successful  completion  of  one  full  year  of  Graphic  Design  I  and  approval  of"
     },
     {
         "names": [
@@ -2772,13 +2734,11 @@
         "section": "VISUAL & PERFORMING ARTS",
         "description": "An introductory course in ceramics designed for students who have an interest in making functional wheel thrown \r\npottery as well as hand-built sculptural works. Projects are structured to provide students with foundational technical \r\nskills while also allowing them to explore their own creative expression. Design, aesthetics and planning are an integral \r\npart of the curriculum. Students will be required to keep an active sketchbook where they sketch their concepts and \r\ndesign their works before construction. The ceramics curriculum analyzes historical, cultural and aesthetic aspects of \r\nclay working and creative problem solving. \r\nAs a result of taking this course, students will be able to create works of art that reflect an understanding of the elements \r\nof art and the principles of design. They will be able to appreciate and discuss the artistic accomplishments of various \r\ncultures, past and present, using visual art’s vocabulary. Photographing completed works, critiques and \r\nmuseum/gallery visits are an expected part of the curriculum. This course is open to grades 10-12.",
         "hw": "See course description",
+        "recCourses": "Art Spectrum or equivalent, or teacher approval",
         "slos": [
             "1",
             "4",
             "6"
-        ],
-        "notes": [
-            "Prior Recommended Course(s)"
         ]
     },
     {
@@ -2797,9 +2757,7 @@
         "section": "VISUAL & PERFORMING ARTS",
         "description": "Advanced Ceramics I is the second course in the Ceramics Program and is designed to build upon the foundational \r\nskills taught in Ceramics. The course is designed to develop student voice in their created work and covers a variety of \r\nmore advanced techniques both in sculpture and on the potter’s wheel. Students are expected to become proficient \r\ndesigners and planners—students will have more freedom to develop their own ideas and develop skills in a particular \r\narea. Sketchbooks are required in which students will take notes, collect research and sketch designs prior to \r\nconstruction. \r\nStudents are expected to participate in critiques and will have opportunities to exhibit their work in the library and in \r\nthe community. Advanced Ceramics I is the prerequisite for Advanced Ceramics II and AP Studio Art 3-D Design. \r\nOpportunities to photograph student work will occur throughout the year in order to build a digital portfolio.",
         "hw": "Less than 1 hour per week depending on the particular project, degree of involvement",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "Successful completion of one full year of Ceramics or approval of the instructor"
     },
     {
         "names": [
@@ -2816,9 +2774,7 @@
         "credit": "UC Approved “f”",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "Designed as the third course in the Ceramics Program, Advanced Ceramics II is designed to expand upon students’ \r\ninterests in working with clay. The course is self-directed and is therefore geared for the student who is motivated to \r\nundertake ambitious work in clay. Students must get projects preapproved by the instructor and a minimum of four \r\nprojects per semester is required.\r\nThe goal for this course is to provide the advanced student the opportunity to grow in a setting with ambitious peers \r\nand to produce works toward a sophisticated portfolio. Students will explain or justify themes and aesthetic decisions, \r\nand make connections to art history and culture. \r\nSketchbooks are required in which students will take notes, collect research and sketch designs prior to construction. \r\nStudents will have the opportunity to exhibit their work in the library and in the community. Photography of student \r\nwork will occur throughout the year in order to build a digital portfolio.",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "Successful completion of one full year of Advanced Ceramics I or the approval"
     },
     {
         "names": [
@@ -2835,9 +2791,7 @@
         "credit": "UC Approved “f”",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "To enroll in AP 3-D Studio Art you must have completed at least one year of Advanced Ceramics and have met with \r\nthe instructor to review your current portfolio of work. This course is intended for serious students who would be \r\nmotivated to develop a body of work and who are independent learners. This course runs in the same period as \r\nAdvanced Ceramics. \r\nThe AP 3-D Design portfolio consists of two sections: Sustained Investigation and Selected Works. \r\n The Sustained Investigation, section 1, will include 15 digital images; some detail and process images (60% of portfolio \r\nscore). Students will submit images and writing to document their inquiry-guided investigation through practice, \r\nexperimentation and revision. \r\nThe Selected Works, section 2, will include 10 images of five works that may come from section 1 (40% of portfolio \r\nscore). Students will submit works of art and design to demonstrate skillful synthesis of materials, processes and ideas. \r\nQuarterly, one-on-one reviews are scheduled with the instructor to monitor progress, guide the artistic process and \r\nevaluate conceptual development and mastery of media and design principles. To maintain a position in this course, \r\nevidence of roughly four pieces per quarter is upheld and a contract of commitment and responsible studio behavior \r\nis signed. The AP College Board will assign college credit for this course after their review in summer, upon receiving \r\na score of 3 or higher and completion of their form.",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "Successful completion of one full year of at least one Advanced course within"
     },
     {
         "names": [
@@ -2878,13 +2832,13 @@
         "section": "VISUAL & PERFORMING ARTS",
         "description": "Advanced Photography builds on skills taught in Photo I. This course fulfills the district Career Technical Education \r\nrequirement. Assignments will emphasize the technical as well as emotional and communicative nature of the \r\nphotographic medium. Students will master advanced skills in composition, use 35 mm or medium format film \r\ncameras, and practice portable or studio lighting techniques. Students will expand their knowledge of darkroom and \r\ndigital processes to include contrast control, filters, dodging and burning, advanced film exposure and developing \r\nmethods. They will also explore one or more alternative photo processes (such as multiple exposures, cyanotype, \r\nsolarization and photograms). \r\nStudents who successfully complete this course will be able to demonstrate an understanding of current and historical \r\ndirections in photography through completed works, written reviews of exhibits and class critiques. Students will have \r\nthe opportunity to take field trips outside of Palo Alto, where they will visit galleries and practice street photography \r\nor nature photography. During the second semester, students will develop an independent project and have the option \r\nto create a blog that features their work. They will also be introduced to online book publishing and have the \r\nopportunity to create their own photo book. \r\nThis course may be repeated for credit upon instructor recommendation. Third-year students will select a theme that \r\nthey pursue independently, along with regular meetings for feedback from the instructor. Students can use this third \r\nyear to build a solid portfolio with which to apply to college art programs. Students my take an Honors version of this \r\ncourse (see description course #4917). Advanced Photography is required in order to take the AP Studio Art 2-D \r\nDesign course. \r\nSeniors in Advanced Photo have the opportunity to curate and exhibit their work on campus through a sign-up \r\nprocess.",
         "hw": "On average 1 hour per week",
+        "recCourses": "Successful completion Photography 1 or instructor approval",
         "slos": [
             "1",
             "6",
             "7"
         ],
         "notes": [
-            "Prior Recommended Course(s)",
             "This course fulfills the district Career Technical Education requirement"
         ]
     },
@@ -2904,13 +2858,13 @@
         "section": "VISUAL & PERFORMING ARTS",
         "description": "Advanced Photography Honors builds on skills taught in Photo I. This course fulfills the district Career Technical \r\nEducation requirement. Assignments will emphasize the technical as well as emotional and communicative nature of \r\nthe photographic medium. Students will master advanced skills in composition, use 35 mm or medium format film \r\ncameras, and practice portable or studio lighting techniques. Students will expand their knowledge of darkroom and \r\ndigital processes to include contrast control, filters, dodging and burning, advanced film exposure and developing \r\nmethods. They will also explore one or more alternative photo processes (such as multiple exposures, cyanotype, \r\nsolarization and photograms). \r\nStudents who successfully complete this course will be able to demonstrate an understanding of current and historical \r\ndirections in photography through completed works, written reviews of exhibits and class critiques. Students will have \r\nthe opportunity to take field trips outside of Palo Alto, where they will visit galleries and practice street photography \r\nor nature photography. During the second semester, students will develop an independent project and have the option \r\nto create a blog that features their work. They will also be introduced to online book publishing and have the \r\nopportunity to create their own photo book. This course may be repeated for credit upon instructor recommendation. \r\nHonors students will have additional assignments (written and project-based) beyond those in Advanced Photo, and \r\nwill select a theme that they pursue independently throughout the year, along with regular meetings for feedback from \r\nthe instructor. Advanced Photography Honors will prepare students interested in taking the AP Studio Art 2- D \r\nDesign course. Seniors in Advanced Photo Honors have the opportunity to curate and exhibit their work on campus \r\nthrough a sign-up process. Students may be assigned a museum or gallery visit in Palo Alto or in the Bay Area.",
         "hw": "On average 1 hour per week",
+        "recCourses": "Successful completion Photography 1 and instructor recommendation",
         "slos": [
             "1",
             "6",
             "7"
         ],
         "notes": [
-            "Prior Recommended Course(s)",
             "This course will also fulfill the district Career Technical Education requirement"
         ]
     },
@@ -2979,9 +2933,7 @@
         "credit": "UC Approved “f”",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "The Concert Band is an intermediate/advanced ensemble open to students with an instrumental background who wish \r\nto be a part of a quality performing group. There will be a strong emphasis on instrumental techniques and music \r\nfundamentals taught through performance. As a result of participation in this class, the student will be ready to \r\naudition for more advanced ensembles. \r\nThe Concert Band is an ensemble committed to a high level of study and performance of standard and contemporary \r\nlarge band repertoire. This ensemble provides the students with the opportunity to study and perform outstanding \r\nband literature from the Renaissance to the present. \r\nAttendance at all performances is mandatory. Performance opportunities include fall, winter and spring concerts, \r\nCMEA Band Festival, solo/ensembles, feeder school concerts. There are also opportunities for individuals to audition \r\nfor other ensembles: Honors symphony Orchestra, Jazz Bands, All-State Honor Band, and the Santa Clara County \r\nHonor Band. This course is open to grade 9 students only.",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "At least one year of instruction on a band instrument, and at least two years’"
     },
     {
         "names": [
@@ -2999,9 +2951,7 @@
         "credit": "UC Approved “f”",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "The Symphonic Band is an advanced ensemble open to students with a strong instrumental background who wish to \r\nbe part of a quality performing group. There will be a strong emphasis on performance techniques and developing a \r\nrepertoire of the finest literature for performances. As a result of this experience, the student will be able to better \r\nexpress themselves creatively, and they will have a knowledge and appreciation of music history. Both performance \r\nand written assessments will be included in the curriculum.\r\nThe Symphonic Band is an ensemble committed to a high level of study and performances of standard and \r\ncontemporary large band repertoire. This ensemble provides the students with the opportunity to study and perform \r\noutstanding band literature from the renaissance to the present. \r\nAttendance at all performances is mandatory. Performance opportunities include fall, winter and spring concerts, \r\nCMEA Band Festival, solo/ensemble, feeder school concerts, and graduation. There are also opportunities for \r\nindividuals to audition for other ensembles: Jazz Band, Honors symphony Orchestra, All-State Honor Band, and the \r\nSanta Clara County Honor Band. This course is available for Career Technical Education credit to students in grades \r\n11-12 with teacher approval.",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "At least two years of instruction on a band instrument and at least one year in"
     },
     {
         "names": [
@@ -3019,9 +2969,7 @@
         "credit": "UC Approved “f”",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "The Wind Ensemble is a highly advanced and select ensemble open to students with an extensive background in \r\ninstrumental music performance. This ensemble will focus on the performance techniques and knowledge of \r\nrepertoire associated with the finest in band and wind literature. All of the selected works, concepts learned, and \r\ntechniques developed, will adequately prepare students to participate in collegiate-level musical ensembles. There is \r\nan opportunity for all students in this ensemble to participate in small chamber music ensembles. Performance \r\nassessment, written assessment and self- assessment will be integral parts of the curriculum. Attendance at all \r\nperformances is mandatory. Performance opportunities include Fall, Winter, and Spring concerts, California Music \r\nEducators Association Festivals, Solo-Ensemble festivals, feeder school concerts, regional and national tours, \r\ncommunity events, and graduation. There are also opportunities for students to audition to participate in select \r\nensembles such as the Jazz Band, Honors symphony Orchestra, the Santa Clara County Honor Band, the California \r\nBand Directors Association All-State Honor Band, and the California Music Educators Association All-State Honor \r\nBand. \r\nThis course is available for Career Technical Education credit to students in grades 11-12 with teacher approval.",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "Teacher approval and/or audition required. Auditions for Wind Ensemble are"
     },
     {
         "names": [
@@ -3040,9 +2988,7 @@
         "credit": "UC Approved “f”",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "The Jazz Ensemble course will focus on the performance techniques and knowledge of repertoire associated with the \r\nfinest in jazz band literature. Emphasis is placed on the preparation for the performances and evaluation at concerts \r\nand various jazz festivals throughout the year. Students will perform music from the international jazz heritage, \r\ndrawing from, but not limited to, the following styles: blues, swing, be-bop, ballads, bossa nova, samba, funk and jazz \r\nrock. Performance assessment, written assessment and self-assessment will be integral parts of the curriculum. \r\nStudents will also study and practice jazz improvisation, using music theory and guided listening as tools to an \r\nexploration and development of improvising skills. Attendance at all performances is mandatory. \r\nPerformance opportunities include Winter and Spring Concerts, guest artist concert (featuring jazz professionals as \r\nguest soloist), various Jazz Festivals and various local concerts in other schools or the community.",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "At least 3 years of instruction on a jazz band instrument and at least 2 years of"
     },
     {
         "names": [
@@ -3061,9 +3007,7 @@
         "credit": "NOT UC Approved",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "The Jazz B course will focus on the performance techniques and knowledge of repertoire associated with the finest in \r\njazz band literature. Emphasis is placed on the preparation for the performances and evaluation at concerts and various \r\njazz festivals throughout the year. Students will perform music from the international jazz heritage, drawing from, but \r\nnot limited to, the following styles: blues, swing, be-bop, ballads, bossa nova, samba, funk and jazz rock. Performance \r\nassessment, written assessment and self-assessment will be integral parts of the curriculum. Students will also study \r\nand practice jazz improvisation, using music theory and guided listening as tools to an exploration and development \r\nof improvising skills. Attendance at all performances is mandatory. Performance opportunities include Winter and \r\nSpring Concerts, guest artist concert (featuring jazz professionals as guest soloist), various Jazz Festivals and various \r\nlocal concerts in other schools or the community.",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "At least 3 years of instruction on a jazz band instrument and at least 2 years of"
     },
     {
         "names": [
@@ -3082,9 +3026,7 @@
         "credit": "UC Approved “f”",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "Orchestra will focus on string techniques, knowledge of a broad representation of different string and orchestral \r\nrepertoire, as well as the promotion of lifelong learning attitudes about ALL music. Students will perform music drawn \r\nfrom the Renaissance to the present. While performance will be an integral part of the end product, the ongoing \r\nprocess of rehearsing quality music at a high level of musicianship will be the daily challenge. Performance assessment, \r\nwritten assessment, opportunity to participate in Chamber Ensembles will also be a part of the regular orchestra \r\ncurriculum. Attendance at all performances is mandatory, including Fall, Winter and Spring concerts, district festivals, \r\nCalifornia Music Educators Association festivals, Solo-Ensemble festivals, feeder school concerts, regional and \r\nnational tours and community events. There are also opportunities for individuals to audition for the All-State Honor \r\nString and Symphony Orchestra. \r\nThis course is available for Career Technical Education credit to students in grades 11-12 with teacher approval.",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": ""
     },
     {
         "names": [
@@ -3102,9 +3044,7 @@
         "credit": "UC Approved “f”",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "Chamber Orchestra is an upper level course open by audition to all students who have played in the Gunn String \r\nOrchestra for at least one year. Auditions will be held in the spring and students will have the opportunity to view and \r\nwork on all audition materials except for the sight reading which will be only available at the time of the audition. \r\n\r\nThis course will focus on continued development of technical skills, tone production, tuning, rhythmic maturity, \r\nposture, bowing/articulation and ensemble rehearsal etiquette in a full ensemble setting. The study of music theory \r\nwill be embedded into the fabric of the warm-up and concert literature. \r\nOnce accepted to the class students will work with directors on advanced string orchestra and chamber orchestra \r\nliterature. The course is designed for students who have at least five years of playing experience on their instrument \r\nand who also work well in a fast paced musical environment. Students are expected to practice all materials outside \r\nof the class and be able to work well in small groups. Leadership and initiative are also expected as well as dedication \r\nto the artistic process and the musicians and directors that are working with the ensemble. There are also opportunities \r\nfor individuals to audition for Gunn’s Honors Symphony Orchestra, the All-State Honor String and Symphony \r\nOrchestra. \r\nThis ensemble is also a group that will travel for festivals and competitions and because of the balance of the ensemble \r\nstudents must be able to commit to travel. Financial aid will be available but students who have conflicts due to sports \r\nor other outside commitments should not audition.",
-        "notes": [
-            "Prior  Recommended  Course(s)"
-        ]
+        "recCourses": "Successful  completion  of  one  (1)  year  in  Gunn  Orchestra,  previous  string"
     },
     {
         "names": [
@@ -3122,9 +3062,7 @@
         "credit": "UC Approval Pending",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "The Symphony Orchestra Honors class will allow students to experience the wide canon of symphony orchestra \r\nrepertoire, with instrumentation across all band and orchestra instruments. There will also be a continued focus on \r\ntechnical skill development, tone production, tuning, rhythmic maturity, posture, articulation and ensemble rehearsal \r\netiquette in a full ensemble setting. The study of music theory will be embedded into the fabric of the warm-up and \r\nconcert literature. \r\n \r\nSymphony Orchestra Honors will be offered as an 8th Period course. It is open by application/audition to all students \r\nwho have played in a PAUSD Orchestra or Band for at least one year. Students enrolled in Symphony Orchestra must \r\nalso be concurrently enrolled in a band and orchestra course during the school day (Periods 1-7). This honors-level \r\ncourse is designed for students who have at least four years of playing experience on their instrument and who also \r\nwork well in a fast-paced musical environment. Auditions will be held in the spring and students will have the \r\nopportunity to view and work on all audition materials except for the sight reading which will be only available at the \r\ntime of the audition.",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "At least one year in a PAUSD Orchestra or Band class. Audition required for"
     },
     {
         "names": [
@@ -3143,9 +3081,7 @@
         "credit": "UC Approved “f”",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "The Treble Choir is open to Sopranos and Altos who enjoy singing and desire to participate in a quality-singing group. \r\nThere will be strong emphasis on improving and increasing the vocal capabilities of the student. (A study of the basic \r\nmusic fundamentals—notes, rests, clefs, signatures, lines and spaces, rhythmic patterns, etc., will be included.) \r\nMusic will be drawn from our global heritage, including but not limited to the following musical cultures: African, \r\nAsian, Eastern and Western European, Indian, Middle Eastern, Latin American and North American. The chosen \r\nmusic will be sung in the language of each culture. As a result of having discussed, studied and performed the above, \r\nstudents will have a greater appreciation of cultural similarities and differences plus an increased awareness of the \r\nmany contributions, which enhance our lives. \r\nThere will be several performance opportunities for all: fall, winter and spring concerts, Choir Tours, Music Revues, \r\ndistrict/area festivals, Baccalaureate, solo/ensemble concerts and feeder school concerts. This course is open to grades \r\n9-12.",
-        "notes": [
-            "Prior  Recommended  Course(s)"
-        ]
+        "recCourses": "An  interest  in  singing  is  necessary.  However,  no  previous  experience  is"
     },
     {
         "names": [
@@ -3164,9 +3100,7 @@
         "credit": "UC Approved “f”",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "The Concert Choir is open to students who enjoy singing and desire to participate in a quality singing group. There \r\nwill be a strong emphasis on vocal training, production, phrasing, and diction with special work devoted to extending \r\nthe vocal range of the singers. Basic music theory will be included to aid in the improvement of sight- reading. Both \r\nperformance and written tests will be included in the curriculum. Memorization of performance music and consistent \r\nattendance are required. \r\nMusic will be drawn from our global heritage, including, but not limited to, the following musical cultures: African, \r\nAsian, Eastern and Western European, Indian, Middle Eastern, Latin American, and North American. The chosen \r\nmusic will be sung in the language of each culture. As a result of having discussed, studied, and performed the above, \r\nstudents will have a greater appreciation of cultural similarities and differences plus an increased awareness of the \r\nmany contributions which enhance our lives. \r\nThere will be several performance opportunities for all: fall, winter and spring concerts, Choir Tours, Music Revues, \r\ndistrict/area festivals, Baccalaureate, alumni, solo/ensemble, feeder school concerts. Also, opportunities for individuals \r\nto audition for other ensembles and solos: Chamber Singers, Solos for concerts/shows, All-State Honor Choir and \r\nNational Honor Choirs. This course is available for Career Technical Education credit to students in grades 11-12 with \r\nteacher approval.",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "Treble Choir or by audition (open to 9"
     },
     {
         "names": [
@@ -3205,9 +3139,7 @@
         "credit": "UC Approved “f”",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "This course can be taken for AP credit if enrolled for the full year and all additional AP course work has been \r\ncompleted. \r\nBasic music theory, i.e., names of lines and spaces of the grand staff, clef signs, key and time signatures, note and rest \r\nvalues, and scales, both major and minor, will serve as an introduction to the course. \r\nEar training and dictation, sight-reading and sight-singing, form and analysis, and elementary orchestration will be \r\npart of the course. The harmony portion of the course will include the study of: chord structures, positions and \r\ninversions, harmonization of bass and soprano lines, use of the figured bass, and analysis of compositions for piano, \r\nchorus, and orchestra. \r\nAs a result of this study, students will be able to compose an original work and notate it correctly. This original \r\ncomposition will be performed in June and is required. This course is open to grades 11-12.",
-        "notes": [
-            "Prior Recommended Course(s)"
-        ]
+        "recCourses": "Open to all students interested in the course. If a student is uncertain if their"
     },
     {
         "names": [
@@ -3251,15 +3183,13 @@
         "section": "VISUAL & PERFORMING ARTS",
         "description": "Theatre 2 is designed for the intermediate student who wants to build upon the skills learned in Theatre 1. Through play \r\nanalysis, scene work, and one-act play preparation and performance, students will build believable characters, apply basic \r\ntechnical theatre skills, develop directing skills, and work effectively in an ensemble. Students will develop audition \r\n\r\nmaterial suitable for professional use. Students will trace the historical development of theatre through research, \r\nperformance, and attendance of theatrical productions.",
         "hw": "15 minutes per night",
+        "recCourses": "Theatre 1",
         "slos": [
             "1",
             "2",
             "4",
             "5",
             "6"
-        ],
-        "notes": [
-            "Prior Recommended Course(s)"
         ]
     },
     {
@@ -3278,13 +3208,11 @@
         "section": "VISUAL & PERFORMING ARTS",
         "description": "Theatre 3 is designed to build upon the skills learned in Theatre 1 and 2. Through participation in in-depth projects, \r\nstudents will apply directing, acting, technical, and dramaturgical skills. During these projects, they will write and \r\nadapt scripts and research societal contexts. By exploring different theatrical genres, students will evaluate and \r\nappreciate a variety of production styles including non-Western and non-traditional theatre. This course is open to \r\ngrades 11-12.",
         "hw": "15 minutes per night",
+        "recCourses": "Theatre 2 and permission of instructor",
         "slos": [
             "1",
             "2",
             "6"
-        ],
-        "notes": [
-            "Prior Recommended Course(s)"
         ]
     },
     {
@@ -3302,6 +3230,7 @@
         "section": "VISUAL & PERFORMING ARTS",
         "description": "Theatre 4 provides an opportunity for students to pursue an individualized course of study, taking leadership roles in \r\nin-depth theatrical projects in their areas of interest. Students will locate their productions within a theatrical genre, \r\nemphasizing the historical and cultural influences on their project. Students will create unified production concepts, \r\nintegrating the contributions of the director, actor, designer, playwright, and spectator of a theatrical event. \r\nSENIOR PROJECT: Students who are selected to produce and direct a one-act production in the spring may have the \r\noption to use this as the focus for a senior project. Prior approval from the instructor is required. This course is open \r\nto grades 11-12.",
         "hw": "15 minutes per night",
+        "recCourses": "Theatre 3 and permission of instructor",
         "slos": [
             "1",
             "2",
@@ -3309,9 +3238,6 @@
             "4",
             "5",
             "6"
-        ],
-        "notes": [
-            "Prior Recommended Course(s)"
         ]
     },
     {
@@ -3392,6 +3318,7 @@
         "section": "WORLD LANGUAGES",
         "description": "Level II World Language classes are designed for non-native speakers of the target language. The curriculum prepares \r\nstudents to: perform interpersonal, interpretive and presentational communicative tasks within the novice high to \r\nintermediate low range on the ACTFL Proficiency scale; interpret, exchange, and present, information, concepts and \r\nideas both within the classroom and beyond on a variety of topics including connections to other subject areas; and \r\n\r\nunderstand the relationship among the products, practices and perspectives of the target culture(s) and other cultures. \r\nIn addition, students develop insight into their own language and culture. Themes may include family and friends, \r\nschool schedules, leisure activities, health, shopping, directions, buildings and monuments, places and events.",
         "hw": "Up to 1 hour per week",
+        "recCourses": "Level 1 or department approval; grades 9-12",
         "slos": [
             "1",
             "2",
@@ -3400,9 +3327,6 @@
             "5",
             "6",
             "7"
-        ],
-        "notes": [
-            "Prior Recommended Course(s)"
         ]
     },
     {
@@ -3439,6 +3363,7 @@
         "section": "WORLD LANGUAGES",
         "description": "Level III World Language classes are designed for non-native speakers of the target language. The curriculum prepares \r\nstudents to: perform interpersonal, interpretive and presentational communicative tasks within the intermediate mid-\r\nrange on the ACTFL Proficiency Guidelines; interpret, exchange, and present information, concepts and ideas both \r\nwithin the classroom and beyond on a variety of topics including connections to other subject areas; and understand \r\nthe relationship among the products, practices and perspectives of the target culture(s) and other cultures. In addition, \r\nstudents develop insight into their own language and culture. Themes may include family and friends, preferred \r\nactivities, healthy lifestyles, professions and work, developments in technology, history, art, literature, music, and \r\nglobal challenges.",
         "hw": "Up to 1.5 hours per week",
+        "recCourses": "Level 2 or department approval; grades 9-12",
         "slos": [
             "1",
             "2",
@@ -3447,9 +3372,6 @@
             "5",
             "6",
             "7"
-        ],
-        "notes": [
-            "Prior Recommended Course(s)"
         ]
     },
     {
@@ -3470,6 +3392,7 @@
         "section": "WORLD LANGUAGES",
         "description": "This course provides students with the opportunity to continue to demonstrate proficiency in Mandarin Chinese at \r\nthe Intermediate High to Advanced-low range in each of the 3 modes of communication on the ACTFL Proficiency \r\nGuidelines. Students analyze the historical, political, and social issues of the Mandarin-speaking world using authentic \r\nliterary texts, films, music, art, and mass media. Students also have the opportunity to explore the wide range of \r\ncultures in the world where Mandarin is spoken (China, Taiwan, Singapore, etc.). Language skills are developed \r\nthrough oral presentations, research projects, and reflections on literary and non-literary texts. Students are \r\nencouraged to independently and deeply explore and research topics of interest to them.",
         "hw": "Up to 1 hour per week",
+        "recCourses": "Chinese 3 or department approval; grades 9-12",
         "slos": [
             "1",
             "2",
@@ -3478,9 +3401,6 @@
             "5",
             "6",
             "7"
-        ],
-        "notes": [
-            "Prior Recommended Course(s)"
         ]
     },
     {
@@ -3501,6 +3421,7 @@
         "section": "WORLD LANGUAGES",
         "description": "This honors course provides students with the opportunity to continue to demonstrate their proficiency in Spanish at \r\nthe Intermediate High to Advanced-Low range in each of the 3 modes of communication on the ACTFL Proficiency \r\nGuidelines. Students analyze the historical, political, and social issues of the Spanish-speaking world using authentic \r\nliterary texts, films, music, art, and mass media. Students also have the opportunity to explore the wide range of \r\ncultures in the world where Spanish is spoken (Spain, Africa, Caribbean Islands, Central and South America, etc.) \r\nLanguage skills are developed through oral presentations, research projects, and reflections on literary and non-literary \r\ntexts. Students are encouraged to explore and research, in more depth, topics of interest to them.",
         "hw": "Up to 1 hour per week",
+        "recCourses": "Spanish 3 or department approval; grades 9-12",
         "slos": [
             "1",
             "2",
@@ -3509,9 +3430,6 @@
             "5",
             "6",
             "7"
-        ],
-        "notes": [
-            "Prior Recommended Course(s)"
         ]
     },
     {
@@ -3547,6 +3465,7 @@
         "section": "WORLD LANGUAGES",
         "description": "The AP Language and Culture courses provide students with opportunities to demonstrate their proficiency at the \r\nintermediate to pre-advanced range in each of the 3 modes of communication on the ACTFL Proficiency Guidelines. \r\nStudents are expected to: engage in spoken and written interpersonal communication; synthesize information from a \r\nvariety of authentic audio or audiovisual resources; synthesize information from a variety of authentic written and \r\nprint resources; plan, produce and present spoken and written presentations. The 6 broad themes of study include \r\nbeauty and aesthetics, contemporary life, families and communities, global challenges, personal and public identities, \r\nand science and technology.",
         "hw": "Up to 2 hours per week",
+        "recCourses": "Level 3 or department approval; grades 10-12",
         "slos": [
             "1",
             "2",
@@ -3555,9 +3474,6 @@
             "5",
             "6",
             "7"
-        ],
-        "notes": [
-            "Prior Recommended Course(s)"
         ]
     },
     {
@@ -3577,6 +3493,7 @@
         "section": "WORLD LANGUAGES",
         "description": "This course provides students with the opportunity to continue to demonstrate their proficiency in French at the \r\nIntermediate High to Advanced Low range in each of the 3 modes of communication on the ACTFL Proficiency \r\nGuidelines. Students analyze the historical, political, and social issues of the French-speaking world using authentic \r\nliterary texts, films, music, art, and mass media. Students also have the opportunity to explore the wide range of \r\n\r\ncultures in the world where French is spoken (Europe, Africa, Caribbean islands, Southeast Asia, etc.). Language skills \r\nare developed through oral presentations, research projects, and reflections on literary and nonliterary texts. Students \r\nare encouraged to explore and research in more depth topics of interest to them.",
         "hw": "Up to 2 hours per week",
+        "recCourses": "French AP Language or department approval; grades 11-12",
         "slos": [
             "1",
             "2",
@@ -3585,9 +3502,6 @@
             "5",
             "6",
             "7"
-        ],
-        "notes": [
-            "Prior Recommended Course(s)"
         ]
     },
     {
@@ -3607,6 +3521,7 @@
         "section": "WORLD LANGUAGES",
         "description": "The AP Spanish Literature and Culture course uses a thematic approach to introduce students to representative texts \r\n(short stories, novels, poetry, and essays) from Peninsular Spanish, Latin American, and United States Hispanic \r\nliterature. Students develop proficiencies across the full range of communication modes (interpersonal, presentational, \r\nand interpretive), thereby honing their critical reading and analytical writing skills. Literature is examined within the \r\ncontext of its time and place, as students reflect on the many voices and cultures present in the required readings. The \r\ncourse also includes a strong focus on cultural connections and comparisons, including exploration of various media \r\n(e.g. art, film, literary criticism).",
         "hw": "Up to 2 hours per week",
+        "recCourses": "Spanish AP or department approval; grades 10-12",
         "slos": [
             "1",
             "2",
@@ -3615,9 +3530,6 @@
             "5",
             "6",
             "7"
-        ],
-        "notes": [
-            "Prior Recommended Course(s)"
         ]
     },
     {
@@ -3638,15 +3550,13 @@
         "section": "WORLD LANGUAGES",
         "description": "Focus on Success is an award-winning study and life skills elective, designed to support students in their core academic \r\nclasses. FOS strategies highlight executive functioning techniques such as organization, time management, study skills, \r\ngoal setting, and healthy lifestyle. Additionally, FOS provides dedicated homework time and support from subject-\r\nspecific tutors.",
         "hw": "None",
+        "recCourses": "Interview; open to all grades",
         "slos": [
             "1",
             "2",
             "4",
             "5",
             "7"
-        ],
-        "notes": [
-            "Prior Recommended Course(s)"
         ]
     },
     {
