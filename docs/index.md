@@ -106,11 +106,11 @@ current period, the period immediately before it, and additional information for
 ### GET /next-period-message
 Returns a string containing information about the next period. Equivalent to fetching `/next-period` and returning
 ```ts
-"{period} is {starting | ending} in {...} {minutes | seconds}, started {...} {minutes | seconds} ago."
+"{period} is ending in {...} {minutes | seconds}, started {...} {minutes | seconds} ago."
 ```
 if `next` has started and
 ```ts
-"{period} is {starting | ending} in {...} {minutes | seconds}."
+"{period} is starting in {...} {minutes | seconds}."
 ```
 if it has not.
 
