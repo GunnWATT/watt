@@ -2,18 +2,6 @@ import {readFileSync, writeFileSync} from 'fs';
 import {info} from './util/logging';
 
 
-// [DANGER] The following code will parse the PDF into the text file
-// The text file has been [manually edited] for the following reasons:
-// > Putting ">>" in front of section titles
-// > Removing "::" from where it doesn't belong (usually from some typos)
-// > Joining together descriptions that are broken by a page (using manual regex search and find)
-// const pdf = require('pdf-parse');
-// let dataBuffer = fs.readFileSync('./catalog.pdf');
-// (async () => {
-//     const data = await pdf(dataBuffer);
-//     fs.writeFileSync('./catalog.txt', data.text);
-// });
-
 const data = readFileSync('./input/catalog.txt').toString();
 const lines = data.split('\n')
     .map(line => line.includes('GUNN HIGH SCHOOL COURSE CATALOG 2022-2023') ? '' : line) // delete lines for page nums
