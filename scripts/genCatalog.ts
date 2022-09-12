@@ -32,7 +32,8 @@ for (let ln = 0; ln < lines.length; ln++) {
         continue;
     }
 
-    if (line.includes('::')) { // we can tell if something is a title of a course if it contains "::"
+    // Course titles contain "::"
+    if (line.includes('::')) {
         titleNameStack.push(line.slice(0, line.indexOf('::'))); // push to stack
         const title = titleNameStack.join(' ').trim(); // get title name from stack
         titleNameStack = []; // reset stack
@@ -48,21 +49,25 @@ for (let ln = 0; ln < lines.length; ln++) {
 
         let infoln = ln+1; // infoln is the line number for the line right after the title, which contains grade and year information
         while (lines[infoln].length === 0) infoln++; // we search for first nonempty line
-        const gradeSemUC = lines[infoln];
 
-        // this means there are multiple titles lol
-        if (!gradeSemUC.startsWith('Grade')) continue;
+        // This line can look like any of `Grades 11-12 Year UC Approved “b”`, `Grade 9 Year  NOT UC Approved`,
+        // "Grades 9-12  NOT UC Approved", or any other weirdly formatted variant thereof.
+        const courseInfo = lines[infoln];
+        if (!courseInfo.startsWith('Grade')) continue; // If it doesn't start with "Grade", it's not a course info line
 
-        const [_trash, gradeStr, yearOrSemester, ...UCStatus] = gradeSemUC.split(' '); // get info
+        const match = courseInfo.match(/Grades? +(\d+)(?:-(\d+))? +(?:(Year|Semester|Semester\/Year) +)?(.+)/);
+        if (!match) throw `Error matching string ${courseInfo}!`;
+        const [lower, upper, length, credit] = match;
 
-        // do parsing for grade
-        // sometimes it's "All Grades", sometimes it's "Grades 9-12", sometimes it's "Grade 9" soo
-        const grades = _trash === 'All' ? [9, 12] : gradeStr.includes('-') ? gradeStr.split('-').map((a) => parseInt(a)) : [parseInt(gradeStr), parseInt(gradeStr)];
+        // Parse grade from whether there is a lower and upper bound
+        const grades = lower && upper
+            ? Array(Number(upper) - Number(lower)).fill(0).map((_, i) => i + Number(lower))
+            : [Number(lower)]
 
         // find description !
         let description = '';
         let descln = infoln + 1;
-        while(lines[descln].length === 0) descln ++; // find nonempty line
+        while (lines[descln].length === 0) descln++; // find nonempty line
 
         for (; lines[descln].length && !lines[descln].includes('::'); descln++) { // while the next line isn't a course title and isn't empty
             if (lines[descln].startsWith('•')) description += '\n'; // if it's a bulleted point add a new line
@@ -72,10 +77,11 @@ for (let ln = 0; ln < lines.length; ln++) {
         classes.push({
             names: courseStack,
             grades,
-            length: yearOrSemester,
-            notes: UCStatus.join(' ').trim(),
+            length,
+            credit: credit.replace(/ +/g, ' '),
             section,
-            description
+            description: description.replace(/ +/g, ' '),
+            notes: '' // TODO
         });
 
         courseStack = [];
