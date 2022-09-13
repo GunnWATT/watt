@@ -24,11 +24,47 @@ imperfect match or if a club wasn't matched to an existing ID.
 
 Once generated, the JSON can be pasted into the exported `clubs` object in `../shared/data/clubs.ts`, updating the data
 used by the client. For cross-year generation, note that the spreadsheet URL this script fetches clubs from is hard coded 
-and must be updated manually if a new spreadsheet is released.
+and may have to be updated manually if a new spreadsheet is released.
 
 <!-- TODO: clean up staff scripts -->
 <!-- ### `npm run staff` -->
 <!-- `npm run staff` generates the staff directory JSON by ___. -->
+
+### Parse catalog PDF
+
+#### This script reads:
+| Filename              | Description             |
+|-----------------------|-------------------------|
+| `./input/catalog.pdf` | The course catalog PDF. |
+
+#### This script writes:
+| Filename              | Description                            |
+|-----------------------|----------------------------------------|
+| `./input/catalog.txt` | The catalog PDF parsed as a text file. |
+
+`npm run catalog:parse` parses the course catalog PDF as text and writes it to a text file for use in `catalog:generate`.
+Manual edits (like prefixing section headings with `>>`) need to be made to the text file before it is able to be parsed
+by the generator script.
+
+### Generate course catalog
+
+#### This script reads:
+| Filename              | Description                                             |
+|-----------------------|---------------------------------------------------------|
+| `./input/catalog.pdf` | The course catalog text file (with manual corrections). |
+
+#### This script writes:
+| Filename                | Description                        |
+|-------------------------|------------------------------------|
+| `./output/catalog.json` | The generated course catalog JSON. |
+
+`npm run catalog:generate` generates the course catalog JSON by parsing `catalog.txt`, using the manually inserted `>>` 
+anchors to find section headings and a multiline regex to parse courses. This script writes output directly to `catalog.json`.
+
+<!-- image? -->
+
+Like clubs and staff, the generated JSON can be pasted to the `courses` object in `../shared/data/courses.ts` to update the
+data used by the client and API.
 
 ### Generate alternates
 
@@ -44,7 +80,7 @@ and must be updated manually if a new spreadsheet is released.
 
 <!-- TODO: retake screenshot with updated script name? -->
 `npm run alternates:generate` generates the alternate schedule JSON by fetching the school's google calendar feed using iCal,
-parsing alternate schedule events into WATT's schedule format. `genAlternates` handles feed rolling (where early events 
+parsing alternate schedule events into WATT's schedule format. `alternates:generate` handles feed rolling (where early events 
 are lost when new events are added) by maintaining a "first alternate" timestamp and including in the generated output 
 all alternates in the previous JSON that fall before that time. The script warns about unrecognized period names and 
 automatically corrects for brunch and lunch discrepancies in the calendar.
