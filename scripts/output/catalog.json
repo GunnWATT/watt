@@ -60,6 +60,35 @@
     {
         "names": [
             {
+                "title": "ADVANCED VIDEO PRODUCTION: DIGITAL FILMMAKING HONORS",
+                "cid": "1044"
+            }
+        ],
+        "grades": [
+            10,
+            11,
+            12
+        ],
+        "length": "Year",
+        "credit": "UC Approved “f”",
+        "section": "CAREER TECHNICAL EDUCATION (CTE)",
+        "description": "The honors option for Advanced Video Production Digital Filmmaking II is an advanced course providing students \nwith opportunities to work on individual and small group video projects at the mastery level with industry grade \nequipment and software. Peer mentorship and brief workshop methods will be employed to provide students with \nunderstandings of advanced principle and practices of digital filmmaking. Students in this course will be expected to \nuse time outside of the school day in collaborative groups during the production process and are expected to complete \npost production within our specialty lab via Adobe Premiere, After Effects and Audition. \nThe honors option includes additional written, production presentation and exhibition work that may include, but is \nnot limited to, genre analysis essay, script revision and portfolio, production journals, film analysis journals, a capstone \nend of class portfolio reflection and presentation. \nThis course can be used to fulfill the Career-Technical Education graduation requirements or the “f” requirement, the \nVisual and Performing Arts requirement, for the CSU and UC systems with honors credit. May be repeated for credit \nwith permission of instructor.",
+        "hw": "Minimal homework",
+        "recCourses": "Completion of Video Production",
+        "slos": [
+            "1",
+            "2",
+            "4",
+            "6",
+            "7"
+        ],
+        "notes": [
+            "May also satisfy the VPA graduation requirement"
+        ]
+    },
+    {
+        "names": [
+            {
                 "title": "AUDIO MUSIC PRODUCTION I",
                 "cid": "1054"
             }
@@ -238,6 +267,71 @@
             "5",
             "6",
             "7"
+        ]
+    },
+    {
+        "names": [
+            {
+                "title": "STAGE TECHNOLOGY",
+                "cid": "1087 Semester 1"
+            },
+            {
+                "title": "STAGE TECHNOLOGY",
+                "cid": "1088 Semester 2"
+            }
+        ],
+        "grades": [
+            9,
+            10,
+            11,
+            12
+        ],
+        "length": "Semester",
+        "credit": "NOT UC Approved",
+        "section": "CAREER TECHNICAL EDUCATION (CTE)",
+        "description": "Stage Technology and Design is designed to integrate theoretical and practical knowledge of stage technology and \ndesign. Students will study the design and construction of sets, lighting, sound, and costumes, and apply their skills by \ndeveloping design concepts and mounting productions from a variety of theatrical genres. By assuming vital roles in \nplay productions, students will work effectively in leadership and ensemble situations, and experience the relationship \nof technical theatre to the theatrical event as a whole. Students will learn to operate theatrical equipment and tools \nsafely, and use these skills to provide technical services for many school stage activities. This course satisfies the Career \nTechnical Education Program requirement and Visual and Performing Arts requirement, and may be repeated for \nfour years. Students who enroll in and complete Stage Technology will be given special consideration during the \nselection process for the Gunn Robotics Team (GRT).",
+        "hw": "None",
+        "slos": [
+            "4",
+            "6",
+            "and 7"
+        ],
+        "notes": [
+            "This class meets during 8th period"
+        ]
+    },
+    {
+        "names": [
+            {
+                "title": "ADVANCED STAGE TECHNOLOGY & DESIGN",
+                "cid": "4915"
+            },
+            {
+                "title": "ADVANCED STAGE TECHNOLOGY & DESIGN*",
+                "cid": "4915D*"
+            }
+        ],
+        "grades": [
+            9,
+            10,
+            11,
+            12
+        ],
+        "length": "Year",
+        "credit": "NOT UC Approved",
+        "section": "CAREER TECHNICAL EDUCATION (CTE)",
+        "description": "Students will continue to practice their technical theater skills at an advanced level through working in leadership roles \non Gunn Theatre Productions. They will manage and supervise a design or construction crew while drawing on their \nknowledge of theater history, design aesthetics, and creative processes. At the end of a production, students will be \nresponsible for a production report, analyzing their process, successes and challenges. This course will also require \nstudents to archive their designs and experiences in a portfolio, which they will present at the end of the spring semester. \nThis course satisfies the Career Technical Education Program requirement and Visual Performing Arts requirement, and \nmay be repeated for three years. Students who enroll in and complete Stage Tech 2 will be given special consideration \nduring the selection process for the Gunn Robotics Team (GRT).",
+        "hw": "4 hours a week on average",
+        "recCourses": "Successful completion of one full year of Stage Technology, and approval of the instructor",
+        "slos": [
+            "4",
+            "6",
+            "and 7 \n*Dual  Enrollment  Course"
+        ],
+        "notes": [
+            "THTR 45A – 4 quarter UC/CSU transferable units",
+            "THTR 45B – 4 quarter UC/CSU transferable units",
+            "THTR 45C – 4 quarter UC/CSU transferable units Students who choose to take Stage Tech 2 for two or more years will need to enroll in Dual enrollment Stage Tech 2 (4915D) for the first 3 semesters, and regular Stage Tech 2 (491)5 for the fourth and any subsequent semesters. If only taken for one year, enroll in 4915D."
         ]
     },
     {
@@ -2599,6 +2693,37 @@
         "names": [
             {
                 "title": "AP PHYSICS C: MECHANICS",
+                "cid": "3859A Semester 1"
+            },
+            {
+                "title": "AP PHYSICS C: E & M",
+                "cid": "3859E Semester 2"
+            }
+        ],
+        "grades": [
+            11,
+            12
+        ],
+        "length": "Semester",
+        "credit": "UC Approved “d”",
+        "section": "SCIENCE",
+        "description": "Traditional AP Physics C is a calculus-based, college-level physics course taught at an accelerated pace. It is equivalent \nto a course taken by physics majors and engineers at most universities. Traditional AP Physics C concentrates on \nMechanics in the first semester and Electricity and Magnetism in the second semester. The course prepares students \nto take the two Advanced Placement physics examinations in both Mechanics and Electricity and Magnetism. \nStudents must sign up for both semesters\n. (Students who have previously taken Yearlong APC Mechanics (3859 Y) \nare able to sign up for second semester E&M (3859Y) only).",
+        "hw": "4 to 7 hours uninterrupted time per week",
+        "prereqs": "Open to grades 11 and 12. Concurrent enrollment or completion of a calculus course (BC Calculus recommended) and a high confidence in problem-solving skills. Previous physics course recommended.",
+        "slos": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+        ]
+    },
+    {
+        "names": [
+            {
+                "title": "AP PHYSICS C: MECHANICS",
                 "cid": "3859Y"
             }
         ],
@@ -3297,6 +3422,36 @@
         "slos": [
             "1",
             "4",
+            "6"
+        ]
+    },
+    {
+        "names": [
+            {
+                "title": "ART HISTORY 11",
+                "cid": "6241 Semester 1"
+            },
+            {
+                "title": "ART HISTORY 12",
+                "cid": "6242 Semester 2"
+            }
+        ],
+        "grades": [
+            10,
+            11,
+            12
+        ],
+        "length": "Semester/Year",
+        "credit": "UC Approved “f”",
+        "section": "VISUAL & PERFORMING ARTS",
+        "description": "This course surveys the great masters and trends of the history of art, together with an examination of art as a reflection \nof other historical events. We explore Western art from prehistory through the present, including themes such as: war, \npower, colonization, landscape, mythology and religion, representations of the human body, use of text and \ntechnology. The arts of non-Western cultures are included throughout the year for appreciation of their unique \nqualities. This includes Oceanic, African, Native American Indian and Asian arts. Class activities include films, slides, \nmuseum field trips, lectures and related reading and research. \nStudents who successfully complete this course will need to demonstrate an understanding of Art History chronology, \nand how different cultures have aesthetically perceived artistic expressions. They will also need to show expanded \nability to make aesthetic judgments about content, techniques, forms, and purposes of art, as seen throughout history. \nStudents may be assigned museum visits outside of class. \nThis course can be taken for AP credit through enrollment for the full year and completion of all additional AP course \nwork. See the course description for AP Art History for details. One semester of this course will fulfill the Social Studies \nelective requirement for graduation.",
+        "hw": "On average, 1 hour per week",
+        "slos": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
             "6"
         ]
     },
@@ -4099,6 +4254,39 @@
             "4",
             "5",
             "6",
+            "7"
+        ]
+    },
+    {
+        "names": [
+            {
+                "title": "SCHOOL SERVICE",
+                "cid": "8385 Semester 1"
+            },
+            {
+                "title": "SCHOOL SERVICE",
+                "cid": "8386 Semester 2"
+            },
+            {
+                "title": "TEACHING ASSISTANT",
+                "cid": "0676 Semester/Year"
+            }
+        ],
+        "grades": [
+            9,
+            10,
+            11,
+            12
+        ],
+        "credit": "NOT UC Approved",
+        "section": "GENERAL CREDIT COURSES",
+        "description": "Offers the student an opportunity to give valuable service to the school and gain valuable experience in the process. \nWhile students who have some clerical skills are needed, those students who may be thinking of teaching as a career \nshould be most interested. In this program they will be given the opportunity to work with teachers in the classroom \nand school offices in their particular fields of interest, thus gaining a better understanding of teaching as a career. They \nwill also work with experienced office personnel, helping in the preparation and handling of educational materials. \nThis course may be taken for a semester or a year and is open to students of all grade levels. \nStudents who take this class will receive a grade of “Pass” or “No Credit.”",
+        "hw": "None",
+        "slos": [
+            "1",
+            "2",
+            "4",
+            "5",
             "7"
         ]
     },

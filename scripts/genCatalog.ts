@@ -35,15 +35,15 @@ type Course = {
 const courses: Course[] = [];
 
 for (const [section, raw] of sections) {
-    const matches = raw.matchAll(/((?:.+\s+::.+\r?\n\|\r?\n\w+ *\r?\n)+)Grades? +(\d+)(?:-(\d+))? +(?:(Year|Semester|Semester\/Year) +)?(.+)\r?\n([^•]+)([^]+?)(?=^(?:\s*|.+::.+)$)/gm);
+    const matches = raw.matchAll(/((?:.+\s+::.+\n\|\n[^\n]+\n)+)Grades? +(\d+)(?:-(\d+))? +(?:(Year|Semester|Semester\/Year) +)?(.+)\n([^•]+)([^]+?)(?=^(?:\s*|.+::.+)$)/gm);
 
     for (const match of matches) {
         const [, nameStr, lower, upper, length, credit, desc, bullets] = match;
 
         // Parse names into WATT `Course` format
-        const names = [...nameStr.matchAll(/(.+)\s+::.+\r?\n\|\r?\n(\w+) *\r?\n/g)].map(m => {
+        const names = [...nameStr.matchAll(/(.+)\s+::.+\n\|\n([^\n]+)/g)].map(m => {
             const [, name, cid] = m;
-            return {title: name.trim(), cid};
+            return {title: name.trim(), cid: cid.replace(/\s+/g, ' ').trim()};
         });
 
         // Parse grade from whether there is a lower and upper bound
