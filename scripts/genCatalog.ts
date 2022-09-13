@@ -2,7 +2,13 @@ import {readFileSync, writeFileSync} from 'fs';
 import {info} from './util/logging';
 
 
-const data = readFileSync('./input/catalog.txt').toString();
+const raw = readFileSync('./input/catalog.txt').toString();
+
+// Hacky fix for appendix issues by slicing it away before parsing
+// TODO: better way of doing this?
+const appendixIndex = raw.indexOf('APPENDIX')
+const data = appendixIndex !== -1 ? raw.slice(0, appendixIndex) : raw;
+
 const sections = data.split('>>').slice(1).map(text => {
     // Grab section title from first newline
     const [, section, raw] = text.match(/(.+)\r?\r?\n([^]+)/)!;
