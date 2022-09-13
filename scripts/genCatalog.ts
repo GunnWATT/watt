@@ -29,7 +29,7 @@ type Course = {
 const courses: Course[] = [];
 
 for (const [section, raw] of sections) {
-    const matches = raw.matchAll(/((?:.+\s+::.+\r?\n\|\r?\n\w+ *\r?\n)+)Grades? +(\d+)(?:-(\d+))? +(?:(Year|Semester|Semester\/Year) +)?(.+)\r?\n([^•]+)((?:• .+\r?\n)*)/g);
+    const matches = raw.matchAll(/((?:.+\s+::.+\r?\n\|\r?\n\w+ *\r?\n)+)Grades? +(\d+)(?:-(\d+))? +(?:(Year|Semester|Semester\/Year) +)?(.+)\r?\n([^•]+)([^]+?)(?=^(?:\s*|.+::.+)$)/gm);
 
     for (const match of matches) {
         const [, nameStr, lower, upper, length, credit, desc, bullets] = match;
@@ -55,11 +55,11 @@ for (const [section, raw] of sections) {
 
         if (bullets) for (const bullet of bullets.split('• ').slice(1)) {
             const [name, value] = bullet.split(':').map(x => x.trim());
-            if (/Homework +Expectation/.test(name)) hw = value.replace(/ +/g, ' ').trim();
-            else if (/Prerequisite\(?s\)?/.test(name)) prereqs = value.replace(/ +/g, ' ').trim();
-            else if (/Prior +Recommended +Course\(?s\)?/.test(name)) recCourses = value.replace(/ +/g, ' ').trim();
+            if (/Homework +Expectation/.test(name)) hw = value.replace(/\s+/g, ' ').trim();
+            else if (/Prerequisite\(?s\)?/.test(name)) prereqs = value.replace(/\s+/g, ' ').trim();
+            else if (/Prior +Recommended +Course\(?s\)?/.test(name)) recCourses = value.replace(/\s+/g, ' ').trim();
             else if (/District SLOs Addressed in this Course/.test(name)) slos = value.split(', ');
-            else if (name) notes.push(name.replace(/ +/g, ' ').trim());
+            else if (name) notes.push(name.replace(/\s+/g, ' ').trim());
         }
 
         courses.push({
