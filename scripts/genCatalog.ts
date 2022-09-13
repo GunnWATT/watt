@@ -53,13 +53,13 @@ for (const [section, raw] of sections) {
 
         const notes: string[] = [];
 
-        if (bullets) for (const line of bullets.split('• ').slice(1)) {
-            const [name, value] = line.split(':').map(x => x.trim());
-            if (/Homework +Expectation/.test(name)) hw = value;
-            else if (/Prerequisite\(?s\)?/.test(name)) prereqs = value;
-            else if (/Prior +Recommended +Course\(?s\)?/.test(name)) recCourses = value;
-            else if (name === 'District SLOs Addressed in this Course') slos = value.split(', ');
-            else if (name) notes.push(name);
+        if (bullets) for (const bullet of bullets.split('• ').slice(1)) {
+            const [name, value] = bullet.split(':').map(x => x.trim());
+            if (/Homework +Expectation/.test(name)) hw = value.replace(/ +/g, ' ').trim();
+            else if (/Prerequisite\(?s\)?/.test(name)) prereqs = value.replace(/ +/g, ' ').trim();
+            else if (/Prior +Recommended +Course\(?s\)?/.test(name)) recCourses = value.replace(/ +/g, ' ').trim();
+            else if (/District SLOs Addressed in this Course/.test(name)) slos = value.split(', ');
+            else if (name) notes.push(name.replace(/ +/g, ' ').trim());
         }
 
         courses.push({

@@ -241,7 +241,7 @@
         "credit": "UC Approved “g”",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "BEAM (Business, Entrepreneurship and Math) is a private-public partnership that replicates real-life business \r\nenvironments, which require application of mathematical principles. During this course, students develop their own \r\n\r\nstart-ups while learning entrepreneurship, finance, and quantitative marketing from customized curricula created in \r\npartnership with Ernst & Young and PricewaterhouseCoopers. The students design and develop self-driven solutions \r\nwhile being mentored by the teacher and designated mentors. After finishing the BEAM curriculum and successfully \r\ncompleting the business pathway, students will have the opportunity to work for local companies or non-profit \r\norganizations through internships and/or volunteer consulting work.",
-        "recCourses": "Successful  completion  of  an  introductory  Algebra  course and Principles  of"
+        "recCourses": "Successful completion of an introductory Algebra course and Principles of"
     },
     {
         "names": [
@@ -418,7 +418,7 @@
         "credit": "UC Approved ”d”",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "This course will introduce students to the theoretical aspects of Biotechnology (Cell Biology, Microbiology, Molecular \r\nBiology, Immunology) and societal issues arising from this new technology. Hands on laboratory activities will \r\nreinforce theoretical information and teach lab safety, data analysis, the scientific method, and related computer skills. \r\nThis course may include topical speakers from biotechnology.",
-        "hw": "No  assigned  homework.  Students  are  given  class  time  to  complete  work.    Some",
+        "hw": "No assigned homework. Students are given class time to complete work. Some",
         "recCourses": "Successful completion of Biology and Chemistry or with department approval"
     },
     {
@@ -482,7 +482,7 @@
         "credit": "UC Approved “g”",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "Law 1 is an exciting legal course targeting students who may consider a career in the legal field. This exciting course \r\ntakes the students through the criminal justice system, criminal law, Constitutional law, procedural law, adjudication \r\nprocess and an in depth look into landmark court cases. Students also examine the Bill of Rights and how they apply \r\nto law. There are many expert guest speakers, such as the FBI, four mock trials, debates, and a field trip to the Ninth \r\nCircuit Court of Appeals in this year’s course.",
-        "hw": "Most work is completed in class.  Little to no homework.",
+        "hw": "Most work is completed in class. Little to no homework.",
         "slos": [
             "1",
             "2",
@@ -559,7 +559,7 @@
         "credit": "UC Approved “d”",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "This course will introduce basic analog and digital electronics concepts to students who want to explore how binary \r\nnumbers and logic elements are used to implement complex digital circuits. The course is based on curriculum \r\nprovided by Project Lead the Way (PLTW) and includes topics such as analog circuits, transistors and logic gates, \r\nBoolean algebra and Karnaugh mapping, combinational and sequential logic, synchronous and asynchronous clocks, \r\nstate machines, programmable logic devices and programming microcontrollers. Students use a circuit design program \r\nto simulate circuits before building them using soldered breadboards and integrated circuits. Students develop personal \r\nengineering notebooks that document skills, design plans and completed projects. Teamwork, problem-solving, and \r\ncommunication skills are developed through group projects.",
-        "recCourses": "Completion  of Algebra 1A.  Concurrent  enrollment  in  a  college  preparatory"
+        "recCourses": "Completion of Algebra 1A. Concurrent enrollment in a college preparatory"
     },
     {
         "names": [
@@ -578,7 +578,7 @@
         "credit": "UC Approved “d”",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "This course will introduce students to foundational concepts of design and engineering. The course is based on \r\ncurriculum provided by Project Lead the Way (PLTW) and has been customized to address Gunn High School’s \r\nSilicon Valley student population and equipment, including a state-of-the-art 3D printer. Topics include the process \r\nof design, technical sketching, CAD (computer-aided design), dimensional analysis, statistical analysis using Microsoft \r\nExcel, tolerances, reverse engineering and 3D printing. Students develop personal engineering notebooks that \r\ndocument skills and designs, including several projects printed on the 3D printer. Teamwork and communication \r\nskills are developed through group projects. Students in this course have the opportunity to compete in regional and \r\nstatewide PLTW design competitions hosted by local tech companies and universities. Students who enroll in and \r\ncomplete Introduction to Engineering Design will be given special consideration during the selection process for the \r\nGunn Robotics Team (GRT).",
-        "recCourses": "Successful  completion  of  Algebra  IA.    Concurrent  enrollment  in  a  college"
+        "recCourses": "Successful completion of Algebra IA. Concurrent enrollment in a college"
     },
     {
         "names": [
@@ -596,7 +596,7 @@
         "credit": "UC Approved “d”",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "This course will introduce students to foundational concepts of design and engineering. The course is based on \r\ncurriculum provided by Project Lead the Way (PLTW) and has been customized to address Gunn High School’s \r\nSilicon Valley student population and equipment, including a state-of-the-art 3D printer. Topics include the process \r\nof design, technical sketching, CAD (computer-aided design), dimensional analysis, data analysis and presentation \r\nusing spreadsheets, tolerances, reverse engineering and 3D printing. Students develop personal engineering notebooks \r\nthat document skills and designs, including several projects printed on the 3D printer. Teamwork and communication \r\nskills are developed through group projects. Students in this course have the opportunity to compete in regional and \r\nstatewide PLTW design competitions hosted by local tech companies and universities. Students who enroll in and \r\ncomplete Introduction to Engineering Design will be given special consideration during the selection process for the \r\nGunn Robotics Team (GRT). \r\nThe honors option requires additional independent study to earn CAD certification.",
-        "recCourses": "Successful  completion  of  Algebra  IA.    Concurrent  enrollment  in  a  college"
+        "recCourses": "Successful completion of Algebra IA. Concurrent enrollment in a college"
     },
     {
         "names": [
@@ -614,7 +614,7 @@
         "credit": "UC Approved “d”",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "This course will introduce basic engineering concepts and mathematical models to students who want to build and \r\nprogram their own mechanical inventions. The course is based on curriculum provided by Project Lead the Way \r\n(PLTW) and includes topics such as simple machines, work and energy, statics, electronics, robotic control and real-\r\ntime programming, and projectile motion. Theory is developed through application problems and hands-on projects \r\nbuilt from VEX robotics and other components. Students develop personal engineering notebooks that document \r\nskills, design plans and completed projects. Teamwork, problem-solving, and communication skills are developed \r\nthrough group projects. Students in this course also have the opportunity to compete in VEX Robotics competitions. \r\nStudents who enroll in and complete Principles of Engineering and Robotics will be given special consideration during \r\nthe selection process for the Gunn Robotics Team (GRT).",
-        "recCourses": "Successful  completion  of  Algebra  IA.   Concurrent  enrollment  in  a  college"
+        "recCourses": "Successful completion of Algebra IA. Concurrent enrollment in a college"
     },
     {
         "names": [
@@ -632,7 +632,7 @@
         "credit": "UC Approved “d”",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "This course will introduce basic engineering concepts and mathematical models to students who want to build and \r\nprogram their own mechanical inventions. The course is based on curriculum provided by Project Lead the Way \r\n(PLTW) and includes topics such as simple machines, work and energy, statics, electronics, robotic control and real-\r\ntime programming, and projectile motion. Theory is developed through application problems and hands-on projects \r\nbuilt from VEX robotics and other components. Students develop personal engineering notebooks that document \r\nskills, design plans and completed projects. Teamwork, problem-solving, and communication skills are developed \r\nthrough group projects. Students in this course also have the opportunity to compete in VEX Robotics competitions. \r\nStudents who enroll in and complete Principles of Engineering and Robotics will be given special consideration during \r\nthe selection process for the Gunn Robotics Team (GRT). \r\nThe honors option requires additional independent on-line study to earn a pre-engineering certification (by passing \r\nan online exam administered by the REC Foundation).",
-        "recCourses": "Successful  completion  of  Algebra  IA.    Concurrent  enrollment  in  a  college"
+        "recCourses": "Successful completion of Algebra IA. Concurrent enrollment in a college"
     },
     {
         "names": [
@@ -650,7 +650,7 @@
         "credit": "UC Approved “g”",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "This is a hands-on course that will provide students real-life experience in mechanical design, machine shop skills, \r\nengineering project work and leadership. The curriculum is designed to fit the needs of both four-year-college-bound \r\nstudents and those interested in a two-year career tech education. Conceptual instruction begins with the design cycle, \r\nwhich students experience in all stages, including hands-on skill development from brainstorming to prototyping to \r\nmanufacturing and testing. Mechanism design and prototyping, programming, electronics, pneumatics, machining \r\nand welding, and CAD (computer-aided design) technologies are introduced to all students using industry-standard \r\nequipment. Applications of scientific and engineering principles, group dynamics, leadership and communication \r\nskills are developed in an activity-oriented approach including informal classroom challenges and two or more FIRST \r\nRobotics competitions each year. \r\nStudents who wish to enroll in Engineering Technology must select this course as an Alternate since members will be \r\nselected as members of the Gunn Robotics Team (GRT). Team members will be selected based on team needs of skills. \r\nAn application process will be used to award spaces within GRT, and detailed information regarding this process will \r\nbe published in January. Students who have completed Introduction to Engineering Design, Principles of Engineering \r\nand Robotics, an Automotive Technology course, or a Stage Technology course will be given special consideration \r\nduring the selection process.",
-        "hw": "Yearlong  participation  in  after-school  and  weekend  activities  is  required.    First"
+        "hw": "Yearlong participation in after-school and weekend activities is required. First"
     },
     {
         "names": [
@@ -779,7 +779,7 @@
         "credit": "Board & UC Approval Pending",
         "section": "CAREER TECHNICAL EDUCATION (CTE)",
         "description": "In this course students will take a project-based approach to learning the basics of full-stack Web development. Topics \r\ninclude how the internet works, http, building databases, version control, servers, the document object model (DOM), \r\nModel-View-Controller design pattern, coupled and decoupled applications, routing, API’s, and test-driven \r\ndevelopment. Languages, modules, libraries, frameworks, etc. are always evolving, but this course will include the \r\nfollowing (or an analogue to the following): HTML, CSS, JavaScript, jQuery, Ajax, SQL, Active Record, Ruby, Sinatra, \r\nand Ruby on Rails.",
-        "recCourses": "Successful  completion  of  Functional  and  Object-Oriented  Programming  or"
+        "recCourses": "Successful completion of Functional and Object-Oriented Programming or"
     },
     {
         "names": [
@@ -1165,7 +1165,7 @@
         "credit": "UC Approved “b”",
         "section": "ENGLISH",
         "description": "“Too often we enjoy the comfort of opinion without the discomfort of thought” – John F. Kennedy \r\nOver the course of the semester, we will explore nearly three thousand years of humanity’s most pressing questions: \r\nWhat is real? Do we have free will? What is the meaning of life? Can we create a just society? In this case we will use a \r\nwide range of literature and primary sources ranging from Plato’s Allegory of the Cave to Descartes’ Meditations to \r\nHermann Hesse’s Siddhartha. Students will discuss, debate, and write their own philosophies on life and the world \r\naround them.",
-        "hw": "1-3  hours  a  week,  depending  on  major  writing  assignments.    Surveyed  students"
+        "hw": "1-3 hours a week, depending on major writing assignments. Surveyed students"
     },
     {
         "names": [
@@ -1207,7 +1207,7 @@
         "credit": "UC Approved “b”",
         "section": "ENGLISH",
         "description": "This course is designed for the college-bound student who wants to strengthen reading, writing and critical thinking \r\nskills in preparation for university-level demands. Since the course was designed to mesh with The Expository Reading \r\nand Writing Course, the majority of our reading will be non-fiction texts drawn from a variety of disciplines. We also \r\nexplore contemporary plays about global issues, make space for free reading assignments, and include a creative \r\nwriting unit in which students convey their learning across the disciplines through narrative. We do most of our \r\nreading outside of class, with a focus on developing strategies to help students understand even the most difficult \r\ncontent and text structures. During class meetings we have lively discussions, play-reading time, and instruction in \r\nargumentative writing. By the end of the course, students will read more widely, more skillfully, and with more \r\nenjoyment than before.",
-        "hw": "4  hours  a  week,  with  3  of  those  hours  dedicated  to    outside  of  class  reading  time."
+        "hw": "4 hours a week, with 3 of those hours dedicated to outside of class reading time."
     },
     {
         "names": [
@@ -1448,7 +1448,7 @@
         "credit": "UC Approved “a”",
         "section": "HISTORY & SOCIAL SCIENCES",
         "description": "This course provides an in-depth survey of US History, including intellectual, political, cultural, social, and diplomatic \r\nhistory. The class format focuses on writing and large and small group discussions, as well as lectures and primary \r\nsource analysis. It also includes independent research, debates, and guest speakers. In addition to the text, each student \r\nwill read a variety of books on historical topics and issues. Students are encouraged to take the AP test in May for \r\ncollege credit. Summer reading is expected.",
-        "hw": "Approximately  5  hours  per  week  (with  possibly  more  in  the  3  weeks  before  the  AP"
+        "hw": "Approximately 5 hours per week (with possibly more in the 3 weeks before the AP"
     },
     {
         "names": [
@@ -1704,7 +1704,7 @@
             "6"
         ],
         "notes": [
-            "Students self-report spending an average of 2.5  hours a week outside of school on this course",
+            "Students self-report spending an average of 2.5 hours a week outside of school on this course",
             "This is an advanced course"
         ]
     },
@@ -1805,7 +1805,7 @@
         "credit": "UC Approved “c”",
         "section": "MATHEMATICS",
         "description": "This course covers content similar to Alg2/TrigA but with a greater emphasis on proof and problem solving. In each \r\nunit, students are expected to apply their understanding of the content to solve problems that are similar but not \r\nidentical to problems solved in class. Additional content includes an in-depth study of conic sections, as well as \r\narithmetic and geometric sequences and series, law of sines and cosines, and vectors.",
-        "prereqs": "Successful  completion  of  an  introductory  Algebra  course  and  a  Geometry  course;  open  to"
+        "prereqs": "Successful completion of an introductory Algebra course and a Geometry course; open to"
     },
     {
         "names": [
@@ -1858,7 +1858,7 @@
         ],
         "notes": [
             "May not be taken in conjunction with another math class",
-            "Students self-report spending an average of 1-2  hours a week outside of school on this course",
+            "Students self-report spending an average of 1-2 hours a week outside of school on this course",
             "This is a college prep course"
         ]
     },
@@ -1885,7 +1885,7 @@
             "6"
         ],
         "notes": [
-            "Students self-report spending an average of  1-2  hours a week outside of school on this course",
+            "Students self-report spending an average of 1-2 hours a week outside of school on this course",
             "This is an advanced course"
         ]
     },
@@ -1920,7 +1920,7 @@
         "credit": "UC Approved “c”",
         "section": "MATHEMATICS",
         "description": "Students study the equivalent of the first semester of a yearlong college calculus course. Students develop their \r\nunderstanding of limit, derivative, definite integral, and the indefinite integral. Students represent their work \r\nalgebraically, graphically, numerically and verbally. A graphing calculator is required for this course. Students may \r\nchoose to take the Advanced Placement Exam in Calculus AB.",
-        "prereqs": "Successful completion  of  Pre-Calculus,  Introductory  Analysis  and  Calculus,  or  Analysis"
+        "prereqs": "Successful completion of Pre-Calculus, Introductory Analysis and Calculus, or Analysis"
     },
     {
         "names": [
@@ -1946,7 +1946,7 @@
             "7"
         ],
         "notes": [
-            "Students self-report spending an average of  2.5 hours a week outside of school on this course",
+            "Students self-report spending an average of 2.5 hours a week outside of school on this course",
             "This is an advanced placement course"
         ]
     },
@@ -2019,7 +2019,7 @@
             "E4"
         ],
         "notes": [
-            "CCSS  Addressed  in  this  Course"
+            "CCSS Addressed in this Course"
         ]
     },
     {
@@ -2169,7 +2169,7 @@
         "credit": "UC Approved “d”",
         "section": "SCIENCE",
         "description": "The course description for Biotechnology can be found in the CTE section of the catalog (page 21). \r\n \r\n \r\n\r\nMARINE BIOLOGY :: Marine Biology\r\n|\r\n3168 \r\nGrades 11-12 Year UC Approved “d” \r\n \r\nMarine Biology is a second-year biology college-prep course that builds upon and extends biological concepts \r\ndeveloped during the first year. Students will take an in-depth look at the features of the ocean and the variety of plant \r\nand animal life that lives within. They will investigate how life in the ocean is interconnected and the impact that \r\nhumans have on that system. Topics will be developed through laboratory exercises, discussions, lectures, \r\ndemonstrations, informational research projects, and field trips. Please note, this is a laboratory science class where \r\nscientific skills and methods (including data analysis and laboratory write-ups) will be emphasized.",
-        "prereqs": "Successful   completion   of   Biology   and   a   physical   science   course   (Conceptual   Physics,"
+        "prereqs": "Successful completion of Biology and a physical science course (Conceptual Physics,"
     },
     {
         "names": [
@@ -2275,7 +2275,7 @@
         "credit": "UC Approved “d”",
         "section": "SCIENCE",
         "description": "The course is designed to foster deeper conceptual understanding of physics topics through inquiry, quantitative data \r\nanalysis, and problem-solving. The course will teach students to relate conceptual and pictorial understanding to \r\nmathematical descriptions used in the practice of physics. Students will engage in scientific questioning and evidence-\r\nbased reasoning to guide their understanding of the content. \r\nThis course will also prepare students to take the AP Physics 1 exam.",
-        "prereqs": "Open  to  grades  11  and  12.  Successful  completion  of  any  Biology  course.  Chemistry  course"
+        "prereqs": "Open to grades 11 and 12. Successful completion of any Biology course. Chemistry course"
     },
     {
         "names": [
@@ -2327,7 +2327,7 @@
         "credit": "UC Approved “d”",
         "section": "SCIENCE",
         "description": "AP Environmental Science is a course structured to provide a survey of earth’s geology and history, its environmental \r\nprocesses, disturbances to these processes, impact of human population on the environment and governmental \r\nregulation of local and international environmental issues. \r\nThe course follows the outline recommended by the College Board and is designed to enable students to successfully \r\ntake the College Board Advanced Placement Examination. \r\nCourse content, laboratory activities, textbook assignments, activities and projects will all be carried through with the \r\nskill and content required to be successful on the AP exam.",
-        "prereqs": "Successful  completion  of a  biology  course.  Successful  completion  of  a  first-year  chemistry"
+        "prereqs": "Successful completion of a biology course. Successful completion of a first-year chemistry"
     },
     {
         "names": [
@@ -2344,7 +2344,7 @@
         "credit": "UC Approved “d”",
         "section": "SCIENCE",
         "description": "This college-prep course covers the design structure of the human body and how it meets the demands of everyday \r\nliving. Students explore connections between form and function through units in cell biology that include, histology \r\n(tissue study), and the following body systems: Integumentary, Nervous, Skeletal, Muscular, Respiratory, \r\nCardiovascular, Immune, Renal, and Digestive. Students will investigate the integration of these systems in the context \r\nof homeostasis. \r\nThis course includes lecture, discussion, and significant practical experience while working with microscopes, \r\nanatomical models, laboratory investigations, and various dissections. Human A&P emphasizes the evolutionary basis \r\nfor basic body organization, identification of anatomical parts, and the coordination of systems to maintain health and \r\nwellness.",
-        "prereqs": "Successful  completion  of  a  biology  course and  a  physical science  course  (Chemistry  strongly"
+        "prereqs": "Successful completion of a biology course and a physical science course (Chemistry strongly"
     },
     {
         "names": [
@@ -2715,7 +2715,7 @@
         "credit": "UC Approved “f”",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "The primary goal of this course is to develop an advanced understanding of the methods and concepts employed in \r\nsolving communications problems in graphic and package design. This course also serves to prepare a portfolio of \r\nfundamental and dependable methods for creating meaningful, imaginative, communication solutions through \r\nresearch, analysis, oral and written investigation of communication tasks and their target audiences. Traditional and \r\ndigital media are utilized, as well as demonstrations, presentations, group exercises, historical and cultural research, \r\nclass critiques, and one-on-one meetings with students. \r\nSeniors have the option to curate and exhibit their body of work in the Library Gallery through a sign-up process. This \r\ncourse is open to grades 11-12.",
-        "recCourses": "Successful  completion  of  one  full  year  of  Graphic  Design  I  and  approval  of"
+        "recCourses": "Successful completion of one full year of Graphic Design I and approval of"
     },
     {
         "names": [
@@ -2891,7 +2891,7 @@
         "credit": "UC Approved “f”",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "The AP 2-D Art and Design portfolio can include any 2-D media: photography, mixed media, drawing, painting, \r\nprintmaking, graphic design, digital arts, product design and jewelry making. Students can choose to focus their \r\nportfolio specifically towards Photography or Graphic Design or Painting and Drawing. \r\nStudents who enroll in this college-level course must first successfully complete a review of their current portfolio with \r\nthe 2-D Studio Art instructor for assessment, ideally by the end of the previous year. If the quantity and quality in the \r\nbody of work reflects the necessary preparation, or summer plans indicate productive art making or instruction, then \r\nthere is acceptance to proceed. \r\nApproximately 15 completed pieces reflecting first-year, college-level standards are required in the portfolio by the \r\nfirst week of May, and should exhibit these areas of concern: Selected Works and Sustained Investigation. Five actual \r\npieces for the Selected Works portion are mailed in an 18’ X24” portfolio to the AP College Board, and will be returned \r\nby mid-summer. \r\nQuarterly, one-on-one reviews are scheduled with the instructor to monitor progress, guide the artistic process and \r\nevaluate conceptual development and mastery of the chosen discipline. To maintain a position in this course, evidence \r\nof progress per quarter is upheld with a commitment to responsible studio behavior is expected. The AP College Board \r\nwill assign college credit for this course after their review, upon receiving a score of 3 or higher and completion of their \r\nform. Seniors have the option to curate and exhibit their body of work in the Library Gallery through a sign-up process.",
-        "prereqs": "Admission  may  be  granted  to  juniors  or  seniors  who  have  successfully  completed  advanced"
+        "prereqs": "Admission may be granted to juniors or seniors who have successfully completed advanced"
     },
     {
         "names": [
@@ -3044,7 +3044,7 @@
         "credit": "UC Approved “f”",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "Chamber Orchestra is an upper level course open by audition to all students who have played in the Gunn String \r\nOrchestra for at least one year. Auditions will be held in the spring and students will have the opportunity to view and \r\nwork on all audition materials except for the sight reading which will be only available at the time of the audition. \r\n\r\nThis course will focus on continued development of technical skills, tone production, tuning, rhythmic maturity, \r\nposture, bowing/articulation and ensemble rehearsal etiquette in a full ensemble setting. The study of music theory \r\nwill be embedded into the fabric of the warm-up and concert literature. \r\nOnce accepted to the class students will work with directors on advanced string orchestra and chamber orchestra \r\nliterature. The course is designed for students who have at least five years of playing experience on their instrument \r\nand who also work well in a fast paced musical environment. Students are expected to practice all materials outside \r\nof the class and be able to work well in small groups. Leadership and initiative are also expected as well as dedication \r\nto the artistic process and the musicians and directors that are working with the ensemble. There are also opportunities \r\nfor individuals to audition for Gunn’s Honors Symphony Orchestra, the All-State Honor String and Symphony \r\nOrchestra. \r\nThis ensemble is also a group that will travel for festivals and competitions and because of the balance of the ensemble \r\nstudents must be able to commit to travel. Financial aid will be available but students who have conflicts due to sports \r\nor other outside commitments should not audition.",
-        "recCourses": "Successful  completion  of  one  (1)  year  in  Gunn  Orchestra,  previous  string"
+        "recCourses": "Successful completion of one (1) year in Gunn Orchestra, previous string"
     },
     {
         "names": [
@@ -3081,7 +3081,7 @@
         "credit": "UC Approved “f”",
         "section": "VISUAL & PERFORMING ARTS",
         "description": "The Treble Choir is open to Sopranos and Altos who enjoy singing and desire to participate in a quality-singing group. \r\nThere will be strong emphasis on improving and increasing the vocal capabilities of the student. (A study of the basic \r\nmusic fundamentals—notes, rests, clefs, signatures, lines and spaces, rhythmic patterns, etc., will be included.) \r\nMusic will be drawn from our global heritage, including but not limited to the following musical cultures: African, \r\nAsian, Eastern and Western European, Indian, Middle Eastern, Latin American and North American. The chosen \r\nmusic will be sung in the language of each culture. As a result of having discussed, studied and performed the above, \r\nstudents will have a greater appreciation of cultural similarities and differences plus an increased awareness of the \r\nmany contributions, which enhance our lives. \r\nThere will be several performance opportunities for all: fall, winter and spring concerts, Choir Tours, Music Revues, \r\ndistrict/area festivals, Baccalaureate, solo/ensemble concerts and feeder school concerts. This course is open to grades \r\n9-12.",
-        "recCourses": "An  interest  in  singing  is  necessary.  However,  no  previous  experience  is"
+        "recCourses": "An interest in singing is necessary. However, no previous experience is"
     },
     {
         "names": [
