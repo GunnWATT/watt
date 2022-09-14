@@ -84,5 +84,7 @@ for (const [section, raw] of sections) {
     }
 }
 
-writeFileSync('./output/catalog.json', JSON.stringify(courses, null, 4));
+const final = {timestamp: new Date(), data: courses};
+
+writeFileSync('./output/catalog.json', JSON.stringify(final, null, 4));
 info('Wrote output to "./output/catalog.json".');
