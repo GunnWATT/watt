@@ -1,5 +1,6 @@
 import {readFileSync, writeFileSync} from 'fs';
 import {info} from './util/logging';
+import {Course} from '@watt/shared/data/courses';
 
 
 const raw = readFileSync('./input/catalog.txt').toString();
@@ -14,22 +15,6 @@ const sections = data.split('>>').slice(1).map(text => {
     const [, section, raw] = text.match(/(.+)\r?\r?\n([^]+)/)!;
     return [section.trim(), raw]
 })
-
-
-// TODO: move this to shared, export object, display on frontend, etc.
-type Course = {
-    names: { title: string, cid: string }[],
-    grades: number[],
-    length?: "Year" | "Semester" | "Semester/Year",
-    credit: string,
-    section: string,
-    description: string,
-    hw?: string,
-    prereqs?: string,
-    recCourses?: string,
-    slos?: string[],
-    notes?: string[]
-}
 
 
 const courses: Course[] = [];
