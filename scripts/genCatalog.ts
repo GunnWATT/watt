@@ -59,7 +59,7 @@ for (const [section, raw] of sections) {
                 if (/Homework +Expectation/.test(name)) hw = value.replace(/\s+/g, ' ').trim();
                 else if (/Prerequisite\(?s\)?/.test(name)) prereqs = value.replace(/\s+/g, ' ').trim();
                 else if (/Prior +Recommended +Course\(?s\)?/.test(name)) recCourses = value.replace(/\s+/g, ' ').trim();
-                else if (/District SLOs Addressed in this Course/.test(name)) slos = value.split(', ');
+                else if (/District SLOs Addressed in this Course/.test(name)) slos = value.split(/, (?:and )?/);
                 else if (name) notes.push(name.replace(/\s+/g, ' ').trim());
             }
         }

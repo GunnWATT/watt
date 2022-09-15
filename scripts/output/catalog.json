@@ -1,5 +1,5 @@
 {
-    "timestamp": "2022-09-15T00:19:45.194Z",
+    "timestamp": "2022-09-15T00:27:01.971Z",
     "data": [
         {
             "names": [
@@ -296,7 +296,7 @@
             "slos": [
                 "4",
                 "6",
-                "and 7"
+                "7"
             ],
             "notes": [
                 "This class meets during 8th period"
@@ -328,7 +328,7 @@
             "slos": [
                 "4",
                 "6",
-                "and 7 \n*Dual  Enrollment  Course"
+                "7 \n*Dual  Enrollment  Course"
             ],
             "notes": [
                 "THTR 45A – 4 quarter UC/CSU transferable units",
@@ -3685,7 +3685,7 @@
                 "2",
                 "6) \no Music Literacy",
                 "History",
-                "and Creation (SLOs 1",
+                "Creation (SLOs 1",
                 "2",
                 "3",
                 "4",
