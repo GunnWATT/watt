@@ -19,7 +19,7 @@ import clubs from '@watt/shared/data/clubs';
 
 
 export default function StaffComponent(props: Staff & {id: string}) {
-    const {name, id, title, email, room, dept, phone, periods, other} = props;
+    const {name, id, title, email, room, dept, phone, ext} = props;
     const [modal, setModal] = useState(false);
 
     // Firestore
@@ -49,8 +49,8 @@ export default function StaffComponent(props: Staff & {id: string}) {
         <>
             <li className="text-sm cursor-pointer px-4 py-5" onClick={() => setModal(true)}>
                 <p>{name}</p>
-                {(title || dept) && (
-                    <p className="text-secondary">{title === "Teacher" && dept ? `${title}, ${dept}` : title ? title : dept ? dept : ``}</p>
+                {(room || dept) && (
+                    <p className="text-secondary">{room && dept ? `${dept}, ${room}` : dept}</p>
                 )}
                 {email && <p className="text-secondary">{email}</p>}
             </li>
@@ -66,12 +66,13 @@ export default function StaffComponent(props: Staff & {id: string}) {
                     <div className="text-right">
                         {email && <p><strong className="text-secondary font-medium">Email:</strong> {email}</p>}
                         {phone && <p><strong className="text-secondary font-medium">Phone:</strong> {phone}</p>}
+                        {ext && <p><strong className="text-secondary font-medium">Ext:</strong> {ext}</p>}
                     </div>
                 </section>
 
                 {charters.length > 0 && (<>
                     <hr className="my-3" />
-                    <p className="flex gap-1 items-center">
+                    <p className="flex flex-wrap gap-1 items-center">
                         <strong className="text-secondary font-medium">Club(s):</strong> {charters}
                     </p>
                 </>)}

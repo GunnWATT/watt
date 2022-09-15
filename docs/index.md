@@ -197,14 +197,14 @@ Returns WATT's generated staff list.
 {
   "data": {
     "47914": {
-      "name": "Harvey Newland",
-      "title": "Assistant Principal-HS",
       "email": "hnewland@pausd.org",
-      "phone": "354-8260",
+      "name": "Harvey Newland",
       "dept": "Asst. Principal",
-      "room": "Main Office"
+      "phone": "354-8260",
+      "room": "E building",
+      "ext": "6885"
     }
   }, 
-  "timestamp": "2022-04-30T19:15:30.052Z"
+  "timestamp": "2022-09-10T19:28:14.602Z"
 }
 ```

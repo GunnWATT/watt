@@ -4,7 +4,7 @@
   "description": "WATT scripts to generate client JSONs",
   "scripts": {
     "clubs": "ts-node genClubs.ts",
-    "staff": "ts-node genStaffFromPS.ts",
+    "staff": "ts-node genStaff.ts",
     "alternates:generate": "ts-node genAlternates.ts",
     "alternates:deploy": "ts-node deployAlternates.ts",
     "catalog:parse": "ts-node parseCatalog.ts",

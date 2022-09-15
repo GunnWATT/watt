@@ -130,44 +130,33 @@ type Club = {
 An object representing a staff member at Gunn.
 
 ```ts
-type SemesterClassObj = [string, string | null] | 'none';
-type ClassObj = SemesterClassObj | { 1: SemesterClassObj, 2: SemesterClassObj };
-type StaffPeriodObj = { 1: ClassObj, 2: ClassObj };
-
 type Staff = {
     name: string, title?: string, email?: string, room?: string,
-    dept?: string, phone?: string, periods?: { [key: string]: StaffPeriodObj },
-    other?: "Teaches SELF." | "Has counseling"
-}
+    dept: string, phone?: string, ext?: string
+};
 ```
 #### Reference:
-[`/shared/data/staff.ts`](https://github.com/GunnWATT/watt/blob/main/shared/data/staff.ts#L10-L17)
+[`/shared/data/staff.ts`](https://github.com/GunnWATT/watt/blob/main/shared/data/staff.ts#L1-L4)
 
 #### Specifications:
 - `name`: The name of the staff member.
-- `title`?: The title of the staff member, if they have one. This is usually `"Teacher"`, but can be `"Athletic Trainer"`, 
+- `title`?: *(deprecated)* The title of the staff member, if they have one. This is usually `"Teacher"`, but can be `"Athletic Trainer"`, 
   `"Contractor"`, `"Mental Health Therapist Contractor"`, etc.
 - `email`?: The PAUSD email of the staff member, if they have one.
 - `room`?: The room the staff member teaches in, if they have one.
-- `dept`?: The staff member's department, if they have one. This can be a teaching department like `"VPA"` or another
-  department like `"Trainer"` or `"SpEd aide"`.
+- `dept`: The staff member's department, if they have one. This can be a teaching department like `"VPA"` or another
+  department like `"Trainer"`, `"SpEd aide"`, or `"Asst. Principal"`.
 - `phone`?: The staff member's unprefixed, internal phone number, if they have one.
-- `periods`?: *(deprecated)* The staff member's teaching schedule, if they have one. This is a map of period names (see 
-  `PeriodObj.n`) to `StaffPeriodObj`s, which contains keys `1` and `2` corresponding to the class taught in that period 
-  by the staff member in first and second semester respectively. If the staff member only teaches one class during that 
-  period, this will be either a tuple of `[class name, room?]` or `'none'` if no class is taught. Otherwise, if two classes
-  are taught, this will itself be a nested object with keys `1` and `2` corresponding to the classes. Because ParentSquare
-  no longer contains a teacher's schedule, this property will only contain outdated info and is slated for removal.
-- `other`?: Other information about the staff member, if it exists. Either `"Teaches SELF."` or `"Has counseling"`.
+- `ext`?: The staff member's extension, if they have one.
 
 #### Example:
 ```json
 {
-  "name": "Travis Schollnick",
-  "title": "Campus Supervisor/Secondary",
-  "email": "tschollnick@pausd.org",
-  "dept": "Camp. Sup.",
-  "room": "Main Office",
-  "phone": "354-8200"
+  "email": "dgill@pausd.org",
+  "name": "Daljeet Gill",
+  "dept": "Librarian",
+  "phone": "354-8252",
+  "room": "Library",
+  "ext": "6802"
 }
 ```

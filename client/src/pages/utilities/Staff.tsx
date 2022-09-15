@@ -8,7 +8,7 @@ import List from '../../components/lists/List';
 import StaffComponent from '../../components/lists/StaffComponent';
 
 // Data
-import staff, {ClassObj, SemesterClassObj, Staff as StaffComponentProps} from '@watt/shared/data/staff';
+import staff, {Staff as StaffComponentProps} from '@watt/shared/data/staff';
 
 
 export default function Staff() {
@@ -23,38 +23,16 @@ export default function Staff() {
 
         // Replaces dashes with spaces to prevent matching Barba-Medina to nmedina (instead individually matching barba and medina)
         // Removes apostrophes to prevent matching O'Connell with coconnell
-        const lastNames = name.replace('-', ' ').replace('\'', '').split(' ').slice(1);
+        const names = name.replace('-', ' ').replace('\'', '').split(' ');
+        if (names.length === 1) return name; // If there's no last name (ex. "Kitchen"), return the full name.
+        const lastNames = names.slice(1);
 
+        // Find the preferred last name by matching it against the email. If no match is found, return the first
+        // last name instead.
         for (const lastName of lastNames) {
             if (email?.match(lastName.toLowerCase())) return lastName;
         }
-
-        // If no match is found, return the first last name
         return lastNames[0];
-    }
-
-    // Checks if a query matches a name of a class taught by a teacher to allow searching by classes
-    const classInQuery = (staff: StaffComponentProps) => {
-        if (!staff.periods) return false;
-
-        for (const per of Object.values(staff.periods)) {
-            if (searchClasses(per['1']) || searchClasses(per['2'])) return true;
-        }
-        return false;
-    }
-
-    // Checks if a query matches a given class object
-    const searchClasses = (classes: ClassObj) => {
-        // Hackily determine what type classes is
-        if (typeof classes === 'object' && !Array.isArray(classes))
-            return searchInner(classes['1']) || searchInner(classes['2']);
-        return searchInner(classes);
-    }
-
-    // Checks if a query matches a given semester class
-    const searchInner = (semClass: SemesterClassObj) => {
-        if (semClass === 'none') return false;
-        return semClass[0].toLowerCase().includes(query.toLowerCase());
     }
 
     return (
@@ -67,8 +45,7 @@ export default function Staff() {
                 />
             </span>
             <p className="mb-4 text-secondary">
-                Please note that staff information was taken from{' '}
-                <a href="https://www.parentsquare.com/api/v2/schools/6272/directory" target="_blank" rel="noopener noreferrer">ParentSquare</a> and the{' '}
+                Please note that staff information was taken from the{' '}
                 <a href="https://gunn.pausd.org/connecting/staff-directory" target="_blank" rel="noopener noreferrer">Gunn website</a>{' '}
                 as of {DateTime.fromISO(timestamp).toLocaleString(DateTime.DATE_FULL)}. Attribute inaccuracies to them.
             </p>
@@ -78,9 +55,8 @@ export default function Staff() {
                     query === ''
                     || staff.name.toLowerCase().includes(query.toLowerCase())
                     || (staff.title && staff.title.toLowerCase().includes(query.toLowerCase()))
-                    || (staff.dept && staff.dept.toLowerCase().includes(query.toLowerCase()))
                     || (staff.email && staff.email.toLowerCase().includes(query.toLowerCase()))
-                    || classInQuery(staff)
+                    || staff.dept.toLowerCase().includes(query.toLowerCase())
                 }
                 map={([id, staff]) => (
                     <StaffComponent
