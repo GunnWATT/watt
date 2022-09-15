@@ -23,7 +23,7 @@ for (const [section, raw] of sections) {
     const matches = raw.matchAll(/((?:.+\s+::.+\n\|\n[^\n]+\n)+)Grades? +(\d+)(?:-(\d+))? +(?:(Year|Semester|Semester\/Year) +)?(.+)\n([^•]+)([^]+?)(?=^(?:\s*|.+::.+)$)/gm);
 
     for (const match of matches) {
-        const [, nameStr, lower, upper, length, credit, desc, bullets] = match;
+        let [, nameStr, lower, upper, length, credit, desc, bullets] = match;
 
         // Parse names into WATT `Course` format
         const names = [...nameStr.matchAll(/(.+)\s+::.+\n\|\n([^\n]+)/g)].map(m => {
@@ -44,13 +44,24 @@ for (const [section, raw] of sections) {
 
         const notes: string[] = [];
 
-        if (bullets) for (const bullet of bullets.split('• ').slice(1)) {
-            const [name, value] = bullet.split(':').map(x => x.trim());
-            if (/Homework +Expectation/.test(name)) hw = value.replace(/\s+/g, ' ').trim();
-            else if (/Prerequisite\(?s\)?/.test(name)) prereqs = value.replace(/\s+/g, ' ').trim();
-            else if (/Prior +Recommended +Course\(?s\)?/.test(name)) recCourses = value.replace(/\s+/g, ' ').trim();
-            else if (/District SLOs Addressed in this Course/.test(name)) slos = value.split(', ');
-            else if (name) notes.push(name.replace(/\s+/g, ' ').trim());
+        if (bullets) {
+            // Hack for special education courses to correctly separate SLOs and special course info by parsing lines
+            // after the last bullet point as a note. This will break if a SpEd course's last bullet point is not a
+            // single line.
+            if (section === 'SPECIAL EDUCATION') {
+                const [, before, last] = bullets.trim().match(/([^]+• .+)\n?([^]*)/)!;
+                if (last) notes.push(last.replace(/\s+/g, ' ').trim());
+                bullets = before;
+            }
+
+            for (const bullet of bullets.split('• ').slice(1)) {
+                const [name, value] = bullet.split(':').map(x => x.trim());
+                if (/Homework +Expectation/.test(name)) hw = value.replace(/\s+/g, ' ').trim();
+                else if (/Prerequisite\(?s\)?/.test(name)) prereqs = value.replace(/\s+/g, ' ').trim();
+                else if (/Prior +Recommended +Course\(?s\)?/.test(name)) recCourses = value.replace(/\s+/g, ' ').trim();
+                else if (/District SLOs Addressed in this Course/.test(name)) slos = value.split(', ');
+                else if (name) notes.push(name.replace(/\s+/g, ' ').trim());
+            }
         }
 
         courses.push({

@@ -1,5 +1,5 @@
 {
-    "timestamp": "2022-09-14T01:46:39.183Z",
+    "timestamp": "2022-09-15T00:19:45.194Z",
     "data": [
         {
             "names": [
@@ -2850,8 +2850,10 @@
                 "1",
                 "3",
                 "4",
-                "6 \nPlacement  in  Academic  Enhancement  is  recommended  based  on  reading  scores/level.  This  course  is  a  Specialized \nAcademic Instruction course and requires a signed IEP delineating it as a direct service. Upon successful completion",
-                "\nstudents receive 10 units of elective credit. This course must be taken concurrently with a general education English \ncourse."
+                "6"
+            ],
+            "notes": [
+                "Placement in Academic Enhancement is recommended based on reading scores/level. This course is a Specialized Academic Instruction course and requires a signed IEP delineating it as a direct service. Upon successful completion, students receive 10 units of elective credit. This course must be taken concurrently with a general education English course."
             ]
         },
         {
@@ -2876,8 +2878,10 @@
                 "1",
                 "3",
                 "4",
-                "6 \nPlacement  in  Academic  Planning  is  recommended  based  on  student  need  for  specialized  support.  This  course  is  a \nSpecialized Academic Instruction course and requires a signed IEP delineating it as a direct service. Upon successful \ncompletion",
-                "students receive 10 units of elective credit."
+                "6"
+            ],
+            "notes": [
+                "Placement in Academic Planning is recommended based on student need for specialized support. This course is a Specialized Academic Instruction course and requires a signed IEP delineating it as a direct service. Upon successful completion, students receive 10 units of elective credit."
             ]
         },
         {
@@ -2902,8 +2906,10 @@
                 "1",
                 "3",
                 "4",
-                "6 \nPlacement in Academic Writing is recommended based on student need for specialized support in the academic area \nof writing. This course is a Specialized Academic Instruction course and requires a signed IEP delineating it as a direct \nservice.  Upon  successful  completion",
-                " students  receive  10  units  of  elective  credit.  This  course  must  be  taken \nconcurrently with a general education English course."
+                "6"
+            ],
+            "notes": [
+                "Placement in Academic Writing is recommended based on student need for specialized support in the academic area of writing. This course is a Specialized Academic Instruction course and requires a signed IEP delineating it as a direct service. Upon successful completion, students receive 10 units of elective credit. This course must be taken concurrently with a general education English course."
             ]
         },
         {
@@ -2928,8 +2934,10 @@
                 "1",
                 "3",
                 "4",
-                "6 \nPlacement in Academic Math is recommended based on student need for specialized support in the academic area of \nmath.  This  course  is  a  Specialized  Academic  Instruction  course  and  requires  a  signed  IEP  delineating  it  as  a  direct \nservice.  Upon  successful  completion",
-                " students  receive  10  units  of  elective  credit.  This  course  should  be  taken \nconcurrently with a general education math course."
+                "6"
+            ],
+            "notes": [
+                "Placement in Academic Math is recommended based on student need for specialized support in the academic area of math. This course is a Specialized Academic Instruction course and requires a signed IEP delineating it as a direct service. Upon successful completion, students receive 10 units of elective credit. This course should be taken concurrently with a general education math course."
             ]
         },
         {
@@ -2949,7 +2957,16 @@
             "credit": "NOT UC Approved",
             "section": "SPECIAL EDUCATION",
             "description": "Academic Communication is a course that addresses social learning needs. The main goals of the courses in Academic \nCommunication include: development of personal problem solving, communication skills, perspective taking, a solid \nunderstanding of social thinking, flexibility and independence. \nAcademic Communication 1: This course addresses the social learning needs of students with deficits in the area of \nsocial cognition. Students receive direct instruction in the area of effective social communication strategies such as \nperspective taking, problem-solving, and communication skills. Students explore how emotions affect them in \neveryday situations. The Mental Health Therapist and Speech and Language Therapist deliver lessons weekly in this \nclass and provide additional support to students as needed. \nAcademic Communication 2/3: This course provides direct instruction on career and college related skills as well as \nfinancial skills including budgeting. The course focuses on addressing social cognitive deficits that are directly related \nto getting and maintaining employment and daily living skills. Vocational opportunities are provided for exploration. \nThe Mental Health Therapist and Speech and Language Therapist deliver lessons weekly in this class and provide \nadditional support to students as needed.",
-            "hw": "None"
+            "hw": "None",
+            "slos": [
+                "1",
+                "3",
+                "4",
+                "6"
+            ],
+            "notes": [
+                "This course is a Specialized Academic Instruction course and requires a signed IEP delineating it as a direct service. Upon successful completion, students receive 10 units of elective credit. This course should be taken concurrently with a general education math course."
+            ]
         },
         {
             "names": [
@@ -2973,8 +2990,10 @@
                 "1",
                 "3",
                 "4",
-                "6 \nThis course is a Specialized Academic Instruction course and requires a signed IEP delineating it as a direct service. \nUpon successful completion",
-                "students receive 10 units of elective credit. This course should be taken concurrently with \na general education math course."
+                "6"
+            ],
+            "notes": [
+                "This course is a Specialized Academic Instruction course and requires a signed IEP delineating it as a direct service. Upon successful completion, students receive 10 units of elective credit. This course should be taken concurrently with a general education math course."
             ]
         },
         {
@@ -2998,10 +3017,10 @@
                 "1",
                 "3",
                 "4",
-                "6 \nThis course is a Specialized Academic Instruction course and requires a signed IEP delineating it as a direct service. \nThis course is open to 10th",
-                "11th",
-                "and 12th grade students. Upon successful completion",
-                "students receive 10 units of \nelective credit."
+                "6"
+            ],
+            "notes": [
+                "This course is a Specialized Academic Instruction course and requires a signed IEP delineating it as a direct service. This course is open to 10th, 11th, and 12th grade students. Upon successful completion, students receive 10 units of elective credit."
             ]
         },
         {
