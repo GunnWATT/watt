@@ -208,3 +208,34 @@ Returns WATT's generated staff list.
   "timestamp": "2022-09-10T19:28:14.602Z"
 }
 ```
+
+### GET /courses
+Returns WATT's generated course catalog.
+
+##### Response schema:
+```ts
+{timestamp: string, data: Course[]}
+```
+- `timestamp`: The ISO timestamp of the last run of `/scripts/catalog:generate`.
+- `data`: An array of [`Course`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#course)s offered at Gunn.
+
+##### Example successful response:
+```json
+{
+  "data": [
+    {
+      "names": [
+        {"title": "ENGINEERING TECHNOLOGY", "cid": "8574"}
+      ],
+      "grades": [10, 11, 12],
+      "length": "Year",
+      "credit": "UC Approved “g”",
+      "section": "CAREER TECHNICAL EDUCATION (CTE)",
+      "description": "This is a hands-on course that will provide students real-life experience in mechanical design, machine shop skills, \nengineering project work and leadership. The curriculum is designed to fit the needs of both four-year-college-bound \nstudents and those interested in a two-year career tech education. Conceptual instruction begins with the design cycle, \nwhich students experience in all stages, including hands-on skill development from brainstorming to prototyping to \nmanufacturing and testing. Mechanism design and prototyping, programming, electronics, pneumatics, machining \nand welding, and CAD (computer-aided design) technologies are introduced to all students using industry-standard \nequipment. Applications of scientific and engineering principles, group dynamics, leadership and communication \nskills are developed in an activity-oriented approach including informal classroom challenges and two or more FIRST \nRobotics competitions each year. \nStudents who wish to enroll in Engineering Technology must select this course as an Alternate since members will be \nselected as members of the Gunn Robotics Team (GRT). Team members will be selected based on team needs of skills. \nAn application process will be used to award spaces within GRT, and detailed information regarding this process will \nbe published in January. Students who have completed Introduction to Engineering Design, Principles of Engineering \nand Robotics, an Automotive Technology course, or a Stage Technology course will be given special consideration \nduring the selection process.",
+      "hw": "Yearlong participation in after-school and weekend activities is required. First semester 4 hours per week average, second semester (January through April) 12 hours per week minimum.",
+      "slos": ["1", "2", "3", "4", "5", "6", "7"]
+    }
+  ], 
+  "timestamp": "2022-09-10T19:28:14.602Z"
+}
+```

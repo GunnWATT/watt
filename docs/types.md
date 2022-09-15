@@ -160,3 +160,58 @@ type Staff = {
   "ext": "6802"
 }
 ```
+
+### Course
+An object representing a course offered at Gunn.
+
+```ts
+type Course = {
+    names: { title: string, cid: string }[],
+    grades: number[],
+    length?: "Year" | "Semester" | "Semester/Year",
+    credit: string, section: string,
+    description: string, hw?: string,
+    prereqs?: string, recCourses?: string,
+    slos?: string[], notes?: string[]
+}
+```
+#### Reference:
+[`/shared/data/courses.ts`](https://github.com/GunnWATT/watt/blob/main/shared/data/courses.ts#L1-L9)
+
+#### Specifications:
+- `names`: An array containing the names of the course. Each name has a title and CID (ex. `ADVANCED STAGE TECHNOLOGY & 
+  DESIGN` has CID `4915`). Courses with different CIDs per semester or that are combined in the course catalog (all
+  same level language classes, dual enrollment options, SLC and social justice pathway options) will have multiple names
+  and CIDs corresponding to each variant offered.
+- `grades`: The grades that are able to take this course (eg. `[10, 11, 12]`).
+- `length`?: The length of the course. This can either be yearlong, semester, or in rare circumstances both. Some special
+  courses like `Teaching Assistant` can have no length specified.
+- `credit`: The UC or CSU credit the course is applicable for (eg. `""UC Approved “f”""`, `"UC Approval Pending"`, or 
+  `"NOT UC Approved"`).
+- `section`: The course catalog section the course belongs to.
+- `description`: The description of the course.
+- `hw`?: Info about the homework expectations of the course, if any.
+- `prereqs`?: Info about prerequisite courses, if any.
+- `recCourses`?: Info about recommended previous courses, if any.
+- `slos`?: The district SLOs this course addresses, if any.
+- `notes`?: Additional notes about the course, if any.
+
+#### Example:
+```json
+{
+  "names": [
+    {"title": "STAGE TECHNOLOGY", "cid": "1087 Semester 1"},
+    {"title": "STAGE TECHNOLOGY", "cid": "1088 Semester 2"}
+  ],
+  "grades": [9, 10, 11, 12],
+  "length": "Semester",
+  "credit": "NOT UC Approved",
+  "section": "CAREER TECHNICAL EDUCATION (CTE)",
+  "description": "Stage Technology and Design is designed to integrate theoretical and practical knowledge of stage technology and \ndesign. Students will study the design and construction of sets, lighting, sound, and costumes, and apply their skills by \ndeveloping design concepts and mounting productions from a variety of theatrical genres. By assuming vital roles in \nplay productions, students will work effectively in leadership and ensemble situations, and experience the relationship \nof technical theatre to the theatrical event as a whole. Students will learn to operate theatrical equipment and tools \nsafely, and use these skills to provide technical services for many school stage activities. This course satisfies the Career \nTechnical Education Program requirement and Visual and Performing Arts requirement, and may be repeated for \nfour years. Students who enroll in and complete Stage Technology will be given special consideration during the \nselection process for the Gunn Robotics Team (GRT).",
+  "hw": "None",
+  "slos": ["4", "6", "7"],
+  "notes": [
+    "This class meets during 8th period"
+  ]
+}
+```

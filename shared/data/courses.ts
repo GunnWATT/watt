@@ -2,10 +2,8 @@ export type Course = {
     names: { title: string, cid: string }[],
     grades: number[],
     length?: "Year" | "Semester" | "Semester/Year",
-    credit: string,
-    section: string,
-    description: string,
-    hw?: string,
+    credit: string, section: string,
+    description: string, hw?: string,
     prereqs?: string, recCourses?: string,
     slos?: string[], notes?: string[]
 }

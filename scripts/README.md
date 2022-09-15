@@ -47,7 +47,7 @@ updated frequently and the quality of the staff data generated may be more quest
 As for clubs, once generated, the JSON can be pasted into the exported `staff` object in `../shared/data/staff.ts` to 
 update the data used by the client and API.
 
-### Parse catalog PDF
+### Parse course catalog PDF
 
 #### This script reads:
 | Filename              | Description             |
@@ -60,8 +60,8 @@ update the data used by the client and API.
 | `./input/catalog.txt` | The catalog PDF parsed as a text file. |
 
 `npm run catalog:parse` parses the course catalog PDF as text and writes it to a text file for use in `catalog:generate`.
-Manual edits (like prefixing section headings with `>>`) need to be made to the text file before it is able to be parsed
-by the generator script.
+Manual edits (like prefixing section headings with `>>`) will need to be made to the text file before the generator script
+is able to correctly parse it.
 
 ### Generate course catalog
 
@@ -77,6 +77,10 @@ by the generator script.
 
 `npm run catalog:generate` generates the course catalog JSON by parsing `catalog.txt`, using the manually inserted `>>` 
 anchors to find section headings and a multiline regex to parse courses. This script writes output directly to `catalog.json`.
+Before running, make sure that all section headings are prefixed with `>>` and that the **line endings for `catalog.txt`
+are set to LF (not CRLF)**; using CRLF line endings will break the course-matching regex used by the script and generate 
+an empty object for `catalog.json`. Other oddities like newlines in the middle of course descriptions will need to either
+be manually corrected or accounted for in the script.
 
 <!-- image? -->
 
