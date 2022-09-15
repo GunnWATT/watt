@@ -19,7 +19,7 @@ import Barcode from './pages/utilities/Barcode';
 import Map from './pages/utilities/Map';
 import Calculator from './pages/utilities/Calculator';
 import Staff from './pages/utilities/Staff';
-import WIP from './components/layout/WIP';
+import Courses from './pages/utilities/Courses';
 import Resources from './pages/utilities/Resources';
 import Appearance from './pages/settings/Appearance';
 import Features from './pages/settings/Features';
@@ -135,7 +135,7 @@ export default function App() {
                             <Route path="map" element={<Map />} />
                             <Route path="calculator" element={<Calculator />} />
                             <Route path="staff" element={<Staff />} />
-                            <Route path="courses" element={<WIP />} /> {/* WIP is temporary, will replace with courses when it's finished */}
+                            <Route path="courses" element={<Courses />} />
                             <Route path="resources" element={<Resources />} />
                         </Route>
                         <Route path="/settings" element={<SettingsLayout />}>

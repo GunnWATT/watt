@@ -7,8 +7,12 @@ import cors from 'cors';
 import {getAlternates, getDateParam, getNextPeriodOptsParams, StatusError} from './util/apiUtil';
 import {getSchedule, getNextPeriod} from '@watt/shared/util/schedule';
 import {getNextPeriodMessage} from './util/schedule';
+
+// Data
 import clubs from '@watt/shared/data/clubs';
 import staff from '@watt/shared/data/staff';
+import courses from '@watt/shared/data/courses';
+
 
 const app = express();
 app.use(cors({origin: true}));
@@ -22,6 +26,11 @@ app.get('/api/clubs', async (req, res) => {
 // GET /api/staff
 app.get('/api/staff', async (req, res) => {
     return res.json(staff);
+});
+
+// GET /api/courses
+app.get('/api/courses', async (req, res) => {
+    return res.json(courses);
 });
 
 // GET /api/alternates
