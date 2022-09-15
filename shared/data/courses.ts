@@ -11,7 +11,7 @@ export type Course = {
 }
 
 const courses: {timestamp: string, data: Course[]} = {
-    "timestamp": "2022-09-15T00:19:45.194Z",
+    "timestamp": "2022-09-15T00:39:51.594Z",
     "data": [
         {
             "names": [
@@ -308,7 +308,7 @@ const courses: {timestamp: string, data: Course[]} = {
             "slos": [
                 "4",
                 "6",
-                "and 7"
+                "7"
             ],
             "notes": [
                 "This class meets during 8th period"
@@ -340,9 +340,10 @@ const courses: {timestamp: string, data: Course[]} = {
             "slos": [
                 "4",
                 "6",
-                "and 7 \n*Dual  Enrollment  Course"
+                "7"
             ],
             "notes": [
+                "Dual Enrollment Course: Please see p.88 for information regarding Dual Enrollment courses. Although not a-g approved, credits for this course are transferable for college credit. Note that this year-long Gunn dual enrollment course includes three separate courses at Foothill, which are not repeatable.",
                 "THTR 45A – 4 quarter UC/CSU transferable units",
                 "THTR 45B – 4 quarter UC/CSU transferable units",
                 "THTR 45C – 4 quarter UC/CSU transferable units Students who choose to take Stage Tech 2 for two or more years will need to enroll in Dual enrollment Stage Tech 2 (4915D) for the first 3 semesters, and regular Stage Tech 2 (491)5 for the fourth and any subsequent semesters. If only taken for one year, enroll in 4915D."
@@ -766,8 +767,14 @@ const courses: {timestamp: string, data: Course[]} = {
             "description": "This course will introduce students to foundational concepts of design and engineering. The course is based on \ncurriculum provided by Project Lead the Way (PLTW) and has been customized to address Gunn High School’s \nSilicon Valley student population and equipment, including a state-of-the-art 3D printer. Topics include the process \nof design, technical sketching, CAD (computer-aided design), dimensional analysis, statistical analysis using Microsoft \nExcel, tolerances, reverse engineering and 3D printing. Students develop personal engineering notebooks that \ndocument skills and designs, including several projects printed on the 3D printer. Teamwork and communication \nskills are developed through group projects. Students in this course have the opportunity to compete in regional and \nstatewide PLTW design competitions hosted by local tech companies and universities. Students who enroll in and \ncomplete Introduction to Engineering Design will be given special consideration during the selection process for the \nGunn Robotics Team (GRT).",
             "hw": "Students are given class time and resources to complete assignments. Some students may need additional time at home.",
             "recCourses": "Successful completion of Algebra IA. Concurrent enrollment in a college preparatory math AND science course",
-            "notes": [
-                "District SLOs addressed in this Course"
+            "slos": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7"
             ]
         },
         {
@@ -1049,9 +1056,10 @@ const courses: {timestamp: string, data: Course[]} = {
                 "3",
                 "4",
                 "5",
-                "6 \n*Dual Enrollment Course Option"
+                "6"
             ],
             "notes": [
+                "Dual Enrollment Course Option: This course has a college-level, dual enrollment course option. Sign up for 8429D. You will be enrolled both at Gunn and Foothill College. This means, if you decide to drop the class, you will need to consider the deadlines and consequences for doing so at each institution. In addition to 5 units of high school credit per semester, students will also earn college units of CSU transferable college credit through Foothill CSU Transferable Credit College. Transferable college courses receive an additional grade point in the weighted GPA grade calculation as they are considered Honors-level work. Please note this year-long Gunn dual enrollment course includes six separate courses at Foothill over one academic year, which are not repeatable",
                 "LINC 66C – 2 quarter CSU transferable units",
                 "LINC 77A – 2 quarter CSU transferable units",
                 "LINC 63 – 1 quarter CSU transferable units",
@@ -1348,7 +1356,10 @@ const courses: {timestamp: string, data: Course[]} = {
                 "2",
                 "4",
                 "5",
-                "6 \n*Students must be concurrently enrolled in Theatre 3 (1076) or Theater 4 (1097)"
+                "6"
+            ],
+            "notes": [
+                "Students must be concurrently enrolled in Theatre 3 (1076) or Theater 4 (1097)"
             ]
         },
         {
@@ -1446,6 +1457,7 @@ const courses: {timestamp: string, data: Course[]} = {
             "credit": "UC Approved “b”",
             "section": "ENGLISH",
             "description": "This advanced study course is open to seniors who have successfully completed three years of English credit (UC “b” \ncategory). The focus is on college-level work in reading and writing, culminating in preparation for the Advanced \nPlacement Examination in English Literature and Composition. Accepting enrollment in this course indicates a student’s \ncommitment to taking the AP Examination in Literature and Composition in the spring. Students wishing to move from \nAP English to World Classics 11H or World Literature must do so within the first 4 weeks of first semester.",
+            "hw": "Surveyed students reported 3-4 hours per week",
             "slos": [
                 "1",
                 "2",
@@ -1453,7 +1465,6 @@ const courses: {timestamp: string, data: Course[]} = {
                 "6"
             ],
             "notes": [
-                "Homework",
                 "This is an Advanced Placement course"
             ]
         },
@@ -1547,8 +1558,11 @@ const courses: {timestamp: string, data: Course[]} = {
             "section": "ENGLISH",
             "description": "This yearlong interdisciplinary course for 11\nth\n graders combines the study of U.S. History and American Literature. In \nthis course, students will explore American culture and history through the use of historical documents and readings \nfrom a wide range of classic authors, from F. Scott Fitzgerald to Toni Morrison. In addition, the course incorporates \nthe art, music, film, fashion, and popular culture of the 20th century in American society. Through field trips, students \n\nhave the opportunity to explore the rich history of the Bay Area. American Studies offers five units of U.S. History \nand five units of English credit per semester. Students must enroll in American Studies for both U.S. History and \nEnglish.",
             "hw": "2-3.5 hours a week",
-            "notes": [
-                "District SLOs addressed in this course"
+            "slos": [
+                "1",
+                "2",
+                "5",
+                "6"
             ]
         },
         {
@@ -1624,7 +1638,10 @@ const courses: {timestamp: string, data: Course[]} = {
                 "2",
                 "3",
                 "5",
-                "6 \n*This is the Small Learning Community (SLC) section of the World History class.  Please see page 84 for a description \nof the SLC program."
+                "6"
+            ],
+            "notes": [
+                "This is the Small Learning Community (SLC) section of the World History class. Please see page 84 for a description of the SLC program."
             ]
         },
         {
@@ -1678,7 +1695,10 @@ const courses: {timestamp: string, data: Course[]} = {
                 "2",
                 "3",
                 "5",
-                "6 \n*1753SJ is for students in the Social Justice Pathway. Please see page 87 for a description of the Social Justice Pathway \nprogram."
+                "6"
+            ],
+            "notes": [
+                "1753SJ is for students in the Social Justice Pathway. Please see page 87 for a description of the Social Justice Pathway program."
             ]
         },
         {
@@ -1708,7 +1728,7 @@ const courses: {timestamp: string, data: Course[]} = {
                 "6"
             ],
             "notes": [
-                "*1686SJ is for students in the Social Justice Pathway. Please see page 86 for a description of the Social Justice Pathway program."
+                "1686SJ is for students in the Social Justice Pathway. Please see page 86 for a description of the Social Justice Pathway program."
             ]
         },
         {
@@ -1758,7 +1778,10 @@ const courses: {timestamp: string, data: Course[]} = {
                 "2",
                 "3",
                 "5",
-                "6 \n**1815SJ is for students in the Social Justice Pathway. Please see page 87 for a description of the Social Justice Pathway \nprogram."
+                "6"
+            ],
+            "notes": [
+                "1815SJ is for students in the Social Justice Pathway. Please see page 87 for a description of the Social Justice Pathway program."
             ]
         },
         {
@@ -2353,7 +2376,7 @@ const courses: {timestamp: string, data: Course[]} = {
                 "E4"
             ],
             "notes": [
-                "CCSS Addressed in this Course"
+                "CCSS Addressed in this Course: Effective communication through listening, speaking and writing; Reading with understanding; Critical and creative thinking to solve problems"
             ]
         },
         {
@@ -3697,7 +3720,7 @@ const courses: {timestamp: string, data: Course[]} = {
                 "2",
                 "6) \no Music Literacy",
                 "History",
-                "and Creation (SLOs 1",
+                "Creation (SLOs 1",
                 "2",
                 "3",
                 "4",
@@ -4349,7 +4372,7 @@ const courses: {timestamp: string, data: Course[]} = {
             ],
             "notes": [
                 "Please see page 28 in the CTE section of the course catalog for information about AAR (8429)",
-                "For more information, please visit http"
+                "For more information, please visit http://aar.pausd.org/"
             ]
         },
         {

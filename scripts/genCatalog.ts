@@ -54,13 +54,14 @@ for (const [section, raw] of sections) {
                 bullets = before;
             }
 
-            for (const bullet of bullets.split('• ').slice(1)) {
-                const [name, value] = bullet.split(':').map(x => x.trim());
-                if (/Homework +Expectation/.test(name)) hw = value.replace(/\s+/g, ' ').trim();
+            for (const bullet of bullets.split(/• |\*/).slice(1)) {
+                const [name, value] = bullet.split(':');
+                if (/Homework(?: +Expectation)?/.test(name)) hw = value.replace(/\s+/g, ' ').trim();
                 else if (/Prerequisite\(?s\)?/.test(name)) prereqs = value.replace(/\s+/g, ' ').trim();
                 else if (/Prior +Recommended +Course\(?s\)?/.test(name)) recCourses = value.replace(/\s+/g, ' ').trim();
-                else if (/District SLOs Addressed in this Course/.test(name)) slos = value.split(/, (?:and )?/);
-                else if (name) notes.push(name.replace(/\s+/g, ' ').trim());
+                else if (/District +SLOs +Addressed +in +this +Course/i.test(name)) slos = value.trim().split(/, (?:and )?/);
+                else if (name.trim() && value?.trim()) notes.push(`${name.replace(/\s+/g, ' ').trim()}:${value.replace(/\s+/g, ' ').trimEnd()}`);
+                else if (name.trim()) notes.push(name.replace(/\s+/g, ' ').trim());
             }
         }
 
