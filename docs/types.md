@@ -186,7 +186,7 @@ type Course = {
 - `grades`: The grades that are able to take this course (eg. `[10, 11, 12]`).
 - `length`?: The length of the course. This can either be yearlong, semester, or in rare circumstances both. Some special
   courses like `Teaching Assistant` can have no length specified.
-- `credit`: The UC or CSU credit the course is applicable for (eg. `""UC Approved “f”""`, `"UC Approval Pending"`, or 
+- `credit`: The UC or CSU credit the course is applicable for (eg. `"UC Approved “f”"`, `"UC Approval Pending"`, or 
   `"NOT UC Approved"`).
 - `section`: The course catalog section the course belongs to.
 - `description`: The description of the course.

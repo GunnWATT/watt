@@ -4,7 +4,7 @@ import {Club} from '@watt/shared/data/clubs';
 
 // Utils
 import {similarity} from './util/strings';
-import {info, warn} from './util/logging';
+import {closeStream, info, prompt, warn} from './util/logging';
 
 
 (async () => {
@@ -42,19 +42,22 @@ import {info, warn} from './util/logging';
         for (const key in prev.data) {
             // Match two clubs if the string similarity between their names is greater than 0.85
             // This is to not break with clubs that have changed their name slightly, such as
-            // competative programming club -> competitive programming club
+            // competative programming club -> competitive programming club.
 
             const nameSimilarity = similarity(prev.data[key].name, club.name);
-            if (nameSimilarity > 0.85) {
-                // Log if we are using an imperfect match just in case
-                if (nameSimilarity < 1)
-                    warn(`Matched similar keys ${prev.data[key].name} and ${club.name}`);
-                else
-                    info(`Matched ${prev.data[key].name} with ${club.name}`);
+            if (nameSimilarity < 0.85) continue;
 
-                match = key;
-                break;
+            // If we are using an imperfect match, prompt for manual verification.
+            if (nameSimilarity < 1) {
+                warn(`Matched similar keys ${prev.data[key].name} and ${club.name}`);
+                const res = await prompt('Proceed with match? (Y/n)');
+                if (res === 'n') continue;
+            } else {
+                info(`Matched ${prev.data[key].name} with ${club.name}`);
             }
+
+            match = key;
+            break;
         }
 
         if (!match) warn(`${club.name} not matched, generating new ID`);
@@ -65,4 +68,6 @@ import {info, warn} from './util/logging';
 
     writeFileSync('./output/clubs.json', str);
     info('Wrote output to "./output/clubs.json".');
+
+    closeStream();
 })()

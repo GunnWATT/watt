@@ -49,7 +49,7 @@ for (const [section, raw] of sections) {
             // after the last bullet point as a note. This will break if a SpEd course's last bullet point is not a
             // single line.
             if (section === 'SPECIAL EDUCATION') {
-                const [, before, last] = bullets.trim().match(/([^]+• .+)\n?([^]*)/)!;
+                const [, before, last] = bullets.trim().match(/([^]*• .+)\n?([^]*)/)!;
                 if (last) notes.push(last.replace(/\s+/g, ' ').trim());
                 bullets = before;
             }
