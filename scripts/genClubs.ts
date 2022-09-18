@@ -4,7 +4,7 @@ import {Club} from '@watt/shared/data/clubs';
 
 // Utils
 import {similarity} from './util/strings';
-import {closeStream, info, prompt, warn} from './util/logging';
+import {info, prompt, warn} from './util/logging';
 
 
 (async () => {
@@ -68,6 +68,4 @@ import {closeStream, info, prompt, warn} from './util/logging';
 
     writeFileSync('./output/clubs.json', str);
     info('Wrote output to "./output/clubs.json".');
-
-    closeStream();
 })()
