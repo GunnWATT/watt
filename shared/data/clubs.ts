@@ -6,7 +6,7 @@ export type Club = {
 }
 
 const clubs: {timestamp: string, data: {[key: string]: Club}} = {
-    "timestamp": "2022-09-18T03:08:47.356Z",
+    "timestamp": "2022-09-24T17:15:40.697Z",
     "data": {
         "10496": {
             "new": false,
@@ -409,7 +409,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "Rubik's Cube Club",
             "tier": 1,
             "desc": "Whether you are an experienced speed-solver or a complete beginner, you are welcome to visit. We envision this to be a relaxing space for people to learn new puzzles and hang out with other cubers. Hope to see you soon!",
-            "day": "Thursday",
+            "day": "Friday",
             "time": "Lunch",
             "room": "N-110",
             "prez": "Joseph Xu",
@@ -772,7 +772,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "new": false,
             "name": "STEM Ethics Bowl",
             "tier": 2,
-            "desc": "Ethics lies at the heart of STEM. You don’t need to be an avid STEM enthusiast to discuss and join the ethics conversation. If you are a passionate environmentalist, intrigued coder,  social justice fighter, or just a person who wants an interesting discussion, the club will be the perfect space for you. Come join the Ethics Bowl to learn and compete!  Why?  Throughout the year we will:  1. Participate in National Ethics Bowl held in April, 2. Speaker Events (MIT, Stanford Professors), 3. Volunteer at local schools, 4. Launch into exciting, heated debates in various subjects,  5. Bond with fellow enthusiasts and have fun!  STEM is impacting our lives, our ecosystems, media. We need ethics to raise awareness on climate change, advocate for diverse representation in STEM, restriction on gene-editing, biases in AI/ML algorithms. We will lead you all through the fascinating world of science/technology each week focusing on a specific topic in STEM, then discuss it through the lens of ethics.",
+            "desc": "What is STEM? Never heard of Ethics, sounds weird? No worries! Whether knowledgeable or not, STEM person or not, Ethics Bowl is a great place for everyone to partake in a global conversation! It's fun, easy, and low-commitment. In addition we also partake in the regional Ethics Bowl competition, and eventually travel to UNC Chapel-Hill in the case of nationals.    STEM is rapidly shaping our future, but in what direction? HOW is it impacting us? Society? Positively, what about ... negatively? From the lack of diversity in STEM, racial biases in AI/ML, alarming impacts of climate change, we will tackle all of these questions in our meetings! Come and join us for discussion  + food!",
             "day": "Friday",
             "time": "Lunch",
             "room": "J-03",
@@ -823,7 +823,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "desc": "The Star Wars Club is open to anyone with an interest in Star Wars. We will be watching and discussing Star Wars content such as Andor and The Mandalorian Season 3. Come join the fun, and May the Force Be With You!",
             "day": "Friday",
             "time": "Lunch",
-            "room": "J-3",
+            "room": "J-1",
             "prez": "Yu-Ting Chang",
             "advisor": "Heather Mellows",
             "email": "hmellows@pausd.org"
@@ -1096,7 +1096,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "new": false,
             "name": "AI4Girls",
             "tier": 2,
-            "desc": "Join our community of computer science and artificial intelligence (AI) enthusiasts! AI4Girls has many exciting opportunities for you. Whether you’re just a) curious about what AI really is, b) starting your journey in computer science, or c) an advanced coder looking to make an impact in your community with your knowledge & skills, then Join us to learn, get involved, and create!  We will have opportunities for developing LEADERSHIP and TECHNICAL skills, such as organizing workshops for middle schools as a club, guest speaker panels (previously: Google, Stanford, Capital One), AI and Ethics discussions, and organizing Hackathons! Importantly, members will receive resources (ex: guides and project inspo) to learn about the process of creating an AI project (potentially: tiktok trend prediction, testing for COVID based on sound of cough, predicting heart disease, chatbot buddy...) and ultimately create one of their own!!  We hope to serve as the stepping stone for you to get more involved and excited about AI and CS. :) AI4Girls is a place for everyone, to explore the realm of AI. We especially encourage people who identify as female, nonbinary, or any underrepresented group to be a part of our community!  And of course, come check us out for FOOD, MERCH, and to make new FRIENDS!!",
+            "desc": "We hope to provide an open community to uplift and support girls in their pursuit of CS/STEM. It doesn’t matter if you are experienced, perhaps you’ve never done code or know what in the world AI is. AI4Girls is an inclusive space to explore, learn and apply AI in exciting ways. In the past we have received grants from Stanford-based organization AI4ALL, been honored with speakers from(Stanford, Capital One, and AI4ALL), and established volunteer programs in middle schools.    AI is one of the fastest growing industries in tech and its impacts are growing by the second, from healthcare to genetics research to even youtube recommendation, we believe its important for students to learn about such a prominent technology in our world. Join us for insightful conversation, exciting opportunities, and food!",
             "day": "Thursday",
             "time": "Lunch",
             "room": "N-115",
@@ -1171,7 +1171,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "desc": "The Math in Scientific Research Club focuses on the usage of math in scientific research in different fields such as astronomy, chemistry, neuroscience, biology, physics, etc. Come by to learn how Hubble used linear regression to calculate the Hubble constant or how mathematical theories can provide insights into complex, living systems. Snacks will be offered and we meet once every two weeks!",
             "day": "Tuesday",
             "time": "Lunch",
-            "room": "F-3",
+            "room": "K-9",
             "prez": "Amelia Yu",
             "advisor": "Sophia Lo",
             "email": "tslo@pausd.org"
