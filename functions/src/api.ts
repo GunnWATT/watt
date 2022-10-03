@@ -79,6 +79,4 @@ app.use((err: StatusError, req: Request, res: Response, next: NextFunction) => {
     res.status(err.status).json({error: err.message});
 });
 
-export const api = functions
-    .runWith({minInstances: 1})
-    .https.onRequest(app);
+export const api = functions.https.onRequest(app);

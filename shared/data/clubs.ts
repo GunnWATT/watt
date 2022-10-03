@@ -6,7 +6,7 @@ export type Club = {
 }
 
 const clubs: {timestamp: string, data: {[key: string]: Club}} = {
-    "timestamp": "2022-09-24T17:15:40.697Z",
+    "timestamp": "2022-10-03T03:27:40.928Z",
     "data": {
         "10496": {
             "new": false,
@@ -591,7 +591,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "H.A.N.D.S. (Hair and Nail Design Society)",
             "tier": 1,
             "desc": "H.A.N.D.S. focuses on the designs of the Hair and Nails. We teach you how to do different hairstyles such as braiding, curling, straightening, coloring of the hair and so much more. Along with this, different shapes, designs, and colors for a manicure will be introduced. Fun and engaging activities will be used to create your own “manicure”. The simple and easy things we pay for in a salon, can be learned in this club. If any of this interests you then we encourage you to come see what’s happening and come join our club!!!",
-            "day": "Wednesday",
+            "day": "Every Other Thursday",
             "time": "Lunch",
             "room": "G-7",
             "prez": "Ashley Sarkosh",
