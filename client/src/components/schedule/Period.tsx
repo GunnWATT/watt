@@ -95,7 +95,7 @@ export default function Period(props: PeriodProps) {
                 // TODO: should this be abstracted with PeriodIndicator? They share some logic but differ in other ways
                 <div className="mt-2 flex overflow-hidden h-3 rounded" style={{backgroundColor: bgColor(color)}}>
                     <div
-                        className="transition-all duration-700"
+                        className="transition-[width] duration-700"
                         style={{backgroundColor: barColor(color), width: `${(now.valueOf() - start.valueOf()) / (end.valueOf() - start.valueOf()) * 100}%`}}
                     />
                 </div>
