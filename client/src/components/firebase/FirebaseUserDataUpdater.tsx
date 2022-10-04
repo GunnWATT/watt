@@ -1,5 +1,5 @@
-import {useEffect, ReactNode} from 'react';
-import {useLocalStorageData, deepmerge, deepdifferences} from '../../hooks/useLocalStorageData';
+import {useEffect, useContext} from 'react';
+import {deepmerge, deepdifferences} from '../../hooks/useLocalStorageData';
 
 // Firestore
 import {useAuth, useFirestore, useFirestoreDoc} from 'reactfire';
@@ -7,11 +7,11 @@ import {doc, setDoc} from 'firebase/firestore';
 import {bulkUpdateFirebaseUserData, updateFirebaseUserData} from '../../util/firestore';
 
 // Context
-import {UserDataProvider, defaultUserData} from '../../contexts/UserDataContext';
+import UserDataContext, {defaultUserData} from '../../contexts/UserDataContext';
 
 
-export default function FirebaseUserDataProvider(props: {children: ReactNode}) {
-    const data = useLocalStorageData();
+export default function FirebaseUserDataUpdater() {
+    const data = useContext(UserDataContext);
 
     const auth = useAuth();
     const firestore = useFirestore();
@@ -43,9 +43,5 @@ export default function FirebaseUserDataProvider(props: {children: ReactNode}) {
         localStorage.setItem('data', JSON.stringify(merged));
     }, [status, firebaseDoc]);
 
-    return (
-        <UserDataProvider value={data}>
-            {props.children}
-        </UserDataProvider>
-    )
+    return null;
 }

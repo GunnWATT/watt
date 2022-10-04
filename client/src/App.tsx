@@ -35,17 +35,19 @@ import SgyAuthRedirect from './pages/SgyAuthRedirect';
 import FaviconHandler from './components/schedule/FaviconHandler';
 import InstallModal from './components/layout/InstallModal';
 import SgyInitResults from './components/firebase/SgyInitResults';
+import FirebaseUserDataUpdater from './components/firebase/FirebaseUserDataUpdater';
 
 // Contexts
 import {AlternatesProvider} from './contexts/AlternatesContext';
 import {TimeProvider} from './contexts/CurrentTimeContext';
-import UserDataContext from './contexts/UserDataContext';
+import {UserDataProvider} from './contexts/UserDataContext';
 
 // Utils
 import {logEvent} from 'firebase/analytics';
 import {getRedirectResult} from 'firebase/auth';
-import {firestoreInit} from './util/firestore';
 import {useAlternates} from './hooks/useAlternates';
+import {useLocalStorageData} from './hooks/useLocalStorageData';
+import {firestoreInit} from './util/firestore';
 
 // Lazy-loaded pages
 const Testing = lazy(() => import('./pages/Testing'));
@@ -58,7 +60,8 @@ const Support = lazy(() => import('./components/resources/Support'));
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
 
 export default function App() {
-    const userData = useContext(UserDataContext);
+    const userData = useLocalStorageData();
+    const { data: signInCheckResult } = useSigninCheck();
 
     // Global datetime
     const [date, setDate] = useState(DateTime.now());
@@ -115,53 +118,56 @@ export default function App() {
     }, [userData.options.theme])
 
     return (
-        <AlternatesProvider value={alternates}>
-            <TimeProvider value={date}>
-                <PageVisibility onChange={() => navigator.serviceWorker.getRegistration().then(res => res?.update())}/>
-                <FaviconHandler />
+        <UserDataProvider value={userData}>
+            <AlternatesProvider value={alternates}>
+                <TimeProvider value={date}>
+                    <PageVisibility onChange={() => navigator.serviceWorker.getRegistration().then(res => res?.update())}/>
+                    <FaviconHandler />
+                    {signInCheckResult?.signedIn && <FirebaseUserDataUpdater />}
 
-                <Routes>
-                    <Route element={<AppLayout />}>
-                        <Route path="/" element={<Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />}/>
-                        <Route path="/classes" element={<ClassesLayout />}>
-                            <Route index element={<Dashboard />} />
-                            <Route path="upcoming" element={<Upcoming />} />
-                            <Route path="materials" element={<Materials />} />
+                    <Routes>
+                        <Route element={<AppLayout />}>
+                            <Route path="/" element={<Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />}/>
+                            <Route path="/classes" element={<ClassesLayout />}>
+                                <Route index element={<Dashboard />} />
+                                <Route path="upcoming" element={<Upcoming />} />
+                                <Route path="materials" element={<Materials />} />
+                            </Route>
+                            <Route path="/clubs" element={<Clubs />} />
+                            <Route path="/utilities" element={<UtilitiesLayout />}>
+                                <Route index element={<Barcode />} />
+                                {/* <Route path="graphing`} element={<GraphingCalculator />}/> */}
+                                <Route path="map" element={<Map />} />
+                                <Route path="calculator" element={<Calculator />} />
+                                <Route path="staff" element={<Staff />} />
+                                <Route path="courses" element={<Courses />} />
+                                <Route path="resources" element={<Resources />} />
+                            </Route>
+                            <Route path="/settings" element={<SettingsLayout />}>
+                                <Route index element={<Appearance />} />
+                                <Route path="features" element={<Features />} />
+                                <Route path="periods" element={<PeriodCustomization />} />
+                                <Route path="about" element={<About />} />
+                            </Route>
+                            <Route
+                                path="/super-secret-testing"
+                                element={<Suspense><Testing /></Suspense>}
+                            />
                         </Route>
-                        <Route path="/clubs" element={<Clubs />} />
-                        <Route path="/utilities" element={<UtilitiesLayout />}>
-                            <Route index element={<Barcode />} />
-                            {/* <Route path="graphing`} element={<GraphingCalculator />}/> */}
-                            <Route path="map" element={<Map />} />
-                            <Route path="calculator" element={<Calculator />} />
-                            <Route path="staff" element={<Staff />} />
-                            <Route path="courses" element={<Courses />} />
-                            <Route path="resources" element={<Resources />} />
+                        <Route path="/resources" element={<ResourcesLayout />}>
+                            <Route path="nytimes" element={<NYTimes />} />
+                            <Route path="adobe" element={<Adobe />} />
+                            <Route path="library-card" element={<LibraryCard />} />
+                            <Route path="support" element={<Support />} />
                         </Route>
-                        <Route path="/settings" element={<SettingsLayout />}>
-                            <Route index element={<Appearance />} />
-                            <Route path="features" element={<Features />} />
-                            <Route path="periods" element={<PeriodCustomization />} />
-                            <Route path="about" element={<About />} />
-                        </Route>
-                        <Route
-                            path="/super-secret-testing"
-                            element={<Suspense><Testing /></Suspense>}
-                        />
-                    </Route>
-                    <Route path="/resources" element={<ResourcesLayout />}>
-                        <Route path="nytimes" element={<NYTimes />} />
-                        <Route path="adobe" element={<Adobe />} />
-                        <Route path="library-card" element={<LibraryCard />} />
-                        <Route path="support" element={<Support />} />
-                    </Route>
-                    <Route path="/schoology/auth" element={<SgyAuthRedirect />}/>
-                    <Route path="*" element={<PageNotFound />}/>
-                </Routes>
+                        <Route path="/schoology/auth" element={<SgyAuthRedirect />}/>
+                        <Route path="*" element={<PageNotFound />}/>
+                    </Routes>
 
-                <InstallModal />
-                <SgyInitResults />
-            </TimeProvider>
-        </AlternatesProvider>
+                    <InstallModal />
+                    <SgyInitResults />
+                </TimeProvider>
+            </AlternatesProvider>
+        </UserDataProvider>
     );
 }
