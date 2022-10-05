@@ -24,7 +24,7 @@ export default function List<T>(props: ListProps<T>) {
     const {data, filter, map, sort, pinned: pinnedIds} = props;
     const [{pinned, unpinned}, setContent] = useState(parseContent());
 
-    // Parses content to JSX components, sorting, filtering, and splitting by pinned and unpinned.
+    // Maps content to JSX components, sorting, filtering, and splitting by pinned and unpinned.
     function parseContent() {
         // Parse data into mappable form
         const parsed = Array.isArray(data)
