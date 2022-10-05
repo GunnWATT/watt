@@ -40,7 +40,7 @@ export default function PeriodCustomizationInput(props: PeriodCustomizationInput
     }, [userData.options.theme])
 
     return (
-        <div className="periods-custom-row-burrito flex items-center gap-6">
+        <div className="flex items-center gap-6">
             <Popover className="relative h-10">
                 <Popover.Button
                     className="w-10 h-10 rounded border-2 border-tertiary"
