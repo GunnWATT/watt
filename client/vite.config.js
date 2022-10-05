@@ -5,11 +5,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
     plugins: [
-        react({
-            // Temporarily revert to `React.createElement` JSX transform due to scoping issue with `headlessui`.
-            // https://github.com/tailwindlabs/headlessui/issues/1693
-            jsxRuntime: 'classic'
-        }),
+        react(),
         VitePWA({
             registerType: 'autoUpdate',
             workbox: {
