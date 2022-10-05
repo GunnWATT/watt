@@ -27,15 +27,20 @@ export default function PeriodCustomizationInput(props: PeriodCustomizationInput
     const updatePeriodData = async (newValue: string, field: string) =>
         await updateUserData(`classes.${id}.${field}`, newValue, auth, firestore);
 
-    // const [color,setColor] = useState('#fff');
     const userData = useContext(UserDataContext);
     const [color, setColor] = useState(parsePeriodColor(id, userData));
     const changeColor = (color: ColorResult) => setColor(color.hex);
 
     const isUpperPeriod = ['0', '1', '2', '3'].includes(id);
 
+    // Update default colors on cross-device theme change.
+    // TODO: a bit unideal, but there doesn't seem to be another way to do this.
+    useEffect(() => {
+        setColor(parsePeriodColor(id, userData));
+    }, [userData.options.theme])
+
     return (
-        <div className="periods-custom-row-burrito flex items-center gap-6">
+        <div className="flex items-center gap-6">
             <Popover className="relative h-10">
                 <Popover.Button
                     className="w-10 h-10 rounded border-2 border-tertiary"
