@@ -3,8 +3,8 @@ import NoResults from './NoResults';
 
 
 type ListProps<T> = {
-    // Data can either be an Object.entries result or the raw JSON object
-    // Perhaps this is an unideal implementation
+    // Data can either be an Object.entries result or the raw JSON object;
+    // perhaps this is an unideal implementation.
     data: [string, T][] | {[key: string]: T},
     filter: ([id, value]: [string, T]) => boolean,
     map: ([id, value]: [string, T]) => JSX.Element,
@@ -21,41 +21,45 @@ type ListProps<T> = {
 // Pinned items (given as a string[] of IDs) are displayed in a separate category above other results.
 export default function List<T>(props: ListProps<T>) {
     // Filter and map are different for each list, so pass them in as props
-    const {data, filter, map, sort, pinned} = props;
+    const {data, filter, map, sort, pinned: pinnedIds} = props;
+    const [{pinned, unpinned}, setContent] = useState(parseContent());
 
-    const [content, setContent] = useState<JSX.Element[]>([]);
-    const [pinnedContent, setPinnedContent] = useState<JSX.Element[]>([])
-
-    // Renders content on mount and when data or query changes
-    useEffect(() => {
-        // Parses data into mappable form
+    // Parses content to JSX components, sorting, filtering, and splitting by pinned and unpinned.
+    function parseContent() {
+        // Parse data into mappable form
         const parsed = Array.isArray(data)
-            ? data.sort(sort) // If data has been subject to Object.entries already, sort it
-            : Object.entries(data).sort(sort); // Otherwise, sort the result of Object.entries on the JSON
+            ? data.sort(sort) // If data has been subject to Object.entries already, sort it.
+            : Object.entries(data).sort(sort); // Otherwise, sort the result of Object.entries on the JSON.
 
-        // Filter out pinned components and display separately
-        // Can probably be done better
-        const pinnedData = parsed.filter(([id, value]) => pinned.includes(id));
-        const unpinnedData = parsed.filter(([id, value]) => !pinned.includes(id));
+        // Filter out pinned components and display separately.
+        // TODO: this can probably be done more efficiently
+        const pinnedContent = parsed.filter(([id, value]) => pinnedIds.includes(id));
+        const unpinnedContent = parsed.filter(([id, value]) => !pinnedIds.includes(id));
 
-        // Filter each via query, map to components
+        return {
+            pinned: pinnedContent.filter(filter).map(map),
+            unpinned: unpinnedContent.filter(filter).map(map)
+        };
+    }
+
+    // Rerender content when data or query changes.
+    useEffect(() => {
         startTransition(() => {
-            setContent(unpinnedData.filter(filter).map(map));
-            setPinnedContent(pinnedData.filter(filter).map(map));
+            setContent(parseContent());
         });
     }, [data, filter])
 
 
-    return content.length || pinnedContent.length ? (<>
-        {pinnedContent.length > 0 && (
+    return unpinned.length || pinned.length ? (<>
+        {pinned.length > 0 && (
             <MaterialList>
-                {pinnedContent}
+                {pinned}
             </MaterialList>
         )}
-        {content.length > 0 && pinnedContent.length > 0 && <hr/>}
-        {content.length > 0 && (
+        {unpinned.length > 0 && pinned.length > 0 && <hr/>}
+        {unpinned.length > 0 && (
             <MaterialList>
-                {content}
+                {unpinned}
             </MaterialList>
         )}
     </>) : (
