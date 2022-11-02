@@ -13,7 +13,7 @@ import {numToWeekday} from '@watt/shared/util/schedule';
 const EARLIEST_AM_HOUR = 6;
 
 const timeGetterRegex = /\(?(1?\d)(?::(\d{2}))? *(?:am)? *[-–] *(1?\d)(?::(\d{2}))? *(noon|pm)?\)?/;
-const gradeGetterRegex = /(?<!Period |#)\d+(\/\d+)*/;
+const gradeGetterRegex = /(?<!Period |#)\d+(\/\d+)*(?!(?:st|nd|rd|th)\s+Period)/i;
 const altScheduleRegex = /schedule|extended/i; // /schedule|extended|lunch/i
 const noSchoolRegex = /holiday|no\s(students|school)|break|development/i;
 const primeReplacesSelfRegex = /PRIME (replaces|instead of) SELF|No SELF, extra PRIME/i;
@@ -115,14 +115,15 @@ function parseAlternate(summary: string | undefined, description: string | undef
             const name = raw.replace(gradeGetterRegex, '').trim();
             if (!name) continue;
 
-            const isNumberPeriod = name.match(/Period (\d)/i);
+            // Support both "Period 5" (standard) and "5th Period" (11/2/2022 schedule)
+            const isNumberPeriod = name.match(/Period (\d)|(\d)(?:st|nd|rd|th) Period/i);
             const isStaffPrep = name.match(/Collaboration|Prep|Meetings?|Training|Mtgs|PLC/i);
 
             let fname = name;
             let newEndTime = endTime;
 
             if (isNumberPeriod) {
-                fname = isNumberPeriod[1];
+                fname = isNumberPeriod[1] ?? isNumberPeriod[2];
             } else if (name.match(/Office Hours|Tutorial/i)) {
                 fname = "O";
                 warn(`[${chalk.underline(date)}] Parsed deprecated period Office Hours`);
