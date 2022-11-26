@@ -28,7 +28,7 @@ export default function ClassesHeader(props: ClassesHeaderProps) {
     return (
         <Header>
             <Listbox value={selected} onChange={setSelected}>
-                <div className="relative z-50 max-w-full">
+                <div className="relative z-[9999] max-w-full">
                     <Listbox.Button className="flex items-center gap-4 w-full focus:outline-none">
                         <Dot
                             size={40}
