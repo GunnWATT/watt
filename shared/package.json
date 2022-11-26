@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Shared utilities for client, functions, and scripts.",
   "dependencies": {
-    "luxon": "^3.0.1"
+    "luxon": "^3.1.0"
   },
   "devDependencies": {
     "typescript": "^4.7.4"
