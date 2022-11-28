@@ -14,25 +14,19 @@ import SgyDataContext from '../../contexts/SgyDataContext';
 // Utilities
 import { AssignmentBlurb } from '../../util/sgyAssignments';
 import { getUpcomingInfo } from '../../util/sgyMaterials';
-import { getAllGrades } from '../../util/sgyGrades';
+import {useSgyGrades} from '../../hooks/useSgyGrades';
 
 
 export default function Dashboard() {
-    const {sgyData, selected, fetching, lastFetched, updateSgy} = useContext(SgyDataContext);
+    const {sgyData, selected} = useContext(SgyDataContext);
 
     const userData = useContext(UserDataContext);
     const time = useContext(CurrentTimeContext);
 
-    //const lastFetchedTime = lastFetched && moment(lastFetched);
-
     const [upcoming, setUpcoming] = useState<AssignmentBlurb[] | null>(null);
     const [overdue, setOverdue] = useState<AssignmentBlurb[] | null>(null);
-    const [allGrades, setAllGrades] = useState<{[key:string]: number} | null>(null);
 
-
-    useEffect(() => {
-        setAllGrades(getAllGrades(sgyData, userData));
-    }, [sgyData])
+    const allGrades = useSgyGrades();
 
     // TODO: precompute upcoming info for all classes
     useEffect(() => {

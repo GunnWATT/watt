@@ -255,7 +255,7 @@ function ClassesErrorBurrito(props: {children?: ReactNode}) {
 
 // Returns a parsed class array given a populated userData object.
 // The first class will be an "All Courses" object with default color.
-function findClassesList(sgyData: SgyData, userData: UserData) {
+export function findClassesList(sgyData: SgyData, userData: UserData) {
     const classes: SgyClass[] = [];
 
     // Push "All Courses" object
