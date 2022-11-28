@@ -7,6 +7,7 @@ import AlternatesContext from '../../contexts/AlternatesContext';
 // Utilities
 import { cardinalize } from '../../util/sgyHelpers';
 import { ClassPeriodQuickInfo, pastClasses, nextSchoolDay, numSchoolDays } from '../../util/sgyPeriodFunctions';
+import {DATE_FULL_NO_YEAR} from '../../util/dateFormats';
 
 
 // Quick Info includes when's the next day that has a given period
@@ -53,7 +54,7 @@ export default function DashboardQuickInfo(props: { selected: string }) {
         <section>
             <h2 className="text-xl">The next class is {info.next.time.toRelative()}.</h2>
             <p className="text-secondary">
-                It will be on {info.next.time.toFormat('dddd, MMMM Do')}, and will be Week {info.next.week} Day {info.next.day},
+                It will be on {info.next.time.toLocaleString(DATE_FULL_NO_YEAR)}, and will be Week {info.next.week} Day {info.next.day},
                 the {cardinalize(info.past.days + 1)} class of the school year.
             </p>
         </section>
