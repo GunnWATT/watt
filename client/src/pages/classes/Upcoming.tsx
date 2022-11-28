@@ -16,19 +16,17 @@ import UserDataContext from '../../contexts/UserDataContext';
 import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
-import { findClassesList } from '../../components/classes/ClassesLayout';
 import {AssignmentBlurb} from '../../util/sgyAssignments';
 import { getUpcomingInfo } from '../../util/sgyMaterials';
 import { similarity } from '../../util/sgyHelpers';
 
 
 export default function Upcoming() {
-    const { sgyData, selected } = useContext(SgyDataContext);
-    const time = useContext(CurrentTimeContext);
-    const screenType = useScreenType();
-
     const userData = useContext(UserDataContext);
-    const classes = findClassesList(sgyData, userData);
+    const { sgyData, selected, classes } = useContext(SgyDataContext);
+    const time = useContext(CurrentTimeContext);
+
+    const screenType = useScreenType();
 
     const [upcoming, setUpcoming] = useState<AssignmentBlurb[] | null>(null);
     const [overdue, setOverdue] = useState<AssignmentBlurb[] | null>(null);
@@ -79,7 +77,7 @@ export default function Upcoming() {
         <div className="flex gap-6">
             {/* these props- */}
             <div className="flex-grow min-w-0">
-                <ClassFilter classes={classes} filter={filter} setFilter={setFilter} />
+                <ClassFilter filter={filter} setFilter={setFilter} />
 
                 <section className="flex items-center gap-2.5 mb-4">
                     <ContentButton onClick={() => setCreating(!creating)}>

@@ -6,22 +6,20 @@ import ClassFilter, {QueryObj} from '../../components/classes/ClassFilter';
 import NoResults from '../../components/lists/NoResults';
 
 // Contexts
-import UserDataContext, { SgyPeriod, SgyData } from '../../contexts/UserDataContext';
+import UserDataContext from '../../contexts/UserDataContext';
 import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
-import { findClassesList } from '../../components/classes/ClassesLayout';
 import { similarity } from '../../util/sgyHelpers';
 import {AssignmentBlurb} from '../../util/sgyAssignments';
 import {getMaterials} from '../../util/sgyMaterials';
 
 
 export default function Materials() {
-    const { sgyData, selected } = useContext(SgyDataContext);
+    const { sgyData, selected, classes } = useContext(SgyDataContext);
 
     // Userdata handling
     const userData = useContext(UserDataContext);
-    const classes = findClassesList(sgyData, userData, false);
 
     // Filter
     const [filter, setFilter] = useState<QueryObj>({
@@ -52,7 +50,7 @@ export default function Materials() {
 
     return (
         <div className="flex flex-col gap-2">
-            <ClassFilter filter={filter} setFilter={setFilter} classes={classes} />
+            <ClassFilter filter={filter} setFilter={setFilter} />
             <section className="flex flex-col gap-1.5">
                 {content && content.length ? content : <NoResults />}
             </section>

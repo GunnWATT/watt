@@ -15,8 +15,8 @@ import { updateUserData } from '../../util/firestore';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
-import UserDataContext, { SgyPeriod, SgyData, UserData } from '../../contexts/UserDataContext';
-import { SgyDataProvider } from '../../contexts/SgyDataContext';
+import UserDataContext, { UserData } from '../../contexts/UserDataContext';
+import {SgyPeriod, SgyData, SgyDataProvider, SgyClass} from '../../contexts/SgyDataContext';
 
 // Utilities
 import { parsePeriodColor } from '../schedule/Periods';
@@ -95,7 +95,7 @@ export default function ClassesLayout() {
                     }
                 } else {
                     // doesn't exist
-                    if(course.s) {
+                    if (course.s) {
                         // if it still has an id, we have smthg wrong...
                         classes[p] = { ...userData.classes[p], s: '' };
                         needToReset = true;
@@ -202,15 +202,17 @@ export default function ClassesLayout() {
             </>)}
         </ClassesErrorBurrito>
     )
-    if (!userData.sgy?.custom || !userData.sgy?.custom.assignments || !userData.sgy?.custom.labels || !userData.sgy?.custom.modified)
+    if (!userData.sgy?.custom?.assignments || !userData.sgy.custom.labels || !userData.sgy.custom.modified)
         return <Loading /> // make sure user has all of these things :D, if not, usually gets corrected by FirebaseUserDataProvider
 
+    const classes = findClassesList(sgyData, userData);
+
     return (
-        <SgyDataProvider value={{sgyData, fetching, lastFetched, lastAttemptedFetch, selected, updateSgy}}>
+        <SgyDataProvider value={{sgyData, fetching, lastFetched, lastAttemptedFetch, classes, selected, updateSgy}}>
             <div className={"container py-4 md:py-6 " + screenType}>
                 <Wave />
 
-                <ClassesHeader selected={selected} setSelected={setSelected} />
+                <ClassesHeader setSelected={setSelected} />
 
                 <nav className="mt-3.5 md:mt-5 flex flex-wrap gap-2 mb-4 text-lg">
                     <ClassesNavBarItem text="Dashboard" to="." />
@@ -252,19 +254,16 @@ function ClassesErrorBurrito(props: {children?: ReactNode}) {
 }
 
 // Returns a parsed class array given a populated userData object.
-// If `includeAll` is true, the first class will be an "All Courses" object with default color.
-export function findClassesList(sgyData: SgyData, userData: UserData, includeAll: boolean = true) {
-    // find classes from userData
-    const classes: { name: string, color: string, period: SgyPeriod | 'A' }[] = [];
+// The first class will be an "All Courses" object with default color.
+function findClassesList(sgyData: SgyData, userData: UserData) {
+    const classes: SgyClass[] = [];
 
     // Push "All Courses" object
-    if (includeAll) {
-        classes.push({
-            name: "All Courses",
-            color: parsePeriodColor("default", userData), // lol it spits out the default color if it doesn't recognize the period name; kinda a hacky workaround
-            period: "A"
-        });
-    }
+    classes.push({
+        name: 'All Courses',
+        color: parsePeriodColor('default', userData), // lol it spits out the default color if it doesn't recognize the period name; kinda a hacky workaround
+        period: 'A'
+    });
 
     for (const [p, course] of Object.entries(userData.classes)) {
         if (course.s && p in sgyData) {
