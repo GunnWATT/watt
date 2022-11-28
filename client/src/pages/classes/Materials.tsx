@@ -44,7 +44,7 @@ export default function Materials() {
                     filter.classes[classes.findIndex(({ period }) => assi.period === period)])
                 .filter((assi) => !filter.labels.length ||
                     assi.labels.some(label => filter.labels.includes(label)))
-                .map((item) => <Material key={item.id} item={item} sgyData={sgyData} />))
+                .map((item) => <Material key={item.id} item={item} />))
         });
     }, [materials, filter])
 

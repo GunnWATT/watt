@@ -6,7 +6,7 @@ import {Tags, AssignmentTag} from './AssignmentTags';
 import Dot from '../layout/Dot';
 
 // Contexts
-import UserDataContext, {SgyData} from '../../contexts/UserDataContext';
+import UserDataContext from '../../contexts/UserDataContext';
 
 // Utilities
 import {parsePeriodColor} from '../schedule/Periods';
@@ -15,9 +15,9 @@ import {AssignmentBlurb} from '../../util/sgyAssignments';
 import {DATE_SHORT_YEAR_SHORTENED} from '../../util/dateFormats';
 
 
-type MaterialProps = { item: AssignmentBlurb, sgyData: SgyData };
+type MaterialProps = { item: AssignmentBlurb };
 export default function Material(props: MaterialProps) {
-    const { item, sgyData } = props;
+    const { item } = props;
 
     const userData = useContext(UserDataContext);
     const [modal, setModal] = useState(false);
