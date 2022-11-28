@@ -37,7 +37,7 @@ export default function Upcoming() {
 
     // Filter
     const [filter, setFilter] = useState<QueryObj>({
-        query: searchParams.get('search') ?? '', labels: [], classes: Array(classes.length).fill(false)
+        query: searchParams.get('search') ?? '', labels: [], classes: Array(classes.length - 1).fill(false)
     });
 
     const [includeCompleted, setIncludeCompleted] = useState(false);
@@ -53,7 +53,7 @@ export default function Upcoming() {
                 || similarity(filter.query, assi.name) >= 0.8
                 || similarity(filter.query, assi.description) >= 0.8)
             .filter((assi) => filter.classes.every(c => !c) ||
-                filter.classes[classes.findIndex(({period}) => assi.period === period)])
+                filter.classes[classes.findIndex(({period}) => assi.period === period) - 1])
             // .filter((assi) => assi.timestamp!.isAfter(start) && assi.timestamp!.isBefore(end))
             .filter((assi) => !assi.completed || includeCompleted)
             .filter((assi) => !filter.labels.length ||
