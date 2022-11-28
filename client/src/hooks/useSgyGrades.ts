@@ -10,6 +10,7 @@ export function useSgyGrades() {
 
     for (const c of classes) {
         if (c.period === "A") continue;
+        console.log(c)
 
         const selectedCourseGrades = findGrades(sgyData, c.period); // find the grades
         if (selectedCourseGrades) {
@@ -21,6 +22,7 @@ export function useSgyGrades() {
         }
     }
 
+    console.log(grades)
     return grades;
 }
 
