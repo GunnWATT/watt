@@ -68,7 +68,7 @@ export default function ClassFilter(props: ClassFilterProps) {
 
             <Tags>
                 {filter.classes.map((c, i) => c && (
-                    <AssignmentTag label={classes[i].name} color={classes[i].color} />
+                    <AssignmentTag label={classes[i + 1].name} color={classes[i + 1].color} />
                 ))}
                 {filter.labels.map(label => (
                     <AssignmentTag label={parseLabelName(label, userData)} color={parseLabelColor(label, userData)} />
