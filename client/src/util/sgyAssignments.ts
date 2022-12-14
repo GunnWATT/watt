@@ -1,4 +1,5 @@
-import {CustomAssignment, SgyAssignmentModified, SgyPeriod, UserData} from "../contexts/UserDataContext";
+import {CustomAssignment, SgyAssignmentModified, UserData} from '../contexts/UserDataContext';
+import {AllSgyPeriod} from '../contexts/SgyDataContext';
 import {Auth} from "firebase/auth";
 import {Firestore} from "firebase/firestore";
 import {updateUserData} from "./firestore";
@@ -11,7 +12,7 @@ export type AssignmentBlurb = {
     link: string;
     timestamp: DateTime | null;
     description: string;
-    period: SgyPeriod|'A';
+    period: AllSgyPeriod;
     id: string;
     labels: string[];
     completed: boolean;

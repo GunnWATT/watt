@@ -7,23 +7,18 @@ import AnimatedListbox from '../layout/AnimatedListbox';
 import Dot from '../layout/Dot';
 
 // Contexts
-import UserDataContext, {SgyPeriod} from '../../contexts/UserDataContext';
-import SgyDataContext from '../../contexts/SgyDataContext';
+import SgyDataContext, {AllSgyPeriod} from '../../contexts/SgyDataContext';
 
 // Utilities
-import {findClassesList} from './ClassesLayout';
 import {bgColor} from '../../util/progressBarColor';
 
 
-type ClassesHeaderProps = { selected: SgyPeriod | 'A', setSelected: (selected: SgyPeriod | 'A') => void };
+type ClassesHeaderProps = { setSelected: (selected: AllSgyPeriod) => void };
 export default function ClassesHeader(props: ClassesHeaderProps) {
-    const {selected, setSelected} = props;
+    const {setSelected} = props;
+    const {selected, classes} = useContext(SgyDataContext);
 
-    const userData = useContext(UserDataContext);
-    const {sgyData} = useContext(SgyDataContext);
-
-    const classes = findClassesList(sgyData, userData, true);
-    const {name: currName, color: currColor} = findClassesList(sgyData, userData).find(({period}) => period === selected)!;
+    const {name: currName, color: currColor} = classes.find(({period}) => period === selected)!;
 
     return (
         <Header>

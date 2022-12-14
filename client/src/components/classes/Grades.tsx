@@ -6,20 +6,13 @@ import { FiChevronDown, FiChevronRight, FiChevronUp } from 'react-icons/all';
 import Dot from '../layout/Dot';
 
 // Context
-import UserDataContext from '../../contexts/UserDataContext';
 import SgyDataContext from '../../contexts/SgyDataContext';
-
-// Utilities
-import { findClassesList } from './ClassesLayout';
-import { classifyGrade } from '../../util/sgyHelpers';
 
 
 type GradesProps = { selected: string, allGrades: { [key: string]: number } };
 export default function Grades(props: GradesProps) {
     const { allGrades, selected } = props;
-
-    const userData = useContext(UserDataContext);
-    const { sgyData } = useContext(SgyDataContext);
+    const { classes } = useContext(SgyDataContext);
 
     if (selected !== 'A' && !allGrades[selected]) return null;
 
@@ -32,7 +25,7 @@ export default function Grades(props: GradesProps) {
                 </Disclosure.Button>
 
                 <Disclosure.Panel className="flex flex-col gap-2 px-4 py-3 rounded-lg bg-content-secondary/50 mb-4">
-                    {selected === 'A' ? findClassesList(sgyData, userData)
+                    {selected === 'A' ? classes
                         .filter(({ period }) => period !== 'A' && allGrades[period])
                         .map(({ name, color, period }) => (
                             <div key={period} className="flex gap-3 items-center">

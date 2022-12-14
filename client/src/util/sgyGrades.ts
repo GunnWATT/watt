@@ -1,8 +1,27 @@
-import {SgyData, SgyPeriod, UserData} from "../contexts/UserDataContext";
-import {findClassesList} from "../components/classes/ClassesLayout";
+import {SgyClass, SgyData, SgyPeriod} from '../contexts/SgyDataContext';
 
 
-// Find your grade objects
+// Returns all grades as numbers.
+export function getAllGrades(sgyData: SgyData, classes: SgyClass[]) {
+    const grades: { [key: string]: number } = {};
+
+    for (const c of classes) {
+        if (c.period === "A") continue;
+
+        const selectedCourseGrades = findGrades(sgyData, c.period); // find the grades
+        if (selectedCourseGrades) {
+            // Grading periods are listed in ascending order, with the latest grading period having the largest ID
+            // https://github.com/GunnWATT/watt/pull/91#discussion_r847901551
+            const latestPeriod = selectedCourseGrades.period.sort((a, b) => a.period_title.localeCompare(b.period_title)).pop();
+            const periodGrade = selectedCourseGrades.final_grade.find(g => g.period_id.toString() === latestPeriod?.period_id);
+            if (periodGrade) grades[c.period] = periodGrade.grade;
+        }
+    }
+
+    return grades;
+}
+
+// Finds the `SectionGrade` for the given `SgyPeriod`, or `null` if it does not exist.
 export function findGrades(sgyData: SgyData, selected: SgyPeriod) {
     const selectedCourse = sgyData[selected]!;
     // Attempt to match the id of the selected course to the id in the course grades
@@ -22,7 +41,7 @@ export function findGrades(sgyData: SgyData, selected: SgyPeriod) {
     for (const course in sgyData.grades) {
         for (const period of sgyData.grades[course].period) {
             for (const assignment of period.assignment) {
-                if (IDSet.has(assignment.assignment_id + '')) {
+                if (IDSet.has(assignment.assignment_id.toString())) {
                     // hallelujah
                     return sgyData.grades[course];
                 }
@@ -31,26 +50,4 @@ export function findGrades(sgyData: SgyData, selected: SgyPeriod) {
     }
 
     return null;
-}
-
-// Get all grades, but as numbers
-// wildly inefficient lol
-export function getAllGrades(sgyData: SgyData, userData: UserData) {
-    const classes = findClassesList(sgyData, userData);
-    const grades: { [key: string]: number } = {};
-
-    for (const c of classes) {
-        if (c.period === "A") continue;
-
-        const selectedCourseGrades = findGrades(sgyData, c.period); // find the grades
-        if (selectedCourseGrades) {
-            // Grading periods are listed in ascending order, with the latest grading period having the largest ID
-            // https://github.com/GunnWATT/watt/pull/91#discussion_r847901551
-            const latestPeriod = selectedCourseGrades.period.sort((a, b) => a.period_title.localeCompare(b.period_title)).pop();
-            const periodGrade = selectedCourseGrades.final_grade.find(g => g.period_id.toString() === latestPeriod?.period_id);
-            if (periodGrade) grades[c.period] = periodGrade.grade;
-        }
-    }
-
-    return grades;
 }

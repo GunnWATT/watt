@@ -1,5 +1,5 @@
 import {createContext} from 'react';
-import { Assignment, Document, Event, Page, Section, SectionGrade } from '../util/sgyTypes';
+import {AllSgyPeriod} from './SgyDataContext';
 
 
 // Represents a course on Schoology.
@@ -12,7 +12,7 @@ import { Assignment, Document, Event, Page, Section, SectionGrade } from '../uti
 export type SgyPeriodData = {n: string, c: string, l: string, o: string, s: string, r: string};
 
 export type CustomAssignment = {
-    id: string, name: string, description: string, labels: string[], timestamp: number | null, period: SgyPeriod|'A',
+    id: string, name: string, description: string, labels: string[], timestamp: number | null, period: AllSgyPeriod,
     completed: boolean, priority: number
 }
 export type SgyAssignmentModified = Partial<CustomAssignment> & {id: string}; // or Pick<CustomAssignment, 'id'>
@@ -41,21 +41,6 @@ export type UserData = {
         }
     }
 };
-
-type SgyCourseData = {
-    info: Section;
-    documents: Document[];
-    assignments: Assignment[];
-    pages: Page[];
-    events: Event[];
-}
-export type SgyData = {
-    grades: SectionGrade[];
-    1?: SgyCourseData, 2?: SgyCourseData, 3?: SgyCourseData, 4?: SgyCourseData,
-    5?: SgyCourseData, 6?: SgyCourseData, 7?: SgyCourseData, S?: SgyCourseData,
-    0?: SgyCourseData, 8?: SgyCourseData
-};
-export type SgyPeriod = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '0' | 'S';
 
 export const defaultUserData: UserData = {
     clubs: [],

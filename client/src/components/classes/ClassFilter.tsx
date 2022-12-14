@@ -9,6 +9,7 @@ import Dot from '../layout/Dot';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
+import SgyDataContext from '../../contexts/SgyDataContext';
 
 // Utilities
 import {allLabels, parseLabelColor, parseLabelName} from '../../util/sgyLabels';
@@ -26,10 +27,11 @@ export type QueryObj = TagObj & { query: string }
 // returning the user's current filter as a `QueryObj` containing their search and selected tags.
 export type ClassFilterProps = {
     filter: QueryObj, setFilter: (query: QueryObj) => void,
-    classes: { name: string, color: string, period: string }[];
 };
 export default function ClassFilter(props: ClassFilterProps) {
-    const { filter, setFilter, classes } = props;
+    const { filter, setFilter } = props;
+
+    const {classes} = useContext(SgyDataContext);
     const userData = useContext(UserDataContext);
 
     const setClasses = (classes: boolean[]) => setFilter({...filter, classes});
@@ -53,7 +55,6 @@ export default function ClassFilter(props: ClassFilterProps) {
                                 selected={filter.classes}
                                 setSelected={setClasses}
                                 search={search}
-                                classes={classes}
                             />
                             <TagPickerLabels
                                 labels={filter.labels}
@@ -67,7 +68,7 @@ export default function ClassFilter(props: ClassFilterProps) {
 
             <Tags>
                 {filter.classes.map((c, i) => c && (
-                    <AssignmentTag label={classes[i].name} color={classes[i].color} />
+                    <AssignmentTag label={classes[i + 1].name} color={classes[i + 1].color} />
                 ))}
                 {filter.labels.map(label => (
                     <AssignmentTag label={parseLabelName(label, userData)} color={parseLabelColor(label, userData)} />
@@ -158,12 +159,12 @@ export function TagPickerLabels(props: TagPickerLabelsProps) {
 
 // The class picker section, which selects classes like "Analysis H Tantod" and "AP US History Johnson".
 type TagPickerClassesProps = {
-    classes: { name: string, color: string, period: string }[],
     selected: boolean[], setSelected: (filter: boolean[]) => void,
     search: string
 };
 export function TagPickerClasses(props: TagPickerClassesProps) {
-    const {classes, selected, setSelected, search} = props;
+    const {selected, setSelected, search} = props;
+    const {classes} = useContext(SgyDataContext);
 
     const setAllClasses = (value: boolean) => setSelected(selected.map(() => value));
     const selectAllClasses = () => setAllClasses(true);
@@ -182,7 +183,7 @@ export function TagPickerClasses(props: TagPickerClassesProps) {
             deselectAll={deselectAllClasses}
             noneSelected={selected.every((c) => !c)}
         >
-            {classes.map((c, index) => {
+            {classes.slice(1).map((c, index) => {
                 if (!c.name.toLowerCase().includes(search.toLowerCase())) return null;
                 return (
                     <TagPickerOption

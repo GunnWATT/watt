@@ -14,12 +14,11 @@ import { Tags, AssignmentTag } from './AssignmentTags';
 import {PopoverPlus, TagPicker, TagPickerLabels} from './ClassFilter';
 
 // Contexts
-import UserDataContext, { SgyPeriod } from '../../contexts/UserDataContext';
-import SgyDataContext from '../../contexts/SgyDataContext';
+import UserDataContext from '../../contexts/UserDataContext';
+import SgyDataContext, { SgyPeriod } from '../../contexts/SgyDataContext';
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
 // Utilities
-import { findClassesList } from './ClassesLayout';
 import { AssignmentBlurb, createAssignment, updateAssignment } from '../../util/sgyAssignments';
 import { parseLabelColor, parseLabelName } from '../../util/sgyLabels';
 import { parsePeriodColor, parsePeriodName } from '../schedule/Periods';
@@ -33,9 +32,7 @@ const PeriodPicker = (props: { period: 'A'|SgyPeriod, setPeriod: (c: 'A'|SgyPeri
     // however, because of how ClassFilter works this is tricky and I'll leave it for future cleanup
 
     const userData = useContext(UserDataContext);
-    const { sgyData } = useContext(SgyDataContext);
-
-    const classes = findClassesList(sgyData, userData);
+    const { classes } = useContext(SgyDataContext);
 
     return (
         <Popover className="relative">
@@ -43,7 +40,7 @@ const PeriodPicker = (props: { period: 'A'|SgyPeriod, setPeriod: (c: 'A'|SgyPeri
                 {parsePeriodName(period, userData)}
             </Popover.Button>
             <AnimatedPopover className="absolute top-[calc(100%_+_15px)] left-0 p-2.5 w-[300px] bg-content rounded-md z-10 flex flex-col gap-1.5">
-                {classes.map((c, index) => (
+                {classes.slice(1).map((c, index) => (
                     <div key={c.name} className="flex items-center gap-3 cursor-pointer" onClick={() => setPeriod(c.period)}>
                         <div
                             className="h-7 w-7 rounded-full flex-none"
