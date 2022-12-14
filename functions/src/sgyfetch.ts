@@ -1,11 +1,15 @@
 import * as functions from 'firebase-functions';
 import admin from './util/adminInit';
 import {get} from './util/sgyOAuth';
+import {SgyData, SgyFetchResponse, SgyPeriod, SgyPeriodData} from '@watt/client/src/contexts/UserDataContext';
 
 const SEMESTER = 1; // We are in semester 1
+const CURRENT_YEAR = 2022; // will work for 2022-2023 school year
+
+const YEAR_STR = `${CURRENT_YEAR}-${CURRENT_YEAR+1}`;
 
 const firestore = admin.firestore();
-const periods = ['0', '1', '2', '3', '4', '5', '6', '7', '8', 'SELF'];
+const periods = ['0', '1', '2', '3', '4', '5', '6', '7', '8', 'S', 'P', 'H'];
 
 
 // Get a user's stored firestore sgy info
@@ -17,20 +21,23 @@ async function getSgyInfo(uid: string) {
     return {uid: creds.sgy.uid, key: creds.sgy.key, sec: creds.sgy.sec, classes: creds.classes};
 }
 
+// Parses info about the given schoology info string. Ex.
+// `"Study Hall Kaneko (9813 43 FY)"` -> `{ pName: "H", pTeacher: "Kaneko", term: "FY" }`
+// `"2 Liberatore (9813 43 FY)"` -> `{ pName: "2", pTeacher: "Liberatore", term: "FY" }`
+// Note: regarding pName, it changes "Study Hall" into "H", "SELF" into "S", and "PRIME" into "P" 
 function getClassInfo(info: string) {
-    const words = info.split(' ');
-    const pRegex = info.match(/\((.+)\)/); 
-    let term = null;
-    if(pRegex) {
-        const parenblock = pRegex[1]; // 2696 1 FY
-        const items = parenblock.split(' '); // [2696, 1, FY]
-        term = items[items.length - 1]; // FY
-    }
-    
-    return { pName: words[0], pTeacher: words[1], term };
+    const match = info.match(/(.+?) (\w+) \(\d+ \d+ (\w+)\)/);
+    if (!match) return { pName: '', pTeacher: '', term: null };
+    return { pName: pNameToLetter(match[1]), pTeacher: match[2], term: match[3] };
 }
 
-type SgyPeriodData = {n: string, c: string, l: string, o: string, s: string};
+// Turns "Study Hall" into "H"
+function pNameToLetter(pName: string) {
+    if (pName === 'SELF') return 'S'
+    if (pName === 'PRIME') return 'P'
+    if (pName === 'Study Hall') return 'H'
+    return pName;
+}
 
 
 // sgyfetch-init
@@ -51,16 +58,15 @@ export const init = functions.https.onCall(async (data, context) => {
 
     const classes: {[key: string]: SgyPeriodData} = {};
     for (const p in periods) {
-        classes[p[0]] = { n: '', c: '', l: '', o: '', s: '' };
+        classes[p] = { n: '', c: '', l: '', o: '', s: '' };
     }
 
     const teachers: {[key: string]: [string, string]} = {};
     for (const element of sgyClasses) {
         let {pName, pTeacher, term} = getClassInfo(element['section_title']);
         if (term === `S${3-SEMESTER}`) continue; // 3 - SEMESTER will rule out S1 courses if SEMESTER is 2, and S2 courses if SEMESTER is 1
+
         if (periods.includes(pName)) {
-            if (pName === 'SELF') pName = 'S'
-            if (pName === 'PRIME') pName = 'P'
             classes[pName] = {
                 n: `${element.course_title} · ${pTeacher}`,
                 c: sgyInfo.classes[pName].c,
@@ -132,10 +138,18 @@ export const fetchMaterials = functions.https.onCall(async (data, context) => {
 
         // Fetch courses, then kick out yucky ones
         // TODO: type this better
-        let courses = (await get(`users/${sgyInfo.uid}/sections`, sgyInfo.key, sgyInfo.sec)).section
+        const unfiltered = await get(`users/${sgyInfo.uid}/sections`, sgyInfo.key, sgyInfo.sec);
+        const gunnStudentCourse = unfiltered.section.find((sec: {section_title: string}) => {
+            const title = sec.section_title.toLowerCase();
+            return (title.endsWith(YEAR_STR) && title !== YEAR_STR);
+        })
+        const grad_year = ['se', 'ju', 'so', 'fr'].indexOf(gunnStudentCourse.section_title.slice(0,2)) + CURRENT_YEAR + 1;
+
+        let courses = unfiltered.section
             .filter((sec: {section_title: string}) => {
-                const {pName, term} = getClassInfo(sec.section_title);
+                let {pName, term} = getClassInfo(sec.section_title);
                 if (term === `S${3 - SEMESTER}`) return false; // 3 - SEMESTER will rule out S1 courses if SEMESTER is 2, and S2 courses if SEMESTER is 1
+
                 return periods.includes(pName);
             });
 
@@ -158,8 +172,11 @@ export const fetchMaterials = functions.https.onCall(async (data, context) => {
         // Rip we have to flatten promises
         const responses = await Promise.all(promises);
 
-        // TODO: type this better
-        const sections: {[key: string]: {info: any, documents: any, assignments: any, pages: any, events: any}} = {};
+        // Return an object of type `SgyData` containing relevant data.
+        const sections: SgyFetchResponse = {
+            grades: (await grades).section,
+            gradYear: grad_year
+        }
 
         // Unflattening smh my head my head my head
         for (let i = 0; i < courses.length; i++) {
@@ -171,7 +188,9 @@ export const fetchMaterials = functions.https.onCall(async (data, context) => {
             const pages = responses[4 * i + 2].page;
             const events = responses[4 * i + 3].event;
 
-            sections[course.section_title.split(' ')[0][0]] = {
+            const { pName } = getClassInfo(course.section_title) as { pName: SgyPeriod };
+
+            sections[pName] = {
                 info: course,
                 documents,
                 assignments,
@@ -179,8 +198,6 @@ export const fetchMaterials = functions.https.onCall(async (data, context) => {
                 events
             };
         }
-
-        sections.grades = (await grades).section;
 
         return sections;
 

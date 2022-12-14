@@ -15,7 +15,7 @@ import { updateUserData } from '../../util/firestore';
 
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
-import UserDataContext, { SgyPeriod, SgyData, UserData } from '../../contexts/UserDataContext';
+import UserDataContext, {SgyPeriod, SgyData, UserData, SgyFetchResponse} from '../../contexts/UserDataContext';
 import { SgyDataProvider } from '../../contexts/SgyDataContext';
 
 // Utilities
@@ -28,7 +28,7 @@ export async function fetchSgyMaterials(functions: Functions) {
     localStorage.setItem('sgy-last-attempted-fetch', '' + Date.now());
 
     // HttpsCallable<T, K> where T is the type of the arguments to the callable and K is the return type
-    const fetchMaterials = httpsCallable<undefined, SgyData>(functions, 'sgyfetch-fetchMaterials');
+    const fetchMaterials = httpsCallable<undefined, SgyFetchResponse>(functions, 'sgyfetch-fetchMaterials');
     const res = await fetchMaterials();
 
     localStorage.setItem('sgy-data', JSON.stringify(res.data));
@@ -75,7 +75,7 @@ export default function ClassesLayout() {
             let needToReset = false;
             let classes: {[key:string]: any} = {};
 
-            const periods: SgyPeriod[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', 'S'];
+            const periods: SgyPeriod[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', 'S', 'P', 'H'];
             for (const p of periods) {
                 const course = userData.classes[p];
 
