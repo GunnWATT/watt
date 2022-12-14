@@ -1,16 +1,12 @@
-import {useContext} from 'react';
-import SgyDataContext, {SgyData, SgyPeriod} from '../contexts/SgyDataContext';
+import {SgyClass, SgyData, SgyPeriod} from '../contexts/SgyDataContext';
 
 
 // Returns all grades as numbers.
-export function useSgyGrades() {
-    const {sgyData, classes} = useContext(SgyDataContext);
-
+export function getAllGrades(sgyData: SgyData, classes: SgyClass[]) {
     const grades: { [key: string]: number } = {};
 
     for (const c of classes) {
         if (c.period === "A") continue;
-        console.log(c)
 
         const selectedCourseGrades = findGrades(sgyData, c.period); // find the grades
         if (selectedCourseGrades) {
@@ -22,7 +18,6 @@ export function useSgyGrades() {
         }
     }
 
-    console.log(grades)
     return grades;
 }
 

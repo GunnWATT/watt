@@ -9,7 +9,7 @@ import {AssignmentBlurb} from './sgyAssignments';
 
 // Utilities
 import {findClassesList} from '../components/classes/ClassesLayout';
-import {findGrades} from '../hooks/useSgyGrades';
+import {findGrades} from './sgyGrades';
 
 
 export function getMaterials(sgyData: SgyData, selected: AllSgyPeriod, userData: UserData): AssignmentBlurb[] {

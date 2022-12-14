@@ -1,4 +1,4 @@
-import {ReactNode, useContext, useEffect, useState} from 'react';
+import {ReactNode, useContext, useEffect, useMemo, useState} from 'react';
 
 // Components
 import DashboardBlurb from '../../components/classes/DashboardBlurb';
@@ -14,11 +14,11 @@ import SgyDataContext from '../../contexts/SgyDataContext';
 // Utilities
 import { AssignmentBlurb } from '../../util/sgyAssignments';
 import { getUpcomingInfo } from '../../util/sgyMaterials';
-import {useSgyGrades} from '../../hooks/useSgyGrades';
+import { getAllGrades } from '../../util/sgyGrades';
 
 
 export default function Dashboard() {
-    const {sgyData, selected} = useContext(SgyDataContext);
+    const {sgyData, classes, selected} = useContext(SgyDataContext);
 
     const userData = useContext(UserDataContext);
     const time = useContext(CurrentTimeContext);
@@ -26,7 +26,7 @@ export default function Dashboard() {
     const [upcoming, setUpcoming] = useState<AssignmentBlurb[] | null>(null);
     const [overdue, setOverdue] = useState<AssignmentBlurb[] | null>(null);
 
-    const allGrades = useSgyGrades();
+    const allGrades = useMemo(() => getAllGrades(sgyData, classes), [sgyData, classes]);
 
     // TODO: precompute upcoming info for all classes
     useEffect(() => {
