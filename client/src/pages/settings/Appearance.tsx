@@ -9,7 +9,7 @@ import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 // Firestore
 import {useAuth, useFirestore} from 'reactfire';
 import { updateUserData } from '../../util/firestore';
-import {ColorTheme, defaultTheme, goldenRod} from '../../components/layout/ThemeHandler';
+import {ColorTheme, defaultTheme, goldenrod, electricViolet} from '../../components/layout/ThemeHandler';
 
 
 export default function Appearance() {
@@ -47,8 +47,11 @@ export default function Appearance() {
                     <ColorCard label="Default (red)" value={defaultTheme}>
                         WATT's classic, red look.
                     </ColorCard>
-                    <ColorCard label="Goldenrod" value={goldenRod}>
+                    <ColorCard label="Goldenrod" value={goldenrod}>
                         A golden theme for golden students.
+                    </ColorCard>
+                    <ColorCard label="Electric violet" value={electricViolet}>
+                        High-amp action!
                     </ColorCard>
                 </RadioCards>
 

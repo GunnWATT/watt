@@ -4,7 +4,7 @@ import {hexToRgb} from '../../util/progressBarColor';
 
 
 type Colors = { theme: string, accent: string, shadow: string };
-export type ColorTheme = { id: 'default' | 'goldenrod', dark: Colors, light: Colors }
+export type ColorTheme = { id: 'default' | 'goldenrod' | 'electric-violet', dark: Colors, light: Colors }
 
 export default function ThemeHandler() {
     const {colors} = useContext(UserDataContext);
@@ -39,7 +39,7 @@ export const defaultTheme: ColorTheme = {
     }
 }
 
-export const goldenRod: ColorTheme = {
+export const goldenrod: ColorTheme = {
     id: 'goldenrod',
     dark: {
         theme: '#f59e0b',
@@ -50,5 +50,20 @@ export const goldenRod: ColorTheme = {
         theme: '#f59e0b',
         accent: '#f97316',
         shadow: '#c2410c'
+    }
+}
+
+export const electricViolet: ColorTheme = {
+    id: 'electric-violet',
+    dark: {
+        theme: '#e879f9',
+        accent: '#9024f5',
+        shadow: '#6b21a8'
+    },
+    // TODO: play around with these and make better
+    light: {
+        theme: '#913399',
+        accent: '#5d30a6',
+        shadow: '#7e22ce'
     }
 }
