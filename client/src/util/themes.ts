@@ -22,7 +22,7 @@ export const goldenRod: ColorTheme = {
     },
     light: {
         theme: '#f59e0b',
-        accent: '#ea580c',
+        accent: '#f97316',
         shadow: '#c2410c'
     }
 }

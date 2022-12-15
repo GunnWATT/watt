@@ -108,14 +108,17 @@ function RadioCard(props: RadioCardProps) {
 function ColorCard(props: {label: string, value: ColorTheme, children: ReactNode}) {
     const {label, value, children} = props;
 
+    const userData = useContext(UserDataContext);
+    const colors = userData.options.theme === 'dark' ? value.dark : value.light;
+
     return (
         <RadioGroup.Option value={value} className="flex items-center gap-4 cursor-pointer">
             {({checked}) => (<>
                 <input type="radio" className="pl-2 accent-theme" checked={checked} />
                 <div className="flex gap-1">
-                    <div className="w-10 h-10 rounded" style={{backgroundColor: value.dark.theme}} />
-                    <div className="w-10 h-10 rounded" style={{backgroundColor: value.dark.accent}} />
-                    <div className="w-10 h-10 rounded" style={{backgroundColor: value.dark.shadow}} />
+                    <div className="w-10 h-10 rounded" style={{backgroundColor: colors.theme}} />
+                    <div className="w-10 h-10 rounded" style={{backgroundColor: colors.accent}} />
+                    <div className="w-10 h-10 rounded" style={{backgroundColor: colors.shadow}} />
                 </div>
                 <div>
                     <RadioGroup.Label className="font-medium">{label}</RadioGroup.Label>
