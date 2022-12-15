@@ -5,9 +5,10 @@ import UserDataContext from '../../contexts/UserDataContext';
 export default function Wave() {
     const userData = useContext(UserDataContext);
 
-    const colors = userData.options.theme === 'dark' ? userData.colors.dark : userData.colors.light
-    const leftColor = colors.theme;
-    const rightColor = colors.accent;
+    // TODO: make cleaner, extract logic?
+    const colors = userData.options.theme === 'dark' ? userData.colors.dark : userData.colors.light;
+    const leftColor = userData.colors.id !== 'default' ? colors.theme : '#ff594c';
+    const rightColor = userData.colors.id !== 'default' ? colors.accent : '#eb144c';
 
     return (
         // Constrain the width between 800px and 100vw as a hack for phone aspect ratio.

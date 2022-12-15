@@ -9,7 +9,7 @@ import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 // Firestore
 import {useAuth, useFirestore} from 'reactfire';
 import { updateUserData } from '../../util/firestore';
-import {ColorTheme, defaultTheme, goldenRod} from '../../util/themes';
+import {ColorTheme, defaultTheme, goldenRod} from '../../components/layout/ThemeHandler';
 
 
 export default function Appearance() {
@@ -43,7 +43,7 @@ export default function Appearance() {
                     </RadioCard>
                 </RadioCards>
 
-                <RadioCards label="Colors" value={userData.colors} onChange={changeColors} by={(a, b) => a.dark.theme === b.dark.theme}>
+                <RadioCards label="Colors" value={userData.colors} onChange={changeColors} by="id">
                     <ColorCard label="Default (red)" value={defaultTheme}>
                         WATT's classic, red look.
                     </ColorCard>
@@ -67,7 +67,7 @@ export default function Appearance() {
 
 // TODO: should these be extracted as layout components?
 type RadioCardsProps<T> = {
-    value: T, onChange: (value: T) => void, by?: (a: T, b: T) => boolean,
+    value: T, onChange: (value: T) => void, by?: (keyof T & string) | ((a: T, b: T) => boolean),
     label: string, children: ReactNode
 }
 function RadioCards<T>(props: RadioCardsProps<T>) {

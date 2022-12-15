@@ -32,6 +32,7 @@ import PageNotFound from './pages/404';
 import SgyAuthRedirect from './pages/SgyAuthRedirect';
 
 // Components
+import ThemeHandler from './components/layout/ThemeHandler';
 import FaviconHandler from './components/schedule/FaviconHandler';
 import InstallModal from './components/layout/InstallModal';
 import SgyInitResults from './components/firebase/SgyInitResults';
@@ -48,7 +49,6 @@ import {getRedirectResult} from 'firebase/auth';
 import {useAlternates} from './hooks/useAlternates';
 import {useLocalStorageData} from './hooks/useLocalStorageData';
 import {firestoreInit} from './util/firestore';
-import {hexToRgb} from "@watt/client/src/util/progressBarColor";
 
 // Lazy-loaded pages
 const Testing = lazy(() => import('./pages/Testing'));
@@ -122,21 +122,9 @@ export default function App() {
         <UserDataProvider value={userData}>
             <AlternatesProvider value={alternates}>
                 <TimeProvider value={date}>
-                    <style>
-                        {`:root {
-                            --theme: ${hexToRgb(userData.colors.light.theme)?.join(' ')};
-                            --theme-secondary: ${hexToRgb(userData.colors.light.accent)?.join(' ')};
-                            --theme-tertiary: ${hexToRgb(userData.colors.light.shadow)?.join(' ')};
-                        }
-                        :root.dark {
-                            --theme: ${hexToRgb(userData.colors.dark.theme)?.join(' ')};
-                            --theme-secondary: ${hexToRgb(userData.colors.dark.accent)?.join(' ')};
-                            --theme-tertiary: ${hexToRgb(userData.colors.dark.shadow)?.join(' ')};
-                        }`}
-                    </style>
-
                     <PageVisibility onChange={() => navigator.serviceWorker.getRegistration().then(res => res?.update())}/>
                     <FaviconHandler />
+                    <ThemeHandler />
                     {signInCheckResult?.signedIn && <FirebaseUserDataUpdater />}
 
                     <Routes>

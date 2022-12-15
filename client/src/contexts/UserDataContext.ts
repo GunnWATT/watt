@@ -1,6 +1,6 @@
 import {createContext} from 'react';
 import {AllSgyPeriod} from './SgyDataContext';
-import {ColorTheme, defaultTheme} from '../util/themes';
+import {ColorTheme, defaultTheme} from '../components/layout/ThemeHandler';
 
 
 // Represents a course on Schoology.

@@ -5,8 +5,10 @@ import UserDataContext from '../../contexts/UserDataContext';
 export default function Logo(props: {className?: string}) {
     const userData = useContext(UserDataContext);
 
-    const foregroundColor = userData.colors.dark.theme || '#a51618';
-    const backgroundColor = userData.colors.dark.accent || '#7f1618';
+    // TODO: see todo in `Wave.tsx`
+    const colors = userData.options.theme === 'dark' ? userData.colors.dark : userData.colors.light;
+    const foregroundColor = userData.colors.id !== 'default' ? colors.theme : '#a51618';
+    const backgroundColor = userData.colors.id !== 'default' ? colors.accent : '#7f1618';
 
     return (
         <svg
