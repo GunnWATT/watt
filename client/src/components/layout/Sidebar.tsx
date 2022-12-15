@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {useScreenType} from '../../hooks/useScreenType';
+import Logo from './Logo';
 
 // Authentication
 import {useSigninCheck} from 'reactfire';
@@ -13,7 +14,6 @@ import Badge from './Badge';
 
 // Icons
 import {FiHome, FiCheckSquare, FiUsers, FiSettings, FiTool, FiChevronLeft} from 'react-icons/all';
-import logo from '../../assets/watt.png';
 
 
 export default function Sidebar() {
@@ -43,8 +43,8 @@ export default function Sidebar() {
                 </span>
 
                 {/* Heading */}
-                <Link to="/" className="w-16 h-16 self-center">
-                    <img src={logo} alt="WATT Logo"/>
+                <Link to="/" className="self-center">
+                    <Logo className="w-16 h-16" />
                 </Link>
                 <h1 className={'text-sm mt-4 mx-auto mb-8' + (!isOpen ? ' opacity-0' : '')}>
                     Web App of the Titans
