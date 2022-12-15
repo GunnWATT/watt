@@ -23,6 +23,8 @@ export default function Appearance() {
 
     const changeTheme = async (theme: string) => await updateUserData('options.theme', theme, auth, firestore);
     const changeTime = async (time: string) => await updateUserData('options.time', time, auth, firestore);
+    const changeColors = async (theme: string, accent: string, shadow: string) =>
+        await updateUserData('colors.dark', {theme, accent, shadow}, auth, firestore);
 
 
     return (
@@ -39,6 +41,14 @@ export default function Appearance() {
                         Dark mode.
                     </RadioCard>
                 </RadioCards>
+
+                <section>
+                    <h3 className="text-lg font-semibold">Colors</h3>
+                    <div className="flex flex-col gap-2">
+                        <button onClick={() => changeColors('#ff594c', '#eb144c', '#b91c1c')}>Red</button>
+                        <button onClick={() => changeColors('#f59e0b', '#ea580c', '#c2410c')}>Yellow</button>
+                    </div>
+                </section>
 
                 <RadioCards label="Time Format" value={currTimePref} onChange={changeTime}>
                     <RadioCard label="12-hour" value="12">

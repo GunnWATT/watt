@@ -27,7 +27,14 @@ export type UserData = {
         5: SgyPeriodData, 6: SgyPeriodData, 7: SgyPeriodData, 8: SgyPeriodData,
         P: SgyPeriodData, S: SgyPeriodData, H: SgyPeriodData
     },
-    options: {theme: string, time: string, period0: boolean, period8: boolean, clock: boolean, sgy: boolean},
+    options: {
+        theme: string, time: string, period0: boolean, period8: boolean,
+        clock: boolean, sgy: boolean
+    },
+    colors: {
+        dark: { theme: string, accent: string, shadow: string },
+        light: { theme: string, accent: string, shadow: string }
+    }
     id: string,
     gradYear: number, // The year (eg. 2023) or `0` if unset
     sgy: {
@@ -67,6 +74,18 @@ export const defaultUserData: UserData = {
         period8: false,
         clock: true,
         sgy: false
+    },
+    colors: {
+        dark: {
+            theme: "#ff594c",
+            accent: "#eb144c",
+            shadow: "#b91c1c"
+        },
+        light: {
+            theme: "#a51618",
+            accent: "#b91c1c",
+            shadow: "#b91c1c"
+        }
     },
     id: '00000',
     gradYear: 0,

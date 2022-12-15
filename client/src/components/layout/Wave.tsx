@@ -1,6 +1,13 @@
+import {useContext} from 'react';
+import UserDataContext from '../../contexts/UserDataContext';
+
+
 export default function Wave() {
-    const leftColor = 'ff594c';
-    const rightColor = 'eb144c';
+    const userData = useContext(UserDataContext);
+
+    const colors = userData.options.theme === 'dark' ? userData.colors.dark : userData.colors.light
+    const leftColor = colors.theme;
+    const rightColor = colors.accent;
 
     return (
         // Constrain the width between 800px and 100vw as a hack for phone aspect ratio.
@@ -9,8 +16,8 @@ export default function Wave() {
         <svg className="fixed top-0 left-0 -z-10 w-[max(800px,_100vw)]" viewBox="0 0 1440 700" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="low">
-                    <stop offset="5%" stopColor={`#${rightColor}44`}/>
-                    <stop offset="95%" stopColor={`#${leftColor}44`}/>
+                    <stop offset="5%" stopColor={`${rightColor}44`}/>
+                    <stop offset="95%" stopColor={`${leftColor}44`}/>
                 </linearGradient>
             </defs>
             <path
@@ -20,8 +27,8 @@ export default function Wave() {
             />
             <defs>
                 <linearGradient id="middle">
-                    <stop offset="5%" stopColor={`#${rightColor}66`}/>
-                    <stop offset="95%" stopColor={`#${leftColor}66`}/>
+                    <stop offset="5%" stopColor={`${rightColor}66`}/>
+                    <stop offset="95%" stopColor={`${leftColor}66`}/>
                 </linearGradient>
             </defs>
             <path
@@ -31,8 +38,8 @@ export default function Wave() {
             />
             <defs>
                 <linearGradient id="high">
-                    <stop offset="5%" stopColor={`#${rightColor}88`}/>
-                    <stop offset="95%" stopColor={`#${leftColor}88`}/>
+                    <stop offset="5%" stopColor={`${rightColor}88`}/>
+                    <stop offset="95%" stopColor={`${leftColor}88`}/>
                 </linearGradient>
             </defs>
             <path

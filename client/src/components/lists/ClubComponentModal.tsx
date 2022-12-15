@@ -4,7 +4,7 @@ import {Club} from '@watt/shared/data/clubs';
 
 // Components
 import CenteredModal from '../layout/CenteredModal';
-import OutlineButton, {DangerOutlineButton} from '../layout/OutlineButton';
+import OutlineButton, {ThemeOutlineButton} from '../layout/OutlineButton';
 import Badge from '../layout/Badge';
 
 // Context
@@ -82,9 +82,9 @@ export default function ClubComponentModal(props: ClubComponentModalProps) {
                 <a href={prefilledLink} tabIndex={-1} target="_blank" rel="noopener noreferrer">
                     <OutlineButton>Check In</OutlineButton>
                 </a>
-                <DangerOutlineButton onClick={() => setIsOpen(false)}>
+                <ThemeOutlineButton onClick={() => setIsOpen(false)}>
                     Close
-                </DangerOutlineButton>
+                </ThemeOutlineButton>
             </section>
         </CenteredModal>
     )

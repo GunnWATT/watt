@@ -28,7 +28,7 @@ export default function HeaderPage(props: HeaderPageProps) {
 
 export function Header(props: {children: ReactNode}) {
     return (
-        <header className="px-5 py-3 flex items-center gap-4 text-white bg-gradient-to-r from-theme to-red-700 dark:to-[#eb144c] rounded-lg shadow-lg shadow-red-700/40">
+        <header className="px-5 py-3 flex items-center gap-4 text-white bg-gradient-to-r from-theme to-red-700 dark:to-theme-secondary rounded-lg shadow-lg shadow-theme-tertiary/40">
             {props.children}
         </header>
     )

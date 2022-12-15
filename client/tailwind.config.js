@@ -8,6 +8,8 @@ module.exports = {
     extend: {
       colors: {
         theme: 'rgb(var(--theme) / <alpha-value>)',
+        'theme-secondary': 'rgb(var(--theme-secondary) / <alpha-value>)',
+        'theme-tertiary': 'rgb(var(--theme-tertiary) / <alpha-value>)',
         primary: 'rgb(var(--primary))', // NOTE: `primary`, `secondary`, and `tertiary` do *not* work with opacity modifiers.
         secondary: 'rgb(var(--secondary))',
         tertiary: 'rgb(var(--tertiary))',
