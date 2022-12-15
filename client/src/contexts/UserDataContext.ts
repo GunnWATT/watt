@@ -18,6 +18,8 @@ export type CustomAssignment = {
 export type SgyAssignmentModified = Partial<CustomAssignment> & {id: string}; // or Pick<CustomAssignment, 'id'>
 export type CustomLabel = { id: string, name: string, color: string };
 
+export type ThemeColors = { theme: string, accent: string, shadow: string };
+
 export type UserData = {
     clubs: string[],
     staff: string[],
@@ -31,10 +33,7 @@ export type UserData = {
         theme: string, time: string, period0: boolean, period8: boolean,
         clock: boolean, sgy: boolean
     },
-    colors: {
-        dark: { theme: string, accent: string, shadow: string },
-        light: { theme: string, accent: string, shadow: string }
-    }
+    colors: { dark: ThemeColors, light: ThemeColors }
     id: string,
     gradYear: number, // The year (eg. 2023) or `0` if unset
     sgy: {
