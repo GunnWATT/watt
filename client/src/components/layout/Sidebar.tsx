@@ -1,12 +1,12 @@
 import {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {useScreenType} from '../../hooks/useScreenType';
-import Logo from './Logo';
 
 // Authentication
 import {useSigninCheck} from 'reactfire';
 
 // Components
+import Logo from './Logo';
 import SidebarItem from './SidebarItem';
 import GoogleSignInBtn from '../firebase/GoogleSignInBtn';
 import GoogleSignOutBtn from '../firebase/GoogleSignOutBtn';

@@ -1,6 +1,12 @@
+import {useContext} from 'react';
+import UserDataContext from '../../contexts/UserDataContext';
+
+
 export default function Logo(props: {className?: string}) {
-    const foregroundColor = '#a51618';
-    const backgroundColor = '#7f1618';
+    const userData = useContext(UserDataContext);
+
+    const foregroundColor = userData.colors.dark.theme || '#a51618';
+    const backgroundColor = userData.colors.dark.accent || '#7f1618';
 
     return (
         <svg

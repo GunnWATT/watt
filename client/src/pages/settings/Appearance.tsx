@@ -3,12 +3,13 @@ import {RadioGroup} from '@headlessui/react';
 import {FiCheck, FiCircle} from 'react-icons/all';
 
 // Contexts
-import UserDataContext, {ThemeColors} from '../../contexts/UserDataContext';
+import UserDataContext from '../../contexts/UserDataContext';
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 
 // Firestore
 import {useAuth, useFirestore} from 'reactfire';
 import { updateUserData } from '../../util/firestore';
+import {ColorTheme, defaultTheme, goldenRod} from '../../util/themes';
 
 
 export default function Appearance() {
@@ -23,8 +24,8 @@ export default function Appearance() {
 
     const changeTheme = async (theme: string) => await updateUserData('options.theme', theme, auth, firestore);
     const changeTime = async (time: string) => await updateUserData('options.time', time, auth, firestore);
-    const changeColors = async (colors: Partial<ThemeColors>) =>
-        await updateUserData('colors.dark', colors, auth, firestore);
+    const changeColors = async (colors: ColorTheme) =>
+        await updateUserData('colors', colors, auth, firestore);
 
 
     return (
@@ -42,11 +43,11 @@ export default function Appearance() {
                     </RadioCard>
                 </RadioCards>
 
-                <RadioCards label="Colors" value={userData.colors.dark} onChange={changeColors} by={(a, b) => a.theme === b.theme}>
-                    <ColorCard label="Default (red)" value={{theme: '#ff594c', accent: '#eb144c', shadow: '#b91c1c'}}>
+                <RadioCards label="Colors" value={userData.colors} onChange={changeColors} by={(a, b) => a.dark.theme === b.dark.theme}>
+                    <ColorCard label="Default (red)" value={defaultTheme}>
                         WATT's classic, red look.
                     </ColorCard>
-                    <ColorCard label="Goldenrod" value={{theme: '#f59e0b', accent: '#ea580c', shadow: '#c2410c'}}>
+                    <ColorCard label="Goldenrod" value={goldenRod}>
                         A golden theme for golden students.
                     </ColorCard>
                 </RadioCards>
@@ -104,7 +105,7 @@ function RadioCard(props: RadioCardProps) {
     )
 }
 
-function ColorCard(props: {label: string, value: ThemeColors, children: ReactNode}) {
+function ColorCard(props: {label: string, value: ColorTheme, children: ReactNode}) {
     const {label, value, children} = props;
 
     return (
@@ -112,9 +113,9 @@ function ColorCard(props: {label: string, value: ThemeColors, children: ReactNod
             {({checked}) => (<>
                 <input type="radio" className="pl-2 accent-theme" checked={checked} />
                 <div className="flex gap-1">
-                    <div className="w-10 h-10 rounded" style={{backgroundColor: value.theme}} />
-                    <div className="w-10 h-10 rounded" style={{backgroundColor: value.accent}} />
-                    <div className="w-10 h-10 rounded" style={{backgroundColor: value.shadow}} />
+                    <div className="w-10 h-10 rounded" style={{backgroundColor: value.dark.theme}} />
+                    <div className="w-10 h-10 rounded" style={{backgroundColor: value.dark.accent}} />
+                    <div className="w-10 h-10 rounded" style={{backgroundColor: value.dark.shadow}} />
                 </div>
                 <div>
                     <RadioGroup.Label className="font-medium">{label}</RadioGroup.Label>

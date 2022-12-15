@@ -1,5 +1,6 @@
 import {createContext} from 'react';
 import {AllSgyPeriod} from './SgyDataContext';
+import {ColorTheme, defaultTheme} from '../util/themes';
 
 
 // Represents a course on Schoology.
@@ -18,8 +19,6 @@ export type CustomAssignment = {
 export type SgyAssignmentModified = Partial<CustomAssignment> & {id: string}; // or Pick<CustomAssignment, 'id'>
 export type CustomLabel = { id: string, name: string, color: string };
 
-export type ThemeColors = { theme: string, accent: string, shadow: string };
-
 export type UserData = {
     clubs: string[],
     staff: string[],
@@ -33,7 +32,7 @@ export type UserData = {
         theme: string, time: string, period0: boolean, period8: boolean,
         clock: boolean, sgy: boolean
     },
-    colors: { dark: ThemeColors, light: ThemeColors }
+    colors: ColorTheme
     id: string,
     gradYear: number, // The year (eg. 2023) or `0` if unset
     sgy: {
@@ -74,18 +73,7 @@ export const defaultUserData: UserData = {
         clock: true,
         sgy: false
     },
-    colors: {
-        dark: {
-            theme: "#ff594c",
-            accent: "#eb144c",
-            shadow: "#b91c1c"
-        },
-        light: {
-            theme: "#a51618",
-            accent: "#b91c1c",
-            shadow: "#b91c1c"
-        }
-    },
+    colors: defaultTheme,
     id: '00000',
     gradYear: 0,
     sgy: {
