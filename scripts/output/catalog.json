@@ -1,5 +1,5 @@
 {
-    "timestamp": "2022-09-15T00:39:51.594Z",
+    "timestamp": "2022-12-22T02:08:46.034Z",
     "data": [
         {
             "names": [
@@ -2511,33 +2511,6 @@
             "description": "This college-prep course is designed to provide a survey of biological knowledge at an introductory college level. \nBecause successful completion of the curriculum will enable students to take the College Board Advanced Placement \nExamination, the course follows the outline recommended by the College Board, covering the general content themes \nof: (1) Evolution; (2) Energy; (3) Information; and (4) Interactions. \nHeavy emphasis is placed on understanding the connection between experimentation and scientific discovery. Both \nhands-on laboratory activities and scientific readings are used to show how biological information is gained, \ninterpreted, and applied. Required homework includes extensive reading, activities, regular written lab reports, and \noccasional group projects.",
             "hw": "5-8 hours uninterrupted time per week",
             "prereqs": "Successful completion of a biology course. Successful completion of a first-year chemistry course at Gunn High School. (Exceptions must be approved by both the Science Department Instructional Supervisor and the Guidance Department.)",
-            "slos": [
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7"
-            ]
-        },
-        {
-            "names": [
-                {
-                    "title": "BIOTECHNOLOGY: THEORY & PRACTICES",
-                    "cid": "3955"
-                }
-            ],
-            "grades": [
-                11,
-                12
-            ],
-            "length": "Year",
-            "credit": "UC Approved “d”",
-            "section": "SCIENCE",
-            "description": "The course description for Biotechnology can be found in the CTE section of the catalog (page 21). \n \n \n\nMARINE BIOLOGY :: Marine Biology\n|\n3168 \nGrades 11-12 Year UC Approved “d” \n \nMarine Biology is a second-year biology college-prep course that builds upon and extends biological concepts \ndeveloped during the first year. Students will take an in-depth look at the features of the ocean and the variety of plant \nand animal life that lives within. They will investigate how life in the ocean is interconnected and the impact that \nhumans have on that system. Topics will be developed through laboratory exercises, discussions, lectures, \ndemonstrations, informational research projects, and field trips. Please note, this is a laboratory science class where \nscientific skills and methods (including data analysis and laboratory write-ups) will be emphasized.",
-            "hw": "1 hour uninterrupted time per week",
-            "prereqs": "Successful completion of Biology and a physical science course (Conceptual Physics, Astrophysics, Chemistry, Chemistry H, Physics)",
             "slos": [
                 "1",
                 "2",

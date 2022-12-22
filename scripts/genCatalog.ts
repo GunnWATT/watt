@@ -31,6 +31,9 @@ for (const [section, raw] of sections) {
             return {title: name.trim(), cid: cid.replace(/\s+/g, ' ').trim()};
         });
 
+        // Ignore duplicate courses
+        if (courses.some(c => c.names.some(({cid}) => names.map(n => n.cid).includes(cid)))) continue;
+
         // Parse grade from whether there is a lower and upper bound
         const grades = lower && upper
             ? Array(Number(upper) - Number(lower) + 1).fill(0).map((_, i) => i + Number(lower))
