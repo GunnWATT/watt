@@ -15,7 +15,7 @@ export default function CourseComponent(props: Course) {
         <>
             <li className="text-sm cursor-pointer px-4 py-5" onClick={() => setModal(true)}>
                 {names.map(({title, cid}) => (
-                    <p>{title} :: {cid}</p>
+                    <p key={cid}>{title} :: {cid}</p>
                 ))}
                 <p className="text-secondary">{section}</p>
                 <p className="text-secondary">{credit}</p>
@@ -24,7 +24,7 @@ export default function CourseComponent(props: Course) {
             <CenteredModal className="relative flex flex-col bg-content rounded-md max-w-xl max-h-[90%] mx-2 p-6 shadow-xl" isOpen={modal} setIsOpen={setModal}>
                 <Dialog.Title className="text-xl font-semibold mb-3 pr-6 flex flex-col">
                     {names.map(({title, cid}) => (
-                        <p>{title} :: {cid}</p>
+                        <p key={cid}>{title} :: {cid}</p>
                     ))}
                 </Dialog.Title>
 
@@ -51,7 +51,7 @@ export default function CourseComponent(props: Course) {
                     {notes && (
                         <div className="mt-2 flex flex-col gap-0.5">
                             {notes.map(note => (
-                                <p className="italic text-secondary">{note}</p>
+                                <p className="italic text-secondary" key={note}>{note}</p>
                             ))}
                         </div>
                     )}
