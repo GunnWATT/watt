@@ -9,7 +9,7 @@ export type Course = {
 }
 
 const courses: {timestamp: string, data: Course[]} = {
-    "timestamp": "2022-12-22T02:08:46.034Z",
+    "timestamp": "2022-12-22T03:23:45.109Z",
     "data": [
         {
             "names": [
@@ -235,7 +235,7 @@ const courses: {timestamp: string, data: Course[]} = {
         {
             "names": [
                 {
-                    "title": "(OLYMPIAN/YEARBOOK)",
+                    "title": "ADVANCED JOURNALISM & MEDIA STUDIES – GRAPHIC PUBLICATIONS (OLYMPIAN/YEARBOOK)",
                     "cid": "8672"
                 }
             ],
@@ -258,6 +258,10 @@ const courses: {timestamp: string, data: Course[]} = {
         },
         {
             "names": [
+                {
+                    "title": "MEDIA LEADERSHIP & MANAGEMENT GRAPHIC PRODUCTION",
+                    "cid": "8654"
+                },
                 {
                     "title": "MEDIA LEADERSHIP & MANAGEMENT GRAPHIC PRODUCTION H",
                     "cid": "8655"
@@ -599,7 +603,7 @@ const courses: {timestamp: string, data: Course[]} = {
         {
             "names": [
                 {
-                    "title": "*",
+                    "title": "SPORTS MEDICINE - Dual Enrollment*",
                     "cid": "4533D"
                 }
             ],
@@ -613,7 +617,12 @@ const courses: {timestamp: string, data: Course[]} = {
             "section": "CAREER TECHNICAL EDUCATION (CTE)",
             "description": "Athletic injury prevention is emphasized through pre-participation physical exams, exercise programs, preventative \ntaping, proper fitting of equipment, and protective braces. Basic injury recognition and emergency response of acute \ntrauma. Practical hands-on skills are emphasized in laboratories.",
             "hw": "1-2 hours per week",
-            "recCourses": "Completion of Biology; open to 10, 11, 12 graders"
+            "recCourses": "Completion of Biology; open to 10, 11, 12 graders",
+            "notes": [
+                "Dual Enrollment Course: This is a college-level, dual enrollment course; you will be enrolled both at Gunn and Foothill College. This means, if you decide to drop the class, you will need to consider the deadlines and consequences for doing so at each institution. In addition to 5 units of high school credit per semester, students will also earn college units of UC/CSU transferable college credit through Foothill UC/CSU Transferable Credit College. Transferable college courses receive an additional grade point in the weighted GPA grade calculation as they are considered Honors-level work. Please note this year-long Gunn dual enrollment course includes two separate courses at Foothill.",
+                "KINS 16A – 3 quarter UC/CSU transferable units",
+                "KINS 16B – 3 quarter UC/CSU transferable units"
+            ]
         },
         {
             "names": [
@@ -993,6 +1002,14 @@ const courses: {timestamp: string, data: Course[]} = {
             "description": "This course allows students to apply their computational skills in a real-world context. Students will work in teams to \nuse the design thinking process to identify a problem within their local community and then develop a possible \nsolution. Students will work with mentors related to their problem areas and the teacher of the course will facilitate \nthe design-thinking process and support students in managing their projects. The course will culminate in a public \npresentation of their yearlong project.",
             "hw": "1-1.5 hours per week",
             "recCourses": "Prior completion of or concurrent enrollment in AP Computer Science A",
+            "slos": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+            ],
             "notes": [
                 "Also qualifies for Career Tech Ed credits"
             ]
@@ -1063,7 +1080,8 @@ const courses: {timestamp: string, data: Course[]} = {
                 "LINC 63 – 1 quarter CSU transferable units",
                 "LINC 90C – 2 quarter CSU transferable units",
                 "LINC 58 – 2 quarter CSU transferable units",
-                "LINC 66E – 1 quarter CSU transferable units"
+                "LINC 66E – 1 quarter CSU transferable units",
+                "Social Justice Course Option: Students enrolled in the Social Justice Pathway or students with an interest in social justice should register for 8429SJ. Students in Social Justice AAR will focus their research on a social justice issue and, in teams, create and implement a project that will serve the local community. Please see page 87 for a description of the SJ Pathway program."
             ]
         },
         {
@@ -1121,7 +1139,8 @@ const courses: {timestamp: string, data: Course[]} = {
                 "6"
             ],
             "notes": [
-                "This class is an Advanced Class"
+                "This class is an Advanced Class",
+                "This is the Small Learning Community (SLC) section of the English class. Please see page 86 for a description of the SLC program."
             ]
         },
         {
@@ -1173,6 +1192,9 @@ const courses: {timestamp: string, data: Course[]} = {
                 "2",
                 "5",
                 "6"
+            ],
+            "notes": [
+                "This is the Small Learning Community (SLC) section of the English class. Please see page 86 for a description of the SLC program."
             ]
         },
         {
@@ -1561,6 +1583,9 @@ const courses: {timestamp: string, data: Course[]} = {
                 "2",
                 "5",
                 "6"
+            ],
+            "notes": [
+                "Students must be concurrently enrolled in the corresponding History/Social Science course American Studies (1694)"
             ]
         },
         {
@@ -1586,7 +1611,8 @@ const courses: {timestamp: string, data: Course[]} = {
                 "6"
             ],
             "notes": [
-                "This class is a College Prep Class"
+                "This class is a College Prep Class",
+                "Students must be concurrently enrolled in the corresponding History/Social Science course History of Women in America (1606)"
             ]
         },
         {
@@ -1915,7 +1941,14 @@ const courses: {timestamp: string, data: Course[]} = {
             "credit": "UC Approval Pending",
             "section": "HISTORY & SOCIAL SCIENCES",
             "description": "The AP Human Geography course introduces students to the systematic study of patterns and processes that have \nshaped human understanding, use, and alteration of Earth’s surface. Students learn to employ spatial concepts and \nlandscape analysis to examine human socioeconomic organization and its environmental consequences. They also \nlearn about the methods and tools geographers use in their research and applications.",
-            "hw": "Approximately 3-5 hours per week (with possibly more in the 3 weeks before the AP test and before major tests)"
+            "hw": "Approximately 3-5 hours per week (with possibly more in the 3 weeks before the AP test and before major tests)",
+            "slos": [
+                "1",
+                "2",
+                "3",
+                "5",
+                "6"
+            ]
         },
         {
             "names": [
@@ -1963,6 +1996,9 @@ const courses: {timestamp: string, data: Course[]} = {
                 "3",
                 "5",
                 "6"
+            ],
+            "notes": [
+                "Students must be concurrently enrolled in the corresponding English course Women Writers (Course # 1314)"
             ]
         },
         {
@@ -2521,6 +2557,33 @@ const courses: {timestamp: string, data: Course[]} = {
             "description": "This college-prep course is designed to provide a survey of biological knowledge at an introductory college level. \nBecause successful completion of the curriculum will enable students to take the College Board Advanced Placement \nExamination, the course follows the outline recommended by the College Board, covering the general content themes \nof: (1) Evolution; (2) Energy; (3) Information; and (4) Interactions. \nHeavy emphasis is placed on understanding the connection between experimentation and scientific discovery. Both \nhands-on laboratory activities and scientific readings are used to show how biological information is gained, \ninterpreted, and applied. Required homework includes extensive reading, activities, regular written lab reports, and \noccasional group projects.",
             "hw": "5-8 hours uninterrupted time per week",
             "prereqs": "Successful completion of a biology course. Successful completion of a first-year chemistry course at Gunn High School. (Exceptions must be approved by both the Science Department Instructional Supervisor and the Guidance Department.)",
+            "slos": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7"
+            ]
+        },
+        {
+            "names": [
+                {
+                    "title": "MARINE BIOLOGY",
+                    "cid": "3168"
+                }
+            ],
+            "grades": [
+                11,
+                12
+            ],
+            "length": "Year",
+            "credit": "UC Approved “d”",
+            "section": "SCIENCE",
+            "description": "Marine Biology is a second-year biology college-prep course that builds upon and extends biological concepts \ndeveloped during the first year. Students will take an in-depth look at the features of the ocean and the variety of plant \nand animal life that lives within. They will investigate how life in the ocean is interconnected and the impact that \nhumans have on that system. Topics will be developed through laboratory exercises, discussions, lectures, \ndemonstrations, informational research projects, and field trips. Please note, this is a laboratory science class where \nscientific skills and methods (including data analysis and laboratory write-ups) will be emphasized.",
+            "hw": "1 hour uninterrupted time per week",
+            "prereqs": "Successful completion of Biology and a physical science course (Conceptual Physics, Astrophysics, Chemistry, Chemistry H, Physics)",
             "slos": [
                 "1",
                 "2",

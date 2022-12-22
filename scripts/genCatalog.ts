@@ -20,7 +20,7 @@ const sections = data.split('>>').slice(1).map(text => {
 const courses: Course[] = [];
 
 for (const [section, raw] of sections) {
-    const matches = raw.matchAll(/((?:.+\s+::.+\n\|\n[^\n]+\n)+)Grades? +(\d+)(?:-(\d+))? +(?:(Year|Semester|Semester\/Year) +)?(.+)\n([^•]+)([^]+?)(?=^(?:\s*|.+::.+)$)/gm);
+    const matches = raw.matchAll(/((?:.+\s+::.+\n\|\n[^\n]+\n+)+)Grades? +(\d+)(?:-(\d+))? +(?:(Year|Semester|Semester\/Year) +)?(.+)\n([^]+?)(•[^]+?)?(?=\n\s*\n\s*\n|.+::.+|>)/gm);
 
     for (const match of matches) {
         let [, nameStr, lower, upper, length, credit, desc, bullets] = match;

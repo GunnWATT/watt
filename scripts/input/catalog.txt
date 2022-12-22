@@ -871,8 +871,7 @@ school production two times a month
 • District SLOs Addressed in this Course:  1, 2, 3, 5, 6, 7 
 • Not approved NCAA course 
  
-ADVANCED JOURNALISM & MEDIA STUDIES – GRAPHIC PUBLICATIONS 
-(OLYMPIAN/YEARBOOK) ::   AdvJournMS Graphic Pub
+ADVANCED JOURNALISM & MEDIA STUDIES – GRAPHIC PUBLICATIONS (OLYMPIAN/YEARBOOK) ::   AdvJournMS Graphic Pub
 |
 8672 
 Grades 10-12 Year UC Approved “g” 
@@ -1124,9 +1123,7 @@ students may need extra time to complete assignments at home.
 • District SLOs Addressed in this Course:  1, 2, 3, 4, 5, 6, 7 
 • For UC/CSU application, the course is approved “d,” Laboratory Science 
  
-SPORTS MEDICINE - Dual Enrollment
-*
-   ::   Sports Med D
+SPORTS MEDICINE - Dual Enrollment*   ::   Sports Med D
 |
 4533D 
 Grade 10-12 Year UC/CSU Transferable Credit 
@@ -1494,7 +1491,7 @@ justice should register for 8429SJ. Students in Social Justice AAR will focus th
 and, in teams, create and implement a project that will serve the local community. Please see page 87 for a description 
 of the SJ Pathway program. 
  
-COURSES OFFERED IN OTHER DEPARTMENTS THAT 
+> COURSES OFFERED IN OTHER DEPARTMENTS THAT
 MAY BE TAKEN FOR CAREER TECH ED CREDIT 
 Advanced Photography (6158) .................................. (UC Approved “f”) 
 Advanced Drawing & Painting I (6344)  .................. (UC Approved “f”) 
@@ -3194,7 +3191,7 @@ Astrophysics, Chemistry, Chemistry H, Physics)
 • Homework Expectation:  1 hour uninterrupted time per week 
 • District SLOs Addressed in this Course:  1, 2, 3, 4, 5, 6, 7 
  
-CHEMISTRY 
+> CHEMISTRY
 All  chemistry  courses  meet  the  physical  science  graduation requirement,  and  all  university  lab  science  admission 
 criteria. 
 Both first-year chemistry courses cover the same fundamental concepts but differ in the degree of analysis, quantitative 
@@ -3510,7 +3507,7 @@ solving skills. Concurrent enrollment or successful completion of IAC, Analysis 
 • Homework Expectation:  3 to 5 hours uninterrupted time per week 
 • District SLOs Addressed in this Course:  1, 2, 3, 4, 5, 6, 7 
  
-AP PHYSICS C 
+> AP PHYSICS C
  
 Traditional yearlong course: Please sign up for both course numbers 
       AP Physics C:                     Mechanics  3859A        Semester 1 
@@ -3768,7 +3765,7 @@ math.  This  course  is  a  Specialized  Academic  Instruction  course  and  req
 service.  Upon  successful  completion,  students  receive  10  units  of  elective  credit.  This  course  should  be  taken 
 concurrently with a general education math course. 
  
-SPECIALIZED PROGRAMS 
+> SPECIALIZED PROGRAMS
 
 ACADEMIC COMMUNICATION   ::   Academic Communication
 |
@@ -4309,7 +4306,7 @@ elective requirement for graduation.
 • District SLOs Addressed in this Course:  1, 2, 3, 4, 5, 6 
  
  
-INSTRUMENTAL MUSIC 
+> INSTRUMENTAL MUSIC
 
 CONCERT BAND   ::   Band
 |
@@ -4509,7 +4506,7 @@ assessments will be included in the curriculum
  
  
 
-CHORAL MUSIC 
+> CHORAL MUSIC
 TREBLE CHOIR   ::   Treb Choir
 |
 7267 
@@ -4599,7 +4596,7 @@ poor listening skills may need additional time outside of class to develop the n
 required. 
 • District SLOs Addressed in this Course:  1, 2, 3, 4, 5, 6 
  
-THEATRE 
+> THEATRE
 THEATRE 1   ::   Theatre 1
 |
 1070  
