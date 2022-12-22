@@ -35,15 +35,18 @@ export default function CourseComponent(props: Course) {
                         <div>
                             <p><strong className="text-secondary font-medium">Section:</strong> {section}</p>
                             <p><strong className="text-secondary font-medium">Credit:</strong> {credit}</p>
-                            <p><strong className="text-secondary font-medium">Homework:</strong> {hw}</p>
-                            {prereqs && <p><strong className="text-secondary font-medium">Prerequisite(s):</strong> {prereqs}</p>}
-                            {recCourses && <p><strong className="text-secondary font-medium">Recommended prior course(s):</strong> {recCourses}</p>}
                         </div>
                         <div className="basis-1/3 text-right">
                             <p><strong className="text-secondary font-medium">Grades:</strong> {grades.join(', ')}</p>
                             {slos && <p><strong className="text-secondary font-medium">SLOs:</strong> {slos.join(', ')}</p>}
                             <p><strong className="text-secondary font-medium">Length:</strong> {length}</p>
                         </div>
+                    </section>
+                    <section className="flex flex-col gap-1.5">
+                        {/* TODO: this spacing logic is kinda hacky */}
+                        <p className={hw && hw.length > 36 ? 'mt-2' : ''}><strong className="text-secondary font-medium">Homework:</strong> {hw}</p>
+                        {prereqs && <p><strong className="text-secondary font-medium">Prerequisite(s):</strong> {prereqs}</p>}
+                        {recCourses && <p><strong className="text-secondary font-medium">Recommended prior course(s):</strong> {recCourses}</p>}
                     </section>
                     <hr className="my-3" />
 

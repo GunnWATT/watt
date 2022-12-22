@@ -30,11 +30,11 @@ export default function Courses() {
 
             {/* TODO: better filtering? */}
             {/* TODO: this `grid-cols` breakpoint is a little hacky */}
-            <li className="md:grid md:grid-cols-[repeat(auto-fill,_minmax(450px,_1fr))] list-none">
+            <ul className="md:grid md:grid-cols-[repeat(auto-fill,_minmax(450px,_1fr))] list-none">
                 {data.filter((course) => course.names.some(({title}) => title.toLowerCase().includes(query.toLowerCase()))).map(course => (
-                    <CourseComponent {...course} />
+                    <CourseComponent key={course.names[0].cid} {...course} />
                 ))}
-            </li>
+            </ul>
         </>
     );
 }
