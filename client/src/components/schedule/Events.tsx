@@ -39,7 +39,7 @@ export default function Events(props: EventsProps) {
 
     return (
         <div className="flex flex-col list-none break-words py-3 xl:sticky xl:bg-content xl:rounded-lg xl:shadow-lg xl:top-6 xl:basis-80 xl:min-w-0 xl:h-[calc(100vh_-_48px)] xl:border xl:border-tertiary">
-            <div className="xl:border-b xl:border-tertiary pb-2 mb-3 px-5">
+            <div className="xl:border-b xl:border-tertiary xl:pb-2 mb-3 px-5">
                 <h2 className="text-3xl xl:text-xl font-medium">Events</h2>
             </div>
             {eventsError && (
