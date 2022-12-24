@@ -66,7 +66,7 @@ export default function Period(props: PeriodProps) {
     )
 
     return (
-        <div className="border-none rounded-md shadow-lg mb-4 p-5 relative" style={{backgroundColor: color}}>
+        <div className="rounded-md shadow-lg mb-4 p-5 relative" style={{backgroundColor: color}}>
             {note ? (
                 <Disclosure>
                     {({open}) => (<>
