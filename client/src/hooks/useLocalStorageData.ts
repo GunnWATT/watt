@@ -39,12 +39,13 @@ export function deepmerge<T extends {}, V extends T>(a: T, b: V) {
     const newObj = {...a};
 
     for (const key in a) if (key in b) {
-        // Recursively merge non-array object keys
+        // Recursively merge non-array, non-null object keys
         // TODO: this errors when `V extends T` is removed, as it should; we should implement some type safety
         // to enforce same key types as well as key names between `a` and `b`
-        newObj[key] = typeof a[key] === 'object' && typeof b[key] === 'object' && !Array.isArray(a[key]) && !Array.isArray(b[key])
-            ? deepmerge(a[key], b[key])
-            : b[key];
+        const aValue = a[key], bValue = b[key];
+        newObj[key] = typeof aValue === 'object' && typeof bValue === 'object' && aValue && bValue && !Array.isArray(aValue) && !Array.isArray(bValue)
+            ? deepmerge(aValue, bValue)
+            : bValue;
     }
 
     return newObj;
