@@ -3,6 +3,7 @@ import {DateTime} from 'luxon';
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Components
+import {SectionHeader} from '../../components/layout/HeaderPage';
 import Search from '../../components/layout/Search';
 import List from '../../components/lists/List';
 import StaffComponent from '../../components/lists/StaffComponent';
@@ -37,8 +38,8 @@ export default function Staff() {
 
     return (
         <>
-            <span className="flex gap-4 items-center">
-                <h1>Staff</h1>
+            <span className="flex gap-4 items-center mb-1">
+                <SectionHeader>Staff</SectionHeader>
                 <Search
                     placeholder="Search Staff"
                     onChange={e => setQuery(e.target.value)}

@@ -2,6 +2,7 @@ import {useState} from 'react';
 import {DateTime} from 'luxon';
 
 // Components
+import {SectionHeader} from '../../components/layout/HeaderPage';
 import Search from '../../components/layout/Search';
 import CourseComponent from '../../components/lists/CourseComponent';
 
@@ -15,8 +16,8 @@ export default function Courses() {
 
     return (
         <>
-            <span className="flex gap-4 items-center">
-                <h1>Courses</h1>
+            <span className="flex gap-4 items-center mb-1">
+                <SectionHeader>Courses</SectionHeader>
                 <Search
                     placeholder="Search Courses"
                     onChange={e => setQuery(e.target.value)}

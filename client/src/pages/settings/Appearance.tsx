@@ -1,6 +1,7 @@
 import {ReactNode, useContext} from 'react';
 import {RadioGroup} from '@headlessui/react';
 import {FiCheck, FiCircle} from 'react-icons/all';
+import {SectionHeader} from '../../components/layout/HeaderPage';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
@@ -27,7 +28,7 @@ export default function Appearance() {
 
     return (
         <>
-            <h1>Appearance</h1>
+            <SectionHeader>Appearance</SectionHeader>
             <hr/>
 
             <section className="space-y-6">

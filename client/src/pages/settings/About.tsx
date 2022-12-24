@@ -1,7 +1,11 @@
+import {SectionHeader} from '../../components/layout/HeaderPage';
+
+
 export default function About() {
     return (
         <>
-            <h1 className="mb-4">About</h1>
+            <SectionHeader className="mb-4">About</SectionHeader>
+
             <section className="bg-content-secondary dark:bg-background font-light rounded-md mb-4 px-8 py-16">
                 <p className="text-xl mb-4">
                     If I have seen further, it is by standing on the shoulders of giants.

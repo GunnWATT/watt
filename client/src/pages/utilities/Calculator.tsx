@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {SectionHeader} from '../../components/layout/HeaderPage';
 
 
 export default function Calculator() {
@@ -31,7 +32,7 @@ export default function Calculator() {
 
     return (
         <>
-            <h1>Minimum finals score calculator</h1>
+            <SectionHeader>Minimum finals score calculator</SectionHeader>
             <hr/>
             <CalculatorInput
                 label="Current grade:"

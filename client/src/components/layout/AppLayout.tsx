@@ -20,7 +20,7 @@ export default function AppLayout() {
             </div>
             {screenType === 'phone' && (
                 // On phones, display a bottom nav instead of the sidebar
-                <BottomNav/>
+                <BottomNav />
             )}
         </div>
     );

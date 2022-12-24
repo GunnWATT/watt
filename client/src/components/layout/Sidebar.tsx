@@ -46,7 +46,7 @@ export default function Sidebar() {
                 <Link to="/" className="self-center">
                     <Logo className="w-16 h-16" />
                 </Link>
-                <h1 className={'text-sm mt-4 mx-auto mb-8' + (!isOpen ? ' opacity-0' : '')}>
+                <h1 className={'text-sm font-semibold mt-4 mx-auto mb-8' + (!isOpen ? ' opacity-0' : '')}>
                     Web App of the Titans
                 </h1>
 

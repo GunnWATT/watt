@@ -1,12 +1,15 @@
 import { useState, useEffect, useContext } from 'react';
 import UserDataContext from '../../contexts/UserDataContext';
+
+// Components
+import {SectionHeader} from '../../components/layout/HeaderPage';
 import BarcodeRow from '../../components/utilities/BarcodeRow';
 
 // Firestore
 import {useAuth, useFirestore} from 'reactfire';
 import {updateUserData} from '../../util/firestore';
 
-const DEFAULT_BARCODE = '95000000'
+const DEFAULT_BARCODE = '95000000';
 
 
 export default function Barcode() {
@@ -51,7 +54,7 @@ export default function Barcode() {
 
     return (
         <>
-            <h1>Barcode</h1>
+            <SectionHeader className="mb-2">Barcode</SectionHeader>
             <p className="text-secondary">
                 The <strong>You</strong> barcode will be autofilled with your student ID when logged in.
                 If you need to add another barcode, click <strong>ADD BARCODE</strong> below.

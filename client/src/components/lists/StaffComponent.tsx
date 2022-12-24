@@ -47,7 +47,7 @@ export default function StaffComponent(props: Staff & {id: string}) {
 
     return (
         <>
-            <li className="text-sm cursor-pointer px-4 py-5" onClick={() => setModal(true)}>
+            <li className="text-sm cursor-pointer px-3 py-5" onClick={() => setModal(true)}>
                 <p>{name}</p>
                 {(room || dept) && (
                     <p className="text-secondary">{room && dept ? `${dept}, ${room}` : dept}</p>

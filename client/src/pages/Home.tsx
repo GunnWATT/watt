@@ -65,7 +65,7 @@ export default function Home(props: HomeProps) {
                     setViewDate={setViewDate}
                 />
 
-                <h1 className="text-6xl md:text-7xl text-center mb-5">{viewDate.weekdayLong}</h1>
+                <h1 className="text-6xl md:text-7xl font-semibold text-center mb-5">{viewDate.weekdayLong}</h1>
                 <h2 className="text-3xl font-semibold text-center mb-2">
                     {viewDate.toLocaleString(DateTime.DATE_FULL)}
                 </h2>

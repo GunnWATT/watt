@@ -9,7 +9,7 @@ export default function ClubComponent(props: Club & {id: string}) {
 
     return (
         <>
-            <li className="text-sm cursor-pointer px-4 py-5" onClick={() => setModal(true)}>
+            <li className="text-sm cursor-pointer px-3 py-5" onClick={() => setModal(true)}>
                 <p>{name}</p>
                 <p className="text-secondary">{room}</p>
                 <p className="text-secondary">{day}</p>

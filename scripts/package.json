@@ -22,6 +22,6 @@
     "node-fetch": "^2.6.7",
     "pdf-parse": "^1.1.1",
     "ts-node": "^10.8.1",
-    "typescript": "^4.7.4"
+    "typescript": "^4.9.4"
   }
 }

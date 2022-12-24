@@ -37,7 +37,7 @@ export default function SgyAuthRedirect() {
                 window.location.href = origin ?? '/';
                 // console.log(user);
             } else {
-                const to = new URL(origin!);
+                const to = new URL(origin ?? '/');
                 to.searchParams.append('modal', 'sgyauth');
                 window.location.href = to.href;
             }

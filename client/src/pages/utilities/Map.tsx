@@ -3,6 +3,7 @@ import {Dialog} from '@headlessui/react';
 import imageMap from '../../assets/imageMap.png';
 
 // Components
+import {SectionHeader} from '../../components/layout/HeaderPage';
 import ImageMap from '../../components/utilities/ImageMap';
 import ImageBox from '../../components/layout/ImageBox';
 
@@ -32,7 +33,7 @@ export default function Map() {
 
     return (
         <>
-            <h1 className="mb-5">Map</h1>
+            <SectionHeader className="mb-5">Map</SectionHeader>
 
             <ImageBox
                 src={imageMap}

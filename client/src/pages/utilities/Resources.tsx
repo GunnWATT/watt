@@ -1,6 +1,7 @@
 import {ReactNode, useState} from 'react';
 
 // Components
+import {SectionHeader} from '../../components/layout/HeaderPage';
 import CenteredModal from '../../components/layout/CenteredModal';
 import CloseButton from '../../components/layout/CloseButton';
 import NYTimes from '../../components/resources/NYTimes';
@@ -12,7 +13,7 @@ import Support from '../../components/resources/Support';
 export default function Resources() {
     return (
         <>
-            <h1 className="mb-6">Resources</h1>
+            <SectionHeader className="mb-6">Resources</SectionHeader>
             <section className="flex flex-col gap-3">
                 <ArticleCard name="New York Times" element={<NYTimes />}>
                     How to register for a free New York Times subscription.

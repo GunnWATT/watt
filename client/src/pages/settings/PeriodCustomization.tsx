@@ -1,5 +1,6 @@
 import {useContext} from 'react';
 import PeriodCustomizationInput from '../../components/settings/PeriodCustomizationInput';
+import {SectionHeader} from '../../components/layout/HeaderPage';
 import UserDataContext from '../../contexts/UserDataContext';
 
 
@@ -8,7 +9,7 @@ export default function PeriodCustomization() {
 
     return (
         <>
-            <h1>Periods</h1>
+            <SectionHeader>Periods</SectionHeader>
             <hr/>
 
             <form className="periods-settings flex flex-col gap-4">

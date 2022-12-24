@@ -3,6 +3,7 @@ import {Listbox, Switch} from '@headlessui/react';
 import {HiSelector, FiCheck, FiCircle} from 'react-icons/all';
 
 // Components
+import {SectionHeader} from '../../components/layout/HeaderPage';
 import AnimatedListbox from '../../components/layout/AnimatedListbox';
 
 // Contexts
@@ -48,7 +49,7 @@ export default function Features() {
 
     return (
         <>
-            <h1>Features</h1>
+            <SectionHeader>Features</SectionHeader>
             <hr/>
 
             <section className="flex flex-wrap-reverse md:flex-nowrap gap-2 md:gap-6 mb-6">

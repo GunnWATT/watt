@@ -13,7 +13,7 @@ export default function CourseComponent(props: Course) {
 
     return (
         <>
-            <li className="text-sm cursor-pointer px-4 py-5" onClick={() => setModal(true)}>
+            <li className="text-sm cursor-pointer px-3 py-5" onClick={() => setModal(true)}>
                 {names.map(({title, cid}) => (
                     <p key={cid}>{title} :: {cid}</p>
                 ))}
