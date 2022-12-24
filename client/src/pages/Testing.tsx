@@ -1,4 +1,5 @@
 import {ReactNode, useContext, useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
 
 // Components
 import CenteredMessage from '../components/layout/CenteredMessage';
@@ -71,8 +72,12 @@ export default function Testing() {
     }, [])
 
     return (
-        <div className="container py-6">
-            <h1 className="mb-4">Super Secret Testing Facility</h1>
+        <div className="container pt-12 sm:pt-20 lg:pt-24 pb-20">
+            <Link to="/" className="block text-sm text-secondary text-inherit hover:no-underline -ml-4 mb-8">
+                ← Return to home
+            </Link>
+
+            <h1 className="text-4xl font-semibold mb-5">Super Secret Testing Facility</h1>
 
             <p className="mb-4">
                 Congratulations! You found the super secret testing area for Gunn WATT!
@@ -93,7 +98,7 @@ export default function Testing() {
                     ))}
                 </div>
             )}
-            <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-secondary font-light text-sm px-4 mb-4">
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-secondary font-light text-sm px-4 mb-12">
                 <span>Brandon Chung</span>
                 <span>Sean Yen</span>
                 <span>Timothy Herchen</span>
@@ -101,7 +106,6 @@ export default function Testing() {
                 <span>Mylie Rodrigo</span>
                 <span>Victor Dang</span>
             </div>
-            <hr/>
 
             <main className="flex flex-col gap-4">
                 {/* TODO: implement this but better */}

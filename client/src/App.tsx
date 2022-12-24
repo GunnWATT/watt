@@ -149,10 +149,6 @@ export default function App() {
                                 <Route path="periods" element={<PeriodCustomization />} />
                                 <Route path="about" element={<About />} />
                             </Route>
-                            <Route
-                                path="/super-secret-testing"
-                                element={<Suspense><Testing /></Suspense>}
-                            />
                         </Route>
                         <Route path="/resources" element={<ResourcesLayout />}>
                             <Route path="nytimes" element={<NYTimes />} />
@@ -160,6 +156,10 @@ export default function App() {
                             <Route path="library-card" element={<LibraryCard />} />
                             <Route path="support" element={<Support />} />
                         </Route>
+                        <Route
+                            path="/super-secret-testing"
+                            element={<Suspense><Testing /></Suspense>}
+                        />
                         <Route path="/schoology/auth" element={<SgyAuthRedirect />}/>
                         <Route path="*" element={<PageNotFound />}/>
                     </Routes>
