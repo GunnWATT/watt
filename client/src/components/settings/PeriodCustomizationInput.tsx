@@ -40,10 +40,10 @@ export default function PeriodCustomizationInput(props: PeriodCustomizationInput
     }, [userData.options.theme])
 
     return (
-        <div className="flex items-center gap-6">
+        <div className="flex gap-6">
             <Popover className="relative h-10">
                 <Popover.Button
-                    className="w-10 h-10 rounded border-2 border-tertiary"
+                    className="w-10 h-10 mt-3.5 rounded border-2 border-tertiary"
                     style={{backgroundColor: color}}
                 />
                 <AnimatedPopover className={`absolute z-10 touch-none ${isUpperPeriod ? 'top-[calc(100%_+_10px)]' : 'bottom-[calc(100%_+_10px)]'}`}>
