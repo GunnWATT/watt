@@ -209,7 +209,7 @@ export default function ClassesLayout() {
 
     return (
         <SgyDataProvider value={{sgyData, fetching, lastFetched, lastAttemptedFetch, classes, selected, updateSgy}}>
-            <div className={"container py-4 md:py-6 " + screenType}>
+            <div className={"container py-3 md:py-6 " + screenType}>
                 <Wave />
 
                 <ClassesHeader setSelected={setSelected} />

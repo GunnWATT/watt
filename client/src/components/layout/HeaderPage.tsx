@@ -10,7 +10,7 @@ export default function HeaderPage(props: HeaderPageProps) {
         <>
             <Wave />
 
-            <div className="container py-4 md:py-6">
+            <div className="container py-3 md:py-6">
                 <Header>
                     <h1 className="text-4xl font-semibold">{heading}</h1>
                     {other}
