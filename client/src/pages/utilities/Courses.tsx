@@ -17,7 +17,7 @@ export default function Courses() {
     return (
         <>
             <span className="flex gap-4 items-center mb-1">
-                <SectionHeader>Courses</SectionHeader>
+                <SectionHeader className="mb-1">Courses</SectionHeader>
                 <Search
                     placeholder="Search Courses"
                     onChange={e => setQuery(e.target.value)}

@@ -39,7 +39,7 @@ export default function Staff() {
     return (
         <>
             <span className="flex gap-4 items-center mb-1">
-                <SectionHeader>Staff</SectionHeader>
+                <SectionHeader className="mb-1">Staff</SectionHeader>
                 <Search
                     placeholder="Search Staff"
                     onChange={e => setQuery(e.target.value)}
