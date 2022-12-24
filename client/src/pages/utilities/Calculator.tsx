@@ -59,7 +59,7 @@ function CalculatorInput(props: CalculatorInputProps) {
     const {label, value, setValue} = props;
 
     return (
-        <p className="mb-4 flex flex-wrap gap-2">
+        <p className="mb-4 flex flex-wrap items-center gap-2">
             {label}
             <span className="relative">
                 <input
