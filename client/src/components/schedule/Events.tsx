@@ -6,7 +6,7 @@ import Event, {GCalEvent} from './Event';
 import CenteredMessage from '../layout/CenteredMessage';
 
 // Icons
-import {FiRefreshCw} from 'react-icons/all';
+import {VscRefresh} from 'react-icons/all';
 
 
 type EventsProps = {
@@ -42,20 +42,23 @@ export default function Events(props: EventsProps) {
             <div className="xl:border-b xl:border-tertiary xl:pb-2 mb-3 px-5">
                 <h2 className="text-2xl xl:text-xl font-medium">Events</h2>
             </div>
-            {eventsError && (
+            {eventsError ? (
                 <CenteredMessage>
-                    <span>Error fetching events.</span>
-                    <FiRefreshCw onClick={fetchEvents} className="h-6 w-6 cursor-pointer" />
+                    <span>Error fetching events:</span>
+                    <code className="bg-black/20 rounded px-2 py-1 text-sm mb-2">
+                        {eventsError.name}: {eventsError.message}
+                    </code>
+                    <VscRefresh onClick={fetchEvents} className="h-6 w-6 cursor-pointer" />
                 </CenteredMessage>
-            )}
-            {!eventsError && !events && <CenteredMessage>Loading events...</CenteredMessage>}
-            {!eventsError && events && (content ? (
+            ) : !events ? (
+                <CenteredMessage>Loading events...</CenteredMessage>
+            ) : !content ? (
+                <CenteredMessage>Nothing to show for today.</CenteredMessage>
+            ) : (
                 <ul className="flex flex-col gap-3 px-4 overflow-scroll scrollbar-none">
                     {content}
                 </ul>
-            ) : (
-                <CenteredMessage>Nothing to show for today.</CenteredMessage>
-            ))}
+            )}
         </div>
     );
 }
