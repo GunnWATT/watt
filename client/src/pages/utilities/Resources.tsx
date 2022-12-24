@@ -13,7 +13,7 @@ import Support from '../../components/resources/Support';
 export default function Resources() {
     return (
         <>
-            <SectionHeader className="mb-6">Resources</SectionHeader>
+            <SectionHeader className="mb-5">Resources</SectionHeader>
             <section className="flex flex-col gap-3">
                 <ArticleCard name="New York Times" element={<NYTimes />}>
                     How to register for a free New York Times subscription.
