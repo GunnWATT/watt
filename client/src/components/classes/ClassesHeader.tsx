@@ -30,7 +30,7 @@ export default function ClassesHeader(props: ClassesHeaderProps) {
                             color={currColor}
                             border={`3px solid ${bgColor(currColor)}`}
                         />
-                        <h1 className="pb-1 mb-0 overflow-ellipsis overflow-hidden whitespace-nowrap">
+                        <h1 className="text-4xl font-semibold pb-1 mb-0 overflow-ellipsis overflow-hidden whitespace-nowrap">
                             {currName}
                         </h1>
                     </Listbox.Button>

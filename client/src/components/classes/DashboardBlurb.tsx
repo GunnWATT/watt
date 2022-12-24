@@ -4,6 +4,7 @@ import { useAuth, useFirestore } from 'reactfire';
 import { FiCheckSquare, FiSquare } from 'react-icons/all';
 
 // Components
+import {SectionHeader} from '../layout/HeaderPage';
 import AssignmentModal from './AssignmentModal';
 import {AssignmentTimestamp} from './Assignments';
 import ContentButton from '../layout/ContentButton';
@@ -73,7 +74,7 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
 
     return (
         <>
-            <h1>Dashboard</h1>
+            <SectionHeader className="mb-2">Dashboard</SectionHeader>
             <div>
                 You need to do {assignmentsToDoNextWeek.length} of {assignmentsNextWeek.length}{' '}
                 assignment{assignmentsNextWeek.length === 1 ? "" : "s"} due in the next week.
