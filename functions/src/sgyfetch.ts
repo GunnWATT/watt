@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 import admin from './util/adminInit';
 import {get} from './util/sgyOAuth';
 
-const SEMESTER = 1; // We are in semester 1
+const SEMESTER = 2; // We are in semester 2
 
 const firestore = admin.firestore();
 const periods = ['0', '1', '2', '3', '4', '5', '6', '7', '8', 'SELF'];
