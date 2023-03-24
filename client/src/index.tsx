@@ -6,6 +6,7 @@ import App from './App';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {FirebaseAppProvider} from 'reactfire';
 import FirebaseProviders from './components/firebase/FirebaseProviders';
+import ErrorBoundary from './components/layout/ErrorBoundary';
 
 import './styles/tailwind.scss';
 
@@ -26,13 +27,15 @@ const root = createRoot(container);
 
 root.render(
     <React.StrictMode>
-        <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-            <FirebaseProviders>
-                <Router>
-                    <App/>
-                </Router>
-            </FirebaseProviders>
-        </FirebaseAppProvider>
+        <ErrorBoundary>
+            <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+                <FirebaseProviders>
+                    <Router>
+                        <App/>
+                    </Router>
+                </FirebaseProviders>
+            </FirebaseAppProvider>
+        </ErrorBoundary>
     </React.StrictMode>
 );
 
