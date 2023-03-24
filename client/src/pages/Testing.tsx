@@ -63,6 +63,7 @@ export default function Testing() {
     const userData = useContext(UserDataContext);
     const currTime = useContext(CurrentTimeContext);
 
+    // TODO: type this
     const [contributors, setContributors] = useState<any[] | null>(null);
 
     useEffect(() => {

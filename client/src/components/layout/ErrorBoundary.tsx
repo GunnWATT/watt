@@ -1,8 +1,11 @@
 import {Component, ReactNode} from 'react';
 import Wave from './Wave';
 
-export default class ErrorBoundary extends Component<{children: ReactNode}, {error: Error | null}> {
-    constructor(props: {children: ReactNode}) {
+
+type ErrorBoundaryProps = {children: ReactNode};
+type ErrorBoundaryState = {error: Error | null};
+export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+    constructor(props: ErrorBoundaryProps) {
         super(props);
         this.state = {error: null};
     }
