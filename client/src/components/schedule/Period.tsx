@@ -37,6 +37,7 @@ export default function Period(props: PeriodProps) {
     // TODO: perhaps it would be nice to support non-lunch periods, but it's probably unnecessary
     const clubOccurring = (id: string) => {
         const club = clubs.data[id];
+        if (!club) return false;
         return name === 'Lunch' && club.time === 'Lunch'
             && club.day.toLowerCase().includes(start.weekdayLong.toLowerCase());
     }
