@@ -13,7 +13,7 @@ import './styles/tailwind.scss';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyAjmAlzXLNelfL4Ak7dMPXWg8-3wLcCwpY',
-    authDomain: 'gunnwatt.firebaseapp.com',
+    authDomain: 'gunnwatt.web.app',
     databaseURL: 'https://gunnwatt.firebaseio.com',
     projectId: 'gunnwatt',
     storageBucket: 'gunnwatt.appspot.com',
