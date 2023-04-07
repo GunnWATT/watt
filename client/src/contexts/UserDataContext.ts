@@ -1,5 +1,6 @@
 import {createContext} from 'react';
 import {AllSgyPeriod} from './SgyDataContext';
+import {ColorTheme, defaultTheme} from '../components/layout/ThemeHandler';
 
 
 // Represents a course on Schoology.
@@ -27,7 +28,11 @@ export type UserData = {
         5: SgyPeriodData, 6: SgyPeriodData, 7: SgyPeriodData, 8: SgyPeriodData,
         P: SgyPeriodData, S: SgyPeriodData, H: SgyPeriodData
     },
-    options: {theme: string, time: string, period0: boolean, period8: boolean, clock: boolean, sgy: boolean},
+    options: {
+        theme: string, time: string, period0: boolean, period8: boolean,
+        clock: boolean, sgy: boolean
+    },
+    colors: ColorTheme
     id: string,
     gradYear: number, // The year (eg. 2023) or `0` if unset
     sgy: {
@@ -68,6 +73,7 @@ export const defaultUserData: UserData = {
         clock: true,
         sgy: false
     },
+    colors: defaultTheme,
     id: '00000',
     gradYear: 0,
     sgy: {

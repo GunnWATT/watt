@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 // Components
 import CenteredMessage from '../components/layout/CenteredMessage';
-import OutlineButton, {DangerOutlineButton, SuccessOutlineButton} from '../components/layout/OutlineButton';
+import OutlineButton, {ThemeOutlineButton, SuccessOutlineButton} from '../components/layout/OutlineButton';
 import Period from '../components/schedule/Period';
 import Loading from '../components/layout/Loading';
 import WIP from '../components/layout/WIP';
@@ -132,7 +132,7 @@ export default function Testing() {
 
                 <ContentBox className="flex gap-2 justify-center">
                     <OutlineButton>Add to my list</OutlineButton>
-                    <DangerOutlineButton>Disable Schoology</DangerOutlineButton>
+                    <ThemeOutlineButton>Disable Schoology</ThemeOutlineButton>
                     <SuccessOutlineButton>Looks good!</SuccessOutlineButton>
                 </ContentBox>
 

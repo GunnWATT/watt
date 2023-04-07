@@ -4,7 +4,7 @@ import {Dialog} from '@headlessui/react';
 
 // Components
 import CenteredModal from '../layout/CenteredModal';
-import OutlineButton, {DangerOutlineButton, SuccessOutlineButton} from '../layout/OutlineButton';
+import OutlineButton, {ThemeOutlineButton, SuccessOutlineButton} from '../layout/OutlineButton';
 import Loading from '../layout/Loading';
 
 // Auth
@@ -98,16 +98,16 @@ export default function SgyInitResults() {
 
             <section className="flex gap-3">
                 {results && (confirmDisable ? (<>
-                    <DangerOutlineButton onClick={disableSchoology}>
+                    <ThemeOutlineButton onClick={disableSchoology}>
                         Yes, Disable Schoology
-                    </DangerOutlineButton>
+                    </ThemeOutlineButton>
                     <OutlineButton onClick={() => setConfirm(false)}>
                         Take Me Back!
                     </OutlineButton>
                 </>) : (<>
-                    <DangerOutlineButton onClick={() => setConfirm(true)}>
+                    <ThemeOutlineButton onClick={() => setConfirm(true)}>
                         Disable Schoology
-                    </DangerOutlineButton>
+                    </ThemeOutlineButton>
                     <SuccessOutlineButton onClick={enableSchoology}>
                         Looks Good!
                     </SuccessOutlineButton>

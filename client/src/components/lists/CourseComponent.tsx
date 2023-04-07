@@ -4,7 +4,7 @@ import {Course} from '@watt/shared/data/courses';
 
 // Components
 import CenteredModal from '../layout/CenteredModal';
-import {DangerOutlineButton} from '../layout/OutlineButton';
+import {ThemeOutlineButton} from '../layout/OutlineButton';
 
 
 export default function CourseComponent(props: Course) {
@@ -61,9 +61,9 @@ export default function CourseComponent(props: Course) {
                 </section>
 
                 <section className="flex gap-3 flex-wrap justify-end">
-                    <DangerOutlineButton onClick={() => setModal(false)}>
+                    <ThemeOutlineButton onClick={() => setModal(false)}>
                         Close
-                    </DangerOutlineButton>
+                    </ThemeOutlineButton>
                 </section>
             </CenteredModal>
         </>

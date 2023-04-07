@@ -4,7 +4,7 @@ import {Staff} from '@watt/shared/data/staff';
 
 // Components
 import CenteredModal from '../layout/CenteredModal';
-import OutlineButton, {DangerOutlineButton} from '../layout/OutlineButton';
+import OutlineButton, {ThemeOutlineButton} from '../layout/OutlineButton';
 import PillClubComponent from './PillClubComponent';
 
 // Context
@@ -87,9 +87,9 @@ export default function StaffComponent(props: Staff & {id: string}) {
                             Add to my list
                         </OutlineButton>
                     )}
-                    <DangerOutlineButton onClick={() => setModal(false)}>
+                    <ThemeOutlineButton onClick={() => setModal(false)}>
                         Close
-                    </DangerOutlineButton>
+                    </ThemeOutlineButton>
                 </section>
             </CenteredModal>
         </>

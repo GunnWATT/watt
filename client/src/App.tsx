@@ -32,6 +32,7 @@ import PageNotFound from './pages/404';
 import SgyAuthRedirect from './pages/SgyAuthRedirect';
 
 // Components
+import ThemeHandler from './components/layout/ThemeHandler';
 import FaviconHandler from './components/schedule/FaviconHandler';
 import InstallModal from './components/layout/InstallModal';
 import SgyInitResults from './components/firebase/SgyInitResults';
@@ -123,6 +124,7 @@ export default function App() {
                 <TimeProvider value={date}>
                     <PageVisibility onChange={() => navigator.serviceWorker.getRegistration().then(res => res?.update())}/>
                     <FaviconHandler />
+                    <ThemeHandler />
                     {signInCheckResult?.signedIn && <FirebaseUserDataUpdater />}
 
                     <Routes>
