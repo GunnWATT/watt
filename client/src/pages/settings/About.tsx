@@ -1,4 +1,5 @@
 import {SectionHeader} from '../../components/layout/HeaderPage';
+import Badge from '../../components/layout/Badge';
 
 
 export default function About() {
@@ -13,10 +14,19 @@ export default function About() {
                 <em className="text-secondary">―Isaac Newton</em>
             </section>
 
+            <section className="border-l-4 border-tertiary pl-6 mb-6 text-secondary">
+                <h5 className="font-bold mb-1">Native desktop app <Badge className="ml-0.5">Beta</Badge></h5>
+                <p className="text-sm">
+                    If you want to install WATT as a native desktop app on your computer, download the corresponding installer
+                    from our <a href="https://github.com/GunnWATT/watt/releases" target="_blank" rel="noopener noreferrer">releases page</a>.
+                    Automatic updating is not supported yet, so occasional reinstalls may need to be made. Make sure to
+                    install the release labelled "latest".
+                </p>
+            </section>
+
             <p className="mb-4">
                 <strong>Gunn WATT</strong> is a Gunn App and UGWA successor that uses a React.js frontend and Firebase backend.
-                Unlike our competitors, we are open to contribution from everyone.
-                Check out our source code on GitHub <a href="https://github.com/GunnWATT/watt" target="_blank" rel="noopener noreferrer">here</a>!
+                We are open to contribution from everyone; check out our source code on <a href="https://github.com/GunnWATT/watt" target="_blank" rel="noopener noreferrer">GitHub</a>!
                 Contribute by <a href="https://github.com/GunnWATT/watt/compare" target="_blank" rel="noopener noreferrer">creating a pull request</a>,{' '}
                 <a href="https://github.com/GunnWATT/watt/issues/new" target="_blank" rel="noopener noreferrer">opening an issue</a>,
                 or giving feedback in our <a href="https://discord.gg/4BUgdqdWfs" target="_blank" rel="noopener noreferrer">Discord server</a>;

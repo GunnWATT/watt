@@ -10,7 +10,7 @@ WATT is built using React and Firebase, with a backend in Cloud Functions and da
 repository is a monorepo containing nested node packages managed via npm `workspaces` and TypeScript `paths`. Within the
 repository,
 
-`/client` houses WATT's frontend, built with Vite and React.
+`/client` houses WATT's web frontend, built with Vite and React, and the native desktop app, bundled with Tauri.
 
 `/functions` houses WATT's Firebase Functions backend.
 
@@ -81,6 +81,14 @@ records can be accessed.
 ![image](https://user-images.githubusercontent.com/60120929/134827751-de1a3398-7aa8-4138-a290-4e02e1c5c59a.png)
 ![image](https://user-images.githubusercontent.com/60120929/147842158-93ef171a-c88c-4493-97ea-3d18ac7ddb22.png)
 ![image](https://user-images.githubusercontent.com/60120929/147842171-c012e8b8-1031-4f3c-8686-9e0cf8f10872.png)
+
+### Tauri
+To develop desktop-specific features locally, run
+```shell
+npm run tauri dev
+```
+in `/client`. This starts the Vite dev server on `localhost:3000` as usual, but also launches a desktop application
+that is automatically recompiled when the Tauri project (in `/client/src-tauri`) changes.
 
 ### Scripts
 Navigate to the scripts directory with `cd scripts`. WATT's scripts use `ts-node` to skip having to manually compile 
