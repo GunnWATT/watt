@@ -46,4 +46,4 @@ jobs:
           releaseName: 'WATT client @ ${{ github.ref_name }} ${{ steps.vars.outputs.sha_short }}'
           releaseBody: 'Use the corresponding installer bundled in assets to download the WATT desktop client.'
           releaseDraft: false
-          prerelease: '${{ github.ref_name != "main" }}'
+          prerelease: ${{ github.ref_name != 'main' }}
