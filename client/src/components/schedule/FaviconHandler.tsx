@@ -1,4 +1,7 @@
 import {useContext, useEffect, useRef} from 'react';
+import {appWindow} from '@tauri-apps/api/window';
+
+// Utils
 import {useNextPeriod} from '../../hooks/useNextPeriod';
 import {parsePeriodColor, parsePeriodName} from './Periods';
 import {hexToRgb} from '../../util/progressBarColor';
@@ -23,6 +26,11 @@ export default function FaviconHandler() {
     const borderRadius = FAVICON_SIZE * 0.15;
     const sRadius = FAVICON_SIZE * 0.45; // radius for last seconds
 
+    function setTitle(title: string) {
+        document.title = title;
+        if (window.__TAURI_METADATA__) appWindow.setTitle(title).catch(e => console.error(e));
+    }
+
     // Update document name and favicon based on current period
     useEffect(() => {
         // Initialize canvas reference
@@ -35,7 +43,8 @@ export default function FaviconHandler() {
         // If there's no period to display, set favicon and tab title back to defaults
         if (!next) {
             favicon.current?.remove();
-            document.title = 'Web App of The Titans (WATT)';
+            setTitle('Web App of The Titans (WATT)');
+            if (window.__TAURI_METADATA__) void appWindow.setIcon('/icons/watt.png'); // TODO: verify this works
             return;
         }
 
@@ -49,10 +58,10 @@ export default function FaviconHandler() {
 
         const name = parsePeriodName(next.n, userData);
 
-        document.title = (startingIn > 0)
+        setTitle((startingIn > 0)
             ? `${name} starting in ${startingIn} minute${startingIn !== 1 ? 's' : ''}.`
             : `${name} ending in ${endingIn} minute${endingIn !== 1 ? 's' : ''}, started ${-startingIn} minute${startingIn !== -1 ? 's' : ''} ago.`
-            + ' (WATT)'
+            + ' (WATT)')
 
         let numToShow = startingIn >= 0 ? startingIn : endingIn;
         const isSeconds = numToShow === 0;
@@ -163,7 +172,7 @@ export default function FaviconHandler() {
         }
 
         favicon.current.href = canvas.current.toDataURL();
-
+        if (window.__TAURI_METADATA__) canvas.current.toBlob(b => b?.arrayBuffer().then(arrayBuf => appWindow.setIcon(new Uint8Array(arrayBuf))))
     }, [date])
 
     return null;
