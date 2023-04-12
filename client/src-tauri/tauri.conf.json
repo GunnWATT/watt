@@ -28,7 +28,7 @@
         "../public/icons/android-chrome-512x512.png",
         "../public/icons/favicon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "com.gunnwatt.dev",
       "targets": "all"
     },
     "security": {
