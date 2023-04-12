@@ -5,6 +5,8 @@ on:
       - "client/**"
       - "shared/**"
       - "firebase.json" # Assume most `firebase.json` changes are hosting rewrites edits
+    tags-ignore:
+      - 'client-**' # Ignore tags created by this workflow to prevent unnecessary rerunning
 jobs:
   publish-tauri:
     permissions:
@@ -39,7 +41,7 @@ jobs:
         with:
           projectPath: 'client'
           tagName: 'client-${{ github.ref_name }}-${{ github.sha }}'
-          releaseName: 'WATT @ ${{ github.ref_name }} ${{ steps.vars.outputs.sha_short }}'
+          releaseName: 'WATT client @ ${{ github.ref_name }} ${{ steps.vars.outputs.sha_short }}'
           releaseBody: 'Use the corresponding installer bundled in assets to download the WATT desktop client.'
-          releaseDraft: true
-          prerelease: false
+          releaseDraft: false
+          prerelease: '${{ github.ref_name != "main" }}'
