@@ -21,11 +21,12 @@
     "bundle": {
       "active": true,
       "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
+        "../public/icons/favicon-16x16.png",
+        "../public/icons/favicon-32x32.png",
+        "../public/icons/mstile-150x150.png",
+        "../public/icons/android-chrome-192x192.png",
+        "../public/icons/android-chrome-512x512.png",
+        "../public/icons/favicon.ico"
       ],
       "identifier": "com.tauri.dev",
       "targets": "all"
@@ -40,7 +41,7 @@
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "client",
+        "title": "Web App of The Titans (WATT)",
         "width": 800,
         "height": 600
       }
