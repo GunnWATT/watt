@@ -7,7 +7,7 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "client",
+    "productName": "Gunn WATT",
     "version": "0.0.0"
   },
   "tauri": {
@@ -25,6 +25,7 @@
         "../public/icons/32x32.png",
         "../public/icons/128x128.png",
         "../public/icons/128x128@2x.png",
+        "../public/icons/512x512.png",
         "../public/icons/Square30x30Logo.png",
         "../public/icons/Square44x44Logo.png",
         "../public/icons/Square71x71Logo.png",
