@@ -5,6 +5,8 @@ on:
       - "client/**"
       - "shared/**"
       - "firebase.json" # Assume most `firebase.json` changes are hosting rewrites edits
+    branches:
+      - '**'
     tags-ignore:
       - 'client-**' # Ignore tags created by this workflow to prevent unnecessary rerunning
 jobs:
