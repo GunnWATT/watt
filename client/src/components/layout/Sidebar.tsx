@@ -54,7 +54,7 @@ export default function Sidebar() {
                 <nav className="flex flex-col gap-3 mt-3 h-full">
                     <SidebarItem to="/" icon={FiHome}>Home</SidebarItem>
                     <SidebarItem to="/classes" icon={FiCheckSquare}>
-                        Classes<Badge>Beta</Badge>
+                        Classes <Badge className="ml-1">Beta</Badge>
                     </SidebarItem>
                     <SidebarItem to="/clubs" icon={FiUsers}>Clubs</SidebarItem>
                     <SidebarItem to="/utilities" icon={FiTool}>Utilities</SidebarItem>
