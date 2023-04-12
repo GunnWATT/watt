@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.7.4",
+    "@tauri-apps/api": "^1.2.0",
     "firebase": "^9.14.0",
     "he": "^1.2.0",
     "luxon": "^3.3.0",
@@ -19,6 +20,7 @@
     "tslib": "^2.4.0"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "^1.2.3",
     "@types/he": "^1.1.2",
     "@types/luxon": "^3.2.0",
     "@types/react": "^18.0.15",
@@ -40,7 +42,7 @@
     "start": "vite",
     "build": "tsc && vite build",
     "serve": "npm run build && firebase serve",
-    "deploy": "npm run build && firebase deploy"
+    "tauri": "tauri"
   },
   "browserslist": {
     "production": [
