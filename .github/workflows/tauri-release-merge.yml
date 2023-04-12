@@ -42,8 +42,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           projectPath: 'client'
-          tagName: 'client-${{ github.ref_name }}-${{ github.sha }}'
-          releaseName: 'WATT client @ ${{ github.ref_name }} ${{ steps.vars.outputs.sha_short }}'
+          tagName: 'client-${{ github.ref_name }}-${{ steps.vars.outputs.sha_short }}'
+          releaseName: 'WATT client @ ${{ steps.vars.outputs.sha_short }} (${{ github.ref_name }})'
           releaseBody: 'Use the corresponding installer bundled in assets to download the WATT desktop client.'
           releaseDraft: false
           prerelease: ${{ github.ref_name != 'main' }}
