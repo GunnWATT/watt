@@ -35,6 +35,7 @@ jobs:
       - name: install frontend dependencies
         run: npm install
       - name: Set outputs
+        shell: bash
         id: vars
         run: echo "sha_short=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
       - uses: tauri-apps/tauri-action@v0
