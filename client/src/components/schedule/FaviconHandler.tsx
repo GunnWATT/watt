@@ -1,4 +1,4 @@
-import {useContext, useEffect, useRef} from 'react';
+import {useContext, useEffect, useMemo, useRef} from 'react';
 import {appWindow} from '@tauri-apps/api/window';
 
 // Utils
@@ -31,6 +31,13 @@ export default function FaviconHandler() {
         if (window.__TAURI_METADATA__) appWindow.setTitle(title).catch(e => console.error(e));
     }
 
+    // TODO: rather hacky, would much prefer if this could be done at build-time
+    // TODO: is there some way to not run this (or even import tauri) on web?
+    const iconByteData = useMemo(async () => {
+        const buf = await (await fetch('/icons/512x512.png')).arrayBuffer();
+        return new Uint8Array(buf);
+    }, [])
+
     // Update document name and favicon based on current period
     useEffect(() => {
         // Initialize canvas reference
@@ -44,7 +51,7 @@ export default function FaviconHandler() {
         if (!next) {
             favicon.current?.remove();
             setTitle('Web App of The Titans (WATT)');
-            if (window.__TAURI_METADATA__) void appWindow.setIcon('/icons/watt.png'); // TODO: verify this works
+            if (window.__TAURI_METADATA__) iconByteData.then(arr => appWindow.setIcon(arr));
             return;
         }
 
