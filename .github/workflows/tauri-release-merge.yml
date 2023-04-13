@@ -45,6 +45,6 @@ jobs:
           projectPath: 'client'
           tagName: 'client-${{ github.ref_name }}-${{ steps.vars.outputs.sha_short }}'
           releaseName: 'WATT client @ ${{ steps.vars.outputs.sha_short }} (${{ github.ref_name }})'
-          releaseBody: 'Use the corresponding installer bundled in assets to download the WATT desktop client.\n### Changes since last release:\n```\n- ${{ join(github.event.commits.*.message, ''\n- '') }}\n```'
+          releaseBody: "Use the corresponding installer bundled in assets to download the WATT desktop client.\n### Changes since last release:\n```\n- ${{ join(github.event.commits.*.message, '\n- ') }}\n```"
           releaseDraft: false
           prerelease: ${{ github.ref_name != 'main' }}

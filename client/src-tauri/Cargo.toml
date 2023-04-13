@@ -1,7 +1,7 @@
 [package]
 name = "watt"
 version = "0.0.0"
-description = "A Tauri App"
+description = "The desktop client for the Web App of the Titans (WATT)."
 authors = ["ky28059"]
 license = ""
 repository = ""
