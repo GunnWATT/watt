@@ -1,5 +1,5 @@
 import {useContext, useEffect, useMemo, useRef} from 'react';
-import {appWindow} from '@tauri-apps/api/window';
+import type {WebviewWindow} from '@tauri-apps/api/window';
 
 // Utils
 import {useNextPeriod} from '../../hooks/useNextPeriod';
@@ -26,17 +26,27 @@ export default function FaviconHandler() {
     const borderRadius = FAVICON_SIZE * 0.15;
     const sRadius = FAVICON_SIZE * 0.45; // radius for last seconds
 
+    // TODO: conceptually, this logic only runs if a certain environment is present at build time;
+    // unsure how to implement that though
+    const appWindowRef = useRef<WebviewWindow | null>(null);
+    const iconByteDataRef = useRef<Uint8Array | null>(null);
+    useEffect(() => {
+        if (!window.__TAURI_METADATA__) return;
+
+        // Dynamically import tauri window api only if running in desktop mode
+        import('@tauri-apps/api/window').then(({appWindow}) => {
+            appWindowRef.current = appWindow;
+        });
+
+        // TODO: rather hacky, would much prefer if this could be done at build-time
+        fetch('/icons/512x512.png').then((res) => res.arrayBuffer())
+            .then(buf => iconByteDataRef.current = new Uint8Array(buf));
+    }, [])
+
     function setTitle(title: string) {
         document.title = title;
-        if (window.__TAURI_METADATA__) appWindow.setTitle(title).catch(e => console.error(e));
+        appWindowRef.current?.setTitle(title).catch(e => console.error(e));
     }
-
-    // TODO: rather hacky, would much prefer if this could be done at build-time
-    // TODO: is there some way to not run this (or even import tauri) on web?
-    const iconByteData = useMemo(async () => {
-        const buf = await (await fetch('/icons/512x512.png')).arrayBuffer();
-        return new Uint8Array(buf);
-    }, [])
 
     // Update document name and favicon based on current period
     useEffect(() => {
@@ -51,7 +61,7 @@ export default function FaviconHandler() {
         if (!next) {
             favicon.current?.remove();
             setTitle('Web App of The Titans (WATT)');
-            if (window.__TAURI_METADATA__) iconByteData.then(arr => appWindow.setIcon(arr));
+            if (iconByteDataRef.current) void appWindowRef.current?.setIcon(iconByteDataRef.current)
             return;
         }
 
@@ -179,7 +189,7 @@ export default function FaviconHandler() {
         }
 
         favicon.current.href = canvas.current.toDataURL();
-        if (window.__TAURI_METADATA__) canvas.current.toBlob(b => b?.arrayBuffer().then(arrayBuf => appWindow.setIcon(new Uint8Array(arrayBuf))))
+        if (appWindowRef.current) canvas.current.toBlob(b => b?.arrayBuffer().then(arrayBuf => appWindowRef.current?.setIcon(new Uint8Array(arrayBuf))))
     }, [date])
 
     return null;
