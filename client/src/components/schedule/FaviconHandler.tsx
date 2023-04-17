@@ -59,7 +59,10 @@ export default function FaviconHandler() {
 
         // If there's no period to display, set favicon and tab title back to defaults
         if (!next) {
-            if (favicon.current) favicon.current.href = '/icons/favicon.ico';
+            if (favicon.current) {
+                favicon.current.href = '/icons/favicon.ico';
+                favicon.current.type = 'image/x-icon'; // TODO: not sure if necessary, but probably better than pretending the data URL is an x-icon always
+            }
             setTitle('Web App of The Titans (WATT)');
             if (iconByteDataRef.current) void appWindowRef.current?.setIcon(iconByteDataRef.current)
             return;
@@ -186,6 +189,7 @@ export default function FaviconHandler() {
         }
 
         favicon.current.href = canvas.current.toDataURL();
+        favicon.current.type = 'image/png';
         if (appWindowRef.current) canvas.current.toBlob(b => b?.arrayBuffer().then(arrayBuf => appWindowRef.current?.setIcon(new Uint8Array(arrayBuf))))
     }, [date])
 
