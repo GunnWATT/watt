@@ -1,4 +1,4 @@
-import {useContext, useEffect, useMemo, useRef} from 'react';
+import {useContext, useEffect, useRef} from 'react';
 import type {WebviewWindow} from '@tauri-apps/api/window';
 
 // Utils
@@ -59,7 +59,7 @@ export default function FaviconHandler() {
 
         // If there's no period to display, set favicon and tab title back to defaults
         if (!next) {
-            favicon.current?.remove();
+            if (favicon.current) favicon.current.href = '/icons/favicon.ico';
             setTitle('Web App of The Titans (WATT)');
             if (iconByteDataRef.current) void appWindowRef.current?.setIcon(iconByteDataRef.current)
             return;
@@ -67,10 +67,7 @@ export default function FaviconHandler() {
 
         // Initialize favicon <link> element only if there is a non-default favicon to display
         if (!favicon.current) {
-            const el = document.createElement('link');
-            el.setAttribute('rel', 'icon');
-            document.head.appendChild(el);
-            favicon.current = el;
+            favicon.current = document.querySelector('link[sizes="16x16 24x24 32x32 48x48 64x64 256x256"]')! as HTMLLinkElement;
         }
 
         const name = parsePeriodName(next.n, userData);
