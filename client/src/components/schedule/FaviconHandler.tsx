@@ -59,11 +59,11 @@ export default function FaviconHandler() {
 
         // If there's no period to display, set favicon and tab title back to defaults
         if (!next) {
+            setTitle('Web App of The Titans (WATT)');
             if (favicon.current) {
                 favicon.current.href = '/icons/favicon.ico';
                 favicon.current.type = 'image/x-icon'; // TODO: not sure if necessary, but probably better than pretending the data URL is an x-icon always
             }
-            setTitle('Web App of The Titans (WATT)');
             if (iconByteDataRef.current) void appWindowRef.current?.setIcon(iconByteDataRef.current)
             return;
         }
