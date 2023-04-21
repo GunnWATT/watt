@@ -1,39 +1,3 @@
-/**
- * This JS file allows for migration from previous staff JSON files.
- * Essentially, keeps the keys of staff the same whilst also scraping
- * the new staff list from Gunn's website and ParentSquare.
- *
- * This file must first match up teachers from Gunn's website and 
- * from ParentSquare. (They both contain necessary information, so
- * we actually have to use both.)
- * 
- * This process is a pain, especially because the only field that
- * really corroborates between the two is their name. This program
- * uses Ratcliff-Obershelp similarity combined with other tricks
- * (see nameSimilarity) to detect name similarity. I believe it to 
- * be decently accurate for this application.
- * 
- * Then, once merged, we must match the new information to the old keys
- * in the previous staff.json, given their name and other info. This is 
- * because keys must (ideally) stay constant throughout JSON regens.
- *
- * ----------
- *
- * This program requires
- *      * the previous staff.json to be put in folder ../input/
- *
- * This program outputs
- *      * the new staff.json in ../output/staff.json
- *
- * -----------
- * Known problems / To do:
- *      * This program does not validate any of the information.
- *          This sometimes causes weird things™ to happen due to human error
- *          on Gunn's website, such as having a phone extension be
- *          "Stud Tchr" or having no phone number at all.
- *
- */
-
 import fetch from 'node-fetch';
 import {readFileSync, writeFileSync} from 'fs';
 import {similarity} from './util/strings';
