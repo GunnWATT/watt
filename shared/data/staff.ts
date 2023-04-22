@@ -4,7 +4,7 @@ export type Staff = {
 };
 
 const data: {timestamp: string, data: {[key: string]: Staff}} = {
-    "timestamp": "2023-04-21T00:33:09.389Z",
+    "timestamp": "2023-04-21T23:57:05.518Z",
     "data": {
         "10021": {
             "email": "stiruchinapally@pausd.org",
@@ -618,6 +618,7 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
         "46706": {
             "name": "Nurse",
             "dept": "Nurse",
+            "phone": "354-8200",
             "ext": "2907"
         },
         "47196": {
@@ -711,6 +712,12 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "phone": "354-8237",
             "room": "V5",
             "ext": "5229"
+        },
+        "52243": {
+            "name": "Health Office",
+            "dept": "",
+            "phone": "354-8200",
+            "ext": "2907"
         },
         "52507": {
             "email": "nhesterman@pausd.org",
