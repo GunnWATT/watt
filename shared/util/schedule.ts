@@ -1,6 +1,6 @@
 import {DateTime} from 'luxon';
 import {Alternates} from '@watt/client/src/contexts/AlternatesContext';
-import schedule, {SCHOOL_START, SCHOOL_END_EXCLUSIVE, PeriodObj} from '../data/schedule';
+import schedule, {SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE, PeriodObj} from '../data/schedule';
 
 
 // Turns day of the week into schedule object key, assuming 0 indexed days (Sunday is 0, Monday is 1).
@@ -14,7 +14,7 @@ export function getSchedule(date: DateTime, alternates: Alternates['alternates']
     const altFormat = localizedDate.toFormat('MM-dd');
 
     // If the current date falls on summer break, return early
-    if (localizedDate < SCHOOL_START || localizedDate > SCHOOL_END_EXCLUSIVE)
+    if (localizedDate < SCHOOL_START || localizedDate > SCHOOL_END)
         return {periods: null, alternate: false};
 
     let periods: PeriodObj[] | null;
