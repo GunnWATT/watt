@@ -4,7 +4,7 @@ export type Staff = {
 };
 
 const data: {timestamp: string, data: {[key: string]: Staff}} = {
-    "timestamp": "2022-09-10T19:28:14.602Z",
+    "timestamp": "2023-04-21T23:57:05.518Z",
     "data": {
         "10021": {
             "email": "stiruchinapally@pausd.org",
@@ -135,13 +135,6 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "phone": "354-8237",
             "room": "V25"
         },
-        "20387": {
-            "email": "ayoung@pausd.org",
-            "name": "Alana Young",
-            "dept": "SpEd aide",
-            "phone": "354-8262",
-            "room": "K building"
-        },
         "20453": {
             "email": "mbautista@pausd.org",
             "name": "Michael Bautista",
@@ -206,20 +199,6 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
         "22734": {
             "email": "jmoses@pausd.org",
             "name": "Jayme Moses",
-            "dept": "SpEd aide",
-            "phone": "354-8262",
-            "room": "K building"
-        },
-        "22857": {
-            "email": "jasmiller@pausd.org",
-            "name": "Jason Miller",
-            "dept": "SS",
-            "phone": "354-8237",
-            "room": "C3"
-        },
-        "22858": {
-            "email": "jamiller@pausd.org",
-            "name": "Jane Miller",
             "dept": "SpEd aide",
             "phone": "354-8262",
             "room": "K building"
@@ -301,7 +280,7 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "dept": "Work Exper.",
             "phone": "833-4239",
             "room": "V1",
-            "ext": "5574"
+            "ext": "5934"
         },
         "26840": {
             "email": "djohanson@pausd.org",
@@ -378,12 +357,6 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "dept": "Custodial",
             "phone": "354-8205",
             "room": "Custodial"
-        },
-        "30873": {
-            "email": "ldenton@pausd.org",
-            "name": "Lindsay Denton",
-            "dept": "English",
-            "phone": "354-8238"
         },
         "31135": {
             "email": "cross@pausd.org",
@@ -475,20 +448,12 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "room": "K8",
             "ext": "5597"
         },
-        "36023": {
-            "email": "dsantos@pausd.org",
-            "name": "Davina Santos",
-            "dept": "Guidance",
-            "phone": "354-8242",
-            "room": "Pbldg, 2nd floor",
-            "ext": "5403"
-        },
         "36350": {
             "email": "lhall@pausd.org",
             "name": "Lisa Hall",
             "dept": "English/SEC",
             "phone": "354-8228",
-            "room": "P113",
+            "room": "P-105",
             "ext": "5956"
         },
         "36735": {
@@ -523,13 +488,6 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "room": "V26",
             "ext": "6094"
         },
-        "38042": {
-            "email": "ryeh@pausd.org",
-            "name": "Rita Yeh",
-            "dept": "WL",
-            "phone": "354-8241",
-            "room": "H5"
-        },
         "39153": {
             "email": "ehalter@pausd.org",
             "name": "Ethan Halter",
@@ -545,13 +503,6 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "phone": "354-8276",
             "room": "E building",
             "ext": "6884"
-        },
-        "39884": {
-            "email": "ccohn@pausd.org",
-            "name": "Cathy Cohn",
-            "dept": "Science",
-            "phone": "354-8246",
-            "room": "J5"
         },
         "39959": {
             "email": "egaribaydiaz@pausd.org",
@@ -597,7 +548,7 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "room": "S102"
         },
         "41963": {
-            "email": "sdavidson@pausd.org",
+            "email": "stdavidson@pausd.org",
             "name": "Stacey Davidson",
             "dept": "SaFE",
             "phone": "354-8294",
@@ -663,6 +614,12 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "dept": "Principal",
             "phone": "354-8288",
             "room": "E building"
+        },
+        "46706": {
+            "name": "Nurse",
+            "dept": "Nurse",
+            "phone": "354-8200",
+            "ext": "2907"
         },
         "47196": {
             "email": "apineda@pausd.org",
@@ -756,6 +713,12 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "room": "V5",
             "ext": "5229"
         },
+        "52243": {
+            "name": "Health Office",
+            "dept": "",
+            "phone": "354-8200",
+            "ext": "2907"
+        },
         "52507": {
             "email": "nhesterman@pausd.org",
             "name": "Norma Hesterman",
@@ -825,13 +788,6 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "phone": "354-8247",
             "room": "N213, K14",
             "ext": "5785"
-        },
-        "55414": {
-            "email": "gmonson@pausd.org",
-            "name": "Ginger Monson",
-            "dept": "SpEd aide",
-            "phone": "354-8262",
-            "room": "F-2"
         },
         "55632": {
             "email": "mcamacho@pausd.org",
@@ -1233,13 +1189,6 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "room": "E building",
             "ext": "5102"
         },
-        "76883": {
-            "email": "rglenister@pausd.org",
-            "name": "Robert Glenister",
-            "dept": "Transitionist",
-            "room": "V7",
-            "ext": "5689"
-        },
         "77108": {
             "email": "nbarana@pausd.org",
             "name": "Neil Barana",
@@ -1382,14 +1331,6 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "room": "F6",
             "ext": "5479"
         },
-        "81259": {
-            "email": "mloomis@pausd.org",
-            "name": "Molly Loomis",
-            "dept": "Wellness",
-            "phone": "354-8214",
-            "room": "P231",
-            "ext": "6941"
-        },
         "81317": {
             "email": "ggarger@pausd.org",
             "name": "Gabriela Garger",
@@ -1509,13 +1450,6 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "phone": "354-8254",
             "room": "E building",
             "ext": "6746"
-        },
-        "86472": {
-            "email": "bmunares@pausd.org",
-            "name": "Bernadette Munares",
-            "dept": "SpEd",
-            "phone": "354-8262",
-            "room": "K bldg."
         },
         "86476": {
             "email": "mmendoza@pausd.org",
@@ -1657,6 +1591,7 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "room": "E building"
         },
         "94848": {
+            "email": "jlittle@pausd.org",
             "name": "Joshua Little",
             "dept": "Science",
             "phone": "354-8246",

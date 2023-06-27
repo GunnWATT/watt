@@ -37,7 +37,7 @@ export default function About() {
                 WATT was jointly created by <a href="https://github.com/ky28059" target="_blank" rel="noopener noreferrer">Kevin</a>, who made the frontend,
                 and <a href="https://github.com/ytchang05" target="_blank" rel="noopener noreferrer">Yu-Ting</a>, who originally wrote the backend.{' '}
                 <a href="https://github.com/ImNotRog" target="_blank" rel="noopener noreferrer">Roger</a> helped immensely with Schoology integration,
-                as well as maintaining the backend and scripts.
+                as well as maintaining the backend and scripts. <a href="https://github.com/julia7hk" target="_blank" rel="noopener noreferrer">Julia</a> will be maintaining the app next year.
                 Special thanks to <a href="https://github.com/mymylie" target="_blank" rel="noopener noreferrer">Mylie</a> who designed our lovely logo.
             </p>
 

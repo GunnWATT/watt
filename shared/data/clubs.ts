@@ -6,7 +6,7 @@ export type Club = {
 }
 
 const clubs: {timestamp: string, data: {[key: string]: Club}} = {
-    "timestamp": "2023-03-06T00:43:26.261Z",
+    "timestamp": "2023-04-21T00:18:40.018Z",
     "data": {
         "10496": {
             "new": false,
