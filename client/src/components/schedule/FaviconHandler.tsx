@@ -1,4 +1,7 @@
 import {useContext, useEffect, useRef} from 'react';
+import type {WebviewWindow} from '@tauri-apps/api/window';
+
+// Utils
 import {useNextPeriod} from '../../hooks/useNextPeriod';
 import {parsePeriodColor, parsePeriodName} from './Periods';
 import {hexToRgb} from '../../util/progressBarColor';
@@ -23,6 +26,28 @@ export default function FaviconHandler() {
     const borderRadius = FAVICON_SIZE * 0.15;
     const sRadius = FAVICON_SIZE * 0.45; // radius for last seconds
 
+    // TODO: conceptually, this logic only runs if a certain environment is present at build time;
+    // unsure how to implement that though
+    const appWindowRef = useRef<WebviewWindow | null>(null);
+    const iconByteDataRef = useRef<Uint8Array | null>(null);
+    useEffect(() => {
+        if (!window.__TAURI_METADATA__) return;
+
+        // Dynamically import tauri window api only if running in desktop mode
+        import('@tauri-apps/api/window').then(({appWindow}) => {
+            appWindowRef.current = appWindow;
+        });
+
+        // TODO: rather hacky, would much prefer if this could be done at build-time
+        fetch('/icons/512x512.png').then((res) => res.arrayBuffer())
+            .then(buf => iconByteDataRef.current = new Uint8Array(buf));
+    }, [])
+
+    function setTitle(title: string) {
+        document.title = title;
+        appWindowRef.current?.setTitle(title).catch(e => console.error(e));
+    }
+
     // Update document name and favicon based on current period
     useEffect(() => {
         // Initialize canvas reference
@@ -34,25 +59,26 @@ export default function FaviconHandler() {
 
         // If there's no period to display, set favicon and tab title back to defaults
         if (!next) {
-            favicon.current?.remove();
-            document.title = 'Web App of The Titans (WATT)';
+            setTitle('Web App of The Titans (WATT)');
+            if (favicon.current) {
+                favicon.current.href = '/icons/favicon.ico';
+                favicon.current.type = 'image/x-icon'; // TODO: not sure if necessary, but probably better than pretending the data URL is an x-icon always
+            }
+            if (iconByteDataRef.current) void appWindowRef.current?.setIcon(iconByteDataRef.current)
             return;
         }
 
         // Initialize favicon <link> element only if there is a non-default favicon to display
         if (!favicon.current) {
-            const el = document.createElement('link');
-            el.setAttribute('rel', 'icon');
-            document.head.appendChild(el);
-            favicon.current = el;
+            favicon.current = document.querySelector('link[sizes="16x16 24x24 32x32 48x48 64x64 256x256"]')! as HTMLLinkElement;
         }
 
         const name = parsePeriodName(next.n, userData);
 
-        document.title = (startingIn > 0)
+        setTitle((startingIn > 0)
             ? `${name} starting in ${startingIn} minute${startingIn !== 1 ? 's' : ''}.`
             : `${name} ending in ${endingIn} minute${endingIn !== 1 ? 's' : ''}, started ${-startingIn} minute${startingIn !== -1 ? 's' : ''} ago.`
-            + ' (WATT)'
+            + ' (WATT)')
 
         let numToShow = startingIn >= 0 ? startingIn : endingIn;
         const isSeconds = numToShow === 0;
@@ -163,7 +189,8 @@ export default function FaviconHandler() {
         }
 
         favicon.current.href = canvas.current.toDataURL();
-
+        favicon.current.type = 'image/png';
+        if (appWindowRef.current) canvas.current.toBlob(b => b?.arrayBuffer().then(arrayBuf => appWindowRef.current?.setIcon(new Uint8Array(arrayBuf))))
     }, [date])
 
     return null;

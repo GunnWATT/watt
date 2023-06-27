@@ -1,0 +1,65 @@
+{
+  "build": {
+    "beforeDevCommand": "npm start",
+    "beforeBuildCommand": "npm run build",
+    "devPath": "http://localhost:3000",
+    "distDir": "../dist",
+    "withGlobalTauri": false
+  },
+  "package": {
+    "productName": "Gunn WATT",
+    "version": "0.0.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false,
+      "window": {
+        "all": false,
+        "setTitle": true,
+        "setIcon": true
+      },
+      "shell": {
+        "all": false,
+        "open": true
+      }
+    },
+    "bundle": {
+      "active": true,
+      "icon": [
+        "../public/icons/32x32.png",
+        "../public/icons/128x128.png",
+        "../public/icons/128x128@2x.png",
+        "../public/icons/512x512.png",
+        "../public/icons/Square30x30Logo.png",
+        "../public/icons/Square44x44Logo.png",
+        "../public/icons/Square71x71Logo.png",
+        "../public/icons/Square89x89Logo.png",
+        "../public/icons/Square107x107Logo.png",
+        "../public/icons/Square142x142Logo.png",
+        "../public/icons/Square150x150Logo.png",
+        "../public/icons/Square284x284Logo.png",
+        "../public/icons/Square310x310Logo.png",
+        "../public/icons/StoreLogo.png",
+        "../public/icons/favicon.ico",
+        "../public/icons/favicon.icns"
+      ],
+      "identifier": "com.gunnwatt.dev",
+      "targets": "all"
+    },
+    "security": {
+      "csp": null
+    },
+    "updater": {
+      "active": false
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "resizable": true,
+        "title": "Web App of The Titans (WATT)",
+        "width": 800,
+        "height": 600
+      }
+    ]
+  }
+}

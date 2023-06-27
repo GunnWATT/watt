@@ -46,7 +46,7 @@ export default function Period(props: PeriodProps) {
     // Memoize to prevent expensive recomputation.
     const pinned = useMemo(() => userData.clubs
         .filter(clubOccurring)
-        .map(id => <PillClubComponent {...clubs.data[id]} id={id} />), [start]);
+        .map(id => <PillClubComponent {...clubs.data[id]} key={id} id={id} />), [start]);
 
     const header = (
         <>
