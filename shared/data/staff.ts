@@ -4,7 +4,7 @@ export type Staff = {
 };
 
 const data: {timestamp: string, data: {[key: string]: Staff}} = {
-    "timestamp": "2023-04-21T23:57:05.518Z",
+    "timestamp": "2023-08-01T22:48:41.483Z",
     "data": {
         "10021": {
             "email": "stiruchinapally@pausd.org",
@@ -495,14 +495,6 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "phone": "354-8238",
             "room": "N107",
             "ext": "5429"
-        },
-        "39311": {
-            "email": "largumedo@pausd.org",
-            "name": "Leonel Argumedo",
-            "dept": "Asst. Principal",
-            "phone": "354-8276",
-            "room": "E building",
-            "ext": "6884"
         },
         "39959": {
             "email": "egaribaydiaz@pausd.org",
@@ -1338,6 +1330,14 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "phone": "354-8241",
             "room": "G4",
             "ext": "5960"
+        },
+        "81656": {
+            "email": "krouse@pausd.org",
+            "name": "Kevin Rouse",
+            "dept": "Asst. Principal",
+            "phone": "354-8276",
+            "room": "E building",
+            "ext": "6884"
         },
         "82062": {
             "email": "dwang@pausd.org",

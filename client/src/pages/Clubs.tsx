@@ -1,6 +1,6 @@
-import {useContext, useState} from 'react';
-import {DateTime} from 'luxon';
-import {useScreenType} from '../hooks/useScreenType';
+import { useContext, useState } from 'react';
+import { DateTime } from 'luxon';
+import { useScreenType } from '../hooks/useScreenType';
 
 // Components
 import HeaderPage from '../components/layout/HeaderPage';
@@ -18,7 +18,7 @@ import UserDataContext from '../contexts/UserDataContext';
 
 
 export default function Clubs() {
-    const {timestamp, data} = clubs;
+    const { timestamp, data } = clubs;
 
     // Dynamically setting default tab
     const currTime = useContext(CurrentTimeContext)
@@ -85,7 +85,7 @@ export default function Clubs() {
         >
             <p className="mb-4 text-secondary">
                 Please note that club information was taken from{' '}
-                <a href="https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vQ-UXugiZ8GznB367cO8JptTO9BLm5OE4D3WO8oZvYk_365lY25Q6eAFNSEIC5DGXGWOXwK_wauoTFT/pubhtml" target="_blank" rel="noopener noreferrer">the 2022-2023 chartered clubs spreadsheet</a>{' '}
+                <a href="https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vQ-UXugiZ8GznB367cO8JptTO9BLm5OE4D3WO8oZvYk_365lY25Q6eAFNSEIC5DGXGWOXwK_wauoTFT/pubhtml" target="_blank" rel="noopener noreferrer">the 2023-2024 chartered clubs spreadsheet</a>{' '}
                 as of {DateTime.fromISO(timestamp).toLocaleString(DateTime.DATE_FULL)}. Attribute inaccuracies to them.
             </p>
             <List

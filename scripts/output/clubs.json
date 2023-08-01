@@ -1,54 +1,6 @@
 {
-    "timestamp": "2023-04-21T00:18:40.018Z",
+    "timestamp": "2023-08-01T22:18:29.182Z",
     "data": {
-        "10496": {
-            "new": false,
-            "name": "Chamber Music Club",
-            "tier": 1,
-            "desc": "We meet every other Tuesday at lunch for various chamber music themed presentations, games and more! All members will be aided in forming a group within the club and selecting repertoire by their choice. Anyone of any skill level from complete beginner to expert is welcome!",
-            "day": "Tuesday",
-            "time": "Lunch",
-            "room": "N-104",
-            "prez": "Mahina Yasutake",
-            "advisor": "Marjorie Paronable",
-            "email": "mparonable@pausd.org"
-        },
-        "10880": {
-            "new": false,
-            "name": "The Gunn Improv Farce (T.G.I.F)",
-            "tier": 2,
-            "desc": "This Improv club will be able to introduce you to new people, help you get better at public speaking, and learn how to make jokes under any circumstance! Improv is basically theater without scripts, and in joining this club, you will be able to act in a group, play a bunch of theater games, and perform in front of an audience every so often! If these activities sound nerve-wracking to you, don't worry! We will rehearse every Wednesday after school in J-01 so you can get lots of practice!",
-            "day": "Monday",
-            "time": "After School",
-            "room": "J-01",
-            "prez": "Rohit Divekar",
-            "advisor": "Tessa Huynh",
-            "email": "thuynh@pausd.org"
-        },
-        "14734": {
-            "new": false,
-            "name": "Chess Club",
-            "tier": 1,
-            "desc": "At the Gunn Chess Club, people have a place to both play with others while also learning alongside others. We also experiment with different chess variants and tactics to find new ways to have fun with chess. We plan to both host and participate in tournaments, where we will face off against both PAUSD students and other chess players. We hope you join us this year!",
-            "day": "Thursday",
-            "time": "Lunch",
-            "room": "N-101",
-            "prez": "Arul Mathur",
-            "advisor": "Jordan Wells",
-            "email": "jwells@pausd.org"
-        },
-        "15025": {
-            "new": false,
-            "name": "Best Buddies",
-            "tier": 2,
-            "desc": "Gunn's Best Buddies Club holds meetings every other week where students get the opportunity to connect with buddies (students from our special education programs) through games and other super fun activities. Join our club to be matched with a buddy and make lasting memories!",
-            "day": "Thursday",
-            "time": "Lunch",
-            "room": "K-12",
-            "prez": "Katie Rueff",
-            "advisor": "Sandra Conklin",
-            "email": "sconklin@pausd.org"
-        },
         "15424": {
             "new": false,
             "name": "Economics Club",
@@ -60,56 +12,6 @@
             "prez": "Isaac Oh",
             "advisor": "Jeff Patrick",
             "email": "jpatrick@pausd.org"
-        },
-        "15928": {
-            "new": true,
-            "name": "Adobe Photoshop Club",
-            "tier": 1,
-            "desc": "We provide environment and tools for students to explore their  creativity through Photoshop.",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "P-117",
-            "prez": "Irene Hong",
-            "advisor": "Mark Gleason",
-            "email": "mgleason@pausd.org"
-        },
-        "17090": {
-            "new": false,
-            "name": "Aviation Club",
-            "tier": 1,
-            "desc": "Gunn Aviation Club invites anyone interested in learning or being a part of any and all fields in aviation. Members of the club will be exposed to the unique and distinctive world of aviation, and will be able to experience and gain a understanding of basic principles up to complex topics. The core of the club includes but is not limited to presentations, activities, mentoring by professionals in the industry, and fellow club members. Additional activities may include: flight simulation, designing and building airfoils and more. Whether you are a novice or an expert, join Gunn Aviation Club.",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "V-03",
-            "prez": "Obed Han",
-            "advisor": "Jeanette Tucker",
-            "email": "jtucker@pausd.org"
-        },
-        "17377": {
-            "new": false,
-            "name": "Care to Craft",
-            "tier": 1,
-            "desc": "Care to Craft allows students to cultivate a new artistic skill during their lunch period. It may seem daunting to attempt a new skill when you're already overwhelmed with classwork and extracurriculars, especially if you don't already consider yourself an \"artistic\" person. But developing a new skill doesn't have to be stressful. We'll work on breaking down some of those preconceptions, and hopefully, we'll be able to find a craft that suits you. Maybe you'll pick up a new hobby! To join Care to Craft, no experience is needed. We'll start out with simple wire wrapping, then branch out into other crafts depending on student preferences. If other students are willing to lead a session, they can also teach their crafts to others. We're open to suggestions!",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "N-101",
-            "prez": "Phoebe Li",
-            "advisor": "Jordan Wells",
-            "email": "jwells@pausd.org"
-        },
-        "17947": {
-            "new": false,
-            "name": "Organic Garden Club",
-            "tier": 2,
-            "desc": "Gunn Organic Garden Club's purpose is to provide a way for gardening enthusiasts to collaborate, learn about plants and growing techniques, share resources, and ensure the next generation of gardeners. Club members will have the opportunity to work in the Organic Garden to earn volunteer hours (periodic pruning, watering, planting, and harvesting will occur). Club members will also help decide what plants to grow that will benefit the Gunn community at large, and will hear from local horticulturists and master gardeners that come to speak with the club.",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "Garden",
-            "prez": "Evan Gold",
-            "advisor": "Cindy Peters",
-            "email": "cpeters@pausd.org",
-            "coadvisor": "Liz Matchett",
-            "coemail": "lmatchett@pausd.org"
         },
         "19856": {
             "new": false,
@@ -147,32 +49,6 @@
             "advisor": "Kate Weymouth",
             "email": "kweymouth@pausd.org"
         },
-        "20558": {
-            "new": true,
-            "name": "Wrestling Club",
-            "tier": 1,
-            "desc": "This is a club for anyone interested in folkstyle, freestyle, and greco-roman wrestling. we will watch, discuss, and breakdown wrestling.",
-            "day": "Monday",
-            "time": "Lunch",
-            "room": "wrestling room/bow gym",
-            "prez": "Myles Stoltz",
-            "advisor": "Braumon Creighton",
-            "email": "bcreighton@pausd.org",
-            "coadvisor": "N/A",
-            "coemail": ""
-        },
-        "22709": {
-            "new": true,
-            "name": "Star Trek Club",
-            "tier": 1,
-            "desc": "The Star Trek Club is a lunchtime club devoted to all things Star Trek. We meet every other Tuesday to watch a Star Trek movie or TV show of the members' choice (Original Series, Next Generation, Deep Space Nine, to name a few). Live long and prosper!",
-            "day": "Tuesday",
-            "time": "Lunch",
-            "room": "K-1",
-            "prez": "Sevin Kwon",
-            "advisor": "Tracie Carroll",
-            "email": "tcarroll@pausd.org"
-        },
         "22965": {
             "new": false,
             "name": "Japan Culture Club",
@@ -185,18 +61,6 @@
             "advisor": "Matt Hall",
             "email": "mhall@pausd.org"
         },
-        "23388": {
-            "new": false,
-            "name": "Esports Club",
-            "tier": 2,
-            "desc": "The Gunn eSports Club is a network for students who enjoy video games, aiming to help students improve and create opportunities to get into more serious competition. The club will host tournaments for students to play with and against each other, and also share local tournament opportunities. During meetings, the club might watch and discuss professional eSports matches or play more casual games such as Super Smash Bros. As a club, we also hope to remove the negative prejudices and stereotypes around video games and showcase the benefits that gaming can bring, such as a sense of community.",
-            "day": "Thursday",
-            "time": "Lunch",
-            "room": "N-214",
-            "prez": "Ryan Choi",
-            "advisor": "Mr. Hahn",
-            "email": "dhahn@pausd.org"
-        },
         "23902": {
             "new": false,
             "name": "Bike Club",
@@ -208,54 +72,6 @@
             "prez": "Shree Sandilya",
             "advisor": "Karen Saxena",
             "email": "ksaxena@pausd.org"
-        },
-        "25694": {
-            "new": false,
-            "name": "Arm Wrestling Club",
-            "tier": 1,
-            "desc": "Everyweek we have arm wrestling competitions. There will be a ranking system to see who comes out on top.",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "K-15",
-            "prez": "Matthew Mao",
-            "advisor": "Romeo Motas",
-            "email": "rmotas@pausd.org"
-        },
-        "26516": {
-            "new": false,
-            "name": "Youth Exchange Club",
-            "tier": 2,
-            "desc": "The Gunn Youth Exchange Program has three main purposes: 1. Help conflict-affected high school students improve their English to increase their future opportunities, 2. Increase compassion in high school students by connecting them with peers from different backgrounds, 3. Provide a voice for conflict-affected high school students. Committed club members have the opportunity to be matched individually with conflict-affected high school students to tutor them in English online. All club members will work together to create at least one informational event during the second semester consisting of an educational panel about topics relating to the club.",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "K-8",
-            "prez": "Neha Rishi",
-            "advisor": "Jeff Patrick",
-            "email": "jpatrick@pausd.org"
-        },
-        "26559": {
-            "new": false,
-            "name": "412 Gunn Christian Club",
-            "tier": 2,
-            "desc": "Vision: “412 GCC is a Gospel-Centered community where students edify one another, have fellowship, witness, and learn more about Jesus!”  Mission: “412 Gunn Christian Club's purpose is to learn what it means to be a follower of Jesus and grow in an intimate relationship with Jesus, through Bible study, prayer, worship, fellowship, teaching, events, and witnessing! We'll also have a lot of fun playing games and having a great time. Everyone is welcome! See you at the club!”",
-            "day": "Thursday",
-            "time": "Lunch",
-            "room": "F-6",
-            "prez": "Sophia Hwangbo",
-            "advisor": "Patricia Holmes",
-            "email": "pholmes@pausd.org"
-        },
-        "27979": {
-            "new": true,
-            "name": "Intramural Sports Club",
-            "tier": 1,
-            "desc": "Feel like lunchtime gets boring? Come play games like soccer and basketball! No experience required, just come to exercise, and have fun!",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "N-113 (however, will mostly meet at Gunn Football Field)",
-            "prez": "Sangeet Satpathy",
-            "advisor": "Julia Jacobsen",
-            "email": "jjacobsen@pausd.org"
         },
         "28933": {
             "new": false,
@@ -295,31 +111,17 @@
             "advisor": "Warren Collier",
             "email": "wcollier@pausd.org"
         },
-        "30849": {
-            "new": false,
-            "name": "Surfrider Club",
-            "tier": 1,
-            "desc": "The Surfrider organization is a nonprofit environmental organization that works to protect the world's oceans and beaches. The purpose of this club here at Gunn is to spread awareness of the human impact on oceans and what we can do as a society and as individuals to help out. The club would meet twice a month to discuss upcoming beach clean-ups around Half Moon Bay, as well as educate students on how to reduce one's plastic contribution. Some meeting activities include Kahoots and other learning games as well as large projects such as the EarthEcho Water Challenge. We would also create educational presentations and include videos and information from the Surfrider website.",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "N-111",
-            "prez": "Hannah Nusser",
-            "advisor": "Kim Sabbag",
-            "email": "ksabbag@pausd.org"
-        },
         "31510": {
             "new": false,
-            "name": "GSA (Gender Sexuality Alliance)",
+            "name": "Gender Sexuality Alliance",
             "tier": 2,
             "desc": "A safe space for lgbtq+ students and a place for advocacy for our community at Gunn, in Palo Alto, and California as a whole.",
             "day": "Thursday",
             "time": "Lunch",
             "room": "V3",
-            "prez": "Charlie Ennis",
+            "prez": "Chania Rene-Corail",
             "advisor": "Jeanette Tucker",
-            "email": "jtucker@pausd.org",
-            "coadvisor": "TK Hanie",
-            "coemail": "thanie@pausd.org"
+            "email": "jtucker@pausd.org"
         },
         "31576": {
             "new": false,
@@ -333,18 +135,6 @@
             "advisor": "Julie Munger",
             "email": "jmunger@pausd.org"
         },
-        "33849": {
-            "new": false,
-            "name": "Interscholastic Gaming League (IGL)",
-            "tier": 1,
-            "desc": "We are a tight-knit group of students whose personalities may be all over the place, but we share one thing in common: our passion for video games! If you, too, love video games and want to find your people, then this club is the place for you. During club meets (Friday after school), we play games like Super Smash Bros., Among Us, Minecraft, and various other games, socialize, and have fun; simple as that.   While the IGL has always been a social club dedicated to creating a home for gamers at Gunn, we are also looking to introduce some academic value to the club, such as having guest speakers talk about what the game industry is like. There is still a lot in the air right now and we will likely come up with new ideas as the year goes on and we get to know our members better.",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "N-108",
-            "prez": "Daniel Carlstrom",
-            "advisor": "Terence Kitada",
-            "email": "tkitada@pausd.org"
-        },
         "34258": {
             "new": false,
             "name": "Speech & Debate Club",
@@ -356,46 +146,6 @@
             "prez": "Vikram Valame",
             "advisor": "Kathy Hawes",
             "email": "khawes@pausd.org"
-        },
-        "34311": {
-            "new": true,
-            "name": "Futures For AfricaXgunn (FFA)",
-            "tier": 2,
-            "desc": "FFA will spread awareness and inform members about issues within Africa. We hope to be able to bring in guest speakers to share their stories or what they do related to Africa. As well as talk about organizations members can help with in their free time.",
-            "day": "Thursday, Friday",
-            "time": "Lunch",
-            "room": "F-4",
-            "prez": "Reed Flinchbaugh",
-            "advisor": "Patricia Holmes",
-            "email": "pholmes@pausd.org"
-        },
-        "34567": {
-            "new": false,
-            "name": "KEY Club",
-            "tier": 3,
-            "desc": "Key Club is an international student-led organization which provides its members with opportunities to provide service, build character, and develop leadership skills. Gunn Key Club seeks to promote the core values of leadership, character building, caring, and inclusiveness through frequent events, strong communication, and the fostering of tight interconnectedness between members both inside and outside of school. We hope to bring several members to each of the large Key Club conferences—Region Training Conference, Fall Rally North, and District Convention—as well as many more to the local volunteer events. By the end of each month, Key Club should be making at least five local volunteer events available to its members.",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "N-113",
-            "prez": "Kaylee Wong",
-            "advisor": "Katherine Ja",
-            "email": "kja@pausd.org",
-            "coadvisor": "Julia Choi",
-            "coemail": "jchoi@pausd.org"
-        },
-        "35301": {
-            "new": true,
-            "name": "Latinos Unidos",
-            "tier": 2,
-            "desc": "Latinos Unidos will be a club that will embrace all Spanish Speaking cultures. This is a club about unity within the Latinx students in Gunn High School, giving us a voice in the school activities, events, and or agenda. Possible activities would be;  sport tournaments, cultural art, guest speakers,  Possible events would be; Dia De Los Muertos, an Aztec performance, represent your culture/roots day, We will also dedicate our time to inform the club about events out of the Gunn community and all over the Bay Area events. (San Francisco to Gilroy)  All Are Welcome! no need to be Latinx to be part of change.",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "G-7",
-            "prez": "Jose Guadalupe Morales",
-            "advisor": "Daissy Tabares",
-            "email": "dtabares@pausd.org",
-            "coadvisor": "Rosanna Pena",
-            "coemail": "rpena@pausd.org"
         },
         "35337": {
             "new": false,
@@ -409,66 +159,6 @@
             "advisor": "Laurie Pennington",
             "email": "lpennington@pausd.org"
         },
-        "35351": {
-            "new": false,
-            "name": "Rubik's Cube Club",
-            "tier": 1,
-            "desc": "Whether you are an experienced speed-solver or a complete beginner, you are welcome to visit. We envision this to be a relaxing space for people to learn new puzzles and hang out with other cubers. Hope to see you soon!",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "N-110",
-            "prez": "Joseph Xu",
-            "advisor": "Kate Weymouth",
-            "email": "kweymouth@pausd.org"
-        },
-        "36508": {
-            "new": false,
-            "name": "Med Club",
-            "tier": 1,
-            "desc": "In Med club, we discuss and present on various jobs in the medical field. The purpose of this club is to have students explore different and unique jobs in the healthcare field that they may be interested in or have not heard of. This gives students the chance to figure out what profession they may want to go into.",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "C-4",
-            "prez": "Deborah Ha",
-            "advisor": "Laurel Howard",
-            "email": "lahoward@pausd.org"
-        },
-        "38166": {
-            "new": false,
-            "name": "Math Circle",
-            "tier": 3,
-            "desc": "We seek to promote an appreciation and understanding of math beyond the typical high school curriculum by hosting weekly talks, in-house contests, games, and guest speakers. We also help students prepare for and participate in many contests throughout the year, with a focus on math competitions such as AMC, and college-run ones at Harvard, MIT and Stanford.",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "N208",
-            "prez": "Alan Lee",
-            "advisor": "David Deggeller",
-            "email": "ddeggeller@pausd.org"
-        },
-        "39455": {
-            "new": true,
-            "name": "Ceramics Club",
-            "tier": 1,
-            "desc": "Ceramics club is a place for any students who are interested in learning pottery to go and experiment with clay. In addition, Ceramics club is also a place for students who are already enrolled in the course to work on their projects. We accept all students regardless of experience level and hope to introduce them to the wonderful world of ceramics.",
-            "day": "Monday",
-            "time": "Lunch",
-            "room": "m-3",
-            "prez": "Mia Kimura",
-            "advisor": "Katie Schroeder",
-            "email": "kschroeder@pausd.org"
-        },
-        "39666": {
-            "new": false,
-            "name": "American Cancer Society Club",
-            "tier": 1,
-            "desc": "American Cancer Society aims to educate the Gunn community about cancer and the latest cancer research, organize and host cancer awareness events, and promote cancer volunteer opportunities (such as Relay for Life) with the purpose of reducing total cancer incidence and mortality by cutting it off at the source through education and support. ACS also plans to have qualified guest speakers visit and deliver informative presentations at meetings. While these are weekly and monthly goals, the club's long-term goals are to deepen students' understanding of cancer while keeping them updated on the most recent cancer events and research so that ACS can ignite in students the desire to learn more about cancer and even potentially, inspire them to pursue a career or studies in oncology, as well. To achieve the club's goals and aspirations, we will organize presentations on multiple cancer-related topics during meetings; these will contribute towards our goal of raising cancer awareness and spreading more knowledge about the disease. We will also host campus events such as spirit days and club activities that promote awareness about different types of cancer.",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "L-02",
-            "prez": "Dana Kim",
-            "advisor": "Angela Merchant",
-            "email": "amerchant@pausd.org"
-        },
         "41011": {
             "new": false,
             "name": "French Club/French National Honor Society",
@@ -480,30 +170,6 @@
             "prez": "Kyra Xue",
             "advisor": "Laura Lizundia",
             "email": "llizundia@pausd.org"
-        },
-        "41599": {
-            "new": false,
-            "name": "Girls Tech Club",
-            "tier": 2,
-            "desc": "Our mission is to create a community for women to explore and pursue technology, engineering, and computer science through student presentations, group activities, guest speakers, company tours, and more. And, not only do we foster a community of high school girls passionate about technology and give them a place to freely explore their interests, we also promote technology to younger girls at local schools through volunteer efforts. Anyone interested in tech, hanging out with friends, and having fun should join! We meet every Tuesday in N-215.",
-            "day": "Tuesday",
-            "time": "Lunch",
-            "room": "N-215",
-            "prez": "Upasana Halder",
-            "advisor": "Joshua Paley",
-            "email": "jpaley@pausd.org"
-        },
-        "42112": {
-            "new": false,
-            "name": "Dream Volunteers Club",
-            "tier": 2,
-            "desc": "Our vision stems from a commitment to the communities where our volunteers serve and the belief that by supporting a rising global generation of young and passionate “dreamers,” we will empower positive change throughout the world. Additionally, Dream Volunteers goes on global service and education trips to communities in Costa Rica, Guatemala, Ghana, India and Vietnam to help communities and the environment abroad.",
-            "day": "Monday",
-            "time": "Lunch",
-            "room": "H-5",
-            "prez": "Adele Davis",
-            "advisor": "Liz Matchett",
-            "email": "lmatchett@pausd.org"
         },
         "43418": {
             "new": false,
@@ -517,18 +183,6 @@
             "advisor": "James Lincoln",
             "email": "jlincoln@pausd.org"
         },
-        "43556": {
-            "new": false,
-            "name": "ACS ChemClub",
-            "tier": 2,
-            "desc": "ACS ChemClub provides students the opportunity to explore chemistry beyond the typical classroom setting. ACS ChemClub strives to create a welcoming environment for all those interested in enhancing their chemistry understanding. Here, students are motivated to participate in various hands-on experiments. Experiments cover a wide range of topics as the club dives into various chemistry categories, such as food chemistry. ACS ChemClub is also dedicated to supporting those interested in the Chemistry Olympiads through concept reviews and study opportunities. ACS ChemClub aims for students to discover and pursue connections within a larger chemistry community, learn about career opportunities in the many fields of chemistry, and experience chemistry beyond the classroom with hands-on experiments.",
-            "day": "Monday",
-            "time": "Lunch",
-            "room": "J-7",
-            "prez": "Lucy Wang",
-            "advisor": "Elana Zizmor",
-            "email": "ezizmor@pausd.org"
-        },
         "44166": {
             "new": false,
             "name": "TEDxGunnHighSchool",
@@ -541,44 +195,6 @@
             "advisor": "Daljeet Gill",
             "email": "dgill@pausd.org"
         },
-        "44168": {
-            "new": true,
-            "name": "Amateur Radio Club",
-            "tier": 1,
-            "desc": "The Amateur Radio Club serves as an introduction to amateur radio. We plan on conducting drills and helping attendees become federally licensed operators. In addition, we want to educate members on emergency preparedness and effective responses. We plan on building antennas, running a radio net with other high schools, and teaching radio basics. We also plan on conducting fox hunting games (locating the origin of a signal) and potentially contacting the International Space Station. Members of the Stanford Amateur Radio Club may drop by as well.",
-            "day": "Monday",
-            "time": "Lunch",
-            "room": "V-3",
-            "prez": "Soham Vasanawala",
-            "advisor": "Jeanette Tucker",
-            "email": "jtucker@pausd.org",
-            "coadvisor": "Rachael Kaci",
-            "coemail": "rkaci@pausd.org"
-        },
-        "47183": {
-            "new": false,
-            "name": "Quiz Bowl",
-            "tier": 2,
-            "desc": "Quiz Bowl is a fun, fast-paced competition that allows people to put their general knowledge to the test. Knowledgeable about history, science, literature, fine arts, pop-culture and more? Come to Quiz Bowl! We will meet during lunch and hold practice rounds with other members. Quiz Bowl is a great space to show of your knowledge. There is a place for everyone on a team, so stop by!",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "C-8",
-            "prez": "Meha Mathur",
-            "advisor": "Tara Firenzi",
-            "email": "tfirenzi@pausd.org"
-        },
-        "47335": {
-            "new": false,
-            "name": "H.A.N.D.S. (Hair and Nail Design Society)",
-            "tier": 1,
-            "desc": "H.A.N.D.S. focuses on the designs of the Hair and Nails. We teach you how to do different hairstyles such as braiding, curling, straightening, coloring of the hair and so much more. Along with this, different shapes, designs, and colors for a manicure will be introduced. Fun and engaging activities will be used to create your own “manicure”. The simple and easy things we pay for in a salon, can be learned in this club. If any of this interests you then we encourage you to come see what’s happening and come join our club!!!",
-            "day": "Every Other Thursday",
-            "time": "Lunch",
-            "room": "G-7",
-            "prez": "Ashley Sarkosh",
-            "advisor": "Daissy Tabares",
-            "email": "dtabares@pausd.org"
-        },
         "47907": {
             "new": false,
             "name": "Film Club",
@@ -590,18 +206,6 @@
             "prez": "Maya Nieman",
             "advisor": "Mr. Corpuz",
             "email": "ecorpuz@pausd.org"
-        },
-        "48067": {
-            "new": true,
-            "name": "Cherry-Black Dance Club",
-            "tier": 1,
-            "desc": "This dance club is dedicated to fostering a joyful and inclusive community for students of all skill levels to come together to learn, grow, and share their love of dance. In today’s high school environment, high-pressure coming from various factors and competitive atmosphere can be overwhelming for students. Dancing provides a much-needed outlet for students to relieve stress and tension in a fun and engaging way. Thus, the goal of this club is to inspire individuals to discover the positive impact that dance can have on their physical, mental well-being and develop essential life skills such as: leadership ,communication, organization, delegation, and teamwork skills. In addition, students will have the opportunity to perform at school events, which will build self-confidence, foster a sense of camaraderie and belonging among the members, and ultimately add a sense of excitement and liveliness in their lives. Whether you’re a beginner or have experience, there's a place for you in this club!",
-            "day": "Thursday",
-            "time": "Lunch",
-            "room": "G-01",
-            "prez": "Jooah (Julia) Lee",
-            "advisor": "Teresa nino-olivia",
-            "email": "tninooliva@pausd.org"
         },
         "48322": {
             "new": false,
@@ -627,17 +231,17 @@
             "advisor": "Julia Choi",
             "email": "jchoi@pausd.org"
         },
-        "49983": {
-            "new": false,
-            "name": "Middle Ground",
+        "49816": {
+            "new": true,
+            "name": "AI Club",
             "tier": 1,
-            "desc": "Gunn Middle Ground hopes to give a platform for people to bring forward underrepresented social issues affecting the community through open conversations presented in a digestible video podcast format. Episodes coming soon discuss topics such as mental health, polarization in social and political climates, and sports.",
-            "day": "Thursday",
+            "desc": "In this club, we learn and dive into how Artificial Intelligence and Machine Learning can be applied to the field of robotics.",
+            "day": "Wednesday",
             "time": "Lunch",
-            "room": "N-102",
-            "prez": "Justin Hou",
-            "advisor": "Virginia Moyer",
-            "email": "vmoyer@pausd.org"
+            "room": "C-8",
+            "prez": "Archith Seshadri",
+            "advisor": "Tara Firenzi",
+            "email": "tfirenzi@pausd.org"
         },
         "50036": {
             "new": false,
@@ -677,42 +281,6 @@
             "coadvisor": "Marie-Jose Durquet",
             "coemail": "mdurquet@pausd.org"
         },
-        "53793": {
-            "new": false,
-            "name": "Origami Club",
-            "tier": 1,
-            "desc": "The origami club is open to anyone wanting a place to de-stress and hang out with friends! Come join us in learning how to fold all sorts of paper sculptures and snacks!",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "N211",
-            "prez": "Tra Nguyen",
-            "advisor": "Danning Wang",
-            "email": "dwang@pausd.org"
-        },
-        "54226": {
-            "new": false,
-            "name": "Vegan Sustainability Club",
-            "tier": 1,
-            "desc": "The Gunn Vegan Sustainability Club is committed to improving sustainability in Gunn students’ everyday life through veganism. Our club focuses on making veganism a preferable option for students through exploring vegan dishes that resemble the taste of meat, trying actual vegan food, and sharing vegan recipes.",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "V-01",
-            "prez": "Jordan Affeld",
-            "advisor": "Amy Anderson",
-            "email": "amanderson@pausd.org"
-        },
-        "54536": {
-            "new": true,
-            "name": "Tetris Club",
-            "tier": 1,
-            "desc": "The Tetris Club is for students who seek to further explore their block stacking needs. We will host tournaments throughout the year as well as have VOD reviews for improvement. We will have opportunities for new players to learn the game, as well as opportunities for veteran players to compete.",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "N108",
-            "prez": "Hubert Liu",
-            "advisor": "Terence Kitada",
-            "email": "tkitada@pausd.org"
-        },
         "54800": {
             "new": false,
             "name": "Documentary Club",
@@ -724,18 +292,6 @@
             "prez": "Stella Manning",
             "advisor": "Edward Corpuz",
             "email": "ecorpuz@pausd.org"
-        },
-        "55585": {
-            "new": false,
-            "name": "United Computations",
-            "tier": 2,
-            "desc": "United Computations brings together a community of people interested in CS. During our weekly lunch meetings, we explore the various fields of CS through hands-on activities, guest speakers, lectures, and more. We also plan and run Gunn’s annual hackathon (GunnHacks 9.0) — and any club member can apply to help out with publicity, website, events planning, and sponsorships! We’re one of the longest-running AND largest CS clubs at Gunn. Anyone is welcome to join!",
-            "day": "Thursday",
-            "time": "Lunch",
-            "room": "N-215",
-            "prez": "Saumya Singhal",
-            "advisor": "Joshua Paley",
-            "email": "jpaley@pausd.org"
         },
         "55710": {
             "new": false,
@@ -761,54 +317,6 @@
             "advisor": "Jena Lee",
             "email": "jlee@pausd.org"
         },
-        "56345": {
-            "new": false,
-            "name": "STEM Ethics Bowl",
-            "tier": 2,
-            "desc": "What is STEM? Never heard of Ethics, sounds weird? No worries! Whether knowledgeable or not, STEM person or not, Ethics Bowl is a great place for everyone to partake in a global conversation! It's fun, easy, and low-commitment. In addition we also partake in the regional Ethics Bowl competition, and eventually travel to UNC Chapel-Hill in the case of nationals.    STEM is rapidly shaping our future, but in what direction? HOW is it impacting us? Society? Positively, what about ... negatively? From the lack of diversity in STEM, racial biases in AI/ML, alarming impacts of climate change, we will tackle all of these questions in our meetings! Come and join us for discussion  + food!",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "J-03",
-            "prez": "Jia Ruparel",
-            "advisor": "Mark Brassey",
-            "email": "mbrassey@pausd.org"
-        },
-        "57148": {
-            "new": true,
-            "name": "Marvel Club",
-            "tier": 1,
-            "desc": "We are a community whose principal goal is to appreciate (celebrate and critique!) Marvel's content. We want to geek out over all of the Marvel easter eggs, characters we want to see, and theories circling the web. We're going to discuss upcoming movies and TV shows, watch some episodes during lunch, and play a bunch of games to test your Marvel knowledge. That being said, this is a club for everyone, regardless of where you are on your Marvel journey. Whether you have no knowledge of the characters or have been reading the comics since you could crawl, you're more than welcome to join us to relax, make friends, and listen to others share their thoughts on these films. We hope to see you on Fridays at lunch in N-107!",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "N-107",
-            "prez": "Kaitlyn Gonzales",
-            "advisor": "Ethan Halter",
-            "email": "ehalter@pausd.org"
-        },
-        "59334": {
-            "new": true,
-            "name": "Business & Civil Law Club",
-            "tier": 1,
-            "desc": "Learning about the implementation of business laws and analyzing court cases and legal procedures as well as understanding contracts and terms. Regular agenda would include watching trials, analyzing what civil laws the trials go over, and learn about contracts used in business.",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "N-107",
-            "prez": "Polina Samsonov",
-            "advisor": "Ethan Halter",
-            "email": "ehalter@pausd.org"
-        },
-        "59382": {
-            "new": true,
-            "name": "Tea Club",
-            "tier": 2,
-            "desc": "Hello Titans! Gunn Tea Club is a chill environment to try new teas and meet fellow tea enthusiasts. We will be providing the supplies to steep and enjoy tea. We plan on hosting a few special events, such as a tea party, a cultural tea showcase, and a tea art session. Stop by room M-1 every Tuesday at lunch!",
-            "day": "Tuesday",
-            "time": "Lunch",
-            "room": "M-1",
-            "prez": "Jack Poon",
-            "advisor": "Maria-Jose Durquet",
-            "email": "mdurquet@pausd.org"
-        },
         "59804": {
             "new": false,
             "name": "Science Olympiad",
@@ -821,54 +329,6 @@
             "advisor": "Laurie Pennington",
             "email": "lpennington@pausd.org"
         },
-        "60000": {
-            "new": false,
-            "name": "Star Wars Club",
-            "tier": 1,
-            "desc": "The Star Wars Club is open to anyone with an interest in Star Wars. We will be watching and discussing Star Wars content such as Andor and The Mandalorian Season 3. Come join the fun, and May the Force Be With You!",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "J-1",
-            "prez": "Yu-Ting Chang",
-            "advisor": "Heather Mellows",
-            "email": "hmellows@pausd.org"
-        },
-        "60815": {
-            "new": true,
-            "name": "Team HBV Club",
-            "tier": 1,
-            "desc": "Join Gunn Team HBV Club to learn more about HBV and Liver Cancer and be involved in local volunteer opportunities! Club meetings will consist of educational presentations about HBV and liver cancer as well as fun learning games and events. We will also do fun projects to increase advocacy and spread awareness! Everyone is welcome!",
-            "day": "Thursday",
-            "time": "Lunch",
-            "room": "V-1",
-            "prez": "Michelle Lee",
-            "advisor": "Rachael Kaci",
-            "email": "rkaci@pausd.org"
-        },
-        "61382": {
-            "new": false,
-            "name": "Jewish Student Union",
-            "tier": 2,
-            "desc": "Jewish Student Union is a community based club focused on creating a place for all students to feel welcome. We meet every Tuesday at lunch in the Choir room and have bagels for all our members! We do activities to learn about tons of Jewish Holidays and other events. There are also optional meetings once a month where we meet up with other JSUs around the Bay Area for sponsored events like ice skating, move nights, etc. We can't wait to see you this year.",
-            "day": "Tuesday",
-            "time": "Lunch",
-            "room": "S-121",
-            "prez": "Allegra Tachner",
-            "advisor": "William Liberatore",
-            "email": "bliberatore@pausd.org"
-        },
-        "61826": {
-            "new": true,
-            "name": "S.A.V.E Promise Club",
-            "tier": 1,
-            "desc": "The mission of the S.A.V.E promise club is to educate and empower children and young adults to prevent violence in schools, homes, and communities. We teach people to recognize, intervene, and get help for people who may be socially isolated or at risk of hurting themselves or others. We also hold fun events like Start With Hello week at the beginning of the year and during the week you walk up to people you don't know, and make new friends.",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "V-25",
-            "prez": "Ahaana Chauhan",
-            "advisor": "David Bisbee",
-            "email": "dbisbee@pausd.org"
-        },
         "62410": {
             "new": false,
             "name": "The Chariot",
@@ -880,54 +340,6 @@
             "prez": "Chris Lee",
             "advisor": "Justin Brown",
             "email": "jdbrown@pausd.org"
-        },
-        "63478": {
-            "new": false,
-            "name": "National Art Honor Society",
-            "tier": 2,
-            "desc": "NAHS is hosted every Tuesday at lunch in the M-04 art room, where club members work on a variety of art projects. We use paints, pencils, and other materials to create fun crafts such as designing your own stickers or working on chalk murals across school campus. With regular attendance you can also become an official National Art Honor Society member!",
-            "day": "Tuesday",
-            "time": "Lunch",
-            "room": "M-04",
-            "prez": "Helen Zheng",
-            "advisor": "Anita Su",
-            "email": "asu@pausd.org"
-        },
-        "63502": {
-            "new": false,
-            "name": "Lifestyle Club",
-            "tier": 1,
-            "desc": "The Gunn Lifestyle Club is meant to help improve students' overall lifestyle and outlook on life. Our plan is to talk about topics such as mental health, motivation/attitude, and more. We’ll be showing demonstrations like how to prepare healthy snacks in club meetings and students can choose whether or not they want to participate although we’ll highly encourage them to do so. We will also have fun meetings where we do crafting, eat snacks, and sometimes watch a movie. Before each club meeting, we will post what topics we will cover so if a certain student doesn’t feel comfortable attending they can choose not to. Our aim is to help relax students through serious and fun activities.",
-            "day": "Tuesday",
-            "time": "Lunch",
-            "room": "N-207",
-            "prez": "Hila Livneh",
-            "advisor": "Florina Limburg",
-            "email": "flimburg@pausd.org"
-        },
-        "63576": {
-            "new": true,
-            "name": "HiLo Integration Club (HLIC)",
-            "tier": 1,
-            "desc": "The HiLo Integration club aims to teach students about both high-level programming concepts such as web development and the underlying low-level hardware that everything runs on. Club members will be taught how to build and setup computers from scratch, as well as how to program and use them to host servers that interact with today's modern web landscape.  .",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "N-113",
-            "prez": "John Li",
-            "advisor": "Briana Gonzalez",
-            "email": "bgonzalez@pausd.org"
-        },
-        "63695": {
-            "new": false,
-            "name": "Mock Trial",
-            "tier": 2,
-            "desc": "Meets Every Monday After School in N-205! Trains students on the legal system, criminal procedure, and the role of each individual in the justice system. Competes in local and invitational tournaments using a specifically prepared case each year!",
-            "day": "Monday",
-            "time": "After School",
-            "room": "N-205",
-            "prez": "Vikram Valame",
-            "advisor": "Misha Hlasek",
-            "email": "mhlasek@pausd.org"
         },
         "64098": {
             "new": true,
@@ -953,18 +365,6 @@
             "advisor": "Kristen Lo",
             "email": "klo@pausd.org"
         },
-        "65778": {
-            "new": false,
-            "name": "Equestrian Club Gunn",
-            "tier": 1,
-            "desc": "Our goal is to get people involved in the equestrian community and learn about the different styles of riding. Additionally learn about the jobs that can come with it and the basics of owning a horse.",
-            "day": "Tuesday",
-            "time": "Lunch",
-            "room": "G-1",
-            "prez": "Yu-Tong Liu",
-            "advisor": "Teresa Nino Oliva",
-            "email": "tninooliva@pausd.org"
-        },
         "66441": {
             "new": false,
             "name": "Reach Out, Care, Know (ROCK)",
@@ -977,54 +377,6 @@
             "advisor": "Paul Dunlap",
             "email": "pdunlap@pausd.org"
         },
-        "67880": {
-            "new": true,
-            "name": "Pixels Club",
-            "tier": 1,
-            "desc": "We will meet at lunch to work on a big online pixel mosaic, similar to the famous \"r/place\" event! We aim to capture the culture, memes, and news of the 2022-23 Gunn School Year much like r/place did, and to vibe and have fun. No prior art experience is necessary! Really!",
-            "day": "Tuesday",
-            "time": "Lunch",
-            "room": "C-03",
-            "prez": "Hamza Siddeek",
-            "advisor": "Ben Beresford",
-            "email": "bberesford@pausd.org"
-        },
-        "70749": {
-            "new": true,
-            "name": "Design Club",
-            "tier": 1,
-            "desc": "The Gunn Design Club is a place where students can explore and learn about the exciting field of design.  In each meeting, members of the club will discuss some aspect of design or a specific design problem in a field such as product design, fashion design, architecture, graphic design, etc. We will create presentations, show videos and create activities to engage all attendees. We also plan to invite industry professionals as guest speakers to explain real-life design problems they have solved or are working on, and to talk to us about education and career possibilities. This club will be a fun and safe environment for students who are curious about topics and careers in design. We will incorporate many activities (crafts, videos, guest speakers, etc…) as well as bringing in snacks for us to enjoy during meetings.",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "V-26",
-            "prez": "Antara Raman",
-            "advisor": "Mark Weisman",
-            "email": "mweisman@pausd.org"
-        },
-        "72020": {
-            "new": false,
-            "name": "Anatomy and Physiology",
-            "tier": 2,
-            "desc": "A hands on club that teaches students the anatomy and physiology of various specimen, as well as the opportunity to participate in dissections.",
-            "day": "Thursday",
-            "time": "Lunch",
-            "room": "J-02",
-            "prez": "Liv Arad",
-            "advisor": "Jena Lee",
-            "email": "jlee@pausd.org"
-        },
-        "73046": {
-            "new": false,
-            "name": "Weightlifting Club",
-            "tier": 1,
-            "desc": "The purpose of the Gunn Weightlifting Club is to educate all lifters on the importance that weightlifting has to offer for both mental and physical health. We will be using the Gunn Weight Room to perform majority of out activities and exercises. No matter your skill level, the club is a friendly, all-inclusive environment that is ready to help you along your fitness journey!",
-            "day": "Thursday",
-            "time": "After School",
-            "room": "Gunn Weightroom",
-            "prez": "Joshua Michelson",
-            "advisor": "David Bisbee",
-            "email": "dbisbee@pausd.org"
-        },
         "73186": {
             "new": false,
             "name": "Helios Magazine Club",
@@ -1036,78 +388,6 @@
             "prez": "Carly Liao",
             "advisor": "Justin Brown",
             "email": "jdbrown@pausd.org"
-        },
-        "73408": {
-            "new": true,
-            "name": "AIR (Artificial Intelligence in Robotics)",
-            "tier": 1,
-            "desc": "In this club, we learn and dive into how Artificial Intelligence and Machine Learning can be applied to the field of robotics.",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "C-8",
-            "prez": "Archith Seshadri",
-            "advisor": "Tara Firenzi",
-            "email": "tfirenzi@pausd.org"
-        },
-        "74162": {
-            "new": false,
-            "name": "Socially Responsible Investment Fund (SRIF)",
-            "tier": 1,
-            "desc": "At SRIF(Socially Responsible Investment Fund) club, you will learn how to invest your money in the best ways. We will teach you different kinds of strategies, bring in professional advisors, and even practice investing REAL MONEY in the stock market.",
-            "day": "Monday",
-            "time": "Lunch",
-            "room": "N-20",
-            "prez": "Chris Brown",
-            "advisor": "Mr. Redfield",
-            "email": "credfield@pausd.org"
-        },
-        "74520": {
-            "new": true,
-            "name": "SMP Club",
-            "tier": 1,
-            "desc": "The SMP (Server Minecraft PC) club will help members build and utilize their own servers (open a Minecraft server). We will cover hardware, software, and networking.",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "N-206",
-            "prez": "Jesse Chu",
-            "advisor": "Gopi Tantod",
-            "email": "gtantod@pausd.org"
-        },
-        "75847": {
-            "new": false,
-            "name": "Science Bowl",
-            "tier": 2,
-            "desc": "Science Bowl aims to educate others about and open up opportunities in the STEM field by studying and ultimately attending the National Science Bowl competition under the name of Henry M. Gunn High School. The competition will hopefully serve as a catalyst for exploration, allowing members and participants to gain experience and insight into scientific topics like biology, math and physics, chemistry, and Earth and space science, as well as personal qualities like teamwork, determination, and creativity.",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "J-10",
-            "prez": "Fiona Li",
-            "advisor": "Jacintha Kompella",
-            "email": "jkompella@pausd.org"
-        },
-        "76610": {
-            "new": false,
-            "name": "Biotechnology Club",
-            "tier": 1,
-            "desc": "Biotechnology is the future. The mission of this club is to excite and empower Gunn students to have an impact in the world with biotechnology. The short term goals are teaching students about the applications of biotechnology and the role they can play in this field. The long term objective is to have a thriving club that will help build future scientists who can have an exciting career in the field of biotechnology.  We plan to promote the club so that there is a strong flourishing community of aspiring biotechnologists who are excited to spread the word to others. We will offer weekly educational series that introduce different aspects of biotechnology through various mediums - videos, interactive discussions and individual/team activities including field trips. We will also invite guest speakers from the industry to share their journey and experiences. This will help Gunn students to build connections within the industry after they graduate and seek a career in biotechnology.",
-            "day": "Monday",
-            "time": "Lunch",
-            "room": "L2",
-            "prez": "Anthony Ho",
-            "advisor": "Angela Merchant",
-            "email": "amerchant@pausd.org"
-        },
-        "77409": {
-            "new": true,
-            "name": "Blankets for Change",
-            "tier": 2,
-            "desc": "Creating blankets with a variety of techniques, such as quilting and weaving, while having fun and watching movies. The projects made in the club will be donated to those in need.",
-            "day": "Thursday",
-            "time": "Lunch",
-            "room": "N-210",
-            "prez": "Oliver Fong",
-            "advisor": "Jacquelyn Silverbush",
-            "email": "jsilverbush@pausd.org"
         },
         "77429": {
             "new": false,
@@ -1133,42 +413,6 @@
             "advisor": "Emily Yun",
             "email": "eyun@pausd.org"
         },
-        "78241": {
-            "new": true,
-            "name": "Neuroscience Club",
-            "tier": 2,
-            "desc": "The Neuroscience Club seeks to educate participants and extend appreciation for neuroscience! Everyone is welcome, regardless of prior knowledge or experience in the field. Club meetings will mainly consist of presentations, interactive activities such as Kahoot, and occasionally small crafts to replicate concepts in neuroscience. We will likely have partnerships with organizations about neuroscience, invite guest speakers, and hold fundraisers.",
-            "day": "Tuesday",
-            "time": "Lunch",
-            "room": "N-210",
-            "prez": "Christina Ding",
-            "advisor": "Jacquelyn Silverbush",
-            "email": "jsilverbush@pausd.org"
-        },
-        "78535": {
-            "new": false,
-            "name": "Black Culture Club",
-            "tier": 2,
-            "desc": "Provide a space for students to learn and experience about Black Culture. Some ways we accomplish this sis through film, food, film/pop culture.",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "V-02",
-            "prez": "Angelina Rosh",
-            "advisor": "Maria Powell",
-            "email": "mpowell@pausd.org"
-        },
-        "78977": {
-            "new": false,
-            "name": "AI4Girls",
-            "tier": 2,
-            "desc": "We hope to provide an open community to uplift and support girls in their pursuit of CS/STEM. It doesn’t matter if you are experienced, perhaps you’ve never done code or know what in the world AI is. AI4Girls is an inclusive space to explore, learn and apply AI in exciting ways. In the past we have received grants from Stanford-based organization AI4ALL, been honored with speakers from(Stanford, Capital One, and AI4ALL), and established volunteer programs in middle schools.    AI is one of the fastest growing industries in tech and its impacts are growing by the second, from healthcare to genetics research to even youtube recommendation, we believe its important for students to learn about such a prominent technology in our world. Join us for insightful conversation, exciting opportunities, and food!",
-            "day": "Thursday, Bi-Weekly",
-            "time": "Lunch",
-            "room": "N-115",
-            "prez": "Cathy Sheng",
-            "advisor": "Takeshi Kaneko",
-            "email": "tkaneko@pausd.org"
-        },
         "80481": {
             "new": false,
             "name": "Sky of Hope",
@@ -1192,30 +436,6 @@
             "prez": "Anna Stine-Uchino",
             "advisor": "Danning Wang",
             "email": "dwang@pausd.org"
-        },
-        "80874": {
-            "new": false,
-            "name": "Dungeons and Dragons Club",
-            "tier": 1,
-            "desc": "A place to discuss Dungeons and Dragons or other TTRPG related topics and meet people with similar interests",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "c-2",
-            "prez": "Arturo Garrido Gomez",
-            "advisor": "Warren Collier",
-            "email": "wcollier@pausd.org"
-        },
-        "84265": {
-            "new": false,
-            "name": "The Application of Psychology to Law",
-            "tier": 1,
-            "desc": "Our club will focus primarily on the psychological minds of criminals and serial killers, and specifically why they feel compelled to do the things they do. As we closely study the behavioral traits of a variety of criminals we are able to apply it to the law and develop psychological theories to answer questions such as \"what exactly happened?\" and \"why did they do this?\" Through games, presentations, crime shows, documentaries, trials, and developing theories for true crime scenarios together we hope you can be an expert by the end of our club! (free snacks!)",
-            "day": "Thursday",
-            "time": "Lunch",
-            "room": "N-110",
-            "prez": "Anna Ghai",
-            "advisor": "Briana Gonzalez",
-            "email": "bgonzalez@pausd.org"
         },
         "84428": {
             "new": false,
@@ -1241,56 +461,6 @@
             "advisor": "Claudia Schroeppel",
             "email": "cschroeppel@pausd.org"
         },
-        "85407": {
-            "new": false,
-            "name": "Finance Club",
-            "tier": 1,
-            "desc": "Gunn Finance is the biggest community of students at Gunn passionate about finance and business. Curious about what's an NFT or what is McDonald's true business model (it's a real estate company)? Join us to gain knowledge in business, finance, and economics through our classroom-style weekly meetings and discussions catered towards experienced members and newbies! Apply your knowledge in our in-house contests and games and win prizes! We also host guest speakers (like industry leaders and Nobel Prize Winners) to provide insights into industries and help you develop your professional network to land internships in business. Undoubtedly, you'll also learn how to manage your money and invest wisely. We prepare teams to compete in prestigious competitions like the Tiger Global Case Competition and Wharton's Investment Competition where you can potentially win grand prizes, travel, and meet renowned professionals!",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "V-6",
-            "prez": "Ethan Sa",
-            "advisor": "Arthur Kinyanjui",
-            "email": "akinyanjui@pausd.org"
-        },
-        "85461": {
-            "new": true,
-            "name": "Card Game Club",
-            "tier": 1,
-            "desc": "A space for students to play any card game during lunch!",
-            "day": "Monday",
-            "time": "Lunch",
-            "room": "M-4",
-            "prez": "Jacob Chiu",
-            "advisor": "Anita Su",
-            "email": "asu@pausd.org"
-        },
-        "86477": {
-            "new": true,
-            "name": "Veterinary Medicine Club",
-            "tier": 1,
-            "desc": "Veterinary Medicine Club focuses on the importance of veterinary medicine by playing critical roles in animal health, environmental protection, research, food safety, and public health. In the club, we encourage the Gunn Community to have a passion for helping animals and gain excellent diagnostic and problem-solving skills. Learn about love and care for animals, as well as scientific curiosity — such as various animal diseases, zoonotic diseases, and jobs that major in the veterinary medicine field.",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "N-203",
-            "prez": "Asya Buyukcangaz",
-            "advisor": "Michael Bautista",
-            "email": "mbautista@pausd.org",
-            "coadvisor": "Jacquelyn Silverbush",
-            "coemail": "jsilverbush@pausd.org"
-        },
-        "87433": {
-            "new": true,
-            "name": "Mechanical Keyboard Club",
-            "tier": 1,
-            "desc": "Mechanical keyboards have been around ever since the computer was invented. A subgenre of this computer peripheral, custom mechanical keyboards, has constantly been on the rise since 2010. During the COVID-19 pandemic, there was a particular increase in popularity in this hobby, which was correlated with the boom of personal computers. In this hobby, people customize and create their own keyboards with a combination of unique parts. Due to the large personalization aspect, this community has gained a sizable following. We have been interested in this hobby for many years now, and have built many keyboards over the years. We are very excited to share this hobby with our peers!",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "J 10",
-            "prez": "Benjamin Qian",
-            "advisor": "Christina Norberg",
-            "email": "cnorberg@pausd.org"
-        },
         "89570": {
             "new": false,
             "name": "Competitive Programming Club",
@@ -1303,32 +473,6 @@
             "advisor": "Daniel Hahn",
             "email": "dhahn@pausd.org"
         },
-        "91627": {
-            "new": true,
-            "name": "The Civics Engagement and Education Project (CEEP) Club",
-            "tier": 2,
-            "desc": "Goals: - increase voter awareness - increase LWV participation at Gunn - provide a place where students can participate in voting events - integrate voting education into Gunn's regular curriculum/student lives - increase active participation in civil responsibilities around PA - OVERALL GOAL: - increase voter turnout through education at Gunn  (made for AAR Project and would be more of a \"society\" for voting, would work closely with League of Women Voters to create lessons and form volunteered activities for students to learn about voting)",
-            "day": "Monday",
-            "time": "Lunch",
-            "room": "C-08",
-            "prez": "Elizabeth Jackson",
-            "advisor": "Chris Eggert",
-            "email": "ceggert@pausd.org",
-            "coadvisor": "Tara Firenzi",
-            "coemail": "tfirenzi@pausd.org"
-        },
-        "91801": {
-            "new": true,
-            "name": "Net Zero",
-            "tier": 2,
-            "desc": "Educate students on carbon emissions and environmental consciousness. Leverage external university lecturers to provide first hand exposure to latest research and provide off campus visits.",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "M3",
-            "prez": "Andy Cui",
-            "advisor": "Katie Schroeder",
-            "email": "kschroeder@pausd.org"
-        },
         "92171": {
             "new": true,
             "name": "Girl Up",
@@ -1340,18 +484,6 @@
             "prez": "Jenny Lee",
             "advisor": "Laurel Howard",
             "email": "lahoward@pausd.org"
-        },
-        "93468": {
-            "new": false,
-            "name": "Amnesty International Club",
-            "tier": 2,
-            "desc": "This club focuses off of Amnesty International, an international private activism and human rights group, with more than 10 million members across the world. We sign petitions, right letters to the Supreme Court, fundraise, spread awareness over current events, and more! If you like philosophy, political science, law, environmental science, debate, etc. or you just want a say in justice,  Amnesty International Club is the club for you!",
-            "day": "Monday",
-            "time": "Lunch",
-            "room": "H1",
-            "prez": "Karen Tang",
-            "advisor": "Laura Lizundia",
-            "email": "llizundia@pausd.org"
         },
         "93631": {
             "new": false,
@@ -1393,44 +525,6 @@
             "coadvisor": "David Deggeller",
             "coemail": "ddeggeller@pausd.org"
         },
-        "95107": {
-            "new": true,
-            "name": "Indian Diversity Club",
-            "tier": 1,
-            "desc": "The  Indian Diversity Club's mission is to uplift Indian and Indian-American voices and bring recognition and publicity to Indian events/celebrations. This club will investigate various aspects of Indian culture and traditions while also defining what it means to be Indian. Additionally, this club will aid in fostering relationships with other Indian students and help incoming freshmen adjust to high school life through their culture and identity.",
-            "day": "Monday",
-            "time": "Lunch",
-            "room": "N-213",
-            "prez": "Samhita Krishnan",
-            "advisor": "Karen Saxena",
-            "email": "ksaxena@pausd.org"
-        },
-        "95557": {
-            "new": true,
-            "name": "Fiber Arts Club",
-            "tier": 1,
-            "desc": "Come make some fiber arts with us! Learn new techniques, meet new people, and most of all have fun! We will mostly focus on knitting and crocheting, but fiber arts of all kinds are invited. You will have opportunities to participate in activities like creating items for charity, such as making blankets, hats, etc. for babies in the NICU. We welcome crafters of all levels and will have people willing to teach those who want to learn. We hope to see you there!",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "N-106",
-            "prez": "Alicia Wu",
-            "advisor": "Mark Hernandez",
-            "email": "mhernandez@pausd.org"
-        },
-        "97043": {
-            "new": true,
-            "name": "SafeSpace Club",
-            "tier": 1,
-            "desc": "SafeSpace is a youth-led, mental health-focused organization that empowers young people to engage openly with their local schools and communities. We create and implement initiatives to change the conversation around mental health by educating and encouraging our peers to speak up, support others, and seek help when needed. SafeSpace Club at Gunn will focus specifically on improving overall student wellness here on campus. We're here to support each other to address mental health stigma, normalize the conversation around mental health, and acknowledge that it's okay not to be okay. Key topics: Academic pressures, intersectionality, social justice, advocacy, empowerment, LGBTQIA+, etc. Action: Student-led initiatives, peer presentations, campus surveys, club collaborations, wellness center resources, self-care kits, outreach and engagement, etc.",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "K-1",
-            "prez": "Heeseo Jeong",
-            "advisor": "Tracie Carroll",
-            "email": "tcarroll@pausd.org",
-            "coadvisor": "Rossana Castillo",
-            "coemail": "rcastillo@pausd.org"
-        },
         "97053": {
             "new": false,
             "name": "Culture Connection Club",
@@ -1442,54 +536,6 @@
             "prez": "Hannah Qiu",
             "advisor": "Gabriela Garger",
             "email": "ggarger@pausd.org"
-        },
-        "97348": {
-            "new": false,
-            "name": "Green Team",
-            "tier": 2,
-            "desc": "The Green Team aims to promote a sustainable community through advocacy and action. Each week, club members engage in exciting activities while developing a deeper understanding of climate change. We offer tons of volunteer opportunities and ways to get involved in the climate crisis, no matter where your interests lie!",
-            "day": "Tuesday",
-            "time": "Lunch",
-            "room": "L-1",
-            "prez": "Katie Rueff",
-            "advisor": "Mark Brassey",
-            "email": "mbrassey@pausd.org"
-        },
-        "97403": {
-            "new": true,
-            "name": "Crypto Currency Club",
-            "tier": 1,
-            "desc": "In this club, we will discuss how crypto currency works, which crypto currencies are best, and create a mock account to invest in crypto currencies",
-            "day": "Tuesday",
-            "time": "Lunch",
-            "room": "K14",
-            "prez": "Sauram Vasanawala",
-            "advisor": "Kristen Owen",
-            "email": "kowen@pausd.org"
-        },
-        "97747": {
-            "new": false,
-            "name": "A Cappella Club",
-            "tier": 2,
-            "desc": "The Gunn A Cappella Club promotes the joy of singing to all interested members of the Gunn community (no musical experience necessary)! At our weekly meetings, members learn and rehearse fun songs to perform at school events such as TEDx, Open Mics, and more. Join the Titones to make music through the sole power of voices!",
-            "day": "Monday",
-            "time": "Lunch",
-            "room": "C-1",
-            "prez": "(Jacqueline) Chloe Lee",
-            "advisor": "Chris Johnson",
-            "email": "cjohnson@pausd.org"
-        },
-        "99262": {
-            "new": false,
-            "name": "Biochemistry Olympiads Club",
-            "tier": 2,
-            "desc": "Our club aims to display cool applications of biology, chemistry, and the intersection between them in demonstrations and lessons. We will also prepare members for the USABO and USNCO competitions in the Spring.",
-            "day": "Tuesday",
-            "time": "Lunch",
-            "room": "J7",
-            "prez": "Alan Lee",
-            "advisor": "Elana Zizmor",
-            "email": "ezizmor@pausd.org"
         },
         "99480": {
             "new": false,
