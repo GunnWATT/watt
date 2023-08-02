@@ -1,7 +1,7 @@
 # Manually inputting schedule, but in a readable format
 # This file is PARSED by ../code/genSchedule.js
 # (Information about the format of this file can be found there)
-# Referenced from https://resources.finalsite.net/images/v1624041057/pausdorg/vibke3ykbm6a98bddjkr/2021-22_Bell_Schedule-1.pdf
+# Referenced from https://resources.finalsite.net/images/v1659630874/pausdorg/ym6r00djfss0likabvnt/22-23BellScheduleColorV2.jpg
 
 # Some notes:
 # Brunch only lasts 5 minutes, leaving a 10 minute passing period
@@ -27,7 +27,7 @@ Brunch: 10:35 - 10:40
 Lunch: 12:20 - 12:50
 3: 1:00 - 2:30
 4: 2:40 - 4:10
-8: 4:20 - 5:55
+8: 4:20 - 5:50
 
 Wednesday
 0: 7:55 - 8:50
@@ -46,7 +46,7 @@ Brunch: 10:35 - 10:40
 Lunch: 12:20 - 12:50
 3: 1:00 - 2:30
 4: 2:40 - 4:10
-8: 4:20 - 5:55
+8: 4:20 - 5:50
 
 Friday
 5: 9:00 - 10:35

@@ -108,7 +108,7 @@ const schedule: {[key: string]: PeriodObj[]} = {
         {
             "n": "8",
             "s": 980,
-            "e": 1075
+            "e": 1070
         }
     ],
     "W": [
@@ -187,7 +187,7 @@ const schedule: {[key: string]: PeriodObj[]} = {
         {
             "n": "8",
             "s": 980,
-            "e": 1075
+            "e": 1070
         }
     ],
     "F": [

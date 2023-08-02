@@ -1,4 +1,4 @@
-import {SectionHeader} from '../../components/layout/HeaderPage';
+import { SectionHeader } from '../../components/layout/HeaderPage';
 import Badge from '../../components/layout/Badge';
 
 
@@ -37,7 +37,8 @@ export default function About() {
                 WATT was jointly created by <a href="https://github.com/ky28059" target="_blank" rel="noopener noreferrer">Kevin</a>, who made the frontend,
                 and <a href="https://github.com/ytchang05" target="_blank" rel="noopener noreferrer">Yu-Ting</a>, who originally wrote the backend.{' '}
                 <a href="https://github.com/ImNotRog" target="_blank" rel="noopener noreferrer">Roger</a> helped immensely with Schoology integration,
-                as well as maintaining the backend and scripts. <a href="https://github.com/julia7hk" target="_blank" rel="noopener noreferrer">Julia</a> will be maintaining the app next year.
+                as well as maintaining the backend and scripts. After graduating with the class of 2023, Kevin and Yu-Ting have since retired, and
+                <a href="https://github.com/julia7hk" target="_blank" rel="noopener noreferrer">Julia</a> is now maintaining the app.
                 Special thanks to <a href="https://github.com/mymylie" target="_blank" rel="noopener noreferrer">Mylie</a> who designed our lovely logo.
             </p>
 
