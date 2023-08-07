@@ -1,16 +1,16 @@
-import {ReactNode, useContext, useState} from 'react';
-import {Listbox, Switch} from '@headlessui/react';
-import {HiSelector, FiCheck, FiCircle} from 'react-icons/all';
+import { ReactNode, useContext, useState } from 'react';
+import { Listbox, Switch } from '@headlessui/react';
+import { HiSelector, FiCheck, FiCircle } from 'react-icons/all';
 
 // Components
-import {SectionHeader} from '../../components/layout/HeaderPage';
+import { SectionHeader } from '../../components/layout/HeaderPage';
 import AnimatedListbox from '../../components/layout/AnimatedListbox';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Firestore
-import {useAuth, useFirestore} from 'reactfire';
+import { useAuth, useFirestore } from 'reactfire';
 import { updateUserData } from '../../util/firestore';
 
 
@@ -44,13 +44,13 @@ export default function Features() {
         await updateUserData('options.clock', value, auth, firestore);
     }
 
-    const years = [2023, 2024, 2025, 2026, 0];
+    const years = [2024, 2025, 2026, 2027, 0];
 
 
     return (
         <>
             <SectionHeader>Features</SectionHeader>
-            <hr/>
+            <hr />
 
             <section className="flex flex-wrap-reverse md:flex-nowrap gap-2 md:gap-6 mb-6">
                 <Listbox value={displayYear} onChange={changeYear}>
@@ -66,8 +66,8 @@ export default function Features() {
 
                         <AnimatedListbox className="absolute z-20 mt-1 w-64 py-1 rounded-md bg-white dark:bg-content-secondary shadow-lg focus:outline-none focus-visible:ring-1 focus-visible:ring-black/10 dark:focus-visible:ring-white/25">
                             {years.map(year => (
-                                <Listbox.Option key={year} value={year} className={({active}) => 'flex items-center gap-2 cursor-pointer px-4 py-1.5' + (active ? ' bg-gray-100 dark:bg-background' : '')}>
-                                    {({selected, active}) => (
+                                <Listbox.Option key={year} value={year} className={({ active }) => 'flex items-center gap-2 cursor-pointer px-4 py-1.5' + (active ? ' bg-gray-100 dark:bg-background' : '')}>
+                                    {({ selected, active }) => (
                                         <>
                                             {selected ? (
                                                 <FiCheck className="w-5 h-5 bg-tertiary dark:bg-white/10 rounded-full p-1 flex-none" />
@@ -116,7 +116,7 @@ type RadioToggleProps = {
     label: string, children?: ReactNode
 };
 function RadioToggle(props: RadioToggleProps) {
-    const {checked, setChecked, label, children} = props;
+    const { checked, setChecked, label, children } = props;
 
     return (
         <Switch.Group>
@@ -126,7 +126,7 @@ function RadioToggle(props: RadioToggleProps) {
                     onChange={setChecked}
                     className={`${checked ? 'bg-theme dark:bg-theme/80' : 'bg-content-secondary'} relative inline-flex items-center h-6 rounded-full w-11 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black/10 dark:focus:ring-white/10 focus:ring-offset-transparent`}
                 >
-                    <span className={`${checked ? 'translate-x-6' : 'translate-x-1'} inline-block w-4 h-4 transform bg-white rounded-full transition-transform`}/>
+                    <span className={`${checked ? 'translate-x-6' : 'translate-x-1'} inline-block w-4 h-4 transform bg-white rounded-full transition-transform`} />
                 </Switch>
                 <div>
                     <Switch.Label passive className="font-medium">{label}</Switch.Label>
