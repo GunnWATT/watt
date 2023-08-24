@@ -17,7 +17,9 @@ const gradeGetterRegex = /(?<!Period |#)\d+(\/\d+)*(?!(?:st|nd|rd|th)\s+Period)/
 const altScheduleRegex = /schedule|extended/i; // /schedule|extended|lunch/i
 const noSchoolRegex = /holiday|no\s(students|school)|break|development/i;
 const primeReplacesSelfRegex = /PRIME (replaces|instead of) SELF|No SELF, extra PRIME/i;
-const selfStudyHallRegex = /9\/10 (SELF|Study Hall), 11\/12 (SELF|Study Hall)/i;
+// const selfStudyHallRegex = /9\/10 (SELF|Study Hall), 11\/12 (SELF|Study Hall)/i;
+const selfRegex = /SELF \((9\/10|11\/12) grade\)/i;
+const studyHallRegex = /Study Hall \((9\/10|11\/12) grade\)/i;
 
 // Parse an iCal summary and description into an array of `UnparsedPeriodObj`s
 function parseAlternate(summary: string | undefined, description: string | undefined, date: string) {
@@ -46,11 +48,11 @@ function parseAlternate(summary: string | undefined, description: string | undef
         return schedule[weekday].map(({n, ...t}) => ({n: n === 'S' ? 'P' : n, ...t}));
     }
 
-    // If the event is a "9/10 SELF, 11/12 Study Hall" event, add the day's regular schedule as an alternate, assigning
-    // the proper grades to SELF and inserting Study Hall afterwards.
-    const selfStudyHallMatch = summary.match(selfStudyHallRegex);
+    // If the event is a "SELF (9/10 grade)" or "Study Hall (9/10 grade)" event, add the day's regular schedule 
+    // as an alternate, assigning the proper grades to SELF and inserting Study Hall afterwards.
+    const selfStudyHallMatch = summary.match(selfRegex) || summary.match(studyHallRegex);
     if (selfStudyHallMatch) {
-        const [, underPer, upperPer] = selfStudyHallMatch;
+        const [, per] = selfStudyHallMatch;
 
         // TODO: is there a better way of converting ISO YYYY-MM-DD format to weekday?
         const [year, monthNum, dayNum] = date.split('-').map(x => Number(x));
@@ -64,10 +66,10 @@ function parseAlternate(summary: string | undefined, description: string | undef
         const selfIndex = temp.findIndex(per => per.n === 'S');
         if (selfIndex === -1) return;
 
-        const selfPeriod = {...temp[selfIndex], grades: underPer === 'SELF' ? [9, 10] : [11, 12]};
+        const selfPeriod = {...temp[selfIndex], grades: per === '9/10' ? [11, 12] : [9, 10]};
         temp.splice(selfIndex, 1, selfPeriod, {
             n: 'H', s: selfPeriod.s, e: selfPeriod.e,
-            grades: upperPer === 'Study Hall' ? [11, 12] : [9, 10]
+            grades: per === '9/10' ? [9, 10] : [11, 12]
         });
         return temp;
     }
