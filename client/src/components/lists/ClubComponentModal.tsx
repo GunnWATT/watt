@@ -1,17 +1,17 @@
 import { useContext } from 'react';
-import {Dialog} from '@headlessui/react';
-import {Club} from '@watt/shared/data/clubs';
+import { Dialog } from '@headlessui/react';
+import { Club } from '@watt/shared/data/clubs';
 
 // Components
 import CenteredModal from '../layout/CenteredModal';
-import OutlineButton, {DangerOutlineButton} from '../layout/OutlineButton';
+import OutlineButton, { DangerOutlineButton } from '../layout/OutlineButton';
 import Badge from '../layout/Badge';
 
 // Context
 import UserDataContext from '../../contexts/UserDataContext';
 
 // Firestore
-import {useAuth, useFirestore, useUser} from 'reactfire';
+import { useAuth, useFirestore, useUser } from 'reactfire';
 import { updateUserData } from '../../util/firestore';
 
 
@@ -19,12 +19,12 @@ type ClubComponentModalProps = Club & {
     id: string, isOpen: boolean, setIsOpen: (open: boolean) => void
 }
 export default function ClubComponentModal(props: ClubComponentModalProps) {
-    const {name, desc, id, room, day, time, zoom, video, signup, prez, advisor, email, coadvisor, coemail, isOpen, setIsOpen} = props;
+    const { name, desc, id, room, day, time, zoom, video, signup, prez, advisor, email, coadvisor, coemail, isOpen, setIsOpen } = props;
 
     // Firestore
     const auth = useAuth();
     const firestore = useFirestore();
-    const { status, data } = useUser();
+    const { status, data: user } = useUser();
 
     const userData = useContext(UserDataContext);
     const pinned = userData.clubs.includes(id);
@@ -40,8 +40,8 @@ export default function ClubComponentModal(props: ClubComponentModalProps) {
     }
 
     // Prefill the form link from club and user name, if it exists
-    const prefilledLink = `https://docs.google.com/forms/d/e/1FAIpQLSfFaDat-272V6ZGE1iocJHWoNi8vxDxMETeWWn4rbGOqPXOFQ/viewform?entry.272185165=${name}`
-        + (data ? `&entry.1448575177=${data.displayName}` : '')
+    const prefilledLink = `https://docs.google.com/forms/d/e/1FAIpQLSfHF5w1sZc5pjj1PBjm9udRRgl60IeWxEf4Y0lAXCETPfuN4g/viewform?entry.676984385=${name}`
+        + (user ? `&entry.924762737=${user.displayName}` : '')
 
     return (
         <CenteredModal className="relative flex flex-col bg-content rounded-md max-w-md max-h-[90%] mx-2 p-6 shadow-xl" isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -64,9 +64,9 @@ export default function ClubComponentModal(props: ClubComponentModalProps) {
 
             <section className="mb-4 overflow-scroll scroll-smooth scrollbar-none">
                 <Dialog.Description>{desc}</Dialog.Description>
-                {video && <p><strong>Club Video:</strong> <a href={video} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{video}</a></p>}
-                {signup && <p><strong>Signup Form:</strong> <a href={signup} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{signup}</a></p>}
-                {zoom && <p><strong>Zoom Link:</strong> <a href={zoom} target="_blank" rel="noopener noreferrer" style={{wordBreak: 'break-all'}}>{zoom}</a></p>}
+                {video && <p><strong>Club Video:</strong> <a href={video} target="_blank" rel="noopener noreferrer" style={{ wordBreak: 'break-all' }}>{video}</a></p>}
+                {signup && <p><strong>Signup Form:</strong> <a href={signup} target="_blank" rel="noopener noreferrer" style={{ wordBreak: 'break-all' }}>{signup}</a></p>}
+                {zoom && <p><strong>Zoom Link:</strong> <a href={zoom} target="_blank" rel="noopener noreferrer" style={{ wordBreak: 'break-all' }}>{zoom}</a></p>}
             </section>
 
             <section className="flex gap-3 flex-wrap justify-end">
