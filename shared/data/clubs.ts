@@ -370,7 +370,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "tier": 2,
             "desc": "The purpose of this club is to create a community of Southeast Asian students at Gunn or anyone who is interested in Southeast Asian culture. Southeast Asian club will hold activities like Southeast Asian historical arts and crafts, fables/plays, and games. For example, Bầu cua cá cọp, lantern making, activities regarding lunar new year, etc... Furthermore, Southeast Asian food (vietnamese food, thai food, laos food, etc...) will occasionally be served and if there are any allergies or food complications, a form will be sent out a week beforehand asking about it. Other than that, if people do not want to engage in these activities they can just use the space as a place to hangout around a community of different cultures.",
             "day": "Thursday",
-            "time": "Lunch, twice a month",
+            "time": "Lunch",
             "room": "N102",
             "prez": "An Chanthery",
             "advisor": "Kristen Owen",
