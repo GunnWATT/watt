@@ -26,7 +26,7 @@ export default function BottomNav() {
                 {/* Dropup */}
                 <Popover className="relative flex">
                     {({open}) => (<>
-                        <Popover.Button className="p-2 rounded focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[0xFF7DADD9]">
+                        <Popover.Button className="p-2 px-3 rounded focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[0xFF7DADD9]">
                             {open ? <FiChevronDown className="w-6 h-6" /> : <FiChevronUp className="w-6 h-6" />}
                         </Popover.Button>
 
