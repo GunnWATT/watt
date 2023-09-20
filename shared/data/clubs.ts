@@ -6,7 +6,7 @@ export type Club = {
 }
 
 const clubs: {timestamp: string, data: {[key: string]: Club}} = {
-    "timestamp": "2023-09-06T23:51:07.180Z",
+    "timestamp": "2023-09-20T17:46:35.882Z",
     "data": {
         "11206": {
             "new": false,
@@ -139,7 +139,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "desc": "We will analyze media with a focus on social justice, having deep discussions about inclusivity and relevance to the modern-day! We will have events for the different identity months and commemorate holidays related to social justice! We want to foster a welcoming and inclusive community where students can meet new people and hope to have a few optional off-campus activities after school or on weekends throughout the year!",
             "day": "Friday",
             "time": "Lunch",
-            "room": "G-6",
+            "room": "G-4",
             "prez": "Nishi Goyal",
             "advisor": "Gabriela Garger",
             "email": "ggarger@pausd.org"
@@ -223,7 +223,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "desc": "Club oriented towards bike enthusiasts and people looking to help out in the community by repairing bikes for fellow students.",
             "day": "Thursday",
             "time": "Lunch",
-            "room": "N-205, V-22",
+            "room": "V-12",
             "prez": "Shree Sandilya",
             "advisor": "Karen Saxena",
             "email": "ksaxena@pausd.org"
@@ -312,16 +312,18 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "day": "Thursday",
             "time": "Lunch",
             "room": "V3",
-            "prez": "Jazmin Rodrigo",
-            "advisor": "Claudia Schroeppel",
-            "email": "cschroeppel@pausd.org"
+            "prez": "Chania Rene-Corail",
+            "advisor": "Jeanette Tucker",
+            "email": "jtucker@pausd.org",
+            "coadvisor": "TK Haine",
+            "coemail": "thainie@pausd.org"
         },
         "31576": {
             "new": false,
             "name": "Polymer Clay Club",
             "tier": 1,
             "desc": "Gunn PCC is dedicated to sharing the polymer clay medium with the Gunn community! We work on creating miniature models of things like food and characters from Pokemon. No prior experience is necessary and it's a great way to relieve stress! You never know if you'll find your inner peace while making miniature boba models.",
-            "day": "Thursday",
+            "day": "Monday",
             "time": "Lunch",
             "room": "N-111",
             "prez": "Michelle Koo",
@@ -357,8 +359,8 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "Speech & Debate Club",
             "tier": 3,
             "desc": "Dedicated to furthering education, self-confidence, and perseverance, Gunn Speech and Debate gives debaters the real-world tools for future success, but also fosters an unforgettable community. Our club teaches valuable analytical, public speaking, argumentative, and research skills. We offer three debate branches—Parliamentary, Public Forum, and Policy—as well as a Speech branch. Meetings for new members are on Fridays at lunch in room N-209, and varsity meetings are Wednesdays from 3:45-5:45! Please feel free to reach out to us at gunnsd@gmail.com if you believe there is anything we can do to further extend our support.",
-            "day": "Tuesday, Wednesday",
-            "time": "After School",
+            "day": "Wednesday, Thursday",
+            "time": "Lunch/ After School",
             "room": "N-209",
             "prez": "Maya Perkash",
             "advisor": "Sophia Lo",
@@ -370,7 +372,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "tier": 2,
             "desc": "The purpose of this club is to create a community of Southeast Asian students at Gunn or anyone who is interested in Southeast Asian culture. Southeast Asian club will hold activities like Southeast Asian historical arts and crafts, fables/plays, and games. For example, Bầu cua cá cọp, lantern making, activities regarding lunar new year, etc... Furthermore, Southeast Asian food (vietnamese food, thai food, laos food, etc...) will occasionally be served and if there are any allergies or food complications, a form will be sent out a week beforehand asking about it. Other than that, if people do not want to engage in these activities they can just use the space as a place to hangout around a community of different cultures.",
             "day": "Thursday",
-            "time": "Lunch",
+            "time": "Lunch, twice a month",
             "room": "N102",
             "prez": "An Chanthery",
             "advisor": "Kristen Owen",
@@ -383,7 +385,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "Titan Journal Club",
             "tier": 1,
             "desc": "The Titan Journal of High School Research is a student-run journal dedicated to creating a platform for high school students to publish their works. The journal is based as a school club whose members help edit, compile, design, and manage the writing and publication process of the journal. Submissions are open to everyone.",
-            "day": "Tuesday",
+            "day": "Friday",
             "time": "Lunch",
             "room": "L-1",
             "prez": "Michelle Koo",
@@ -499,8 +501,8 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "time": "Lunch",
             "room": "J-9",
             "prez": "Roger Fan",
-            "advisor": "Heather Mellows",
-            "email": "hmellows@pausd.org"
+            "advisor": "Shilpan Sheth",
+            "email": "ssheth@pausd.org"
         },
         "43964": {
             "new": true,
@@ -521,7 +523,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "TEDxGunnHighSchool",
             "tier": 2,
             "desc": "Our mission is to cultivate ideas and conversation through an annually hosted TEDx conference held in Spangenberg Theatre. Our three committees, business, speakers, and design work hard each year to improve quality of speakers and quality of experience for all our audience members. The speakers committee works with each speaker individually to write, edit and rehearse each talk. The business committee raises all funds to cover the cost of a fully fledged TEDx conference, which include grants and small fundraisers. The design committee creates logos, merchandise design, and social media designs.  It's TEDx, but Gunn.",
-            "day": "Wednesday",
+            "day": "Tuesday",
             "time": "Lunch",
             "room": "C-8",
             "prez": "Allan Jiang",
@@ -591,7 +593,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
         "47907": {
             "new": false,
             "name": "Film Club",
-            "tier": 3,
+            "tier": 2,
             "desc": "Film Club’s purpose is to provide a safe and inclusive environment for Gunn students to express their creativity through video and learn about filmmaking outside of an official class. Film Club strives to create a community for the filmmakers of Gunn to express their creativity and share their knowledge and experience with other students. Film Club will work to achieve its goals by effectively making use of club meeting times to plan out our activities and projects. Each week, Film Club will meet to discuss a video-related topic, plan a project, or engage in another activity arranged by the club president. Film Club plans to have one large project per semester, to be determined by the club and open to all club members to help plan and execute to completion.",
             "day": "Thursday",
             "time": "Lunch",
@@ -617,7 +619,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "Korean Club",
             "tier": 1,
             "desc": "This club is for students who love Korean culture to share their interest and and spread the beauty of Korean culture to all gunn high school students. During the club, we will be watching several Korean media and talk with each other to share our thoughts. Also, over the course of the semester, we will be sharing informations for competitions or other events that are from South Korean consulate or are related to Korean Organizations.",
-            "day": "Tuesday",
+            "day": "Wednesday",
             "time": "Lunch",
             "room": "N-212",
             "prez": "Sophie Nam",
@@ -663,9 +665,9 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
         "50036": {
             "new": false,
             "name": "Aeronautics",
-            "tier": 1,
-            "desc": "In Gunn Aeronautics, we learn all about rocketry, space and aerospace engineering! We design our own rockets and even program them to do some cool stuff. We play games and have snacks during meetings :) Come join us in J-9!",
-            "day": "Thursday",
+            "tier": 2,
+            "desc": "In Gunn Aeronautics, we learn all about rocketry, space and aerospace engineering! We design our own rockets and even program them to do some cool stuff. We play games and have snacks during meetings :)",
+            "day": "Friday",
             "time": "Lunch",
             "room": "N-113",
             "prez": "Eli Gaskin",
@@ -703,9 +705,9 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "Photography Club",
             "tier": 1,
             "desc": "From experienced to beginner photographers, Photography Club is for anyone with a passion or interest in taking photos. Our goal is to establish a space for students to share the joy of capturing different perspectives and learning from one another. We will cover the basic fundamentals of photography through fun activities and each member will learn to develop their individual styles and preferences. Members are welcome to use any camera or device available to them. Join Photography Club to experience the world through a lens!",
-            "day": "Monday, Tuesday",
+            "day": "Monday",
             "time": "Lunch",
-            "room": "M-1 and L-6",
+            "room": "M-1",
             "prez": "Jaein Chung",
             "advisor": "Marie Durquet",
             "email": "mdurquet@pausd.org"
@@ -717,7 +719,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "desc": "The Quiz Bowl club serves as a dynamic and intellectually stimulating platform for students to engage in competitive and collaborative academic competitions. Its primary purpose is to foster a passion for knowledge, critical thinking, and teamwork among its members. Through regular meetings and practice sessions, club participants delve into a wide array of subjects, ranging from literature and history to science and pop culture. Members develop their ability to quickly and accurately answer diverse trivia questions, honing their analytical skills and expanding their general knowledge base. The club also prepares for and participates in Quiz Bowl tournaments, where they compete against other schools regionally and nationally, putting their accumulated knowledge to the test in a fast-paced and exhilarating environment. Overall, the Quiz Bowl club offers a vibrant platform for intellectual growth, friendly competition, and the joy of learning for its enthusiastic members.",
             "day": "Tuesday",
             "time": "Lunch",
-            "room": "C building Room C1",
+            "room": "C1",
             "prez": "Abhivir Iyer",
             "advisor": "Christopher Johnson",
             "email": "cjohnson@pausd.org"
@@ -725,9 +727,9 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
         "54800": {
             "new": false,
             "name": "Documentary Club",
-            "tier": 2,
+            "tier": 1,
             "desc": "The Documentary Club works to stimulate creativity in students to create a film by the end of the year. We will go through all processes of film-making (producing, planning, research, role assignment, editing, showcasing!) We will also carry out hands-on activities to help develop film-making skills like creating short-films throughout the year. We hope to be a fun club that helps students learn about film and develop their own film-making craft. Come join the club on Fridays in room L-06!",
-            "day": "Friday",
+            "day": "Thursday",
             "time": "Lunch",
             "room": "L-06",
             "prez": "Stella Manning",
@@ -893,7 +895,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
         "64310": {
             "new": false,
             "name": "Thespian Club",
-            "tier": 3,
+            "tier": 2,
             "desc": "Gunn Thespian club focuses on bringing thespians together to form a fun-loving, tight knit community. We do this through weekly games at lunch, performance events such as open mics, and social gatherings.",
             "day": "Friday",
             "time": "Lunch",
@@ -955,7 +957,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "Golf Economics & Engineering Club",
             "tier": 1,
             "desc": "Here at Golf Economics and Engineering Club, passion for the strategic world of golf intersects with the realms of economics and engineering. Our club serves as a unique platform for individuals who are enthusiastic about the sport of golf, intrigued by its economic impact, and fascinated by the engineering innovations that enhance the game. Through collaborative learning, interactive discussions, and practical experiences, we aim to broaden our understanding of golf's influence on economies, as well as the role of engineering in shaping the game's evolution.",
-            "day": "Monday",
+            "day": "Wednesday",
             "time": "Lunch",
             "room": "K-15",
             "prez": "Marcello Chang",
@@ -1019,7 +1021,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "desc": "The Helios Magazine is a club open to all Gunn students who are interested in contributing to a professional and meaningful publication on campus, whether through art, design, or writing. We will work on distributing an entertaining, interesting, and thought-provoking magazine online every quarter, while teaching members the importance of ethical journalism and creative, professional writing. All welcome!",
             "day": "Tuesday",
             "time": "Lunch",
-            "room": "N-107",
+            "room": "N-106",
             "prez": "Irene Tsen",
             "advisor": "Justin Brown",
             "email": "jdbrown@pausd.org"
@@ -1215,7 +1217,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "desc": "The Math in Scientific Research Club focuses on the usage of math in scientific research in different fields such as astronomy, chemistry, neuroscience, biology, physics, etc. Come by to learn how Hubble used linear regression to calculate the Hubble constant or how mathematical theories can provide insights into complex, living systems. Snacks will be offered and we meet once every two weeks!",
             "day": "Thursday",
             "time": "Lunch",
-            "room": "K-9",
+            "room": "K-10",
             "prez": "Alan Yue",
             "advisor": "sophia lo",
             "email": "tslo@pausd.org"
@@ -1228,9 +1230,9 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "day": "Thursday",
             "time": "Lunch",
             "room": "H-02",
-            "prez": "Jenny Yeondoo Lee",
-            "advisor": "Laurel Howard",
-            "email": "lahoward@pausd.org"
+            "prez": "Jazmin Rodrigo",
+            "advisor": "Claudia Schroeppel",
+            "email": "cschroeppel@pausd.org"
         },
         "86371": {
             "new": false,
@@ -1285,7 +1287,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "Youth Exchange Club",
             "tier": 1,
             "desc": "The Gunn Youth Exchange Program has three main purposes: 1. Help conflict-affected high school students improve their English to increase their future opportunities. 2. Increase compassion in high school students by connecting them with peers from different backgrounds. 3. Provide a voice for conflict-affected high school students.",
-            "day": "Wednesday",
+            "day": "Thursday (First and Third)",
             "time": "Lunch",
             "room": "K-8",
             "prez": "Asya Buyukcangaz",
@@ -1295,14 +1297,14 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
         "92171": {
             "new": false,
             "name": "Girl Up",
-            "tier": 2,
+            "tier": 1,
             "desc": "Girl Up is a UN based club that stands for women empowerment. It has raised over $10 million, is supported throughout the entire nation, and we are bringing it to Gunn! Join to discuss controversial topics regarding women’s rights, participate in hands-on activities, and make ACTUAL change by joining protests and events. Have much-needed discussions about topics spanning from abortion to gender discrimination to household stereotypes. If you’re interested, join us at C-4 on Monday at lunch on September 19th, or contact us at: gunngirlup22@gmail.com! (we also have snacks!)",
             "day": "Monday",
             "time": "Lunch",
             "room": "C-4",
-            "prez": "Chania Rene-Corail",
-            "advisor": "Jeanett Tucker",
-            "email": "jtucker@pausd.org"
+            "prez": "Jenny Yeondoo Lee",
+            "advisor": "Laurel Howard",
+            "email": "lahoward@pausd.org"
         },
         "93631": {
             "new": false,
@@ -1319,7 +1321,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
         "93971": {
             "new": false,
             "name": "Philosophy Club",
-            "tier": 2,
+            "tier": 1,
             "desc": "Gunn Philosophy Club is a place to cultivate your critical thinking and discussion skills through examination of famous philosophers and the questions they have raised. We will be exploring the roots of philosophy, as well as questions such as, “What is free will?” and “What is justice?” This year, we will address two of the four major branches of philosophy: metaphysics (what exists?) and ethics (what is ethical?). No prior experience is necessary, and all are welcome!",
             "day": "Tuesday",
             "time": "Lunch",
