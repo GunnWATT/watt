@@ -9,7 +9,6 @@ import Loading from '../layout/Loading';
 
 // Auth
 import { useAuth, useFirestore, useFunctions, useUser } from 'reactfire';
-import { onAuthStateChanged } from 'firebase/auth';
 import { httpsCallable } from 'firebase/functions';
 import { updateUserData } from '../../util/firestore';
 
@@ -32,18 +31,17 @@ export default function SgyInitResults() {
 
     // Set the results to the value returned by initialization to be displayed
     useEffect(() => {
-		onAuthStateChanged(auth, (user) => {
-			if (user && sgyModal) {
-				// console.log('hey!');
-				const init = httpsCallable(functions, "sgyfetch-init");
-				init().then(r => {
-					// console.log(r);
-					setResults(r);
-				});
-			}
-		})
+        if (!auth.currentUser) return;
+        if (auth.currentUser && sgyModal) {
+            // console.log('hey!');
+            const init = httpsCallable(functions, "sgyfetch-init");
+            init().then(r => {
+                // console.log(r);
+                setResults(r);
+            });
+        }
         // return (() => {console.log('I am unmounted!!!!!')});
-    }, [])
+    }, [auth.currentUser])
 
     const closeDialog = () => {
         setSgyModal(false);
