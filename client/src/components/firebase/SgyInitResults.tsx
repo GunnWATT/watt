@@ -31,6 +31,7 @@ export default function SgyInitResults() {
 
     // Set the results to the value returned by initialization to be displayed
     useEffect(() => {
+        if (!auth.currentUser) return;
         if (auth.currentUser && sgyModal) {
             // console.log('hey!');
             const init = httpsCallable(functions, "sgyfetch-init");
@@ -40,7 +41,7 @@ export default function SgyInitResults() {
             });
         }
         // return (() => {console.log('I am unmounted!!!!!')});
-    }, [])
+    }, [auth.currentUser])
 
     const closeDialog = () => {
         setSgyModal(false);
