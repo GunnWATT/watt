@@ -6,7 +6,7 @@ export type Club = {
 }
 
 const clubs: {timestamp: string, data: {[key: string]: Club}} = {
-    "timestamp": "2023-09-20T17:46:35.882Z",
+    "timestamp": "2023-10-20T19:17:36.086Z",
     "data": {
         "11206": {
             "new": false,
@@ -473,7 +473,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "desc": "We are Gunn Science Bowl, a school club dedicated to spreading curiosity for STEM and catalyzing exploration. Annually, we compete in the National Science Bowl, a nationwide competition hosted by the U.S. Department of Energy. We seek to create a community of intelligent, driven individuals in the pursuit of knowledge, and while we strive for excellence, we also promote an environment of teamwork, ingenuity, and creativity.",
             "day": "Wednesday",
             "time": "Lunch",
-            "room": "H2 and J8",
+            "room": "H2",
             "prez": "Fiona Li",
             "advisor": "Claudia Schroeppel",
             "email": "cschroeppel@pausd.org",
@@ -571,7 +571,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "HOSA",
             "tier": 2,
             "desc": "HOSA stands for Health Occupations Students of America. It is a national organization that promotes career opportunities in the healthcare industry. HOSA helps students develop leadership and technical skill competencies through a variety of regional and national conferences and competitions. We plan on having several guest speakers, attending HOSA competitions, and we will overall develop people's leadership skills in the medical field by presenting about several topics relating to the medical field they may be interested in.",
-            "day": "Monday, Wednesday, Thursday, Friday",
+            "day": "Friday",
             "time": "Lunch",
             "room": "L-2",
             "prez": "Aareev Panda",
@@ -665,14 +665,14 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
         "50036": {
             "new": false,
             "name": "Aeronautics",
-            "tier": 2,
+            "tier": 1,
             "desc": "In Gunn Aeronautics, we learn all about rocketry, space and aerospace engineering! We design our own rockets and even program them to do some cool stuff. We play games and have snacks during meetings :)",
             "day": "Friday",
             "time": "Lunch",
-            "room": "N-113",
+            "room": "J-9",
             "prez": "Eli Gaskin",
-            "advisor": "Katherine Ja",
-            "email": "kja@pausd.org"
+            "advisor": "Shilpan Sheth",
+            "email": "ssheth@pausd.org"
         },
         "50181": {
             "new": false,
