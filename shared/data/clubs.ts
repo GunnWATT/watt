@@ -6,7 +6,7 @@ export type Club = {
 }
 
 const clubs: {timestamp: string, data: {[key: string]: Club}} = {
-    "timestamp": "2023-10-20T19:17:36.086Z",
+    "timestamp": "2024-01-10T19:52:00.930Z",
     "data": {
         "11206": {
             "new": false,
@@ -132,18 +132,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Misha Hlasek",
             "email": "mhlasek@pausd.org"
         },
-        "19856": {
-            "new": false,
-            "name": "Titans for Justice",
-            "tier": 1,
-            "desc": "We will analyze media with a focus on social justice, having deep discussions about inclusivity and relevance to the modern-day! We will have events for the different identity months and commemorate holidays related to social justice! We want to foster a welcoming and inclusive community where students can meet new people and hope to have a few optional off-campus activities after school or on weekends throughout the year!",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "G-4",
-            "prez": "Nishi Goyal",
-            "advisor": "Gabriela Garger",
-            "email": "ggarger@pausd.org"
-        },
         "19916": {
             "new": false,
             "name": "Chinese Culture Club",
@@ -195,7 +183,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
         "22361": {
             "new": true,
             "name": "Magic: the Gathering Club",
-            "tier": 2,
+            "tier": 1,
             "desc": "The Gunn MTG Club is a inclusive space for anyone and everyone who enjoys Magic: the Gathering, or who wants to learn the game. We will have weekly meetings to play casual games with other club members, trade cards, or simply hang out and talk magic, as well as to teach new players how to play. We will have a few afterschool events throughout the year, either tournaments, draft or commander, as well as possibly a ladder system for more competitive matches at lunch. Don't have cards? Don't worry! We have decks to loan so you can play. All skill levels (and formats) are welcome, so whether you have been tapping your lands since you were 7 years old, or just want to see what it's like to become a planeswalker, come on by!",
             "day": "Thursday",
             "time": "Lunch",
@@ -480,18 +468,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "coadvisor": "Heather Mellows",
             "coemail": "hmellows@pausd.org"
         },
-        "43401": {
-            "new": false,
-            "name": "Indian Diversity Club",
-            "tier": 1,
-            "desc": "Welcome to the Indian Diversity Club, where we warmly embrace the kaleidoscope of cultures that converge in India. Our vibrant community comes together to honor the colorful traditions, languages, and, of course, the incredible cuisine that defines India. Through captivating cultural events and mouthwatering food festivals, we strive to weave a tighter bond of unity among our diverse members. Join us to savor the flavors of Indian cuisine, learn about cultural experiences, and learn the art of traditional Indian crafts.",
-            "day": "Monday",
-            "time": "Lunch",
-            "room": "N-213",
-            "prez": "Siyona Dhingra",
-            "advisor": "Karen Saxena",
-            "email": "ksaxena@pausd.org"
-        },
         "43418": {
             "new": false,
             "name": "Physics Club",
@@ -529,18 +505,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "prez": "Allan Jiang",
             "advisor": "Daljeet Gill",
             "email": "dgill@pausd.org"
-        },
-        "46130": {
-            "new": false,
-            "name": "Ethics Bowl",
-            "tier": 1,
-            "desc": "What is STEM? Never heard of Ethics, sounds weird? No worries! Whether knowledgeable or not, STEM person or not, Ethics Bowl is a great place for everyone to partake in a global conversation! It's fun, easy, and low-commitment. In addition we also partake in the regional Ethics Bowl competition, and eventually travel to UNC Chapel-Hill in the case of nationals.    STEM is rapidly shaping our future, but in what direction? HOW is it impacting us? Society? Positively, what about ... negatively? From the lack of diversity in STEM, racial biases in AI/ML, alarming impacts of climate change, we will tackle all of these questions in our meetings! Come and join us for discussion  + food!",
-            "day": "Tuesday (the 1st and 3rd)",
-            "time": "Lunch",
-            "room": "V-03",
-            "prez": "Jia Ruparel",
-            "advisor": "Jeanette Tucker",
-            "email": "jtucker@pausd.org"
         },
         "46377": {
             "new": true,
@@ -641,7 +605,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
         "49079": {
             "new": false,
             "name": "Joy Dance Club",
-            "tier": 2,
+            "tier": 1,
             "desc": "Joy Dance Club - Boost Your School Life with Fun, Friends, and Positivity! Release Stress, Make Memories, and Feel the Joy!!  Balancing and navigating stress are everyday challenges in high school and life. It's not about avoiding stress, but how we manage it that counts. At the Joy Dance Club, we've found a delightful way to tackle it – dancing! A few minutes during lunch to re-energize, make memories, and let go of stress. Our club is a warm and non-judgemental community, where dance skills don't matter. All you need is a willingness to try something new and enjoy yourself. So don’t hesitate, join the Joy Dance Club today, and let the joy begin! 😊 Check out our club instagram!! https://www.instagram.com/gunn_joydance__club/",
             "day": "Monday",
             "time": "Lunch",
@@ -820,18 +784,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Katherine Ja",
             "email": "kja@pausd.org"
         },
-        "61015": {
-            "new": false,
-            "name": "SafeSpace Club",
-            "tier": 1,
-            "desc": "SafeSpace is a youth-led, mental health-focused organization that empowers young people to engage openly with their local schools and communities. We create and implement  initiatives to change the conversation around mental health by educating and encouraging our peers to speak up, support others, and seek help when needed. In meetings, we will work on student-led initiatives, presentations, and film screenings about mental health aimed to improve the Gunn community!",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "K-1",
-            "prez": "Heeseo Jeong",
-            "advisor": "Tracie Carroll",
-            "email": "tcarroll@pausd.org"
-        },
         "61802": {
             "new": false,
             "name": "Biochemistry Olympiads Club",
@@ -907,7 +859,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
         "65467": {
             "new": false,
             "name": "Dream Volunteers",
-            "tier": 2,
+            "tier": 1,
             "desc": "The Dream Volunteer Club promotes both local and international services for young students world wide. The program helps students discover new perspectives of the world and empowers them to make meaningful changes in their community. Along with in-club service projects, for students interested, the club will be working with the dream volunteers organization for the annual Spring Service Trip to Guatemala during the Spring Break of 2024!",
             "day": "Monday",
             "time": "Lunch",
@@ -952,18 +904,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Paul Dunlap",
             "email": "pdunlap@pausd.org"
         },
-        "67119": {
-            "new": true,
-            "name": "Golf Economics & Engineering Club",
-            "tier": 1,
-            "desc": "Here at Golf Economics and Engineering Club, passion for the strategic world of golf intersects with the realms of economics and engineering. Our club serves as a unique platform for individuals who are enthusiastic about the sport of golf, intrigued by its economic impact, and fascinated by the engineering innovations that enhance the game. Through collaborative learning, interactive discussions, and practical experiences, we aim to broaden our understanding of golf's influence on economies, as well as the role of engineering in shaping the game's evolution.",
-            "day": "Wednesday",
-            "time": "Lunch",
-            "room": "K-15",
-            "prez": "Marcello Chang",
-            "advisor": "Dethrick Slocum",
-            "email": "dslocum@pausd.org"
-        },
         "67988": {
             "new": false,
             "name": "412 Christian Club",
@@ -989,18 +929,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "email": "bgonzalez@pausd.org",
             "coadvisor": "Timothy Young",
             "coemail": "tyoung@pausd.org"
-        },
-        "70273": {
-            "new": true,
-            "name": "CareeHER Exploration",
-            "tier": 1,
-            "desc": "From the curriculum, to the conversations, to the interests and eventually life-careers students pursue, Gunn’s entire culture down to the very opportunities offered, is very STEM-oriented. Although there is nothing inherently wrong with STEM, it’s the lack of diversity and unequal distributed resources that is concerning and preventing students with other aspirations from pursuing their equally important passions. In our very STEM-saturated school, we want to shine light on the various other brilliant and feasible careers students can pursue that are otherwise considered ‘untraditional’ and ‘undesirable’ at Gunn. We aim to invite women leaders from a vast diversity of fields, the arts, music, digital design, entrepreneurship, law, writing, film, and others  through our bi-weekly meetings! We believe every dream is worthwhile and we hope to provide a space for students with underrepresented interests to give them courage and community to pursue their interests, be it STEM or- non-STEM.",
-            "day": "Thursday",
-            "time": "Lunch",
-            "room": "N-103",
-            "prez": "Siyona Dhingra",
-            "advisor": "Jennifer Cassel",
-            "email": "jcassel@pausd.org"
         },
         "72017": {
             "new": true,
@@ -1089,7 +1017,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
         "77952": {
             "new": false,
             "name": "Business Club",
-            "tier": 2,
+            "tier": 1,
             "desc": "The purpose of Gunn Business is to provide high school students interested in business and/or business-related fields with opportunities to develop vocational and personal competencies. Gunn Business seeks to develop members that are academically prepared, community-oriented, professionally responsible, and experienced with leadership.",
             "day": "Wednesday",
             "time": "Lunch",
@@ -1123,18 +1051,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "email": "dgill@pausd.org",
             "coadvisor": "Tara Firenzi",
             "coemail": "tfirenzi@pausd.org"
-        },
-        "80481": {
-            "new": false,
-            "name": "Sky of Hope",
-            "tier": 1,
-            "desc": "The Sky of Hope Club invites people to come together as a team to help national nonprofit organizations and people in need. We have worked with different organizations such as the Parkinson's Foundation and American Cancer Society. In the long term, we serve to inspire a generation of compassionate volunteers. Come by to enjoy some snacks, learn about ways to help the community, and participate in fun service activities!",
-            "day": "Tuesday",
-            "time": "Lunch",
-            "room": "C-07",
-            "prez": "Alan Yue",
-            "advisor": "Max Zipperstein",
-            "email": "mzipperstein@pausd.org"
         },
         "80606": {
             "new": false,
@@ -1193,10 +1109,10 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "desc": "AI and Policy aims to build a tight-knit community for students to delve into policy analysis and creation focused on AI. Through engaging activities like lively mock debates and moot courts, comprehensive policy research projects, current event discussions, and guest speaker sessions. Participants actively explore the art and mechanics of policymaking, with a strong emphasis on AI and technology governance, fostering analytical thinking and informed discourse. This club serves as a dynamic hub for young minds to dissect, comprehend, and deliberate upon the intricacies of policies, enriching their grasp of real-world decision-making processes.",
             "day": "Monday",
             "time": "Lunch",
-            "room": "G-03 teacher did not confirm but this is teachers classroom",
+            "room": "TBD",
             "prez": "Ruddhra Gupta",
-            "advisor": "Diana Modica",
-            "email": "dmodica@pausd.org"
+            "advisor": "Kathy Hawes",
+            "email": "khawes@pausd.org"
         },
         "83622": {
             "new": false,
@@ -1209,18 +1125,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "prez": "Timon Cappella-Pimor",
             "advisor": "Briana Gonzalez",
             "email": "bgonzalez@pausd.org"
-        },
-        "84428": {
-            "new": false,
-            "name": "Math in Scientific Research",
-            "tier": 1,
-            "desc": "The Math in Scientific Research Club focuses on the usage of math in scientific research in different fields such as astronomy, chemistry, neuroscience, biology, physics, etc. Come by to learn how Hubble used linear regression to calculate the Hubble constant or how mathematical theories can provide insights into complex, living systems. Snacks will be offered and we meet once every two weeks!",
-            "day": "Thursday",
-            "time": "Lunch",
-            "room": "K-10",
-            "prez": "Alan Yue",
-            "advisor": "sophia lo",
-            "email": "tslo@pausd.org"
         },
         "84933": {
             "new": false,
@@ -1269,18 +1173,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "prez": "Ezra Furtado-Tiwari",
             "advisor": "Daniel Hahn",
             "email": "dhahn@pausd.org"
-        },
-        "91609": {
-            "new": false,
-            "name": "Surfrider Club",
-            "tier": 1,
-            "desc": "Surfrider is a club dedicated to raising awareness about and protecting Bay Area’s oceans and beaches. In our meetings we will be informing participants of upcoming beach cleanups, working on environmentally conscious projects, hosting guest speakers, and doing activities/games centered around beach health.",
-            "day": "Tuesday",
-            "time": "Lunch",
-            "room": "N-111",
-            "prez": "Rhea Bhargava",
-            "advisor": "Kim Sabbag",
-            "email": "ksabbag@pausd.org"
         },
         "91813": {
             "new": false,
@@ -1359,7 +1251,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
         "94730": {
             "new": false,
             "name": "Civic Engagement and Education Project",
-            "tier": 2,
+            "tier": 1,
             "desc": "The Civic Engagement and Education Project is a student-led club at Gunn focused on increasing voter education in high schoolers. It was created with the League of Women Voters Palo Alto, a nonpartisan, nonprofit organization (for all genders, not just women) dedicated to encouraging civic engagement in the government (voting).  The goal of the club is to create greater awareness surrounding voting habits and registration details at Gunn. CEEP will do this through: - Mock elections with sample ballots - Registration/education drives - Social media posts - Holding meetings every other week",
             "day": "Monday",
             "time": "Lunch",
