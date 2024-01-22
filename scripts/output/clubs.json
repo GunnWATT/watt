@@ -1,5 +1,5 @@
 {
-    "timestamp": "2024-01-10T19:52:00.930Z",
+    "timestamp": "2024-01-22T19:29:48.415Z",
     "data": {
         "11206": {
             "new": false,
@@ -518,10 +518,10 @@
             "desc": "Hello Titans! Gunn Tea Club is a chill environment to try new teas and meet fellow tea enthusiasts. We will be providing the supplies to steep and enjoy tea. We plan on hosting a few special events, such as a tea party, a cultural tea showcase, and a tea art session. Stop by room M-1 every Thursday at lunch!",
             "day": "Thursday",
             "time": "Lunch",
-            "room": "M-1",
+            "room": "N-103",
             "prez": "Jonathan Yang",
-            "advisor": "Marie Durquet",
-            "email": "mdurquet@pausd.org"
+            "advisor": "Jennifer Cassel",
+            "email": "jcassel@pausd.org"
         },
         "47407": {
             "new": true,
@@ -645,29 +645,17 @@
             "coadvisor": "Maria Powell",
             "coemail": "mpowell@pausd.org"
         },
-        "51421": {
-            "new": false,
-            "name": "Cartoons Club",
-            "tier": 2,
-            "desc": "Cartoons Club welcomes all who enjoy animated shows, whether it's a TV show, a mini web series, a movie, or anything in between. It's a place where long-time fans and intrigued newcomers can celebrate their favorite animated fandoms and learn more about the art of animation in the entertainment industry. While we focus mainly on American shows, anime and international animation lovers are welcome too. We watch shows as a group while also offering fun opportunities to discuss theories and lore, analyze story arcs, world-building, and characters, watch cast and crew panels, and much more. Come join us!",
-            "day": "Tuesday",
-            "time": "Lunch",
-            "room": "Little Theater (S-147)",
-            "prez": "Kristy Rueff",
-            "advisor": "Kristen Lo",
-            "email": "klo@pausd.org"
-        },
         "53483": {
             "new": false,
             "name": "Photography Club",
             "tier": 1,
             "desc": "From experienced to beginner photographers, Photography Club is for anyone with a passion or interest in taking photos. Our goal is to establish a space for students to share the joy of capturing different perspectives and learning from one another. We will cover the basic fundamentals of photography through fun activities and each member will learn to develop their individual styles and preferences. Members are welcome to use any camera or device available to them. Join Photography Club to experience the world through a lens!",
-            "day": "Monday",
+            "day": "Thursday",
             "time": "Lunch",
-            "room": "M-1",
+            "room": "K-1",
             "prez": "Jaein Chung",
-            "advisor": "Marie Durquet",
-            "email": "mdurquet@pausd.org"
+            "advisor": "Tracie Carroll",
+            "email": "tcarroll@pausd.org"
         },
         "54199": {
             "new": false,
@@ -1069,6 +1057,18 @@
             "advisor": "Casey O'Connell",
             "email": "coconnell@pausd.org"
         },
+        "82812": {
+            "new": false,
+            "name": "PC Programming Club",
+            "tier": 2,
+            "desc": "PC Programming Club aims to teach students about both high-level programming concepts such as web development and the underlying low-level hardware that everything runs on. Club members will be taught how to build and setup desktop computers from scratch, as well as how to develop for today's modern web landscape.",
+            "day": "Friday",
+            "time": "Lunch",
+            "room": "N-113",
+            "prez": "Timon Cappella-Pimor",
+            "advisor": "Briana Gonzalez",
+            "email": "bgonzalez@pausd.org"
+        },
         "82888": {
             "new": false,
             "name": "Amnesty International Club",
@@ -1100,24 +1100,12 @@
             "name": "AI and Policy",
             "tier": 1,
             "desc": "AI and Policy aims to build a tight-knit community for students to delve into policy analysis and creation focused on AI. Through engaging activities like lively mock debates and moot courts, comprehensive policy research projects, current event discussions, and guest speaker sessions. Participants actively explore the art and mechanics of policymaking, with a strong emphasis on AI and technology governance, fostering analytical thinking and informed discourse. This club serves as a dynamic hub for young minds to dissect, comprehend, and deliberate upon the intricacies of policies, enriching their grasp of real-world decision-making processes.",
-            "day": "Monday",
+            "day": "Friday",
             "time": "Lunch",
-            "room": "TBD",
+            "room": "N-209",
             "prez": "Ruddhra Gupta",
             "advisor": "Kathy Hawes",
             "email": "khawes@pausd.org"
-        },
-        "83622": {
-            "new": false,
-            "name": "HiLo Integration Club",
-            "tier": 2,
-            "desc": "HiLo Integration Club aims to teach students about both high-level programming concepts such as web development and the underlying low-level hardware that everything runs on. Club members will be taught how to build and setup desktop computers from scratch, as well as how to develop for today's modern web landscape.",
-            "day": "Friday",
-            "time": "Lunch",
-            "room": "N-113",
-            "prez": "Timon Cappella-Pimor",
-            "advisor": "Briana Gonzalez",
-            "email": "bgonzalez@pausd.org"
         },
         "84933": {
             "new": false,
