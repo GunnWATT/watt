@@ -40,7 +40,7 @@ export default function ClubComponentModal(props: ClubComponentModalProps) {
     }
 
     // Prefill the form link from club and user name, if it exists
-    const prefilledLink = `https://docs.google.com/forms/d/e/1FAIpQLSfHF5w1sZc5pjj1PBjm9udRRgl60IeWxEf4Y0lAXCETPfuN4g/viewform?entry.676984385=${name}`
+    const prefilledLink = `https://docs.google.com/forms/d/e/1FAIpQLSfHF5w1sZc5pjj1PBjm9udRRgl60IeWxEf4Y0lAXCETPfuN4g/viewform?entry.1908442890=${name}`
         + (user ? `&entry.924762737=${user.displayName}` : '')
 
     return (
