@@ -47,23 +47,21 @@ function staffMatch(staffA: Staff, staffB: Staff) {
         .filter(a => a)
         .map((str) => {
             // The returned data seems to be in the form of one of:
-            // <td><a href="mailto:email">name</a></td><td>department</td><td>room</td><td>ext</td><td>phone</td>
-            // <td>name</td><td>department</td><td>room</td><td>ext</td><td>phone</td>
+            // <td><a href="mailto:email">name</a></td><td>department</td><td>phone</td>
+            // <td>name</td><td>department</td><td>phone</td>
             const regexOut = str
-                .replace(/&nbsp;/g, '')
+                .replace(/&nbsp;|(?:<\/?p>)/g, '')
                 .replace(/&#39;/g, '\'')
                 .replace(/&amp;/g, '&')
-                .match(/<td>(?:<a(?: href="mailto:(?<email>[^"]+)?")?.*>)?(?<name>[^<]+)(?:<\/a>)?<\/td><td>(?<dept>[^<]*)<\/td><td>(?<room>[^<]*)<\/td><td>(?<ext>[^<]*)<\/td><td>(?<phone>[^<]*)<\/td>/);
+                .match(/<td>(?:<a(?: href="mailto:(?<email>[^"]+)?")?.*>)?(?<name>[^<]+)(?:<\/a>)?<\/td><td>(?<dept>[^<]*)<\/td><td>(?<phone>[^<]*)<\/td>/);
 
             if (!regexOut)
                 throw `Error while parsing Gunn website staff: "${str}" not parsable!`;
 
-            const {email, name, dept, room, ext, phone} = regexOut.groups!;
+            const {email, name, dept, phone} = regexOut.groups!;
             return {
                 email, name, dept,
-                phone: phone ? phone.match(/^(.+?),?$/)![1] : undefined, // Trim trailing comma
-                room: room || undefined,
-                ext: ext || undefined
+                phone: phone && phone.match(/^(.+?),?$/)![1] // Trim trailing comma
             };
         });
 
@@ -92,7 +90,10 @@ function staffMatch(staffA: Staff, staffB: Staff) {
         }
 
         if (!match) warn(`${staff.name} not matched, generating new ID`)
-        final.data[match ?? newID()] = staff;
+        final.data[match ?? newID()] = {
+            ...(match && prev.data[match].name === staff.name && prev.data[match]),
+            ...staff
+        }
     }
 
     const str = JSON.stringify(final, null, 4);
