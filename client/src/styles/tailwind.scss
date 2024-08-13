@@ -27,6 +27,7 @@
 
     html {
         @apply h-full;
+        -webkit-tap-highlight-color: transparent;
     }
     a {
         @apply text-theme;
