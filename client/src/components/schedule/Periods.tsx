@@ -71,7 +71,7 @@ export default function Periods(props: PeriodsProps) {
             <>
                 <section className="text-center mt-10 mb-4">
                     <h2 className="text-2xl font-medium">No school today!</h2>
-                    <p>Enjoy your weekend!</p>
+                    {(viewDate.weekday === 6 || viewDate.weekday === 7) && <p>Enjoy your weekend!</p>}
                 </section>
                 <NoSchoolImage viewDate={viewDate}/>
             </>

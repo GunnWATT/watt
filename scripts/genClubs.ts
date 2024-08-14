@@ -20,16 +20,27 @@ import {info, prompt, warn} from './util/logging';
     // Remove the first (header) row
     const clubs: Club[] = data.slice(1)
         .map(club => {
-            const [retOrNew, name, typeText, desc, day, time, room, prez, advisor, email, coadvisor, coemail] = club.map(x => x.trim());
+            const [retOrNew, name, type, tier, desc, day, freq, time, room, prez, advisor, email, coadvisor, coemail] = club.map(x => x.trim());
             const newClub = retOrNew.toLowerCase().includes('new');
-            const tier = parseInt(typeText[5]);
 
             const extras = coadvisor.length > 0 ? {
                 coadvisor, coemail
             } : {};
             return {
-                new: newClub, name, tier: tier as 1 | 2 | 3, desc, day, time: time as 'Lunch' | 'After School', room, prez,
-                advisor, email, ...extras
+                new: newClub,
+                name,
+                type,
+                tier: parseInt(tier.match(/\d+/)![0]) as 1 | 2 | 3,
+                desc,
+                day,
+                freq,
+                time: time as 'Lunch' | 'After School',
+                room: room.replace(/([a-z])(?:[-\s]*)(?:0+)?(\d+)/gi, 
+                    (_, building, room) => `${building.toUpperCase()}-${room}`),
+                prez,
+                advisor,
+                email,
+                ...extras
             }
         })
 

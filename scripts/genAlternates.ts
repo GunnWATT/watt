@@ -207,7 +207,7 @@ function parseAlternate(summary: string | undefined, description: string | undef
     const prev: {[key: string]: PeriodObj[] | null} = JSON.parse(readFileSync('./output/alternates.json').toString());
 
     // Fetch iCal source, parse
-    const raw = await (await fetch('https://gunn.pausd.org/cf_calendar/feed.cfm?type=ical&feedID=7654073B8805455AAB50D082A5DE0A70')).text();
+    const raw = await (await fetch('https://gunn.pausd.org/cf_calendar/feed.cfm?type=ical&feedID=3FC31A8EAE8A4918B2E582A69B519816')).text();
     const calendar = Object.values(ical.parseICS(raw));
 
     const fAlternates: {[key: string]: PeriodObj[]} = {};
