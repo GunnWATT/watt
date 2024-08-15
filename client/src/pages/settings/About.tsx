@@ -38,7 +38,7 @@ export default function About() {
                 and <a href="https://github.com/ytchang05" target="_blank" rel="noopener noreferrer">Yu-Ting</a> ('23), who originally wrote the backend.{' '}
                 <a href="https://github.com/ImNotRog" target="_blank" rel="noopener noreferrer">Roger</a> ('24) helped immensely with Schoology integration,
                 as well as maintaining the backend and scripts. <a href="https://github.com/julia7hk" target="_blank" rel="noopener noreferrer">Julia</a> ('24) maintained{' '}
-                WATT in the 2023-24 school year, and <a href="https://github.com/33tm" target="_blank" rel="noopener noreferrer">Leo</a> ('26) is now maintaining the app.
+                WATT in the 2023-24 school year, and <a href="https://github.com/33tm" target="_blank" rel="noopener noreferrer">Leo</a> ('27) is now maintaining the app.
                 Special thanks to <a href="https://github.com/mymylie" target="_blank" rel="noopener noreferrer">Mylie</a> who designed our lovely logo.
             </p>
 
