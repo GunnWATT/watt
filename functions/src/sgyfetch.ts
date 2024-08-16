@@ -18,9 +18,16 @@ async function getSgyInfo(uid: string) {
 }
 
 function getClassInfo(info: string) {
-    // Period (#### # Course) Teacher
-    const [, pName, pTeacher] = info.match(/(\d) \(\d{4} \d .*\) (.*)/) || [];
-    return { pName, pTeacher, term: null } // course names no longer contain the semester
+    const words = info.split(' ');
+    const pRegex = info.match(/\((.+)\)/); 
+    let term = null;
+    if(pRegex) {
+        const parenblock = pRegex[1]; // 2696 1 FY
+        const items = parenblock.split(' '); // [2696, 1, FY]
+        term = items[items.length - 1]; // FY
+    }
+    
+    return { pName: words[0], pTeacher: words[1], term };
 }
 
 type SgyPeriodData = {n: string, c: string, l: string, o: string, s: string};
@@ -47,7 +54,6 @@ export const init = functions.https.onCall(async (data, context) => {
         classes[p[0]] = { n: '', c: '', l: '', o: '', s: '' };
     }
 
-    const sgyPeriods: string[] = []
     const teachers: {[key: string]: [string, string]} = {};
     for (const element of sgyClasses) {
         let {pName, pTeacher, term} = getClassInfo(element['section_title']);
@@ -63,7 +69,10 @@ export const init = functions.https.onCall(async (data, context) => {
                 s: element.id
             }
 
-            sgyPeriods.push(pName)
+            if (['0', '8'].includes(pName))
+                await firestore.collection('users').doc(uid)
+                    .update({ [`options.period${pName}`]: true })
+                    .catch(e => console.log(e))
 
             // Zoom is deprecated
 
@@ -80,13 +89,7 @@ export const init = functions.https.onCall(async (data, context) => {
     }
 
     await firestore.collection('users').doc(uid)
-        .update({
-            classes,
-            options: {
-                period0: sgyPeriods.includes('0'),
-                period8: sgyPeriods.includes('8')
-            }
-        })
+        .update({classes: classes})
         .catch(e => console.log(e))
 
     return teachers;
