@@ -19,7 +19,7 @@ async function getSgyInfo(uid: string) {
 
 function getClassInfo(info: string) {
     // Period (#### # Course) Teacher
-    const [, pName, pTeacher] = info.match(/(\d) \(\d{4} \d .*\) (.*)/) || [];
+    const [, pName, pTeacher] = info.match(/(.*) \(.* .* .*\) (.*)/) || [];
     return { pName, pTeacher, term: null } // course names no longer contain the semester
 }
 
