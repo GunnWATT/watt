@@ -16,11 +16,12 @@ import clubs from '@watt/shared/data/clubs';
 
 
 type PeriodProps = {
+    id?: string,
     start: DateTime, end: DateTime,
     name: string, color: string, format: string, room?: string, note?: string, grades?: number[]
 };
 export default function Period(props: PeriodProps) {
-    const {start, end, name, color, format, room, note, grades} = props;
+    const {id, start, end, name, color, format, room, note, grades} = props;
     const duration = start.until(end); // Duration representing the period
 
     const now = useContext(CurrentTimeContext);
@@ -50,7 +51,13 @@ export default function Period(props: PeriodProps) {
 
     const header = (
         <>
-            <h2 className="text-xl break-words min-w-0">{name}</h2>
+            <h2 className="text-xl break-words min-w-0">
+                {id ? (
+                    <a href={`https://pausd.schoology.com/course/${id}`} className="text-white" target="__blank">
+                        {name}
+                    </a>
+                ) : name}
+            </h2>
             <span className="flex gap-1">
                 {room && (
                     <span className="rounded-full px-2 py-1 text-xs h-max bg-black/10 dark:bg-black/20">

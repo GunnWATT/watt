@@ -50,6 +50,7 @@ export default function Periods(props: PeriodsProps) {
                 {displayIndicator && <PeriodIndicator startTime={periods![0].s}/>}
                 {periods!.map(({n, s, e, note, grades}) => (
                     <Period
+                        id={getPeriodId(n, userData)}
                         name={parsePeriodName(n, userData)}
                         color={parsePeriodColor(n, userData)}
                         key={n + s + e + note + grades}
@@ -111,6 +112,11 @@ export const darkPerColors = [
     '#eb4747', '#29a395', '#2b98ca', '#7842d7',
     '#d22d51', '#ed7621', '#eeb82f', '#373739'
 ];
+
+function getPeriodId(name: string, userData?: UserData) {
+    const classes = userData?.classes as {[key: string]: SgyPeriodData} | undefined;
+    return classes?.[name]?.s;
+}
 
 // Turns an object key into human-readable period name.
 export function parsePeriodName(name: string, userData?: UserData) {
