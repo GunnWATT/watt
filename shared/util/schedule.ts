@@ -8,8 +8,9 @@ import schedule, {SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE, PeriodObj} fro
 export const numToWeekday = (num: number) => ['S', 'M', 'T', 'W', 'R', 'F', 'A'][num];
 
 // Account for how the weekly SELF/SH rotation aren't necessarily alternates
-export function isAlternate(normal: PeriodObj[], alternate: PeriodObj[]) {
-    const selfShFilter = ({ n }) => !['S', 'H'].includes(n);
+export function isAlternate(normal: PeriodObj[], alternate: PeriodObj[] | null) {
+    if (!alternate) return true
+    const selfShFilter = ({ n }: { n: PeriodObj["n"] }) => !['S', 'H'].includes(n);
     return JSON.stringify(normal.filter(selfShFilter)) !== JSON.stringify(alternate.filter(selfShFilter));
 }
 
