@@ -18,8 +18,8 @@ const altScheduleRegex = /schedule|extended/i; // /schedule|extended|lunch/i
 const noSchoolRegex = /holiday|no\s(students|school)|break|development/i;
 const primeReplacesSelfRegex = /PRIME (replaces|instead of) SELF|No SELF, extra PRIME/i;
 // const selfStudyHallRegex = /9\/10 (SELF|Study Hall), 11\/12 (SELF|Study Hall)/i;
-const selfRegex = /SELF \((9\/10|11\/12) grade\)/i;
-const studyHallRegex = /Study Hall \((9\/10|11\/12) grade\)/i;
+const selfRegex = /SELF: (9\/10|11\/12)/i;
+const studyHallRegex = /SH: (9\/10|11\/12)/i;
 
 // Parse an iCal summary and description into an array of `UnparsedPeriodObj`s
 function parseAlternate(summary: string | undefined, description: string | undefined, date: string) {
