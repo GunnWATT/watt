@@ -7,6 +7,12 @@ import schedule, {SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE, PeriodObj} fro
 // To account for duplicated weekday letters, Thursday is R and Saturday is A.
 export const numToWeekday = (num: number) => ['S', 'M', 'T', 'W', 'R', 'F', 'A'][num];
 
+// Account for how the weekly SELF/SH rotation aren't necessarily alternates
+export function isAlternate(normal: PeriodObj[], alternate: PeriodObj[]) {
+    const selfShFilter = ({ n }) => !['S', 'H'].includes(n);
+    return JSON.stringify(normal.filter(selfShFilter)) !== JSON.stringify(alternate.filter(selfShFilter));
+}
+
 // Gets the Gunn schedule for a given `DateTime`, as an object {periods, alternate} representing the day's schedule
 // as a `PeriodObj[]` or null if there's no school and whether the schedule is an alternate.
 export function getSchedule(date: DateTime, alternates: Alternates['alternates']) {
@@ -20,14 +26,16 @@ export function getSchedule(date: DateTime, alternates: Alternates['alternates']
     let periods: PeriodObj[] | null;
     let alternate = false;
 
+    const normal = schedule[numToWeekday(localizedDate.weekday % 7)];
+
     // Check for alternate schedules
     if (altFormat in alternates) {
         // If viewDate exists in alt schedules, load that schedule
         periods = alternates[altFormat];
-        alternate = true;
+        alternate = isAlternate(normal, periods);
     } else {
         // Otherwise, use default schedule
-        periods = schedule[numToWeekday(localizedDate.weekday % 7)];
+        periods = normal;
     }
 
     return {periods, alternate};
