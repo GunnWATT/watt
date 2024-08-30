@@ -53,7 +53,7 @@ export default function Period(props: PeriodProps) {
         <>
             <h2 className="text-xl break-words min-w-0">
                 {id ? (
-                    <a href={`https://pausd.schoology.com/course/${id}`} className="text-white" target="__blank">
+                    <a href={`https://pausd.schoology.com/course/${id}`} className="text-black dark:text-white" target="__blank">
                         {name}
                     </a>
                 ) : name}
