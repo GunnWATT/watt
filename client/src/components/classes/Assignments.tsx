@@ -156,26 +156,22 @@ export default function Assignments(props: AssignmentsProps & ActiveItemState) {
 
     return (
         <div className="flex flex-col gap-4">
-            {days.map(({day, upcoming: currUpcoming}) => {
-                const difference = Math.ceil(day.diff(currTime, 'days').days);
-                
-                return (
-                    <section className="flex flex-col gap-2.5" key={day.toISO()}>
-                        <h3 className="text-secondary">
-                            {day.toLocaleString(DATE_FULL_NO_YEAR)} • {difference ? `In ${pluralize(difference, 'day')}` : 'Today'}
-                        </h3>
-    
-                        {currUpcoming.map((assignment) => (
-                            <Assignment
-                                key={assignment.id}
-                                assignment={assignment}
-                                {...activeDayState}
-                                zIndex={count--}
-                            />
-                        ))}
-                    </section>
-                )
-            })}
+            {days.map(({day, upcoming: currUpcoming}) => (
+                <section className="flex flex-col gap-2.5" key={day.toISO()}>
+                    <h3 className="text-secondary capitalize">
+                        {day.toLocaleString(DATE_FULL_NO_YEAR)} • {day.toRelativeCalendar()}
+                    </h3>
+
+                    {currUpcoming.map((assignment) => (
+                        <Assignment
+                            key={assignment.id}
+                            assignment={assignment}
+                            {...activeDayState}
+                            zIndex={count--}
+                        />
+                    ))}
+                </section>
+            ))}
         </div>
     )
 }

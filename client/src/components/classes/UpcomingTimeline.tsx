@@ -235,10 +235,10 @@ export default function UpcomingTimeline(props: ActiveItemState & {upcoming: Ass
                             <text
                                 x={dayX} y={(sy + ey) / 2 + 10}
                                 dominantBaseline="central" // center vertically
-                                className="fill-primary"
+                                className="fill-primary capitalize"
                                 style={{fontSize: 15}}
                             >
-                                In {pluralize(Math.ceil(dateTime.diff(currTime, 'days').days), 'day')}
+                                {dateTime.toRelativeCalendar({unit: 'days'})}
                             </text>
                         </g>
                     )
