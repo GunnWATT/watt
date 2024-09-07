@@ -92,7 +92,7 @@ export default function DashboardBlurb(props: DashboardBlurbProps) {
                     <ContentButton onClick={() => setIncludeCompleted(!includeCompleted)}>
                         {includeCompleted ? 'Hide completed' : 'Show completed'}
                     </ContentButton>
-                    <Link to="upcoming" className="text-inherit dark:text-inherit no-underline">
+                    <Link to="upcoming" className="text-inherit dark:text-inherit hover:no-underline">
                         <ContentButton>See more in Upcoming</ContentButton>
                     </Link>
                 </div>
