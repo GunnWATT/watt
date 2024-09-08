@@ -108,6 +108,10 @@ export default function Period(props: PeriodProps) {
                     />
                 </div>
             )}
+
+            <button className={`mt-2 w-full md:w-fit md:absolute right-5 top-0 bottom-${duration.contains(now) ? '8' : '0'} md:my-auto md:h-fit bg-black/10 dark:bg-black/20 px-3.5 py-1.5 rounded-md`}>
+                Action
+            </button>
         </div>
     );
 }
