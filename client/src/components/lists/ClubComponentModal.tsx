@@ -46,7 +46,7 @@ export default function ClubComponentModal(props: ClubComponentModalProps) {
     return (
         <CenteredModal className="relative flex flex-col bg-content rounded-md max-w-md max-h-[90%] mx-2 p-6 shadow-xl" isOpen={isOpen} setIsOpen={setIsOpen}>
             <Dialog.Title className="text-xl font-semibold mb-3 pr-6">
-                {name}{props.new && <Badge>New</Badge>}
+                {name}{props.new && <Badge className="ml-2">New</Badge>}
             </Dialog.Title>
             <section className="flex gap-6 justify-between">
                 <div className="basis-1/3">
