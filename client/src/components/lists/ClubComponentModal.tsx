@@ -39,9 +39,31 @@ export default function ClubComponentModal(props: ClubComponentModalProps) {
         await updateUserData('clubs', userData.clubs.filter(clubID => clubID !== id), auth, firestore);
     }
 
+    // 2024-25 club form separates days and clubs into individual pages with distinct input IDs
+    const clubDay = day.match(/[,\s]/) ? 'Multiple days' : day
+
+    const clubInputId = {
+        'Monday': '510267970',
+        'Tuesday': '291556445',
+        'Wednesday': '52029868',
+        'Thursday': '1216828923',
+        'Friday': '1690660889',
+        'Multiple days': '1123021928'
+    }[clubDay]
+
     // Prefill the form link from club and user name, if it exists
-    const prefilledLink = `https://docs.google.com/forms/d/e/1FAIpQLSfHF5w1sZc5pjj1PBjm9udRRgl60IeWxEf4Y0lAXCETPfuN4g/viewform?entry.1908442890=${name}`
-        + (user ? `&entry.924762737=${user.displayName}&emailAddress=${user.email}` : '')
+    const prefilledData = {
+        ...(clubInputId && {
+            [`entry.${clubInputId}`]: name
+        }),
+        ...(user && {
+            ['emailAddress']: user.email,
+            ['entry.924762737']: user.displayName,
+            ['entry.607205617']: clubDay
+        })
+    } as Record<string, string>
+
+    const prefilledLink = `https://docs.google.com/forms/d/e/1FAIpQLSfHF5w1sZc5pjj1PBjm9udRRgl60IeWxEf4Y0lAXCETPfuN4g/viewform?${new URLSearchParams(prefilledData)}`
 
     return (
         <CenteredModal className="relative flex flex-col bg-content rounded-md max-w-md max-h-[90%] mx-2 p-6 shadow-xl" isOpen={isOpen} setIsOpen={setIsOpen}>
