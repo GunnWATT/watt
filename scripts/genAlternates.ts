@@ -14,7 +14,7 @@ const EARLIEST_AM_HOUR = 6;
 
 const timeGetterRegex = /\(?(1?\d)(?::(\d{2}))? *(?:am)? *[-–] *(1?\d)(?::(\d{2}))? *(noon|pm)?\)?/;
 const gradeGetterRegex = /(?<!Period |#)\d+(\/\d+)*(?!(?:st|nd|rd|th)\s+Period)/i;
-const altScheduleRegex = /schedule|extended/i; // /schedule|extended|lunch/i
+const altScheduleRegex = /staff pd|alt. sched|schedule|extended/i; // /schedule|extended|lunch/i
 const noSchoolRegex = /holiday|no\s(students|school)|break|development/i;
 const primeReplacesSelfRegex = /PRIME (replaces|instead of) SELF|No SELF, extra PRIME/i;
 // const selfStudyHallRegex = /9\/10 (SELF|Study Hall), 11\/12 (SELF|Study Hall)/i;
