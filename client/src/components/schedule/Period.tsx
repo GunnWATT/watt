@@ -109,7 +109,7 @@ export default function Period(props: PeriodProps) {
                 </div>
             )}
 
-            <button className={`mt-2 w-full px-3.5 py-1.5 rounded-md md:w-fit md:absolute right-5 top-0 ${duration.contains(now) ? 'bottom-8' : 'bottom-0'} md:my-auto md:h-fit bg-black/10 dark:bg-black/20 hover:bg-black/20 dark:hover:bg-black/30 transition duration-75`}>
+            <button className={`mt-2 w-full px-3.5 py-1.5 right-5 top-0 rounded-md ${note || 'md:w-fit md:absolute md:my-auto md:h-fit'} ${duration.contains(now) ? 'bottom-8' : 'bottom-0'} bg-black/10 dark:bg-black/20 hover:bg-black/20 dark:hover:bg-black/30 transition duration-75`}>
                 Action
             </button>
         </div>
