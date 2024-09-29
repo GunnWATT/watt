@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions';
 import admin from './util/adminInit';
+import fetch from 'node-fetch';
 
 import { DateTime } from 'luxon';
 import { getAlternates } from './util/apiUtil';

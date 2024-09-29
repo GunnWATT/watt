@@ -29,16 +29,18 @@ export default function MenuModal(props: MenuModalProps) {
                     <div key={item}>
                         <div
                             className="truncate text-center cursor-pointer px-8 py-4 text-secondary rounded-md bg-black/10 dark:bg-black/20 hover:bg-black/20 dark:hover:bg-black/30 transition duration-75"
-                            onClick={() => setNutritionModal(item)}
+                            onClick={() => nutrition && setNutritionModal(item)}
                         >
                             {item}
                         </div>
-                        <NutritionModal
-                            item={item}
-                            nutrition={nutrition}
-                            isOpen={(nutritionModal === item)}
-                            setIsOpen={() => setNutritionModal(null)}
-                        />
+                        {nutrition && (
+                            <NutritionModal
+                                item={item}
+                                nutrition={nutrition}
+                                isOpen={(nutritionModal === item)}
+                                setIsOpen={() => setNutritionModal(null)}
+                            />
+                        )}
                     </div>
                 ))}
             </section>
