@@ -21,7 +21,7 @@ export const menu = functions.https.onCall(async () => {
     }
 
     const current = (await firestore.collection('gunn').doc('menu').get()).data()!;
-    if (DateTime.fromISO(current.timestamp).plus({ week: 1 }) > now)
+    if (DateTime.fromISO(current.timestamp).plus({ day: 1 }) > now)
         return;
 
     const { daysInMonth, month, year } = now.plus({ week: 1 });
@@ -54,15 +54,18 @@ export const menu = functions.https.onCall(async () => {
     }
 
     async function getMenu(date: DateTime) {
-        const { year, month, day } = date
+        const { year, month, day } = date;
         const [brunch, lunch] = await Promise.all(['breakfast', 'lunch'].map(async meal => {
             const { menu_items } = await fetch(`${nutrislice}/digest/school/henry-m-gunn-hs/menu-type/${meal}/date/${year}/${month}/${day}`)
                 .then(res => res.json())
                 .catch(() => []);
             if (!menu_items) return;
             return Object.fromEntries(menu_items.map((item: string) => [item, nutrition.get(item) ?? null]));
-        }))
-        return [date.toFormat('MM-dd'), { brunch, lunch }];
+        }));
+        return [date.toFormat('MM-dd'), {
+            brunch: brunch ?? null,
+            lunch: lunch ?? null
+        }];
     }
 
     const days = Array
