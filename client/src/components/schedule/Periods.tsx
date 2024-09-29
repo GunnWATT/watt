@@ -9,9 +9,11 @@ import NoSchoolImage from './NoSchoolImage';
 // Contexts
 import CurrentTimeContext from '../../contexts/CurrentTimeContext';
 import UserDataContext, {SgyPeriodData, UserData} from '../../contexts/UserDataContext';
+import {MenuProvider} from '../../contexts/MenuContext';
 
 // Utils
 import {useSchedule} from '../../hooks/useSchedule';
+import {useMenu} from '../../hooks/useMenu';
 import {periodNameDefault} from '@watt/shared/util/schedule';
 
 
@@ -28,6 +30,9 @@ export default function Periods(props: PeriodsProps) {
     const format = userData.options.time === '24' ? 'H:mm' : 'h:mm a';
     const classes = userData.classes as {[key: string]: SgyPeriodData};
 
+    // Brunch/Lunch menu
+    const menu = useMenu();
+
     // HTML for a school day, assumes periods is populated
     const schoolDay = () => {
         // End time of the last period of the day
@@ -43,7 +48,7 @@ export default function Periods(props: PeriodsProps) {
         const displayIndicator = periods && minutes < periods[periods.length - 1].e && minutes >= periods[0].s - 20;
 
         return (
-            <>
+            <MenuProvider value={menu}>
                 <p className="mb-4">
                     School ends at <strong>{end.toFormat(format)}</strong> today.
                 </p>
@@ -62,7 +67,7 @@ export default function Periods(props: PeriodsProps) {
                         grades={grades}
                     />
                 ))}
-            </>
+            </MenuProvider>
         )
     }
 

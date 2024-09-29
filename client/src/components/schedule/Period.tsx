@@ -5,6 +5,7 @@ import {DateTime} from 'luxon';
 
 // Components
 import PillClubComponent from '../lists/PillClubComponent';
+import PeriodActionButton from '../layout/PeriodActionButton';
 
 // Contexts
 import UserDataContext from '../../contexts/UserDataContext';
@@ -53,7 +54,7 @@ export default function Period(props: PeriodProps) {
         <>
             <h2 className="text-xl break-words min-w-0">
                 {id ? (
-                    <a href={`https://pausd.schoology.com/course/${id}`} className="text-black dark:text-white" target="__blank">
+                    <a href={`https://pausd.schoology.com/course/${id}`} className="text-inherit" target="_blank">
                         {name}
                     </a>
                 ) : name}
@@ -80,7 +81,7 @@ export default function Period(props: PeriodProps) {
                     {({open}) => (<>
                         <Disclosure.Button className="flex flex-wrap gap-2 items-center mb-2">
                             {header}
-                            <FiChevronDown className={'h-6 w-6 rounded-full p-1 bg-black/10 dark:bg-black/20' + (open ? ' rotate-180' : '')} />
+                            <FiChevronDown className={'h-6 w-6 rounded-full p-1 bg-black/10 dark:bg-black/20 hover:bg-black/20 dark:hover:bg-black/30' + (open ? ' rotate-180' : '')} />
                         </Disclosure.Button>
                         <Disclosure.Panel className="text-secondary bg-black/10 dark:bg-black/20 rounded text-md p-2 -mx-2 mb-2 whitespace-pre-wrap">
                             {note}
@@ -108,6 +109,8 @@ export default function Period(props: PeriodProps) {
                     />
                 </div>
             )}
+
+            <PeriodActionButton {...props} date={start} now={duration.contains(now)} />
         </div>
     );
 }

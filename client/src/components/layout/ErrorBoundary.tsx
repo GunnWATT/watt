@@ -20,8 +20,8 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
                 <Wave />
                 <div className="absolute inset-0 h-max mx-4 md:mx-12 lg:mx-auto my-auto rounded-lg px-8 py-6 lg:max-w-4xl bg-content-secondary shadow-2xl border-t-8 border-theme flex flex-col max-h-[90%]">
                     <h3 className="font-bold text-2xl mb-3">WATT has crashed!</h3>
-                    <pre className="text-theme text-medium mb-4">
-                        {this.state.error.name} {this.state.error.message}
+                    <pre className="text-theme text-medium whitespace-pre-wrap mb-4">
+                        <strong>{this.state.error.name}:</strong> {this.state.error.message}
                     </pre>
                     <pre className="text-secondary text-sm whitespace-pre-wrap break-words overflow-y-auto scrollbar-none mb-3">
                         {this.state.error.stack}
