@@ -6,8 +6,8 @@ const apiBase = 'https://api.schoology.com/v1/';
 const oauth = new OAuth(
     `${apiBase}oauth/request_token`,
     `${apiBase}oauth/access_token`,
-    process.env.SCHOOLOGY_KEY!,
-    process.env.SCHOOLOGY_SECRET!,
+    process.env.SGY_KEY!,
+    process.env.SGY_SECRET!,
     '1.0',
     null,
     'HMAC-SHA1'
