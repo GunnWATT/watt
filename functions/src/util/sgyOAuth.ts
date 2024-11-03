@@ -1,15 +1,13 @@
-import * as functions from 'firebase-functions';
 import { OAuth } from 'oauth';
 
 
-const { key, secret } = functions.config().schoology;
 const apiBase = 'https://api.schoology.com/v1/';
 
 const oauth = new OAuth(
     `${apiBase}oauth/request_token`,
     `${apiBase}oauth/access_token`,
-    key,
-    secret,
+    process.env.SCHOOLOGY_KEY!,
+    process.env.SCHOOLOGY_SECRET!,
     '1.0',
     null,
     'HMAC-SHA1'

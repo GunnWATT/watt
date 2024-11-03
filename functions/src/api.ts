@@ -1,7 +1,6 @@
-import * as functions from 'firebase-functions';
+import {onRequest} from 'firebase-functions/v2/https';
 import express, {NextFunction, Request, Response} from 'express';
 import 'express-async-errors';
-import cors from 'cors';
 
 // Utils
 import {getAlternates, getDateParam, getNextPeriodOptsParams, StatusError} from './util/apiUtil';
@@ -15,7 +14,6 @@ import courses from '@watt/shared/data/courses';
 
 
 const app = express();
-app.use(cors({origin: true}));
 
 
 // GET /api/clubs
@@ -79,4 +77,4 @@ app.use((err: StatusError, req: Request, res: Response, next: NextFunction) => {
     res.status(err.status).json({error: err.message});
 });
 
-export const api = functions.https.onRequest(app);
+export const api = onRequest({cors: true}, app);

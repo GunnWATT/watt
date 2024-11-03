@@ -1,4 +1,4 @@
-import * as functions from 'firebase-functions';
+import {onCall, HttpsError} from 'firebase-functions/v2/https';
 import admin from './util/adminInit';
 import {get, getOAuthAccessToken, getOAuthRequestToken} from './util/sgyOAuth';
 
@@ -38,28 +38,26 @@ async function setAccessToken(uid: string, creds: {key: string, sec: string}, or
 
 
 // sgyauth
-type AuthData = {oauth_token: string}
-export const sgyauth = functions.https.onCall(async (data: AuthData, context: functions.https.CallableContext) => {
+export const sgyauth = onCall(async (request) => {
     // If the context contains no firebase auth token, return early
-    if (!context.auth) {
+    if (!request.auth) {
         console.log('sgyauth user has no context auth');
-        console.log({context,data});
-        throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.');
+        throw new HttpsError('unauthenticated', 'Error: user not signed in.');
     }
 
     // If the auth token has an invalid uid, return early
-    const uid = context.auth.uid;
+    const uid = request.auth.uid;
     if (!uid) {
         console.log('not signed in!')
-        throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.');
+        throw new HttpsError('unauthenticated', 'Error: user not signed in.');
     }
 
-    const oauthToken = data.oauth_token;
+    const oauthToken = request.data.oauth_token;
 
     if (oauthToken) {
         const requestToken = await getRequestToken(oauthToken);
         if (!requestToken)
-            throw new functions.https.HttpsError('not-found', 'Error: request token not associated to any user.');
+            throw new HttpsError('not-found', 'Error: request token not associated to any user.');
 
         let key!: string, secret!: string;
         try {
