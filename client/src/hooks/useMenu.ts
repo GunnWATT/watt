@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react';
 import { defaultMenu, Menu } from '../contexts/MenuContext';
-import { DateTime } from 'luxon';
 
 import { doc } from 'firebase/firestore';
-import { httpsCallable } from 'firebase/functions';
-import { useFirestore, useFirestoreDoc, useFunctions } from 'reactfire';
+import { useFirestore, useFirestoreDoc } from 'reactfire';
 
 
 export function useMenu() {
     const firestore = useFirestore();
-    const functions = useFunctions();
 
     const localStorageRaw = localStorage.getItem('menu');
     const [menu, setMenu] = useState(tryParseLocalStorageMenu());
@@ -18,9 +15,6 @@ export function useMenu() {
     useEffect(() => {
         const parsed = tryParseLocalStorageMenu();
         setMenu(parsed);
-        // Regenerate daily
-        if (DateTime.fromISO(parsed.timestamp).plus({ day: 1 }) < DateTime.now())
-            httpsCallable(functions, 'menu')();
         localStorage.setItem('menu', JSON.stringify(parsed));
     }, [localStorageRaw]);
 

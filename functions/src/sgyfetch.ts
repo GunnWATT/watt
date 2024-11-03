@@ -1,4 +1,4 @@
-import * as functions from 'firebase-functions';
+import {onCall, HttpsError} from 'firebase-functions/v2/https';
 import admin from './util/adminInit';
 import {get} from './util/sgyOAuth';
 
@@ -29,14 +29,14 @@ type SgyPeriodData = {n: string, c: string, l: string, o: string, s: string};
 // sgyfetch-init
 // Populate the user's period customization with fetched class names from schoology,
 // toggling 0 or 8th period if detected.
-export const init = functions.https.onCall(async (data, context) => {
-    const uid = context.auth?.uid
+export const init = onCall(async (request) => {
+    const uid = request.auth?.uid
     if (!uid)
-        throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.');
+        throw new HttpsError('unauthenticated', 'Error: user not signed in.');
 
     const sgyInfo = await getSgyInfo(uid);
     if (!sgyInfo)
-        throw new functions.https.HttpsError('unauthenticated', 'Error: user has not enabled schoology.');
+        throw new HttpsError('unauthenticated', 'Error: user has not enabled schoology.');
 
     const sgyClasses = await get(`users/${sgyInfo.uid}/sections`, sgyInfo.key, sgyInfo.sec)
         .catch(e => console.log(e))
@@ -94,14 +94,14 @@ export const init = functions.https.onCall(async (data, context) => {
 
 // sgyfetch-upcoming
 // this function is deprecated and is never used - rog
-export const upcoming = functions.https.onCall(async (data, context) => {
-    const uid = context.auth?.uid;
+export const upcoming = onCall(async (request) => {
+    const uid = request.auth?.uid;
     if (!uid)
-        throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.');
+        throw new HttpsError('unauthenticated', 'Error: user not signed in.');
 
     const sgyInfo = await getSgyInfo(uid);
     if (!sgyInfo)
-        throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.');
+        throw new HttpsError('unauthenticated', 'Error: user not signed in.');
 
     const currentDate = new Date();
     const startDate = `${currentDate.getFullYear()}${currentDate.getMonth()+1}${currentDate.getDate()}`
@@ -114,14 +114,14 @@ export const upcoming = functions.https.onCall(async (data, context) => {
 
 // sgyfetch-fetchMaterials
 // Fetches materials from all the courses
-export const fetchMaterials = functions.https.onCall(async (data, context) => {
-    const uid = context.auth?.uid;
+export const fetchMaterials = onCall(async (request) => {
+    const uid = request.auth?.uid;
     if (!uid)
-        throw new functions.https.HttpsError('unauthenticated', 'Error: user not signed in.');
+        throw new HttpsError('unauthenticated', 'Error: user not signed in.');
 
     const sgyInfo = await getSgyInfo(uid);
     if (!sgyInfo)
-        throw new functions.https.HttpsError('unauthenticated', 'Error: user has not enabled schoology.')
+        throw new HttpsError('unauthenticated', 'Error: user has not enabled schoology.')
 
     try {
         // Fetch grades, cuz that takes a while
@@ -186,7 +186,7 @@ export const fetchMaterials = functions.https.onCall(async (data, context) => {
         console.log(err.statusCode);
 
         if (err.statusCode === 429)
-            throw new functions.https.HttpsError('resource-exhausted', 'Error: Schoology limits exceeded. Please wait at least 5 seconds before trying again.')
+            throw new HttpsError('resource-exhausted', 'Error: Schoology limits exceeded. Please wait at least 5 seconds before trying again.')
 
         if (err.statusCode === 401) {
             // 401 means unauthorized sgy request
@@ -195,6 +195,6 @@ export const fetchMaterials = functions.https.onCall(async (data, context) => {
                 .update({ 'options.sgy': false })
                 .catch(e => console.log(e))
         }
-        throw new functions.https.HttpsError('internal', 'Internal error.')
+        throw new HttpsError('internal', 'Internal error.')
     }
 });

@@ -1,6 +1,5 @@
-import * as functions from 'firebase-functions';
+import { onSchedule } from 'firebase-functions/v2/scheduler';
 import admin from './util/adminInit';
-import fetch from 'node-fetch';
 
 import { DateTime } from 'luxon';
 import { getAlternates } from './util/apiUtil';
@@ -10,7 +9,7 @@ import { SCHOOL_START, SCHOOL_END } from '@watt/shared/data/schedule';
 
 const firestore = admin.firestore();
 
-export const menu = functions.https.onCall(async () => {
+export const menu = onSchedule("every day 00:00", async () => {
     const now = DateTime.now().setZone('America/Los_Angeles');
 
     if (now < SCHOOL_START || now > SCHOOL_END) {
@@ -20,10 +19,6 @@ export const menu = functions.https.onCall(async () => {
         });
         return;
     }
-
-    const current = (await firestore.collection('gunn').doc('menu').get()).data()!;
-    if (DateTime.fromISO(current.timestamp).plus({ day: 1 }) > now)
-        return;
 
     const { daysInMonth, month, year } = now.plus({ week: 1 });
     const { alternates } = await getAlternates();
@@ -83,6 +78,7 @@ export const menu = functions.https.onCall(async () => {
         .map(getNutrition));
 
     const menu = Object.fromEntries(await Promise.all(days.map(getMenu)));
+    const current = (await firestore.collection('gunn').doc('menu').get()).data()!;
 
     await firestore.collection('gunn').doc('menu').set({
         timestamp: new Date().toISOString(),
