@@ -1,6 +1,7 @@
-import {useAuth, useFunctions} from 'reactfire';
+import { useAuth, useFunctions } from 'reactfire';
 import { Functions, httpsCallable } from 'firebase/functions';
 import { Auth } from 'firebase/auth';
+import { useState } from 'react';
 
 
 export async function sgyAuth(auth: Auth, functions: Functions) {
@@ -19,9 +20,18 @@ export default function SgySignInBtn() {
     const auth = useAuth();
     const functions = useFunctions();
 
+    const [loading, setLoading] = useState(false);
+
     return (
-        <button className="rounded w-full p-5 bg-background shadow-lg" onClick={() => sgyAuth(auth, functions)}>
-            Authenticate Schoology
+        <button
+            onClick={() => {
+                setLoading(true)
+                sgyAuth(auth, functions)
+            }}
+            disabled={loading}
+            className="rounded w-full p-5 disabled:opacity-30 bg-background shadow-lg transition duration-200"
+        >
+            {loading ? "Loading..." : "Authenticate Schoology"}
         </button>
     )
 }

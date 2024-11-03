@@ -1,6 +1,6 @@
-import { useContext } from 'react';
-import {DateTime} from 'luxon';
-import Loading, { Spinner } from '../layout/Loading';
+import { useContext, useState } from 'react';
+import { DateTime } from 'luxon';
+import Loading from '../layout/Loading';
 
 // Firebase
 import { useAuth, useFunctions } from 'reactfire';
@@ -16,13 +16,26 @@ export default function FetchFooter() {
     const auth = useAuth();
     const functions = useFunctions();
 
+    const [resetting, setReseting] = useState(false);
+
     const cannotFetch = (lastAttemptedFetch != null && Date.now() - lastAttemptedFetch < 6 * 1000) || fetching;
 
     return (
         <footer className="mt-auto border-t border-tertiary divide-y divide-tertiary">
             <div className="py-2 flex items-center justify-between">
-                If your classes are wrong, reset Schoology.
-                <button className="px-2.5 py-[3px] rounded-md text-white bg-theme transition duration-200" onClick={() => sgyAuth(auth, functions)}>
+                {resetting ? (
+                    <Loading>Resetting...</Loading>
+                ) : (
+                    <div>If your classes are wrong, reset Schoology.</div>
+                )}
+                <button
+                    onClick={() => {
+                        setReseting(true)
+                        sgyAuth(auth, functions)
+                    }}
+                    disabled={resetting}
+                    className="px-2.5 py-[3px] rounded-md disabled:opacity-30 text-white bg-theme transition duration-200"
+                >
                     Reset
                 </button>
             </div>
