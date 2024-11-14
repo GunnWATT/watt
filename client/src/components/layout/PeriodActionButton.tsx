@@ -58,6 +58,11 @@ function MenuAction(props: PeriodActionButtonProps) {
     const formatted = date.toFormat('MM-dd');
     const meal = name.toLowerCase() as 'brunch' | 'lunch';
 
+    if (!menu) {
+        localStorage.removeItem('menu');
+        return <></>
+    }
+
     if (formatted in menu && menu[formatted][meal])
         return (
             <>
