@@ -19,7 +19,7 @@ export default function MenuModal(props: MenuModalProps) {
     const [nutritionModal, setNutritionModal] = useState<string | null>(null);
 
     return (
-        <CenteredModal className="relative flex flex-col bg-content rounded-md w-[28rem] max-h-[90%] mx-2 p-6 shadow-xl" isOpen={isOpen} setIsOpen={setIsOpen}>
+        <CenteredModal className="relative flex flex-col bg-content rounded-md min-w-full sm:min-w-[28rem] max-h-[90%] mx-2 p-6 shadow-xl" isOpen={isOpen} setIsOpen={setIsOpen}>
             <Dialog.Title className="text-xl font-semibold mb-3 pr-6">
                 {name} Menu
             </Dialog.Title>
@@ -29,18 +29,16 @@ export default function MenuModal(props: MenuModalProps) {
                     <div key={item}>
                         <div
                             className="truncate text-center cursor-pointer px-8 py-4 text-secondary rounded-md bg-black/10 dark:bg-black/20 hover:bg-black/20 dark:hover:bg-black/30 transition duration-75"
-                            onClick={() => nutrition && setNutritionModal(item)}
+                            onClick={() => setNutritionModal(item)}
                         >
                             {item}
                         </div>
-                        {nutrition && (
-                            <NutritionModal
-                                item={item}
-                                nutrition={nutrition}
-                                isOpen={(nutritionModal === item)}
-                                setIsOpen={() => setNutritionModal(null)}
-                            />
-                        )}
+                        <NutritionModal
+                            item={item}
+                            nutrition={nutrition}
+                            isOpen={nutritionModal === item}
+                            setIsOpen={() => setNutritionModal(null)}
+                        />
                     </div>
                 ))}
             </section>

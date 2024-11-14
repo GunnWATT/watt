@@ -14,7 +14,7 @@ function ActionButton(props: ActionButtonProps) {
     const { children, now, note, onClick } = props;
     return (
         <button
-            className={`mt-2 w-full px-3.5 py-1.5 right-5 top-0 rounded-md ${note || 'sm:w-fit sm:absolute sm:my-auto sm:h-fit'} ${now ? 'bottom-8' : 'bottom-0'} bg-black/10 dark:bg-black/20 hover:bg-black/20 dark:hover:bg-black/30 transition duration-75`}
+            className={`mt-2 w-full px-3.5 py-1.5 right-5 top-0 rounded-md ${note || 'md:w-fit md:absolute md:my-auto md:h-fit'} ${now ? 'bottom-8' : 'bottom-0'} bg-black/10 dark:bg-black/20 hover:bg-black/20 dark:hover:bg-black/30 transition duration-75`}
             onClick={onClick}
         >
             {children}
@@ -58,12 +58,7 @@ function MenuAction(props: PeriodActionButtonProps) {
     const formatted = date.toFormat('MM-dd');
     const meal = name.toLowerCase() as 'brunch' | 'lunch';
 
-    if (!menu) {
-        localStorage.removeItem('menu');
-        return <></>
-    }
-
-    if (formatted in menu && menu[formatted][meal])
+    if (menu && formatted in menu && menu[formatted][meal]) {
         return (
             <>
                 <ActionButton {...props} onClick={() => setModal(true)}>
@@ -77,6 +72,7 @@ function MenuAction(props: PeriodActionButtonProps) {
                 />
             </>
         )
+    }
 
     return <></>
 }

@@ -10,7 +10,7 @@ import { SCHOOL_START, SCHOOL_END } from '@watt/shared/data/schedule';
 const firestore = admin.firestore();
 
 export const menu = onSchedule("every day 00:00", async () => {
-    const now = DateTime.now().setZone('America/Los_Angeles');
+    const now = DateTime.now();
 
     if (now < SCHOOL_START || now > SCHOOL_END) {
         await firestore.collection('gunn').doc('menu').set({
@@ -66,8 +66,7 @@ export const menu = onSchedule("every day 00:00", async () => {
 
     const days = Array
         .from({ length: daysInMonth }, (_, i) => DateTime
-            .fromObject({ year, month, day: i + 1 })
-            .setZone('America/Los_Angeles'))
+            .fromObject({ year, month, day: i + 1 }))
         .filter(day => {
             const { periods } = getSchedule(day, alternates);
             return periods && periods.filter(({ n }) => n === 'B' || n === 'L').length;
