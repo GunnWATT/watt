@@ -6,7 +6,7 @@ import UserDataContext from '../contexts/UserDataContext';
 import AlternatesContext, {Alternates} from '../contexts/AlternatesContext';
 
 // Utils
-import {getSchedule} from '@watt/shared/util/schedule';
+import {getUserSchedule} from '@watt/shared/util/schedule';
 import {SCHOOL_END_EXCLUSIVE, PeriodObj} from '@watt/shared/data/schedule';
 
 
@@ -24,14 +24,9 @@ export function useSchedule(date: DateTime) {
     const altFormat = localizedDate.toFormat('MM-dd');
 
     useEffect(() => {
-        const {periods, alternate} = getSchedule(date, alternates);
+        const {periods, alternate} = getUserSchedule(userData, date, alternates);
 
-        setPeriods(periods && periods.filter(({n, grades}) => {
-            if (n === '0' && !userData.options.period0) return false;
-            if (n === '8' && !userData.options.period8) return false;
-            if (grades && userData.gradYear) return grades.includes(12 - (userData.gradYear - SCHOOL_END_EXCLUSIVE.year));
-            return true;
-        }));
+        setPeriods(periods || null);
         setAlternate(alternate);
 
         return function cleanup() {

@@ -1,7 +1,7 @@
 import {DateTime} from 'luxon';
 import { UserData } from '../contexts/UserDataContext';
 import {Alternates} from '../contexts/AlternatesContext';
-import { getSchedule } from '@watt/shared/util/schedule';
+import { getSchedule, getUserSchedule } from '@watt/shared/util/schedule';
 import { SCHOOL_END_EXCLUSIVE, SCHOOL_START } from '@watt/shared/data/schedule';
 
 
@@ -86,27 +86,22 @@ export function nextSchoolDay(userData: UserData, alternates: Alternates['altern
     let now = DateTime.now();
 
     while (true) {
+        now = now.plus({day: 1}); // increment day
+
         if (now > SCHOOL_END_EXCLUSIVE) break;
 
-        const sched = getSchedule(now, alternates).periods;
-        if (sched) {
-            const periods = sched.filter(({n}) => {
-                if (n === '0' && !userData.options.period0) return false;
-                if (n === '8' && !userData.options.period8) return false;
-                return true;
-            });
+        const {periods} = getUserSchedule(userData, now, alternates);
+        if (periods) {
             const end = periods[periods.length - 1].e;
             // console.log(now.clone().startOf('day').add(end, 'minutes').format('MMMM Do hh:mm:ss'));
             // console.log(moment().isAfter(now.clone().startOf('day').add(end, 'minutes')))
             if (DateTime.now() <= now.startOf('day').plus({minute: end})) break;
         }
-
-        now = now.plus({day: 1}); // increment day
     }
 
     if (now > SCHOOL_END_EXCLUSIVE) return null;
 
-    const p = getSchedule(now, alternates).periods![0];
+    const p = getUserSchedule(userData, now, alternates).periods![0];
     if (p) {
         const t = p.s;
         const m = t % 60;

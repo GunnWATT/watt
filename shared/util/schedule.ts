@@ -1,5 +1,6 @@
 import {DateTime} from 'luxon';
 import {Alternates} from '@watt/client/src/contexts/AlternatesContext';
+import {UserData} from '@watt/client/src/contexts/UserDataContext';
 import schedule, {SCHOOL_START, SCHOOL_END, SCHOOL_END_EXCLUSIVE, PeriodObj} from '../data/schedule';
 
 
@@ -29,6 +30,21 @@ export function getSchedule(date: DateTime, alternates: Alternates['alternates']
         // Otherwise, use default schedule
         periods = schedule[numToWeekday(localizedDate.weekday % 7)];
     }
+
+    return {periods, alternate};
+}
+
+// Filters `periods` from `getSchedule()` to apply to the given `UserData`
+export function getUserSchedule(userData: UserData, date: DateTime, alternates: Alternates['alternates']) {
+    const schedule = getSchedule(date, alternates);
+    const {alternate} = schedule
+
+    const periods = schedule.periods?.filter(({n, grades}) => {
+        if (n === '0' && !userData.options.period0) return false;
+        if (n === '8' && !userData.options.period8) return false;
+        if (grades && userData.gradYear) return grades.includes(12 - (userData.gradYear - SCHOOL_END_EXCLUSIVE.year));
+        return true;
+    });
 
     return {periods, alternate};
 }
