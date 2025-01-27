@@ -1,5 +1,5 @@
 {
-    "timestamp": "2025-01-19T00:44:16.642Z",
+    "timestamp": "2025-01-27T09:29:59.461Z",
     "data": {
         "13302": {
             "new": false,
@@ -128,6 +128,20 @@
             "prez": "Jolie Zhou",
             "advisor": "Gopi Tantod",
             "email": "gtantod@pausd.org"
+        },
+        "18185": {
+            "new": true,
+            "name": "Start-Up Club",
+            "type": "Discussion",
+            "tier": 2,
+            "desc": "The Start-Up Club empowers students to explore entrepreneurship by learning how to create, pitch, and develop start-up ideas. Members will engage in workshops, case studies, guest speaker events, and collaborative brainstorming sessions. The club’s mission is to foster creativity, critical thinking, and leadership while preparing students to turn innovative ideas into actionable business plans.",
+            "day": "Tuseday",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "J-1",
+            "prez": "Valerie Yang",
+            "advisor": "Amy Bradshaw",
+            "email": "abradshaw@pausd.org"
         },
         "18279": {
             "new": true,
@@ -467,6 +481,20 @@
             "coadvisor": "Natalia Hawthorne",
             "coemail": "nhawthorne@pausd.org"
         },
+        "38064": {
+            "new": true,
+            "name": "Biochemistry Club",
+            "type": "STEM",
+            "tier": 1,
+            "desc": "The Biochemistry Club is a community dedicated to exploring the molecular basis of life. We will explore in depth biomolecules, metabolic pathways, intercellular communication, and structural biochemistry. Our activities include interactive presentations, hands-on lab demonstrations, and guest lectures from researchers. We will also introduce research on the biochemical basis of various disorders and diseases. Our ultimate mission is to foster interest in the developing field of biochemistry.",
+            "day": "Friday",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "J-6",
+            "prez": "Daniel Li",
+            "advisor": "Casey O'Connell",
+            "email": "coconnell@pausd.org"
+        },
         "38776": {
             "new": false,
             "name": "History Club",
@@ -536,6 +564,20 @@
             "prez": "Melinda Huang",
             "advisor": "Emily Yun",
             "email": "eyun@pausd.org"
+        },
+        "40443": {
+            "new": true,
+            "name": "Current Events Club",
+            "type": "Discussion",
+            "tier": 1,
+            "desc": "Current Events club is a place where students can learn about what's going on in the world every week. The goal for the club is to share and discuss interesting topics involving politics, human rights, and other events going on in the world right now. We will analyze these events through different perspectives, and look at the news and different articles of an event from varying media outlets (CNN, FOX, BBC) to examine biases and how what we see in the news affects our perception of events. More than this, we want a place where everyone has the opportunity to expand their worldview and think differently outside of what we learn in school. Students will be more informed on current topics and international affairs and be able to improve their articulation in civil discussions. Lastly, we will examine our own privileges and society in America compared to other places in the world.",
+            "day": "Thursday",
+            "freq": "Every Other Week",
+            "time": "Lunch",
+            "room": "C-4",
+            "prez": "Gibran Rahimtoola",
+            "advisor": "Max Zipperstein",
+            "email": "mzipperstein@pausd.org"
         },
         "41078": {
             "new": false,
@@ -965,6 +1007,20 @@
             "coadvisor": "Cindy Peteres",
             "coemail": "cpeters@pausd.org"
         },
+        "62375": {
+            "new": true,
+            "name": "AI in Business Club",
+            "type": "STEM",
+            "tier": 1,
+            "desc": "Discover how AI is transforming the business world in the AI in Business Club. Members will explore how companies use AI to solve problems and create opportunities, discuss the future of AI in industries, and engage in hands-on activities like brainstorming business ideas, learning how to create custom GPT's, and learning prompt engineering. Guest speakers from AI and business fields will inspire and share insights, fostering creativity and critical thinking.",
+            "day": "Monday",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "N-211",
+            "prez": "Maitreyee Sen",
+            "advisor": "Khoa Dao",
+            "email": "kdao@pausd.org"
+        },
         "62410": {
             "new": false,
             "name": "The Chariot",
@@ -1009,6 +1065,20 @@
             "coadvisor": "Tara Firenzi",
             "coemail": "tfirenzi@pausd.org"
         },
+        "63100": {
+            "new": true,
+            "name": "Power of Water",
+            "type": "Discussion",
+            "tier": 1,
+            "desc": "Our club is dedicated to raising awareness about global water shortages and the power of clean water around the world. The club will invite guest speakers from an international nonprofit organization called the Power of Clean Water, which establishes accessible water systems to communities in Africa and the US. By sharing information and knowledge about sustainable clean water access projects in developing countries, and through fun, interactive activities, we will foster an informed community of students who are willing to bring a change, one drop of water at a time.",
+            "day": "Wednesday",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "C-3",
+            "prez": "Shrishti Sinha",
+            "advisor": "Benjamin Beresford",
+            "email": "bberesford@pausd.org"
+        },
         "64018": {
             "new": false,
             "name": "Voices of Unity Club",
@@ -1036,6 +1106,20 @@
             "prez": "Jennifer Li",
             "advisor": "Paul Dunlap",
             "email": "Pdunlap@pausd.org"
+        },
+        "67777": {
+            "new": true,
+            "name": "Language Bridge Club",
+            "type": "Culture, Religion, and Language",
+            "tier": 1,
+            "desc": "This club aims to support English Language Learner (ELL) students in adapting to Gunn society and the community. For club activities, we will offer insights about school events and culture, as well as the facilities around the school which many may not be familiar with, such as museums and landmarks in Palo Alto. We will also support each other by sharing each member’s cultures, learning from one another and building a strong community of diverse learners.",
+            "day": "Thursday, Friday",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "C-6",
+            "prez": "Urim Kang",
+            "advisor": "Alexis Letner",
+            "email": "aletner@pausd.org"
         },
         "68103": {
             "new": false,
@@ -1178,16 +1262,16 @@
             "email": "vbuck@pausd.org"
         },
         "76373": {
-            "new": false,
+            "new": true,
             "name": "Weightlifting Club",
             "type": "Sports",
             "tier": 1,
-            "desc": "Weightlifting Club is an inclusive strength community that welcomes any type of lifter - beginner to advanced. Come learn how to safely lift so you can get stronger, healthier, and achieve new PRs!",
-            "day": "Thursday",
+            "desc": "Weightlifting Club is an inclusive strength community that welcomes any type of lifter - beginner to advanced. We provide the opportunity for students to use and enjoy the Gunn weight room. Come learn how to lift safely so you can get stronger, healthier and achieve new PRs!",
+            "day": "Tuesday",
             "freq": "Once a week",
             "time": "After School",
-            "room": "Titan Gym Weight Room",
-            "prez": "Jason Luo",
+            "room": "Weight Room",
+            "prez": "Gabriel Espinoza",
             "advisor": "David Bisbee",
             "email": "dbisbee@pausd.org"
         },
@@ -1204,6 +1288,34 @@
             "prez": "Jesse Li",
             "advisor": "Danielle Whichard",
             "email": "dwhichard@pausd.org"
+        },
+        "79307": {
+            "new": true,
+            "name": "Homeless Action Club",
+            "type": "Service and Wellbeing",
+            "tier": 2,
+            "desc": "The purpose of Homeless Action Club is to spread awareness and to identify ways to support the unhoused community. Potential activities include 1. collaborating with non-profit organizations to identify ways we can help the unhoused community 2. spreading awareness about volunteer opportunities that support the unhoused community, 3. setting up donation bins on campus,  4. making care packages for the unhoused community using donations collected.",
+            "day": "Tuesday",
+            "freq": "Every Other Week",
+            "time": "Lunch",
+            "room": "K-15",
+            "prez": "Trinity Smith",
+            "advisor": "Dethrick Slocum",
+            "email": "dslocum@pausd.org"
+        },
+        "82809": {
+            "new": true,
+            "name": "Marine Bio Club",
+            "type": "STEM",
+            "tier": 1,
+            "desc": "Join the Marine Bio Club in J-4 and dive into the wonders of ocean life while helping to protect our planet’s most vital ecosystems! We aim to teach students about marine biology, from local species to global conservation efforts, through hands-on activities, documentaries, and discussions. Whether you're playing ocean species trivia or learning about coral reef ecosystems, you'll gain a deeper understanding of how we can all make a difference in the world. Together, we’ll work to inspire future environmental advocates and marine biologists while promoting ocean conservation and sustainability!",
+            "day": "Monday",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "J-4",
+            "prez": "Anika Agrawal",
+            "advisor": "Navneet Schworetzky",
+            "email": "nschworetzky@pausd.org"
         },
         "82888": {
             "new": false,
@@ -1291,6 +1403,20 @@
             "advisor": "Florina Limburg",
             "email": "flimburg@pausd.org"
         },
+        "90680": {
+            "new": true,
+            "name": "K-pop Club",
+            "type": "Music and Performing Arts",
+            "tier": 1,
+            "desc": "Welcome to the Gunn K-pop Club. Our mission is to bring k-pop fans together to share, connect, and celebrate their passion in a fun and welcoming environment. Through exciting games, events, and music, we can make it easier to express your love for K-pop in daily life. Whether you’re a casual listener or a die-hard stan, you’ll vibe with us as we explore the different aspects of K-pop through group activities and iconic choreographies. Whether you're here to share playlists, showcase your moves, or just scream about your bias, this is your stage. Come join us and explore the culture that makes K-pop a global phenomenon!",
+            "day": "Friday",
+            "freq": "Every Other Week",
+            "time": "Lunch",
+            "room": "M-3",
+            "prez": "Claire Sim",
+            "advisor": "Dave Deggeller",
+            "email": "ddeggeller@pausd.org"
+        },
         "91240": {
             "new": false,
             "name": "French Culture Club",
@@ -1360,6 +1486,20 @@
             "prez": "Arturo Garrido Gomez",
             "advisor": "Briana Gonzalez",
             "email": "bgonzalez@pausd.us"
+        },
+        "94615": {
+            "new": true,
+            "name": "Physical Therapy in Sports",
+            "type": "STEM",
+            "tier": 1,
+            "desc": "We will go over common injuries and incorporate stretches that can help prevent these injuries. Ex. Week one will go over the prevention of ACL injuries and how they happen.",
+            "day": "Tuesday",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "J-2",
+            "prez": "Savin Gamage",
+            "advisor": "Jena Lee",
+            "email": "jlee@pausd.org"
         },
         "94643": {
             "new": true,
