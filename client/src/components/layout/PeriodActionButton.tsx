@@ -58,7 +58,7 @@ function MenuAction(props: PeriodActionButtonProps) {
     const formatted = date.toFormat('MM-dd');
     const meal = name.toLowerCase() as 'brunch' | 'lunch';
 
-    if (menu && formatted in menu && menu[formatted][meal]) {
+    if (menu && formatted in menu && menu[formatted][meal] && Object.entries(menu[formatted][meal]).length) {
         return (
             <>
                 <ActionButton {...props} onClick={() => setModal(true)}>

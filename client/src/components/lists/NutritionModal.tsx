@@ -67,7 +67,7 @@ export default function NutritionModal(props: NutritionModalProps) {
                                 <hr className="my-0.5" />
                             </>
                         )}
-                        {nutrition.calories && (
+                        {!!nutrition.calories && (
                             <>
                                 <div className="flex justify-between text-xl">
                                     <strong>Calories</strong>
