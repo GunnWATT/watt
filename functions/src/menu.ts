@@ -44,9 +44,7 @@ async function setDays(menu: Menu['menu'], days: any, meal: 'brunch' | 'lunch') 
     }
 }
 
-async function getMenu(start: number) {
-    const menu: Menu['menu'] = {};
-
+async function getMenu(menu: Menu['menu'], start: number) {
     const [brunch, lunch] = await Promise.all([
         getDays(start, 'breakfast'),
         getDays(start, 'lunch')
@@ -61,7 +59,7 @@ async function getMenu(start: number) {
     );
 
     if (final.month === month)
-        await getMenu(final.day + 1);
+        await getMenu(menu, final.day + 1);
 
     return menu;
 }
@@ -75,7 +73,9 @@ export const menu = onSchedule("every day 00:00", async () => {
         return;
     }
 
-    const menu = await getMenu(1);
+    const menu: Menu['menu'] = {};
+    await getMenu(menu, 1);
+
     const current = (await firestore.collection('gunn').doc('menu').get()).data()!;
 
     await firestore.collection('gunn').doc('menu').set({
