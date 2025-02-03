@@ -3,7 +3,7 @@ import express, {NextFunction, Request, Response} from 'express';
 import 'express-async-errors';
 
 // Utils
-import {getAlternates, getDateParam, getNextPeriodOptsParams, StatusError} from './util/apiUtil';
+import {getAlternates, getDateParam, getMenu, getNextPeriodOptsParams, StatusError} from './util/apiUtil';
 import {getSchedule, getNextPeriod} from '@watt/shared/util/schedule';
 import {getNextPeriodMessage} from './util/schedule';
 
@@ -50,6 +50,16 @@ app.get('/api/schedule', async (req, res) => {
     const schedule = getSchedule(date, data.alternates);
     return res.json(schedule);
 });
+
+// GET /api/menu
+// Gets the brunch/lunch menu for the current or provided day as `{brunch: Entry | null, lunch: Entry | null}`.
+// `Entry` - https://github.com/GunnWATT/watt/blob/main/client/src/contexts/MenuContext.ts#L4-L32
+app.get('/api/menu', async (req, res) => {
+    const date = getDateParam(req);
+
+    const menu = (await getMenu()).menu[date.toFormat('MM-dd')] || {brunch: null, lunch: null};
+    return res.json(menu);
+})
 
 // GET /api/next-period
 app.get('/api/next-period', async (req, res) => {

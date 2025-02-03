@@ -2,6 +2,7 @@ import {Request} from 'express';
 import {DateTime} from 'luxon';
 import admin from './adminInit';
 import {Alternates} from '@watt/client/src/contexts/AlternatesContext';
+import {Menu} from '@watt/client/src/contexts/MenuContext'
 
 
 // Gets the alternates object from firestore, throwing a `ServerError` if it's missing.
@@ -9,6 +10,13 @@ export async function getAlternates() {
     const doc = await admin.firestore().collection('gunn').doc('alternates').get();
     if (!doc.data()) throw new ServerError('Alternates document malformed or nonexistant.');
     return doc.data() as Alternates;
+}
+
+// Gets the menu object from firestore, throwing a `ServerError` if it's missing.
+export async function getMenu() {
+    const doc = await admin.firestore().collection('gunn').doc('menu').get();
+    if (!doc.data()) throw new ServerError('Menu document malformed or nonexistant.');
+    return doc.data() as Menu;
 }
 
 // Gets the requested `DateTime`, attempting to parse it from `req.query.date` if given and defaulting to `DateTime.now()`

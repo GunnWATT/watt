@@ -45,6 +45,39 @@ requested day's schedule, and a boolean indicating whether that schedule is an a
 {"error": "Error parsing date string: the input \"aaa\" can't be parsed as ISO 8601."}
 ```
 
+### GET /menu
+Returns an object of [`Entries`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#entry) corresponding to the 
+requested day's brunch and lunch menu.
+
+##### Response schema
+```ts
+{brunch: {[item: string]: Entry}, lunch: {[item: string]: Entry}}
+```
+- `brunch` + `lunch`: The day's menu items as [`Entries`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#entry).
+
+##### Request parameters
+
+| Parameter           | Type     | Description                                                                                                             |
+|---------------------|----------|-------------------------------------------------------------------------------------------------------------------------|
+| `date` *(optional)* | `string` | An ISO timestamp representing the day to return the schedule for. If no date is provided, the current day will be used. |
+
+##### HTTP status codes
+
+| Status code | Description                                                                 |
+|-------------|-----------------------------------------------------------------------------|
+| 200         | OK                                                                          |
+| 400         | `query.date` was provided but not a string, or invalid as an ISO timestamp. |
+
+##### Example successful response:
+```json
+{"brunch": {}, "lunch": {}}
+```
+
+##### Example error response:
+```json
+{"error": "Error parsing date string: the input \"aaa\" can't be parsed as ISO 8601."}
+```
+
 ### GET /next-period
 Returns a [`PeriodObj`](https://github.com/GunnWATT/watt/blob/main/docs/types.md#periodobj) corresponding to the next or 
 current period, the period immediately before it, and additional information for displaying those periods.

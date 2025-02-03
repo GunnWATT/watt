@@ -126,6 +126,81 @@ type Club = {
 }
 ```
 
+### Entry
+An object representing a brunch or lunch menu item.
+
+```ts
+type Entry = {
+    serving?: {
+        serving_size_amount: string,
+        serving_size_unit: string
+    },
+    nutrition?: {
+        calories?: number,
+        g_fat?: number,
+        g_saturated_fat?: number,
+        g_trans_fat?: number,
+        mg_cholesterol?: number,
+        g_carbs?: number,
+        g_added_sugar?: number,
+        g_sugar?: number,
+        mg_potassium?: number,
+        mg_sodium?: number,
+        g_fiber?: number,
+        g_protein?: number,
+        mg_iron?: number,
+        mg_calcium?: number,
+        mg_vitamin_c?: number,
+        iu_vitamin_a?: number,
+        re_vitamin_a?: number,
+        mcg_vitamin_a?: number,
+        mg_vitamin_d?: number,
+        mcg_vitamin_d?: number,
+    },
+    ingredients?: string
+}
+```
+#### Reference:
+[`/client/src/contexts/MenuContext.ts`](https://github.com/GunnWATT/watt/blob/main/client/src/contexts/MenuContext.ts#L4-L32)
+
+#### Specifications:
+- `serving`?: An object containing the serving size and unit of the described item.
+- `nutrition`?: An object containing general nutrition information about the described item.
+- `ingredients`?: A string containing the ingredients of the described item.
+
+#### Example:
+```json
+{
+  "serving": {
+    "serving_size_amount": "1",
+    "serving_size_unit": "package"
+  },
+  "nutrition": {
+    "calories": 90,
+    "g_fat": 2.5,
+    "g_saturated_fat": 0,
+    "g_trans_fat": 0,
+    "mg_cholesterol": 0,
+    "g_carbs": 17,
+    "g_added_sugar": 5,
+    "g_sugar": 5,
+    "mg_potassium": 40,
+    "mg_sodium": 90,
+    "g_fiber": 1,
+    "g_protein": 1,
+    "mg_iron": 0.7,
+    "mg_calcium": 10,
+    "mg_vitamin_c": 0,
+    "iu_vitamin_a": 0,
+    "re_vitamin_a": null,
+    "mcg_vitamin_a": null,
+    "mg_vitamin_d": null,
+    "mcg_vitamin_d": 0
+  },
+  "ingredients": "Honey Graham Crackers (WHOLE WHEAT FLOUR, ENRICHED FLOUR (WHEAT FLOUR, NIACIN, REDUCED IRON, VITAMIN B1 (THIAMIN MONONITRATE), VITAMIN B2 (RIBOFLAVIN), FOLIC ACID), SUGAR,   VEGETABLE OIL (SOYBEAN AND/OR CANOLA), MOLASSES, HONEY, CORN SYRUP, CONTAINS 2% OR LESS OF LEAVENING (BAKING SODA, SODIUM ACID PYROPHOSPHATE, MONOCALCIUM PHOSPHATE), SALT, SOY LECITHIN.)"
+},
+```
+
 ### Staff
 An object representing a staff member at Gunn.
 
