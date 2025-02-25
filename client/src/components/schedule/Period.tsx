@@ -83,7 +83,7 @@ export default function Period(props: PeriodProps) {
                             {header}
                             <FiChevronDown className={'h-6 w-6 rounded-full p-1 bg-black/10 dark:bg-black/20 hover:bg-black/20 dark:hover:bg-black/30' + (open ? ' rotate-180' : '')} />
                         </Disclosure.Button>
-                        <Disclosure.Panel className="text-secondary bg-black/10 dark:bg-black/20 rounded text-md p-2 -mx-2 mb-2 whitespace-pre-wrap">
+                        <Disclosure.Panel className="text-secondary bg-black/10 dark:bg-black/20 rounded text-md px-3 py-2 mb-2 whitespace-pre-wrap">
                             {note}
                         </Disclosure.Panel>
                     </>)}
