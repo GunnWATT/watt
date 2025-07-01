@@ -16,7 +16,7 @@ export type Club = {
 }
 
 const clubs: {timestamp: string, data: {[key: string]: Club}} = {
-    "timestamp": "2025-01-27T09:29:59.461Z",
+    "timestamp": "2025-06-30T10:19:59.517Z",
     "data": {
         "13302": {
             "new": false,
@@ -101,22 +101,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "prez": "Stephany Handoyo",
             "advisor": "Danielle Whichard",
             "email": "dwhichard@pausd.org"
-        },
-        "16843": {
-            "new": true,
-            "name": "Baseball Club",
-            "type": "Sports",
-            "tier": 1,
-            "desc": "Talk about baseball and learn strategy related to the game.",
-            "day": "Tuesday",
-            "freq": "Once a week",
-            "time": "Lunch",
-            "room": "C-7",
-            "prez": "Cyrus Silva Rezvani",
-            "advisor": "Max Zipperstein",
-            "email": "mzipperstein@pausd.org",
-            "coadvisor": "Joey Ordonez",
-            "coemail": "jordonez@pausd.org"
         },
         "17040": {
             "new": true,
@@ -866,20 +850,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Edward Corpuz",
             "email": "ecorpuz@pausd.org"
         },
-        "54166": {
-            "new": true,
-            "name": "Motorsport Club",
-            "type": "Sports",
-            "tier": 1,
-            "desc": "The Motorsports Club is a Tier 1 club dedicated to exploring the world of racing and automotive technology. We meet every Thursday with a dozen members who share a passion for motorsports. Our discussions cover a wide range of topics, including racing lines, the intricate parts of gas and electric cars, RC cars, and the differences between Indy and F1 racing, as well as the legendary Le Mans race.  Our club is led by a team of dedicated sophomores. Katelyn Winslow serves as our President, bringing her enthusiasm for both watching and understanding the technical aspects of racing. Vanessa Dahl, who is listed as Vice President due to club charter rules, has a strong interest in motorsports and took Auto 1 as a freshman. Chloe Coponen, our Secretary, is a devoted Formula 1 fan with experience in club leadership, as currently serving as Vice President of the Gunn Tea Club. Together, they ensure our meetings are engaging and informative for all members.",
-            "day": "Thursday",
-            "freq": "Once a week",
-            "time": "Lunch",
-            "room": "L-8",
-            "prez": "Katelyn Winslow",
-            "advisor": "Tomas Grim",
-            "email": "tgrim@pausd.org"
-        },
         "54199": {
             "new": false,
             "name": "Quiz Bowl",
@@ -912,7 +882,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "new": false,
             "name": "Anatomy and Physiology Club",
             "type": "STEM",
-            "tier": 2,
+            "tier": 1,
             "desc": "Meeting every week to prepare for and perform bi-weekly dissections, this club will delve into many topics related to the human anatomy as well as countless other organisms.",
             "day": "Tuesday",
             "freq": "Once a week",
@@ -1089,7 +1059,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "tier": 1,
             "desc": "Our club is dedicated to raising awareness about global water shortages and the power of clean water around the world. The club will invite guest speakers from an international nonprofit organization called the Power of Clean Water, which establishes accessible water systems to communities in Africa and the US. By sharing information and knowledge about sustainable clean water access projects in developing countries, and through fun, interactive activities, we will foster an informed community of students who are willing to bring a change, one drop of water at a time.",
             "day": "Wednesday",
-            "freq": "Once a week",
+            "freq": "Every Other Week",
             "time": "Lunch",
             "room": "C-3",
             "prez": "Shrishti Sinha",
@@ -1194,20 +1164,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Laurie Pennington",
             "email": "lpennington@pausd.org"
         },
-        "70249": {
-            "new": true,
-            "name": "Sports Data & Analytics Club",
-            "type": "STEM",
-            "tier": 1,
-            "desc": "The purpose of the club is to explore the deeper insights behind sports through statistics and data analysis. The club will use math, analysis, analytics, as well as past trends to explore how data can impact player performance. We aim to give members a better understanding of interpreting sports analytics and its effects in sports.",
-            "day": "Tuesday",
-            "freq": "Once a week",
-            "time": "Lunch",
-            "room": "N-201",
-            "prez": "Winston Li",
-            "advisor": "Rachel Congress",
-            "email": "rcongress@pausd.org"
-        },
         "71551": {
             "new": false,
             "name": "South Asian Student Association",
@@ -1249,6 +1205,20 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "prez": "Angela Liu",
             "advisor": "Danny Hahn",
             "email": "dhahn@pausd.org"
+        },
+        "74835": {
+            "new": false,
+            "name": "Youth Community Service (YCS)",
+            "type": "Service and Wellbeing",
+            "tier": 1,
+            "desc": "Youth Community Service (YCS) is a community service club that works with the community organization, YCS, to try and improve our community. Some of the events we put on are Service Day, Service Fair, Service Trip, and an Open Mic. We also regularly update club members on different community service opportunities as we are notified about them.",
+            "day": "Monday",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "N-115",
+            "prez": "Gibran Rahimtoola",
+            "advisor": "Diane Ichikawa",
+            "email": "dichikawa@pausd.org"
         },
         "75375": {
             "new": true,
@@ -1338,7 +1308,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "new": false,
             "name": "Amnesty International Club",
             "type": "Discussion",
-            "tier": 2,
+            "tier": 1,
             "desc": "This club focuses on Amnesty International, a private activism, and human rights group, with more than 10 million members across the world. We sign petitions, fundraise, engage and push legislation, local and national policy change, with our works reaching people like Congress, the US President, Supreme Court, etc. We also branch past the national scale and work with international governments, judicial systems, non-profits, and other private, human rights organizations. We spread awareness over current events, open discussions, and find purpose in enacting real, tangible, policy changes in the world. Simultaneously, we also wish to simplify, and foster more access to topics like human rights, big legislation, government structures, public policy, etc. and much more! Too often, these are subjects that may traditionally overlook or intimidate high school voices. Amnesty International Club strives to give Gunn High students the power, resources, and knowledge to mobilize your own action in justice. If you enjoy social justice, political science, law, current events, public policy, philosophy, environmental science, research, media, debate, etc. or simply want a voice in your own justice, Amnesty International Club is the club for you!",
             "day": "Friday",
             "freq": "Once a week",
@@ -1429,7 +1399,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "day": "Friday",
             "freq": "Every Other Week",
             "time": "Lunch",
-            "room": "M-3",
+            "room": "N-212",
             "prez": "Claire Sim",
             "advisor": "Dave Deggeller",
             "email": "ddeggeller@pausd.org"
@@ -1531,20 +1501,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "prez": "Devin Gupta",
             "advisor": "Arthur Kinyanjui",
             "email": "akinyanjui@pausd.org"
-        },
-        "94646": {
-            "new": false,
-            "name": "Youth Community Service - Interact (YCS-I)",
-            "type": "Service and Wellbeing",
-            "tier": 1,
-            "desc": "Youth Community Service - Interact (YCS-I) is a community service club that works with the community organization, YCS, and the international program, Interact, to try and improve our community. Some of the events we put on are Service Day, Service Fair, Service Trip, and an Open Mic. We also regularly update club members on different community service opportunities as we are notified about them.",
-            "day": "Monday",
-            "freq": "Once a week",
-            "time": "Lunch",
-            "room": "N-115",
-            "prez": "Gibran Rahimtoola",
-            "advisor": "Diane Ichikawa",
-            "email": "dichikawa@pausd.org"
         },
         "94783": {
             "new": false,

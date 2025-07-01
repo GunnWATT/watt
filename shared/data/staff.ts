@@ -3,8 +3,8 @@ export type Staff = {
     dept: string, phone?: string, ext?: string
 };
 
-const data: {timestamp: string, data: {[key: string]: Staff}} = {
-    "timestamp": "2024-08-13T22:49:52.635Z",
+const staff: {timestamp: string, data: {[key: string]: Staff}} = {
+    "timestamp": "2025-06-30T10:22:04.832Z",
     "data": {
         "10021": {
             "email": "stiruchinapally@pausd.org",
@@ -48,6 +48,11 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "dept": "Social Studies",
             "phone": "354-8237"
         },
+        "15294": {
+            "name": "Tsailing Hailsmaier",
+            "dept": "World Languages",
+            "phone": "354-8241"
+        },
         "15499": {
             "email": "ashinh@pausd.org",
             "name": "Arshdeep Shinh",
@@ -65,7 +70,7 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
         "16910": {
             "email": "bgonzalez@pausd.org",
             "name": "Briana Gonzalez",
-            "dept": "SpEd/Dept. Head",
+            "dept": "SpEd/Instructional Lead (IL)",
             "phone": "354-8262",
             "room": "K15"
         },
@@ -165,7 +170,7 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
         "23126": {
             "email": "aletner@pausd.org",
             "name": "Alexis Letner",
-            "dept": "ELL Coordinator/Dept Head",
+            "dept": "ELL Coordinator/Instructional Lead (IL)",
             "phone": ""
         },
         "23457": {
@@ -418,13 +423,6 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "room": "N107",
             "ext": "5429"
         },
-        "39959": {
-            "email": "egaribaydiaz@pausd.org",
-            "name": "Erika Diaz",
-            "dept": "SpEd Aide",
-            "phone": "354-8200",
-            "room": "K14"
-        },
         "40148": {
             "email": "wcollier@pausd.org",
             "name": "Warren Collier",
@@ -452,21 +450,6 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "dept": "Food Services",
             "phone": "354-8233",
             "room": "V18, P116"
-        },
-        "41659": {
-            "email": "gmiller@pausd.org",
-            "name": "Greg Miller",
-            "dept": "VAPA",
-            "phone": "354-8264",
-            "room": "S102"
-        },
-        "41963": {
-            "email": "stdavidson@pausd.org",
-            "name": "Stacey Davidson",
-            "dept": "SaFE",
-            "phone": "354-8294",
-            "room": "C8",
-            "ext": "1451"
         },
         "42076": {
             "email": "cgleeson@pausd.org",
@@ -519,6 +502,11 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "dept": "English",
             "phone": "354-8238",
             "room": "N114"
+        },
+        "48948": {
+            "name": "Amy Bradshaw",
+            "dept": "Science",
+            "phone": "354-8246"
         },
         "49517": {
             "email": "CCuevas@pausd.org",
@@ -654,13 +642,6 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "room": "K14, N102",
             "ext": "5220"
         },
-        "56043": {
-            "email": "ccismas@pausd.org",
-            "name": "Cristina Florea",
-            "dept": "Math",
-            "phone": "354-8247",
-            "room": "N205"
-        },
         "56631": {
             "email": "dgill@pausd.org",
             "name": "Daljeet Gill",
@@ -762,14 +743,6 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "phone": "354-8262",
             "room": "K building"
         },
-        "61940": {
-            "email": "szaidi@pausd.org",
-            "name": "Syed Zaidi",
-            "dept": "Technology",
-            "phone": "329- 3721",
-            "room": "V15",
-            "ext": "5559"
-        },
         "62794": {
             "email": "mgleason@pausd.org",
             "name": "Mark Gleason",
@@ -841,6 +814,18 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "room": "Library",
             "ext": "6802"
         },
+        "65350": {
+            "email": "jnaylor@pausd.org",
+            "name": "Jill Naylor",
+            "dept": "PE",
+            "phone": "354-8215"
+        },
+        "66450": {
+            "email": "kdao@pausd.org",
+            "name": "Khoa Dao",
+            "dept": "Math",
+            "phone": "354-8247"
+        },
         "66745": {
             "email": "nmatta@pausd.org",
             "name": "Nora Matta",
@@ -859,7 +844,7 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
         "67286": {
             "email": "kweymouth@pausd.org",
             "name": "Kate Weymouth",
-            "dept": "English/Dept. Head",
+            "dept": "English/Instructional Lead (IL)",
             "phone": "354-8238",
             "room": "N110",
             "ext": "6960"
@@ -887,10 +872,15 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "phone": "354-8246",
             "room": "J Science Prep"
         },
+        "69732": {
+            "name": "Micah Wynn",
+            "dept": "Science",
+            "phone": "354-8246"
+        },
         "70583": {
             "email": "mmcginn@pausd.org",
             "name": "Matthew McGinn",
-            "dept": "PE/Dept. Head",
+            "dept": "PE/Instructional Lead (IL)",
             "phone": "354-8266",
             "room": "Gym",
             "ext": "5778"
@@ -955,6 +945,12 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "phone": "354-8257",
             "room": "Gym",
             "ext": "5923"
+        },
+        "76137": {
+            "email": "byoung@pausd.org",
+            "name": "Brenda Young",
+            "dept": "Math",
+            "phone": "354-8247"
         },
         "76235": {
             "email": "ceggert@pausd.org",
@@ -1056,8 +1052,8 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
         "79781": {
             "email": "dhahn@pausd.org",
             "name": "Danny Hahn",
-            "dept": "Math/Dept. Head",
-            "phone": "354-8247",
+            "dept": "Math/Instructional Lead (IL)",
+            "phone": "354-8141",
             "room": "N214"
         },
         "79799": {
@@ -1106,6 +1102,11 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "room": "G4",
             "ext": "5960"
         },
+        "82265": {
+            "name": "Kirsten Tasker",
+            "dept": "World Languages",
+            "phone": "354-8241"
+        },
         "82979": {
             "email": "scofman@pausd.org",
             "name": "Stacey Kofman",
@@ -1134,6 +1135,12 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "phone": "354-8262",
             "room": "K15"
         },
+        "85327": {
+            "email": "jangeles@pausd.org",
+            "name": "Julia Angeles",
+            "dept": "World Languages",
+            "phone": "354-8241"
+        },
         "85765": {
             "email": "osmith@pausd.org",
             "name": "Ofelia Smith",
@@ -1145,7 +1152,7 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
         "86079": {
             "email": "hmellows@pausd.org",
             "name": "Heather Mellows",
-            "dept": "Science/Dept. Head",
+            "dept": "Science/Instructional Lead (IL)",
             "phone": "354-8246",
             "room": "J5, J8",
             "ext": "6835"
@@ -1194,6 +1201,11 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "phone": "849-7903",
             "room": "M1",
             "ext": "1403"
+        },
+        "87072": {
+            "name": "Zamir Zamora",
+            "dept": "Technology",
+            "phone": "354-8292"
         },
         "87411": {
             "email": "kowen@pausd.org",
@@ -1314,7 +1326,7 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
         "95953": {
             "email": "mhall@pausd.org",
             "name": "Matthew Hall",
-            "dept": "World Language/Dept. Head",
+            "dept": "World Language/Instructional Lead (IL)",
             "phone": "354-8241",
             "room": "H3",
             "ext": "6562"
@@ -1342,6 +1354,12 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
             "phone": "354-8246",
             "room": "V2"
         },
+        "97360": {
+            "email": "lcastellanosalvarez@pausd.org",
+            "name": "Luis Castellanos",
+            "dept": "World Languages",
+            "phone": "354-8241"
+        },
         "97761": {
             "email": "amerchant@pausd.org",
             "name": "Angela Merchant",
@@ -1360,4 +1378,4 @@ const data: {timestamp: string, data: {[key: string]: Staff}} = {
         }
     }
 }
-export default data;
+export default staff;
