@@ -1,4 +1,5 @@
-import {useContext, useEffect, useRef, useState, PointerEvent} from 'react';
+import { useEffect, useRef, useState, PointerEvent } from 'react';
+import { FaCompass } from 'react-icons/all';
 import gunnMap from '../../assets/gunnmap.png';
 
 // Components
@@ -22,12 +23,48 @@ export default function ImageMap(props : ImageMapProps) {
     const wrapperRef = useRef<HTMLDivElement | null>(null);
     const [pointer, setPointer] = useState<Pointer | null>(null);
     const [transformation, setTransformation] = useState(identity());
+    const [orient, setOrient] = useState<boolean>(false);
 
     useEffect(() => {
         // Unideal, but https://github.com/facebook/react/issues/14856 forces this
         // onWheel and onTouchMove are both passive event listeners so preventDefault does not work within them
         mapRef.current?.addEventListener('wheel', (e) => e.preventDefault());
     }, [mapRef]);
+
+    useEffect(() => {
+        if (!orient) return;
+
+        const handler = (event: DeviceOrientationEvent) => {
+            if (!mapRef.current || !orient || event.alpha == null) return;
+
+            // @ts-ignore // North on the map points 144deg
+            const angle = typeof event.webkitCompassHeading === 'number'
+                // @ts-ignore
+                ? event.webkitCompassHeading + 144
+                : event.alpha - 144
+
+            setTransformation(rotate(angle * Math.PI / 180));
+        }
+
+        if (typeof DeviceOrientationEvent === 'function' && 'requestPermission' in DeviceOrientationEvent) {
+            // @ts-ignore
+            const granted = DeviceOrientationEvent.requestPermission()
+                .then((permission: string) => permission === 'granted')
+
+            if (!granted) {
+                setOrient(false);
+                return;
+            }
+
+            window.addEventListener('deviceorientation', handler);
+
+            return () => window.removeEventListener('deviceorientation', handler);
+        }
+
+        window.addEventListener('deviceorientationabsolute', handler as EventListener);
+
+        return () => window.removeEventListener('deviceorientationabsolute', handler as EventListener);
+    }, [mapRef, orient, pointer]);
 
     // When a pointer deactivates
     const pointerEnd = (e: PointerEvent<HTMLImageElement>) => {
@@ -60,7 +97,8 @@ export default function ImageMap(props : ImageMapProps) {
             <div
                 className="flex w-full h-full overflow-hidden"
                 ref={wrapperRef}
-                onPointerDown={(e) => {
+                {...(!orient && {
+                onPointerDown: (e) => {
                     if (pointer) {
                         if (!pointer.other) {
                             setPointer({
@@ -90,8 +128,8 @@ export default function ImageMap(props : ImageMapProps) {
                         })
                         e.currentTarget.setPointerCapture(e.pointerId)
                     }
-                }}
-                onPointerMove={(e) => {
+                },
+                onPointerMove: (e) => {
                     if (pointer?.id === e.pointerId || pointer?.other?.id === e.pointerId) {
                         if (pointer.id === e.pointerId) {
                             pointer.lastX = e.clientX;
@@ -141,10 +179,10 @@ export default function ImageMap(props : ImageMapProps) {
                         }
                         //mapRef.current!.style.transform = toCss(transformation);
                     }
-                }}
-                onPointerUp={pointerEnd}
-                onPointerCancel={pointerEnd}
-                onWheel={(e) => {
+                },
+                onPointerUp: pointerEnd,
+                onPointerCancel: pointerEnd,
+                onWheel: (e) => {
                     const rect = e.currentTarget.getBoundingClientRect();
                     const centreX = e.clientX - (rect.left + rect.width / 2);
                     const centreY = e.clientY - (rect.top + rect.height / 2);
@@ -156,16 +194,26 @@ export default function ImageMap(props : ImageMapProps) {
                         transformation
                     ))
                     //mapRef.current!.style.transform = toCss(transformation);
-                }}
+                }
+                })}
             >
                 <img
                     src={gunnMap}
                     ref={mapRef}
                     draggable={false}
                     alt="Gunn map"
-                    className="m-auto shadow-lg dark:invert dark:shadow-white max-h-[90vh] max-w-[90%]"
+                    className="m-auto shadow-lg select-none dark:invert dark:shadow-white max-h-[90vh] max-w-[90%]"
                     style={{ transform: toCss(transformation) }}
                 />
+                {"ontouchstart" in window && (
+                    <button
+                        className={`absolute flex rounded-full bg-tertiary bottom-8 right-8 px-4 py-2 ${orient && "text-theme"} transition-colors`}
+                        onClick={() => setOrient(!orient)}
+                    >
+                        <FaCompass className="text mr-2 my-auto" />
+                        Orient Map
+                    </button>
+                )}
             </div>
         </div>
     )
