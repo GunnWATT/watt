@@ -7,6 +7,7 @@ import chalk from 'chalk';
 import {error, info, warn} from './util/logging';
 import schedule, {SCHOOL_START, SCHOOL_END_EXCLUSIVE, PeriodObj} from '@watt/shared/data/schedule';
 import {numToWeekday} from '@watt/shared/util/schedule';
+import {DateTime} from 'luxon';
 
 
 // Constants
@@ -14,7 +15,7 @@ const EARLIEST_AM_HOUR = 6;
 
 const timeGetterRegex = /\(?(1?\d)(?::(\d{2}))? *(?:am)? *[-–] *(1?\d)(?::(\d{2}))? *(noon|pm)?\)?/;
 const gradeGetterRegex = /(?<!Period |#)\d+(\/\d+)*(?!(?:st|nd|rd|th)\s+Period)/i;
-const altScheduleRegex = /staff pd|alt. sched|schedule|extended/i; // /schedule|extended|lunch/i
+const altScheduleRegex = /staff pd|alt. sched|schedule|extended|first day|finals/i; // /schedule|extended|lunch/i
 const noSchoolRegex = /holiday|no\s(students|school)|break|development/i;
 const primeReplacesSelfRegex = /PRIME (replaces|instead of) SELF|No SELF, extra PRIME/i;
 // const selfStudyHallRegex = /9\/10 (SELF|Study Hall), 11\/12 (SELF|Study Hall)/i;
@@ -84,6 +85,8 @@ function parseAlternate(summary: string | undefined, description: string | undef
 
     // Parse away HTML tags, entities, and oddities
     description = description
+        .replace(/(\):.+?\d([A-Za-z]))/g, '$1\n$2') 
+        .replace(/(\)|])([^\s:])/g, '$1\n$2')
         .replace(/\n\(/g, '(') // https://github.com/GunnWATT/watt/pull/73#discussion_r756519526
         .replace(/<\/?(p|div|br).*?>|\),? *(?=[A-Z\d])/g, '\n')
         .replace(/<.*?>/g, '') // Remove all html tags
@@ -113,19 +116,29 @@ function parseAlternate(summary: string | undefined, description: string | undef
         const endTime = eH * 60 + eM;
 
         for (const raw of names) {
-            const grades = raw.match(gradeGetterRegex)?.[0].split('/').map(grade => Number(grade));
-            const name = raw.replace(gradeGetterRegex, '').trim();
+            let grades = raw
+                .match(gradeGetterRegex)?.[0]
+                .split('/')
+                .map(grade => Number(grade));
+
+            if (grades?.some(grade => grade < 9 || grade > 12)) {
+                warn(`[${chalk.underline(date)}] Invalid grades: ${grades.join(', ')} in "${chalk.cyan(raw)}"`);
+                grades = grades.filter(grade => grade >= 9 && grade <= 12);
+                grades = grades.length ? grades : undefined;
+            }
+
+            const name = raw.trim();
             if (!name) continue;
 
-            // Support both "Period 5" (standard) and "5th Period" (11/2/2022 schedule)
-            const isNumberPeriod = name.match(/Period (\d)|(\d)(?:st|nd|rd|th) Period/i);
-            const isStaffPrep = name.match(/Collaboration|Prep|Meetings?|Training|Mtgs|PLC/i);
+            // Support both "Period 5" (standard) and "5th Period" (11/2/2022 schedule) and "(No) Zero Period" (8/21/2025 schedule)
+            const isStaffPrep = name.match(/Collaboration|Prep|Meetings?|Training|Mtgs|PLC|Staff PD/i);
+            const isNumberPeriod = name.match(/(?<!\bNo\s)Zero Period|Period (\d)|(\d)(?:st|nd|rd|th)(?: Period)?/i);
 
             let fname = name;
             let newEndTime = endTime;
 
             if (isNumberPeriod) {
-                fname = isNumberPeriod[1] ?? isNumberPeriod[2];
+                fname = isNumberPeriod[1] ?? isNumberPeriod[2] ?? '0';
             } else if (name.match(/Office Hours|Tutorial/i)) {
                 fname = "O";
                 warn(`[${chalk.underline(date)}] Parsed deprecated period Office Hours`);
@@ -207,34 +220,37 @@ function parseAlternate(summary: string | undefined, description: string | undef
     const prev: {[key: string]: PeriodObj[] | null} = JSON.parse(readFileSync('./output/alternates.json').toString());
 
     // Fetch iCal source, parse
-    const raw = await (await fetch('https://gunn.pausd.org/cf_calendar/feed.cfm?type=ical&feedID=3FC31A8EAE8A4918B2E582A69B519816')).text();
+    const raw = await (await fetch('https://gunn.pausd.org/fs/calendar-manager/events.ics?calendar_ids[]=51')).text();
     const calendar = Object.values(ical.parseICS(raw));
 
     const fAlternates: {[key: string]: PeriodObj[]} = {};
-    let firstAlternate = new Date();
+    let firstAlternate = DateTime.now();
 
     // Populate `fAlternates` with unparsed day objects from iCal fetch
     for (const event of calendar) {
-        const startDateObj = event.start!;
-        const endDateObj = event.end;
+        let startDateObj = DateTime.fromJSDate(event.start!).setZone('America/Los_Angeles');
+        const endDateObj = DateTime.fromJSDate(event.end!).setZone('America/Los_Angeles');
+
+        // Invalid events - courtesy of the July 2025 Gunn website update...
+        if (!startDateObj || !endDateObj) continue;
 
         // If the alternate schedule does not lie within the school year, skip it
-        if (startDateObj < SCHOOL_START.toJSDate() || startDateObj >= SCHOOL_END_EXCLUSIVE.toJSDate())
+        if (startDateObj < SCHOOL_START || startDateObj >= SCHOOL_END_EXCLUSIVE)
             continue;
 
-        const schedule = parseAlternate(event.summary, event.description, startDateObj.toISOString().slice(0, 10))
+        const schedule = parseAlternate(event.summary, event.description, startDateObj.toFormat('yyyy-MM-dd'))
         if (!schedule) continue;
 
         // If an end date exists, add all dates between the start and end dates with the alternate schedule
         if (endDateObj) {
-            while (startDateObj.toISOString().slice(5, 10) !== endDateObj.toISOString().slice(5, 10)) {
-                fAlternates[startDateObj.toISOString().slice(5, 10)] = schedule;
-                startDateObj.setUTCDate(startDateObj.getUTCDate() + 1);
+            while (startDateObj.toFormat('yyyy-MM-dd') !== endDateObj.toFormat('yyyy-MM-dd')) {
+                fAlternates[startDateObj.toFormat('MM-dd')] = schedule;
+                startDateObj = startDateObj.plus({days: 1});
             }
         }
 
         if (startDateObj < firstAlternate) firstAlternate = startDateObj;
-        fAlternates[startDateObj.toISOString().slice(5, 10)] = schedule;
+        fAlternates[startDateObj.minus({days: 1}).toFormat('MM-dd')] = schedule;
     }
 
     const alternates: {[key: string]: PeriodObj[] | null} = {};
@@ -246,8 +262,8 @@ function parseAlternate(summary: string | undefined, description: string | undef
         let [month, day] = date.split('-').map(x => Number(x));
         if (month > 6) month -= 12; // Hackily account for our truncated ISO key format making 12-03 appear greater than 04-29
 
-        const firstMonth = firstAlternate.getMonth() + 1;
-        if (month < firstMonth || (month === firstMonth && day < firstAlternate.getDate()))
+        const firstMonth = firstAlternate.month + 1;
+        if (month < firstMonth || (month === firstMonth && day < firstAlternate.day))
             alternates[date] = schedule;
     }
 
