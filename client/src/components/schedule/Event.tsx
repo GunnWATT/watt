@@ -53,7 +53,10 @@ export default function Event(props: GCalEvent) {
                 </Disclosure.Button>
                 <Disclosure.Panel className="flex flex-col gap-2 text-secondary text-sm mt-2 px-2 whitespace-pre-wrap">
                     {/* Parse away trailing whitespace, split excessive newlines into paragraph spacing */}
-                    {description.trim().split(/(?:\n\s*)+/).map(l => <p key={l}>{l}</p>)}
+                    {description
+                        .trim()
+                        .split(/(?:\n\s*)+/)
+                        .map(l => <p key={l}>{l.replace(/(\)|])([^\s:])/g, '$1\n$2')}</p>)}
                 </Disclosure.Panel>
             </>)}
         </Disclosure>

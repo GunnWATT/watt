@@ -72,6 +72,7 @@ export default function ClassesLayout() {
         </ClassesErrorBurrito>
     )
 
+    /*
     const updateSgy = async () => {
         // If it's been less than 5 seconds since the last attempted fetch
         if (lastFetched && Date.now() - lastFetched < 6 * 1000)
@@ -243,6 +244,7 @@ export default function ClassesLayout() {
             </div>
         </SgyDataProvider>
     )
+    */
 }
 
 function ClassesNavBarItem(props: {text: string, to: string}) {
