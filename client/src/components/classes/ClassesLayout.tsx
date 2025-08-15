@@ -55,6 +55,23 @@ export default function ClassesLayout() {
     // Raw Schoology Data
     const [sgyData, setSgyData] = useState<SgyData | null>(null);
 
+    return (
+        <ClassesErrorBurrito>
+            <h2 className="text-2xl font-semibold mb-3">Temporarily Unavailable</h2>
+            <p className="text-secondary">
+                Due to changes in Schoology's{' '}
+                <a
+                    href="https://developers.schoology.com/api-documentation/important-api-authentication-update/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    3rd party application policy
+                </a>
+                , classes functionality will be unavailable until further verification.
+            </p>
+        </ClassesErrorBurrito>
+    )
+
     const updateSgy = async () => {
         // If it's been less than 5 seconds since the last attempted fetch
         if (lastFetched && Date.now() - lastFetched < 6 * 1000)
