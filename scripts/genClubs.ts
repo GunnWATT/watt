@@ -11,7 +11,7 @@ import {info, prompt, warn} from './util/logging';
     const prev = JSON.parse(readFileSync('./output/clubs.json').toString());
 
     // Fetch TSV source, parse
-    const raw = await (await fetch('https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vTo3diS1ZhUR3vC8Hb9kImDpqAT6JcfFCSQX8-xIXMmhnHSQg1GY1d-0ADe_KoIAB6_x1ur29xTk8zb/pub?output=tsv')).text();
+    const raw = await (await fetch('https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vQ-UXugiZ8GznB367cO8JptTO9BLm5OE4D3WO8oZvYk_365lY25Q6eAFNSEIC5DGXGWOXwK_wauoTFT/pub?output=tsv')).text();
     const data = raw.split('\n').map(row => row.split('\t'));
 
     const newID = () => 10000 + Math.floor(Math.random() * 90000) + '';
