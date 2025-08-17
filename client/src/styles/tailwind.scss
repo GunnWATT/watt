@@ -29,6 +29,9 @@
         @apply h-full;
         -webkit-tap-highlight-color: transparent;
     }
+    html, body {
+        overscroll-behavior: none;
+    }
     a {
         @apply text-theme;
         &:hover {

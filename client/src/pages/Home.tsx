@@ -10,9 +10,7 @@ import HomeDateSelector from '../components/schedule/DateSelector';
 import Periods from '../components/schedule/Periods';
 import DayAlert from '../components/schedule/DayAlert';
 import Events from '../components/schedule/Events';
-
-// Hooks
-import {useScreenType} from '../hooks/useScreenType';
+import QuickBarcode from '../components/layout/QuickBarcode';
 
 // Contexts
 import CurrentTimeContext from '../contexts/CurrentTimeContext';
@@ -53,6 +51,8 @@ export default function Home(props: HomeProps) {
     return (
         <div className="p-0 md:p-6 xl:flex xl:gap-6">
             <Wave />
+
+            <QuickBarcode />
 
             {/* Schedule */}
             <main className="relative flex-grow p-4">
