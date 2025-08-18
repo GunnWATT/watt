@@ -56,20 +56,22 @@ export default function QuickBarcode() {
     const { displayName, email } = user;
     if (!displayName || !email) return null;
 
-    const [, id] = email.match(/[a-z]{2}(\d{5})/) || [];
+    const [, id] = email.match(/^[a-z]{2}(\d{5})@pausd\.us$/) || [];
     if (!id) return null;
 
     return (
-        <div className="md:hidden pb-4">
+        <div className="md:hidden">
             <div
-                className={`absolute left-0 right-0 bg-background ${showBarcode ? "z-[60] m-3 p-3 rounded border-2 border-tertiary" : "-translate-y-[calc(100%-24px)] opacity-50 z-10 px-1.5 py-0.5"} transition-all duration-200`}
+                className={`absolute left-0 right-0 bg-background ${showBarcode ? "z-[60] m-3 p-3 rounded-md border-2 border-tertiary" : "-translate-y-[calc(100%-24px)] opacity-50 z-10 px-1.5 py-0.5"} transition-all duration-200`}
                 onClick={() => setShowBarcode(!showBarcode)}
             >
-                <canvas
-                    ref={canvas => drawCodeOnCanvas(canvas, `950${id}`)}
-                    className="w-full h-24"
-                    style={{ imageRendering: 'pixelated' }}
-                />
+                <div className="w-full h-24 px-6 py-3 rounded bg-white">
+                    <canvas
+                        ref={canvas => drawCodeOnCanvas(canvas, `950${id}`)}
+                        className="w-full h-full"
+                        style={{ imageRendering: 'pixelated' }}
+                    />
+                </div>
                 <hr className="my-2" />
                 <div className={`flex justify-between font-semibold ${!showBarcode && "text-sm"} transition-all duration-200`}>
                     {!showBarcode && (

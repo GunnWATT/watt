@@ -55,7 +55,7 @@ export default function Home(props: HomeProps) {
             <QuickBarcode />
 
             {/* Schedule */}
-            <main className="relative flex-grow p-4">
+            <main className="relative flex-grow p-4 pt-8">
                 {relDays !== 0 && <DayAlert jumpToPres={jumpToPres} daysRelToCur={relDays}/>}
 
                 {userData.options?.clock && <Clock viewDate={viewDate} />}
