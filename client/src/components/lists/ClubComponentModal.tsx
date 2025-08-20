@@ -39,17 +39,13 @@ export default function ClubComponentModal(props: ClubComponentModalProps) {
         await updateUserData('clubs', userData.clubs.filter(clubID => clubID !== id), auth, firestore);
     }
 
-    // 2024-25 club form separates days and clubs into individual pages with distinct input IDs
-    const clubDay = day.match(/[,\s]/) ? 'Multiple days' : day;
-
     const clubInputId = {
-        'Monday': '510267970',
-        'Tuesday': '291556445',
-        'Wednesday': '52029868',
-        'Thursday': '1216828923',
-        'Friday': '1690660889',
-        'Multiple days': '1123021928'
-    }[clubDay];
+        'Monday': '1696394268',
+        'Tuesday': '1286398699',
+        'Wednesday': '1790776594',
+        'Thursday': '438816767',
+        'Friday': '834410885'
+    }[day.split(',')[0]];
 
     // Prefill the form link from club and user name, if it exists
     const prefilledData = {
@@ -57,14 +53,14 @@ export default function ClubComponentModal(props: ClubComponentModalProps) {
             [`entry.${clubInputId}`]: name
         }),
         ...(user && {
+            ['entry.2019720537']: `950${user.email?.match(/\d+/)}`,
+            ['entry.245716957']: day.split(',')[0],
             ['emailAddress']: user.email,
-            ['entry.924762737']: user.displayName,
-            ['entry.519611972']: `950${user.email?.match(/\d+/)}`,
-            ['entry.607205617']: clubDay
+            ['entry.878125936']: user.displayName
         })
     } as Record<string, string>;
 
-    const prefilledLink = `https://docs.google.com/forms/d/e/1FAIpQLSfHF5w1sZc5pjj1PBjm9udRRgl60IeWxEf4Y0lAXCETPfuN4g/viewform?${new URLSearchParams(prefilledData)}`;
+    const prefilledLink = `https://docs.google.com/forms/d/e/1FAIpQLSf_K0HpLJBe6SlmX8feUc_xCb2_bs75MLyzf8p2N3G1QcDA8Q/viewform?${new URLSearchParams(prefilledData)}`;
 
     return (
         <CenteredModal className="relative flex flex-col bg-content rounded-md max-w-md max-h-[90%] mx-2 p-6 shadow-xl" isOpen={isOpen} setIsOpen={setIsOpen}>
