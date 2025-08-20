@@ -32,7 +32,7 @@ export default function PeriodActionButton(props: PeriodActionButtonProps) {
     const { name } = props;
 
     if (name === 'PRIME' || name === 'Study Hall')
-        return <FlexiSCHEDAction {...props} />
+        return <InfiniteCampusAction {...props} />
 
     if (name === 'Brunch' || name === 'Lunch')
         return <MenuAction {...props} />
@@ -40,11 +40,15 @@ export default function PeriodActionButton(props: PeriodActionButtonProps) {
     return <></>
 }
 
-function FlexiSCHEDAction(props: PeriodActionButtonProps) {
+function InfiniteCampusAction(props: PeriodActionButtonProps) {
     return (
-        <a href="https://gunn.flexisched.net" target="_blank" className="text-inherit">
+        <a
+            href="https://pausdca.infinitecampus.org/campus/nav-wrapper/student/portal/student/responsive-schedule"
+            target="_blank"
+            className="text-inherit"
+        >
             <ActionButton {...props}>
-                FlexiSCHED
+                Infinite Campus
             </ActionButton>
         </a>
     )
