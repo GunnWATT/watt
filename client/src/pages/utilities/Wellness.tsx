@@ -12,8 +12,8 @@ export default function Wellness() {
         <>
             <SectionHeader className="mb-5">Wellness</SectionHeader>
             <section className="flex flex-col gap-3">
-                <ArticleCard name="Lorem ipsum dolor sit amet" element={<Phone1/>}>
-                    Lorem ipsum dolor sit amet
+                <ArticleCard name="Crisis Support" element={<Phone1/>}>
+                    Resources for students in crisis.
                 </ArticleCard>
             </section>
         </>
