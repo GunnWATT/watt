@@ -6,7 +6,7 @@ import CenteredModal from '../../components/layout/CenteredModal';
 import CloseButton from '../../components/layout/CloseButton';
 import Phone from '../../components/wellness/PhoneNumber';
 import Presentation from '../../components/wellness/Presentation';
-
+import Website from '../../components/wellness/Website';
 
 export default function Wellness() {
     return (
@@ -18,6 +18,9 @@ export default function Wellness() {
                 </ArticleCard>
                 <ArticleCard name="Student's Guide To Safety" element={<Presentation />}>
                     By Gunn High School Wellness Center
+                </ArticleCard>
+                <ArticleCard name="Mental Health Resources" element={<Website />}>
+                    Online resources for mental health support.
                 </ArticleCard>
             </section>
         </>
