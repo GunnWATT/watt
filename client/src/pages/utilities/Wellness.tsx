@@ -4,7 +4,7 @@ import {ReactNode, useState} from 'react';
 import {SectionHeader} from '../../components/layout/HeaderPage';
 import CenteredModal from '../../components/layout/CenteredModal';
 import CloseButton from '../../components/layout/CloseButton';
-import Phone1 from '../../components/wellness/PhoneNumber';
+import Phone from '../../components/wellness/PhoneNumber';
 
 
 export default function Wellness() {
@@ -12,7 +12,7 @@ export default function Wellness() {
         <>
             <SectionHeader className="mb-5">Wellness</SectionHeader>
             <section className="flex flex-col gap-3">
-                <ArticleCard name="Crisis Support" element={<Phone1/>}>
+                <ArticleCard name="Crisis Support" element={<Phone/>}>
                     Resources for students in crisis.
                 </ArticleCard>
             </section>

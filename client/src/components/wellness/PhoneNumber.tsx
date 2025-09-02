@@ -1,14 +1,14 @@
 import { ReactNode } from 'react';
 
-export default function Phone1() {
+export default function Phone() {
     return (
         <div className="space-y-4">
             <h2 className="text-xl font-semibold">Crisis Support</h2>
             <div className="space-y-3">
                 <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded p-3">
-                    <h3 className="font-medium text-red-800 dark:text-red-200">Emergency Services</h3>
-                    <p className="text-red-700 dark:text-red-300 font-bold text-lg">911</p>
-                    <p className="text-sm text-red-600 dark:text-red-400">For immediate medical, fire, or police emergencies</p>
+                    <h3 className="font-medium text-red-800 dark:text-red-200">Help is aviable</h3>
+                    <p className="text-red-700 dark:text-red-300 font-bold text-lg">988</p>
+                    <p className="text-sm text-red-600 dark:text-red-400">Suicide and Crisis Lifeline</p>
                 </div>
                 <section className="grid grid-cols-[repeat(auto-fill,_minmax(16rem,_1fr))] gap-2">
                     <SupportCard name="Crisis Text Line" tel="741-741" sms>
