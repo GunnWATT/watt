@@ -1,9 +1,9 @@
-import {useContext, useEffect, useState, lazy, Suspense} from 'react';
-import {Route, Routes, useLocation} from 'react-router-dom';
-import {useAnalytics, useAuth, useFirestore, useSigninCheck} from 'reactfire';
-import {DateTime} from 'luxon';
+import { useContext, useEffect, useState, lazy, Suspense } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { useAnalytics, useAuth, useFirestore, useSigninCheck } from 'reactfire';
+import { DateTime } from 'luxon';
 import PageVisibility from 'react-page-visibility';
-import {GCalEvent} from './components/schedule/Event';
+import { GCalEvent } from './components/schedule/Event';
 
 // Layouts
 import AppLayout from './components/layout/AppLayout';
@@ -39,23 +39,22 @@ import SgyInitResults from './components/firebase/SgyInitResults';
 import FirebaseUserDataUpdater from './components/firebase/FirebaseUserDataUpdater';
 
 // Contexts
-import {AlternatesProvider} from './contexts/AlternatesContext';
-import {TimeProvider} from './contexts/CurrentTimeContext';
-import {UserDataProvider} from './contexts/UserDataContext';
+import { AlternatesProvider } from './contexts/AlternatesContext';
+import { TimeProvider } from './contexts/CurrentTimeContext';
+import { UserDataProvider } from './contexts/UserDataContext';
 
 // Utils
-import {logEvent} from 'firebase/analytics';
-import {getRedirectResult} from 'firebase/auth';
-import {useAlternates} from './hooks/useAlternates';
-import {useLocalStorageData} from './hooks/useLocalStorageData';
-import {firestoreInit} from './util/firestore';
+import { logEvent } from 'firebase/analytics';
+import { getRedirectResult } from 'firebase/auth';
+import { useAlternates } from './hooks/useAlternates';
+import { useLocalStorageData } from './hooks/useLocalStorageData';
+import { firestoreInit } from './util/firestore';
 
 // Lazy-loaded pages
 const Testing = lazy(() => import('./pages/Testing'));
 const NYTimes = lazy(() => import('./components/resources/NYTimes'));
 const Adobe = lazy(() => import('./components/resources/Adobe'));
 const LibraryCard = lazy(() => import('./components/resources/LibraryCard'));
-const PhoneNumber = lazy(() => import('./components/wellness/PhoneNumber'));
 
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
@@ -122,13 +121,13 @@ export default function App() {
         <UserDataProvider value={userData}>
             <AlternatesProvider value={alternates}>
                 <TimeProvider value={date}>
-                    <PageVisibility onChange={() => navigator.serviceWorker.getRegistration().then(res => res?.update())}/>
+                    <PageVisibility onChange={() => navigator.serviceWorker.getRegistration().then(res => res?.update())} />
                     <FaviconHandler />
                     {signInCheckResult?.signedIn && <FirebaseUserDataUpdater />}
 
                     <Routes>
                         <Route element={<AppLayout />}>
-                            <Route path="/" element={<Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />}/>
+                            <Route path="/" element={<Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />} />
                             <Route path="/classes" element={<ClassesLayout />}>
                                 <Route index element={<Dashboard />} />
                                 <Route path="upcoming" element={<Upcoming />} />
@@ -161,8 +160,8 @@ export default function App() {
                             path="/super-secret-testing"
                             element={<Suspense><Testing /></Suspense>}
                         />
-                        <Route path="/schoology/auth" element={<SgyAuthRedirect />}/>
-                        <Route path="*" element={<PageNotFound />}/>
+                        <Route path="/schoology/auth" element={<SgyAuthRedirect />} />
+                        <Route path="*" element={<PageNotFound />} />
                     </Routes>
 
                     <InstallModal />

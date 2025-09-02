@@ -1,10 +1,11 @@
-import {ReactNode, useState} from 'react';
+import { ReactNode, useState } from 'react';
 
 // Components
-import {SectionHeader} from '../../components/layout/HeaderPage';
+import { SectionHeader } from '../../components/layout/HeaderPage';
 import CenteredModal from '../../components/layout/CenteredModal';
 import CloseButton from '../../components/layout/CloseButton';
 import Phone from '../../components/wellness/PhoneNumber';
+import Presentation from '../../components/wellness/Presentation';
 
 
 export default function Wellness() {
@@ -12,15 +13,18 @@ export default function Wellness() {
         <>
             <SectionHeader className="mb-5">Wellness</SectionHeader>
             <section className="flex flex-col gap-3">
-                <ArticleCard name="Crisis Support" element={<Phone/>}>
+                <ArticleCard name="Crisis Support" element={<Phone />}>
                     Resources for students in crisis.
+                </ArticleCard>
+                <ArticleCard name="Student's Guide To Safety" element={<Presentation />}>
+                    By Gunn High School Wellness Center
                 </ArticleCard>
             </section>
         </>
     );
 }
 
-type ArticleCardProps = {name: string, element: JSX.Element, children: ReactNode};
+type ArticleCardProps = { name: string, element: JSX.Element, children: ReactNode };
 function ArticleCard(props: ArticleCardProps) {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -40,4 +44,3 @@ function ArticleCard(props: ArticleCardProps) {
         </>
     )
 }
-
