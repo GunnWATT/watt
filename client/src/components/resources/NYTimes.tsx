@@ -6,11 +6,10 @@ export default function NYTimes() {
             </h1>
 
             <p className="mb-4">
-                All PAUSD students have free access to a New York Times subscription. Register at the link below;
-                when prompted, log in with your PAUSD email. Subscriptions have to be renewed every year.
+                Students can obtain free New York Times access from the Palo Alto City Library. Read the instructions below on how to access your PAUSD-provided Palo Alto Library account.
             </p>
-            <a href="https://myaccount.nytimes.com/verification/edupass" target="_blank" rel="noopener noreferrer">
-                Register for an educational New York Times subscription →
+            <a href="https://library.cityofpaloalto.org/resources-types/magazine/#resource-item-245866" target="_blank" rel="noopener noreferrer">
+                Register for an New York Times subscription →
             </a>
         </>
     )
