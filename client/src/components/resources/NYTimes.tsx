@@ -6,10 +6,10 @@ export default function NYTimes() {
             </h1>
 
             <p className="mb-4">
-                Gunn students no longer have access to the New York Times through the school. However students can still obtain free access from the Palo Alto City Library using their student ID as a library card. See the library card information down below.
+                Students can obtain free New York Times access from the Palo Alto City Library. Read the instructions below on how to access your PAUSD-provided Palo Alto Library account.
             </p>
-            <a href="https://library.cityofpaloalto.org/resources-types/magazine/" target="_blank" rel="noopener noreferrer">
-                Register for an New York Times subscription (Scoll down until you see the <i>New York Times Online</i> option)→
+            <a href="https://library.cityofpaloalto.org/resources-types/magazine/#resource-item-245866" target="_blank" rel="noopener noreferrer">
+                Register for an New York Times subscription →
             </a>
         </>
     )
