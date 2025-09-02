@@ -20,6 +20,7 @@ import Map from './pages/utilities/Map';
 import Calculator from './pages/utilities/Calculator';
 import Staff from './pages/utilities/Staff';
 import Courses from './pages/utilities/Courses';
+import Wellness from './pages/utilities/Wellness';
 import Resources from './pages/utilities/Resources';
 import Appearance from './pages/settings/Appearance';
 import Features from './pages/settings/Features';
@@ -55,6 +56,7 @@ const NYTimes = lazy(() => import('./components/resources/NYTimes'));
 const Adobe = lazy(() => import('./components/resources/Adobe'));
 const LibraryCard = lazy(() => import('./components/resources/LibraryCard'));
 const Support = lazy(() => import('./components/resources/Support'));
+const PhoneNumber = lazy(() => import('./components/wellness/PhoneNumber'));
 
 
 const calendarAPIKey = 'AIzaSyBDNSLCIZfrJ_IwOzUfO_CJjTRGkVtgaZc';
@@ -141,6 +143,7 @@ export default function App() {
                                 <Route path="calculator" element={<Calculator />} />
                                 <Route path="staff" element={<Staff />} />
                                 <Route path="courses" element={<Courses />} />
+                                <Route path="wellness" element={<Wellness />} />
                                 <Route path="resources" element={<Resources />} />
                             </Route>
                             <Route path="/settings" element={<SettingsLayout />}>
