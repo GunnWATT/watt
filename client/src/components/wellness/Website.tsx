@@ -11,7 +11,7 @@ export default function Website() {
                         Email the wellness team for support, questions, or to set up an appointment.
                     </SupportCard>
                     <SupportCard name="Headspace" link="https://headspace.org.au/online-and-phone-support/connect-with-us/">
-                        Talk to a councilor with headspace
+                        Talk to a counselor with headspace
                     </SupportCard>
                     <SupportCard name="Kids Help Line" link="https://kidshelpline.com.au/">
                         Contact Kids Help Line to talk to a councilor 24/7
