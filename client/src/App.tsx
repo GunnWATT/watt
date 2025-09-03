@@ -44,11 +44,11 @@ import { TimeProvider } from './contexts/CurrentTimeContext';
 import { UserDataProvider } from './contexts/UserDataContext';
 
 // Utils
-import { logEvent } from 'firebase/analytics';
-import { getRedirectResult } from 'firebase/auth';
-import { useAlternates } from './hooks/useAlternates';
-import { useLocalStorageData } from './hooks/useLocalStorageData';
-import { firestoreInit } from './util/firestore';
+import {logEvent} from 'firebase/analytics';
+import {getRedirectResult} from 'firebase/auth';
+import {useAlternates} from './hooks/useAlternates';
+import {useLocalStorageData} from './hooks/useLocalStorageData';
+import {firestoreInit} from './util/firestore';
 
 // Lazy-loaded pages
 const Testing = lazy(() => import('./pages/Testing'));
