@@ -7,6 +7,7 @@ import CloseButton from '../../components/layout/CloseButton';
 import Phone from '../../components/wellness/PhoneNumber';
 import Presentation from '../../components/wellness/Presentation';
 import Website from '../../components/wellness/Website';
+import SupportOthers from '../../components/wellness/SupportOthers';
 
 export default function Wellness() {
     return (
@@ -15,6 +16,9 @@ export default function Wellness() {
             <section className="flex flex-col gap-3">
                 <ArticleCard name="Crisis Support" element={<Phone />}>
                     Resources for students in crisis.
+                </ArticleCard>
+                <ArticleCard name="Support Others" element={<SupportOthers />}>
+                    Resources to support someone in crisis.
                 </ArticleCard>
                 <ArticleCard name="Student's Guide To Safety" element={<Presentation />}>
                     By Gunn High School Wellness Center
