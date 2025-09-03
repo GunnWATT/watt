@@ -86,7 +86,7 @@ function parseAlternate(summary: string | undefined, description: string | undef
     // Parse away HTML tags, entities, and oddities
     description = description
         .replace(/(\):.+?\d([A-Za-z]))/g, '$1\n$2') 
-        .replace(/(\)|])([^\s:])/g, '$1\n$2')
+        .replace(/(\(\d{1,2}:\d{2}\s?-\s?\d{1,2}:\d{2}\)|])([^:])/g, '$1\n$2') // https://github.com/GunnWATT/watt/issues/153
         .replace(/\n\(/g, '(') // https://github.com/GunnWATT/watt/pull/73#discussion_r756519526
         .replace(/<\/?(p|div|br).*?>|\),? *(?=[A-Z\d])/g, '\n')
         .replace(/<.*?>/g, '') // Remove all html tags
