@@ -14,7 +14,7 @@ export default function Website() {
                         Talk to a counselor with headspace
                     </SupportCard>
                     <SupportCard name="Kids Help Line" link="https://kidshelpline.com.au/">
-                        Contact Kids Help Line to talk to a councilor 24/7
+                        Contact Kids Help Line to talk to a counselor 24/7
                     </SupportCard>
                     <SupportCard name="Beyond Blue" link="https://www.beyondblue.org.au/">
                         Contact beyond blue to talk to a counselor 24/7
