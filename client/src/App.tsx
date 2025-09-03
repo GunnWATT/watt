@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState, lazy, Suspense } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
-import { useAnalytics, useAuth, useFirestore, useSigninCheck } from 'reactfire';
-import { DateTime } from 'luxon';
+import {useContext, useEffect, useState, lazy, Suspense} from 'react';
+import {Route, Routes, useLocation} from 'react-router-dom';
+import {useAnalytics, useAuth, useFirestore, useSigninCheck} from 'reactfire';
+import {DateTime} from 'luxon';
 import PageVisibility from 'react-page-visibility';
 import { GCalEvent } from './components/schedule/Event';
 
