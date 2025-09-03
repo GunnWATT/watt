@@ -39,9 +39,9 @@ import SgyInitResults from './components/firebase/SgyInitResults';
 import FirebaseUserDataUpdater from './components/firebase/FirebaseUserDataUpdater';
 
 // Contexts
-import { AlternatesProvider } from './contexts/AlternatesContext';
-import { TimeProvider } from './contexts/CurrentTimeContext';
-import { UserDataProvider } from './contexts/UserDataContext';
+import {AlternatesProvider} from './contexts/AlternatesContext';
+import {TimeProvider} from './contexts/CurrentTimeContext';
+import {UserDataProvider} from './contexts/UserDataContext';
 
 // Utils
 import {logEvent} from 'firebase/analytics';
