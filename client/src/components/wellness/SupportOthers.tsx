@@ -11,7 +11,7 @@ export default function SupportOthers() {
                     <p className="text-sm text-red-600 dark:text-red-400">Request a crisis intervention team</p>
                 </div>
             </div>
-            If you are concerned for a friend, classmate, or another student and would like Wellness to check in with them, please email <a href="mailto:gunnwellnessteam@pausd.org">gunnwellnessteam@pausd.org</a> with:
+            <p>If you are concerned for a friend, classmate, or another student and would like Wellness to check in with them, please email <a href="mailto:gunnwellnessteam@pausd.org">gunnwellnessteam@pausd.org</a> with:</p>
             <div className="indent-8">
                 <ul className="list-disc list-inside">
                     <li>Their full name</li>
