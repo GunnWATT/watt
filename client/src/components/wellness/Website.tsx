@@ -30,7 +30,7 @@ function SupportCard(props: SupportCardProps) {
                     href={email ? `mailto:${link}` : link}
                     target={email ? undefined : "_blank"}
                     rel={email ? undefined : "noopener noreferrer"}
-                    className='break-all'
+                    className="break-all"
                 >
                     {link}
                 </a>

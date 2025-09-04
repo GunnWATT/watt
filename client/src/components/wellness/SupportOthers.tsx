@@ -11,12 +11,12 @@ export default function SupportOthers() {
                     <p className="text-sm text-red-600 dark:text-red-400">Request a crisis intervention team</p>
                 </div>
             </div>
-            <p>If you are concerned for a friend, classmate, or another student and would like Wellness to check in with them, please email <a href="mailto:gunnwellnessteam@pausd.org">gunnwellnessteam@pausd.org</a> with:</p>
+            <p>If you are concerned for a friend, classmate, or another student and would like Wellness to check in with them, please email <a href="mailto:gunnwellnessteam@pausd.org" className="break-all">gunnwellnessteam@pausd.org</a> with:</p>
             <div className="indent-8">
                 <ul className="list-disc list-inside">
                     <li>Their full name</li>
                     <li>Their grade</li>
-                    <li>What prompted your concerns (<a href="https://www.nimh.nih.gov/health/publications/warning-signs-of-suicide">see a list of concerns here</a>)</li>
+                    <li>What prompted your concerns (<a href="https://www.nimh.nih.gov/health/publications/warning-signs-of-suicide" target="_blank" rel="noopener noreferrer" className="break-all">see a list of concerns here</a>)</li>
                     <li>Any additional information you think would be helpful</li>
                     <li>If you'd like to remain anonymous, please include that too. </li>
                 </ul>
