@@ -121,7 +121,7 @@ export default function App() {
         <UserDataProvider value={userData}>
             <AlternatesProvider value={alternates}>
                 <TimeProvider value={date}>
-                    <PageVisibility onChange={() => navigator.serviceWorker.getRegistration().then(res => res?.update())} />
+                    <PageVisibility onChange={() => navigator.serviceWorker.getRegistration().then(res => res?.update())}/>
                     <FaviconHandler />
                     {signInCheckResult?.signedIn && <FirebaseUserDataUpdater />}
 
