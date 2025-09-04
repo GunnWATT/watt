@@ -23,7 +23,6 @@ export default function SupportOthers() {
             </div>
             <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded p-3">
                 <p className="text-red-600 dark:text-red-400">This email is not for emergencies; in case of an emergency call 911 or use other emergency resources.</p>
-
             </div>
         </div>
     );
