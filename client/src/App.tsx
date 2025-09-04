@@ -160,8 +160,8 @@ export default function App() {
                             path="/super-secret-testing"
                             element={<Suspense><Testing /></Suspense>}
                         />
-                        <Route path="/schoology/auth" element={<SgyAuthRedirect />} />
-                        <Route path="*" element={<PageNotFound />} />
+                        <Route path="/schoology/auth" element={<SgyAuthRedirect />}/>
+                        <Route path="*" element={<PageNotFound />}/>
                     </Routes>
 
                     <InstallModal />
