@@ -5,19 +5,12 @@ export default function Website() {
         <div className="space-y-4">
             <h2 className="text-xl font-semibold">Mental Health Resources</h2>
             <div className="space-y-3">
-
                 <section className="grid grid-cols-[repeat(auto-fill,_minmax(16rem,_1fr))] gap-2">
                     <SupportCard name="Gunn wellness team" link="gunnwellnessteam@pausd.org" email>
                         Email the wellness team for support, questions, or to set up an appointment.
                     </SupportCard>
-                    <SupportCard name="Headspace" link="https://headspace.org.au/online-and-phone-support/connect-with-us/">
-                        Talk to a counselor with headspace
-                    </SupportCard>
-                    <SupportCard name="Kids Help Line" link="https://kidshelpline.com.au/">
-                        Contact Kids Help Line to talk to a counselor 24/7
-                    </SupportCard>
-                    <SupportCard name="Beyond Blue" link="https://www.beyondblue.org.au/">
-                        Contact beyond blue to talk to a counselor 24/7
+                    <SupportCard name="Care Solace" link="https://www.caresolace.com/site/pausdfamilies">
+                        24/7/365 Mental Health and Social Service Care Coordination Service for Palo Alto Unified School District Students, Staff, and their Families
                     </SupportCard>
                 </section>
             </div>
@@ -37,6 +30,7 @@ function SupportCard(props: SupportCardProps) {
                     href={email ? `mailto:${link}` : link}
                     target={email ? undefined : "_blank"}
                     rel={email ? undefined : "noopener noreferrer"}
+                    className='break-all'
                 >
                     {link}
                 </a>
