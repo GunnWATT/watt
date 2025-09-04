@@ -127,7 +127,7 @@ export default function App() {
 
                     <Routes>
                         <Route element={<AppLayout />}>
-                            <Route path="/" element={<Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />} />
+                            <Route path="/" element={<Home events={events} eventsError={eventsError} fetchEvents={fetchEvents} />}/>
                             <Route path="/classes" element={<ClassesLayout />}>
                                 <Route index element={<Dashboard />} />
                                 <Route path="upcoming" element={<Upcoming />} />
