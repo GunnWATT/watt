@@ -15,9 +15,6 @@ export default function Phone() {
                     <p className="text-sm text-red-600 dark:text-red-400">Suicide and Crisis Lifeline</p>
                 </div>
                 <section className="grid grid-cols-[repeat(auto-fill,_minmax(16rem,_1fr))] gap-2">
-                    <SupportCard name="National Suicide Prevention Lifeline" tel="988">
-                        Prevention and crisis resources (National)
-                    </SupportCard>
                     <SupportCard name="Crisis Text Line" tel="741-741" sms>
                         For everyone in crisis; text "Help", Text "LGBTQ" for LGBTQQ-specific support.
                     </SupportCard>
@@ -29,9 +26,6 @@ export default function Phone() {
                     </SupportCard>
                     <SupportCard name="Bill Wilson Youth Hotline" tel="408-850-6125">
                         24-hour Suicide & Crisis Line
-                    </SupportCard>
-                    <SupportCard name="Suicide & Crisis Line" tel="855-278-4204">
-                        For individuals in crisis (Santa Clara County)
                     </SupportCard>
                     <SupportCard name="Alum Rock Counseling Center" tel="408-294-0579">
                         Crisis intervention (Santa Clara county)
