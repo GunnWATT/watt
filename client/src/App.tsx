@@ -30,6 +30,7 @@ import Upcoming from './pages/classes/Upcoming';
 import Materials from './pages/classes/Materials';
 import PageNotFound from './pages/404';
 import SgyAuthRedirect from './pages/SgyAuthRedirect';
+import Prefill from './pages/Prefill';
 
 // Components
 import FaviconHandler from './components/schedule/FaviconHandler';
@@ -161,6 +162,7 @@ export default function App() {
                             element={<Suspense><Testing /></Suspense>}
                         />
                         <Route path="/schoology/auth" element={<SgyAuthRedirect />}/>
+                        <Route path="/prefill/:id" element={<Prefill />}/>
                         <Route path="*" element={<PageNotFound />}/>
                     </Routes>
 

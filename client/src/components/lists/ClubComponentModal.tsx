@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import { Dialog } from '@headlessui/react';
 import { Club } from '@watt/shared/data/clubs';
 
+import { toCanvas, toDataURL, type QRCodeRenderersOptions } from 'qrcode';
+
 // Components
 import CenteredModal from '../layout/CenteredModal';
 import OutlineButton, { DangerOutlineButton } from '../layout/OutlineButton';
@@ -39,28 +41,12 @@ export default function ClubComponentModal(props: ClubComponentModalProps) {
         await updateUserData('clubs', userData.clubs.filter(clubID => clubID !== id), auth, firestore);
     }
 
-    const clubInputId = {
-        'Monday': '1696394268',
-        'Tuesday': '1286398699',
-        'Wednesday': '1790776594',
-        'Thursday': '438816767',
-        'Friday': '834410885'
-    }[day.split(',')[0]];
-
-    // Prefill the form link from club and user name, if it exists
-    const prefilledData = {
-        ...(clubInputId && {
-            [`entry.${clubInputId}`]: name
-        }),
-        ...(user && {
-            ['entry.2019720537']: `950${user.email?.match(/\d+/)}`,
-            ['entry.245716957']: day.split(',')[0],
-            ['emailAddress']: user.email,
-            ['entry.878125936']: user.displayName
-        })
-    } as Record<string, string>;
-
-    const prefilledLink = `https://docs.google.com/forms/d/e/1FAIpQLSf_K0HpLJBe6SlmX8feUc_xCb2_bs75MLyzf8p2N3G1QcDA8Q/viewform?${new URLSearchParams(prefilledData)}`;
+    const prefillId = Number(id).toString(36);
+    const qrData = `https://gunn.app/prefill/${prefillId}`;
+    const qrConfig: QRCodeRenderersOptions = {
+        errorCorrectionLevel: "L",
+        margin: 3
+    };
 
     return (
         <CenteredModal className="relative flex flex-col bg-content rounded-md max-w-md max-h-[90%] mx-2 p-6 shadow-xl" isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -81,11 +67,51 @@ export default function ClubComponentModal(props: ClubComponentModalProps) {
             </section>
             <hr className="my-3" />
 
-            <section className="mb-4 overflow-scroll scroll-smooth scrollbar-none">
+            <section className="overflow-scroll scroll-smooth scrollbar-none">
                 <Dialog.Description>{desc}</Dialog.Description>
             </section>
 
-            <section className="flex gap-3 flex-wrap justify-end">
+            <div className="hidden md:block outline outline-2 outline-tertiary rounded-md mt-4">
+                <section className="flex h-full">
+                    <canvas
+                        className="rounded-sm rounded-r-none rounded-l-md"
+                        style={{ imageRendering: 'pixelated' }}
+                        ref={canvas => canvas && toCanvas(canvas, qrData, qrConfig)}
+                    />
+                    <div className="flex flex-col grow m-auto text-secondary text-center">
+                        <p className="font-semibold">Club Attendance</p>
+                        <a
+                            href={qrData}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="rounded-sm m-auto px-4 py-1 bg-tertiary text-secondary font-bold"
+                        >
+                            {qrData.replace('https://', '')}
+                        </a>
+                        <div className="text-xs text-secondary mt-0.5">
+                            Copy{' '}
+                            <strong
+                                onClick={() => navigator.clipboard.writeText(qrData)}
+                                className="hover:cursor-pointer hover:underline"
+                            >
+                                Link
+                            </strong>
+                            <span> · </span>
+                            <strong
+                                onClick={async () => {
+                                    const qr = await fetch(await toDataURL(qrData, qrConfig))
+                                    navigator.clipboard.write([new ClipboardItem({ "image/png": await qr.blob() })]);
+                                }}
+                                className="hover:cursor-pointer hover:underline"
+                            >
+                                QR Code
+                            </strong>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <section className="flex gap-3 mt-4 flex-wrap justify-end">
                 {pinned ? (
                     <OutlineButton onClick={removeFromPinned}>
                         Remove from my list
@@ -95,9 +121,6 @@ export default function ClubComponentModal(props: ClubComponentModalProps) {
                         Add to my list
                     </OutlineButton>
                 )}
-                <a href={prefilledLink} tabIndex={-1} target="_blank" rel="noopener noreferrer">
-                    <OutlineButton>Check In</OutlineButton>
-                </a>
                 <DangerOutlineButton onClick={() => setIsOpen(false)}>
                     Close
                 </DangerOutlineButton>
