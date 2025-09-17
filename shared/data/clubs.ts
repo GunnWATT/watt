@@ -16,7 +16,7 @@ export type Club = {
 }
 
 const clubs: {timestamp: string, data: {[key: string]: Club}} = {
-    "timestamp": "2025-09-12T05:32:58.618Z",
+    "timestamp": "2025-09-17T22:09:35.643Z",
     "data": {
         "10169": {
             "new": false,
@@ -46,6 +46,20 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Ms. Tuomy (Ariane)",
             "email": "atuomy@pausd.org"
         },
+        "12592": {
+            "new": false,
+            "name": "Business Club",
+            "type": "Discussion",
+            "tier": 2,
+            "desc": "The Gunn Business Club is a community for students who are interested the world of commerce, or anyone who simply wants to learn more about business sectors like Entrepreneurship, Finance, Marketing, Business Administration, or Hospitality & Tourism. Our mission is to bridge the gap between classroom learning and the real world by offering hands-on experiences that bring business concepts to life. Members gain practical skills through workshops, guest speakers, and other hands-on activities that explore real-world business challenges. No experience is required, just curiosity and an interest in learning something new!",
+            "day": "Wednesday",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "N-215",
+            "prez": "Nathan Yoon",
+            "advisor": "Khoa Dao",
+            "email": "kdao@pausd.org"
+        },
         "13799": {
             "new": false,
             "name": "Neuroscience Club",
@@ -59,20 +73,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "prez": "Roy Lao",
             "advisor": "Jaquelyn Silverbush",
             "email": "jsilverbush@pausd.org"
-        },
-        "14829": {
-            "new": false,
-            "name": "Business Club",
-            "type": "Discussion",
-            "tier": 2,
-            "desc": "The Gunn Business Club is a community for students who are interested the world of commerce, or anyone who simply wants to learn more about business sectors like Entrepreneurship, Finance, Marketing, Business Administration, or Hospitality & Tourism. Our mission is to bridge the gap between classroom learning and the real world by offering hands-on experiences that bring business concepts to life. Members gain practical skills through workshops, guest speakers, and other hands-on activities that explore real-world business challenges. No experience is required, just curiosity and an interest in learning something new!",
-            "day": "Wednesday",
-            "freq": "Once a week",
-            "time": "Lunch",
-            "room": "N-215",
-            "prez": "Nathan Yoon",
-            "advisor": "Khoa Dao",
-            "email": "kdao@pausd.org"
         },
         "15240": {
             "new": false,
@@ -117,6 +117,20 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "prez": "Urim Kang",
             "advisor": "Alexis Lee",
             "email": "aletner@pausd.org"
+        },
+        "19297": {
+            "new": true,
+            "name": "Geoguessr Club",
+            "type": "Recreation",
+            "tier": 1,
+            "desc": "In our club, members:  Play GeoGuessr challenges ranging from beginner-friendly to competitive formats.  Learn strategies to recognize countries by landscapes, languages, road signs, and architecture.  Explore world cultures, landmarks, and geography facts through interactive activities.  Compete in tournaments, speed challenges, and team battles.  Share travel stories and discover how real-world geography connects to the game.  No prior experience is needed—just curiosity and a love of discovery. Come join us, test your skills, and see how far around the world you can go! And if ur worried about the paywall don't be anyone can join any party game for free and we're always going to have a party game going on at our meetings. The winner of each live challenge gets candy!!!",
+            "day": "Tuesday",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "E-2",
+            "prez": "Ian Lu",
+            "advisor": "Arthur Kinyanjui",
+            "email": "akinyanjui@pausd.org"
         },
         "19916": {
             "new": false,
@@ -299,20 +313,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "prez": "Hannah Mei",
             "advisor": "Florina Limburg",
             "email": "flimburg@pausd.org"
-        },
-        "26010": {
-            "new": true,
-            "name": "Clothing Club",
-            "type": "Discussion",
-            "tier": 1,
-            "desc": "The Clothing Club explores the history of different styles, garments, and materials as well as promoting the culture of thrifting. It examines how clothing has evolved and how modern fashion trends are influenced by vintage styles, past trends, and even cultural influence. Thrifting will also be a part of the club, promoting sustainability while giving members the chance to find and share unique secondhand pieces. Show-and-tell sessions allow members to present personal items that they have thrifted, fostering discussion and appreciation for personal style and fashion history.",
-            "day": "Friday",
-            "freq": "Once a week",
-            "time": "Lunch",
-            "room": "N-103",
-            "prez": "William Jia",
-            "advisor": "Miranda Long",
-            "email": "mlong@pausd.org"
         },
         "27242": {
             "new": false,
@@ -510,20 +510,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Cindy Peters",
             "email": "cpeters@pausd.org"
         },
-        "39554": {
-            "new": false,
-            "name": "Economics Club",
-            "type": "Competition",
-            "tier": 1,
-            "desc": "The Econ club aims to help and provide assistance In Economics. Additionally in prep for the national economics challenge. Through lectures and guided questions in allignment with the econ course at Gunn students learn",
-            "day": "Wednesday",
-            "freq": "Once a week",
-            "time": "Lunch",
-            "room": "K-8",
-            "prez": "richard de la garza",
-            "advisor": "phillp lyons",
-            "email": "plyons@pausd.org"
-        },
         "40304": {
             "new": false,
             "name": "AI in Business Club",
@@ -568,6 +554,20 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Ed corpuz",
             "email": "ecorpuz@pausd.org"
         },
+        "43129": {
+            "new": false,
+            "name": "Civic Engagement and Education Project",
+            "type": "Humanities",
+            "tier": 1,
+            "desc": "CEEP (Civic Engagement and Education Project) is dedicated to empowering students to become active, informed participants in our democracy by making politics approachable, interactive, and meaningful. We strive to educate members about what really happens in government, engage them with fun activities that connect politics to real life, and provide a welcoming space to discuss current events and social issues. We focus on encouraging civic participation by offering resources and opportunities to get involved, from understanding how voting works to exploring ways to make a difference locally and nationally. Whether you are already passionate about politics or just curious about how government decisions affect your life, CEEP is the place for you!",
+            "day": "Tuesday",
+            "freq": "Every Other Week",
+            "time": "Lunch",
+            "room": "J-7",
+            "prez": "Lauren Murakami",
+            "advisor": "Elana Zizmor",
+            "email": "ezizmor@pausd.org"
+        },
         "43135": {
             "new": false,
             "name": "Science Bowl",
@@ -587,7 +587,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "name": "Creative Writing Club",
             "type": "Visual and Media Arts",
             "tier": 1,
-            "desc": "The Creative Writing Club is a place to write fun stories with your friends and create fictional worlds with complex characters that are realistic and entertaining. You’ll have the opportunity to write a complete, fictional story throughout the year by working on it on Mondays during lunch. At the end of the year, you can showcase your work in a mini writing contest for prizes. If you can’t come regularly, we’ll provide weekly prompts on the board for small stories, so you can still participate, even if you miss a day.",
+            "desc": "The Creative Writing Club is a fun environment for students to come write fictional stories with their friends on Wednesdays during lunch. There will be creative and engaging weekly writing prompts, brainstorming sessions, and snacks! We hope that students will occasionally share their work and consider entering our mini-contest later in the year. We hope to bring together a group of passionate Titan writers!",
             "day": "Tuesday",
             "freq": "Once a week",
             "time": "Lunch",
@@ -624,19 +624,19 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Anita Su",
             "email": "asu@pausd.org"
         },
-        "43750": {
-            "new": true,
-            "name": "Geoguessr Club",
-            "type": "Recreation",
+        "43709": {
+            "new": false,
+            "name": "Economics Club",
+            "type": "Competition",
             "tier": 1,
-            "desc": "In our club, members:  Play GeoGuessr challenges ranging from beginner-friendly to competitive formats.  Learn strategies to recognize countries by landscapes, languages, road signs, and architecture.  Explore world cultures, landmarks, and geography facts through interactive activities.  Compete in tournaments, speed challenges, and team battles.  Share travel stories and discover how real-world geography connects to the game.  No prior experience is needed—just curiosity and a love of discovery. Come join us, test your skills, and see how far around the world you can go! And if ur worried about the paywall don't be anyone can join any party game for free and we're always going to have a party game going on at our meetings. The winner of each live challenge gets candy!!!",
-            "day": "Tuesday",
+            "desc": "The Econ club aims to help and provide assistance In Economics. Additionally in prep for the national economics challenge. Through lectures and guided questions in allignment with the econ course at Gunn students learn",
+            "day": "Wednesday",
             "freq": "Once a week",
             "time": "Lunch",
-            "room": "E-2",
-            "prez": "Ian Lu",
-            "advisor": "Arthur Kinyanjui",
-            "email": "akinyanjui@pausd.org"
+            "room": "K-8",
+            "prez": "richard de la garza",
+            "advisor": "phillp lyons",
+            "email": "plyons@pausd.org"
         },
         "43880": {
             "new": false,
@@ -754,6 +754,20 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Amy Anderson",
             "email": "amanderson@pausd.org"
         },
+        "48467": {
+            "new": false,
+            "name": "Jewish Student Union",
+            "type": "Culture, Religion, and Language",
+            "tier": 2,
+            "desc": "Jewish Student Union (JSU) is a welcoming space for students of all backgrounds to learn about and celebrate Jewish culture, traditions, and values, and is a part of the national JSU organization. Our purpose is to create a community that is eager to learn on a deeper level about Judaism and its role in today's world. Each meeting is a mix of fun, food, and friendship with opportunities to explore Jewish holidays, history, and traditions through discussions and engaging activities. Past events have included Hanukkah celebrations, cultural food tastings, and guest speakers. Whether you’re Jewish, curious to learn more, or simply looking for a warm and supportive community, JSU invites you to join us. Our club is about connection, education, and building lasting friendships while celebrating the richness of Jewish life.",
+            "day": "Tuesday",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "K-1",
+            "prez": "Yael Gottesman",
+            "advisor": "Ariane Tuomy",
+            "email": "atuomy@pausd.org"
+        },
         "48650": {
             "new": false,
             "name": "Korean Club",
@@ -823,6 +837,20 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "prez": "Hannah Vu",
             "advisor": "Claudia Schroeppel",
             "email": "cschroeppel@pausd.org"
+        },
+        "53736": {
+            "new": true,
+            "name": "Clothing Club",
+            "type": "Discussion",
+            "tier": 1,
+            "desc": "The Clothing Club explores the history of different styles, garments, and materials as well as promoting the culture of thrifting. It examines how clothing has evolved and how modern fashion trends are influenced by vintage styles, past trends, and even cultural influence. Thrifting will also be a part of the club, promoting sustainability while giving members the chance to find and share unique secondhand pieces. Show-and-tell sessions allow members to present personal items that they have thrifted, fostering discussion and appreciation for personal style and fashion history.",
+            "day": "Friday",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "N-103",
+            "prez": "William Jia",
+            "advisor": "Miranda Long",
+            "email": "mlong@pausd.org"
         },
         "53867": {
             "new": false,
@@ -921,20 +949,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "prez": "Jaeyoon Kim",
             "advisor": "Paul Medeiros",
             "email": "pmedeiros@pausd.org"
-        },
-        "56053": {
-            "new": true,
-            "name": "Python Club",
-            "type": "STEM",
-            "tier": 1,
-            "desc": "Ever heard of print(‘Hello World!’)? That’s python! In Python Club, we learn about how to code in python; from the very basics to talking about advanced topics like machine learning. We also help students learn about the applications of python and how they can put their work into the real world. Students will get real hands-on experience with writing their own code and creating their own projects. No prior experience is necessary, and all are welcome!",
-            "day": "Friday",
-            "freq": "Once a week",
-            "time": "Lunch",
-            "room": "N-210",
-            "prez": "Jacob Mastin",
-            "advisor": "Marcus Jamison",
-            "email": "mjamison@pausd.org"
         },
         "56585": {
             "new": false,
@@ -1330,6 +1344,20 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "David Deggeller",
             "email": "ddeggeller@pausd.org"
         },
+        "83134": {
+            "new": true,
+            "name": "Python Club",
+            "type": "STEM",
+            "tier": 1,
+            "desc": "Ever heard of print(‘Hello World!’)? That’s python! In Python Club, we learn about how to code in python; from the very basics to talking about advanced topics like machine learning. We also help students learn about the applications of python and how they can put their work into the real world. Students will get real hands-on experience with writing their own code and creating their own projects. No prior experience is necessary, and all are welcome!",
+            "day": "Friday",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "N-210",
+            "prez": "Jacob Mastin",
+            "advisor": "Marcus Jamison",
+            "email": "mjamison@pausd.org"
+        },
         "83301": {
             "new": false,
             "name": "Latinos Unidos",
@@ -1372,20 +1400,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "Julia Angeles",
             "email": "jangeles@pausd.org"
         },
-        "84915": {
-            "new": false,
-            "name": "Jewish Student Union",
-            "type": "Culture, Religion, and Language",
-            "tier": 2,
-            "desc": "Jewish Student Union (JSU) is a welcoming space for students of all backgrounds to learn about and celebrate Jewish culture, traditions, and values, and is a part of the national JSU organization. Our purpose is to create a community that is eager to learn on a deeper level about Judaism and its role in today's world. Each meeting is a mix of fun, food, and friendship with opportunities to explore Jewish holidays, history, and traditions through discussions and engaging activities. Past events have included Hanukkah celebrations, cultural food tastings, and guest speakers. Whether you’re Jewish, curious to learn more, or simply looking for a warm and supportive community, JSU invites you to join us. Our club is about connection, education, and building lasting friendships while celebrating the richness of Jewish life.",
-            "day": "Tuesday",
-            "freq": "Once a week",
-            "time": "Lunch",
-            "room": "K-1",
-            "prez": "Yael Gottesman",
-            "advisor": "Ariane Tuomy",
-            "email": "atuomy@pausd.org"
-        },
         "87579": {
             "new": true,
             "name": "Students Against Cancer",
@@ -1427,20 +1441,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "prez": "Vaani Saxena",
             "advisor": "Florina Limburg",
             "email": "flimburg@pausd.org"
-        },
-        "91072": {
-            "new": false,
-            "name": "Civic Engagement and Education Project",
-            "type": "Humanities",
-            "tier": 1,
-            "desc": "CEEP (Civic Engagement and Education Project) is dedicated to empowering students to become active, informed participants in our democracy by making politics approachable, interactive, and meaningful. We strive to educate members about what really happens in government, engage them with fun activities that connect politics to real life, and provide a welcoming space to discuss current events and social issues. We focus on encouraging civic participation by offering resources and opportunities to get involved, from understanding how voting works to exploring ways to make a difference locally and nationally. Whether you are already passionate about politics or just curious about how government decisions affect your life, CEEP is the place for you!",
-            "day": "Tuesday",
-            "freq": "Every Other Week",
-            "time": "Lunch",
-            "room": "J-7",
-            "prez": "Lauren Murakami",
-            "advisor": "Elana Zizmor",
-            "email": "ezizmor@pausd.org"
         },
         "93631": {
             "new": false,
@@ -1521,7 +1521,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "day": "Tuesday",
             "freq": "Once a week",
             "time": "Lunch",
-            "room": "J-3",
+            "room": "K-3",
             "prez": "Riya Chaudhary",
             "advisor": "Mark Brassey",
             "email": "mbrassey@pausd.org"

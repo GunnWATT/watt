@@ -121,6 +121,14 @@ export default function ClubComponentModal(props: ClubComponentModalProps) {
                         Add to my list
                     </OutlineButton>
                 )}
+                <a
+                    href={qrData}
+                    tabIndex={-1}
+                    target="_blank" rel="noopener noreferrer"
+                    className="md:hidden"
+                >
+                    <OutlineButton>Check In</OutlineButton>
+                </a>
                 <DangerOutlineButton onClick={() => setIsOpen(false)}>
                     Close
                 </DangerOutlineButton>
