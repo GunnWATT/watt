@@ -15,7 +15,7 @@ const EARLIEST_AM_HOUR = 6;
 
 const timeGetterRegex = /\(?(1?\d)(?::(\d{2}))? *(?:am)? *[-–] *(1?\d)(?::(\d{2}))? *(noon|pm)?\)?/;
 const gradeGetterRegex = /(?<!Period |#)\d+(\/\d+)*(?!(?:st|nd|rd|th)\s+Period)/i;
-const altScheduleRegex = /staff pd|alt. sched|schedule|extended|first day|finals/i; // /schedule|extended|lunch/i
+const altScheduleRegex = /late start|staff pd|alt. sched|schedule|extended|first day|finals/i; // /schedule|extended|lunch/i
 const noSchoolRegex = /holiday|no\s(students|school)|break|development/i;
 const primeReplacesSelfRegex = /PRIME (replaces|instead of) SELF|No SELF, extra PRIME/i;
 // const selfStudyHallRegex = /9\/10 (SELF|Study Hall), 11\/12 (SELF|Study Hall)/i;
@@ -250,7 +250,11 @@ function parseAlternate(summary: string | undefined, description: string | undef
         }
 
         if (startDateObj < firstAlternate) firstAlternate = startDateObj;
-        fAlternates[startDateObj.minus({days: 1}).toFormat('MM-dd')] = schedule;
+
+        if (!event.summary?.match(selfRegex) && !event.summary?.match(studyHallRegex))
+            startDateObj = startDateObj.minus({days: 1});
+
+        fAlternates[startDateObj.toFormat('MM-dd')] = schedule;
     }
 
     const alternates: {[key: string]: PeriodObj[] | null} = {};
