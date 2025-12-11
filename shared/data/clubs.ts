@@ -16,7 +16,7 @@ export type Club = {
 }
 
 const clubs: {timestamp: string, data: {[key: string]: Club}} = {
-    "timestamp": "2025-09-17T22:09:35.643Z",
+    "timestamp": "2025-12-11T04:46:25.097Z",
     "data": {
         "10169": {
             "new": false,
@@ -69,7 +69,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "day": "Tuesday",
             "freq": "Once a week",
             "time": "Lunch",
-            "room": "N-208 (most likely)",
+            "room": "N-208",
             "prez": "Roy Lao",
             "advisor": "Jaquelyn Silverbush",
             "email": "jsilverbush@pausd.org"
@@ -117,20 +117,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "prez": "Urim Kang",
             "advisor": "Alexis Lee",
             "email": "aletner@pausd.org"
-        },
-        "19297": {
-            "new": true,
-            "name": "Geoguessr Club",
-            "type": "Recreation",
-            "tier": 1,
-            "desc": "In our club, members:  Play GeoGuessr challenges ranging from beginner-friendly to competitive formats.  Learn strategies to recognize countries by landscapes, languages, road signs, and architecture.  Explore world cultures, landmarks, and geography facts through interactive activities.  Compete in tournaments, speed challenges, and team battles.  Share travel stories and discover how real-world geography connects to the game.  No prior experience is needed—just curiosity and a love of discovery. Come join us, test your skills, and see how far around the world you can go! And if ur worried about the paywall don't be anyone can join any party game for free and we're always going to have a party game going on at our meetings. The winner of each live challenge gets candy!!!",
-            "day": "Tuesday",
-            "freq": "Once a week",
-            "time": "Lunch",
-            "room": "E-2",
-            "prez": "Ian Lu",
-            "advisor": "Arthur Kinyanjui",
-            "email": "akinyanjui@pausd.org"
         },
         "19916": {
             "new": false,
@@ -225,7 +211,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "day": "Thursday",
             "freq": "Once a week",
             "time": "Lunch",
-            "room": "N-114 Mr. Dunlaps room",
+            "room": "N-114",
             "prez": "Tove Kaleba",
             "advisor": "Paul Dunlap",
             "email": "Pdunlap@pausd.org"
@@ -362,7 +348,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "type": "STEM",
             "tier": 1,
             "desc": "Our club is divided into two parts: competitions and education. Every month, we'll participate in a machine learning competition hosted by Kaggle, an online workspace for ML developers. In a competition, Kaggle gives a dataset where our goal is to develop an algorithm fitted to that dataset. People work alone/in groups and we spend club time collaborating so we can make the best algorithm to submit! This club also helps students learn Python/ML algorithms if they aren't proficient enough to develop one yet. During the majority of our club meetings, we'll teach students about ML so they'll one day be able to participate in these competitions!",
-            "day": "Friday",
+            "day": "Tuesday",
             "freq": "Once a week",
             "time": "Lunch",
             "room": "N-203",
@@ -505,7 +491,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "day": "Monday",
             "freq": "Once a week",
             "time": "Lunch",
-            "room": "The Garden by K-5 if construction finishes. If not, we will meet at B-1",
+            "room": "The Garden by K-5",
             "prez": "Elizabeth Tsin",
             "advisor": "Cindy Peters",
             "email": "cpeters@pausd.org"
@@ -528,9 +514,9 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "new": false,
             "name": "Vietnamese Culture Club",
             "type": "Culture, Religion, and Language",
-            "tier": 3,
+            "tier": 1,
             "desc": "The Vietnamese Culture Club (VCC) is dedicated to the exploration, education, and understanding of the Vietnamese customs, traditions, and language. Through music, food, and art, our goal is to have every member develop a greater appreciation for Vietnamese culture. We welcome all students interested to partake in our wide range of inclusive social activities and cultural celebrations.",
-            "day": "Friday",
+            "day": "Thursday",
             "freq": "Every Other Week",
             "time": "Lunch",
             "room": "M-5",
@@ -591,7 +577,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "day": "Tuesday",
             "freq": "Once a week",
             "time": "Lunch",
-            "room": "M-5",
+            "room": "P-115",
             "prez": "Ellie Cardozo",
             "advisor": "Melanie Elmont",
             "email": "melmont@pausd.org"
@@ -705,7 +691,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "day": "Friday",
             "freq": "Once a week",
             "time": "Lunch",
-            "room": "Biology building- room # Tbd",
+            "room": "H-5",
             "prez": "Benjamin Lu",
             "advisor": "Teresa Oliva Nino",
             "email": "tninooliva@pausd.org"
@@ -735,7 +721,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "day": "Thursday",
             "freq": "Once a week",
             "time": "Lunch",
-            "room": "Mr. Slocums room",
+            "room": "K-15",
             "prez": "Andre Lee",
             "advisor": "Dethrick Slocum",
             "email": "dslocum@pausd.org"
@@ -870,7 +856,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "new": false,
             "name": "Quiz Bowl",
             "type": "Competition",
-            "tier": 2,
+            "tier": 1,
             "desc": "The Quiz Bowl club serves as a dynamic and intellectually stimulating platform for students to engage in competitive and collaborative academic competitions. Its primary purpose is to foster a passion for knowledge, critical thinking, and teamwork among its members. Through regular meetings and practice sessions, club participants delve into a wide array of subjects, ranging from literature and history to science and pop culture. Members develop their ability to quickly and accurately answer diverse trivia questions, honing their analytical skills and expanding their general knowledge base. The club also prepares for and participates in Quiz Bowl tournaments, where they compete against other schools regionally and nationally, putting their accumulated knowledge to the test in a fast-paced and exhilarating environment. Overall, the Quiz Bowl club offers a vibrant platform for intellectual growth, friendly competition, and the joy of learning for its enthusiastic members.",
             "day": "Tuesday",
             "freq": "Once a week",
@@ -884,7 +870,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "new": false,
             "name": "Tea Club",
             "type": "Recreation",
-            "tier": 1,
+            "tier": 2,
             "desc": "Tea Club is a place to relax and have a tea party in the middle of a stressful school day. We’ll experience the cultural aspects of serving and drinking tea, including tea biscuits and other tea snacks. Each month, we will focus on a different cultural tea-related theme, and potentially have optional, sophisticated discussions over tea.",
             "day": "Friday",
             "freq": "Once a week",
@@ -1108,7 +1094,7 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "new": false,
             "name": "Medicine without Borders",
             "type": "STEM",
-            "tier": 2,
+            "tier": 1,
             "desc": "In the club, Medicine without Borders, we aim to learn, inspire, and take action in the pursuit of helping underprivileged communities around the world. We will delve into the mission and activities of organizations like \"Doctors Without Borders,\" understanding the challenges faced by underprivileged communities and the impact of humanitarian efforts. Our primary objective is to discuss ways one could aid underprivileged nations in medicine and raise awareness about this topic.",
             "day": "Wednesday",
             "freq": "Once a week",
@@ -1124,8 +1110,8 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "type": "STEM",
             "tier": 1,
             "desc": "The Titan Journal is a student-run journal that gives Gunn students the opportunity to publish their research papers, articles, and essays. During club meetings, members can present and receive feedback on their works in a supportive and constructive environment.",
-            "day": "Wednesday, Thursday, Friday",
-            "freq": "More than once a week",
+            "day": "Wednesday",
+            "freq": "Once a week",
             "time": "Lunch",
             "room": "J-5",
             "prez": "Isaac Fredericson",
@@ -1278,13 +1264,13 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "type": "Sports",
             "tier": 1,
             "desc": "Weightlifting Club is an inclusive strength community that welcomes any type of lifter - beginner to advanced. We provide the opportunity for students to use and enjoy the Gunn weight room. Come learn how to lift safely so you can get stronger, healthier and achieve new PRs!",
-            "day": "Tuesday",
+            "day": "Friday",
             "freq": "Once a week",
             "time": "After School",
             "room": "Weight room",
             "prez": "Gabriel Espinoza",
-            "advisor": "David Bisbee",
-            "email": "dbisbee@pausd.org"
+            "advisor": "Katherine Ja",
+            "email": "kja@pausd.org"
         },
         "77894": {
             "new": false,
@@ -1344,20 +1330,6 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "advisor": "David Deggeller",
             "email": "ddeggeller@pausd.org"
         },
-        "83134": {
-            "new": true,
-            "name": "Python Club",
-            "type": "STEM",
-            "tier": 1,
-            "desc": "Ever heard of print(‘Hello World!’)? That’s python! In Python Club, we learn about how to code in python; from the very basics to talking about advanced topics like machine learning. We also help students learn about the applications of python and how they can put their work into the real world. Students will get real hands-on experience with writing their own code and creating their own projects. No prior experience is necessary, and all are welcome!",
-            "day": "Friday",
-            "freq": "Once a week",
-            "time": "Lunch",
-            "room": "N-210",
-            "prez": "Jacob Mastin",
-            "advisor": "Marcus Jamison",
-            "email": "mjamison@pausd.org"
-        },
         "83301": {
             "new": false,
             "name": "Latinos Unidos",
@@ -1367,10 +1339,12 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "day": "Tuesday",
             "freq": "Every Other Week",
             "time": "Lunch",
-            "room": "N-109 or P-116",
+            "room": "G-7",
             "prez": "Megumi Estrada",
             "advisor": "Danielle Whichard",
-            "email": "dwhichard@pausd.org"
+            "email": "dwhichard@pausd.org",
+            "coadvisor": "Daissy Tabares",
+            "coemail": "dtabares@pausd.org"
         },
         "84338": {
             "new": true,
@@ -1424,8 +1398,8 @@ const clubs: {timestamp: string, data: {[key: string]: Club}} = {
             "freq": "Once a week",
             "time": "Lunch",
             "room": "N-214",
-            "prez": "Andrew Xu",
-            "advisor": "Mr. Hahn",
+            "prez": "Simren Arora",
+            "advisor": "Daniel Hahn",
             "email": "dhahn@pausd.org"
         },
         "90623": {
