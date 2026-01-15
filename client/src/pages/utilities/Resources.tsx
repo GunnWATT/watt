@@ -7,7 +7,6 @@ import CloseButton from '../../components/layout/CloseButton';
 import NYTimes from '../../components/resources/NYTimes';
 import Adobe from '../../components/resources/Adobe';
 import LibraryCard from '../../components/resources/LibraryCard';
-import Support from '../../components/resources/Support';
 
 
 export default function Resources() {
@@ -23,9 +22,6 @@ export default function Resources() {
                 </ArticleCard>
                 <ArticleCard name="Library Card" element={<LibraryCard />}>
                     How to access your PAUSD-provided Palo Alto Library account.
-                </ArticleCard>
-                <ArticleCard name="Crisis Support" element={<Support />}>
-                    Resources for students in crisis.
                 </ArticleCard>
             </section>
         </>
