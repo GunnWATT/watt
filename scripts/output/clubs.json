@@ -1,5 +1,5 @@
 {
-    "timestamp": "2025-12-11T04:46:25.097Z",
+    "timestamp": "2026-01-27T08:25:43.927Z",
     "data": {
         "10169": {
             "new": false,
@@ -101,6 +101,34 @@
             "advisor": "Alexis Lee",
             "email": "aletner@pausd.org"
         },
+        "15345": {
+            "new": true,
+            "name": "Taiwanese Student Association",
+            "type": "Culture, Religion, and Language",
+            "tier": 2,
+            "desc": "At the Henry M. Gunn High School Taiwanese Student Association (TSA) club, our goal is to have every member develop a greater appreciation for Taiwanese culture through light lectures, games, food, fundraisers, art, and more. We want to spread Taiwanese culture to everyone, while letting members have tons of fun throughout the journey.",
+            "day": "Wednesday",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "K-9",
+            "prez": "Yes",
+            "advisor": "Timothy Young",
+            "email": "tyoung@pausd.org"
+        },
+        "19735": {
+            "new": false,
+            "name": "Mock Trial Club",
+            "type": "Competition",
+            "tier": 1,
+            "desc": "Mock trial meets in N-205 after school on Mondays. We combine fields like theater, law, and debate into a fun experience for everyone! If you’re interested in acting, you can join and act as a witness; if you want a career in law, you can be an attorney; and if you just want a low-stakes and low-commitment role, you have options like",
+            "day": "Friday",
+            "freq": "Once a week",
+            "time": "After School",
+            "room": "N-205",
+            "prez": "Ruddhra Gupta",
+            "advisor": "Misha Hlasek",
+            "email": "mhlasek@pausd.org"
+        },
         "19916": {
             "new": false,
             "name": "Chinese Culture Club",
@@ -143,27 +171,13 @@
             "advisor": "Angela Merchant",
             "email": "amerchant@pausd.org"
         },
-        "20526": {
-            "new": false,
-            "name": "Title IX",
-            "type": "Service and Wellbeing",
-            "tier": 2,
-            "desc": "We're dedicated to promoting sexual violence prevention at schools through advocacy. Throughout the year, members will be collaborating with local administrators and other community members on educational content, policy-writing, bringing guest speakers to campus, social media projects, and more! Title IX Club is open to everyone, whether you're a survivor, someone who is passionate about sexual violence prevention, or just interested in advocacy.",
-            "day": "Tuesday",
-            "freq": "Every Other Week",
-            "time": "Lunch",
-            "room": "N-110",
-            "prez": "Zoe Mukamal",
-            "advisor": "Kate Weymouth",
-            "email": "kweymouth@pausd.org"
-        },
         "20588": {
             "new": false,
             "name": "Start-Up Club",
             "type": "Discussion",
             "tier": 2,
             "desc": "The Start-Up Club empowers students to explore entrepreneurship by learning how to create, pitch, and develop start-up ideas. Members will engage in workshops, case studies, guest speaker events, and collaborative brainstorming sessions. The club’s mission is to foster creativity, critical thinking, and leadership while preparing students to turn innovative ideas into actionable business plans.",
-            "day": "Thursday",
+            "day": "Monday",
             "freq": "Once a week",
             "time": "Lunch",
             "room": "K-3",
@@ -171,19 +185,19 @@
             "advisor": "Amy Bradshaw",
             "email": "abradshaw@pausd.org"
         },
-        "20732": {
-            "new": false,
-            "name": "Ceramics Club",
-            "type": "Visual Arts and Media",
-            "tier": 1,
-            "desc": "Ceramics club is an open space for students who love to create. We will lead clay projects that club members will make and get to keep. No experience needed. Everyone, no matter the skill level, will find that there is a project suited to them, along with kind club officers who love to help.",
-            "day": "Wednesday",
+        "21070": {
+            "new": true,
+            "name": "Classics Club",
+            "type": "Humanities",
+            "tier": 2,
+            "desc": "Our aim is to study global culture (not just Greco-Roman as is so often the convention in classical study!) from Homeric Classical Antiquity through the end of the Middle Ages, primarily through a lens of literature and myth but also branching out to arts and culture. In addition to the Greece and Rome of Classical Antiquity we will also be studying European Christendom, Eastern, near-Eastern (pre- and post-Islamic), Celtic and Germanic societies. We are not experts, and the aim of the club is to teach everyone involved! On a meeting-to-meeting basis, club time will be split roughly 50/50 between expository lectures introducing the content for the week’s session (or a longer period of study, depending on the scope of the material) and open discussion. Throughout the course of the year we will cover global literature and culture (from Europe to the Near East to East/South Asia) beginning with Homeric Antiquity and ending with the late Middle Ages. We will cover literary touchstones spanning the entire period from a wide range of cultures and civilizations.",
+            "day": "Friday",
             "freq": "Once a week",
             "time": "Lunch",
-            "room": "M-3",
-            "prez": "Priyanka Rodrigues",
-            "advisor": "Victoria Buck",
-            "email": "vbuck@pausd.org"
+            "room": "N-101, Wells' classroom",
+            "prez": "Ayan Kancherla",
+            "advisor": "Jordan Wells",
+            "email": "jwells@pausd.org"
         },
         "21111": {
             "new": false,
@@ -231,7 +245,7 @@
             "new": false,
             "name": "Autonomous Robotics Club",
             "type": "STEM",
-            "tier": 2,
+            "tier": 1,
             "desc": "In autonomous robots club, you will learn all about how the software behind autonomous vehicles allows them to see, think, and take actions. Some topics we cover include computer vision, trajectory planning, and 3D mapping. We plan to build our own mazerunner robot this year!",
             "day": "Tuesday",
             "freq": "Once a week",
@@ -283,20 +297,6 @@
             "advisor": "Florina Limburg",
             "email": "flimburg@pausd.org"
         },
-        "27242": {
-            "new": false,
-            "name": "Bread Appreciation Club",
-            "type": "Recreation",
-            "tier": 1,
-            "desc": "The Bread Appreciation Club welcomes all bread enthusiasts to learn about the history, recipes, & culture behind bread!    A normal B.A.C. (Bread Appreciation Club) meeting starts off with a ~5-8 minute fun & informative presentation teaching the members all about bread. Whether it be a debate about white vs. wheat bread or learning how unique French & Japanese bread share close roots, you are guaranteed to leave with a better understanding of a prominent pillar of the world's diet!     Afterward, members can participate in an activity based on what we learned, like a trivia game, debate, or arts & crafts project.     Lastly, all members who completed our attendance form are entered into our daily raffle for the chance to win a prize. On special days, we may offer bread for the whole club!    Disclaimer: Unfortunately, the Bread Appreciation Club does not have the time, resources, or  equipment to bake bread.    We'd loaf to see you at the club, so come by to enjoy the beauties of bread with fellow enthusiasts 🍞.",
-            "day": "Tuesday",
-            "freq": "Every Other Week",
-            "time": "Lunch",
-            "room": "K-14",
-            "prez": "Jazmine Pieper",
-            "advisor": "Nicole Menache",
-            "email": "nmenache@pausd.org"
-        },
         "27281": {
             "new": false,
             "name": "TEDxGunnHighSchool",
@@ -311,19 +311,19 @@
             "advisor": "Daljeet Gill",
             "email": "dgill@pausd.org"
         },
-        "28945": {
+        "27707": {
             "new": true,
-            "name": "Design Collective",
-            "type": "Visual and Media Arts",
+            "name": "Origami Club",
+            "type": "Recreation",
             "tier": 1,
-            "desc": "As the Design Club, we are a group of students who are diversly skilled in all aspects of design and can assist, not only in inviting prospective students into the world of design, but also in leaving a tangible and practical impact on any artistic outing seen in Gunn High. Whether you like Graphic Design, Architecture, UI/UX Design, Typography, 3D Animation, etc. the Spirit and Ethos in Design Club (SPeD Club) is a community for you to discuss you interests and participate in related activities!",
-            "day": "Thursday",
+            "desc": "Gunn Origami Club is a relaxed, creative space where you can drop in, make origami at your own pace, or follow along with guided instructions. We fold fun and approachable models like cranes, paper planes, flowers, boxes, and other easy projects that anyone and everyone can enjoy. This club is completely beginner friendly without any experience required and all materials provided, so you are welcome to join anytime and create something cool with us.",
+            "day": "Tuesday",
             "freq": "Once a week",
             "time": "Lunch",
-            "room": "J-6",
-            "prez": "Raunak Garhyan",
-            "advisor": "Casey O'Connell",
-            "email": "coconnell@pausd.org"
+            "room": "N-205",
+            "prez": "Nathan Shim",
+            "advisor": "Misha Hlasek",
+            "email": "mhlasek@pausd.org"
         },
         "29045": {
             "new": true,
@@ -423,6 +423,20 @@
             "advisor": "Mark Weisman",
             "email": "mweisman@pausd.org"
         },
+        "31167": {
+            "new": true,
+            "name": "American Heart Association Club",
+            "type": "STEM",
+            "tier": 2,
+            "desc": "The purpose of the American Heart Association (AHA) Club is to raise awareness about heart-related diseases and promote heart health among students and our community. Heart disease is one of the leading causes of death worldwide, and many people are unaware of the risks or how to respond in an emergency. Through student involvement, our club hopes to help students understand the importance of heart health and feel more confident in making healthy choices.  AHA Club meetings and activities will combine service and well-being with scientific learning. Members of our club will explore the basics of cardiovascular health and research, including heart anatomy and physiology, common risks, and how lifestyle choices such as nutrition, physical activity, sleep, and stress affect heart health. This background knowledge helps club members understand heart health topics before sharing them with others.  Our club will put this knowledge into action through service-based activities focused on heart health and school safety. One of our main goals is to organize a CPR awareness and certification event with certified instructors, where students can learn hands-only CPR and what to do in real-life emergencies. The goal of this event is to help students feel prepared, not overwhelmed, and to show that basic CPR skills are something anyone can learn. Through initiatives like this, members will build leadership and teamwork skills while making a meaningful impact on the well-being of our school community.",
+            "day": "Monday (only for clubs that are meeting weekly)",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "N-209",
+            "prez": "Gia Vakklaganti",
+            "advisor": "Danielle Whichard",
+            "email": "dwhichard@pausd.org"
+        },
         "35985": {
             "new": false,
             "name": "Best Buddies",
@@ -436,6 +450,20 @@
             "prez": "Vin Bhat",
             "advisor": "Rolando Vital",
             "email": "rvital@pausd.org"
+        },
+        "36279": {
+            "new": true,
+            "name": "A Capella Club",
+            "type": "Music and Performing Arts",
+            "tier": 1,
+            "desc": "In this club we hope to arrange music for various songs and sing with as many people possible.",
+            "day": "Wednesday",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "Choir Room",
+            "prez": "Paxton Manning",
+            "advisor": "William Liberatore",
+            "email": "bliberatore@pausd.org"
         },
         "38776": {
             "new": false,
@@ -465,25 +493,11 @@
             "advisor": "Claudia Schroeppel",
             "email": "cschroeppel@pausd.org"
         },
-        "39391": {
-            "new": false,
-            "name": "Organic Garden Club",
-            "type": "Recreation",
-            "tier": 2,
-            "desc": "We grow and harvest food for student and classroom curriculum. All are welcome, no experience necessary!",
-            "day": "Monday",
-            "freq": "Once a week",
-            "time": "Lunch",
-            "room": "The Garden by K-5",
-            "prez": "Elizabeth Tsin",
-            "advisor": "Cindy Peters",
-            "email": "cpeters@pausd.org"
-        },
         "40304": {
             "new": false,
             "name": "AI in Business Club",
             "type": "STEM",
-            "tier": 2,
+            "tier": 1,
             "desc": "Discover how AI is transforming the business world in the AI and Business Club. Members will explore how companies use AI to solve problems and create opportunities, discuss the future of AI in industries, and engage in hands-on activities like brainstorming business ideas, learning how to create custom GPT's, and learning prompt engineering. Guest speakers from AI and business fields will inspire and share insights, fostering creativity and critical thinking.",
             "day": "Monday",
             "freq": "Once a week",
@@ -593,20 +607,6 @@
             "advisor": "Anita Su",
             "email": "asu@pausd.org"
         },
-        "43709": {
-            "new": false,
-            "name": "Economics Club",
-            "type": "Competition",
-            "tier": 1,
-            "desc": "The Econ club aims to help and provide assistance In Economics. Additionally in prep for the national economics challenge. Through lectures and guided questions in allignment with the econ course at Gunn students learn",
-            "day": "Wednesday",
-            "freq": "Once a week",
-            "time": "Lunch",
-            "room": "K-8",
-            "prez": "richard de la garza",
-            "advisor": "phillp lyons",
-            "email": "plyons@pausd.org"
-        },
         "43880": {
             "new": false,
             "name": "K-Pop Club",
@@ -625,7 +625,7 @@
             "new": false,
             "name": "Improv Club",
             "type": "Music and Performing Arts",
-            "tier": 2,
+            "tier": 1,
             "desc": "Improv performances, lunch meetings, and a regular opportunity to perform! Improv club provides lovers of improv---a theatrical/comedic discipline featuring performances made up on the spot---the opportunity to hone their craft, build a community of friends, create great performances together, and have fun!",
             "day": "Tuesday",
             "freq": "Once a week",
@@ -669,7 +669,7 @@
             "new": true,
             "name": "Biology Olympiad Club",
             "type": "STEM",
-            "tier": 2,
+            "tier": 1,
             "desc": "Our club will consist of fun and cutting-edge concepts and principles in Biology such as genetics and evolution, biotechnology, bioinformatics and molecular biology. These activities will prepare club members to participate in the 2026 USA Biology Olympiad competition.",
             "day": "Friday",
             "freq": "Once a week",
@@ -711,17 +711,31 @@
         },
         "48322": {
             "new": false,
-            "name": "Board Game Club",
-            "type": "Social",
+            "name": "Card Game Club",
+            "type": "Recreation",
             "tier": 1,
-            "desc": "Our board gaming club is a group of people who regularly meet to play board games during lunch times. All members will chat with each others and having fun to enjoy the board game.",
-            "day": "Thursday",
+            "desc": "Play any card game you like or learn a new game! We provide tables, cards, and chips. https://gunnwiki.org/Card_Game_Club",
+            "day": "Monday",
             "freq": "Once a week",
             "time": "Lunch",
-            "room": "PE classrom",
-            "prez": "Arjun Sinha",
-            "advisor": "Amy Anderson",
-            "email": "amanderson@pausd.org"
+            "room": "M-3",
+            "prez": "Aidan Peng",
+            "advisor": "Mrs. Buck",
+            "email": "vbuck@pausd.org"
+        },
+        "48435": {
+            "new": true,
+            "name": "Women in Politics",
+            "type": "Discussion",
+            "tier": 2,
+            "desc": "Gunn Women in Politics aims to empower students to explore civic engagement and leadership. \"Politics\" encompasses a wide range of topics that can often become confused with public relations drama and party rivalries. With an emphasis on women in politics, we will engage students in local, state, federal, and even international politics through discussions, workshops, campaign simulations, and speaker events.  Women in Politics offers a wonderful opportunity for individuals—especially female students—to engage in meaningful dialogue, advocacy training, gain practical experience, and stay informed about various political matters. If you want to build valuable connections in a collaborative, community-focused environment, our club is the perfect place for you!",
+            "day": "Monday (only for clubs that are meeting weekly)",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "C-8",
+            "prez": "Yes",
+            "advisor": "Tara Firenzi",
+            "email": "tfirenzi@pausd.org"
         },
         "48467": {
             "new": false,
@@ -765,6 +779,20 @@
             "advisor": "Nora Matta",
             "email": "nmatta@pausd.org"
         },
+        "49796": {
+            "new": true,
+            "name": "Unity Dance Club",
+            "type": "Music and Performing Arts",
+            "tier": 1,
+            "desc": "Unity Dance Club is a welcoming space for all students to come together, move, and connect through the joy of dance. Our mission is to unite people through movement while promoting physical health, wellness, and stress relief. Each week, members will participate in fun activities, with beginner friendly options, that encourage teamwork, confidence, and self-expression in a positive and supportive environment. Unity Dance Club is open to everyone, regardless of experience, and focuses on building a sense of community while helping students stay active and energized. By combining movement, music, and togetherness, our club creates a space where students can relax, have fun, and thrive both physically and socially.",
+            "day": "Monday (only for clubs that are meeting weekly)",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "N-107",
+            "prez": "Vivian Wang",
+            "advisor": "Thalia Rodriguez",
+            "email": "trodriguez@pausd.org"
+        },
         "50022": {
             "new": false,
             "name": "Key Club",
@@ -778,6 +806,20 @@
             "prez": "Yaya Li",
             "advisor": "Kate Weymouth",
             "email": "kweymouth@pausd.org"
+        },
+        "50936": {
+            "new": true,
+            "name": "Peer Mentorship Club",
+            "type": "Service and Wellbeing",
+            "tier": 1,
+            "desc": "The Peer Mentorship Club is an open community available to all students, focused on improving the school's competitive dynamic and providing advice on school-related topics. Each meeting features experienced mentors sharing notable experiences from their time at Gunn or offering advice on how to thrive in certain classes, with occasional workshops based on demand. Members swap advice on course selection, study approaches, extracurricular commitments, and long-term planning, giving others clearer insight into what different paths can look like and how to pursue them effectively. By hearing real examples of what fellow classmates tried, what they would do differently, and what actually mattered most, listeners can approach school with more clarity and perspective, helping ease the pressure that often comes from uncertainty and comparison.",
+            "day": "Wednesday",
+            "freq": "Every Other Week",
+            "time": "Lunch",
+            "room": "C-7",
+            "prez": "Connor Ding",
+            "advisor": "Max Zipperstein",
+            "email": "mzipperstein@pausd.org"
         },
         "51887": {
             "new": false,
@@ -827,27 +869,13 @@
             "type": "Visual Arts and Media",
             "tier": 1,
             "desc": "In order to create a club where students can relieve stress from their work during a short lunch break, we chose croquis among the arts. Students quickly draw a gesture drawing of a student model standing in front of them in a short time, such as 30 seconds, 1 or 5 minutes. In this process, students can draw without pressure and also learn important information about the human body in art. Student models can express emotions and refine themselves while maintaining the pose they want in a short time. After drawing, they can build a network by sharing and talking with each other.",
-            "day": "Monday",
+            "day": "Thursday",
             "freq": "Once a week",
             "time": "Lunch",
             "room": "L-8",
             "prez": "Jenna Ahmed",
             "advisor": "Tomas Grim",
             "email": "tgrim@pausd.org"
-        },
-        "54199": {
-            "new": false,
-            "name": "Quiz Bowl",
-            "type": "Competition",
-            "tier": 1,
-            "desc": "The Quiz Bowl club serves as a dynamic and intellectually stimulating platform for students to engage in competitive and collaborative academic competitions. Its primary purpose is to foster a passion for knowledge, critical thinking, and teamwork among its members. Through regular meetings and practice sessions, club participants delve into a wide array of subjects, ranging from literature and history to science and pop culture. Members develop their ability to quickly and accurately answer diverse trivia questions, honing their analytical skills and expanding their general knowledge base. The club also prepares for and participates in Quiz Bowl tournaments, where they compete against other schools regionally and nationally, putting their accumulated knowledge to the test in a fast-paced and exhilarating environment. Overall, the Quiz Bowl club offers a vibrant platform for intellectual growth, friendly competition, and the joy of learning for its enthusiastic members.",
-            "day": "Tuesday",
-            "freq": "Once a week",
-            "time": "Lunch",
-            "room": "C-1",
-            "prez": "Ayan Kancherla",
-            "advisor": "Chris Johnson",
-            "email": "cjohnson@pausd.org"
         },
         "54749": {
             "new": false,
@@ -862,6 +890,20 @@
             "prez": "Adi Sharon",
             "advisor": "Tomas Grim",
             "email": "tgrim@pausd.org"
+        },
+        "54917": {
+            "new": true,
+            "name": "Check&Mate",
+            "type": "STEM",
+            "tier": 1,
+            "desc": "Check & Mate is a club for students of all skill levels to learn, play and compete in chess. We aim to build an engaging environment, improve strategies and problem solving techniques and build community. We plan to meet weekly and will learn interesting tactics, openings, play friendly games, tournaments, and more! All students are welcome irrespective of the skill level. We look forward to seeing you!",
+            "day": "Tuesday",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "G-3",
+            "prez": "Riva Malhotra",
+            "advisor": "Breanna Reyes",
+            "email": "breyes@pausd.org"
         },
         "55207": {
             "new": false,
@@ -891,19 +933,21 @@
             "advisor": "Julia Angeles",
             "email": "jangeles@pausd.org"
         },
-        "55679": {
-            "new": false,
-            "name": "Southeast Asian Student Association",
-            "type": "Culture, Religion, and Language",
+        "55770": {
+            "new": true,
+            "name": "Feathered Explorers",
+            "type": "Recreation",
             "tier": 2,
-            "desc": "The purpose of this club is to create a community of Southeast Asian students at Gunn or anyone who is interested in Southeast Asian culture. Southeast Asian club will hold activities like Southeast Asian historical arts and crafts, fables/plays, and games. For example, Bầu cua cá cọp, lantern making, activities regarding lunar new year, etc... Furthermore, Southeast Asian food (vietnamese food, thai food, laos food, etc...) will occasionally be served and if there are any allergies or food complications, a form will be sent out a week beforehand asking about it. Other than that, if people do not want to engage in these activities they can just use the space as a place to hangout around a community of different cultures.",
+            "desc": "Feathered Explorers is an activity club for students who are interested in nature and want to learn more about birds and how we can help protect them. In our club, we will meet to learn how to identify different bird species by their characteristics, sounds, and behaviors, as well as where they live, how they migrate, and how they survive. We will create bird feeders and work on simple bird conservation projects to support birds in our local environment. Members will also go outdoors to observe birds firsthand and draw or sketch them as we study their features. Whether you are a beginner or already curious about birds, the birding club welcomes you.",
             "day": "Thursday",
-            "freq": "Every Other Week",
+            "freq": "Once a week",
             "time": "Lunch",
-            "room": "N-102",
-            "prez": "Gianna Tuffley",
-            "advisor": "Kristen Owen",
-            "email": "kowen@pausd.org"
+            "room": "K-1",
+            "prez": "Jingzhi Gu",
+            "advisor": "Ariane Tuomy",
+            "email": "atuomy@pausd.org",
+            "coadvisor": "Miranda Long",
+            "coemail": "mlong@pausd.org"
         },
         "55803": {
             "new": true,
@@ -923,7 +967,7 @@
             "new": false,
             "name": "Anatomy and Physiology Club",
             "type": "STEM",
-            "tier": 2,
+            "tier": 1,
             "desc": "Meeting every week to prepare for and perform bi-weekly dissections, this club will delve into many topics related to the human anatomy as well as countless other organisms.",
             "day": "Tuesday",
             "freq": "Once a week",
@@ -937,7 +981,7 @@
             "new": false,
             "name": "DIY Crafts Club",
             "type": "Visual Arts and Media",
-            "tier": 2,
+            "tier": 1,
             "desc": "Our purpose is to provide a space where people can have fun and be creative while creating aesthetic and trendy crafts. The projects will be simple, so members can recreate them with their own unique style, and easy, so people can create many at once. Club members will learn how to make a variety of fun crafts that they can take home with them and use for accessories, decor, gifts, etc. These include making keychains, jewelry, room decor, and painting on various things.",
             "day": "Friday",
             "freq": "Once a week",
@@ -975,33 +1019,19 @@
             "advisor": "Jordan Wells",
             "email": "jwells@pausd.org"
         },
-        "59885": {
-            "new": false,
-            "name": "Cooking Club",
-            "type": "Culture, Religion, and Language",
-            "tier": 2,
-            "desc": "From Master Chefs to Instant Ramen slurpers, the Cooking Club is for anyone passionate about food! Whether you like the eating or the cooking part of the process, we have a place for you. Our purpose is to learn about the significance of food in our daily lives and how it shapes our cultures. We host fun activities like making pickles, build-your-own cakes, latte art lessons, and much more! Join us in N113 every Tuesday at lunch!",
-            "day": "Tuesday",
+        "60231": {
+            "new": true,
+            "name": "Byte Club",
+            "type": "STEM",
+            "tier": 1,
+            "desc": "Byte Club is a project-focused club where members build both hardware & software creations. We work on everything from microcontrollers and circuits to and embedded systems. Meetings are hands-on: prototyping, collaborating, and helping each other learn new tools. We provide the computers for the necessary software to be downloaded & no experience is required!",
+            "day": "Thursday",
             "freq": "Once a week",
             "time": "Lunch",
-            "room": "N-113",
+            "room": "N-213",
             "prez": "Luna Wang",
-            "advisor": "Katherine Ja",
-            "email": "kja@pausd.org"
-        },
-        "60182": {
-            "new": false,
-            "name": "Culture Connection Club",
-            "type": "Culture, Religion, and Language",
-            "tier": 1,
-            "desc": "The purpose of Culture Connection Club is to celebrate and learn about the various cultures around our globe! Emphasizing the diversity of our community, our meetings during lunch includes presentations, culture days, games, activities, and, of course, snacks. We also offer VOLUNTEER HOURS for translating Gunn Connection News each week—currently offering Korean, Chinese, Spanish, German, French, and Japanese and is open for more languages. Translations are not required and anyone is welcomed to join!",
-            "day": "Thursday",
-            "freq": "Every Other Week",
-            "time": "Lunch",
-            "room": "G-4",
-            "prez": "Yueun Hong",
-            "advisor": "Gabriela Garger",
-            "email": "ggarger@pausd.org"
+            "advisor": "Brenda Young",
+            "email": "byoung@pausd.org"
         },
         "61597": {
             "new": false,
@@ -1016,20 +1046,6 @@
             "prez": "Aritra Nag",
             "advisor": "Edward Corpuz",
             "email": "ecorpuz@pausd.org"
-        },
-        "62410": {
-            "new": false,
-            "name": "The Chariot",
-            "type": "Visual Arts and Media",
-            "tier": 2,
-            "desc": "The Chariot is Gunn's nonpartisan, student-led social and political magazine. We aim to foster discussion of social and political events at Gunn through political forums and publishing articles. To view some of our published articles, get in touch with us, or learn more about us, visit chariotonline.wordpress.com.",
-            "day": "Monday",
-            "freq": "Once a week",
-            "time": "Lunch",
-            "room": "N-106",
-            "prez": "Vin Bhat",
-            "advisor": "Justin Brown",
-            "email": "jdbrown@pausd.org"
         },
         "67504": {
             "new": false,
@@ -1087,19 +1103,19 @@
             "advisor": "Jena Lee",
             "email": "jlee@pausd.org"
         },
-        "69923": {
-            "new": false,
-            "name": "Titan Journal Club",
-            "type": "STEM",
+        "70308": {
+            "new": true,
+            "name": "Law Club",
+            "type": "Humanities",
             "tier": 1,
-            "desc": "The Titan Journal is a student-run journal that gives Gunn students the opportunity to publish their research papers, articles, and essays. During club meetings, members can present and receive feedback on their works in a supportive and constructive environment.",
-            "day": "Wednesday",
-            "freq": "Once a week",
+            "desc": "A club to discuss and learn more about the broad topic of law and related career paths. We will analyze specific case studies, learn about civil and criminal law, discuss celebrity trials, talk to real lawyers, and connect with others that have similar interests in the world of law!",
+            "day": "Monday (only for clubs that are meeting weekly)",
+            "freq": "Every Other Week",
             "time": "Lunch",
-            "room": "J-5",
-            "prez": "Isaac Fredericson",
-            "advisor": "Laurie Pennington",
-            "email": "lpennington@pausd.org"
+            "room": "N-102",
+            "prez": "Nyla Wang",
+            "advisor": "Kristen Owen",
+            "email": "kowen@pausd.org"
         },
         "71551": {
             "new": false,
@@ -1227,20 +1243,6 @@
             "advisor": "Kirsten Tasker",
             "email": "ktasker@pausd.org"
         },
-        "75957": {
-            "new": false,
-            "name": "Card Game Club",
-            "type": "Recreation",
-            "tier": 1,
-            "desc": "Play any card game you like or learn a new game! We provide tables, cards, and chips. https://gunnwiki.org/Card_Game_Club",
-            "day": "Monday",
-            "freq": "Once a week",
-            "time": "Lunch",
-            "room": "M-3",
-            "prez": "Aidan Peng",
-            "advisor": "Mrs. Buck",
-            "email": "vbuck@pausd.org"
-        },
         "76373": {
             "new": false,
             "name": "Weightlifting Club",
@@ -1254,6 +1256,20 @@
             "prez": "Gabriel Espinoza",
             "advisor": "Katherine Ja",
             "email": "kja@pausd.org"
+        },
+        "77046": {
+            "new": true,
+            "name": "Finance and Investments club",
+            "type": "Competition",
+            "tier": 2,
+            "desc": "The Investments & Finance Club is where you put market theory into practice through active trading and investments. We are competition-focused, centering our year around the global Young Investors Society (YIS) challenges. In addition, members will learn about various topics ranging from corporate finance fundamentals, technicals and much more to supplement their knowledge in our competitions. If you want to learn and apply what you know, or test your ability to execute winning strategies, this is the place to do it.",
+            "day": "Friday",
+            "freq": "Every Other Week",
+            "time": "Lunch",
+            "room": "C-4",
+            "prez": "David Fornwald",
+            "advisor": "Sebastian Castaneda",
+            "email": "scastaneda@pausd.org"
         },
         "77894": {
             "new": false,
@@ -1283,6 +1299,20 @@
             "advisor": "Alexis Letner",
             "email": "aletner@pausd.org"
         },
+        "79138": {
+            "new": true,
+            "name": "Food Science Club",
+            "type": "STEM",
+            "tier": 2,
+            "desc": "Our goal is to educate Gunn students about the many aspects of food science and provide presentations, samples, and experiments for them to apply their knowledge. These experiments will explore the science behind making certain foods on a molecular level, technology behind food production and preservation, and how food science directly connects back to our community and how it fights food insecurity. Specific experiments include explaining fermentation through yeast experiments, building DIY solar ovens, vitamin C iodine titration, DIY ice cream, and much more!",
+            "day": "Monday (only for clubs that are meeting weekly)",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "N-building, N-110",
+            "prez": "Victoria Blanchet and Athena Gao (co-presidents)",
+            "advisor": "Jasmine Cadenas",
+            "email": "jcadenas@pausd.org"
+        },
         "79257": {
             "new": false,
             "name": "Girls Tech Club",
@@ -1299,6 +1329,20 @@
             "coadvisor": "Savannah McDonnell",
             "coemail": "smcdonnell@pausd.org"
         },
+        "82626": {
+            "new": true,
+            "name": "Human Cognition and AI",
+            "type": "STEM",
+            "tier": 1,
+            "desc": "We explore how human cognition can be integrated into AI processing, allowing AI systems to function like the brain. Our purpose is to teach people about cognitive AI it's relations with neuroscience, and try to create our own cognitive AI model.",
+            "day": "Tuesday",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "G-4",
+            "prez": "Stephen Sheng",
+            "advisor": "Gabriela Garger",
+            "email": "ggarger@pausd.org"
+        },
         "82873": {
             "new": true,
             "name": "Cybersecurity Club",
@@ -1312,6 +1356,20 @@
             "prez": "Diya Bhagat",
             "advisor": "David Deggeller",
             "email": "ddeggeller@pausd.org"
+        },
+        "83050": {
+            "new": true,
+            "name": "Financial Literacy Club",
+            "type": "STEM",
+            "tier": 1,
+            "desc": "The Gunn Financial Literacy Club seeks to educate students on important topics in personal finance such as saving, budgeting, borrowing, and investing. This will include presentations, fun videos, interactive activities like Kahoot, and guest speakers. We hope to equip students with real-world financial skills so that we could establish good habits, make informed decisions, and create lifelong financial freedom.",
+            "day": "Monday (only for clubs that are meeting weekly)",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "N-206",
+            "prez": "Ellie Hu",
+            "advisor": "Gopi Tantod",
+            "email": "gtantod@pausd.org"
         },
         "83301": {
             "new": false,
@@ -1385,19 +1443,33 @@
             "advisor": "Daniel Hahn",
             "email": "dhahn@pausd.org"
         },
-        "90623": {
-            "new": false,
-            "name": "Style Swap",
-            "type": "Recreation",
+        "91293": {
+            "new": true,
+            "name": "Rhythm Game Club",
+            "type": "Music and Performing Arts",
             "tier": 1,
-            "desc": "We would meet, swap clothes, keep track of them, and return them.",
-            "day": "Wednesday",
+            "desc": "Play rhythm games like Project Sekai and Phigros together! Comparing our scores, challenging each other, and working as a team to help everyone unlock higher-ranking songs. Join in the fun and level up your rhythm skills!",
+            "day": "Thursday",
+            "freq": "Once a week",
+            "time": "Lunch",
+            "room": "F-6",
+            "prez": "Shiqi Dai",
+            "advisor": "Patricia Holmes",
+            "email": "pholmes@pausd.org"
+        },
+        "91597": {
+            "new": false,
+            "name": "Physical Therapy in Sports Club",
+            "type": "STEM",
+            "tier": 1,
+            "desc": "At our club we examine the mechanisms of sports injury. Additionally, we touch on modes of prevention, and offer a space to express individual interests about the topic through presentations.",
+            "day": "Tuesday",
             "freq": "Every Other Week",
             "time": "Lunch",
-            "room": "N-207",
-            "prez": "Vaani Saxena",
-            "advisor": "Florina Limburg",
-            "email": "flimburg@pausd.org"
+            "room": "J-2",
+            "prez": "Savin Gamage",
+            "advisor": "Jena Lee",
+            "email": "jlee@pausd.org"
         },
         "93631": {
             "new": false,
@@ -1445,7 +1517,7 @@
             "new": false,
             "name": "Architecture Club",
             "type": "Visual and Media Arts",
-            "tier": 2,
+            "tier": 1,
             "desc": "Architecture Club is the place to turn curiosity into creativity! We explore how art, engineering, and design come together to create hands-on projects. Each week we dive into activities like sketching, model-building, design challenges, and even experimenting with digital tools used by real architects. No experience needed—just bring your imagination! By the end of the year, members get to showcase their projects in a design exhibition. Come join us to create, collaborate, and design the future!",
             "day": "Tuesday",
             "freq": "Every Other Week",
@@ -1482,20 +1554,6 @@
             "prez": "Riya Chaudhary",
             "advisor": "Mark Brassey",
             "email": "mbrassey@pausd.org"
-        },
-        "99202": {
-            "new": true,
-            "name": "The Hidden Opponent",
-            "type": "Service and Wellbeing",
-            "tier": 1,
-            "desc": "The Hidden Opponent at Gunn is a student-led chapter of the national non-profit dedicated specifically to athlete mental health. While many mental health clubs focus broadly on wellness, THO uniquely supports the intersection of athletics and mental well-being. We aim to create a safe, stigma-free space for student-athletes to share their experiences, learn about mental performance and stress management, and advocate for a healthier, more supportive sports culture on and off the field. Through open discussions, workshops, and awareness campaigns, we spotlight the often \"hidden\" mental challenges athletes face — like pressure, identity, injury recovery, and burnout — and work to redefine what strength looks like in sports.",
-            "day": "Tuesday",
-            "freq": "Every Other Week",
-            "time": "Lunch",
-            "room": "PE Classroom, Bow Gym",
-            "prez": "Hannah Wu",
-            "advisor": "Paul Medeiros",
-            "email": "pmedeiros@pausd.org"
         },
         "99480": {
             "new": false,
