@@ -1,16 +1,28 @@
-import clubs from "@watt/shared/data/clubs";
+// import clubs from "@watt/shared/data/clubs";
 
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useAnalytics, useAuth } from "reactfire";
+// import { useParams } from "react-router-dom";
+// import { useAnalytics, useAuth } from "reactfire";
 
-import { logEvent } from "firebase/analytics";
-import { GoogleAuthProvider, onAuthStateChanged, signInWithRedirect } from 'firebase/auth'
+// import { logEvent } from "firebase/analytics";
+// import { GoogleAuthProvider, onAuthStateChanged, signInWithRedirect } from 'firebase/auth'
 
 import CenteredMessage from "../components/layout/CenteredMessage";
 import Loading from "../components/layout/Loading";
 
 export default function Prefill() {
+    useEffect(() => {
+        // 2026-27: moving away from Google Form?
+        // TODO: update once they figure out FiveStar beyond the login link
+        window.location.href = 'https://www.gunnsec.org/asb-club-forms.html';
+    }, []);
+
+    return (
+        <CenteredMessage>
+            <Loading>Preparing to redirect you...</Loading>
+        </CenteredMessage>
+    )
+    /*
     const auth = useAuth();
     const analytics = useAnalytics();
 
@@ -69,4 +81,5 @@ export default function Prefill() {
             )}
         </CenteredMessage>
     );
+    */
 }

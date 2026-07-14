@@ -1,3 +1,6 @@
+# Outdated for 2026-27 school year
+# TODO: rewrite to support overlapping periods (SELF/SH on fridays)
+
 # Manually inputting schedule, but in a readable format
 # This file is PARSED by ../code/genSchedule.js
 # (Information about the format of this file can be found there)

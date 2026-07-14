@@ -30,7 +30,9 @@ import {info, prompt, warn} from './util/logging';
                 new: newClub,
                 name,
                 type,
-                tier: parseInt(tier.match(/\d+/)![0]) as 1 | 2 | 3,
+                // tier: parseInt(tier.match(/\d+/)![0]) as 1 | 2 | 3,
+                // 2026: tiers replaced with "special interest" and "financial" clubs...
+                tier,
                 desc,
                 day,
                 freq,

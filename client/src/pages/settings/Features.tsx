@@ -44,7 +44,7 @@ export default function Features() {
         await updateUserData('options.clock', value, auth, firestore);
     }
 
-    const years = [2026, 2027, 2028, 2029, 0];
+    const years = [2027, 2028, 2029, 2030, 0];
 
 
     return (

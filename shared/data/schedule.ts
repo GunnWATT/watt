@@ -2,14 +2,14 @@ import {DateTime} from 'luxon';
 
 
 // An object representing a period, with s and e being start and end times (in minutes after 12:00 AM PST)
-// and n being the period's key. 0-8 represent periods 0 through 8, while B, L, S, and P represent Brunch, Lunch, SELF,
-// and PRIME, respectively. G and O represent the now deprecated Gunn Together and Office Hours periods. All other period
+// and n being the period's key. 0-8 represent periods 0 through 8, while B, L, S, H, and P represent Brunch, Lunch, SELF,
+// Study Hall, and PRIME, respectively. G and O represent the now deprecated Gunn Together and Office Hours periods. All other period
 // names, like "ELA CAT", remain unparsed.
 export type PeriodObj = {n: string, s: number, e: number, note?: string, grades?: number[]};
 
-export const SCHOOL_START = DateTime.fromISO('2025-08-14', {zone: 'America/Los_Angeles'});
-export const SCHOOL_END = DateTime.fromISO('2026-06-04', {zone: 'America/Los_Angeles'});
-export const SCHOOL_END_EXCLUSIVE = DateTime.fromISO('2026-06-06', {zone: 'America/Los_Angeles'});
+export const SCHOOL_START = DateTime.fromISO('2026-08-13', {zone: 'America/Los_Angeles'});
+export const SCHOOL_END = DateTime.fromISO('2027-06-03', {zone: 'America/Los_Angeles'});
+export const SCHOOL_END_EXCLUSIVE = DateTime.fromISO('2027-06-05', {zone: 'America/Los_Angeles'});
 
 const schedule: {[key: string]: PeriodObj[]} = {
     "M": [
@@ -21,52 +21,47 @@ const schedule: {[key: string]: PeriodObj[]} = {
         {
             "n": "1",
             "s": 540,
-            "e": 585
+            "e": 590
         },
         {
             "n": "2",
-            "s": 595,
-            "e": 640
+            "s": 597,
+            "e": 642
         },
         {
             "n": "B",
-            "s": 640,
-            "e": 645
+            "s": 642,
+            "e": 650
         },
         {
             "n": "3",
-            "s": 655,
-            "e": 700
+            "s": 657,
+            "e": 702
         },
         {
             "n": "4",
-            "s": 710,
-            "e": 755
+            "s": 709,
+            "e": 754
         },
         {
             "n": "L",
-            "s": 755,
-            "e": 785
+            "s": 754,
+            "e": 784
         },
         {
             "n": "5",
-            "s": 795,
-            "e": 840
+            "s": 791,
+            "e": 836
         },
         {
             "n": "6",
-            "s": 850,
-            "e": 895
+            "s": 843,
+            "e": 888
         },
         {
             "n": "7",
-            "s": 905,
-            "e": 950
-        },
-        {
-            "n": "8",
-            "s": 960,
-            "e": 1005
+            "s": 895,
+            "e": 940
         }
     ],
     "T": [
@@ -78,37 +73,32 @@ const schedule: {[key: string]: PeriodObj[]} = {
         {
             "n": "1",
             "s": 540,
-            "e": 635
+            "e": 630
         },
         {
             "n": "B",
-            "s": 635,
-            "e": 640
+            "s": 630,
+            "e": 638
         },
         {
             "n": "2",
-            "s": 650,
-            "e": 740
+            "s": 645,
+            "e": 735
         },
         {
             "n": "L",
-            "s": 740,
-            "e": 770
+            "s": 735,
+            "e": 765
         },
         {
             "n": "3",
-            "s": 780,
-            "e": 870
+            "s": 772,
+            "e": 862
         },
         {
             "n": "4",
-            "s": 880,
-            "e": 970
-        },
-        {
-            "n": "8",
-            "s": 980,
-            "e": 1070
+            "s": 869,
+            "e": 959
         }
     ],
     "W": [
@@ -120,32 +110,32 @@ const schedule: {[key: string]: PeriodObj[]} = {
         {
             "n": "5",
             "s": 540,
-            "e": 635
+            "e": 630
         },
         {
             "n": "B",
-            "s": 635,
-            "e": 640
+            "s": 630,
+            "e": 638
         },
         {
             "n": "6",
-            "s": 650,
-            "e": 740
+            "s": 645,
+            "e": 735
         },
         {
             "n": "L",
-            "s": 740,
-            "e": 770
+            "s": 735,
+            "e": 765
         },
         {
             "n": "7",
-            "s": 780,
-            "e": 870
+            "s": 772,
+            "e": 862
         },
         {
             "n": "P",
-            "s": 880,
-            "e": 930
+            "s": 879,
+            "e": 919
         }
     ],
     "R": [
@@ -157,69 +147,83 @@ const schedule: {[key: string]: PeriodObj[]} = {
         {
             "n": "1",
             "s": 540,
-            "e": 635
+            "e": 630
         },
         {
             "n": "B",
-            "s": 635,
-            "e": 640
+            "s": 630,
+            "e": 638
         },
         {
             "n": "2",
-            "s": 650,
-            "e": 740
+            "s": 645,
+            "e": 735
         },
         {
             "n": "L",
-            "s": 740,
-            "e": 770
+            "s": 735,
+            "e": 765
         },
         {
             "n": "3",
-            "s": 780,
-            "e": 870
+            "s": 772,
+            "e": 862
         },
         {
             "n": "4",
-            "s": 880,
-            "e": 970
-        },
-        {
-            "n": "8",
-            "s": 980,
-            "e": 1070
+            "s": 869,
+            "e": 959
         }
     ],
     "F": [
         {
             "n": "5",
             "s": 540,
-            "e": 635
+            "e": 630
         },
         {
             "n": "B",
-            "s": 635,
-            "e": 640
+            "s": 630,
+            "e": 638
         },
         {
             "n": "6",
-            "s": 650,
-            "e": 740
+            "s": 645,
+            "e": 735
         },
         {
             "n": "L",
-            "s": 740,
-            "e": 770
+            "s": 735,
+            "e": 765
         },
         {
             "n": "S",
-            "s": 780,
-            "e": 830
+            "s": 772,
+            "e": 802,
+            "grades": [9, 10]
+        },
+        {
+            "n": "H",
+            "s": 772,
+            "e": 802,
+            "grades": [11, 12]
+        },
+        {
+            "n": "S",
+            "s": 809,
+            "e": 839,
+            "grades": [11, 12]
+        },
+        {
+            "n": "H",
+            "s": 809,
+            "e": 839,
+            "grades": [9, 10]
         },
         {
             "n": "7",
-            "s": 840,
-            "e": 930
+            "s": 846,
+            "e": 936
         }
     ]
 }
