@@ -14,6 +14,7 @@ export default function UtilitiesLayout() {
                 <NavTab to="calculator" name="Finals Calc." />
                 <NavTab to="staff" name="Staff" />
                 <NavTab to="courses" name="Courses" />
+                <NavTab to="wellness" name="Wellness" />
                 <NavTab to="resources" name="Resources" />
             </>}
         >
