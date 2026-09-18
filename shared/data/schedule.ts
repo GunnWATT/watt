@@ -134,7 +134,7 @@ const schedule: {[key: string]: PeriodObj[]} = {
         },
         {
             "n": "P",
-            "s": 879,
+            "s": 869,
             "e": 919
         }
     ],
